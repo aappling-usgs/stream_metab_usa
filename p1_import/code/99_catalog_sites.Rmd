@@ -1,0 +1,39 @@
+---
+title: "Describe data availability by site"
+author: "Jordan Read, Alison Appling"
+date: "April 16, 2015"
+output: html_document
+---
+sciencebase:
+https://www.sciencebase.gov/catalog
+
+sciencebase communities
+https://www.sciencebase.gov/catalog/folder/4f4e4760e4b07f02db47df9c
+
+*look at permissions of Continental Stream Metabolism*
+
+sites parent folder:
+https://www.sciencebase.gov/catalog/folder/5487139fe4b02acb4f0c8110
+
+item site with watershed (nwis_01408500)
+https://www.sciencebase.gov/catalog/folder/5487616de4b02acb4f0c8999
+
+```{r}
+library(powstreams)
+```
+
+Find all sites that have water temp, do observations, and discharge and plot them:
+```{r}
+sites <- list_sites(with_timeseries = c('wtr','doobs','disch'))
+latlongs <- site_location(sites)
+library(ggmap)
+usa_map <- get_map(location="usa", zoom=3)
+ggmap(usa_map) + geom_point(data=latlongs, aes(x=longitude, y=latitude))
+```
+
+Collect three variables into a single data.frame:
+```{r}
+bobs_site <- "nwis_01465798"
+metab_data <- load_timeseries(site = bobs_site, variable = c('wtr','doobs','disch'))
+head(metab_data)
+```
