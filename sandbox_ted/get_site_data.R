@@ -1,7 +1,7 @@
 # Download existing timeseries data from ScienceBase.
 # Ted, this is your file to modify as you like.
 
-# If needed: 
+# If needed: Installed 05/13/2015
 # library(devtools)
 # install_github("USGS-R/powstreams")
 # install_github("USGS-R/streamMetabolizer")
@@ -15,6 +15,7 @@ library(dplyr) # This is a generally awesome package. Gets you %>%, mutate, sele
 
 # Get a list of IDs & info for streams on ScienceBase
 metab_variables <- c("disch","doobs","wtr")
+# List of sites that have all three variables.
 sb_site_ids <- powstreams::list_sites(with_timeseries=metab_variables)
 sb_site_ids <- setNames(sb_site_ids, sb_site_ids)
 sb_site_names <- sapply(strsplit(sb_site_ids, split = '_'), tail, 1) %>%
@@ -26,7 +27,7 @@ sb_site_names <- sapply(strsplit(sb_site_ids, split = '_'), tail, 1) %>%
 # added to the GitHub repository
 get_data_again <- FALSE
 if(get_data_again == TRUE) {
-  site_data <- lapply(sb_site_ids, function(site_id) {
+  site_data <- lapply(sb_site_ids[1], function(site_id) {
     one_site <- load_timeseries(site=site_id, variables=metab_variables, join.fun=inner_join)
     write.csv(one_site, paste0("sandbox_ted/data/", site_id, ".csv"), row.names=FALSE)
   })
