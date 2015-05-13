@@ -1,0 +1,135 @@
+---
+title: "Metabolism in 12 sites"
+author: "Alison Appling"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Metabolism in 12 sites}
+  \usepackage[utf8]{inputenc}
+---
+
+This is an example analysis of metabolism for 12 arbitrarily chosen sites.
+
+```{r, echo=FALSE}
+# set global chunk options
+knitr::opts_chunk$set(fig.width=7, fig.height=5, echo=FALSE, message=FALSE, warning=FALSE, results="hide")
+```
+
+```{r}
+library(plyr)
+library(dplyr)
+library(dataRetrieval)
+library(mda.streams)
+library(powstreams)
+library(streamMetabolizer)
+library(tidyr)
+library(ggplot2)
+library(unitted)
+library(knitr)
+
+redo_models <- TRUE
+```
+
+```{r}
+# Identify the ID for a creek from its name in NWIS
+metab_variables <- c("disch","doobs","wtr")
+sb_sites <- list_sites(with_timeseries=metab_variables)
+sb_site_names <- readNWISsite(split_site(sb_sites)) %>% mutate(site_id=paste0("nwis_", site_no)) %>% select(site_id, station_nm, dec_lat_va, dec_long_va)
+# Pick our handful
+site_ids <- c(beaty_creek_OK="nwis_07191222", 
+              sugar_WI="nwis_05435950", #black_earth_WI="nwis_05406500",
+              chesterville_MD="nwis_01493112", #short
+              vermilion_OH="nwis_04199500", #eagle_creek_OH="nwis_04188496",
+              clackamas_OR="nwis_14210000", #fanno_creek_OR="nwis_14206950",
+              little_red_AR="nwis_07075270", #short
+              medina_TX="nwis_08180700",
+              rocky_NC="nwis_02101726", #new_NC="nwis_0209303205",
+              north_canadian_OK="nwis_07239450", 
+              reedy_creek_FL="nwis_02266300",
+              tuolumne_CA="nwis_11285500", #santa_ynez_CA="nwis_11126000",
+              silver_creek_UT="nwis_10129900")
+# Summarize choices
+site_choices <- data.frame(site_id=site_ids, stringsAsFactors=FALSE) %>% add_rownames("short_name") %>% inner_join(sb_site_names, by="site_id")
+```
+
+```{r}
+if(redo_models) {
+  # Download all available timeseries data
+  site_data <- lapply(site_ids, function(site_id) {
+    load_timeseries(site=site_id, variables=metab_variables, join.fun=inner_join)
+    })
+  # Print a table of sites, their names, and their data dimensions
+  site_info <- 
+    sapply(site_data, dim) %>% t() %>% as.data.frame() %>% setNames(c("n_rows","n_cols")) %>% add_rownames("short_name") %>% 
+    inner_join(
+      sapply(site_data, function(site) {length(which(!is.na(site$ts_doobs)))}) %>% as.data.frame() %>% setNames(c("n_doobs")) %>% add_rownames("short_name"),
+      by="short_name") %>% 
+    inner_join(site_choices, by="short_name") %>% 
+    select(short_name, station_nm, site_id, n_rows, n_cols, n_doobs) 
+  
+  save(site_info, file="site_info.RData")
+} else {
+  load("site_info.RData")
+}
+kable(site_info)
+write.csv(site_info, "site_info.csv")
+```
+
+```{r}
+# Add and rename data columns as needed to pass to metab_simple
+if(redo_models) {
+  site_data_munged <- lapply(names(site_ids), function(site_name) {
+    site_data[[site_name]] %>% 
+      rename(DO.obs=ts_doobs, 
+             temp.water=ts_wtr)  %>%
+      mutate(date.time=convert_GMT_to_solartime(DateTime, longitude=site_location(site_ids[[site_name]])$longitude, time.type="apparent solar"),
+             DO.sat=calc_DO_at_sat(temp.water=temp.water, pressure.air=1000),
+             depth=calc_depth(Q=ts_disch*v(u(0.0283168466,"m3/s cfs^-1"))),
+             light=calc_solar_insolation(date.time, latitude=site_location(site_ids[[site_name]])$latitude)) %>%
+      select(date.time, DO.obs, DO.sat, depth, temp.water, light)
+    }) %>% setNames(names(site_ids))
+}
+```
+
+We'll estimate GPP and ER for all models, all complete days.
+```{r, results="markup"}
+# Estimate metabolism for a single day
+if(redo_models) {
+  metab_models <- lapply(site_data_munged, metab_simple)
+  save(metab_models, file="metab_models.RData")
+} else {
+  load("metab_models.RData")
+}
+ests_metab <- lapply(metab_models, predict_metab)
+preds_DO <- lapply(metab_models, predict_DO)
+```
+
+Here are the observed and modeled DO concentrations. 
+```{r}
+# Combine estimates into 1 df, preds into 1 df (for ggplot)
+ests_metab_df <- lapply(names(ests_metab), function(site_name) { data.frame(short_name=site_name, ests_metab[[site_name]], stringsAsFactors=FALSE) }) %>% bind_rows()
+preds_DO_df <- lapply(names(preds_DO), function(site_name) { data.frame(short_name=site_name, preds_DO[[site_name]], stringsAsFactors=FALSE) }) %>% bind_rows()
+# Plot the metabolism estimates
+ggplot(ests_metab_df, aes(x=date, y=GPP)) + geom_point(color="forestgreen", size=0.7, na.rm=TRUE) + theme_bw() + facet_wrap(~ short_name)
+ggsave("GPPvsDate.png")
+ggplot(ests_metab_df, aes(x=date, y=ER)) + geom_point(color="orange", size=0.7, na.rm=TRUE) + theme_bw() + facet_wrap(~ short_name)
+ggsave("ERvsDate.png")
+ggplot(ests_metab_df, aes(x=date, y=K600)) + geom_point(color="slateblue", size=0.7, na.rm=TRUE) + theme_bw() + facet_wrap(~ short_name)
+ggsave("K600vsDate.png")
+ggplot(ests_metab_df, aes(x=GPP, y=ER)) + geom_hline(color="darkgray") + geom_vline(color="darkgray") + 
+  geom_point(color="maroon", size=0.7, na.rm=TRUE) + theme_bw() + facet_wrap(~ short_name)
+ggsave("ERvsGPP.png")
+ggplot(ests_metab_df, aes(x=K600, y=ER)) + geom_hline(color="darkgray") + geom_vline(color="darkgray") + 
+  geom_point(color="black", size=0.7, na.rm=TRUE) + theme_bw() + facet_wrap(~ short_name)
+ggsave("ERvsK600.png")
+# Plot the predicted and observed DO values
+ggpreds <- preds_DO_df %>% rename(obs=DO.obs, mod=DO.mod) %>% 
+  filter(!is.na(mod)) %>%
+  ungroup() %>% group_by(short_name) %>% slice((-350:-1)+n()) %>% 
+  gather(method, DO.mgL, obs, mod)
+ggplot(ggpreds, aes(x=date.time, y=DO.mgL, color=method)) + geom_line(data=filter(ggpreds, method=="obs"), na.rm=TRUE) + geom_point(data=filter(ggpreds, method=="mod"), size=0.7, na.rm=TRUE) + theme_bw() + facet_wrap(~ short_name, scales="free_x")
+ggsave("DOpreds.png")
+```
