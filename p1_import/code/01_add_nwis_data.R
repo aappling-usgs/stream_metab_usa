@@ -23,10 +23,6 @@ if(exists("sb_password"))
 else 
   session = authenticate_sb(sb_user)
 
-# Find the project root ("Continental Stream Metabolism" folder)
-true_sites_root <- sbtools::query_item_identifier(scheme="mda_streams", type="project_root", key="uber")$id
-project_root <- sbtools::item_get_parent(true_sites_root)
-
 # Find the sites root ("Sites_dev" folder)
 sites_root <- sbtools::query_item_identifier(scheme="mda_streams_dev", type="sites_root", key="uber")
 
