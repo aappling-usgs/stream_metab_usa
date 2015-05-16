@@ -45,7 +45,7 @@ shapes <- lapply(HUC2s, function(HUC2) {
   readOGR(sprintf('temp/basins%s',HUC2), layer = sprintf('basins%s',HUC2))
 })
 
-# Function to determine whether 
+# Function to get the watershed shape, if available, from the larger shapefile
 get_shed = function(nwis_id, shape){
   
   shed_names <- as.character(unique(shape$SITE_NO))
@@ -66,16 +66,22 @@ get_shed = function(nwis_id, shape){
 
 for (n in 1:length(sites)){
   site <- sites[n]
+  
+  # Get the data
   site_num <- strsplit(site,split = '_')[[1]][2]
   for(shape in shapes) {
     shed <- get_shed(site_num, shape)
     if(!is.null(shed)) break
   }
+  
+  # Check for existing item on SB
   if(!is.null(shed)){
     exists <- item_exists(scheme = 'mda_streams_dev',type = 'watershed',key = site)
   } else {
     exists = NULL
   }
+  
+  # Write data to file, then post to SB
   if (!is.null(shed) && !exists){
     dsn <- tempdir()
     writeOGR(shed , dsn, site, driver="ESRI Shapefile")
