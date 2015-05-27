@@ -1,6 +1,6 @@
 executable=simple.sh
 arguments=run_on_condor.R $(Process)
-transfer_input_files=run_on_condor.R,.Renviron,lake_ids.tsv,packages.zip
+transfer_input_files=run_on_condor.R,.Renviron,run_config_table.tsv,packages.zip
 universe = vanilla
 output = out/$(Process).out
 error = err/$(Process).err
