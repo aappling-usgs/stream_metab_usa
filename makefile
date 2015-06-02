@@ -9,36 +9,36 @@ CALL_R = R CMD BATCH  --no-save --no-restore --slave --no-timing
 
 # Targets
 
-all : p1_import
+all : p2_metab
 
 # Rules
 
-#- p1_import
+## p1_import
 
-p1_import : init_sites
+#p1_import : init_sites
 
-init_sites : p1_import/out/00_init_sites.Rout
+#init_sites : p1_import/out/00_init_sites.Rout
 
-p1_import/out/00_init_sites.Rout : p1_import/code/00_init_sites.R
-	$(CALL_R) "--args sb_user=SBUSER sb_password=SBPASS outfile='$@'" p1_import/code/00_init_sites.R $@
+#p1_import/out/00_init_sites.Rout : p1_import/code/00_init_sites.R
+#	$(CALL_R) "--args sb_user=SBUSER sb_password=SBPASS outfile='$@'" p1_import/code/00_init_sites.R $@
+
 #import_tsdata
 #import_watershed
 #import_landcover
 #import_climate
 
-#- p2_munge ?
+## p2_metab
 
-#munge_tsdata
-#munge_watershed
-#munge_landcover
-#munge_climate
+p2_metab : model_metab
 
-#- p3_model
+model_metab : p2_metab/out/model_metab.Rout
 
-#model_metab
-#model_light
+p2_metab/out/model_metab.Rout : 
+	$(CALL_R) "--args sb_user=SBUSER sb_password=SBPASS outfile='$@'" p1_import/code/00_init_sites.R $@
 
-#- p4_explore
+## p3_auxvars
+
+## p4_explore
 
 #explore_metab
 #map_metab
