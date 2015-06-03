@@ -1,0 +1,1675 @@
+timestamp: 2015-06-03 10:03:05
+
+Setting endpoint to www.sciencebase.gov
+args:
+               key             value
+1          sb_user aappling@usgs.gov
+2      sb_password             *****
+3          outfile      reinit_sites
+4  update_sitelist              TRUE
+5 replace_existing             FALSE
+6       delete_all              TRUE
+7          verbose              TRUE
+
+signing into ScienceBase with the password you set.
+
+deleting all sites on ScienceBase
+deleting site nwis_11455350
+deleting site nwis_07257500
+deleting site nwis_06892350
+deleting site nwis_03058000
+deleting site nwis_11126000
+deleting site nwis_422437121515200
+deleting site nwis_301912088583300
+deleting site nwis_301124081395901
+deleting site nwis_453604122060000
+deleting site nwis_355537086514102
+deleting site nwis_375350097262800
+deleting site nwis_375332097284802
+deleting site nwis_460939123201600
+deleting site nwis_351113089513401
+deleting site nwis_02231291
+deleting site nwis_03077100
+deleting site nwis_021989715
+deleting site nwis_03400800
+deleting site nwis_02397530
+deleting site nwis_01311143
+deleting site nwis_14202980
+deleting site nwis_01608500
+deleting site nwis_08188060
+deleting site nwis_02203700
+deleting site nwis_08181500
+deleting site nwis_11509370
+deleting site nwis_02234000
+deleting site nwis_09041400
+deleting site nwis_02110701
+deleting site nwis_14210000
+deleting site nwis_03228300
+deleting site nwis_04213500
+deleting site nwis_02344630
+deleting site nwis_02323566
+deleting site nwis_072632966
+deleting site nwis_11447650
+deleting site nwis_04119400
+deleting site nwis_07143672
+deleting site nwis_02198950
+deleting site nwis_02203603
+deleting site nwis_14181500
+deleting site nwis_14211720
+deleting site nwis_03081000
+deleting site nwis_03105500
+deleting site nwis_04137005
+deleting site nwis_04167150
+deleting site nwis_02320250
+deleting site nwis_02207135
+deleting site nwis_06427850
+deleting site nwis_08057055
+deleting site nwis_12168997
+deleting site nwis_03108490
+deleting site nwis_50048580
+deleting site nwis_08067074
+deleting site nwis_021720869
+deleting site nwis_03071605
+deleting site nwis_385608094380300
+deleting site nwis_422719121571400
+deleting site nwis_04249000
+deleting site nwis_01484525
+deleting site nwis_06465500
+deleting site nwis_03298200
+deleting site nwis_06893890
+deleting site nwis_07061270
+deleting site nwis_11313433
+deleting site nwis_03432100
+deleting site nwis_08048000
+deleting site nwis_08412500
+deleting site nwis_06893350
+deleting site nwis_0208458893
+deleting site nwis_0208114150
+deleting site nwis_01467029
+deleting site nwis_01646305
+deleting site nwis_02208450
+deleting site nwis_02135000
+deleting site nwis_01570500
+deleting site nwis_01484080
+deleting site nwis_09258980
+deleting site nwis_02236125
+deleting site nwis_07239450
+deleting site nwis_04059500
+deleting site nwis_01018035
+deleting site nwis_03073000
+deleting site nwis_03277075
+deleting site nwis_04199500
+deleting site nwis_07241550
+deleting site nwis_06893620
+deleting site nwis_295826095082200
+deleting site nwis_422808122024400
+deleting site nwis_340247088560200
+deleting site nwis_02423397
+deleting site nwis_02266300
+deleting site nwis_01482800
+deleting site nwis_02455980
+deleting site nwis_04125550
+deleting site nwis_04121944
+deleting site nwis_02293249
+deleting site nwis_01460200
+deleting site nwis_08374510
+deleting site nwis_02042222
+deleting site nwis_09327000
+deleting site nwis_05406497
+deleting site nwis_03293530
+deleting site nwis_03353200
+deleting site nwis_04067500
+deleting site nwis_421838121513900
+deleting site nwis_02169000
+deleting site nwis_03409500
+deleting site nwis_02336360
+deleting site nwis_08068000
+deleting site nwis_08068500
+deleting site nwis_03301940
+deleting site nwis_023432415
+deleting site nwis_01036390
+deleting site nwis_03343805
+deleting site nwis_14309000
+deleting site nwis_08447300
+deleting site nwis_01654000
+deleting site nwis_08374200
+deleting site nwis_12102012
+deleting site nwis_02167600
+deleting site nwis_021720698
+deleting site nwis_03428180
+deleting site nwis_08180850
+deleting site nwis_11455165
+deleting site nwis_01389005
+deleting site nwis_023362095
+deleting site nwis_01656903
+deleting site nwis_04085427
+deleting site nwis_04087088
+deleting site nwis_06386500
+deleting site nwis_06807000
+deleting site nwis_03298300
+deleting site nwis_02203950
+deleting site nwis_03302050
+deleting site nwis_03321500
+deleting site nwis_420615121533601
+deleting site nwis_03039040
+deleting site nwis_07053600
+deleting site nwis_314416091213400
+deleting site nwis_04124000
+deleting site nwis_06711565
+deleting site nwis_01304057
+deleting site nwis_14158100
+deleting site nwis_01467042
+deleting site nwis_040871488
+deleting site nwis_10133800
+deleting site nwis_02110400
+deleting site nwis_08070200
+deleting site nwis_01408500
+deleting site nwis_04176500
+deleting site nwis_07178200
+deleting site nwis_02235500
+deleting site nwis_02319302
+deleting site nwis_420853121505501
+deleting site nwis_05057000
+deleting site nwis_04157005
+deleting site nwis_03292470
+deleting site nwis_03293000
+deleting site nwis_04188496
+deleting site nwis_04095090
+deleting site nwis_01549700
+deleting site nwis_03034000
+deleting site nwis_300026090050800
+deleting site nwis_453113123003501
+deleting site nwis_455009119142301
+deleting site nwis_03228039
+deleting site nwis_01374019
+deleting site nwis_11507501
+deleting site nwis_07164500
+deleting site nwis_03255349
+deleting site nwis_12101100
+deleting site nwis_12100490
+deleting site nwis_07332620
+deleting site nwis_02110704
+deleting site nwis_13207500
+deleting site nwis_01484085
+deleting site nwis_01480870
+deleting site nwis_01474500
+deleting site nwis_02198920
+deleting site nwis_01542500
+deleting site nwis_08180700
+deleting site nwis_02203863
+deleting site nwis_07263296
+deleting site nwis_07198000
+deleting site nwis_06601200
+deleting site nwis_06336000
+deleting site nwis_13213000
+deleting site nwis_14206950
+deleting site nwis_01474000
+deleting site nwis_364200119420002
+deleting site nwis_06893820
+deleting site nwis_422305121553800
+deleting site nwis_414042088003201
+deleting site nwis_422622122004000
+deleting site nwis_01484680
+deleting site nwis_02304000
+deleting site nwis_01487150
+deleting site nwis_02198955
+deleting site nwis_02489800
+deleting site nwis_07381600
+deleting site nwis_03432800
+deleting site nwis_01193050
+deleting site nwis_04137020
+deleting site nwis_04137025
+deleting site nwis_02110815
+deleting site nwis_04137030
+deleting site nwis_01467200
+deleting site nwis_351111089512501
+deleting site nwis_03431514
+deleting site nwis_12169500
+deleting site nwis_03071590
+deleting site nwis_06893300
+deleting site nwis_375327097285402
+deleting site nwis_385446094430700
+deleting site nwis_05406500
+deleting site nwis_02234500
+deleting site nwis_03298250
+deleting site nwis_07061290
+deleting site nwis_03298135
+deleting site nwis_03298000
+deleting site nwis_03538830
+deleting site nwis_02337170
+deleting site nwis_08052700
+deleting site nwis_08211200
+deleting site nwis_01304200
+deleting site nwis_453040123065201
+deleting site nwis_14152000
+deleting site nwis_01467086
+deleting site nwis_08155500
+deleting site nwis_10133980
+deleting site nwis_08062500
+deleting site nwis_071912213
+deleting site nwis_04213152
+deleting site nwis_01465798
+deleting site nwis_06917630
+deleting site nwis_11463682
+deleting site nwis_02336300
+deleting site nwis_06436760
+deleting site nwis_04087050
+deleting site nwis_04208000
+deleting site nwis_02160105
+deleting site nwis_05082500
+deleting site nwis_03539778
+deleting site nwis_03259813
+deleting site nwis_01473500
+deleting site nwis_03025500
+deleting site nwis_03036000
+deleting site nwis_04024000
+deleting site nwis_02469100
+deleting site nwis_01194750
+deleting site nwis_03292475
+deleting site nwis_444728122450000
+deleting site nwis_420741121554001
+deleting site nwis_13210660
+deleting site nwis_022035975
+deleting site nwis_03277200
+deleting site nwis_422305121553803
+deleting site nwis_04124200
+deleting site nwis_331623091023700
+deleting site nwis_04136500
+deleting site nwis_01021050
+deleting site nwis_01579550
+deleting site nwis_330359090194135
+deleting site nwis_300127090045800
+deleting site nwis_412126095565201
+deleting site nwis_364200119420001
+deleting site nwis_302309081333001
+deleting site nwis_421209121463000
+deleting site nwis_311845091272200
+deleting site nwis_01477050
+deleting site nwis_11455478
+deleting site nwis_11046072
+deleting site nwis_08447018
+deleting site nwis_04166500
+deleting site nwis_11046372
+deleting site nwis_02217643
+deleting site nwis_04087120
+deleting site nwis_11447850
+deleting site nwis_02322688
+deleting site nwis_02245260
+deleting site nwis_03302030
+acquiring site list from NWIS server
+searching for sites with all of these p_codes: 00300
+getting AL information
+getting AK information
+getting AS information
+NWIS doesn't have data on AS
+getting AZ information
+getting AR information
+getting CA information
+getting CO information
+getting CT information
+getting DE information
+getting DC information
+getting FM information
+NWIS doesn't have data on FM
+getting FL information
+getting GA information
+getting GU information
+getting ID information
+getting IL information
+getting IN information
+getting IA information
+getting KS information
+getting KY information
+getting LA information
+getting MA information
+getting ME information
+getting MH information
+NWIS doesn't have data on MH
+getting MD information
+getting MI information
+getting MN information
+getting MS information
+getting MO information
+getting MT information
+getting NE information
+getting NV information
+getting NH information
+getting NJ information
+getting NM information
+getting NY information
+getting NC information
+getting ND information
+getting MP information
+getting OH information
+getting OK information
+getting OR information
+getting PW information
+NWIS doesn't have data on PW
+getting PA information
+getting PR information
+getting RI information
+getting SC information
+getting SD information
+getting TN information
+getting TX information
+getting UT information
+getting VT information
+getting VI information
+getting VA information
+getting WA information
+getting WV information
+getting WI information
+getting WY information
+posting sites with replace_existing==FALSE
+posting site nwis_023432415
+posting site nwis_02397530
+posting site nwis_02423130
+posting site nwis_02423160
+posting site nwis_02423397
+posting site nwis_02423496
+posting site nwis_02455980
+posting site nwis_02457595
+posting site nwis_02458450
+posting site nwis_02469100
+posting site nwis_15298040
+posting site nwis_07048600
+posting site nwis_07049691
+posting site nwis_07054501
+posting site nwis_07054502
+posting site nwis_07054527
+posting site nwis_07055814
+posting site nwis_07056515
+posting site nwis_07059998
+posting site nwis_07060000
+posting site nwis_07060001
+posting site nwis_07075250
+posting site nwis_07075270
+posting site nwis_07076000
+posting site nwis_07257500
+posting site nwis_07261090
+posting site nwis_07263296
+posting site nwis_072632966
+posting site nwis_072632995
+posting site nwis_11044000
+posting site nwis_11046062
+posting site nwis_11046072
+posting site nwis_11046102
+posting site nwis_11046252
+posting site nwis_11046372
+posting site nwis_11126000
+posting site nwis_11273400
+posting site nwis_11285500
+posting site nwis_11313433
+posting site nwis_11337190
+posting site nwis_11447650
+posting site nwis_11447830
+posting site nwis_11447850
+posting site nwis_11447890
+posting site nwis_11455139
+posting site nwis_11455146
+posting site nwis_11455165
+posting site nwis_11455315
+posting site nwis_11455350
+posting site nwis_11455478
+posting site nwis_11462500
+posting site nwis_11463000
+posting site nwis_11463682
+posting site nwis_11463980
+posting site nwis_11465240
+posting site nwis_11467000
+posting site nwis_331346117243401
+posting site nwis_364200119420001
+posting site nwis_364200119420002
+posting site nwis_415007121102001
+posting site nwis_06711565
+posting site nwis_07106000
+posting site nwis_07109500
+posting site nwis_09041400
+posting site nwis_01193050
+posting site nwis_01194750
+posting site nwis_01480065
+posting site nwis_01481500
+posting site nwis_01482800
+posting site nwis_01483177
+posting site nwis_01484080
+posting site nwis_01484085
+posting site nwis_01484525
+posting site nwis_01484680
+posting site nwis_01487150
+posting site nwis_01648010
+posting site nwis_02231291
+posting site nwis_02234000
+posting site nwis_02234500
+posting site nwis_02235500
+posting site nwis_02236000
+posting site nwis_02236125
+posting site nwis_02244040
+posting site nwis_02245260
+posting site nwis_02264000
+posting site nwis_02264100
+posting site nwis_02266200
+posting site nwis_02266300
+posting site nwis_02266495
+posting site nwis_02293249
+posting site nwis_02304000
+posting site nwis_02319302
+posting site nwis_02320250
+posting site nwis_02322688
+posting site nwis_02323502
+posting site nwis_02323566
+posting site nwis_291830081362200
+posting site nwis_294213081345300
+posting site nwis_301124081395901
+posting site nwis_302309081333001
+posting site nwis_02198840
+posting site nwis_02198920
+posting site nwis_02198950
+posting site nwis_02198955
+posting site nwis_021989715
+posting site nwis_021989773
+posting site nwis_021989792
+posting site nwis_021989793
+posting site nwis_0219897945
+posting site nwis_022035975
+posting site nwis_02203603
+posting site nwis_02203655
+posting site nwis_02203700
+posting site nwis_02203831
+posting site nwis_02203863
+posting site nwis_02203873
+posting site nwis_02203900
+posting site nwis_02203950
+posting site nwis_02203960
+posting site nwis_02204037
+posting site nwis_02207135
+posting site nwis_02207160
+posting site nwis_02208450
+posting site nwis_02208493
+posting site nwis_02217643
+posting site nwis_02231254
+posting site nwis_02336120
+posting site nwis_02336152
+posting site nwis_023362095
+posting site nwis_02336240
+posting site nwis_02336300
+posting site nwis_02336313
+posting site nwis_02336340
+posting site nwis_02336360
+posting site nwis_02336410
+posting site nwis_02336526
+posting site nwis_02336728
+posting site nwis_02337170
+posting site nwis_02344630
+posting site nwis_02344673
+posting site nwis_13206400
+posting site nwis_13207500
+posting site nwis_13210660
+posting site nwis_13210795
+posting site nwis_13210815
+posting site nwis_13211441
+posting site nwis_13213000
+posting site nwis_13213072
+posting site nwis_13213080
+posting site nwis_13213100
+posting site nwis_433422116323200
+posting site nwis_434821116444300
+posting site nwis_03339000
+posting site nwis_03343805
+posting site nwis_03612600
+posting site nwis_05543010
+posting site nwis_05579630
+posting site nwis_05586300
+posting site nwis_411955088280601
+posting site nwis_414037088003201
+posting site nwis_414042088003201
+posting site nwis_03353200
+posting site nwis_03374100
+posting site nwis_04092750
+posting site nwis_04095090
+posting site nwis_04182867
+posting site nwis_05515500
+posting site nwis_05524500
+posting site nwis_05418400
+posting site nwis_05420500
+posting site nwis_05451080
+posting site nwis_05451210
+posting site nwis_06610505
+posting site nwis_06892513
+posting site nwis_06893300
+posting site nwis_06893350
+posting site nwis_07143672
+posting site nwis_07144780
+posting site nwis_07144790
+posting site nwis_375327097285402
+posting site nwis_375332097284802
+posting site nwis_375348097262800
+posting site nwis_375350097262800
+posting site nwis_385446094430700
+posting site nwis_385520094420000
+posting site nwis_385608094380300
+posting site nwis_03254520
+posting site nwis_03277075
+posting site nwis_03277130
+posting site nwis_03277200
+posting site nwis_03289000
+posting site nwis_03289193
+posting site nwis_03292470
+posting site nwis_03292474
+posting site nwis_03292475
+posting site nwis_03292480
+posting site nwis_03292500
+posting site nwis_03293000
+posting site nwis_03293500
+posting site nwis_03293510
+posting site nwis_03293530
+posting site nwis_03294570
+posting site nwis_03297800
+posting site nwis_03297900
+posting site nwis_03298000
+posting site nwis_03298135
+posting site nwis_03298150
+posting site nwis_03298200
+posting site nwis_03298250
+posting site nwis_03298300
+posting site nwis_03301900
+posting site nwis_03301940
+posting site nwis_03302000
+posting site nwis_03302030
+posting site nwis_03302050
+posting site nwis_03321500
+posting site nwis_03400798
+posting site nwis_03400800
+posting site nwis_03401385
+posting site nwis_03438220
+posting site nwis_02489800
+posting site nwis_07374000
+posting site nwis_07381600
+posting site nwis_295827090052800
+posting site nwis_295906090054200
+posting site nwis_300009090051600
+posting site nwis_300026090050800
+posting site nwis_300034090055300
+posting site nwis_300127090045800
+posting site nwis_300128090045800
+posting site nwis_01021050
+posting site nwis_01036390
+posting site nwis_01493112
+posting site nwis_01579550
+posting site nwis_01646500
+posting site nwis_01649190
+posting site nwis_01649500
+posting site nwis_01650800
+posting site nwis_01658000
+posting site nwis_04040000
+posting site nwis_04059500
+posting site nwis_04101500
+posting site nwis_04108660
+posting site nwis_04119400
+posting site nwis_04121650
+posting site nwis_04121660
+posting site nwis_04121680
+posting site nwis_04121944
+posting site nwis_04121970
+posting site nwis_04124000
+posting site nwis_04124200
+posting site nwis_04125460
+posting site nwis_04125550
+posting site nwis_04136000
+posting site nwis_04136500
+posting site nwis_04136900
+posting site nwis_04137005
+posting site nwis_04137020
+posting site nwis_04137025
+posting site nwis_04137030
+posting site nwis_04137500
+posting site nwis_04142000
+posting site nwis_041482663
+posting site nwis_04157005
+posting site nwis_04165500
+posting site nwis_04166500
+posting site nwis_04167150
+posting site nwis_04168400
+posting site nwis_04174500
+posting site nwis_04175120
+posting site nwis_04176500
+posting site nwis_04024000
+posting site nwis_02473085
+posting site nwis_02492620
+posting site nwis_301527088521500
+posting site nwis_301912088583300
+posting site nwis_305215089073600
+posting site nwis_310506089291200
+posting site nwis_310805089141600
+posting site nwis_311845091272200
+posting site nwis_312514091273400
+posting site nwis_314416091213400
+posting site nwis_330203091020200
+posting site nwis_330359090194135
+posting site nwis_330735090300200
+posting site nwis_331623091023700
+posting site nwis_333957091034100
+posting site nwis_340247088560200
+posting site nwis_341436088534500
+posting site nwis_343916088435600
+posting site nwis_06818000
+posting site nwis_06893620
+posting site nwis_06893820
+posting site nwis_06893890
+posting site nwis_06893970
+posting site nwis_06894000
+posting site nwis_06934500
+posting site nwis_07020850
+posting site nwis_07053450
+posting site nwis_07053600
+posting site nwis_07061270
+posting site nwis_07061290
+posting site nwis_06454100
+posting site nwis_06461500
+posting site nwis_06465500
+posting site nwis_06478522
+posting site nwis_06601200
+posting site nwis_06795500
+posting site nwis_06799089
+posting site nwis_06800500
+posting site nwis_06805000
+posting site nwis_06805500
+posting site nwis_06807000
+posting site nwis_410333095530101
+posting site nwis_412126095565201
+posting site nwis_01073389
+posting site nwis_01382210
+posting site nwis_01388000
+posting site nwis_01389005
+posting site nwis_01400500
+posting site nwis_01408167
+posting site nwis_01408500
+posting site nwis_01458500
+posting site nwis_01463500
+posting site nwis_01467029
+posting site nwis_08317400
+posting site nwis_323733107011002
+posting site nwis_324007107095501
+posting site nwis_324955107180902
+posting site nwis_01304057
+posting site nwis_01304200
+posting site nwis_01304562
+posting site nwis_01310740
+posting site nwis_01311143
+posting site nwis_01374019
+posting site nwis_01433500
+posting site nwis_04213500
+posting site nwis_04231600
+posting site nwis_04249000
+posting site nwis_0208062765
+posting site nwis_02081022
+posting site nwis_02081094
+posting site nwis_0208114150
+posting site nwis_0208458892
+posting site nwis_0208458893
+posting site nwis_0209303205
+posting site nwis_02101726
+posting site nwis_0212378405
+posting site nwis_0212880025
+posting site nwis_03460795
+posting site nwis_03512000
+posting site nwis_05054000
+posting site nwis_05057000
+posting site nwis_05057200
+posting site nwis_05082500
+posting site nwis_06336000
+posting site nwis_06340590
+posting site nwis_03098600
+posting site nwis_03121850
+posting site nwis_03219500
+posting site nwis_03220510
+posting site nwis_03228039
+posting site nwis_03228300
+posting site nwis_03255349
+posting site nwis_03259757
+posting site nwis_03259813
+posting site nwis_03271510
+posting site nwis_04188496
+posting site nwis_04193490
+posting site nwis_04195500
+posting site nwis_04199500
+posting site nwis_04200500
+posting site nwis_04208000
+posting site nwis_07164500
+posting site nwis_07177500
+posting site nwis_07178200
+posting site nwis_071912213
+posting site nwis_07191222
+posting site nwis_07198000
+posting site nwis_07239450
+posting site nwis_07241000
+posting site nwis_07241520
+posting site nwis_07241550
+posting site nwis_11507501
+posting site nwis_11509370
+posting site nwis_13173600
+posting site nwis_14151000
+posting site nwis_14152000
+posting site nwis_14158100
+posting site nwis_14162500
+posting site nwis_14181500
+posting site nwis_14182500
+posting site nwis_14202650
+posting site nwis_14202980
+posting site nwis_14206694
+posting site nwis_14206950
+posting site nwis_14207200
+posting site nwis_14209710
+posting site nwis_14210000
+posting site nwis_14211010
+posting site nwis_14211720
+posting site nwis_14301500
+posting site nwis_14302480
+posting site nwis_14309000
+posting site nwis_14316460
+posting site nwis_14317450
+posting site nwis_420451121510000
+posting site nwis_420615121533600
+posting site nwis_420615121533601
+posting site nwis_420741121554001
+posting site nwis_420853121505500
+posting site nwis_420853121505501
+posting site nwis_421015121471800
+posting site nwis_421209121463000
+posting site nwis_421209121463001
+posting site nwis_421401121480900
+posting site nwis_421410121492000
+posting site nwis_421838121513900
+posting site nwis_421933121550000
+posting site nwis_422042121513100
+posting site nwis_422128121530600
+posting site nwis_422305121553800
+posting site nwis_422305121553803
+posting site nwis_422437121515200
+posting site nwis_422559121574400
+posting site nwis_422622122004000
+posting site nwis_422622122004003
+posting site nwis_422719121571400
+posting site nwis_422749121540700
+posting site nwis_422808122024400
+posting site nwis_422842121584300
+posting site nwis_423124121583400
+posting site nwis_423335121564300
+posting site nwis_444728122450000
+posting site nwis_452230122512201
+posting site nwis_453004122510301
+posting site nwis_453030122560101
+posting site nwis_453040123065201
+posting site nwis_453113123003501
+posting site nwis_454554119121801
+posting site nwis_454919119184701
+posting site nwis_455415119314601
+posting site nwis_461518123285700
+posting site nwis_01454700
+posting site nwis_01460200
+posting site nwis_01465798
+posting site nwis_014670261
+posting site nwis_01467042
+posting site nwis_01467048
+posting site nwis_01467086
+posting site nwis_01467087
+posting site nwis_01467200
+posting site nwis_01472104
+posting site nwis_01473500
+posting site nwis_01473900
+posting site nwis_01474000
+posting site nwis_01474500
+posting site nwis_01475530
+posting site nwis_01475548
+posting site nwis_01477050
+posting site nwis_01480617
+posting site nwis_01480870
+posting site nwis_01481000
+posting site nwis_01540500
+posting site nwis_01542500
+posting site nwis_01544500
+posting site nwis_01548303
+posting site nwis_01549700
+posting site nwis_01567000
+posting site nwis_01570500
+posting site nwis_03007800
+posting site nwis_03025500
+posting site nwis_03027500
+posting site nwis_03034000
+posting site nwis_03036000
+posting site nwis_03039035
+posting site nwis_03039036
+posting site nwis_03039040
+posting site nwis_03039041
+posting site nwis_03049640
+posting site nwis_03071600
+posting site nwis_03071605
+posting site nwis_03071690
+posting site nwis_03072655
+posting site nwis_03073000
+posting site nwis_03075070
+posting site nwis_03077100
+posting site nwis_03081000
+posting site nwis_03083500
+posting site nwis_03085002
+posting site nwis_03105500
+posting site nwis_03106000
+posting site nwis_03108490
+posting site nwis_50048565
+posting site nwis_50048580
+posting site nwis_50231500
+posting site nwis_50231505
+posting site nwis_02110400
+posting site nwis_02110500
+posting site nwis_02110550
+posting site nwis_02110701
+posting site nwis_02110704
+posting site nwis_02110777
+posting site nwis_02110802
+posting site nwis_02110815
+posting site nwis_02135000
+posting site nwis_02148315
+posting site nwis_02156500
+posting site nwis_02160105
+posting site nwis_02160700
+posting site nwis_02160991
+posting site nwis_02162035
+posting site nwis_02167600
+posting site nwis_02167716
+posting site nwis_02168500
+posting site nwis_02168504
+posting site nwis_02169000
+posting site nwis_02171637
+posting site nwis_02171645
+posting site nwis_02172050
+posting site nwis_021720677
+posting site nwis_021720698
+posting site nwis_021720709
+posting site nwis_021720869
+posting site nwis_0219897993
+posting site nwis_06436760
+posting site nwis_03408500
+posting site nwis_03409500
+posting site nwis_03418420
+posting site nwis_03428180
+posting site nwis_03430200
+posting site nwis_03431083
+posting site nwis_03431091
+posting site nwis_03431514
+posting site nwis_03432100
+posting site nwis_03432350
+posting site nwis_03432400
+posting site nwis_03432800
+posting site nwis_03538830
+posting site nwis_03539600
+posting site nwis_03539778
+posting site nwis_351111089512501
+posting site nwis_351113089513401
+posting site nwis_07332620
+posting site nwis_07332622
+posting site nwis_08041770
+posting site nwis_08048000
+posting site nwis_08049500
+posting site nwis_08052700
+posting site nwis_08052745
+posting site nwis_08057000
+posting site nwis_08057055
+posting site nwis_08057410
+posting site nwis_08062500
+posting site nwis_08065350
+posting site nwis_08067074
+posting site nwis_08068000
+posting site nwis_08068275
+posting site nwis_08068400
+posting site nwis_08068500
+posting site nwis_08069500
+posting site nwis_08070200
+posting site nwis_08155500
+posting site nwis_08171290
+posting site nwis_08180700
+posting site nwis_08180850
+posting site nwis_08181500
+posting site nwis_08181800
+posting site nwis_08188060
+posting site nwis_08211200
+posting site nwis_08371500
+posting site nwis_08374200
+posting site nwis_08374510
+posting site nwis_08374550
+posting site nwis_08375300
+posting site nwis_08377200
+posting site nwis_08412500
+posting site nwis_08420500
+posting site nwis_08437710
+posting site nwis_08446500
+posting site nwis_08447000
+posting site nwis_08447018
+posting site nwis_08447300
+posting site nwis_08447410
+posting site nwis_08470500
+posting site nwis_295554095093402
+posting site nwis_295826095082200
+posting site nwis_09326500
+posting site nwis_09327000
+posting site nwis_09406000
+posting site nwis_10129900
+posting site nwis_10133650
+posting site nwis_10133800
+posting site nwis_10133980
+posting site nwis_01632900
+posting site nwis_01645704
+posting site nwis_01645762
+posting site nwis_01646000
+posting site nwis_01646305
+posting site nwis_01654000
+posting site nwis_01654500
+posting site nwis_01656903
+posting site nwis_0166818623
+posting site nwis_0166818985
+posting site nwis_01673000
+posting site nwis_02035000
+posting site nwis_02042222
+posting site nwis_02079500
+posting site nwis_12098700
+posting site nwis_12100490
+posting site nwis_12101100
+posting site nwis_12102012
+posting site nwis_12165800
+posting site nwis_12166000
+posting site nwis_12166300
+posting site nwis_12168997
+posting site nwis_12169500
+posting site nwis_12170000
+posting site nwis_453604122060000
+posting site nwis_454705122451400
+posting site nwis_460939123201600
+posting site nwis_01608500
+posting site nwis_01611500
+posting site nwis_03058000
+posting site nwis_03061000
+posting site nwis_03067510
+posting site nwis_03071590
+posting site nwis_03183500
+posting site nwis_04027000
+posting site nwis_04067500
+posting site nwis_04085108
+posting site nwis_040851385
+posting site nwis_04085427
+posting site nwis_04087030
+posting site nwis_04087050
+posting site nwis_04087088
+posting site nwis_04087119
+posting site nwis_04087120
+posting site nwis_04087142
+posting site nwis_040871488
+posting site nwis_04087170
+posting site nwis_05406457
+posting site nwis_05406469
+posting site nwis_05406479
+posting site nwis_05406497
+posting site nwis_05406500
+posting site nwis_05435943
+posting site nwis_05435950
+posting site nwis_431037090043401
+posting site nwis_443320089212303
+posting site nwis_443320089212304
+posting site nwis_06427850
+posting site nwis_06670500
+posting site nwis_09258050
+posting site nwis_09258980
+posting site nwis_13013650
+            nwis_023432415              nwis_02397530 
+"556f1d82e4b0d9246a9fc09f" "556f1d83e4b0d9246a9fc0a3" 
+             nwis_02423130              nwis_02423160 
+"556f1d84e4b0d9246a9fc0a7" "556f1d86e4b0d9246a9fc0ab" 
+             nwis_02423397              nwis_02423496 
+"556f1d87e4b0d9246a9fc0af" "556f1d88e4b0d9246a9fc0b3" 
+             nwis_02455980              nwis_02457595 
+"556f1d89e4b0d9246a9fc0b7" "556f1d8ae4b0d9246a9fc0bb" 
+             nwis_02458450              nwis_02469100 
+"556f1d8be4b0d9246a9fc0bf" "556f1d8ce4b0d9246a9fc0c3" 
+             nwis_15298040              nwis_07048600 
+"556f1d8de4b0d9246a9fc0c7" "556f1d8ee4b0d9246a9fc0cb" 
+             nwis_07049691              nwis_07054501 
+"556f1d90e4b0d9246a9fc0cf" "556f1d91e4b0d9246a9fc0d3" 
+             nwis_07054502              nwis_07054527 
+"556f1d92e4b0d9246a9fc0d7" "556f1d93e4b0d9246a9fc0db" 
+             nwis_07055814              nwis_07056515 
+"556f1d94e4b0d9246a9fc0df" "556f1d95e4b0d9246a9fc0e3" 
+             nwis_07059998              nwis_07060000 
+"556f1d96e4b0d9246a9fc0e7" "556f1d98e4b0d9246a9fc0eb" 
+             nwis_07060001              nwis_07075250 
+"556f1d99e4b0d9246a9fc0ef" "556f1d9ae4b0d9246a9fc0f3" 
+             nwis_07075270              nwis_07076000 
+"556f1d9be4b0d9246a9fc0f7" "556f1d9ce4b0d9246a9fc0fb" 
+             nwis_07257500              nwis_07261090 
+"556f1d9ee4b0d9246a9fc0ff" "556f1d9fe4b0d9246a9fc103" 
+             nwis_07263296             nwis_072632966 
+"556f1da0e4b0d9246a9fc107" "556f1da1e4b0d9246a9fc10b" 
+            nwis_072632995              nwis_11044000 
+"556f1da2e4b0d9246a9fc10f" "556f1da3e4b0d9246a9fc113" 
+             nwis_11046062              nwis_11046072 
+"556f1da4e4b0d9246a9fc117" "556f1da5e4b0d9246a9fc11b" 
+             nwis_11046102              nwis_11046252 
+"556f1da6e4b0d9246a9fc11f" "556f1da8e4b0d9246a9fc123" 
+             nwis_11046372              nwis_11126000 
+"556f1da9e4b0d9246a9fc127" "556f1daae4b0d9246a9fc12b" 
+             nwis_11273400              nwis_11285500 
+"556f1dabe4b0d9246a9fc12f" "556f1dace4b0d9246a9fc133" 
+             nwis_11313433              nwis_11337190 
+"556f1dade4b0d9246a9fc137" "556f1daee4b0d9246a9fc13b" 
+             nwis_11447650              nwis_11447830 
+"556f1db0e4b0d9246a9fc13f" "556f1db1e4b0d9246a9fc143" 
+             nwis_11447850              nwis_11447890 
+"556f1db2e4b0d9246a9fc147" "556f1db3e4b0d9246a9fc14b" 
+             nwis_11455139              nwis_11455146 
+"556f1db4e4b0d9246a9fc14f" "556f1db5e4b0d9246a9fc153" 
+             nwis_11455165              nwis_11455315 
+"556f1db6e4b0d9246a9fc157" "556f1db7e4b0d9246a9fc15b" 
+             nwis_11455350              nwis_11455478 
+"556f1db9e4b0d9246a9fc15f" "556f1dbae4b0d9246a9fc163" 
+             nwis_11462500              nwis_11463000 
+"556f1dbbe4b0d9246a9fc167" "556f1dbce4b0d9246a9fc16b" 
+             nwis_11463682              nwis_11463980 
+"556f1dbde4b0d9246a9fc170" "556f1dbee4b0d9246a9fc174" 
+             nwis_11465240              nwis_11467000 
+"556f1dbfe4b0d9246a9fc179" "556f1dc0e4b0d9246a9fc17d" 
+      nwis_331346117243401       nwis_364200119420001 
+"556f1dc2e4b0d9246a9fc182" "556f1dc3e4b0d9246a9fc186" 
+      nwis_364200119420002       nwis_415007121102001 
+"556f1dc4e4b0d9246a9fc18a" "556f1dc5e4b0d9246a9fc18e" 
+             nwis_06711565              nwis_07106000 
+"556f1dc6e4b0d9246a9fc192" "556f1dc7e4b0d9246a9fc196" 
+             nwis_07109500              nwis_09041400 
+"556f1dc8e4b0d9246a9fc19a" "556f1dc9e4b0d9246a9fc19e" 
+             nwis_01193050              nwis_01194750 
+"556f1dcbe4b0d9246a9fc1a2" "556f1dcce4b0d9246a9fc1a6" 
+             nwis_01480065              nwis_01481500 
+"556f1dcde4b0d9246a9fc1aa" "556f1dcee4b0d9246a9fc1ae" 
+             nwis_01482800              nwis_01483177 
+"556f1dcfe4b0d9246a9fc1b2" "556f1dd0e4b0d9246a9fc1b6" 
+             nwis_01484080              nwis_01484085 
+"556f1dd1e4b0d9246a9fc1ba" "556f1dd2e4b0d9246a9fc1be" 
+             nwis_01484525              nwis_01484680 
+"556f1dd3e4b0d9246a9fc1c2" "556f1dd5e4b0d9246a9fc1c6" 
+             nwis_01487150              nwis_01648010 
+"556f1dd6e4b0d9246a9fc1ca" "556f1dd7e4b0d9246a9fc1ce" 
+             nwis_02231291              nwis_02234000 
+"556f1dd8e4b0d9246a9fc1d2" "556f1dd9e4b0d9246a9fc1d6" 
+             nwis_02234500              nwis_02235500 
+"556f1ddae4b0d9246a9fc1da" "556f1ddce4b0d9246a9fc1de" 
+             nwis_02236000              nwis_02236125 
+"556f1ddde4b0d9246a9fc1e2" "556f1ddee4b0d9246a9fc1e6" 
+             nwis_02244040              nwis_02245260 
+"556f1ddfe4b0d9246a9fc1ea" "556f1de0e4b0d9246a9fc1ee" 
+             nwis_02264000              nwis_02264100 
+"556f1de3e4b0d9246a9fc1f2" "556f1de4e4b0d9246a9fc1f6" 
+             nwis_02266200              nwis_02266300 
+"556f1de5e4b0d9246a9fc1fa" "556f1de7e4b0d9246a9fc1fe" 
+             nwis_02266495              nwis_02293249 
+"556f1de8e4b0d9246a9fc202" "556f1de9e4b0d9246a9fc206" 
+             nwis_02304000              nwis_02319302 
+"556f1deae4b0d9246a9fc20a" "556f1debe4b0d9246a9fc20e" 
+             nwis_02320250              nwis_02322688 
+"556f1dece4b0d9246a9fc212" "556f1dede4b0d9246a9fc216" 
+             nwis_02323502              nwis_02323566 
+"556f1deee4b0d9246a9fc21a" "556f1defe4b0d9246a9fc21e" 
+      nwis_291830081362200       nwis_294213081345300 
+"556f1df1e4b0d9246a9fc222" "556f1df2e4b0d9246a9fc226" 
+      nwis_301124081395901       nwis_302309081333001 
+"556f1df3e4b0d9246a9fc22a" "556f1df4e4b0d9246a9fc22e" 
+             nwis_02198840              nwis_02198920 
+"556f1df5e4b0d9246a9fc232" "556f1df6e4b0d9246a9fc236" 
+             nwis_02198950              nwis_02198955 
+"556f1df7e4b0d9246a9fc23a" "556f1df8e4b0d9246a9fc23e" 
+            nwis_021989715             nwis_021989773 
+"556f1dfae4b0d9246a9fc242" "556f1dfbe4b0d9246a9fc246" 
+            nwis_021989792             nwis_021989793 
+"556f1dfce4b0d9246a9fc24a" "556f1dfde4b0d9246a9fc24e" 
+           nwis_0219897945             nwis_022035975 
+"556f1dfee4b0d9246a9fc252" "556f1dffe4b0d9246a9fc256" 
+             nwis_02203603              nwis_02203655 
+"556f1e00e4b0d9246a9fc25a" "556f1e02e4b0d9246a9fc25e" 
+             nwis_02203700              nwis_02203831 
+"556f1e03e4b0d9246a9fc262" "556f1e04e4b0d9246a9fc266" 
+             nwis_02203863              nwis_02203873 
+"556f1e06e4b0d9246a9fc26a" "556f1e07e4b0d9246a9fc26e" 
+             nwis_02203900              nwis_02203950 
+"556f1e08e4b0d9246a9fc272" "556f1e0ae4b0d9246a9fc276" 
+             nwis_02203960              nwis_02204037 
+"556f1e0ce4b0d9246a9fc27a" "556f1e0de4b0d9246a9fc27e" 
+             nwis_02207135              nwis_02207160 
+"556f1e0fe4b0d9246a9fc282" "556f1e10e4b0d9246a9fc286" 
+             nwis_02208450              nwis_02208493 
+"556f1e11e4b0d9246a9fc28a" "556f1e13e4b0d9246a9fc28e" 
+             nwis_02217643              nwis_02231254 
+"556f1e14e4b0d9246a9fc292" "556f1e15e4b0d9246a9fc296" 
+             nwis_02336120              nwis_02336152 
+"556f1e16e4b0d9246a9fc29a" "556f1e18e4b0d9246a9fc29e" 
+            nwis_023362095              nwis_02336240 
+"556f1e19e4b0d9246a9fc2a2" "556f1e1be4b0d9246a9fc2a6" 
+             nwis_02336300              nwis_02336313 
+"556f1e1ce4b0d9246a9fc2aa" "556f1e1de4b0d9246a9fc2ae" 
+             nwis_02336340              nwis_02336360 
+"556f1e1ee4b0d9246a9fc2b2" "556f1e1fe4b0d9246a9fc2b6" 
+             nwis_02336410              nwis_02336526 
+"556f1e21e4b0d9246a9fc2ba" "556f1e22e4b0d9246a9fc2be" 
+             nwis_02336728              nwis_02337170 
+"556f1e23e4b0d9246a9fc2c2" "556f1e25e4b0d9246a9fc2c6" 
+             nwis_02344630              nwis_02344673 
+"556f1e26e4b0d9246a9fc2ca" "556f1e28e4b0d9246a9fc2ce" 
+             nwis_13206400              nwis_13207500 
+"556f1e29e4b0d9246a9fc2d2" "556f1e2ae4b0d9246a9fc2d6" 
+             nwis_13210660              nwis_13210795 
+"556f1e2be4b0d9246a9fc2da" "556f1e2de4b0d9246a9fc2de" 
+             nwis_13210815              nwis_13211441 
+"556f1e2ee4b0d9246a9fc2e2" "556f1e2fe4b0d9246a9fc2e6" 
+             nwis_13213000              nwis_13213072 
+"556f1e31e4b0d9246a9fc2ea" "556f1e32e4b0d9246a9fc2ee" 
+             nwis_13213080              nwis_13213100 
+"556f1e34e4b0d9246a9fc2f2" "556f1e35e4b0d9246a9fc2f6" 
+      nwis_433422116323200       nwis_434821116444300 
+"556f1e37e4b0d9246a9fc2fa" "556f1e38e4b0d9246a9fc2fe" 
+             nwis_03339000              nwis_03343805 
+"556f1e39e4b0d9246a9fc302" "556f1e3be4b0d9246a9fc306" 
+             nwis_03612600              nwis_05543010 
+"556f1e3de4b0d9246a9fc30a" "556f1e3ee4b0d9246a9fc30e" 
+             nwis_05579630              nwis_05586300 
+"556f1e3fe4b0d9246a9fc312" "556f1e40e4b0d9246a9fc316" 
+      nwis_411955088280601       nwis_414037088003201 
+"556f1e42e4b0d9246a9fc31a" "556f1e43e4b0d9246a9fc31e" 
+      nwis_414042088003201              nwis_03353200 
+"556f1e45e4b0d9246a9fc322" "556f1e46e4b0d9246a9fc326" 
+             nwis_03374100              nwis_04092750 
+"556f1e47e4b0d9246a9fc32a" "556f1e49e4b0d9246a9fc32e" 
+             nwis_04095090              nwis_04182867 
+"556f1e4be4b0d9246a9fc332" "556f1e4ce4b0d9246a9fc336" 
+             nwis_05515500              nwis_05524500 
+"556f1e4ee4b0d9246a9fc33a" "556f1e4fe4b0d9246a9fc33e" 
+             nwis_05418400              nwis_05420500 
+"556f1e51e4b0d9246a9fc342" "556f1e52e4b0d9246a9fc346" 
+             nwis_05451080              nwis_05451210 
+"556f1e53e4b0d9246a9fc34a" "556f1e55e4b0d9246a9fc34e" 
+             nwis_06610505              nwis_06892513 
+"556f1e56e4b0d9246a9fc352" "556f1e58e4b0d9246a9fc356" 
+             nwis_06893300              nwis_06893350 
+"556f1e59e4b0d9246a9fc35a" "556f1e5ae4b0d9246a9fc35e" 
+             nwis_07143672              nwis_07144780 
+"556f1e5ce4b0d9246a9fc362" "556f1e5ee4b0d9246a9fc366" 
+             nwis_07144790       nwis_375327097285402 
+"556f1e5fe4b0d9246a9fc36a" "556f1e61e4b0d9246a9fc36e" 
+      nwis_375332097284802       nwis_375348097262800 
+"556f1e62e4b0d9246a9fc372" "556f1e64e4b0d9246a9fc376" 
+      nwis_375350097262800       nwis_385446094430700 
+"556f1e65e4b0d9246a9fc37a" "556f1e66e4b0d9246a9fc37e" 
+      nwis_385520094420000       nwis_385608094380300 
+"556f1e67e4b0d9246a9fc382" "556f1e69e4b0d9246a9fc386" 
+             nwis_03254520              nwis_03277075 
+"556f1e6ae4b0d9246a9fc38a" "556f1e6be4b0d9246a9fc38e" 
+             nwis_03277130              nwis_03277200 
+"556f1e6de4b0d9246a9fc392" "556f1e6ee4b0d9246a9fc396" 
+             nwis_03289000              nwis_03289193 
+"556f1e6fe4b0d9246a9fc39a" "556f1e71e4b0d9246a9fc39e" 
+             nwis_03292470              nwis_03292474 
+"556f1e72e4b0d9246a9fc3a2" "556f1e73e4b0d9246a9fc3a6" 
+             nwis_03292475              nwis_03292480 
+"556f1e75e4b0d9246a9fc3aa" "556f1e76e4b0d9246a9fc3ae" 
+             nwis_03292500              nwis_03293000 
+"556f1e77e4b0d9246a9fc3b2" "556f1e79e4b0d9246a9fc3b6" 
+             nwis_03293500              nwis_03293510 
+"556f1e7ae4b0d9246a9fc3ba" "556f1e7be4b0d9246a9fc3be" 
+             nwis_03293530              nwis_03294570 
+"556f1e7de4b0d9246a9fc3c2" "556f1e7ee4b0d9246a9fc3c6" 
+             nwis_03297800              nwis_03297900 
+"556f1e7fe4b0d9246a9fc3ca" "556f1e81e4b0d9246a9fc3ce" 
+             nwis_03298000              nwis_03298135 
+"556f1e83e4b0d9246a9fc3d2" "556f1e84e4b0d9246a9fc3d6" 
+             nwis_03298150              nwis_03298200 
+"556f1e86e4b0d9246a9fc3da" "556f1e87e4b0d9246a9fc3de" 
+             nwis_03298250              nwis_03298300 
+"556f1e8ae4b0d9246a9fc3e2" "556f1e8be4b0d9246a9fc3e6" 
+             nwis_03301900              nwis_03301940 
+"556f1e8ce4b0d9246a9fc3ea" "556f1e8de4b0d9246a9fc3ee" 
+             nwis_03302000              nwis_03302030 
+"556f1e8fe4b0d9246a9fc3f2" "556f1e90e4b0d9246a9fc3f6" 
+             nwis_03302050              nwis_03321500 
+"556f1e92e4b0d9246a9fc3fa" "556f1e94e4b0d9246a9fc3fe" 
+             nwis_03400798              nwis_03400800 
+"556f1e95e4b0d9246a9fc402" "556f1e96e4b0d9246a9fc406" 
+             nwis_03401385              nwis_03438220 
+"556f1e98e4b0d9246a9fc40a" "556f1e99e4b0d9246a9fc40e" 
+             nwis_02489800              nwis_07374000 
+"556f1e9be4b0d9246a9fc412" "556f1e9ce4b0d9246a9fc416" 
+             nwis_07381600       nwis_295827090052800 
+"556f1e9de4b0d9246a9fc41a" "556f1e9fe4b0d9246a9fc41e" 
+      nwis_295906090054200       nwis_300009090051600 
+"556f1ea0e4b0d9246a9fc422" "556f1ea2e4b0d9246a9fc426" 
+      nwis_300026090050800       nwis_300034090055300 
+"556f1ea3e4b0d9246a9fc42a" "556f1ea4e4b0d9246a9fc42e" 
+      nwis_300127090045800       nwis_300128090045800 
+"556f1ea6e4b0d9246a9fc432" "556f1ea7e4b0d9246a9fc436" 
+             nwis_01021050              nwis_01036390 
+"556f1ea8e4b0d9246a9fc43a" "556f1eaae4b0d9246a9fc43f" 
+             nwis_01493112              nwis_01579550 
+"556f1eabe4b0d9246a9fc443" "556f1eace4b0d9246a9fc448" 
+             nwis_01646500              nwis_01649190 
+"556f1eaee4b0d9246a9fc44c" "556f1eb0e4b0d9246a9fc451" 
+             nwis_01649500              nwis_01650800 
+"556f1eb2e4b0d9246a9fc455" "556f1eb3e4b0d9246a9fc459" 
+             nwis_01658000              nwis_04040000 
+"556f1eb5e4b0d9246a9fc45d" "556f1eb6e4b0d9246a9fc461" 
+             nwis_04059500              nwis_04101500 
+"556f1eb7e4b0d9246a9fc465" "556f1eb8e4b0d9246a9fc469" 
+             nwis_04108660              nwis_04119400 
+"556f1ebae4b0d9246a9fc46d" "556f1ebbe4b0d9246a9fc471" 
+             nwis_04121650              nwis_04121660 
+"556f1ebce4b0d9246a9fc475" "556f1ebee4b0d9246a9fc479" 
+             nwis_04121680              nwis_04121944 
+"556f1ebfe4b0d9246a9fc47d" "556f1ec0e4b0d9246a9fc481" 
+             nwis_04121970              nwis_04124000 
+"556f1ec2e4b0d9246a9fc485" "556f1ec3e4b0d9246a9fc489" 
+             nwis_04124200              nwis_04125460 
+"556f1ec4e4b0d9246a9fc48d" "556f1ec6e4b0d9246a9fc491" 
+             nwis_04125550              nwis_04136000 
+"556f1ec7e4b0d9246a9fc495" "556f1ec8e4b0d9246a9fc499" 
+             nwis_04136500              nwis_04136900 
+"556f1ec9e4b0d9246a9fc49d" "556f1ecae4b0d9246a9fc4a1" 
+             nwis_04137005              nwis_04137020 
+"556f1ecce4b0d9246a9fc4a5" "556f1ecde4b0d9246a9fc4a9" 
+             nwis_04137025              nwis_04137030 
+"556f1ecee4b0d9246a9fc4ad" "556f1ecfe4b0d9246a9fc4b1" 
+             nwis_04137500              nwis_04142000 
+"556f1ed0e4b0d9246a9fc4b5" "556f1ed1e4b0d9246a9fc4b9" 
+            nwis_041482663              nwis_04157005 
+"556f1ed2e4b0d9246a9fc4bd" "556f1ed3e4b0d9246a9fc4c1" 
+             nwis_04165500              nwis_04166500 
+"556f1ed4e4b0d9246a9fc4c5" "556f1ed6e4b0d9246a9fc4c9" 
+             nwis_04167150              nwis_04168400 
+"556f1ed7e4b0d9246a9fc4cd" "556f1ed8e4b0d9246a9fc4d1" 
+             nwis_04174500              nwis_04175120 
+"556f1edae4b0d9246a9fc4d5" "556f1edbe4b0d9246a9fc4d9" 
+             nwis_04176500              nwis_04024000 
+"556f1edce4b0d9246a9fc4dd" "556f1edde4b0d9246a9fc4e1" 
+             nwis_02473085              nwis_02492620 
+"556f1edee4b0d9246a9fc4e5" "556f1edfe4b0d9246a9fc4e9" 
+      nwis_301527088521500       nwis_301912088583300 
+"556f1ee0e4b0d9246a9fc4ed" "556f1ee2e4b0d9246a9fc4f2" 
+      nwis_305215089073600       nwis_310506089291200 
+"556f1ee3e4b0d9246a9fc4f6" "556f1ee4e4b0d9246a9fc4fa" 
+      nwis_310805089141600       nwis_311845091272200 
+"556f1ee5e4b0d9246a9fc4fe" "556f1ee6e4b0d9246a9fc502" 
+      nwis_312514091273400       nwis_314416091213400 
+"556f1ee7e4b0d9246a9fc506" "556f1ee8e4b0d9246a9fc50a" 
+      nwis_330203091020200       nwis_330359090194135 
+"556f1ee9e4b0d9246a9fc50e" "556f1eeae4b0d9246a9fc512" 
+      nwis_330735090300200       nwis_331623091023700 
+"556f1eece4b0d9246a9fc516" "556f1eede4b0d9246a9fc51a" 
+      nwis_333957091034100       nwis_340247088560200 
+"556f1eeee4b0d9246a9fc51e" "556f1eefe4b0d9246a9fc522" 
+      nwis_341436088534500       nwis_343916088435600 
+"556f1ef0e4b0d9246a9fc526" "556f1ef1e4b0d9246a9fc52a" 
+             nwis_06818000              nwis_06893620 
+"556f1ef2e4b0d9246a9fc52e" "556f1ef4e4b0d9246a9fc532" 
+             nwis_06893820              nwis_06893890 
+"556f1ef5e4b0d9246a9fc536" "556f1ef6e4b0d9246a9fc53a" 
+             nwis_06893970              nwis_06894000 
+"556f1ef7e4b0d9246a9fc53e" "556f1ef8e4b0d9246a9fc542" 
+             nwis_06934500              nwis_07020850 
+"556f1efae4b0d9246a9fc546" "556f1efbe4b0d9246a9fc54b" 
+             nwis_07053450              nwis_07053600 
+"556f1efce4b0d9246a9fc550" "556f1efde4b0d9246a9fc554" 
+             nwis_07061270              nwis_07061290 
+"556f1effe4b0d9246a9fc559" "556f1f00e4b0d9246a9fc55d" 
+             nwis_06454100              nwis_06461500 
+"556f1f01e4b0d9246a9fc561" "556f1f02e4b0d9246a9fc565" 
+             nwis_06465500              nwis_06478522 
+"556f1f03e4b0d9246a9fc569" "556f1f04e4b0d9246a9fc56d" 
+             nwis_06601200              nwis_06795500 
+"556f1f05e4b0d9246a9fc571" "556f1f07e4b0d9246a9fc575" 
+             nwis_06799089              nwis_06800500 
+"556f1f08e4b0d9246a9fc579" "556f1f09e4b0d9246a9fc57d" 
+             nwis_06805000              nwis_06805500 
+"556f1f0be4b0d9246a9fc581" "556f1f0ce4b0d9246a9fc585" 
+             nwis_06807000       nwis_410333095530101 
+"556f1f0de4b0d9246a9fc589" "556f1f0ee4b0d9246a9fc58d" 
+      nwis_412126095565201              nwis_01073389 
+"556f1f0fe4b0d9246a9fc591" "556f1f10e4b0d9246a9fc595" 
+             nwis_01382210              nwis_01388000 
+"556f1f11e4b0d9246a9fc599" "556f1f12e4b0d9246a9fc59d" 
+             nwis_01389005              nwis_01400500 
+"556f1f13e4b0d9246a9fc5a1" "556f1f14e4b0d9246a9fc5a5" 
+             nwis_01408167              nwis_01408500 
+"556f1f16e4b0d9246a9fc5a9" "556f1f17e4b0d9246a9fc5ad" 
+             nwis_01458500              nwis_01463500 
+"556f1f18e4b0d9246a9fc5b1" "556f1f19e4b0d9246a9fc5b5" 
+             nwis_01467029              nwis_08317400 
+"556f1f1ae4b0d9246a9fc5b9" "556f1f1be4b0d9246a9fc5bd" 
+      nwis_323733107011002       nwis_324007107095501 
+"556f1f1ce4b0d9246a9fc5c1" "556f1f1de4b0d9246a9fc5c5" 
+      nwis_324955107180902              nwis_01304057 
+"556f1f1ee4b0d9246a9fc5c9" "556f1f1fe4b0d9246a9fc5cd" 
+             nwis_01304200              nwis_01304562 
+"556f1f21e4b0d9246a9fc5d1" "556f1f23e4b0d9246a9fc5d5" 
+             nwis_01310740              nwis_01311143 
+"556f1f24e4b0d9246a9fc5d9" "556f1f25e4b0d9246a9fc5dd" 
+             nwis_01374019              nwis_01433500 
+"556f1f26e4b0d9246a9fc5e1" "556f1f27e4b0d9246a9fc5e5" 
+             nwis_04213500              nwis_04231600 
+"556f1f29e4b0d9246a9fc5e9" "556f1f2ae4b0d9246a9fc5ed" 
+             nwis_04249000            nwis_0208062765 
+"556f1f2be4b0d9246a9fc5f1" "556f1f2ce4b0d9246a9fc5f5" 
+             nwis_02081022              nwis_02081094 
+"556f1f2de4b0d9246a9fc5f9" "556f1f2fe4b0d9246a9fc5fd" 
+           nwis_0208114150            nwis_0208458892 
+"556f1f30e4b0d9246a9fc601" "556f1f31e4b0d9246a9fc605" 
+           nwis_0208458893            nwis_0209303205 
+"556f1f32e4b0d9246a9fc609" "556f1f33e4b0d9246a9fc60d" 
+             nwis_02101726            nwis_0212378405 
+"556f1f34e4b0d9246a9fc611" "556f1f35e4b0d9246a9fc615" 
+           nwis_0212880025              nwis_03460795 
+"556f1f36e4b0d9246a9fc619" "556f1f37e4b0d9246a9fc61d" 
+             nwis_03512000              nwis_05054000 
+"556f1f39e4b0d9246a9fc621" "556f1f3ae4b0d9246a9fc625" 
+             nwis_05057000              nwis_05057200 
+"556f1f3be4b0d9246a9fc629" "556f1f3ce4b0d9246a9fc62d" 
+             nwis_05082500              nwis_06336000 
+"556f1f3de4b0d9246a9fc631" "556f1f3ee4b0d9246a9fc635" 
+             nwis_06340590              nwis_03098600 
+"556f1f3fe4b0d9246a9fc639" "556f1f40e4b0d9246a9fc63d" 
+             nwis_03121850              nwis_03219500 
+"556f1f41e4b0d9246a9fc641" "556f1f42e4b0d9246a9fc645" 
+             nwis_03220510              nwis_03228039 
+"556f1f43e4b0d9246a9fc649" "556f1f45e4b0d9246a9fc64d" 
+             nwis_03228300              nwis_03255349 
+"556f1f46e4b0d9246a9fc651" "556f1f47e4b0d9246a9fc655" 
+             nwis_03259757              nwis_03259813 
+"556f1f48e4b0d9246a9fc659" "556f1f49e4b0d9246a9fc65d" 
+             nwis_03271510              nwis_04188496 
+"556f1f4ae4b0d9246a9fc661" "556f1f4be4b0d9246a9fc665" 
+             nwis_04193490              nwis_04195500 
+"556f1f4ce4b0d9246a9fc669" "556f1f4de4b0d9246a9fc66d" 
+             nwis_04199500              nwis_04200500 
+"556f1f4fe4b0d9246a9fc671" "556f1f50e4b0d9246a9fc675" 
+             nwis_04208000              nwis_07164500 
+"556f1f51e4b0d9246a9fc679" "556f1f52e4b0d9246a9fc67d" 
+             nwis_07177500              nwis_07178200 
+"556f1f53e4b0d9246a9fc681" "556f1f55e4b0d9246a9fc685" 
+            nwis_071912213              nwis_07191222 
+"556f1f56e4b0d9246a9fc689" "556f1f57e4b0d9246a9fc68d" 
+             nwis_07198000              nwis_07239450 
+"556f1f59e4b0d9246a9fc691" "556f1f5ae4b0d9246a9fc695" 
+             nwis_07241000              nwis_07241520 
+"556f1f5be4b0d9246a9fc699" "556f1f5ce4b0d9246a9fc69d" 
+             nwis_07241550              nwis_11507501 
+"556f1f5de4b0d9246a9fc6a1" "556f1f5ee4b0d9246a9fc6a5" 
+             nwis_11509370              nwis_13173600 
+"556f1f60e4b0d9246a9fc6a9" "556f1f61e4b0d9246a9fc6ad" 
+             nwis_14151000              nwis_14152000 
+"556f1f62e4b0d9246a9fc6b1" "556f1f63e4b0d9246a9fc6b5" 
+             nwis_14158100              nwis_14162500 
+"556f1f64e4b0d9246a9fc6b9" "556f1f65e4b0d9246a9fc6bd" 
+             nwis_14181500              nwis_14182500 
+"556f1f66e4b0d9246a9fc6c1" "556f1f67e4b0d9246a9fc6c5" 
+             nwis_14202650              nwis_14202980 
+"556f1f68e4b0d9246a9fc6c9" "556f1f6ae4b0d9246a9fc6cd" 
+             nwis_14206694              nwis_14206950 
+"556f1f6be4b0d9246a9fc6d1" "556f1f6ce4b0d9246a9fc6d5" 
+             nwis_14207200              nwis_14209710 
+"556f1f6de4b0d9246a9fc6d9" "556f1f6ee4b0d9246a9fc6dd" 
+             nwis_14210000              nwis_14211010 
+"556f1f6fe4b0d9246a9fc6e1" "556f1f70e4b0d9246a9fc6e5" 
+             nwis_14211720              nwis_14301500 
+"556f1f71e4b0d9246a9fc6e9" "556f1f73e4b0d9246a9fc6ed" 
+             nwis_14302480              nwis_14309000 
+"556f1f74e4b0d9246a9fc6f1" "556f1f75e4b0d9246a9fc6f5" 
+             nwis_14316460              nwis_14317450 
+"556f1f76e4b0d9246a9fc6f9" "556f1f77e4b0d9246a9fc6fd" 
+      nwis_420451121510000       nwis_420615121533600 
+"556f1f78e4b0d9246a9fc701" "556f1f79e4b0d9246a9fc705" 
+      nwis_420615121533601       nwis_420741121554001 
+"556f1f7ae4b0d9246a9fc709" "556f1f7ce4b0d9246a9fc70d" 
+      nwis_420853121505500       nwis_420853121505501 
+"556f1f7de4b0d9246a9fc711" "556f1f7ee4b0d9246a9fc715" 
+      nwis_421015121471800       nwis_421209121463000 
+"556f1f7fe4b0d9246a9fc719" "556f1f80e4b0d9246a9fc71d" 
+      nwis_421209121463001       nwis_421401121480900 
+"556f1f81e4b0d9246a9fc721" "556f1f82e4b0d9246a9fc725" 
+      nwis_421410121492000       nwis_421838121513900 
+"556f1f84e4b0d9246a9fc729" "556f1f85e4b0d9246a9fc72d" 
+      nwis_421933121550000       nwis_422042121513100 
+"556f1f86e4b0d9246a9fc731" "556f1f87e4b0d9246a9fc735" 
+      nwis_422128121530600       nwis_422305121553800 
+"556f1f88e4b0d9246a9fc739" "556f1f89e4b0d9246a9fc73d" 
+      nwis_422305121553803       nwis_422437121515200 
+"556f1f8ae4b0d9246a9fc741" "556f1f8be4b0d9246a9fc745" 
+      nwis_422559121574400       nwis_422622122004000 
+"556f1f8ce4b0d9246a9fc749" "556f1f8de4b0d9246a9fc74d" 
+      nwis_422622122004003       nwis_422719121571400 
+"556f1f8fe4b0d9246a9fc751" "556f1f90e4b0d9246a9fc755" 
+      nwis_422749121540700       nwis_422808122024400 
+"556f1f91e4b0d9246a9fc759" "556f1f92e4b0d9246a9fc75d" 
+      nwis_422842121584300       nwis_423124121583400 
+"556f1f93e4b0d9246a9fc761" "556f1f94e4b0d9246a9fc765" 
+      nwis_423335121564300       nwis_444728122450000 
+"556f1f95e4b0d9246a9fc769" "556f1f96e4b0d9246a9fc76d" 
+      nwis_452230122512201       nwis_453004122510301 
+"556f1f97e4b0d9246a9fc771" "556f1f98e4b0d9246a9fc775" 
+      nwis_453030122560101       nwis_453040123065201 
+"556f1f9ae4b0d9246a9fc779" "556f1f9be4b0d9246a9fc77d" 
+      nwis_453113123003501       nwis_454554119121801 
+"556f1f9ce4b0d9246a9fc781" "556f1f9de4b0d9246a9fc785" 
+      nwis_454919119184701       nwis_455415119314601 
+"556f1f9ee4b0d9246a9fc789" "556f1f9fe4b0d9246a9fc78d" 
+      nwis_461518123285700              nwis_01454700 
+"556f1fa0e4b0d9246a9fc791" "556f1fa3e4b0d9246a9fc795" 
+             nwis_01460200              nwis_01465798 
+"556f1fa5e4b0d9246a9fc799" "556f1fa7e4b0d9246a9fc79d" 
+            nwis_014670261              nwis_01467042 
+"556f1fa8e4b0d9246a9fc7a1" "556f1fa9e4b0d9246a9fc7a5" 
+             nwis_01467048              nwis_01467086 
+"556f1faae4b0d9246a9fc7a9" "556f1fabe4b0d9246a9fc7ad" 
+             nwis_01467087              nwis_01467200 
+"556f1face4b0d9246a9fc7b1" "556f1faee4b0d9246a9fc7b5" 
+             nwis_01472104              nwis_01473500 
+"556f1fafe4b0d9246a9fc7b9" "556f1fb0e4b0d9246a9fc7bd" 
+             nwis_01473900              nwis_01474000 
+"556f1fb1e4b0d9246a9fc7c1" "556f1fb2e4b0d9246a9fc7c5" 
+             nwis_01474500              nwis_01475530 
+"556f1fb3e4b0d9246a9fc7c9" "556f1fb4e4b0d9246a9fc7cd" 
+             nwis_01475548              nwis_01477050 
+"556f1fb5e4b0d9246a9fc7d1" "556f1fb7e4b0d9246a9fc7d5" 
+             nwis_01480617              nwis_01480870 
+"556f1fb8e4b0d9246a9fc7d9" "556f1fb9e4b0d9246a9fc7dd" 
+             nwis_01481000              nwis_01540500 
+"556f1fbae4b0d9246a9fc7e1" "556f1fbbe4b0d9246a9fc7e5" 
+             nwis_01542500              nwis_01544500 
+"556f1fbce4b0d9246a9fc7e9" "556f1fbee4b0d9246a9fc7ed" 
+             nwis_01548303              nwis_01549700 
+"556f1fc0e4b0d9246a9fc7f1" "556f1fc1e4b0d9246a9fc7f5" 
+             nwis_01567000              nwis_01570500 
+"556f1fc2e4b0d9246a9fc7f9" "556f1fc3e4b0d9246a9fc7fd" 
+             nwis_03007800              nwis_03025500 
+"556f1fc4e4b0d9246a9fc801" "556f1fc5e4b0d9246a9fc805" 
+             nwis_03027500              nwis_03034000 
+"556f1fc6e4b0d9246a9fc809" "556f1fc7e4b0d9246a9fc80d" 
+             nwis_03036000              nwis_03039035 
+"556f1fc9e4b0d9246a9fc811" "556f1fcae4b0d9246a9fc815" 
+             nwis_03039036              nwis_03039040 
+"556f1fcbe4b0d9246a9fc819" "556f1fcce4b0d9246a9fc81d" 
+             nwis_03039041              nwis_03049640 
+"556f1fcde4b0d9246a9fc821" "556f1fcee4b0d9246a9fc825" 
+             nwis_03071600              nwis_03071605 
+"556f1fd0e4b0d9246a9fc829" "556f1fd1e4b0d9246a9fc82d" 
+             nwis_03071690              nwis_03072655 
+"556f1fd2e4b0d9246a9fc831" "556f1fd3e4b0d9246a9fc835" 
+             nwis_03073000              nwis_03075070 
+"556f1fd4e4b0d9246a9fc839" "556f1fd5e4b0d9246a9fc83d" 
+             nwis_03077100              nwis_03081000 
+"556f1fd6e4b0d9246a9fc841" "556f1fd8e4b0d9246a9fc845" 
+             nwis_03083500              nwis_03085002 
+"556f1fd9e4b0d9246a9fc849" "556f1fdae4b0d9246a9fc84d" 
+             nwis_03105500              nwis_03106000 
+"556f1fdbe4b0d9246a9fc851" "556f1fdde4b0d9246a9fc855" 
+             nwis_03108490              nwis_50048565 
+"556f1fdee4b0d9246a9fc859" "556f1fdfe4b0d9246a9fc85d" 
+             nwis_50048580              nwis_50231500 
+"556f1fe0e4b0d9246a9fc861" "556f1fe1e4b0d9246a9fc865" 
+             nwis_50231505              nwis_02110400 
+"556f1fe2e4b0d9246a9fc869" "556f1fe3e4b0d9246a9fc86d" 
+             nwis_02110500              nwis_02110550 
+"556f1fe4e4b0d9246a9fc871" "556f1fe5e4b0d9246a9fc875" 
+             nwis_02110701              nwis_02110704 
+"556f1fe7e4b0d9246a9fc879" "556f1fe8e4b0d9246a9fc87d" 
+             nwis_02110777              nwis_02110802 
+"556f1fe9e4b0d9246a9fc881" "556f1feae4b0d9246a9fc885" 
+             nwis_02110815              nwis_02135000 
+"556f1febe4b0d9246a9fc889" "556f1fece4b0d9246a9fc88d" 
+             nwis_02148315              nwis_02156500 
+"556f1fede4b0d9246a9fc891" "556f1feee4b0d9246a9fc895" 
+             nwis_02160105              nwis_02160700 
+"556f1fefe4b0d9246a9fc899" "556f1ff0e4b0d9246a9fc89d" 
+             nwis_02160991              nwis_02162035 
+"556f1ff1e4b0d9246a9fc8a1" "556f1ff2e4b0d9246a9fc8a5" 
+             nwis_02167600              nwis_02167716 
+"556f1ff4e4b0d9246a9fc8a9" "556f1ff5e4b0d9246a9fc8ad" 
+             nwis_02168500              nwis_02168504 
+"556f1ff6e4b0d9246a9fc8b1" "556f1ff7e4b0d9246a9fc8b5" 
+             nwis_02169000              nwis_02171637 
+"556f1ff8e4b0d9246a9fc8b9" "556f1ff9e4b0d9246a9fc8bd" 
+             nwis_02171645              nwis_02172050 
+"556f1ffae4b0d9246a9fc8c1" "556f1ffbe4b0d9246a9fc8c5" 
+            nwis_021720677             nwis_021720698 
+"556f1ffce4b0d9246a9fc8c9" "556f1ffde4b0d9246a9fc8cd" 
+            nwis_021720709             nwis_021720869 
+"556f1fffe4b0d9246a9fc8d1" "556f2000e4b0d9246a9fc8d5" 
+           nwis_0219897993              nwis_06436760 
+"556f2001e4b0d9246a9fc8d9" "556f2002e4b0d9246a9fc8dd" 
+             nwis_03408500              nwis_03409500 
+"556f2003e4b0d9246a9fc8e1" "556f2004e4b0d9246a9fc8e5" 
+             nwis_03418420              nwis_03428180 
+"556f2005e4b0d9246a9fc8e9" "556f2006e4b0d9246a9fc8ed" 
+             nwis_03430200              nwis_03431083 
+"556f2008e4b0d9246a9fc8f1" "556f2009e4b0d9246a9fc8f5" 
+             nwis_03431091              nwis_03431514 
+"556f200ae4b0d9246a9fc8f9" "556f200be4b0d9246a9fc8fd" 
+             nwis_03432100              nwis_03432350 
+"556f200de4b0d9246a9fc901" "556f200ee4b0d9246a9fc905" 
+             nwis_03432400              nwis_03432800 
+"556f200fe4b0d9246a9fc909" "556f2011e4b0d9246a9fc90d" 
+             nwis_03538830              nwis_03539600 
+"556f2012e4b0d9246a9fc911" "556f2013e4b0d9246a9fc915" 
+             nwis_03539778       nwis_351111089512501 
+"556f2014e4b0d9246a9fc919" "556f2015e4b0d9246a9fc91d" 
+      nwis_351113089513401              nwis_07332620 
+"556f2016e4b0d9246a9fc921" "556f2017e4b0d9246a9fc925" 
+             nwis_07332622              nwis_08041770 
+"556f2019e4b0d9246a9fc929" "556f201ae4b0d9246a9fc92d" 
+             nwis_08048000              nwis_08049500 
+"556f201be4b0d9246a9fc931" "556f201ce4b0d9246a9fc935" 
+             nwis_08052700              nwis_08052745 
+"556f201de4b0d9246a9fc939" "556f201ee4b0d9246a9fc93d" 
+             nwis_08057000              nwis_08057055 
+"556f2020e4b0d9246a9fc941" "556f2021e4b0d9246a9fc945" 
+             nwis_08057410              nwis_08062500 
+"556f2022e4b0d9246a9fc949" "556f2023e4b0d9246a9fc94d" 
+             nwis_08065350              nwis_08067074 
+"556f2024e4b0d9246a9fc951" "556f2025e4b0d9246a9fc955" 
+             nwis_08068000              nwis_08068275 
+"556f2027e4b0d9246a9fc959" "556f2028e4b0d9246a9fc95d" 
+             nwis_08068400              nwis_08068500 
+"556f2029e4b0d9246a9fc961" "556f202ae4b0d9246a9fc965" 
+             nwis_08069500              nwis_08070200 
+"556f202be4b0d9246a9fc969" "556f202ce4b0d9246a9fc96d" 
+             nwis_08155500              nwis_08171290 
+"556f202de4b0d9246a9fc971" "556f202ee4b0d9246a9fc975" 
+             nwis_08180700              nwis_08180850 
+"556f202fe4b0d9246a9fc979" "556f2031e4b0d9246a9fc97d" 
+             nwis_08181500              nwis_08181800 
+"556f2032e4b0d9246a9fc981" "556f2033e4b0d9246a9fc985" 
+             nwis_08188060              nwis_08211200 
+"556f2034e4b0d9246a9fc989" "556f2035e4b0d9246a9fc98d" 
+             nwis_08371500              nwis_08374200 
+"556f2037e4b0d9246a9fc991" "556f2038e4b0d9246a9fc995" 
+             nwis_08374510              nwis_08374550 
+"556f203ae4b0d9246a9fc999" "556f203be4b0d9246a9fc99d" 
+             nwis_08375300              nwis_08377200 
+"556f203ce4b0d9246a9fc9a1" "556f203de4b0d9246a9fc9a5" 
+             nwis_08412500              nwis_08420500 
+"556f203fe4b0d9246a9fc9a9" "556f2040e4b0d9246a9fc9ad" 
+             nwis_08437710              nwis_08446500 
+"556f2041e4b0d9246a9fc9b1" "556f2043e4b0d9246a9fc9b5" 
+             nwis_08447000              nwis_08447018 
+"556f2044e4b0d9246a9fc9b9" "556f2045e4b0d9246a9fc9bd" 
+             nwis_08447300              nwis_08447410 
+"556f2046e4b0d9246a9fc9c1" "556f2047e4b0d9246a9fc9c5" 
+             nwis_08470500       nwis_295554095093402 
+"556f2049e4b0d9246a9fc9c9" "556f204ae4b0d9246a9fc9cd" 
+      nwis_295826095082200              nwis_09326500 
+"556f204be4b0d9246a9fc9d1" "556f204ce4b0d9246a9fc9d5" 
+             nwis_09327000              nwis_09406000 
+"556f204de4b0d9246a9fc9d9" "556f204ee4b0d9246a9fc9dd" 
+             nwis_10129900              nwis_10133650 
+"556f2050e4b0d9246a9fc9e2" "556f2051e4b0d9246a9fc9e6" 
+             nwis_10133800              nwis_10133980 
+"556f2052e4b0d9246a9fc9ea" "556f2053e4b0d9246a9fc9ef" 
+             nwis_01632900              nwis_01645704 
+"556f2054e4b0d9246a9fc9f3" "556f2055e4b0d9246a9fc9f7" 
+             nwis_01645762              nwis_01646000 
+"556f2056e4b0d9246a9fc9fc" "556f2057e4b0d9246a9fca00" 
+             nwis_01646305              nwis_01654000 
+"556f2059e4b0d9246a9fca04" "556f205ae4b0d9246a9fca08" 
+             nwis_01654500              nwis_01656903 
+"556f205be4b0d9246a9fca0c" "556f205ce4b0d9246a9fca10" 
+           nwis_0166818623            nwis_0166818985 
+"556f205de4b0d9246a9fca14" "556f205ee4b0d9246a9fca18" 
+             nwis_01673000              nwis_02035000 
+"556f205fe4b0d9246a9fca1c" "556f2060e4b0d9246a9fca20" 
+             nwis_02042222              nwis_02079500 
+"556f2062e4b0d9246a9fca24" "556f2063e4b0d9246a9fca28" 
+             nwis_12098700              nwis_12100490 
+"556f2065e4b0d9246a9fca2c" "556f2066e4b0d9246a9fca30" 
+             nwis_12101100              nwis_12102012 
+"556f2067e4b0d9246a9fca34" "556f2068e4b0d9246a9fca38" 
+             nwis_12165800              nwis_12166000 
+"556f2069e4b0d9246a9fca3c" "556f206ae4b0d9246a9fca40" 
+             nwis_12166300              nwis_12168997 
+"556f206be4b0d9246a9fca44" "556f206ce4b0d9246a9fca48" 
+             nwis_12169500              nwis_12170000 
+"556f206de4b0d9246a9fca4c" "556f206fe4b0d9246a9fca50" 
+      nwis_453604122060000       nwis_454705122451400 
+"556f2070e4b0d9246a9fca54" "556f2071e4b0d9246a9fca58" 
+      nwis_460939123201600              nwis_01608500 
+"556f2072e4b0d9246a9fca5c" "556f2073e4b0d9246a9fca60" 
+             nwis_01611500              nwis_03058000 
+"556f2075e4b0d9246a9fca64" "556f2076e4b0d9246a9fca68" 
+             nwis_03061000              nwis_03067510 
+"556f2077e4b0d9246a9fca6c" "556f2078e4b0d9246a9fca70" 
+             nwis_03071590              nwis_03183500 
+"556f2079e4b0d9246a9fca74" "556f207be4b0d9246a9fca78" 
+             nwis_04027000              nwis_04067500 
+"556f207ce4b0d9246a9fca7c" "556f207de4b0d9246a9fca80" 
+             nwis_04085108             nwis_040851385 
+"556f207ee4b0d9246a9fca84" "556f207fe4b0d9246a9fca88" 
+             nwis_04085427              nwis_04087030 
+"556f2080e4b0d9246a9fca8c" "556f2081e4b0d9246a9fca90" 
+             nwis_04087050              nwis_04087088 
+"556f2082e4b0d9246a9fca94" "556f2083e4b0d9246a9fca98" 
+             nwis_04087119              nwis_04087120 
+"556f2085e4b0d9246a9fca9c" "556f2086e4b0d9246a9fcaa0" 
+             nwis_04087142             nwis_040871488 
+"556f2087e4b0d9246a9fcaa4" "556f2088e4b0d9246a9fcaa8" 
+             nwis_04087170              nwis_05406457 
+"556f2089e4b0d9246a9fcaac" "556f208ae4b0d9246a9fcab0" 
+             nwis_05406469              nwis_05406479 
+"556f208be4b0d9246a9fcab4" "556f208ce4b0d9246a9fcab8" 
+             nwis_05406497              nwis_05406500 
+"556f208ee4b0d9246a9fcabc" "556f208fe4b0d9246a9fcac0" 
+             nwis_05435943              nwis_05435950 
+"556f2090e4b0d9246a9fcac4" "556f2091e4b0d9246a9fcac8" 
+      nwis_431037090043401       nwis_443320089212303 
+"556f2092e4b0d9246a9fcacc" "556f2094e4b0d9246a9fcad0" 
+      nwis_443320089212304              nwis_06427850 
+"556f2095e4b0d9246a9fcad4" "556f2096e4b0d9246a9fcad8" 
+             nwis_06670500              nwis_09258050 
+"556f2097e4b0d9246a9fcadc" "556f2098e4b0d9246a9fcae0" 
+             nwis_09258980              nwis_13013650 
+"556f2099e4b0d9246a9fcae4" "556f209ae4b0d9246a9fcae8" 
