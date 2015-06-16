@@ -1,58 +1,53 @@
-# Parse command-line arguments
+source("p1_import/code/process_make_args.R")
+args <- process_make_args(c("sb_user", "sb_password", "outfile", "on_exists", "verbose"))
 
-args <- commandArgs(TRUE)
-for (i in 1:length(args)){
-  eval(parse(text=args[i])) # expecting args sb_user, sb_password, and outfile
-}
-cat(paste0("Setting up site data as ", sb_user, "\n"))
-
-
-# Load libraries
-library(dataRetrieval)
-library(sbtools)
-library(mda.streams)
-library(powstreams)
-
-# Enter sandbox
-# sbtools::set_endpoint("production") # the default
-# sbtools::set_endpoint("development") # this doesn't work off campus (except maybe with VPN?)
-
-# Log in
-if(exists("sb_password")) 
-  session = authenticate_sb(sb_user, sb_password) 
-else 
-  session = authenticate_sb(sb_user)
-
-# Find the sites root ("Sites_dev" folder)
-sites_root <- sbtools::query_item_identifier(scheme="mda_streams_dev", type="sites_root", key="uber")
-
-# Add sites data
-site_roots <- item_list_children(sites_root$id, current_session(), limit=1000)$id
-sites <- sapply(site_roots, mda.streams:::get_title, session=current_session()) #get_title should probably be exported
-vars <- c(disch='00060',doobs='00300',stage='00072',wtr='00010')
-for(site in sites) {
-  for(varname in names(vars)) {
-
-    # don't replace existing files
-    if(item_exists(scheme='mda_streams_dev', type=make_ts_variable(varname), key=site, session=current_session())) next
+#' Pull data from NWIS onto ScienceBase
+#' 
+#' Include data for all variables with src="NWIS" in var_codes, all sites
+#' currently on SB, and the date range specified
+add_nwis_data <- function(on_exists="stop", verbose=TRUE) {
+  # identify the data to download
+  vars <- get_var_codes() %>% filter(src=="nwis") %>% .$var
+  sites <- sort(get_sites())[1:3]
+  times <- unlist(read.table("p1_import/in/date_range.tsv", header=TRUE, stringsAsFactors=FALSE))
+  if(verbose) {
+    message("will get data for these parameter codes: ", paste0(vars, collapse=", "))
+    message("will get data between these dates: ", paste0(times, collapse=", "))
+    message("will get data for ", length(sites), " sites")
+  }
+  
+  # break the sites into manageably sized groups to avoid incomplete downloads, 
+  # which bother dataRetrieval (and us). ScienceBase probably won't mind the
+  # smaller tasks, either.
+  sites_per_group <- 10
+  sites <- data.frame(
+    site=sites, 
+    group=rep(1:ceiling(length(sites)/sites_per_group), each=sites_per_group)[1:length(sites)], 
+    stringsAsFactors=FALSE)
+  
+  # loop through groups and vars to download and post files.
+  for(group in unique(sites$group)) {
+    site_group <- sites[sites$group==group,"site"]
+    if(verbose) message("\nsite group ", group, ":\n", paste0(site_group, collapse=", "))
     
-    # download from NWIS
-    nwis_ts <- mda.streams::get_nwis_df(site=site, variable_name = varname, p_code=vars[varname])
-    if(nrow(nwis_ts) == 0) next # if we got no data, just go to the next one
-    
-    # format and write to file
-    nwis_ts[,1] <- strftime(nwis_ts[,1], usetz = T, tz = 'UTC') # lock in the timezone. coerce to char
-    fpath = tempfile(fileext = paste0('.',mda.streams:::get_ts_extension(), '.gz'))
-    gz1 <- gzfile(fpath, "w")
-    write.table(nwis_ts,  gz1, sep=mda.streams:::get_ts_delim(), row.names=FALSE, quote = FALSE)
-    close(gz1)
-    
-    # push to SB
-    # as in post_ts(site=site, data=nwis_ts, session=current_session())
-    ts_varname <- names(nwis_ts)[-1]
-    print(c(site, varname, ts_varname))
-    ts_item <- item_create(parent_id=names(sites)[match(site,sites)], title=ts_varname, current_session())
-    item_append_files(ts_item, files=fpath, session=current_session())
-    item_update_identifier(ts_item, scheme='mda_streams_dev', type=ts_varname, key=site, session=current_session())
+    for(var in vars) {
+      if(verbose) message("  variable: ", var)
+      
+      if(verbose) message("    checking for existing data...")
+      ts_summaries <- summarize_ts(var_src=make_var_src(var, "nwis"), site_name=site_group)
+      sites_new <- site_group[is.na(ts_summaries$id)]
+      
+      if(length(sites_new) > 0) {
+        if(verbose) message("    acquiring data...")
+        files <- stage_nwis_ts(sites=sites_new, var=var, times=times, verbose=verbose)
+        
+        if(verbose) message("    posting data...")
+        post_ts(files, on_exists=on_exists, verbose=verbose)
+        
+      } else {
+        if(verbose) message("    no data to acquire or post in this group.")
+      }      
+    }
   }
 }
+add_nwis_data(on_exists=args$on_exists, verbose=args$verbose)
