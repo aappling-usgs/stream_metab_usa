@@ -45,10 +45,8 @@ add_nldas_data <- function(on_exists="stop", verbose=TRUE) {
       }
       
       if(length(sites_to_get) > 0) {
-        lapply(sites_to_get, function(stg) {
-          file <- stage_nldas_ts(sites=stg, var=var, times=times, verbose=verbose)
-          post_ts(file, on_exists=on_exists, verbose=verbose)
-        })
+        files <- stage_nldas_ts(sites=sites_to_get, var=var, times=times, verbose=verbose)
+        post_ts(files, on_exists=on_exists, verbose=verbose)
       } else {
         if(verbose) message("no data to acquire or post in this group.")
       }
