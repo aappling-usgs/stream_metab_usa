@@ -4,3 +4,4 @@
 *.png
 .Rproj.user
 temp
+*.Rout

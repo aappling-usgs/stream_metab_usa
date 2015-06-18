@@ -1,738 +1,1982 @@
-timestamp: 2015-06-03 11:45:35
+timestamp: 2015-06-16 17:43:59
 
 Setting endpoint to www.sciencebase.gov
 args:
-               key                            value
-1          sb_user                aappling@usgs.gov
-2      sb_password                            *****
-3          outfile p1_import/out/00_init_sites.Rout
-4  update_sitelist                             TRUE
-5 replace_existing                            FALSE
-6       delete_all                            FALSE
-7          verbose                             TRUE
+              key                            value
+1         sb_user                aappling@usgs.gov
+2     sb_password                            *****
+3         outfile p1_import/out/00_init_sites.Rout
+4 update_sitelist                            FALSE
+5       on_exists                             skip
+6      delete_all                            FALSE
+7         verbose                             TRUE
 
 signing into ScienceBase with the password you set.
 
-acquiring site list from NWIS server
-searching for sites with all of these p_codes: 00300
-getting AL information
-getting AK information
-getting AS information
-NWIS doesn't have data on AS
-getting AZ information
-getting AR information
-getting CA information
-getting CO information
-getting CT information
-getting DE information
-getting DC information
-getting FM information
-NWIS doesn't have data on FM
-getting FL information
-getting GA information
-getting GU information
-getting ID information
-getting IL information
-getting IN information
-getting IA information
-getting KS information
-getting KY information
-getting LA information
-getting MA information
-getting ME information
-getting MH information
-NWIS doesn't have data on MH
-getting MD information
-getting MI information
-getting MN information
-getting MS information
-getting MO information
-getting MT information
-getting NE information
-getting NV information
-getting NH information
-getting NJ information
-getting NM information
-getting NY information
-getting NC information
-getting ND information
-getting MP information
-getting OH information
-getting OK information
-getting OR information
-getting PW information
-NWIS doesn't have data on PW
-getting PA information
-getting PR information
-getting RI information
-getting SC information
-getting SD information
-getting TN information
-getting TX information
-getting UT information
-getting VT information
-getting VI information
-getting VA information
-getting WA information
-getting WV information
-getting WI information
-getting WY information
-posting sites with replace_existing==FALSE
-                    site              existing_id posted_id
-1         nwis_023432415 556f1d82e4b0d9246a9fc09f        NA
-2          nwis_02397530 556f2853e4b0d9246a9fcbf8        NA
-3          nwis_02423130 556f2854e4b0d9246a9fcbfc        NA
-4          nwis_02423160 556f1d86e4b0d9246a9fc0ab        NA
-5          nwis_02423397 556f2855e4b0d9246a9fcc00        NA
-6          nwis_02423496 556f1d88e4b0d9246a9fc0b3        NA
-7          nwis_02455980 556f2856e4b0d9246a9fcc04        NA
-8          nwis_02457595 556f1d8ae4b0d9246a9fc0bb        NA
-9          nwis_02458450 556f1d8be4b0d9246a9fc0bf        NA
-10         nwis_02469100 556f1d8ce4b0d9246a9fc0c3        NA
-11         nwis_15298040 556f1d8de4b0d9246a9fc0c7        NA
-12         nwis_07048600 556f1d8ee4b0d9246a9fc0cb        NA
-13         nwis_07049691 556f2858e4b0d9246a9fcc08        NA
-14         nwis_07054501 556f1d91e4b0d9246a9fc0d3        NA
-15         nwis_07054502 556f1d92e4b0d9246a9fc0d7        NA
-16         nwis_07054527 556f1d93e4b0d9246a9fc0db        NA
-17         nwis_07055814 556f1d94e4b0d9246a9fc0df        NA
-18         nwis_07056515 556f1d95e4b0d9246a9fc0e3        NA
-19         nwis_07059998 556f1d96e4b0d9246a9fc0e7        NA
-20         nwis_07060000 556f285ae4b0d9246a9fcc0c        NA
-21         nwis_07060001 556f1d99e4b0d9246a9fc0ef        NA
-22         nwis_07075250 556f285be4b0d9246a9fcc10        NA
-23         nwis_07075270 556f285ce4b0d9246a9fcc14        NA
-24         nwis_07076000 556f1d9ce4b0d9246a9fc0fb        NA
-25         nwis_07257500 556f1d9ee4b0d9246a9fc0ff        NA
-26         nwis_07261090 556f1d9fe4b0d9246a9fc103        NA
-27         nwis_07263296 556f1da0e4b0d9246a9fc107        NA
-28        nwis_072632966 556f1da1e4b0d9246a9fc10b        NA
-29        nwis_072632995 556f285de4b0d9246a9fcc18        NA
-30         nwis_11044000 556f1da3e4b0d9246a9fc113        NA
-31         nwis_11046062 556f1da4e4b0d9246a9fc117        NA
-32         nwis_11046072 556f285ee4b0d9246a9fcc1c        NA
-33         nwis_11046102 556f1da6e4b0d9246a9fc11f        NA
-34         nwis_11046252 556f1da8e4b0d9246a9fc123        NA
-35         nwis_11046372 556f2860e4b0d9246a9fcc20        NA
-36         nwis_11126000 556f1daae4b0d9246a9fc12b        NA
-37         nwis_11273400 556f1dabe4b0d9246a9fc12f        NA
-38         nwis_11285500 556f2861e4b0d9246a9fcc24        NA
-39         nwis_11313433 556f2862e4b0d9246a9fcc28        NA
-40         nwis_11337190 556f2863e4b0d9246a9fcc2c        NA
-41         nwis_11447650 556f1db0e4b0d9246a9fc13f        NA
-42         nwis_11447830 556f2864e4b0d9246a9fcc30        NA
-43         nwis_11447850 556f2865e4b0d9246a9fcc34        NA
-44         nwis_11447890 556f1db3e4b0d9246a9fc14b        NA
-45         nwis_11455139 556f1db4e4b0d9246a9fc14f        NA
-46         nwis_11455146 556f2866e4b0d9246a9fcc38        NA
-47         nwis_11455165 556f1db6e4b0d9246a9fc157        NA
-48         nwis_11455315 556f1db7e4b0d9246a9fc15b        NA
-49         nwis_11455350 556f1db9e4b0d9246a9fc15f        NA
-50         nwis_11455478 556f1dbae4b0d9246a9fc163        NA
-51         nwis_11462500 556f1dbbe4b0d9246a9fc167        NA
-52         nwis_11463000 556f1dbce4b0d9246a9fc16b        NA
-53         nwis_11463682 556f2868e4b0d9246a9fcc3c        NA
-54         nwis_11463980 556f2869e4b0d9246a9fcc40        NA
-55         nwis_11465240 556f1dbfe4b0d9246a9fc179        NA
-56         nwis_11467000 556f286ae4b0d9246a9fcc44        NA
-57  nwis_331346117243401 556f286be4b0d9246a9fcc48        NA
-58  nwis_364200119420001 556f1dc3e4b0d9246a9fc186        NA
-59  nwis_364200119420002 556f1dc4e4b0d9246a9fc18a        NA
-60  nwis_415007121102001 556f286ce4b0d9246a9fcc4c        NA
-61         nwis_06711565 556f1dc6e4b0d9246a9fc192        NA
-62         nwis_07106000 556f1dc7e4b0d9246a9fc196        NA
-63         nwis_07109500 556f1dc8e4b0d9246a9fc19a        NA
-64         nwis_09041400 556f1dc9e4b0d9246a9fc19e        NA
-65         nwis_01193050 556f1dcbe4b0d9246a9fc1a2        NA
-66         nwis_01194750 556f1dcce4b0d9246a9fc1a6        NA
-67         nwis_01480065 556f286ee4b0d9246a9fcc50        NA
-68         nwis_01481500 556f286fe4b0d9246a9fcc54        NA
-69         nwis_01482800 556f1dcfe4b0d9246a9fc1b2        NA
-70         nwis_01483177 556f1dd0e4b0d9246a9fc1b6        NA
-71         nwis_01484080 556f1dd1e4b0d9246a9fc1ba        NA
-72         nwis_01484085 556f1dd2e4b0d9246a9fc1be        NA
-73         nwis_01484525 556f1dd3e4b0d9246a9fc1c2        NA
-74         nwis_01484680 556f2872e4b0d9246a9fcc58        NA
-75         nwis_01487150 556f2873e4b0d9246a9fcc5c        NA
-76         nwis_01648010 556f2874e4b0d9246a9fcc60        NA
-77         nwis_02231291 556f2875e4b0d9246a9fcc64        NA
-78         nwis_02234000 556f1dd9e4b0d9246a9fc1d6        NA
-79         nwis_02234500 556f2876e4b0d9246a9fcc68        NA
-80         nwis_02235500 556f1ddce4b0d9246a9fc1de        NA
-81         nwis_02236000 556f1ddde4b0d9246a9fc1e2        NA
-82         nwis_02236125 556f1ddee4b0d9246a9fc1e6        NA
-83         nwis_02244040 556f1ddfe4b0d9246a9fc1ea        NA
-84         nwis_02245260 556f1de0e4b0d9246a9fc1ee        NA
-85         nwis_02264000 556f1de3e4b0d9246a9fc1f2        NA
-86         nwis_02264100 556f1de4e4b0d9246a9fc1f6        NA
-87         nwis_02266200 556f1de5e4b0d9246a9fc1fa        NA
-88         nwis_02266300 556f1de7e4b0d9246a9fc1fe        NA
-89         nwis_02266495 556f1de8e4b0d9246a9fc202        NA
-90         nwis_02293249 556f2878e4b0d9246a9fcc6c        NA
-91         nwis_02304000 556f1deae4b0d9246a9fc20a        NA
-92         nwis_02319302 556f1debe4b0d9246a9fc20e        NA
-93         nwis_02320250 556f1dece4b0d9246a9fc212        NA
-94         nwis_02322688 556f1dede4b0d9246a9fc216        NA
-95         nwis_02323502 556f1deee4b0d9246a9fc21a        NA
-96         nwis_02323566 556f1defe4b0d9246a9fc21e        NA
-97  nwis_291830081362200 556f1df1e4b0d9246a9fc222        NA
-98  nwis_294213081345300 556f287ae4b0d9246a9fcc70        NA
-99  nwis_301124081395901 556f1df3e4b0d9246a9fc22a        NA
-100 nwis_302309081333001 556f1df4e4b0d9246a9fc22e        NA
-101        nwis_02198840 556f1df5e4b0d9246a9fc232        NA
-102        nwis_02198920 556f287be4b0d9246a9fcc74        NA
-103        nwis_02198950 556f1df7e4b0d9246a9fc23a        NA
-104        nwis_02198955 556f287de4b0d9246a9fcc78        NA
-105       nwis_021989715 556f287ee4b0d9246a9fcc7c        NA
-106       nwis_021989773 556f1dfbe4b0d9246a9fc246        NA
-107       nwis_021989792 556f287fe4b0d9246a9fcc80        NA
-108       nwis_021989793 556f1dfde4b0d9246a9fc24e        NA
-109      nwis_0219897945 556f1dfee4b0d9246a9fc252        NA
-110       nwis_022035975 556f1dffe4b0d9246a9fc256        NA
-111        nwis_02203603 556f1e00e4b0d9246a9fc25a        NA
-112        nwis_02203655 556f2880e4b0d9246a9fcc84        NA
-113        nwis_02203700 556f2881e4b0d9246a9fcc88        NA
-114        nwis_02203831 556f1e04e4b0d9246a9fc266        NA
-115        nwis_02203863 556f1e06e4b0d9246a9fc26a        NA
-116        nwis_02203873 556f1e07e4b0d9246a9fc26e        NA
-117        nwis_02203900 556f1e08e4b0d9246a9fc272        NA
-118        nwis_02203950 556f1e0ae4b0d9246a9fc276        NA
-119        nwis_02203960 556f1e0ce4b0d9246a9fc27a        NA
-120        nwis_02204037 556f2883e4b0d9246a9fcc8c        NA
-121        nwis_02207135 556f2884e4b0d9246a9fcc90        NA
-122        nwis_02207160 556f1e10e4b0d9246a9fc286        NA
-123        nwis_02208450 556f2885e4b0d9246a9fcc94        NA
-124        nwis_02208493 556f1e13e4b0d9246a9fc28e        NA
-125        nwis_02217643 556f2886e4b0d9246a9fcc98        NA
-126        nwis_02231254 556f2888e4b0d9246a9fcc9c        NA
-127        nwis_02336120 556f2889e4b0d9246a9fcca0        NA
-128        nwis_02336152 556f288ae4b0d9246a9fcca4        NA
-129       nwis_023362095 556f288be4b0d9246a9fcca8        NA
-130        nwis_02336240 556f1e1be4b0d9246a9fc2a6        NA
-131        nwis_02336300 556f1e1ce4b0d9246a9fc2aa        NA
-132        nwis_02336313 556f288ce4b0d9246a9fccac        NA
-133        nwis_02336340 556f1e1ee4b0d9246a9fc2b2        NA
-134        nwis_02336360 556f288de4b0d9246a9fccb0        NA
-135        nwis_02336410 556f1e21e4b0d9246a9fc2ba        NA
-136        nwis_02336526 556f288ee4b0d9246a9fccb4        NA
-137        nwis_02336728 556f1e23e4b0d9246a9fc2c2        NA
-138        nwis_02337170 556f2891e4b0d9246a9fccb8        NA
-139        nwis_02344630 556f2892e4b0d9246a9fccbc        NA
-140        nwis_02344673 556f1e28e4b0d9246a9fc2ce        NA
-141        nwis_13206400 556f1e29e4b0d9246a9fc2d2        NA
-142        nwis_13207500 556f1e2ae4b0d9246a9fc2d6        NA
-143        nwis_13210660 556f1e2be4b0d9246a9fc2da        NA
-144        nwis_13210795 556f1e2de4b0d9246a9fc2de        NA
-145        nwis_13210815 556f1e2ee4b0d9246a9fc2e2        NA
-146        nwis_13211441 556f2893e4b0d9246a9fccc0        NA
-147        nwis_13213000 556f1e31e4b0d9246a9fc2ea        NA
-148        nwis_13213072 556f1e32e4b0d9246a9fc2ee        NA
-149        nwis_13213080 556f1e34e4b0d9246a9fc2f2        NA
-150        nwis_13213100 556f2896e4b0d9246a9fccc4        NA
-151 nwis_433422116323200 556f1e37e4b0d9246a9fc2fa        NA
-152 nwis_434821116444300 556f1e38e4b0d9246a9fc2fe        NA
-153        nwis_03339000 556f2897e4b0d9246a9fccc8        NA
-154        nwis_03343805 556f1e3be4b0d9246a9fc306        NA
-155        nwis_03612600 556f2898e4b0d9246a9fcccc        NA
-156        nwis_05543010 556f1e3ee4b0d9246a9fc30e        NA
-157        nwis_05579630 556f1e3fe4b0d9246a9fc312        NA
-158        nwis_05586300 556f2899e4b0d9246a9fccd0        NA
-159 nwis_411955088280601 556f289ae4b0d9246a9fccd4        NA
-160 nwis_414037088003201 556f1e43e4b0d9246a9fc31e        NA
-161 nwis_414042088003201 556f1e45e4b0d9246a9fc322        NA
-162        nwis_03353200 556f1e46e4b0d9246a9fc326        NA
-163        nwis_03374100 556f289be4b0d9246a9fccd8        NA
-164        nwis_04092750 556f1e49e4b0d9246a9fc32e        NA
-165        nwis_04095090 556f289de4b0d9246a9fccdc        NA
-166        nwis_04182867 556f289ee4b0d9246a9fcce0        NA
-167        nwis_05515500 556f1e4ee4b0d9246a9fc33a        NA
-168        nwis_05524500 556f289fe4b0d9246a9fcce4        NA
-169        nwis_05418400 556f28a0e4b0d9246a9fcce8        NA
-170        nwis_05420500 556f1e52e4b0d9246a9fc346        NA
-171        nwis_05451080 556f1e53e4b0d9246a9fc34a        NA
-172        nwis_05451210 556f28a1e4b0d9246a9fccec        NA
-173        nwis_06610505 556f28a2e4b0d9246a9fccf0        NA
-174        nwis_06892513 556f1e58e4b0d9246a9fc356        NA
-175        nwis_06893300 556f28a3e4b0d9246a9fccf4        NA
-176        nwis_06893350 556f1e5ae4b0d9246a9fc35e        NA
-177        nwis_07143672 556f1e5ce4b0d9246a9fc362        NA
-178        nwis_07144780 556f1e5ee4b0d9246a9fc366        NA
-179        nwis_07144790 556f28a4e4b0d9246a9fccf8        NA
-180 nwis_375327097285402 556f1e61e4b0d9246a9fc36e        NA
-181 nwis_375332097284802 556f1e62e4b0d9246a9fc372        NA
-182 nwis_375348097262800 556f1e64e4b0d9246a9fc376        NA
-183 nwis_375350097262800 556f1e65e4b0d9246a9fc37a        NA
-184 nwis_385446094430700 556f28a6e4b0d9246a9fccfc        NA
-185 nwis_385520094420000 556f1e67e4b0d9246a9fc382        NA
-186 nwis_385608094380300 556f1e69e4b0d9246a9fc386        NA
-187        nwis_03254520 556f1e6ae4b0d9246a9fc38a        NA
-188        nwis_03277075 556f1e6be4b0d9246a9fc38e        NA
-189        nwis_03277130 556f1e6de4b0d9246a9fc392        NA
-190        nwis_03277200 556f28a8e4b0d9246a9fcd00        NA
-191        nwis_03289000 556f28a9e4b0d9246a9fcd04        NA
-192        nwis_03289193 556f28aae4b0d9246a9fcd08        NA
-193        nwis_03292470 556f1e72e4b0d9246a9fc3a2        NA
-194        nwis_03292474 556f1e73e4b0d9246a9fc3a6        NA
-195        nwis_03292475 556f1e75e4b0d9246a9fc3aa        NA
-196        nwis_03292480 556f28abe4b0d9246a9fcd0c        NA
-197        nwis_03292500 556f1e77e4b0d9246a9fc3b2        NA
-198        nwis_03293000 556f28ace4b0d9246a9fcd10        NA
-199        nwis_03293500 556f28ade4b0d9246a9fcd14        NA
-200        nwis_03293510 556f1e7be4b0d9246a9fc3be        NA
-201        nwis_03293530 556f1e7de4b0d9246a9fc3c2        NA
-202        nwis_03294570 556f1e7ee4b0d9246a9fc3c6        NA
-203        nwis_03297800 556f1e7fe4b0d9246a9fc3ca        NA
-204        nwis_03297900 556f1e81e4b0d9246a9fc3ce        NA
-205        nwis_03298000 556f1e83e4b0d9246a9fc3d2        NA
-206        nwis_03298135 556f28b0e4b0d9246a9fcd18        NA
-207        nwis_03298150 556f28b1e4b0d9246a9fcd1c        NA
-208        nwis_03298200 556f28b2e4b0d9246a9fcd20        NA
-209        nwis_03298250 556f1e8ae4b0d9246a9fc3e2        NA
-210        nwis_03298300 556f1e8be4b0d9246a9fc3e6        NA
-211        nwis_03301900 556f1e8ce4b0d9246a9fc3ea        NA
-212        nwis_03301940 556f28b3e4b0d9246a9fcd24        NA
-213        nwis_03302000 556f28b4e4b0d9246a9fcd28        NA
-214        nwis_03302030 556f1e90e4b0d9246a9fc3f6        NA
-215        nwis_03302050 556f28b6e4b0d9246a9fcd2c        NA
-216        nwis_03321500 556f1e94e4b0d9246a9fc3fe        NA
-217        nwis_03400798 556f1e95e4b0d9246a9fc402        NA
-218        nwis_03400800 556f28b7e4b0d9246a9fcd30        NA
-219        nwis_03401385 556f28b8e4b0d9246a9fcd34        NA
-220        nwis_03438220 556f28b9e4b0d9246a9fcd38        NA
-221        nwis_02489800 556f28bae4b0d9246a9fcd3c        NA
-222        nwis_07374000 556f1e9ce4b0d9246a9fc416        NA
-223        nwis_07381600 556f1e9de4b0d9246a9fc41a        NA
-224 nwis_295827090052800 556f1e9fe4b0d9246a9fc41e        NA
-225 nwis_295906090054200 556f28bbe4b0d9246a9fcd40        NA
-226 nwis_300009090051600 556f1ea2e4b0d9246a9fc426        NA
-227 nwis_300026090050800 556f28bce4b0d9246a9fcd44        NA
-228 nwis_300034090055300 556f1ea4e4b0d9246a9fc42e        NA
-229 nwis_300127090045800 556f1ea6e4b0d9246a9fc432        NA
-230 nwis_300128090045800 556f28bde4b0d9246a9fcd48        NA
-231        nwis_01021050 556f28bee4b0d9246a9fcd4c        NA
-232        nwis_01036390 556f28bfe4b0d9246a9fcd50        NA
-233        nwis_01493112 556f28c0e4b0d9246a9fcd54        NA
-234        nwis_01579550 556f1eace4b0d9246a9fc448        NA
-235        nwis_01646500 556f28c2e4b0d9246a9fcd58        NA
-236        nwis_01649190 556f1eb0e4b0d9246a9fc451        NA
-237        nwis_01649500 556f1eb2e4b0d9246a9fc455        NA
-238        nwis_01650800 556f28c3e4b0d9246a9fcd5c        NA
-239        nwis_01658000 556f1eb5e4b0d9246a9fc45d        NA
-240        nwis_04040000 556f1eb6e4b0d9246a9fc461        NA
-241        nwis_04059500 556f1eb7e4b0d9246a9fc465        NA
-242        nwis_04101500 556f1eb8e4b0d9246a9fc469        NA
-243        nwis_04108660 556f28c4e4b0d9246a9fcd60        NA
-244        nwis_04119400 556f1ebbe4b0d9246a9fc471        NA
-245        nwis_04121650 556f28c5e4b0d9246a9fcd64        NA
-246        nwis_04121660 556f1ebee4b0d9246a9fc479        NA
-247        nwis_04121680 556f28c7e4b0d9246a9fcd68        NA
-248        nwis_04121944 556f1ec0e4b0d9246a9fc481        NA
-249        nwis_04121970 556f28c8e4b0d9246a9fcd6c        NA
-250        nwis_04124000 556f28c9e4b0d9246a9fcd70        NA
-251        nwis_04124200 556f1ec4e4b0d9246a9fc48d        NA
-252        nwis_04125460 556f1ec6e4b0d9246a9fc491        NA
-253        nwis_04125550 556f1ec7e4b0d9246a9fc495        NA
-254        nwis_04136000 556f28cae4b0d9246a9fcd74        NA
-255        nwis_04136500 556f1ec9e4b0d9246a9fc49d        NA
-256        nwis_04136900 556f28cbe4b0d9246a9fcd78        NA
-257        nwis_04137005 556f1ecce4b0d9246a9fc4a5        NA
-258        nwis_04137020 556f28cde4b0d9246a9fcd7c        NA
-259        nwis_04137025 556f1ecee4b0d9246a9fc4ad        NA
-260        nwis_04137030 556f1ecfe4b0d9246a9fc4b1        NA
-261        nwis_04137500 556f28cee4b0d9246a9fcd80        NA
-262        nwis_04142000 556f1ed1e4b0d9246a9fc4b9        NA
-263       nwis_041482663 556f1ed2e4b0d9246a9fc4bd        NA
-264        nwis_04157005 556f28cfe4b0d9246a9fcd84        NA
-265        nwis_04165500 556f1ed4e4b0d9246a9fc4c5        NA
-266        nwis_04166500 556f28d1e4b0d9246a9fcd88        NA
-267        nwis_04167150 556f28d2e4b0d9246a9fcd8c        NA
-268        nwis_04168400 556f28d4e4b0d9246a9fcd90        NA
-269        nwis_04174500 556f1edae4b0d9246a9fc4d5        NA
-270        nwis_04175120 556f28d5e4b0d9246a9fcd94        NA
-271        nwis_04176500 556f1edce4b0d9246a9fc4dd        NA
-272        nwis_04024000 556f1edde4b0d9246a9fc4e1        NA
-273        nwis_02473085 556f1edee4b0d9246a9fc4e5        NA
-274        nwis_02492620 556f1edfe4b0d9246a9fc4e9        NA
-275 nwis_301527088521500 556f1ee0e4b0d9246a9fc4ed        NA
-276 nwis_301912088583300 556f1ee2e4b0d9246a9fc4f2        NA
-277 nwis_305215089073600 556f1ee3e4b0d9246a9fc4f6        NA
-278 nwis_310506089291200 556f1ee4e4b0d9246a9fc4fa        NA
-279 nwis_310805089141600 556f1ee5e4b0d9246a9fc4fe        NA
-280 nwis_311845091272200 556f1ee6e4b0d9246a9fc502        NA
-281 nwis_312514091273400 556f28d7e4b0d9246a9fcd98        NA
-282 nwis_314416091213400 556f1ee8e4b0d9246a9fc50a        NA
-283 nwis_330203091020200 556f1ee9e4b0d9246a9fc50e        NA
-284 nwis_330359090194135 556f28d8e4b0d9246a9fcd9c        NA
-285 nwis_330735090300200 556f1eece4b0d9246a9fc516        NA
-286 nwis_331623091023700 556f1eede4b0d9246a9fc51a        NA
-287 nwis_333957091034100 556f28d9e4b0d9246a9fcda0        NA
-288 nwis_340247088560200 556f1eefe4b0d9246a9fc522        NA
-289 nwis_341436088534500 556f1ef0e4b0d9246a9fc526        NA
-290 nwis_343916088435600 556f28dae4b0d9246a9fcda4        NA
-291        nwis_06818000 556f1ef2e4b0d9246a9fc52e        NA
-292        nwis_06893620 556f1ef4e4b0d9246a9fc532        NA
-293        nwis_06893820 556f1ef5e4b0d9246a9fc536        NA
-294        nwis_06893890 556f28dce4b0d9246a9fcda8        NA
-295        nwis_06893970 556f28dde4b0d9246a9fcdac        NA
-296        nwis_06894000 556f1ef8e4b0d9246a9fc542        NA
-297        nwis_06934500 556f28dee4b0d9246a9fcdb0        NA
-298        nwis_07020850 556f1efbe4b0d9246a9fc54b        NA
-299        nwis_07053450 556f28dfe4b0d9246a9fcdb4        NA
-300        nwis_07053600 556f1efde4b0d9246a9fc554        NA
-301        nwis_07061270 556f28e0e4b0d9246a9fcdb8        NA
-302        nwis_07061290 556f28e1e4b0d9246a9fcdbc        NA
-303        nwis_06454100 556f28e2e4b0d9246a9fcdc0        NA
-304        nwis_06461500 556f1f02e4b0d9246a9fc565        NA
-305        nwis_06465500 556f1f03e4b0d9246a9fc569        NA
-306        nwis_06478522 556f1f04e4b0d9246a9fc56d        NA
-307        nwis_06601200 556f1f05e4b0d9246a9fc571        NA
-308        nwis_06795500 556f1f07e4b0d9246a9fc575        NA
-309        nwis_06799089 556f28e4e4b0d9246a9fcdc4        NA
-310        nwis_06800500 556f28e5e4b0d9246a9fcdc8        NA
-311        nwis_06805000 556f28e6e4b0d9246a9fcdcc        NA
-312        nwis_06805500 556f28e7e4b0d9246a9fcdd0        NA
-313        nwis_06807000 556f1f0de4b0d9246a9fc589        NA
-314 nwis_410333095530101 556f1f0ee4b0d9246a9fc58d        NA
-315 nwis_412126095565201 556f28e8e4b0d9246a9fcdd4        NA
-316        nwis_01073389 556f28e9e4b0d9246a9fcdd8        NA
-317        nwis_01382210 556f1f11e4b0d9246a9fc599        NA
-318        nwis_01388000 556f28eae4b0d9246a9fcddc        NA
-319        nwis_01389005 556f1f13e4b0d9246a9fc5a1        NA
-320        nwis_01400500 556f28ebe4b0d9246a9fcde0        NA
-321        nwis_01408167 556f1f16e4b0d9246a9fc5a9        NA
-322        nwis_01408500 556f28ede4b0d9246a9fcde4        NA
-323        nwis_01458500 556f28eee4b0d9246a9fcde8        NA
-324        nwis_01463500 556f1f19e4b0d9246a9fc5b5        NA
-325        nwis_01467029 556f1f1ae4b0d9246a9fc5b9        NA
-326        nwis_08317400 556f28efe4b0d9246a9fcdec        NA
-327 nwis_323733107011002 556f1f1ce4b0d9246a9fc5c1        NA
-328 nwis_324007107095501 556f28f0e4b0d9246a9fcdf0        NA
-329 nwis_324955107180902 556f1f1ee4b0d9246a9fc5c9        NA
-330        nwis_01304057 556f1f1fe4b0d9246a9fc5cd        NA
-331        nwis_01304200 556f1f21e4b0d9246a9fc5d1        NA
-332        nwis_01304562 556f1f23e4b0d9246a9fc5d5        NA
-333        nwis_01310740 556f28f1e4b0d9246a9fcdf4        NA
-334        nwis_01311143 556f28f2e4b0d9246a9fcdf8        NA
-335        nwis_01374019 556f1f26e4b0d9246a9fc5e1        NA
-336        nwis_01433500 556f28f3e4b0d9246a9fcdfc        NA
-337        nwis_04213500 556f1f29e4b0d9246a9fc5e9        NA
-338        nwis_04231600 556f28f4e4b0d9246a9fce00        NA
-339        nwis_04249000 556f1f2be4b0d9246a9fc5f1        NA
-340      nwis_0208062765 556f1f2ce4b0d9246a9fc5f5        NA
-341        nwis_02081022 556f28f5e4b0d9246a9fce04        NA
-342        nwis_02081094 556f1f2fe4b0d9246a9fc5fd        NA
-343      nwis_0208114150 556f1f30e4b0d9246a9fc601        NA
-344      nwis_0208458892 556f1f31e4b0d9246a9fc605        NA
-345      nwis_0208458893 556f1f32e4b0d9246a9fc609        NA
-346      nwis_0209303205 556f1f33e4b0d9246a9fc60d        NA
-347        nwis_02101726 556f1f34e4b0d9246a9fc611        NA
-348      nwis_0212378405 556f28f7e4b0d9246a9fce08        NA
-349      nwis_0212880025 556f28f8e4b0d9246a9fce0c        NA
-350        nwis_03460795 556f28f9e4b0d9246a9fce10        NA
-351        nwis_03512000 556f28fae4b0d9246a9fce14        NA
-352        nwis_05054000 556f28fbe4b0d9246a9fce18        NA
-353        nwis_05057000 556f28fce4b0d9246a9fce1c        NA
-354        nwis_05057200 556f1f3ce4b0d9246a9fc62d        NA
-355        nwis_05082500 556f1f3de4b0d9246a9fc631        NA
-356        nwis_06336000 556f1f3ee4b0d9246a9fc635        NA
-357        nwis_06340590 556f1f3fe4b0d9246a9fc639        NA
-358        nwis_03098600 556f1f40e4b0d9246a9fc63d        NA
-359        nwis_03121850 556f28fde4b0d9246a9fce20        NA
-360        nwis_03219500 556f1f42e4b0d9246a9fc645        NA
-361        nwis_03220510 556f28fee4b0d9246a9fce24        NA
-362        nwis_03228039 556f1f45e4b0d9246a9fc64d        NA
-363        nwis_03228300 556f1f46e4b0d9246a9fc651        NA
-364        nwis_03255349 556f1f47e4b0d9246a9fc655        NA
-365        nwis_03259757 556f1f48e4b0d9246a9fc659        NA
-366        nwis_03259813 556f28ffe4b0d9246a9fce28        NA
-367        nwis_03271510 556f2900e4b0d9246a9fce2c        NA
-368        nwis_04188496 556f1f4be4b0d9246a9fc665        NA
-369        nwis_04193490 556f1f4ce4b0d9246a9fc669        NA
-370        nwis_04195500 556f1f4de4b0d9246a9fc66d        NA
-371        nwis_04199500 556f1f4fe4b0d9246a9fc671        NA
-372        nwis_04200500 556f1f50e4b0d9246a9fc675        NA
-373        nwis_04208000 556f1f51e4b0d9246a9fc679        NA
-374        nwis_07164500 556f2902e4b0d9246a9fce30        NA
-375        nwis_07177500 556f1f53e4b0d9246a9fc681        NA
-376        nwis_07178200 556f2904e4b0d9246a9fce34        NA
-377       nwis_071912213 556f2907e4b0d9246a9fce38        NA
-378        nwis_07191222 556f2909e4b0d9246a9fce3c        NA
-379        nwis_07198000 556f1f59e4b0d9246a9fc691        NA
-380        nwis_07239450 556f1f5ae4b0d9246a9fc695        NA
-381        nwis_07241000 556f1f5be4b0d9246a9fc699        NA
-382        nwis_07241520 556f1f5ce4b0d9246a9fc69d        NA
-383        nwis_07241550 556f290ae4b0d9246a9fce44        NA
-384        nwis_11507501 556f290be4b0d9246a9fce48        NA
-385        nwis_11509370 556f290ce4b0d9246a9fce4c        NA
-386        nwis_13173600 556f1f61e4b0d9246a9fc6ad        NA
-387        nwis_14151000 556f290ee4b0d9246a9fce50        NA
-388        nwis_14152000 556f290fe4b0d9246a9fce54        NA
-389        nwis_14158100 556f1f64e4b0d9246a9fc6b9        NA
-390        nwis_14162500 556f1f65e4b0d9246a9fc6bd        NA
-391        nwis_14181500 556f2910e4b0d9246a9fce58        NA
-392        nwis_14182500 556f1f67e4b0d9246a9fc6c5        NA
-393        nwis_14202650 556f1f68e4b0d9246a9fc6c9        NA
-394        nwis_14202980 556f1f6ae4b0d9246a9fc6cd        NA
-395        nwis_14206694 556f1f6be4b0d9246a9fc6d1        NA
-396        nwis_14206950 556f1f6ce4b0d9246a9fc6d5        NA
-397        nwis_14207200 556f2912e4b0d9246a9fce5c        NA
-398        nwis_14209710 556f2913e4b0d9246a9fce60        NA
-399        nwis_14210000 556f2914e4b0d9246a9fce64        NA
-400        nwis_14211010 556f1f70e4b0d9246a9fc6e5        NA
-401        nwis_14211720 556f2915e4b0d9246a9fce68        NA
-402        nwis_14301500 556f2916e4b0d9246a9fce6c        NA
-403        nwis_14302480 556f1f74e4b0d9246a9fc6f1        NA
-404        nwis_14309000 556f2917e4b0d9246a9fce70        NA
-405        nwis_14316460 556f1f76e4b0d9246a9fc6f9        NA
-406        nwis_14317450 556f1f77e4b0d9246a9fc6fd        NA
-407 nwis_420451121510000 556f1f78e4b0d9246a9fc701        NA
-408 nwis_420615121533600 556f1f79e4b0d9246a9fc705        NA
-409 nwis_420615121533601 556f2918e4b0d9246a9fce74        NA
-410 nwis_420741121554001 556f2919e4b0d9246a9fce78        NA
-411 nwis_420853121505500 556f1f7de4b0d9246a9fc711        NA
-412 nwis_420853121505501 556f291ae4b0d9246a9fce7c        NA
-413 nwis_421015121471800 556f1f7fe4b0d9246a9fc719        NA
-414 nwis_421209121463000 556f1f80e4b0d9246a9fc71d        NA
-415 nwis_421209121463001 556f1f81e4b0d9246a9fc721        NA
-416 nwis_421401121480900 556f291ce4b0d9246a9fce80        NA
-417 nwis_421410121492000 556f1f84e4b0d9246a9fc729        NA
-418 nwis_421838121513900 556f291de4b0d9246a9fce84        NA
-419 nwis_421933121550000 556f291ee4b0d9246a9fce88        NA
-420 nwis_422042121513100 556f1f87e4b0d9246a9fc735        NA
-421 nwis_422128121530600 556f1f88e4b0d9246a9fc739        NA
-422 nwis_422305121553800 556f1f89e4b0d9246a9fc73d        NA
-423 nwis_422305121553803 556f1f8ae4b0d9246a9fc741        NA
-424 nwis_422437121515200 556f1f8be4b0d9246a9fc745        NA
-425 nwis_422559121574400 556f1f8ce4b0d9246a9fc749        NA
-426 nwis_422622122004000 556f1f8de4b0d9246a9fc74d        NA
-427 nwis_422622122004003 556f1f8fe4b0d9246a9fc751        NA
-428 nwis_422719121571400 556f2920e4b0d9246a9fce8c        NA
-429 nwis_422749121540700 556f1f91e4b0d9246a9fc759        NA
-430 nwis_422808122024400 556f1f92e4b0d9246a9fc75d        NA
-431 nwis_422842121584300 556f1f93e4b0d9246a9fc761        NA
-432 nwis_423124121583400 556f1f94e4b0d9246a9fc765        NA
-433 nwis_423335121564300 556f2922e4b0d9246a9fce90        NA
-434 nwis_444728122450000 556f2923e4b0d9246a9fce94        NA
-435 nwis_452230122512201 556f1f97e4b0d9246a9fc771        NA
-436 nwis_453004122510301 556f2925e4b0d9246a9fce98        NA
-437 nwis_453030122560101 556f2926e4b0d9246a9fce9c        NA
-438 nwis_453040123065201 556f1f9be4b0d9246a9fc77d        NA
-439 nwis_453113123003501 556f1f9ce4b0d9246a9fc781        NA
-440 nwis_454554119121801 556f2928e4b0d9246a9fcea0        NA
-441 nwis_454919119184701 556f1f9ee4b0d9246a9fc789        NA
-442 nwis_455415119314601 556f2929e4b0d9246a9fcea4        NA
-443 nwis_461518123285700 556f292ae4b0d9246a9fcea8        NA
-444        nwis_01454700 556f292ce4b0d9246a9fceac        NA
-445        nwis_01460200 556f1fa5e4b0d9246a9fc799        NA
-446        nwis_01465798 556f1fa7e4b0d9246a9fc79d        NA
-447       nwis_014670261 556f1fa8e4b0d9246a9fc7a1        NA
-448        nwis_01467042 556f1fa9e4b0d9246a9fc7a5        NA
-449        nwis_01467048 556f1faae4b0d9246a9fc7a9        NA
-450        nwis_01467086 556f1fabe4b0d9246a9fc7ad        NA
-451        nwis_01467087 556f292ee4b0d9246a9fceb0        NA
-452        nwis_01467200 556f292fe4b0d9246a9fceb4        NA
-453        nwis_01472104 556f2930e4b0d9246a9fceb8        NA
-454        nwis_01473500 556f1fb0e4b0d9246a9fc7bd        NA
-455        nwis_01473900 556f2931e4b0d9246a9fcebc        NA
-456        nwis_01474000 556f1fb2e4b0d9246a9fc7c5        NA
-457        nwis_01474500 556f1fb3e4b0d9246a9fc7c9        NA
-458        nwis_01475530 556f2933e4b0d9246a9fcec0        NA
-459        nwis_01475548 556f1fb5e4b0d9246a9fc7d1        NA
-460        nwis_01477050 556f2934e4b0d9246a9fcec4        NA
-461        nwis_01480617 556f2935e4b0d9246a9fcec8        NA
-462        nwis_01480870 556f2936e4b0d9246a9fcecc        NA
-463        nwis_01481000 556f2937e4b0d9246a9fced0        NA
-464        nwis_01540500 556f2938e4b0d9246a9fced4        NA
-465        nwis_01542500 556f2939e4b0d9246a9fced8        NA
-466        nwis_01544500 556f1fbee4b0d9246a9fc7ed        NA
-467        nwis_01548303 556f293be4b0d9246a9fcedc        NA
-468        nwis_01549700 556f293ce4b0d9246a9fcee0        NA
-469        nwis_01567000 556f1fc2e4b0d9246a9fc7f9        NA
-470        nwis_01570500 556f1fc3e4b0d9246a9fc7fd        NA
-471        nwis_03007800 556f1fc4e4b0d9246a9fc801        NA
-472        nwis_03025500 556f1fc5e4b0d9246a9fc805        NA
-473        nwis_03027500 556f1fc6e4b0d9246a9fc809        NA
-474        nwis_03034000 556f293de4b0d9246a9fcee4        NA
-475        nwis_03036000 556f293fe4b0d9246a9fcee8        NA
-476        nwis_03039035 556f2940e4b0d9246a9fceec        NA
-477        nwis_03039036 556f1fcbe4b0d9246a9fc819        NA
-478        nwis_03039040 556f1fcce4b0d9246a9fc81d        NA
-479        nwis_03039041 556f2941e4b0d9246a9fcef0        NA
-480        nwis_03049640 556f1fcee4b0d9246a9fc825        NA
-481        nwis_03071600 556f1fd0e4b0d9246a9fc829        NA
-482        nwis_03071605 556f1fd1e4b0d9246a9fc82d        NA
-483        nwis_03071690 556f2942e4b0d9246a9fcef4        NA
-484        nwis_03072655 556f1fd3e4b0d9246a9fc835        NA
-485        nwis_03073000 556f1fd4e4b0d9246a9fc839        NA
-486        nwis_03075070 556f2944e4b0d9246a9fcef8        NA
-487        nwis_03077100 556f1fd6e4b0d9246a9fc841        NA
-488        nwis_03081000 556f1fd8e4b0d9246a9fc845        NA
-489        nwis_03083500 556f2945e4b0d9246a9fcefc        NA
-490        nwis_03085002 556f2946e4b0d9246a9fcf00        NA
-491        nwis_03105500 556f1fdbe4b0d9246a9fc851        NA
-492        nwis_03106000 556f2947e4b0d9246a9fcf04        NA
-493        nwis_03108490 556f1fdee4b0d9246a9fc859        NA
-494        nwis_50048565 556f1fdfe4b0d9246a9fc85d        NA
-495        nwis_50048580 556f1fe0e4b0d9246a9fc861        NA
-496        nwis_50231500 556f2949e4b0d9246a9fcf08        NA
-497        nwis_50231505 556f1fe2e4b0d9246a9fc869        NA
-498        nwis_02110400 556f294ae4b0d9246a9fcf0c        NA
-499        nwis_02110500 556f294be4b0d9246a9fcf10        NA
-500        nwis_02110550 556f1fe5e4b0d9246a9fc875        NA
-501        nwis_02110701 556f1fe7e4b0d9246a9fc879        NA
-502        nwis_02110704 556f294ce4b0d9246a9fcf14        NA
-503        nwis_02110777 556f1fe9e4b0d9246a9fc881        NA
-504        nwis_02110802 556f1feae4b0d9246a9fc885        NA
-505        nwis_02110815 556f294ee4b0d9246a9fcf18        NA
-506        nwis_02135000 556f294fe4b0d9246a9fcf1c        NA
-507        nwis_02148315 556f1fede4b0d9246a9fc891        NA
-508        nwis_02156500 556f1feee4b0d9246a9fc895        NA
-509        nwis_02160105 556f1fefe4b0d9246a9fc899        NA
-510        nwis_02160700 556f1ff0e4b0d9246a9fc89d        NA
-511        nwis_02160991 556f2950e4b0d9246a9fcf20        NA
-512        nwis_02162035 556f2952e4b0d9246a9fcf24        NA
-513        nwis_02167600 556f2953e4b0d9246a9fcf28        NA
-514        nwis_02167716 556f1ff5e4b0d9246a9fc8ad        NA
-515        nwis_02168500 556f1ff6e4b0d9246a9fc8b1        NA
-516        nwis_02168504 556f2955e4b0d9246a9fcf2c        NA
-517        nwis_02169000 556f2956e4b0d9246a9fcf30        NA
-518        nwis_02171637 556f2957e4b0d9246a9fcf34        NA
-519        nwis_02171645 556f1ffae4b0d9246a9fc8c1        NA
-520        nwis_02172050 556f2958e4b0d9246a9fcf38        NA
-521       nwis_021720677 556f2959e4b0d9246a9fcf3c        NA
-522       nwis_021720698 556f1ffde4b0d9246a9fc8cd        NA
-523       nwis_021720709 556f1fffe4b0d9246a9fc8d1        NA
-524       nwis_021720869 556f2000e4b0d9246a9fc8d5        NA
-525      nwis_0219897993 556f2001e4b0d9246a9fc8d9        NA
-526        nwis_06436760 556f2002e4b0d9246a9fc8dd        NA
-527        nwis_03408500 556f295be4b0d9246a9fcf40        NA
-528        nwis_03409500 556f295ce4b0d9246a9fcf44        NA
-529        nwis_03418420 556f295de4b0d9246a9fcf48        NA
-530        nwis_03428180 556f2006e4b0d9246a9fc8ed        NA
-531        nwis_03430200 556f2008e4b0d9246a9fc8f1        NA
-532        nwis_03431083 556f2009e4b0d9246a9fc8f5        NA
-533        nwis_03431091 556f200ae4b0d9246a9fc8f9        NA
-534        nwis_03431514 556f200be4b0d9246a9fc8fd        NA
-535        nwis_03432100 556f295fe4b0d9246a9fcf4c        NA
-536        nwis_03432350 556f200ee4b0d9246a9fc905        NA
-537        nwis_03432400 556f200fe4b0d9246a9fc909        NA
-538        nwis_03432800 556f2960e4b0d9246a9fcf50        NA
-539        nwis_03538830 556f2961e4b0d9246a9fcf55        NA
-540        nwis_03539600 556f2013e4b0d9246a9fc915        NA
-541        nwis_03539778 556f2014e4b0d9246a9fc919        NA
-542 nwis_351111089512501 556f2015e4b0d9246a9fc91d        NA
-543 nwis_351113089513401 556f2016e4b0d9246a9fc921        NA
-544        nwis_07332620 556f2017e4b0d9246a9fc925        NA
-545        nwis_07332622 556f2019e4b0d9246a9fc929        NA
-546        nwis_08041770 556f2963e4b0d9246a9fcf59        NA
-547        nwis_08048000 556f201be4b0d9246a9fc931        NA
-548        nwis_08049500 556f201ce4b0d9246a9fc935        NA
-549        nwis_08052700 556f201de4b0d9246a9fc939        NA
-550        nwis_08052745 556f2964e4b0d9246a9fcf5d        NA
-551        nwis_08057000 556f2020e4b0d9246a9fc941        NA
-552        nwis_08057055 556f2965e4b0d9246a9fcf61        NA
-553        nwis_08057410 556f2022e4b0d9246a9fc949        NA
-554        nwis_08062500 556f2966e4b0d9246a9fcf65        NA
-555        nwis_08065350 556f2024e4b0d9246a9fc951        NA
-556        nwis_08067074 556f2025e4b0d9246a9fc955        NA
-557        nwis_08068000 556f2027e4b0d9246a9fc959        NA
-558        nwis_08068275 556f2028e4b0d9246a9fc95d        NA
-559        nwis_08068400 556f2967e4b0d9246a9fcf69        NA
-560        nwis_08068500 556f2968e4b0d9246a9fcf6d        NA
-561        nwis_08069500 556f202be4b0d9246a9fc969        NA
-562        nwis_08070200 556f202ce4b0d9246a9fc96d        NA
-563        nwis_08155500 556f296ae4b0d9246a9fcf71        NA
-564        nwis_08171290 556f202ee4b0d9246a9fc975        NA
-565        nwis_08180700 556f202fe4b0d9246a9fc979        NA
-566        nwis_08180850 556f2031e4b0d9246a9fc97d        NA
-567        nwis_08181500 556f296be4b0d9246a9fcf75        NA
-568        nwis_08181800 556f2033e4b0d9246a9fc985        NA
-569        nwis_08188060 556f2034e4b0d9246a9fc989        NA
-570        nwis_08211200 556f296ce4b0d9246a9fcf79        NA
-571        nwis_08371500 556f2037e4b0d9246a9fc991        NA
-572        nwis_08374200 556f2038e4b0d9246a9fc995        NA
-573        nwis_08374510 556f296de4b0d9246a9fcf7d        NA
-574        nwis_08374550 556f203be4b0d9246a9fc99d        NA
-575        nwis_08375300 556f203ce4b0d9246a9fc9a1        NA
-576        nwis_08377200 556f203de4b0d9246a9fc9a5        NA
-577        nwis_08412500 556f203fe4b0d9246a9fc9a9        NA
-578        nwis_08420500 556f296fe4b0d9246a9fcf81        NA
-579        nwis_08437710 556f2041e4b0d9246a9fc9b1        NA
-580        nwis_08446500 556f2043e4b0d9246a9fc9b5        NA
-581        nwis_08447000 556f2044e4b0d9246a9fc9b9        NA
-582        nwis_08447018 556f2045e4b0d9246a9fc9bd        NA
-583        nwis_08447300 556f2970e4b0d9246a9fcf85        NA
-584        nwis_08447410 556f2047e4b0d9246a9fc9c5        NA
-585        nwis_08470500 556f2971e4b0d9246a9fcf89        NA
-586 nwis_295554095093402 556f2972e4b0d9246a9fcf8d        NA
-587 nwis_295826095082200 556f204be4b0d9246a9fc9d1        NA
-588        nwis_09326500 556f204ce4b0d9246a9fc9d5        NA
-589        nwis_09327000 556f204de4b0d9246a9fc9d9        NA
-590        nwis_09406000 556f204ee4b0d9246a9fc9dd        NA
-591        nwis_10129900 556f2050e4b0d9246a9fc9e2        NA
-592        nwis_10133650 556f2974e4b0d9246a9fcf91        NA
-593        nwis_10133800 556f2052e4b0d9246a9fc9ea        NA
-594        nwis_10133980 556f2053e4b0d9246a9fc9ef        NA
-595        nwis_01632900 556f2975e4b0d9246a9fcf95        NA
-596        nwis_01645704 556f2055e4b0d9246a9fc9f7        NA
-597        nwis_01645762 556f2976e4b0d9246a9fcf99        NA
-598        nwis_01646000 556f2977e4b0d9246a9fcf9d        NA
-599        nwis_01646305 556f2978e4b0d9246a9fcfa1        NA
-600        nwis_01654000 556f2979e4b0d9246a9fcfa5        NA
-601        nwis_01654500 556f205be4b0d9246a9fca0c        NA
-602        nwis_01656903 556f297be4b0d9246a9fcfa9        NA
-603      nwis_0166818623 556f297be4b0d9246a9fcfad        NA
-604      nwis_0166818985 556f205ee4b0d9246a9fca18        NA
-605        nwis_01673000 556f205fe4b0d9246a9fca1c        NA
-606        nwis_02035000 556f2060e4b0d9246a9fca20        NA
-607        nwis_02042222 556f297de4b0d9246a9fcfb1        NA
-608        nwis_02079500 556f2063e4b0d9246a9fca28        NA
-609        nwis_12098700 556f297ee4b0d9246a9fcfb5        NA
-610        nwis_12100490 556f2066e4b0d9246a9fca30        NA
-611        nwis_12101100 556f297fe4b0d9246a9fcfb9        NA
-612        nwis_12102012 556f2981e4b0d9246a9fcfbd        NA
-613        nwis_12165800 556f2069e4b0d9246a9fca3c        NA
-614        nwis_12166000 556f206ae4b0d9246a9fca40        NA
-615        nwis_12166300 556f2983e4b0d9246a9fcfc1        NA
-616        nwis_12168997 556f206ce4b0d9246a9fca48        NA
-617        nwis_12169500 556f206de4b0d9246a9fca4c        NA
-618        nwis_12170000 556f2984e4b0d9246a9fcfc5        NA
-619 nwis_453604122060000 556f2070e4b0d9246a9fca54        NA
-620 nwis_454705122451400 556f2071e4b0d9246a9fca58        NA
-621 nwis_460939123201600 556f2072e4b0d9246a9fca5c        NA
-622        nwis_01608500 556f2985e4b0d9246a9fcfc9        NA
-623        nwis_01611500 556f2988e4b0d9246a9fcfce        NA
-624        nwis_03058000 556f2076e4b0d9246a9fca68        NA
-625        nwis_03061000 556f2077e4b0d9246a9fca6c        NA
-626        nwis_03067510 556f2078e4b0d9246a9fca70        NA
-627        nwis_03071590 556f2079e4b0d9246a9fca74        NA
-628        nwis_03183500 556f2989e4b0d9246a9fcfd2        NA
-629        nwis_04027000 556f207ce4b0d9246a9fca7c        NA
-630        nwis_04067500 556f207de4b0d9246a9fca80        NA
-631        nwis_04085108 556f298be4b0d9246a9fcfd6        NA
-632       nwis_040851385 556f298ce4b0d9246a9fcfda        NA
-633        nwis_04085427 556f2080e4b0d9246a9fca8c        NA
-634        nwis_04087030 556f298ee4b0d9246a9fcfde        NA
-635        nwis_04087050 556f2082e4b0d9246a9fca94        NA
-636        nwis_04087088 556f2083e4b0d9246a9fca98        NA
-637        nwis_04087119 556f2085e4b0d9246a9fca9c        NA
-638        nwis_04087120 556f2086e4b0d9246a9fcaa0        NA
-639        nwis_04087142 556f2087e4b0d9246a9fcaa4        NA
-640       nwis_040871488 556f2088e4b0d9246a9fcaa8        NA
-641        nwis_04087170 556f2089e4b0d9246a9fcaac        NA
-642        nwis_05406457 556f208ae4b0d9246a9fcab0        NA
-643        nwis_05406469 556f208be4b0d9246a9fcab4        NA
-644        nwis_05406479 556f208ce4b0d9246a9fcab8        NA
-645        nwis_05406497 556f208ee4b0d9246a9fcabc        NA
-646        nwis_05406500 556f2990e4b0d9246a9fcfe2        NA
-647        nwis_05435943 556f2991e4b0d9246a9fcfe6        NA
-648        nwis_05435950 556f2091e4b0d9246a9fcac8        NA
-649 nwis_431037090043401 556f2992e4b0d9246a9fcfea        NA
-650 nwis_443320089212303 556f2993e4b0d9246a9fcfee        NA
-651 nwis_443320089212304 556f2994e4b0d9246a9fcff2        NA
-652        nwis_06427850 556f2096e4b0d9246a9fcad8        NA
-653        nwis_06670500 556f2097e4b0d9246a9fcadc        NA
-654        nwis_09258050 556f2996e4b0d9246a9fcff6        NA
-655        nwis_09258980 556f2099e4b0d9246a9fcae4        NA
-656        nwis_13013650 556f209ae4b0d9246a9fcae8        NA
-NULL
+posting sites with on_exists==skip
+the folder for site nwis_01021050 already exists
+skipping site
+the folder for site nwis_01036390 already exists
+skipping site
+the folder for site nwis_01073389 already exists
+skipping site
+the folder for site nwis_01193050 already exists
+skipping site
+the folder for site nwis_01194750 already exists
+skipping site
+the folder for site nwis_01304057 already exists
+skipping site
+the folder for site nwis_01304200 already exists
+skipping site
+the folder for site nwis_01304562 already exists
+skipping site
+the folder for site nwis_01310740 already exists
+skipping site
+the folder for site nwis_01311143 already exists
+skipping site
+the folder for site nwis_01374019 already exists
+skipping site
+the folder for site nwis_01382210 already exists
+skipping site
+the folder for site nwis_01388000 already exists
+skipping site
+the folder for site nwis_01389005 already exists
+skipping site
+the folder for site nwis_01400500 already exists
+skipping site
+the folder for site nwis_01408167 already exists
+skipping site
+the folder for site nwis_01408500 already exists
+skipping site
+the folder for site nwis_01433500 already exists
+skipping site
+the folder for site nwis_01454700 already exists
+skipping site
+the folder for site nwis_01458500 already exists
+skipping site
+the folder for site nwis_01460200 already exists
+skipping site
+the folder for site nwis_01463500 already exists
+skipping site
+the folder for site nwis_01465798 already exists
+skipping site
+the folder for site nwis_014670261 already exists
+skipping site
+the folder for site nwis_01467029 already exists
+skipping site
+the folder for site nwis_01467042 already exists
+skipping site
+the folder for site nwis_01467048 already exists
+skipping site
+the folder for site nwis_01467086 already exists
+skipping site
+the folder for site nwis_01467087 already exists
+skipping site
+the folder for site nwis_01467200 already exists
+skipping site
+the folder for site nwis_01472104 already exists
+skipping site
+the folder for site nwis_01473500 already exists
+skipping site
+the folder for site nwis_01473900 already exists
+skipping site
+the folder for site nwis_01474000 already exists
+skipping site
+the folder for site nwis_01474500 already exists
+skipping site
+the folder for site nwis_01475530 already exists
+skipping site
+the folder for site nwis_01475548 already exists
+skipping site
+the folder for site nwis_01477050 already exists
+skipping site
+the folder for site nwis_01480065 already exists
+skipping site
+the folder for site nwis_01480617 already exists
+skipping site
+the folder for site nwis_01480870 already exists
+skipping site
+the folder for site nwis_01481000 already exists
+skipping site
+the folder for site nwis_01481500 already exists
+skipping site
+the folder for site nwis_01482800 already exists
+skipping site
+the folder for site nwis_01483177 already exists
+skipping site
+the folder for site nwis_01484080 already exists
+skipping site
+the folder for site nwis_01484085 already exists
+skipping site
+the folder for site nwis_01484525 already exists
+skipping site
+the folder for site nwis_01484680 already exists
+skipping site
+the folder for site nwis_01487150 already exists
+skipping site
+the folder for site nwis_01493112 already exists
+skipping site
+the folder for site nwis_01540500 already exists
+skipping site
+the folder for site nwis_01542500 already exists
+skipping site
+the folder for site nwis_01544500 already exists
+skipping site
+the folder for site nwis_01548303 already exists
+skipping site
+the folder for site nwis_01549700 already exists
+skipping site
+the folder for site nwis_01567000 already exists
+skipping site
+the folder for site nwis_01570500 already exists
+skipping site
+the folder for site nwis_01579550 already exists
+skipping site
+the folder for site nwis_01608500 already exists
+skipping site
+the folder for site nwis_01611500 already exists
+skipping site
+the folder for site nwis_01632900 already exists
+skipping site
+the folder for site nwis_01645704 already exists
+skipping site
+the folder for site nwis_01645762 already exists
+skipping site
+the folder for site nwis_01646000 already exists
+skipping site
+the folder for site nwis_01646305 already exists
+skipping site
+the folder for site nwis_01646500 already exists
+skipping site
+the folder for site nwis_01648010 already exists
+skipping site
+the folder for site nwis_01649190 already exists
+skipping site
+the folder for site nwis_01649500 already exists
+skipping site
+the folder for site nwis_01650800 already exists
+skipping site
+the folder for site nwis_01654000 already exists
+skipping site
+the folder for site nwis_01654500 already exists
+skipping site
+the folder for site nwis_01656903 already exists
+skipping site
+the folder for site nwis_01658000 already exists
+skipping site
+the folder for site nwis_0166818623 already exists
+skipping site
+the folder for site nwis_0166818985 already exists
+skipping site
+the folder for site nwis_01673000 already exists
+skipping site
+the folder for site nwis_02035000 already exists
+skipping site
+the folder for site nwis_02042222 already exists
+skipping site
+the folder for site nwis_02079500 already exists
+skipping site
+the folder for site nwis_0208062765 already exists
+skipping site
+the folder for site nwis_02081022 already exists
+skipping site
+the folder for site nwis_02081094 already exists
+skipping site
+the folder for site nwis_0208114150 already exists
+skipping site
+the folder for site nwis_0208458892 already exists
+skipping site
+the folder for site nwis_0208458893 already exists
+skipping site
+the folder for site nwis_0209303205 already exists
+skipping site
+the folder for site nwis_02101726 already exists
+skipping site
+the folder for site nwis_02110400 already exists
+skipping site
+the folder for site nwis_02110500 already exists
+skipping site
+the folder for site nwis_02110550 already exists
+skipping site
+the folder for site nwis_02110701 already exists
+skipping site
+the folder for site nwis_02110704 already exists
+skipping site
+the folder for site nwis_02110777 already exists
+skipping site
+the folder for site nwis_02110802 already exists
+skipping site
+the folder for site nwis_02110815 already exists
+skipping site
+the folder for site nwis_0212378405 already exists
+skipping site
+the folder for site nwis_0212880025 already exists
+skipping site
+the folder for site nwis_02135000 already exists
+skipping site
+the folder for site nwis_02148315 already exists
+skipping site
+the folder for site nwis_02156500 already exists
+skipping site
+the folder for site nwis_02160105 already exists
+skipping site
+the folder for site nwis_02160700 already exists
+skipping site
+the folder for site nwis_02160991 already exists
+skipping site
+the folder for site nwis_02162035 already exists
+skipping site
+the folder for site nwis_02167600 already exists
+skipping site
+the folder for site nwis_02167716 already exists
+skipping site
+the folder for site nwis_02168500 already exists
+skipping site
+the folder for site nwis_02168504 already exists
+skipping site
+the folder for site nwis_02169000 already exists
+skipping site
+the folder for site nwis_02171637 already exists
+skipping site
+the folder for site nwis_02171645 already exists
+skipping site
+the folder for site nwis_02172050 already exists
+skipping site
+the folder for site nwis_021720677 already exists
+skipping site
+the folder for site nwis_021720698 already exists
+skipping site
+the folder for site nwis_021720709 already exists
+skipping site
+the folder for site nwis_021720869 already exists
+skipping site
+the folder for site nwis_02198840 already exists
+skipping site
+the folder for site nwis_02198920 already exists
+skipping site
+the folder for site nwis_02198950 already exists
+skipping site
+the folder for site nwis_02198955 already exists
+skipping site
+the folder for site nwis_021989715 already exists
+skipping site
+the folder for site nwis_021989773 already exists
+skipping site
+the folder for site nwis_021989792 already exists
+skipping site
+the folder for site nwis_021989793 already exists
+skipping site
+the folder for site nwis_0219897945 already exists
+skipping site
+the folder for site nwis_0219897993 already exists
+skipping site
+the folder for site nwis_022035975 already exists
+skipping site
+the folder for site nwis_02203603 already exists
+skipping site
+the folder for site nwis_02203655 already exists
+skipping site
+the folder for site nwis_02203700 already exists
+skipping site
+the folder for site nwis_02203831 already exists
+skipping site
+the folder for site nwis_02203863 already exists
+skipping site
+the folder for site nwis_02203873 already exists
+skipping site
+the folder for site nwis_02203900 already exists
+skipping site
+the folder for site nwis_02203950 already exists
+skipping site
+the folder for site nwis_02203960 already exists
+skipping site
+the folder for site nwis_02204037 already exists
+skipping site
+the folder for site nwis_02207135 already exists
+skipping site
+the folder for site nwis_02207160 already exists
+skipping site
+the folder for site nwis_02208450 already exists
+skipping site
+the folder for site nwis_02208493 already exists
+skipping site
+the folder for site nwis_02217643 already exists
+skipping site
+the folder for site nwis_02231254 already exists
+skipping site
+the folder for site nwis_02231291 already exists
+skipping site
+the folder for site nwis_02234000 already exists
+skipping site
+the folder for site nwis_02234500 already exists
+skipping site
+the folder for site nwis_02235500 already exists
+skipping site
+the folder for site nwis_02236000 already exists
+skipping site
+the folder for site nwis_02236125 already exists
+skipping site
+the folder for site nwis_02244040 already exists
+skipping site
+the folder for site nwis_02245260 already exists
+skipping site
+the folder for site nwis_02264000 already exists
+skipping site
+the folder for site nwis_02264100 already exists
+skipping site
+the folder for site nwis_02266200 already exists
+skipping site
+the folder for site nwis_02266300 already exists
+skipping site
+the folder for site nwis_02266495 already exists
+skipping site
+the folder for site nwis_02293249 already exists
+skipping site
+the folder for site nwis_02304000 already exists
+skipping site
+the folder for site nwis_02319302 already exists
+skipping site
+the folder for site nwis_02320250 already exists
+skipping site
+the folder for site nwis_02322688 already exists
+skipping site
+the folder for site nwis_02323502 already exists
+skipping site
+the folder for site nwis_02323566 already exists
+skipping site
+the folder for site nwis_02336120 already exists
+skipping site
+the folder for site nwis_02336152 already exists
+skipping site
+the folder for site nwis_023362095 already exists
+skipping site
+the folder for site nwis_02336240 already exists
+skipping site
+the folder for site nwis_02336300 already exists
+skipping site
+the folder for site nwis_02336313 already exists
+skipping site
+the folder for site nwis_02336340 already exists
+skipping site
+the folder for site nwis_02336360 already exists
+skipping site
+the folder for site nwis_02336410 already exists
+skipping site
+the folder for site nwis_02336526 already exists
+skipping site
+the folder for site nwis_02336728 already exists
+skipping site
+the folder for site nwis_02337170 already exists
+skipping site
+the folder for site nwis_023432415 already exists
+skipping site
+the folder for site nwis_02344630 already exists
+skipping site
+the folder for site nwis_02344673 already exists
+skipping site
+the folder for site nwis_02397530 already exists
+skipping site
+the folder for site nwis_02423130 already exists
+skipping site
+the folder for site nwis_02423160 already exists
+skipping site
+the folder for site nwis_02423397 already exists
+skipping site
+the folder for site nwis_02423496 already exists
+skipping site
+the folder for site nwis_02455980 already exists
+skipping site
+the folder for site nwis_02457595 already exists
+skipping site
+the folder for site nwis_02458450 already exists
+skipping site
+the folder for site nwis_02469100 already exists
+skipping site
+the folder for site nwis_02473085 already exists
+skipping site
+the folder for site nwis_02489800 already exists
+skipping site
+the folder for site nwis_02492620 already exists
+skipping site
+the folder for site nwis_03007800 already exists
+skipping site
+the folder for site nwis_03025500 already exists
+skipping site
+the folder for site nwis_03027500 already exists
+skipping site
+the folder for site nwis_03034000 already exists
+skipping site
+the folder for site nwis_03036000 already exists
+skipping site
+the folder for site nwis_03039035 already exists
+skipping site
+the folder for site nwis_03039036 already exists
+skipping site
+the folder for site nwis_03039040 already exists
+skipping site
+the folder for site nwis_03039041 already exists
+skipping site
+the folder for site nwis_03049640 already exists
+skipping site
+the folder for site nwis_03058000 already exists
+skipping site
+the folder for site nwis_03061000 already exists
+skipping site
+the folder for site nwis_03067510 already exists
+skipping site
+the folder for site nwis_03071590 already exists
+skipping site
+the folder for site nwis_03071600 already exists
+skipping site
+the folder for site nwis_03071605 already exists
+skipping site
+the folder for site nwis_03071690 already exists
+skipping site
+the folder for site nwis_03072655 already exists
+skipping site
+the folder for site nwis_03073000 already exists
+skipping site
+the folder for site nwis_03075070 already exists
+skipping site
+the folder for site nwis_03077100 already exists
+skipping site
+the folder for site nwis_03081000 already exists
+skipping site
+the folder for site nwis_03083500 already exists
+skipping site
+the folder for site nwis_03085002 already exists
+skipping site
+the folder for site nwis_03098600 already exists
+skipping site
+the folder for site nwis_03105500 already exists
+skipping site
+the folder for site nwis_03106000 already exists
+skipping site
+the folder for site nwis_03108490 already exists
+skipping site
+the folder for site nwis_03121850 already exists
+skipping site
+the folder for site nwis_03183500 already exists
+skipping site
+the folder for site nwis_03219500 already exists
+skipping site
+the folder for site nwis_03220510 already exists
+skipping site
+the folder for site nwis_03228039 already exists
+skipping site
+the folder for site nwis_03228300 already exists
+skipping site
+the folder for site nwis_03254520 already exists
+skipping site
+the folder for site nwis_03255349 already exists
+skipping site
+the folder for site nwis_03259757 already exists
+skipping site
+the folder for site nwis_03259813 already exists
+skipping site
+the folder for site nwis_03271510 already exists
+skipping site
+the folder for site nwis_03277075 already exists
+skipping site
+the folder for site nwis_03277130 already exists
+skipping site
+the folder for site nwis_03277200 already exists
+skipping site
+the folder for site nwis_03289000 already exists
+skipping site
+the folder for site nwis_03289193 already exists
+skipping site
+the folder for site nwis_03292470 already exists
+skipping site
+the folder for site nwis_03292474 already exists
+skipping site
+the folder for site nwis_03292475 already exists
+skipping site
+the folder for site nwis_03292480 already exists
+skipping site
+the folder for site nwis_03292500 already exists
+skipping site
+the folder for site nwis_03293000 already exists
+skipping site
+the folder for site nwis_03293500 already exists
+skipping site
+the folder for site nwis_03293510 already exists
+skipping site
+the folder for site nwis_03293530 already exists
+skipping site
+the folder for site nwis_03294570 already exists
+skipping site
+the folder for site nwis_03297800 already exists
+skipping site
+the folder for site nwis_03297900 already exists
+skipping site
+the folder for site nwis_03298000 already exists
+skipping site
+the folder for site nwis_03298135 already exists
+skipping site
+the folder for site nwis_03298150 already exists
+skipping site
+the folder for site nwis_03298200 already exists
+skipping site
+the folder for site nwis_03298250 already exists
+skipping site
+the folder for site nwis_03298300 already exists
+skipping site
+the folder for site nwis_03301900 already exists
+skipping site
+the folder for site nwis_03301940 already exists
+skipping site
+the folder for site nwis_03302000 already exists
+skipping site
+the folder for site nwis_03302030 already exists
+skipping site
+the folder for site nwis_03302050 already exists
+skipping site
+the folder for site nwis_03321500 already exists
+skipping site
+the folder for site nwis_03339000 already exists
+skipping site
+the folder for site nwis_03343805 already exists
+skipping site
+the folder for site nwis_03353200 already exists
+skipping site
+the folder for site nwis_03374100 already exists
+skipping site
+the folder for site nwis_03400798 already exists
+skipping site
+the folder for site nwis_03400800 already exists
+skipping site
+the folder for site nwis_03401385 already exists
+skipping site
+the folder for site nwis_03408500 already exists
+skipping site
+the folder for site nwis_03409500 already exists
+skipping site
+the folder for site nwis_03418420 already exists
+skipping site
+the folder for site nwis_03428180 already exists
+skipping site
+the folder for site nwis_03430200 already exists
+skipping site
+the folder for site nwis_03431083 already exists
+skipping site
+the folder for site nwis_03431091 already exists
+skipping site
+the folder for site nwis_03431514 already exists
+skipping site
+the folder for site nwis_03432100 already exists
+skipping site
+the folder for site nwis_03432350 already exists
+skipping site
+the folder for site nwis_03432400 already exists
+skipping site
+the folder for site nwis_03432800 already exists
+skipping site
+the folder for site nwis_03438220 already exists
+skipping site
+the folder for site nwis_03460795 already exists
+skipping site
+the folder for site nwis_03512000 already exists
+skipping site
+the folder for site nwis_03538830 already exists
+skipping site
+the folder for site nwis_03539600 already exists
+skipping site
+the folder for site nwis_03539778 already exists
+skipping site
+the folder for site nwis_03612600 already exists
+skipping site
+the folder for site nwis_04024000 already exists
+skipping site
+the folder for site nwis_04027000 already exists
+skipping site
+the folder for site nwis_04040000 already exists
+skipping site
+the folder for site nwis_04059500 already exists
+skipping site
+the folder for site nwis_04067500 already exists
+skipping site
+the folder for site nwis_04085108 already exists
+skipping site
+the folder for site nwis_040851385 already exists
+skipping site
+the folder for site nwis_04085427 already exists
+skipping site
+the folder for site nwis_04087030 already exists
+skipping site
+the folder for site nwis_04087050 already exists
+skipping site
+the folder for site nwis_04087088 already exists
+skipping site
+the folder for site nwis_04087119 already exists
+skipping site
+the folder for site nwis_04087120 already exists
+skipping site
+the folder for site nwis_04087142 already exists
+skipping site
+the folder for site nwis_040871488 already exists
+skipping site
+the folder for site nwis_04087170 already exists
+skipping site
+the folder for site nwis_04092750 already exists
+skipping site
+the folder for site nwis_04095090 already exists
+skipping site
+the folder for site nwis_04101500 already exists
+skipping site
+the folder for site nwis_04108660 already exists
+skipping site
+the folder for site nwis_04119400 already exists
+skipping site
+the folder for site nwis_04121650 already exists
+skipping site
+the folder for site nwis_04121660 already exists
+skipping site
+the folder for site nwis_04121680 already exists
+skipping site
+the folder for site nwis_04121944 already exists
+skipping site
+the folder for site nwis_04121970 already exists
+skipping site
+the folder for site nwis_04124000 already exists
+skipping site
+the folder for site nwis_04124200 already exists
+skipping site
+the folder for site nwis_04125460 already exists
+skipping site
+the folder for site nwis_04125550 already exists
+skipping site
+the folder for site nwis_04136000 already exists
+skipping site
+the folder for site nwis_04136500 already exists
+skipping site
+the folder for site nwis_04136900 already exists
+skipping site
+the folder for site nwis_04137005 already exists
+skipping site
+the folder for site nwis_04137020 already exists
+skipping site
+the folder for site nwis_04137025 already exists
+skipping site
+the folder for site nwis_04137030 already exists
+skipping site
+the folder for site nwis_04137500 already exists
+skipping site
+the folder for site nwis_04142000 already exists
+skipping site
+the folder for site nwis_041482663 already exists
+skipping site
+the folder for site nwis_04157005 already exists
+skipping site
+the folder for site nwis_04165500 already exists
+skipping site
+the folder for site nwis_04166500 already exists
+skipping site
+the folder for site nwis_04167150 already exists
+skipping site
+the folder for site nwis_04168400 already exists
+skipping site
+the folder for site nwis_04174500 already exists
+skipping site
+the folder for site nwis_04175120 already exists
+skipping site
+the folder for site nwis_04176500 already exists
+skipping site
+the folder for site nwis_04182867 already exists
+skipping site
+the folder for site nwis_04188496 already exists
+skipping site
+the folder for site nwis_04193490 already exists
+skipping site
+the folder for site nwis_04195500 already exists
+skipping site
+the folder for site nwis_04199500 already exists
+skipping site
+the folder for site nwis_04200500 already exists
+skipping site
+the folder for site nwis_04208000 already exists
+skipping site
+the folder for site nwis_04213500 already exists
+skipping site
+the folder for site nwis_04231600 already exists
+skipping site
+the folder for site nwis_04249000 already exists
+skipping site
+the folder for site nwis_05054000 already exists
+skipping site
+the folder for site nwis_05057000 already exists
+skipping site
+the folder for site nwis_05057200 already exists
+skipping site
+the folder for site nwis_05082500 already exists
+skipping site
+the folder for site nwis_05406457 already exists
+skipping site
+the folder for site nwis_05406469 already exists
+skipping site
+the folder for site nwis_05406479 already exists
+skipping site
+the folder for site nwis_05406497 already exists
+skipping site
+the folder for site nwis_05418400 already exists
+skipping site
+the folder for site nwis_05420500 already exists
+skipping site
+the folder for site nwis_05435943 already exists
+skipping site
+the folder for site nwis_05435950 already exists
+skipping site
+the folder for site nwis_05451080 already exists
+skipping site
+the folder for site nwis_05451210 already exists
+skipping site
+the folder for site nwis_05515500 already exists
+skipping site
+the folder for site nwis_05524500 already exists
+skipping site
+the folder for site nwis_05543010 already exists
+skipping site
+the folder for site nwis_05579630 already exists
+skipping site
+the folder for site nwis_05586300 already exists
+skipping site
+the folder for site nwis_06336000 already exists
+skipping site
+the folder for site nwis_06340590 already exists
+skipping site
+the folder for site nwis_06427850 already exists
+skipping site
+the folder for site nwis_06436760 already exists
+skipping site
+the folder for site nwis_06454100 already exists
+skipping site
+the folder for site nwis_06461500 already exists
+skipping site
+the folder for site nwis_06465500 already exists
+skipping site
+the folder for site nwis_06478522 already exists
+skipping site
+the folder for site nwis_06601200 already exists
+skipping site
+the folder for site nwis_06610505 already exists
+skipping site
+the folder for site nwis_06670500 already exists
+skipping site
+the folder for site nwis_06711565 already exists
+skipping site
+the folder for site nwis_06795500 already exists
+skipping site
+the folder for site nwis_06799089 already exists
+skipping site
+the folder for site nwis_06800500 already exists
+skipping site
+the folder for site nwis_06805000 already exists
+skipping site
+the folder for site nwis_06805500 already exists
+skipping site
+the folder for site nwis_06807000 already exists
+skipping site
+the folder for site nwis_06818000 already exists
+skipping site
+the folder for site nwis_06892513 already exists
+skipping site
+the folder for site nwis_06893300 already exists
+skipping site
+the folder for site nwis_06893350 already exists
+skipping site
+the folder for site nwis_06893620 already exists
+skipping site
+the folder for site nwis_06893820 already exists
+skipping site
+the folder for site nwis_06893890 already exists
+skipping site
+the folder for site nwis_06893970 already exists
+skipping site
+the folder for site nwis_06894000 already exists
+skipping site
+the folder for site nwis_06934500 already exists
+skipping site
+the folder for site nwis_07020850 already exists
+skipping site
+the folder for site nwis_07048600 already exists
+skipping site
+the folder for site nwis_07049691 already exists
+skipping site
+the folder for site nwis_07053450 already exists
+skipping site
+the folder for site nwis_07053600 already exists
+skipping site
+the folder for site nwis_07054501 already exists
+skipping site
+the folder for site nwis_07054502 already exists
+skipping site
+the folder for site nwis_07054527 already exists
+skipping site
+the folder for site nwis_07055814 already exists
+skipping site
+the folder for site nwis_07056515 already exists
+skipping site
+the folder for site nwis_07060000 already exists
+skipping site
+the folder for site nwis_07061270 already exists
+skipping site
+the folder for site nwis_07061290 already exists
+skipping site
+the folder for site nwis_07075250 already exists
+skipping site
+the folder for site nwis_07075270 already exists
+skipping site
+the folder for site nwis_07076000 already exists
+skipping site
+the folder for site nwis_07106000 already exists
+skipping site
+the folder for site nwis_07109500 already exists
+skipping site
+the folder for site nwis_07143672 already exists
+skipping site
+the folder for site nwis_07144780 already exists
+skipping site
+the folder for site nwis_07144790 already exists
+skipping site
+the folder for site nwis_07164500 already exists
+skipping site
+the folder for site nwis_07177500 already exists
+skipping site
+the folder for site nwis_07178200 already exists
+skipping site
+the folder for site nwis_071912213 already exists
+skipping site
+the folder for site nwis_07191222 already exists
+skipping site
+the folder for site nwis_071948095 already exists
+skipping site
+the folder for site nwis_07198000 already exists
+skipping site
+the folder for site nwis_07239450 already exists
+skipping site
+the folder for site nwis_07241000 already exists
+skipping site
+the folder for site nwis_07241520 already exists
+skipping site
+the folder for site nwis_07241550 already exists
+skipping site
+the folder for site nwis_07257500 already exists
+skipping site
+the folder for site nwis_07261090 already exists
+skipping site
+the folder for site nwis_07263296 already exists
+skipping site
+the folder for site nwis_072632966 already exists
+skipping site
+the folder for site nwis_072632995 already exists
+skipping site
+the folder for site nwis_07332620 already exists
+skipping site
+the folder for site nwis_07332622 already exists
+skipping site
+the folder for site nwis_07374000 already exists
+skipping site
+the folder for site nwis_07381600 already exists
+skipping site
+the folder for site nwis_08041770 already exists
+skipping site
+the folder for site nwis_08048000 already exists
+skipping site
+the folder for site nwis_08049500 already exists
+skipping site
+the folder for site nwis_08052700 already exists
+skipping site
+the folder for site nwis_08052745 already exists
+skipping site
+the folder for site nwis_08057000 already exists
+skipping site
+the folder for site nwis_08057055 already exists
+skipping site
+the folder for site nwis_08057410 already exists
+skipping site
+the folder for site nwis_08062500 already exists
+skipping site
+the folder for site nwis_08065350 already exists
+skipping site
+the folder for site nwis_08067074 already exists
+skipping site
+the folder for site nwis_08068000 already exists
+skipping site
+the folder for site nwis_08068275 already exists
+skipping site
+the folder for site nwis_08068400 already exists
+skipping site
+the folder for site nwis_08068500 already exists
+skipping site
+the folder for site nwis_08069500 already exists
+skipping site
+the folder for site nwis_08070200 already exists
+skipping site
+the folder for site nwis_08155500 already exists
+skipping site
+the folder for site nwis_08171290 already exists
+skipping site
+the folder for site nwis_08180700 already exists
+skipping site
+the folder for site nwis_08180850 already exists
+skipping site
+the folder for site nwis_08181500 already exists
+skipping site
+the folder for site nwis_08181800 already exists
+skipping site
+the folder for site nwis_08188060 already exists
+skipping site
+the folder for site nwis_08211200 already exists
+skipping site
+the folder for site nwis_08317400 already exists
+skipping site
+the folder for site nwis_08371500 already exists
+skipping site
+the folder for site nwis_08374200 already exists
+skipping site
+the folder for site nwis_08374510 already exists
+skipping site
+the folder for site nwis_08374550 already exists
+skipping site
+the folder for site nwis_08375300 already exists
+skipping site
+the folder for site nwis_08377200 already exists
+skipping site
+the folder for site nwis_08412500 already exists
+skipping site
+the folder for site nwis_08420500 already exists
+skipping site
+the folder for site nwis_08437710 already exists
+skipping site
+the folder for site nwis_08446500 already exists
+skipping site
+the folder for site nwis_08447000 already exists
+skipping site
+the folder for site nwis_08447018 already exists
+skipping site
+the folder for site nwis_08447300 already exists
+skipping site
+the folder for site nwis_08447410 already exists
+skipping site
+the folder for site nwis_08470500 already exists
+skipping site
+the folder for site nwis_09041400 already exists
+skipping site
+the folder for site nwis_09258050 already exists
+skipping site
+the folder for site nwis_09258980 already exists
+skipping site
+the folder for site nwis_09326500 already exists
+skipping site
+the folder for site nwis_09327000 already exists
+skipping site
+the folder for site nwis_09406000 already exists
+skipping site
+the folder for site nwis_10129900 already exists
+skipping site
+the folder for site nwis_10133650 already exists
+skipping site
+the folder for site nwis_10133800 already exists
+skipping site
+the folder for site nwis_10133980 already exists
+skipping site
+the folder for site nwis_11044000 already exists
+skipping site
+the folder for site nwis_11046062 already exists
+skipping site
+the folder for site nwis_11046072 already exists
+skipping site
+the folder for site nwis_11046102 already exists
+skipping site
+the folder for site nwis_11046252 already exists
+skipping site
+the folder for site nwis_11046372 already exists
+skipping site
+the folder for site nwis_11126000 already exists
+skipping site
+the folder for site nwis_11273400 already exists
+skipping site
+the folder for site nwis_11285500 already exists
+skipping site
+the folder for site nwis_11313433 already exists
+skipping site
+the folder for site nwis_11337190 already exists
+skipping site
+the folder for site nwis_11447650 already exists
+skipping site
+the folder for site nwis_11447830 already exists
+skipping site
+the folder for site nwis_11447850 already exists
+skipping site
+the folder for site nwis_11447890 already exists
+skipping site
+the folder for site nwis_11455139 already exists
+skipping site
+the folder for site nwis_11455146 already exists
+skipping site
+the folder for site nwis_11455165 already exists
+skipping site
+the folder for site nwis_11455315 already exists
+skipping site
+the folder for site nwis_11455350 already exists
+skipping site
+the folder for site nwis_11455478 already exists
+skipping site
+the folder for site nwis_11462500 already exists
+skipping site
+the folder for site nwis_11463000 already exists
+skipping site
+the folder for site nwis_11463682 already exists
+skipping site
+the folder for site nwis_11463980 already exists
+skipping site
+the folder for site nwis_11465240 already exists
+skipping site
+the folder for site nwis_11467000 already exists
+skipping site
+the folder for site nwis_11507501 already exists
+skipping site
+the folder for site nwis_11509370 already exists
+skipping site
+the folder for site nwis_12098700 already exists
+skipping site
+the folder for site nwis_12100490 already exists
+skipping site
+the folder for site nwis_12101100 already exists
+skipping site
+the folder for site nwis_12102012 already exists
+skipping site
+the folder for site nwis_12165800 already exists
+skipping site
+the folder for site nwis_12166000 already exists
+skipping site
+the folder for site nwis_12166300 already exists
+skipping site
+the folder for site nwis_12168997 already exists
+skipping site
+the folder for site nwis_12169500 already exists
+skipping site
+the folder for site nwis_12170000 already exists
+skipping site
+the folder for site nwis_13013650 already exists
+skipping site
+the folder for site nwis_13173600 already exists
+skipping site
+the folder for site nwis_13206400 already exists
+skipping site
+the folder for site nwis_13207500 already exists
+skipping site
+the folder for site nwis_13210660 already exists
+skipping site
+the folder for site nwis_13210795 already exists
+skipping site
+the folder for site nwis_13210815 already exists
+skipping site
+the folder for site nwis_13211441 already exists
+skipping site
+the folder for site nwis_13213000 already exists
+skipping site
+the folder for site nwis_13213072 already exists
+skipping site
+the folder for site nwis_13213080 already exists
+skipping site
+the folder for site nwis_13213100 already exists
+skipping site
+the folder for site nwis_14151000 already exists
+skipping site
+the folder for site nwis_14152000 already exists
+skipping site
+the folder for site nwis_14158100 already exists
+skipping site
+the folder for site nwis_14162500 already exists
+skipping site
+the folder for site nwis_14181500 already exists
+skipping site
+the folder for site nwis_14182500 already exists
+skipping site
+the folder for site nwis_14202650 already exists
+skipping site
+the folder for site nwis_14202980 already exists
+skipping site
+the folder for site nwis_14206694 already exists
+skipping site
+the folder for site nwis_14206950 already exists
+skipping site
+the folder for site nwis_14207200 already exists
+skipping site
+the folder for site nwis_14209710 already exists
+skipping site
+the folder for site nwis_14210000 already exists
+skipping site
+the folder for site nwis_14211010 already exists
+skipping site
+the folder for site nwis_14211720 already exists
+skipping site
+the folder for site nwis_14301500 already exists
+skipping site
+the folder for site nwis_14302480 already exists
+skipping site
+the folder for site nwis_14309000 already exists
+skipping site
+the folder for site nwis_14316460 already exists
+skipping site
+the folder for site nwis_14317450 already exists
+skipping site
+the folder for site nwis_15298040 already exists
+skipping site
+the folder for site nwis_291830081362200 already exists
+skipping site
+the folder for site nwis_294213081345300 already exists
+skipping site
+the folder for site nwis_295554095093402 already exists
+skipping site
+the folder for site nwis_295826095082200 already exists
+skipping site
+the folder for site nwis_295827090052800 already exists
+skipping site
+the folder for site nwis_295906090054200 already exists
+skipping site
+the folder for site nwis_300009090051600 already exists
+skipping site
+the folder for site nwis_300026090050800 already exists
+skipping site
+the folder for site nwis_300034090055300 already exists
+skipping site
+the folder for site nwis_300127090045800 already exists
+skipping site
+the folder for site nwis_300128090045800 already exists
+skipping site
+the folder for site nwis_301124081395901 already exists
+skipping site
+the folder for site nwis_301527088521500 already exists
+skipping site
+the folder for site nwis_301912088583300 already exists
+skipping site
+the folder for site nwis_302309081333001 already exists
+skipping site
+the folder for site nwis_305215089073600 already exists
+skipping site
+the folder for site nwis_310506089291200 already exists
+skipping site
+the folder for site nwis_310805089141600 already exists
+skipping site
+the folder for site nwis_311845091272200 already exists
+skipping site
+the folder for site nwis_312514091273400 already exists
+skipping site
+the folder for site nwis_314416091213400 already exists
+skipping site
+the folder for site nwis_323733107011002 already exists
+skipping site
+the folder for site nwis_324007107095501 already exists
+skipping site
+the folder for site nwis_324955107180902 already exists
+skipping site
+the folder for site nwis_330203091020200 already exists
+skipping site
+the folder for site nwis_330359090194135 already exists
+skipping site
+the folder for site nwis_330735090300200 already exists
+skipping site
+the folder for site nwis_331346117243401 already exists
+skipping site
+the folder for site nwis_331623091023700 already exists
+skipping site
+the folder for site nwis_333957091034100 already exists
+skipping site
+the folder for site nwis_340247088560200 already exists
+skipping site
+the folder for site nwis_341436088534500 already exists
+skipping site
+the folder for site nwis_343916088435600 already exists
+skipping site
+the folder for site nwis_351111089512501 already exists
+skipping site
+the folder for site nwis_351113089513401 already exists
+skipping site
+the folder for site nwis_364200119420001 already exists
+skipping site
+the folder for site nwis_364200119420002 already exists
+skipping site
+the folder for site nwis_375327097285402 already exists
+skipping site
+the folder for site nwis_375332097284802 already exists
+skipping site
+the folder for site nwis_375348097262800 already exists
+skipping site
+the folder for site nwis_375350097262800 already exists
+skipping site
+the folder for site nwis_385446094430700 already exists
+skipping site
+the folder for site nwis_385520094420000 already exists
+skipping site
+the folder for site nwis_385608094380300 already exists
+skipping site
+the folder for site nwis_410333095530101 already exists
+skipping site
+the folder for site nwis_411955088280601 already exists
+skipping site
+the folder for site nwis_412126095565201 already exists
+skipping site
+the folder for site nwis_414037088003201 already exists
+skipping site
+the folder for site nwis_414042088003201 already exists
+skipping site
+the folder for site nwis_415007121102001 already exists
+skipping site
+the folder for site nwis_420451121510000 already exists
+skipping site
+the folder for site nwis_420615121533600 already exists
+skipping site
+the folder for site nwis_420615121533601 already exists
+skipping site
+the folder for site nwis_420741121554001 already exists
+skipping site
+the folder for site nwis_420853121505500 already exists
+skipping site
+the folder for site nwis_420853121505501 already exists
+skipping site
+the folder for site nwis_421015121471800 already exists
+skipping site
+the folder for site nwis_421209121463000 already exists
+skipping site
+the folder for site nwis_421209121463001 already exists
+skipping site
+the folder for site nwis_421401121480900 already exists
+skipping site
+the folder for site nwis_421410121492000 already exists
+skipping site
+the folder for site nwis_421838121513900 already exists
+skipping site
+the folder for site nwis_421933121550000 already exists
+skipping site
+the folder for site nwis_422042121513100 already exists
+skipping site
+the folder for site nwis_422128121530600 already exists
+skipping site
+the folder for site nwis_422305121553800 already exists
+skipping site
+the folder for site nwis_422305121553803 already exists
+skipping site
+the folder for site nwis_422437121515200 already exists
+skipping site
+the folder for site nwis_422559121574400 already exists
+skipping site
+the folder for site nwis_422622122004000 already exists
+skipping site
+the folder for site nwis_422622122004003 already exists
+skipping site
+the folder for site nwis_422719121571400 already exists
+skipping site
+the folder for site nwis_422749121540700 already exists
+skipping site
+the folder for site nwis_422808122024400 already exists
+skipping site
+the folder for site nwis_422842121584300 already exists
+skipping site
+the folder for site nwis_423124121583400 already exists
+skipping site
+the folder for site nwis_423335121564300 already exists
+skipping site
+the folder for site nwis_431037090043401 already exists
+skipping site
+the folder for site nwis_433422116323200 already exists
+skipping site
+the folder for site nwis_434821116444300 already exists
+skipping site
+the folder for site nwis_443320089212303 already exists
+skipping site
+the folder for site nwis_443320089212304 already exists
+skipping site
+the folder for site nwis_444728122450000 already exists
+skipping site
+the folder for site nwis_452230122512201 already exists
+skipping site
+the folder for site nwis_453004122510301 already exists
+skipping site
+the folder for site nwis_453030122560101 already exists
+skipping site
+the folder for site nwis_453040123065201 already exists
+skipping site
+the folder for site nwis_453113123003501 already exists
+skipping site
+the folder for site nwis_453604122060000 already exists
+skipping site
+the folder for site nwis_454554119121801 already exists
+skipping site
+the folder for site nwis_454705122451400 already exists
+skipping site
+the folder for site nwis_454919119184701 already exists
+skipping site
+the folder for site nwis_455415119314601 already exists
+skipping site
+the folder for site nwis_460939123201600 already exists
+skipping site
+the folder for site nwis_461518123285700 already exists
+skipping site
+the folder for site nwis_50048565 already exists
+skipping site
+the folder for site nwis_50048580 already exists
+skipping site
+the folder for site nwis_50231500 already exists
+skipping site
+posted sites:
+                    site              existing_id                posted_id
+1          nwis_01021050 556f28bee4b0d9246a9fcd4c 556f28bee4b0d9246a9fcd4c
+2          nwis_01036390 556f28bfe4b0d9246a9fcd50 556f28bfe4b0d9246a9fcd50
+3          nwis_01073389 556f28e9e4b0d9246a9fcdd8 556f28e9e4b0d9246a9fcdd8
+4          nwis_01193050 556f1dcbe4b0d9246a9fc1a2 556f1dcbe4b0d9246a9fc1a2
+5          nwis_01194750 556f1dcce4b0d9246a9fc1a6 556f1dcce4b0d9246a9fc1a6
+6          nwis_01304057 556f1f1fe4b0d9246a9fc5cd 556f1f1fe4b0d9246a9fc5cd
+7          nwis_01304200 556f1f21e4b0d9246a9fc5d1 556f1f21e4b0d9246a9fc5d1
+8          nwis_01304562 556f1f23e4b0d9246a9fc5d5 556f1f23e4b0d9246a9fc5d5
+9          nwis_01310740 556f28f1e4b0d9246a9fcdf4 556f28f1e4b0d9246a9fcdf4
+10         nwis_01311143 556f28f2e4b0d9246a9fcdf8 556f28f2e4b0d9246a9fcdf8
+11         nwis_01374019 556f1f26e4b0d9246a9fc5e1 556f1f26e4b0d9246a9fc5e1
+12         nwis_01382210 556f1f11e4b0d9246a9fc599 556f1f11e4b0d9246a9fc599
+13         nwis_01388000 556f28eae4b0d9246a9fcddc 556f28eae4b0d9246a9fcddc
+14         nwis_01389005 556f1f13e4b0d9246a9fc5a1 556f1f13e4b0d9246a9fc5a1
+15         nwis_01400500 556f28ebe4b0d9246a9fcde0 556f28ebe4b0d9246a9fcde0
+16         nwis_01408167 556f1f16e4b0d9246a9fc5a9 556f1f16e4b0d9246a9fc5a9
+17         nwis_01408500 556f28ede4b0d9246a9fcde4 556f28ede4b0d9246a9fcde4
+18         nwis_01433500 556f28f3e4b0d9246a9fcdfc 556f28f3e4b0d9246a9fcdfc
+19         nwis_01454700 556f292ce4b0d9246a9fceac 556f292ce4b0d9246a9fceac
+20         nwis_01458500 556f28eee4b0d9246a9fcde8 556f28eee4b0d9246a9fcde8
+21         nwis_01460200 556f1fa5e4b0d9246a9fc799 556f1fa5e4b0d9246a9fc799
+22         nwis_01463500 556f1f19e4b0d9246a9fc5b5 556f1f19e4b0d9246a9fc5b5
+23         nwis_01465798 556f1fa7e4b0d9246a9fc79d 556f1fa7e4b0d9246a9fc79d
+24        nwis_014670261 556f1fa8e4b0d9246a9fc7a1 556f1fa8e4b0d9246a9fc7a1
+25         nwis_01467029 556f1f1ae4b0d9246a9fc5b9 556f1f1ae4b0d9246a9fc5b9
+26         nwis_01467042 556f1fa9e4b0d9246a9fc7a5 556f1fa9e4b0d9246a9fc7a5
+27         nwis_01467048 556f1faae4b0d9246a9fc7a9 556f1faae4b0d9246a9fc7a9
+28         nwis_01467086 556f1fabe4b0d9246a9fc7ad 556f1fabe4b0d9246a9fc7ad
+29         nwis_01467087 556f292ee4b0d9246a9fceb0 556f292ee4b0d9246a9fceb0
+30         nwis_01467200 556f292fe4b0d9246a9fceb4 556f292fe4b0d9246a9fceb4
+31         nwis_01472104 556f2930e4b0d9246a9fceb8 556f2930e4b0d9246a9fceb8
+32         nwis_01473500 556f1fb0e4b0d9246a9fc7bd 556f1fb0e4b0d9246a9fc7bd
+33         nwis_01473900 556f2931e4b0d9246a9fcebc 556f2931e4b0d9246a9fcebc
+34         nwis_01474000 556f1fb2e4b0d9246a9fc7c5 556f1fb2e4b0d9246a9fc7c5
+35         nwis_01474500 556f1fb3e4b0d9246a9fc7c9 556f1fb3e4b0d9246a9fc7c9
+36         nwis_01475530 556f2933e4b0d9246a9fcec0 556f2933e4b0d9246a9fcec0
+37         nwis_01475548 556f1fb5e4b0d9246a9fc7d1 556f1fb5e4b0d9246a9fc7d1
+38         nwis_01477050 556f2934e4b0d9246a9fcec4 556f2934e4b0d9246a9fcec4
+39         nwis_01480065 556f286ee4b0d9246a9fcc50 556f286ee4b0d9246a9fcc50
+40         nwis_01480617 556f2935e4b0d9246a9fcec8 556f2935e4b0d9246a9fcec8
+41         nwis_01480870 556f2936e4b0d9246a9fcecc 556f2936e4b0d9246a9fcecc
+42         nwis_01481000 556f2937e4b0d9246a9fced0 556f2937e4b0d9246a9fced0
+43         nwis_01481500 556f286fe4b0d9246a9fcc54 556f286fe4b0d9246a9fcc54
+44         nwis_01482800 556f1dcfe4b0d9246a9fc1b2 556f1dcfe4b0d9246a9fc1b2
+45         nwis_01483177 556f1dd0e4b0d9246a9fc1b6 556f1dd0e4b0d9246a9fc1b6
+46         nwis_01484080 556f1dd1e4b0d9246a9fc1ba 556f1dd1e4b0d9246a9fc1ba
+47         nwis_01484085 556f1dd2e4b0d9246a9fc1be 556f1dd2e4b0d9246a9fc1be
+48         nwis_01484525 556f1dd3e4b0d9246a9fc1c2 556f1dd3e4b0d9246a9fc1c2
+49         nwis_01484680 556f2872e4b0d9246a9fcc58 556f2872e4b0d9246a9fcc58
+50         nwis_01487150 556f2873e4b0d9246a9fcc5c 556f2873e4b0d9246a9fcc5c
+51         nwis_01493112 556f28c0e4b0d9246a9fcd54 556f28c0e4b0d9246a9fcd54
+52         nwis_01540500 556f2938e4b0d9246a9fced4 556f2938e4b0d9246a9fced4
+53         nwis_01542500 556f2939e4b0d9246a9fced8 556f2939e4b0d9246a9fced8
+54         nwis_01544500 556f1fbee4b0d9246a9fc7ed 556f1fbee4b0d9246a9fc7ed
+55         nwis_01548303 556f293be4b0d9246a9fcedc 556f293be4b0d9246a9fcedc
+56         nwis_01549700 556f293ce4b0d9246a9fcee0 556f293ce4b0d9246a9fcee0
+57         nwis_01567000 556f1fc2e4b0d9246a9fc7f9 556f1fc2e4b0d9246a9fc7f9
+58         nwis_01570500 556f1fc3e4b0d9246a9fc7fd 556f1fc3e4b0d9246a9fc7fd
+59         nwis_01579550 556f1eace4b0d9246a9fc448 556f1eace4b0d9246a9fc448
+60         nwis_01608500 556f2985e4b0d9246a9fcfc9 556f2985e4b0d9246a9fcfc9
+61         nwis_01611500 556f2988e4b0d9246a9fcfce 556f2988e4b0d9246a9fcfce
+62         nwis_01632900 556f2975e4b0d9246a9fcf95 556f2975e4b0d9246a9fcf95
+63         nwis_01645704 556f2055e4b0d9246a9fc9f7 556f2055e4b0d9246a9fc9f7
+64         nwis_01645762 556f2976e4b0d9246a9fcf99 556f2976e4b0d9246a9fcf99
+65         nwis_01646000 556f2977e4b0d9246a9fcf9d 556f2977e4b0d9246a9fcf9d
+66         nwis_01646305 556f2978e4b0d9246a9fcfa1 556f2978e4b0d9246a9fcfa1
+67         nwis_01646500 556f28c2e4b0d9246a9fcd58 556f28c2e4b0d9246a9fcd58
+68         nwis_01648010 556f2874e4b0d9246a9fcc60 556f2874e4b0d9246a9fcc60
+69         nwis_01649190 556f1eb0e4b0d9246a9fc451 556f1eb0e4b0d9246a9fc451
+70         nwis_01649500 556f1eb2e4b0d9246a9fc455 556f1eb2e4b0d9246a9fc455
+71         nwis_01650800 556f28c3e4b0d9246a9fcd5c 556f28c3e4b0d9246a9fcd5c
+72         nwis_01654000 556f2979e4b0d9246a9fcfa5 556f2979e4b0d9246a9fcfa5
+73         nwis_01654500 556f205be4b0d9246a9fca0c 556f205be4b0d9246a9fca0c
+74         nwis_01656903 556f297be4b0d9246a9fcfa9 556f297be4b0d9246a9fcfa9
+75         nwis_01658000 556f1eb5e4b0d9246a9fc45d 556f1eb5e4b0d9246a9fc45d
+76       nwis_0166818623 556f297be4b0d9246a9fcfad 556f297be4b0d9246a9fcfad
+77       nwis_0166818985 556f205ee4b0d9246a9fca18 556f205ee4b0d9246a9fca18
+78         nwis_01673000 556f205fe4b0d9246a9fca1c 556f205fe4b0d9246a9fca1c
+79         nwis_02035000 556f2060e4b0d9246a9fca20 556f2060e4b0d9246a9fca20
+80         nwis_02042222 556f297de4b0d9246a9fcfb1 556f297de4b0d9246a9fcfb1
+81         nwis_02079500 556f2063e4b0d9246a9fca28 556f2063e4b0d9246a9fca28
+82       nwis_0208062765 556f1f2ce4b0d9246a9fc5f5 556f1f2ce4b0d9246a9fc5f5
+83         nwis_02081022 556f28f5e4b0d9246a9fce04 556f28f5e4b0d9246a9fce04
+84         nwis_02081094 556f1f2fe4b0d9246a9fc5fd 556f1f2fe4b0d9246a9fc5fd
+85       nwis_0208114150 556f1f30e4b0d9246a9fc601 556f1f30e4b0d9246a9fc601
+86       nwis_0208458892 556f1f31e4b0d9246a9fc605 556f1f31e4b0d9246a9fc605
+87       nwis_0208458893 556f1f32e4b0d9246a9fc609 556f1f32e4b0d9246a9fc609
+88       nwis_0209303205 556f1f33e4b0d9246a9fc60d 556f1f33e4b0d9246a9fc60d
+89         nwis_02101726 556f1f34e4b0d9246a9fc611 556f1f34e4b0d9246a9fc611
+90         nwis_02110400 556f294ae4b0d9246a9fcf0c 556f294ae4b0d9246a9fcf0c
+91         nwis_02110500 556f294be4b0d9246a9fcf10 556f294be4b0d9246a9fcf10
+92         nwis_02110550 556f1fe5e4b0d9246a9fc875 556f1fe5e4b0d9246a9fc875
+93         nwis_02110701 556f1fe7e4b0d9246a9fc879 556f1fe7e4b0d9246a9fc879
+94         nwis_02110704 556f294ce4b0d9246a9fcf14 556f294ce4b0d9246a9fcf14
+95         nwis_02110777 556f1fe9e4b0d9246a9fc881 556f1fe9e4b0d9246a9fc881
+96         nwis_02110802 556f1feae4b0d9246a9fc885 556f1feae4b0d9246a9fc885
+97         nwis_02110815 556f294ee4b0d9246a9fcf18 556f294ee4b0d9246a9fcf18
+98       nwis_0212378405 556f28f7e4b0d9246a9fce08 556f28f7e4b0d9246a9fce08
+99       nwis_0212880025 556f28f8e4b0d9246a9fce0c 556f28f8e4b0d9246a9fce0c
+100        nwis_02135000 556f294fe4b0d9246a9fcf1c 556f294fe4b0d9246a9fcf1c
+101        nwis_02148315 556f1fede4b0d9246a9fc891 556f1fede4b0d9246a9fc891
+102        nwis_02156500 556f1feee4b0d9246a9fc895 556f1feee4b0d9246a9fc895
+103        nwis_02160105 556f1fefe4b0d9246a9fc899 556f1fefe4b0d9246a9fc899
+104        nwis_02160700 556f1ff0e4b0d9246a9fc89d 556f1ff0e4b0d9246a9fc89d
+105        nwis_02160991 556f2950e4b0d9246a9fcf20 556f2950e4b0d9246a9fcf20
+106        nwis_02162035 556f2952e4b0d9246a9fcf24 556f2952e4b0d9246a9fcf24
+107        nwis_02167600 556f2953e4b0d9246a9fcf28 556f2953e4b0d9246a9fcf28
+108        nwis_02167716 556f1ff5e4b0d9246a9fc8ad 556f1ff5e4b0d9246a9fc8ad
+109        nwis_02168500 556f1ff6e4b0d9246a9fc8b1 556f1ff6e4b0d9246a9fc8b1
+110        nwis_02168504 556f2955e4b0d9246a9fcf2c 556f2955e4b0d9246a9fcf2c
+111        nwis_02169000 556f2956e4b0d9246a9fcf30 556f2956e4b0d9246a9fcf30
+112        nwis_02171637 556f2957e4b0d9246a9fcf34 556f2957e4b0d9246a9fcf34
+113        nwis_02171645 556f1ffae4b0d9246a9fc8c1 556f1ffae4b0d9246a9fc8c1
+114        nwis_02172050 556f2958e4b0d9246a9fcf38 556f2958e4b0d9246a9fcf38
+115       nwis_021720677 556f2959e4b0d9246a9fcf3c 556f2959e4b0d9246a9fcf3c
+116       nwis_021720698 556f1ffde4b0d9246a9fc8cd 556f1ffde4b0d9246a9fc8cd
+117       nwis_021720709 556f1fffe4b0d9246a9fc8d1 556f1fffe4b0d9246a9fc8d1
+118       nwis_021720869 556f2000e4b0d9246a9fc8d5 556f2000e4b0d9246a9fc8d5
+119        nwis_02198840 556f1df5e4b0d9246a9fc232 556f1df5e4b0d9246a9fc232
+120        nwis_02198920 556f287be4b0d9246a9fcc74 556f287be4b0d9246a9fcc74
+121        nwis_02198950 556f1df7e4b0d9246a9fc23a 556f1df7e4b0d9246a9fc23a
+122        nwis_02198955 556f287de4b0d9246a9fcc78 556f287de4b0d9246a9fcc78
+123       nwis_021989715 556f287ee4b0d9246a9fcc7c 556f287ee4b0d9246a9fcc7c
+124       nwis_021989773 556f1dfbe4b0d9246a9fc246 556f1dfbe4b0d9246a9fc246
+125       nwis_021989792 556f287fe4b0d9246a9fcc80 556f287fe4b0d9246a9fcc80
+126       nwis_021989793 556f1dfde4b0d9246a9fc24e 556f1dfde4b0d9246a9fc24e
+127      nwis_0219897945 556f1dfee4b0d9246a9fc252 556f1dfee4b0d9246a9fc252
+128      nwis_0219897993 556f2001e4b0d9246a9fc8d9 556f2001e4b0d9246a9fc8d9
+129       nwis_022035975 556f1dffe4b0d9246a9fc256 556f1dffe4b0d9246a9fc256
+130        nwis_02203603 556f1e00e4b0d9246a9fc25a 556f1e00e4b0d9246a9fc25a
+131        nwis_02203655 556f2880e4b0d9246a9fcc84 556f2880e4b0d9246a9fcc84
+132        nwis_02203700 556f2881e4b0d9246a9fcc88 556f2881e4b0d9246a9fcc88
+133        nwis_02203831 556f1e04e4b0d9246a9fc266 556f1e04e4b0d9246a9fc266
+134        nwis_02203863 556f1e06e4b0d9246a9fc26a 556f1e06e4b0d9246a9fc26a
+135        nwis_02203873 556f1e07e4b0d9246a9fc26e 556f1e07e4b0d9246a9fc26e
+136        nwis_02203900 556f1e08e4b0d9246a9fc272 556f1e08e4b0d9246a9fc272
+137        nwis_02203950 556f1e0ae4b0d9246a9fc276 556f1e0ae4b0d9246a9fc276
+138        nwis_02203960 556f1e0ce4b0d9246a9fc27a 556f1e0ce4b0d9246a9fc27a
+139        nwis_02204037 556f2883e4b0d9246a9fcc8c 556f2883e4b0d9246a9fcc8c
+140        nwis_02207135 556f2884e4b0d9246a9fcc90 556f2884e4b0d9246a9fcc90
+141        nwis_02207160 556f1e10e4b0d9246a9fc286 556f1e10e4b0d9246a9fc286
+142        nwis_02208450 556f2885e4b0d9246a9fcc94 556f2885e4b0d9246a9fcc94
+143        nwis_02208493 556f1e13e4b0d9246a9fc28e 556f1e13e4b0d9246a9fc28e
+144        nwis_02217643 556f2886e4b0d9246a9fcc98 556f2886e4b0d9246a9fcc98
+145        nwis_02231254 556f2888e4b0d9246a9fcc9c 556f2888e4b0d9246a9fcc9c
+146        nwis_02231291 556f2875e4b0d9246a9fcc64 556f2875e4b0d9246a9fcc64
+147        nwis_02234000 556f1dd9e4b0d9246a9fc1d6 556f1dd9e4b0d9246a9fc1d6
+148        nwis_02234500 556f2876e4b0d9246a9fcc68 556f2876e4b0d9246a9fcc68
+149        nwis_02235500 556f1ddce4b0d9246a9fc1de 556f1ddce4b0d9246a9fc1de
+150        nwis_02236000 556f1ddde4b0d9246a9fc1e2 556f1ddde4b0d9246a9fc1e2
+151        nwis_02236125 556f1ddee4b0d9246a9fc1e6 556f1ddee4b0d9246a9fc1e6
+152        nwis_02244040 556f1ddfe4b0d9246a9fc1ea 556f1ddfe4b0d9246a9fc1ea
+153        nwis_02245260 556f1de0e4b0d9246a9fc1ee 556f1de0e4b0d9246a9fc1ee
+154        nwis_02264000 556f1de3e4b0d9246a9fc1f2 556f1de3e4b0d9246a9fc1f2
+155        nwis_02264100 556f1de4e4b0d9246a9fc1f6 556f1de4e4b0d9246a9fc1f6
+156        nwis_02266200 556f1de5e4b0d9246a9fc1fa 556f1de5e4b0d9246a9fc1fa
+157        nwis_02266300 556f1de7e4b0d9246a9fc1fe 556f1de7e4b0d9246a9fc1fe
+158        nwis_02266495 556f1de8e4b0d9246a9fc202 556f1de8e4b0d9246a9fc202
+159        nwis_02293249 556f2878e4b0d9246a9fcc6c 556f2878e4b0d9246a9fcc6c
+160        nwis_02304000 556f1deae4b0d9246a9fc20a 556f1deae4b0d9246a9fc20a
+161        nwis_02319302 556f1debe4b0d9246a9fc20e 556f1debe4b0d9246a9fc20e
+162        nwis_02320250 556f1dece4b0d9246a9fc212 556f1dece4b0d9246a9fc212
+163        nwis_02322688 556f1dede4b0d9246a9fc216 556f1dede4b0d9246a9fc216
+164        nwis_02323502 556f1deee4b0d9246a9fc21a 556f1deee4b0d9246a9fc21a
+165        nwis_02323566 556f1defe4b0d9246a9fc21e 556f1defe4b0d9246a9fc21e
+166        nwis_02336120 556f2889e4b0d9246a9fcca0 556f2889e4b0d9246a9fcca0
+167        nwis_02336152 556f288ae4b0d9246a9fcca4 556f288ae4b0d9246a9fcca4
+168       nwis_023362095 556f288be4b0d9246a9fcca8 556f288be4b0d9246a9fcca8
+169        nwis_02336240 556f1e1be4b0d9246a9fc2a6 556f1e1be4b0d9246a9fc2a6
+170        nwis_02336300 556f1e1ce4b0d9246a9fc2aa 556f1e1ce4b0d9246a9fc2aa
+171        nwis_02336313 556f288ce4b0d9246a9fccac 556f288ce4b0d9246a9fccac
+172        nwis_02336340 556f1e1ee4b0d9246a9fc2b2 556f1e1ee4b0d9246a9fc2b2
+173        nwis_02336360 556f288de4b0d9246a9fccb0 556f288de4b0d9246a9fccb0
+174        nwis_02336410 556f1e21e4b0d9246a9fc2ba 556f1e21e4b0d9246a9fc2ba
+175        nwis_02336526 556f288ee4b0d9246a9fccb4 556f288ee4b0d9246a9fccb4
+176        nwis_02336728 556f1e23e4b0d9246a9fc2c2 556f1e23e4b0d9246a9fc2c2
+177        nwis_02337170 556f2891e4b0d9246a9fccb8 556f2891e4b0d9246a9fccb8
+178       nwis_023432415 556f1d82e4b0d9246a9fc09f 556f1d82e4b0d9246a9fc09f
+179        nwis_02344630 556f2892e4b0d9246a9fccbc 556f2892e4b0d9246a9fccbc
+180        nwis_02344673 556f1e28e4b0d9246a9fc2ce 556f1e28e4b0d9246a9fc2ce
+181        nwis_02397530 556f2853e4b0d9246a9fcbf8 556f2853e4b0d9246a9fcbf8
+182        nwis_02423130 556f2854e4b0d9246a9fcbfc 556f2854e4b0d9246a9fcbfc
+183        nwis_02423160 556f1d86e4b0d9246a9fc0ab 556f1d86e4b0d9246a9fc0ab
+184        nwis_02423397 556f2855e4b0d9246a9fcc00 556f2855e4b0d9246a9fcc00
+185        nwis_02423496 556f1d88e4b0d9246a9fc0b3 556f1d88e4b0d9246a9fc0b3
+186        nwis_02455980 556f2856e4b0d9246a9fcc04 556f2856e4b0d9246a9fcc04
+187        nwis_02457595 556f1d8ae4b0d9246a9fc0bb 556f1d8ae4b0d9246a9fc0bb
+188        nwis_02458450 556f1d8be4b0d9246a9fc0bf 556f1d8be4b0d9246a9fc0bf
+189        nwis_02469100 556f1d8ce4b0d9246a9fc0c3 556f1d8ce4b0d9246a9fc0c3
+190        nwis_02473085 556f1edee4b0d9246a9fc4e5 556f1edee4b0d9246a9fc4e5
+191        nwis_02489800 556f28bae4b0d9246a9fcd3c 556f28bae4b0d9246a9fcd3c
+192        nwis_02492620 556f1edfe4b0d9246a9fc4e9 556f1edfe4b0d9246a9fc4e9
+193        nwis_03007800 556f1fc4e4b0d9246a9fc801 556f1fc4e4b0d9246a9fc801
+194        nwis_03025500 556f1fc5e4b0d9246a9fc805 556f1fc5e4b0d9246a9fc805
+195        nwis_03027500 556f1fc6e4b0d9246a9fc809 556f1fc6e4b0d9246a9fc809
+196        nwis_03034000 556f293de4b0d9246a9fcee4 556f293de4b0d9246a9fcee4
+197        nwis_03036000 556f293fe4b0d9246a9fcee8 556f293fe4b0d9246a9fcee8
+198        nwis_03039035 556f2940e4b0d9246a9fceec 556f2940e4b0d9246a9fceec
+199        nwis_03039036 556f1fcbe4b0d9246a9fc819 556f1fcbe4b0d9246a9fc819
+200        nwis_03039040 556f1fcce4b0d9246a9fc81d 556f1fcce4b0d9246a9fc81d
+201        nwis_03039041 556f2941e4b0d9246a9fcef0 556f2941e4b0d9246a9fcef0
+202        nwis_03049640 556f1fcee4b0d9246a9fc825 556f1fcee4b0d9246a9fc825
+203        nwis_03058000 556f2076e4b0d9246a9fca68 556f2076e4b0d9246a9fca68
+204        nwis_03061000 556f2077e4b0d9246a9fca6c 556f2077e4b0d9246a9fca6c
+205        nwis_03067510 556f2078e4b0d9246a9fca70 556f2078e4b0d9246a9fca70
+206        nwis_03071590 556f2079e4b0d9246a9fca74 556f2079e4b0d9246a9fca74
+207        nwis_03071600 556f1fd0e4b0d9246a9fc829 556f1fd0e4b0d9246a9fc829
+208        nwis_03071605 556f1fd1e4b0d9246a9fc82d 556f1fd1e4b0d9246a9fc82d
+209        nwis_03071690 556f2942e4b0d9246a9fcef4 556f2942e4b0d9246a9fcef4
+210        nwis_03072655 556f1fd3e4b0d9246a9fc835 556f1fd3e4b0d9246a9fc835
+211        nwis_03073000 556f1fd4e4b0d9246a9fc839 556f1fd4e4b0d9246a9fc839
+212        nwis_03075070 556f2944e4b0d9246a9fcef8 556f2944e4b0d9246a9fcef8
+213        nwis_03077100 556f1fd6e4b0d9246a9fc841 556f1fd6e4b0d9246a9fc841
+214        nwis_03081000 556f1fd8e4b0d9246a9fc845 556f1fd8e4b0d9246a9fc845
+215        nwis_03083500 556f2945e4b0d9246a9fcefc 556f2945e4b0d9246a9fcefc
+216        nwis_03085002 556f2946e4b0d9246a9fcf00 556f2946e4b0d9246a9fcf00
+217        nwis_03098600 556f1f40e4b0d9246a9fc63d 556f1f40e4b0d9246a9fc63d
+218        nwis_03105500 556f1fdbe4b0d9246a9fc851 556f1fdbe4b0d9246a9fc851
+219        nwis_03106000 556f2947e4b0d9246a9fcf04 556f2947e4b0d9246a9fcf04
+220        nwis_03108490 556f1fdee4b0d9246a9fc859 556f1fdee4b0d9246a9fc859
+221        nwis_03121850 556f28fde4b0d9246a9fce20 556f28fde4b0d9246a9fce20
+222        nwis_03183500 556f2989e4b0d9246a9fcfd2 556f2989e4b0d9246a9fcfd2
+223        nwis_03219500 556f1f42e4b0d9246a9fc645 556f1f42e4b0d9246a9fc645
+224        nwis_03220510 556f28fee4b0d9246a9fce24 556f28fee4b0d9246a9fce24
+225        nwis_03228039 556f1f45e4b0d9246a9fc64d 556f1f45e4b0d9246a9fc64d
+226        nwis_03228300 556f1f46e4b0d9246a9fc651 556f1f46e4b0d9246a9fc651
+227        nwis_03254520 556f1e6ae4b0d9246a9fc38a 556f1e6ae4b0d9246a9fc38a
+228        nwis_03255349 556f1f47e4b0d9246a9fc655 556f1f47e4b0d9246a9fc655
+229        nwis_03259757 556f1f48e4b0d9246a9fc659 556f1f48e4b0d9246a9fc659
+230        nwis_03259813 556f28ffe4b0d9246a9fce28 556f28ffe4b0d9246a9fce28
+231        nwis_03271510 556f2900e4b0d9246a9fce2c 556f2900e4b0d9246a9fce2c
+232        nwis_03277075 556f1e6be4b0d9246a9fc38e 556f1e6be4b0d9246a9fc38e
+233        nwis_03277130 556f1e6de4b0d9246a9fc392 556f1e6de4b0d9246a9fc392
+234        nwis_03277200 556f28a8e4b0d9246a9fcd00 556f28a8e4b0d9246a9fcd00
+235        nwis_03289000 556f28a9e4b0d9246a9fcd04 556f28a9e4b0d9246a9fcd04
+236        nwis_03289193 556f28aae4b0d9246a9fcd08 556f28aae4b0d9246a9fcd08
+237        nwis_03292470 556f1e72e4b0d9246a9fc3a2 556f1e72e4b0d9246a9fc3a2
+238        nwis_03292474 556f1e73e4b0d9246a9fc3a6 556f1e73e4b0d9246a9fc3a6
+239        nwis_03292475 556f1e75e4b0d9246a9fc3aa 556f1e75e4b0d9246a9fc3aa
+240        nwis_03292480 556f28abe4b0d9246a9fcd0c 556f28abe4b0d9246a9fcd0c
+241        nwis_03292500 556f1e77e4b0d9246a9fc3b2 556f1e77e4b0d9246a9fc3b2
+242        nwis_03293000 556f28ace4b0d9246a9fcd10 556f28ace4b0d9246a9fcd10
+243        nwis_03293500 556f28ade4b0d9246a9fcd14 556f28ade4b0d9246a9fcd14
+244        nwis_03293510 556f1e7be4b0d9246a9fc3be 556f1e7be4b0d9246a9fc3be
+245        nwis_03293530 556f1e7de4b0d9246a9fc3c2 556f1e7de4b0d9246a9fc3c2
+246        nwis_03294570 556f1e7ee4b0d9246a9fc3c6 556f1e7ee4b0d9246a9fc3c6
+247        nwis_03297800 556f1e7fe4b0d9246a9fc3ca 556f1e7fe4b0d9246a9fc3ca
+248        nwis_03297900 556f1e81e4b0d9246a9fc3ce 556f1e81e4b0d9246a9fc3ce
+249        nwis_03298000 556f1e83e4b0d9246a9fc3d2 556f1e83e4b0d9246a9fc3d2
+250        nwis_03298135 556f28b0e4b0d9246a9fcd18 556f28b0e4b0d9246a9fcd18
+251        nwis_03298150 556f28b1e4b0d9246a9fcd1c 556f28b1e4b0d9246a9fcd1c
+252        nwis_03298200 556f28b2e4b0d9246a9fcd20 556f28b2e4b0d9246a9fcd20
+253        nwis_03298250 556f1e8ae4b0d9246a9fc3e2 556f1e8ae4b0d9246a9fc3e2
+254        nwis_03298300 556f1e8be4b0d9246a9fc3e6 556f1e8be4b0d9246a9fc3e6
+255        nwis_03301900 556f1e8ce4b0d9246a9fc3ea 556f1e8ce4b0d9246a9fc3ea
+256        nwis_03301940 556f28b3e4b0d9246a9fcd24 556f28b3e4b0d9246a9fcd24
+257        nwis_03302000 556f28b4e4b0d9246a9fcd28 556f28b4e4b0d9246a9fcd28
+258        nwis_03302030 556f1e90e4b0d9246a9fc3f6 556f1e90e4b0d9246a9fc3f6
+259        nwis_03302050 556f28b6e4b0d9246a9fcd2c 556f28b6e4b0d9246a9fcd2c
+260        nwis_03321500 556f1e94e4b0d9246a9fc3fe 556f1e94e4b0d9246a9fc3fe
+261        nwis_03339000 556f2897e4b0d9246a9fccc8 556f2897e4b0d9246a9fccc8
+262        nwis_03343805 556f1e3be4b0d9246a9fc306 556f1e3be4b0d9246a9fc306
+263        nwis_03353200 556f1e46e4b0d9246a9fc326 556f1e46e4b0d9246a9fc326
+264        nwis_03374100 556f289be4b0d9246a9fccd8 556f289be4b0d9246a9fccd8
+265        nwis_03400798 556f1e95e4b0d9246a9fc402 556f1e95e4b0d9246a9fc402
+266        nwis_03400800 556f28b7e4b0d9246a9fcd30 556f28b7e4b0d9246a9fcd30
+267        nwis_03401385 556f28b8e4b0d9246a9fcd34 556f28b8e4b0d9246a9fcd34
+268        nwis_03408500 556f295be4b0d9246a9fcf40 556f295be4b0d9246a9fcf40
+269        nwis_03409500 556f295ce4b0d9246a9fcf44 556f295ce4b0d9246a9fcf44
+270        nwis_03418420 556f295de4b0d9246a9fcf48 556f295de4b0d9246a9fcf48
+271        nwis_03428180 556f2006e4b0d9246a9fc8ed 556f2006e4b0d9246a9fc8ed
+272        nwis_03430200 556f2008e4b0d9246a9fc8f1 556f2008e4b0d9246a9fc8f1
+273        nwis_03431083 556f2009e4b0d9246a9fc8f5 556f2009e4b0d9246a9fc8f5
+274        nwis_03431091 556f200ae4b0d9246a9fc8f9 556f200ae4b0d9246a9fc8f9
+275        nwis_03431514 556f200be4b0d9246a9fc8fd 556f200be4b0d9246a9fc8fd
+276        nwis_03432100 556f295fe4b0d9246a9fcf4c 556f295fe4b0d9246a9fcf4c
+277        nwis_03432350 556f200ee4b0d9246a9fc905 556f200ee4b0d9246a9fc905
+278        nwis_03432400 556f200fe4b0d9246a9fc909 556f200fe4b0d9246a9fc909
+279        nwis_03432800 556f2960e4b0d9246a9fcf50 556f2960e4b0d9246a9fcf50
+280        nwis_03438220 556f28b9e4b0d9246a9fcd38 556f28b9e4b0d9246a9fcd38
+281        nwis_03460795 556f28f9e4b0d9246a9fce10 556f28f9e4b0d9246a9fce10
+282        nwis_03512000 556f28fae4b0d9246a9fce14 556f28fae4b0d9246a9fce14
+283        nwis_03538830 556f2961e4b0d9246a9fcf55 556f2961e4b0d9246a9fcf55
+284        nwis_03539600 556f2013e4b0d9246a9fc915 556f2013e4b0d9246a9fc915
+285        nwis_03539778 556f2014e4b0d9246a9fc919 556f2014e4b0d9246a9fc919
+286        nwis_03612600 556f2898e4b0d9246a9fcccc 556f2898e4b0d9246a9fcccc
+287        nwis_04024000 556f1edde4b0d9246a9fc4e1 556f1edde4b0d9246a9fc4e1
+288        nwis_04027000 556f207ce4b0d9246a9fca7c 556f207ce4b0d9246a9fca7c
+289        nwis_04040000 556f1eb6e4b0d9246a9fc461 556f1eb6e4b0d9246a9fc461
+290        nwis_04059500 556f1eb7e4b0d9246a9fc465 556f1eb7e4b0d9246a9fc465
+291        nwis_04067500 556f207de4b0d9246a9fca80 556f207de4b0d9246a9fca80
+292        nwis_04085108 556f298be4b0d9246a9fcfd6 556f298be4b0d9246a9fcfd6
+293       nwis_040851385 556f298ce4b0d9246a9fcfda 556f298ce4b0d9246a9fcfda
+294        nwis_04085427 556f2080e4b0d9246a9fca8c 556f2080e4b0d9246a9fca8c
+295        nwis_04087030 556f298ee4b0d9246a9fcfde 556f298ee4b0d9246a9fcfde
+296        nwis_04087050 556f2082e4b0d9246a9fca94 556f2082e4b0d9246a9fca94
+297        nwis_04087088 556f2083e4b0d9246a9fca98 556f2083e4b0d9246a9fca98
+298        nwis_04087119 556f2085e4b0d9246a9fca9c 556f2085e4b0d9246a9fca9c
+299        nwis_04087120 556f2086e4b0d9246a9fcaa0 556f2086e4b0d9246a9fcaa0
+300        nwis_04087142 556f2087e4b0d9246a9fcaa4 556f2087e4b0d9246a9fcaa4
+301       nwis_040871488 556f2088e4b0d9246a9fcaa8 556f2088e4b0d9246a9fcaa8
+302        nwis_04087170 556f2089e4b0d9246a9fcaac 556f2089e4b0d9246a9fcaac
+303        nwis_04092750 556f1e49e4b0d9246a9fc32e 556f1e49e4b0d9246a9fc32e
+304        nwis_04095090 556f289de4b0d9246a9fccdc 556f289de4b0d9246a9fccdc
+305        nwis_04101500 556f1eb8e4b0d9246a9fc469 556f1eb8e4b0d9246a9fc469
+306        nwis_04108660 556f28c4e4b0d9246a9fcd60 556f28c4e4b0d9246a9fcd60
+307        nwis_04119400 556f1ebbe4b0d9246a9fc471 556f1ebbe4b0d9246a9fc471
+308        nwis_04121650 556f28c5e4b0d9246a9fcd64 556f28c5e4b0d9246a9fcd64
+309        nwis_04121660 556f1ebee4b0d9246a9fc479 556f1ebee4b0d9246a9fc479
+310        nwis_04121680 556f28c7e4b0d9246a9fcd68 556f28c7e4b0d9246a9fcd68
+311        nwis_04121944 556f1ec0e4b0d9246a9fc481 556f1ec0e4b0d9246a9fc481
+312        nwis_04121970 556f28c8e4b0d9246a9fcd6c 556f28c8e4b0d9246a9fcd6c
+313        nwis_04124000 556f28c9e4b0d9246a9fcd70 556f28c9e4b0d9246a9fcd70
+314        nwis_04124200 556f1ec4e4b0d9246a9fc48d 556f1ec4e4b0d9246a9fc48d
+315        nwis_04125460 556f1ec6e4b0d9246a9fc491 556f1ec6e4b0d9246a9fc491
+316        nwis_04125550 556f1ec7e4b0d9246a9fc495 556f1ec7e4b0d9246a9fc495
+317        nwis_04136000 556f28cae4b0d9246a9fcd74 556f28cae4b0d9246a9fcd74
+318        nwis_04136500 556f1ec9e4b0d9246a9fc49d 556f1ec9e4b0d9246a9fc49d
+319        nwis_04136900 556f28cbe4b0d9246a9fcd78 556f28cbe4b0d9246a9fcd78
+320        nwis_04137005 556f1ecce4b0d9246a9fc4a5 556f1ecce4b0d9246a9fc4a5
+321        nwis_04137020 556f28cde4b0d9246a9fcd7c 556f28cde4b0d9246a9fcd7c
+322        nwis_04137025 556f1ecee4b0d9246a9fc4ad 556f1ecee4b0d9246a9fc4ad
+323        nwis_04137030 556f1ecfe4b0d9246a9fc4b1 556f1ecfe4b0d9246a9fc4b1
+324        nwis_04137500 556f28cee4b0d9246a9fcd80 556f28cee4b0d9246a9fcd80
+325        nwis_04142000 556f1ed1e4b0d9246a9fc4b9 556f1ed1e4b0d9246a9fc4b9
+326       nwis_041482663 556f1ed2e4b0d9246a9fc4bd 556f1ed2e4b0d9246a9fc4bd
+327        nwis_04157005 556f28cfe4b0d9246a9fcd84 556f28cfe4b0d9246a9fcd84
+328        nwis_04165500 556f1ed4e4b0d9246a9fc4c5 556f1ed4e4b0d9246a9fc4c5
+329        nwis_04166500 556f28d1e4b0d9246a9fcd88 556f28d1e4b0d9246a9fcd88
+330        nwis_04167150 556f28d2e4b0d9246a9fcd8c 556f28d2e4b0d9246a9fcd8c
+331        nwis_04168400 556f28d4e4b0d9246a9fcd90 556f28d4e4b0d9246a9fcd90
+332        nwis_04174500 556f1edae4b0d9246a9fc4d5 556f1edae4b0d9246a9fc4d5
+333        nwis_04175120 556f28d5e4b0d9246a9fcd94 556f28d5e4b0d9246a9fcd94
+334        nwis_04176500 556f1edce4b0d9246a9fc4dd 556f1edce4b0d9246a9fc4dd
+335        nwis_04182867 556f289ee4b0d9246a9fcce0 556f289ee4b0d9246a9fcce0
+336        nwis_04188496 556f1f4be4b0d9246a9fc665 556f1f4be4b0d9246a9fc665
+337        nwis_04193490 556f1f4ce4b0d9246a9fc669 556f1f4ce4b0d9246a9fc669
+338        nwis_04195500 556f1f4de4b0d9246a9fc66d 556f1f4de4b0d9246a9fc66d
+339        nwis_04199500 556f1f4fe4b0d9246a9fc671 556f1f4fe4b0d9246a9fc671
+340        nwis_04200500 556f1f50e4b0d9246a9fc675 556f1f50e4b0d9246a9fc675
+341        nwis_04208000 556f1f51e4b0d9246a9fc679 556f1f51e4b0d9246a9fc679
+342        nwis_04213500 556f1f29e4b0d9246a9fc5e9 556f1f29e4b0d9246a9fc5e9
+343        nwis_04231600 556f28f4e4b0d9246a9fce00 556f28f4e4b0d9246a9fce00
+344        nwis_04249000 556f1f2be4b0d9246a9fc5f1 556f1f2be4b0d9246a9fc5f1
+345        nwis_05054000 556f28fbe4b0d9246a9fce18 556f28fbe4b0d9246a9fce18
+346        nwis_05057000 556f28fce4b0d9246a9fce1c 556f28fce4b0d9246a9fce1c
+347        nwis_05057200 556f1f3ce4b0d9246a9fc62d 556f1f3ce4b0d9246a9fc62d
+348        nwis_05082500 556f1f3de4b0d9246a9fc631 556f1f3de4b0d9246a9fc631
+349        nwis_05406457 556f208ae4b0d9246a9fcab0 556f208ae4b0d9246a9fcab0
+350        nwis_05406469 556f208be4b0d9246a9fcab4 556f208be4b0d9246a9fcab4
+351        nwis_05406479 556f208ce4b0d9246a9fcab8 556f208ce4b0d9246a9fcab8
+352        nwis_05406497 556f208ee4b0d9246a9fcabc 556f208ee4b0d9246a9fcabc
+353        nwis_05418400 556f28a0e4b0d9246a9fcce8 556f28a0e4b0d9246a9fcce8
+354        nwis_05420500 556f1e52e4b0d9246a9fc346 556f1e52e4b0d9246a9fc346
+355        nwis_05435943 556f2991e4b0d9246a9fcfe6 556f2991e4b0d9246a9fcfe6
+356        nwis_05435950 556f2091e4b0d9246a9fcac8 556f2091e4b0d9246a9fcac8
+357        nwis_05451080 556f1e53e4b0d9246a9fc34a 556f1e53e4b0d9246a9fc34a
+358        nwis_05451210 556f28a1e4b0d9246a9fccec 556f28a1e4b0d9246a9fccec
+359        nwis_05515500 556f1e4ee4b0d9246a9fc33a 556f1e4ee4b0d9246a9fc33a
+360        nwis_05524500 556f289fe4b0d9246a9fcce4 556f289fe4b0d9246a9fcce4
+361        nwis_05543010 556f1e3ee4b0d9246a9fc30e 556f1e3ee4b0d9246a9fc30e
+362        nwis_05579630 556f1e3fe4b0d9246a9fc312 556f1e3fe4b0d9246a9fc312
+363        nwis_05586300 556f2899e4b0d9246a9fccd0 556f2899e4b0d9246a9fccd0
+364        nwis_06336000 556f1f3ee4b0d9246a9fc635 556f1f3ee4b0d9246a9fc635
+365        nwis_06340590 556f1f3fe4b0d9246a9fc639 556f1f3fe4b0d9246a9fc639
+366        nwis_06427850 556f2096e4b0d9246a9fcad8 556f2096e4b0d9246a9fcad8
+367        nwis_06436760 556f2002e4b0d9246a9fc8dd 556f2002e4b0d9246a9fc8dd
+368        nwis_06454100 556f28e2e4b0d9246a9fcdc0 556f28e2e4b0d9246a9fcdc0
+369        nwis_06461500 556f1f02e4b0d9246a9fc565 556f1f02e4b0d9246a9fc565
+370        nwis_06465500 556f1f03e4b0d9246a9fc569 556f1f03e4b0d9246a9fc569
+371        nwis_06478522 556f1f04e4b0d9246a9fc56d 556f1f04e4b0d9246a9fc56d
+372        nwis_06601200 556f1f05e4b0d9246a9fc571 556f1f05e4b0d9246a9fc571
+373        nwis_06610505 556f28a2e4b0d9246a9fccf0 556f28a2e4b0d9246a9fccf0
+374        nwis_06670500 556f2097e4b0d9246a9fcadc 556f2097e4b0d9246a9fcadc
+375        nwis_06711565 556f1dc6e4b0d9246a9fc192 556f1dc6e4b0d9246a9fc192
+376        nwis_06795500 556f1f07e4b0d9246a9fc575 556f1f07e4b0d9246a9fc575
+377        nwis_06799089 556f28e4e4b0d9246a9fcdc4 556f28e4e4b0d9246a9fcdc4
+378        nwis_06800500 556f28e5e4b0d9246a9fcdc8 556f28e5e4b0d9246a9fcdc8
+379        nwis_06805000 556f28e6e4b0d9246a9fcdcc 556f28e6e4b0d9246a9fcdcc
+380        nwis_06805500 556f28e7e4b0d9246a9fcdd0 556f28e7e4b0d9246a9fcdd0
+381        nwis_06807000 556f1f0de4b0d9246a9fc589 556f1f0de4b0d9246a9fc589
+382        nwis_06818000 556f1ef2e4b0d9246a9fc52e 556f1ef2e4b0d9246a9fc52e
+383        nwis_06892513 556f1e58e4b0d9246a9fc356 556f1e58e4b0d9246a9fc356
+384        nwis_06893300 556f28a3e4b0d9246a9fccf4 556f28a3e4b0d9246a9fccf4
+385        nwis_06893350 556f1e5ae4b0d9246a9fc35e 556f1e5ae4b0d9246a9fc35e
+386        nwis_06893620 556f1ef4e4b0d9246a9fc532 556f1ef4e4b0d9246a9fc532
+387        nwis_06893820 556f1ef5e4b0d9246a9fc536 556f1ef5e4b0d9246a9fc536
+388        nwis_06893890 556f28dce4b0d9246a9fcda8 556f28dce4b0d9246a9fcda8
+389        nwis_06893970 556f28dde4b0d9246a9fcdac 556f28dde4b0d9246a9fcdac
+390        nwis_06894000 556f1ef8e4b0d9246a9fc542 556f1ef8e4b0d9246a9fc542
+391        nwis_06934500 556f28dee4b0d9246a9fcdb0 556f28dee4b0d9246a9fcdb0
+392        nwis_07020850 556f1efbe4b0d9246a9fc54b 556f1efbe4b0d9246a9fc54b
+393        nwis_07048600 556f1d8ee4b0d9246a9fc0cb 556f1d8ee4b0d9246a9fc0cb
+394        nwis_07049691 556f2858e4b0d9246a9fcc08 556f2858e4b0d9246a9fcc08
+395        nwis_07053450 556f28dfe4b0d9246a9fcdb4 556f28dfe4b0d9246a9fcdb4
+396        nwis_07053600 556f1efde4b0d9246a9fc554 556f1efde4b0d9246a9fc554
+397        nwis_07054501 556f1d91e4b0d9246a9fc0d3 556f1d91e4b0d9246a9fc0d3
+398        nwis_07054502 556f1d92e4b0d9246a9fc0d7 556f1d92e4b0d9246a9fc0d7
+399        nwis_07054527 556f1d93e4b0d9246a9fc0db 556f1d93e4b0d9246a9fc0db
+400        nwis_07055814 556f1d94e4b0d9246a9fc0df 556f1d94e4b0d9246a9fc0df
+401        nwis_07056515 556f1d95e4b0d9246a9fc0e3 556f1d95e4b0d9246a9fc0e3
+402        nwis_07060000 556f285ae4b0d9246a9fcc0c 556f285ae4b0d9246a9fcc0c
+403        nwis_07061270 556f28e0e4b0d9246a9fcdb8 556f28e0e4b0d9246a9fcdb8
+404        nwis_07061290 556f28e1e4b0d9246a9fcdbc 556f28e1e4b0d9246a9fcdbc
+405        nwis_07075250 556f285be4b0d9246a9fcc10 556f285be4b0d9246a9fcc10
+406        nwis_07075270 556f285ce4b0d9246a9fcc14 556f285ce4b0d9246a9fcc14
+407        nwis_07076000 556f1d9ce4b0d9246a9fc0fb 556f1d9ce4b0d9246a9fc0fb
+408        nwis_07106000 556f1dc7e4b0d9246a9fc196 556f1dc7e4b0d9246a9fc196
+409        nwis_07109500 556f1dc8e4b0d9246a9fc19a 556f1dc8e4b0d9246a9fc19a
+410        nwis_07143672 556f1e5ce4b0d9246a9fc362 556f1e5ce4b0d9246a9fc362
+411        nwis_07144780 556f1e5ee4b0d9246a9fc366 556f1e5ee4b0d9246a9fc366
+412        nwis_07144790 556f28a4e4b0d9246a9fccf8 556f28a4e4b0d9246a9fccf8
+413        nwis_07164500 556f2902e4b0d9246a9fce30 556f2902e4b0d9246a9fce30
+414        nwis_07177500 556f1f53e4b0d9246a9fc681 556f1f53e4b0d9246a9fc681
+415        nwis_07178200 556f2904e4b0d9246a9fce34 556f2904e4b0d9246a9fce34
+416       nwis_071912213 556f2907e4b0d9246a9fce38 556f2907e4b0d9246a9fce38
+417        nwis_07191222 556f2909e4b0d9246a9fce3c 556f2909e4b0d9246a9fce3c
+418       nwis_071948095 5580a13ee4b023124e8f01d1 5580a13ee4b023124e8f01d1
+419        nwis_07198000 556f1f59e4b0d9246a9fc691 556f1f59e4b0d9246a9fc691
+420        nwis_07239450 556f1f5ae4b0d9246a9fc695 556f1f5ae4b0d9246a9fc695
+421        nwis_07241000 556f1f5be4b0d9246a9fc699 556f1f5be4b0d9246a9fc699
+422        nwis_07241520 556f1f5ce4b0d9246a9fc69d 556f1f5ce4b0d9246a9fc69d
+423        nwis_07241550 556f290ae4b0d9246a9fce44 556f290ae4b0d9246a9fce44
+424        nwis_07257500 556f1d9ee4b0d9246a9fc0ff 556f1d9ee4b0d9246a9fc0ff
+425        nwis_07261090 556f1d9fe4b0d9246a9fc103 556f1d9fe4b0d9246a9fc103
+426        nwis_07263296 556f1da0e4b0d9246a9fc107 556f1da0e4b0d9246a9fc107
+427       nwis_072632966 556f1da1e4b0d9246a9fc10b 556f1da1e4b0d9246a9fc10b
+428       nwis_072632995 556f285de4b0d9246a9fcc18 556f285de4b0d9246a9fcc18
+429        nwis_07332620 556f2017e4b0d9246a9fc925 556f2017e4b0d9246a9fc925
+430        nwis_07332622 556f2019e4b0d9246a9fc929 556f2019e4b0d9246a9fc929
+431        nwis_07374000 556f1e9ce4b0d9246a9fc416 556f1e9ce4b0d9246a9fc416
+432        nwis_07381600 556f1e9de4b0d9246a9fc41a 556f1e9de4b0d9246a9fc41a
+433        nwis_08041770 556f2963e4b0d9246a9fcf59 556f2963e4b0d9246a9fcf59
+434        nwis_08048000 556f201be4b0d9246a9fc931 556f201be4b0d9246a9fc931
+435        nwis_08049500 556f201ce4b0d9246a9fc935 556f201ce4b0d9246a9fc935
+436        nwis_08052700 556f201de4b0d9246a9fc939 556f201de4b0d9246a9fc939
+437        nwis_08052745 556f2964e4b0d9246a9fcf5d 556f2964e4b0d9246a9fcf5d
+438        nwis_08057000 556f2020e4b0d9246a9fc941 556f2020e4b0d9246a9fc941
+439        nwis_08057055 556f2965e4b0d9246a9fcf61 556f2965e4b0d9246a9fcf61
+440        nwis_08057410 556f2022e4b0d9246a9fc949 556f2022e4b0d9246a9fc949
+441        nwis_08062500 556f2966e4b0d9246a9fcf65 556f2966e4b0d9246a9fcf65
+442        nwis_08065350 556f2024e4b0d9246a9fc951 556f2024e4b0d9246a9fc951
+443        nwis_08067074 556f2025e4b0d9246a9fc955 556f2025e4b0d9246a9fc955
+444        nwis_08068000 556f2027e4b0d9246a9fc959 556f2027e4b0d9246a9fc959
+445        nwis_08068275 556f2028e4b0d9246a9fc95d 556f2028e4b0d9246a9fc95d
+446        nwis_08068400 556f2967e4b0d9246a9fcf69 556f2967e4b0d9246a9fcf69
+447        nwis_08068500 556f2968e4b0d9246a9fcf6d 556f2968e4b0d9246a9fcf6d
+448        nwis_08069500 556f202be4b0d9246a9fc969 556f202be4b0d9246a9fc969
+449        nwis_08070200 556f202ce4b0d9246a9fc96d 556f202ce4b0d9246a9fc96d
+450        nwis_08155500 556f296ae4b0d9246a9fcf71 556f296ae4b0d9246a9fcf71
+451        nwis_08171290 556f202ee4b0d9246a9fc975 556f202ee4b0d9246a9fc975
+452        nwis_08180700 556f202fe4b0d9246a9fc979 556f202fe4b0d9246a9fc979
+453        nwis_08180850 556f2031e4b0d9246a9fc97d 556f2031e4b0d9246a9fc97d
+454        nwis_08181500 556f296be4b0d9246a9fcf75 556f296be4b0d9246a9fcf75
+455        nwis_08181800 556f2033e4b0d9246a9fc985 556f2033e4b0d9246a9fc985
+456        nwis_08188060 556f2034e4b0d9246a9fc989 556f2034e4b0d9246a9fc989
+457        nwis_08211200 556f296ce4b0d9246a9fcf79 556f296ce4b0d9246a9fcf79
+458        nwis_08317400 556f28efe4b0d9246a9fcdec 556f28efe4b0d9246a9fcdec
+459        nwis_08371500 556f2037e4b0d9246a9fc991 556f2037e4b0d9246a9fc991
+460        nwis_08374200 556f2038e4b0d9246a9fc995 556f2038e4b0d9246a9fc995
+461        nwis_08374510 556f296de4b0d9246a9fcf7d 556f296de4b0d9246a9fcf7d
+462        nwis_08374550 556f203be4b0d9246a9fc99d 556f203be4b0d9246a9fc99d
+463        nwis_08375300 556f203ce4b0d9246a9fc9a1 556f203ce4b0d9246a9fc9a1
+464        nwis_08377200 556f203de4b0d9246a9fc9a5 556f203de4b0d9246a9fc9a5
+465        nwis_08412500 556f203fe4b0d9246a9fc9a9 556f203fe4b0d9246a9fc9a9
+466        nwis_08420500 556f296fe4b0d9246a9fcf81 556f296fe4b0d9246a9fcf81
+467        nwis_08437710 556f2041e4b0d9246a9fc9b1 556f2041e4b0d9246a9fc9b1
+468        nwis_08446500 556f2043e4b0d9246a9fc9b5 556f2043e4b0d9246a9fc9b5
+469        nwis_08447000 556f2044e4b0d9246a9fc9b9 556f2044e4b0d9246a9fc9b9
+470        nwis_08447018 556f2045e4b0d9246a9fc9bd 556f2045e4b0d9246a9fc9bd
+471        nwis_08447300 556f2970e4b0d9246a9fcf85 556f2970e4b0d9246a9fcf85
+472        nwis_08447410 556f2047e4b0d9246a9fc9c5 556f2047e4b0d9246a9fc9c5
+473        nwis_08470500 556f2971e4b0d9246a9fcf89 556f2971e4b0d9246a9fcf89
+474        nwis_09041400 556f1dc9e4b0d9246a9fc19e 556f1dc9e4b0d9246a9fc19e
+475        nwis_09258050 556f2996e4b0d9246a9fcff6 556f2996e4b0d9246a9fcff6
+476        nwis_09258980 556f2099e4b0d9246a9fcae4 556f2099e4b0d9246a9fcae4
+477        nwis_09326500 556f204ce4b0d9246a9fc9d5 556f204ce4b0d9246a9fc9d5
+478        nwis_09327000 556f204de4b0d9246a9fc9d9 556f204de4b0d9246a9fc9d9
+479        nwis_09406000 556f204ee4b0d9246a9fc9dd 556f204ee4b0d9246a9fc9dd
+480        nwis_10129900 556f2050e4b0d9246a9fc9e2 556f2050e4b0d9246a9fc9e2
+481        nwis_10133650 556f2974e4b0d9246a9fcf91 556f2974e4b0d9246a9fcf91
+482        nwis_10133800 556f2052e4b0d9246a9fc9ea 556f2052e4b0d9246a9fc9ea
+483        nwis_10133980 556f2053e4b0d9246a9fc9ef 556f2053e4b0d9246a9fc9ef
+484        nwis_11044000 556f1da3e4b0d9246a9fc113 556f1da3e4b0d9246a9fc113
+485        nwis_11046062 556f1da4e4b0d9246a9fc117 556f1da4e4b0d9246a9fc117
+486        nwis_11046072 556f285ee4b0d9246a9fcc1c 556f285ee4b0d9246a9fcc1c
+487        nwis_11046102 556f1da6e4b0d9246a9fc11f 556f1da6e4b0d9246a9fc11f
+488        nwis_11046252 556f1da8e4b0d9246a9fc123 556f1da8e4b0d9246a9fc123
+489        nwis_11046372 556f2860e4b0d9246a9fcc20 556f2860e4b0d9246a9fcc20
+490        nwis_11126000 556f1daae4b0d9246a9fc12b 556f1daae4b0d9246a9fc12b
+491        nwis_11273400 556f1dabe4b0d9246a9fc12f 556f1dabe4b0d9246a9fc12f
+492        nwis_11285500 556f2861e4b0d9246a9fcc24 556f2861e4b0d9246a9fcc24
+493        nwis_11313433 556f2862e4b0d9246a9fcc28 556f2862e4b0d9246a9fcc28
+494        nwis_11337190 556f2863e4b0d9246a9fcc2c 556f2863e4b0d9246a9fcc2c
+495        nwis_11447650 556f1db0e4b0d9246a9fc13f 556f1db0e4b0d9246a9fc13f
+496        nwis_11447830 556f2864e4b0d9246a9fcc30 556f2864e4b0d9246a9fcc30
+497        nwis_11447850 556f2865e4b0d9246a9fcc34 556f2865e4b0d9246a9fcc34
+498        nwis_11447890 556f1db3e4b0d9246a9fc14b 556f1db3e4b0d9246a9fc14b
+499        nwis_11455139 556f1db4e4b0d9246a9fc14f 556f1db4e4b0d9246a9fc14f
+500        nwis_11455146 556f2866e4b0d9246a9fcc38 556f2866e4b0d9246a9fcc38
+501        nwis_11455165 556f1db6e4b0d9246a9fc157 556f1db6e4b0d9246a9fc157
+502        nwis_11455315 556f1db7e4b0d9246a9fc15b 556f1db7e4b0d9246a9fc15b
+503        nwis_11455350 556f1db9e4b0d9246a9fc15f 556f1db9e4b0d9246a9fc15f
+504        nwis_11455478 556f1dbae4b0d9246a9fc163 556f1dbae4b0d9246a9fc163
+505        nwis_11462500 556f1dbbe4b0d9246a9fc167 556f1dbbe4b0d9246a9fc167
+506        nwis_11463000 556f1dbce4b0d9246a9fc16b 556f1dbce4b0d9246a9fc16b
+507        nwis_11463682 556f2868e4b0d9246a9fcc3c 556f2868e4b0d9246a9fcc3c
+508        nwis_11463980 556f2869e4b0d9246a9fcc40 556f2869e4b0d9246a9fcc40
+509        nwis_11465240 556f1dbfe4b0d9246a9fc179 556f1dbfe4b0d9246a9fc179
+510        nwis_11467000 556f286ae4b0d9246a9fcc44 556f286ae4b0d9246a9fcc44
+511        nwis_11507501 556f290be4b0d9246a9fce48 556f290be4b0d9246a9fce48
+512        nwis_11509370 556f290ce4b0d9246a9fce4c 556f290ce4b0d9246a9fce4c
+513        nwis_12098700 556f297ee4b0d9246a9fcfb5 556f297ee4b0d9246a9fcfb5
+514        nwis_12100490 556f2066e4b0d9246a9fca30 556f2066e4b0d9246a9fca30
+515        nwis_12101100 556f297fe4b0d9246a9fcfb9 556f297fe4b0d9246a9fcfb9
+516        nwis_12102012 556f2981e4b0d9246a9fcfbd 556f2981e4b0d9246a9fcfbd
+517        nwis_12165800 556f2069e4b0d9246a9fca3c 556f2069e4b0d9246a9fca3c
+518        nwis_12166000 556f206ae4b0d9246a9fca40 556f206ae4b0d9246a9fca40
+519        nwis_12166300 556f2983e4b0d9246a9fcfc1 556f2983e4b0d9246a9fcfc1
+520        nwis_12168997 556f206ce4b0d9246a9fca48 556f206ce4b0d9246a9fca48
+521        nwis_12169500 556f206de4b0d9246a9fca4c 556f206de4b0d9246a9fca4c
+522        nwis_12170000 556f2984e4b0d9246a9fcfc5 556f2984e4b0d9246a9fcfc5
+523        nwis_13013650 556f209ae4b0d9246a9fcae8 556f209ae4b0d9246a9fcae8
+524        nwis_13173600 556f1f61e4b0d9246a9fc6ad 556f1f61e4b0d9246a9fc6ad
+525        nwis_13206400 556f1e29e4b0d9246a9fc2d2 556f1e29e4b0d9246a9fc2d2
+526        nwis_13207500 556f1e2ae4b0d9246a9fc2d6 556f1e2ae4b0d9246a9fc2d6
+527        nwis_13210660 556f1e2be4b0d9246a9fc2da 556f1e2be4b0d9246a9fc2da
+528        nwis_13210795 556f1e2de4b0d9246a9fc2de 556f1e2de4b0d9246a9fc2de
+529        nwis_13210815 556f1e2ee4b0d9246a9fc2e2 556f1e2ee4b0d9246a9fc2e2
+530        nwis_13211441 556f2893e4b0d9246a9fccc0 556f2893e4b0d9246a9fccc0
+531        nwis_13213000 556f1e31e4b0d9246a9fc2ea 556f1e31e4b0d9246a9fc2ea
+532        nwis_13213072 556f1e32e4b0d9246a9fc2ee 556f1e32e4b0d9246a9fc2ee
+533        nwis_13213080 556f1e34e4b0d9246a9fc2f2 556f1e34e4b0d9246a9fc2f2
+534        nwis_13213100 556f2896e4b0d9246a9fccc4 556f2896e4b0d9246a9fccc4
+535        nwis_14151000 556f290ee4b0d9246a9fce50 556f290ee4b0d9246a9fce50
+536        nwis_14152000 556f290fe4b0d9246a9fce54 556f290fe4b0d9246a9fce54
+537        nwis_14158100 556f1f64e4b0d9246a9fc6b9 556f1f64e4b0d9246a9fc6b9
+538        nwis_14162500 556f1f65e4b0d9246a9fc6bd 556f1f65e4b0d9246a9fc6bd
+539        nwis_14181500 556f2910e4b0d9246a9fce58 556f2910e4b0d9246a9fce58
+540        nwis_14182500 556f1f67e4b0d9246a9fc6c5 556f1f67e4b0d9246a9fc6c5
+541        nwis_14202650 556f1f68e4b0d9246a9fc6c9 556f1f68e4b0d9246a9fc6c9
+542        nwis_14202980 556f1f6ae4b0d9246a9fc6cd 556f1f6ae4b0d9246a9fc6cd
+543        nwis_14206694 556f1f6be4b0d9246a9fc6d1 556f1f6be4b0d9246a9fc6d1
+544        nwis_14206950 556f1f6ce4b0d9246a9fc6d5 556f1f6ce4b0d9246a9fc6d5
+545        nwis_14207200 556f2912e4b0d9246a9fce5c 556f2912e4b0d9246a9fce5c
+546        nwis_14209710 556f2913e4b0d9246a9fce60 556f2913e4b0d9246a9fce60
+547        nwis_14210000 556f2914e4b0d9246a9fce64 556f2914e4b0d9246a9fce64
+548        nwis_14211010 556f1f70e4b0d9246a9fc6e5 556f1f70e4b0d9246a9fc6e5
+549        nwis_14211720 556f2915e4b0d9246a9fce68 556f2915e4b0d9246a9fce68
+550        nwis_14301500 556f2916e4b0d9246a9fce6c 556f2916e4b0d9246a9fce6c
+551        nwis_14302480 556f1f74e4b0d9246a9fc6f1 556f1f74e4b0d9246a9fc6f1
+552        nwis_14309000 556f2917e4b0d9246a9fce70 556f2917e4b0d9246a9fce70
+553        nwis_14316460 556f1f76e4b0d9246a9fc6f9 556f1f76e4b0d9246a9fc6f9
+554        nwis_14317450 556f1f77e4b0d9246a9fc6fd 556f1f77e4b0d9246a9fc6fd
+555        nwis_15298040 556f1d8de4b0d9246a9fc0c7 556f1d8de4b0d9246a9fc0c7
+556 nwis_291830081362200 556f1df1e4b0d9246a9fc222 556f1df1e4b0d9246a9fc222
+557 nwis_294213081345300 556f287ae4b0d9246a9fcc70 556f287ae4b0d9246a9fcc70
+558 nwis_295554095093402 556f2972e4b0d9246a9fcf8d 556f2972e4b0d9246a9fcf8d
+559 nwis_295826095082200 556f204be4b0d9246a9fc9d1 556f204be4b0d9246a9fc9d1
+560 nwis_295827090052800 556f1e9fe4b0d9246a9fc41e 556f1e9fe4b0d9246a9fc41e
+561 nwis_295906090054200 556f28bbe4b0d9246a9fcd40 556f28bbe4b0d9246a9fcd40
+562 nwis_300009090051600 556f1ea2e4b0d9246a9fc426 556f1ea2e4b0d9246a9fc426
+563 nwis_300026090050800 556f28bce4b0d9246a9fcd44 556f28bce4b0d9246a9fcd44
+564 nwis_300034090055300 556f1ea4e4b0d9246a9fc42e 556f1ea4e4b0d9246a9fc42e
+565 nwis_300127090045800 556f1ea6e4b0d9246a9fc432 556f1ea6e4b0d9246a9fc432
+566 nwis_300128090045800 556f28bde4b0d9246a9fcd48 556f28bde4b0d9246a9fcd48
+567 nwis_301124081395901 556f1df3e4b0d9246a9fc22a 556f1df3e4b0d9246a9fc22a
+568 nwis_301527088521500 556f1ee0e4b0d9246a9fc4ed 556f1ee0e4b0d9246a9fc4ed
+569 nwis_301912088583300 556f1ee2e4b0d9246a9fc4f2 556f1ee2e4b0d9246a9fc4f2
+570 nwis_302309081333001 556f1df4e4b0d9246a9fc22e 556f1df4e4b0d9246a9fc22e
+571 nwis_305215089073600 556f1ee3e4b0d9246a9fc4f6 556f1ee3e4b0d9246a9fc4f6
+572 nwis_310506089291200 556f1ee4e4b0d9246a9fc4fa 556f1ee4e4b0d9246a9fc4fa
+573 nwis_310805089141600 556f1ee5e4b0d9246a9fc4fe 556f1ee5e4b0d9246a9fc4fe
+574 nwis_311845091272200 556f1ee6e4b0d9246a9fc502 556f1ee6e4b0d9246a9fc502
+575 nwis_312514091273400 556f28d7e4b0d9246a9fcd98 556f28d7e4b0d9246a9fcd98
+576 nwis_314416091213400 556f1ee8e4b0d9246a9fc50a 556f1ee8e4b0d9246a9fc50a
+577 nwis_323733107011002 556f1f1ce4b0d9246a9fc5c1 556f1f1ce4b0d9246a9fc5c1
+578 nwis_324007107095501 556f28f0e4b0d9246a9fcdf0 556f28f0e4b0d9246a9fcdf0
+579 nwis_324955107180902 556f1f1ee4b0d9246a9fc5c9 556f1f1ee4b0d9246a9fc5c9
+580 nwis_330203091020200 556f1ee9e4b0d9246a9fc50e 556f1ee9e4b0d9246a9fc50e
+581 nwis_330359090194135 556f28d8e4b0d9246a9fcd9c 556f28d8e4b0d9246a9fcd9c
+582 nwis_330735090300200 556f1eece4b0d9246a9fc516 556f1eece4b0d9246a9fc516
+583 nwis_331346117243401 556f286be4b0d9246a9fcc48 556f286be4b0d9246a9fcc48
+584 nwis_331623091023700 556f1eede4b0d9246a9fc51a 556f1eede4b0d9246a9fc51a
+585 nwis_333957091034100 556f28d9e4b0d9246a9fcda0 556f28d9e4b0d9246a9fcda0
+586 nwis_340247088560200 556f1eefe4b0d9246a9fc522 556f1eefe4b0d9246a9fc522
+587 nwis_341436088534500 556f1ef0e4b0d9246a9fc526 556f1ef0e4b0d9246a9fc526
+588 nwis_343916088435600 556f28dae4b0d9246a9fcda4 556f28dae4b0d9246a9fcda4
+589 nwis_351111089512501 556f2015e4b0d9246a9fc91d 556f2015e4b0d9246a9fc91d
+590 nwis_351113089513401 556f2016e4b0d9246a9fc921 556f2016e4b0d9246a9fc921
+591 nwis_364200119420001 556f1dc3e4b0d9246a9fc186 556f1dc3e4b0d9246a9fc186
+592 nwis_364200119420002 556f1dc4e4b0d9246a9fc18a 556f1dc4e4b0d9246a9fc18a
+593 nwis_375327097285402 556f1e61e4b0d9246a9fc36e 556f1e61e4b0d9246a9fc36e
+594 nwis_375332097284802 556f1e62e4b0d9246a9fc372 556f1e62e4b0d9246a9fc372
+595 nwis_375348097262800 556f1e64e4b0d9246a9fc376 556f1e64e4b0d9246a9fc376
+596 nwis_375350097262800 556f1e65e4b0d9246a9fc37a 556f1e65e4b0d9246a9fc37a
+597 nwis_385446094430700 556f28a6e4b0d9246a9fccfc 556f28a6e4b0d9246a9fccfc
+598 nwis_385520094420000 556f1e67e4b0d9246a9fc382 556f1e67e4b0d9246a9fc382
+599 nwis_385608094380300 556f1e69e4b0d9246a9fc386 556f1e69e4b0d9246a9fc386
+600 nwis_410333095530101 556f1f0ee4b0d9246a9fc58d 556f1f0ee4b0d9246a9fc58d
+601 nwis_411955088280601 556f289ae4b0d9246a9fccd4 556f289ae4b0d9246a9fccd4
+602 nwis_412126095565201 556f28e8e4b0d9246a9fcdd4 556f28e8e4b0d9246a9fcdd4
+603 nwis_414037088003201 556f1e43e4b0d9246a9fc31e 556f1e43e4b0d9246a9fc31e
+604 nwis_414042088003201 556f1e45e4b0d9246a9fc322 556f1e45e4b0d9246a9fc322
+605 nwis_415007121102001 556f286ce4b0d9246a9fcc4c 556f286ce4b0d9246a9fcc4c
+606 nwis_420451121510000 556f1f78e4b0d9246a9fc701 556f1f78e4b0d9246a9fc701
+607 nwis_420615121533600 556f1f79e4b0d9246a9fc705 556f1f79e4b0d9246a9fc705
+608 nwis_420615121533601 556f2918e4b0d9246a9fce74 556f2918e4b0d9246a9fce74
+609 nwis_420741121554001 556f2919e4b0d9246a9fce78 556f2919e4b0d9246a9fce78
+610 nwis_420853121505500 556f1f7de4b0d9246a9fc711 556f1f7de4b0d9246a9fc711
+611 nwis_420853121505501 556f291ae4b0d9246a9fce7c 556f291ae4b0d9246a9fce7c
+612 nwis_421015121471800 556f1f7fe4b0d9246a9fc719 556f1f7fe4b0d9246a9fc719
+613 nwis_421209121463000 556f1f80e4b0d9246a9fc71d 556f1f80e4b0d9246a9fc71d
+614 nwis_421209121463001 556f1f81e4b0d9246a9fc721 556f1f81e4b0d9246a9fc721
+615 nwis_421401121480900 556f291ce4b0d9246a9fce80 556f291ce4b0d9246a9fce80
+616 nwis_421410121492000 556f1f84e4b0d9246a9fc729 556f1f84e4b0d9246a9fc729
+617 nwis_421838121513900 556f291de4b0d9246a9fce84 556f291de4b0d9246a9fce84
+618 nwis_421933121550000 556f291ee4b0d9246a9fce88 556f291ee4b0d9246a9fce88
+619 nwis_422042121513100 556f1f87e4b0d9246a9fc735 556f1f87e4b0d9246a9fc735
+620 nwis_422128121530600 556f1f88e4b0d9246a9fc739 556f1f88e4b0d9246a9fc739
+621 nwis_422305121553800 556f1f89e4b0d9246a9fc73d 556f1f89e4b0d9246a9fc73d
+622 nwis_422305121553803 556f1f8ae4b0d9246a9fc741 556f1f8ae4b0d9246a9fc741
+623 nwis_422437121515200 556f1f8be4b0d9246a9fc745 556f1f8be4b0d9246a9fc745
+624 nwis_422559121574400 556f1f8ce4b0d9246a9fc749 556f1f8ce4b0d9246a9fc749
+625 nwis_422622122004000 556f1f8de4b0d9246a9fc74d 556f1f8de4b0d9246a9fc74d
+626 nwis_422622122004003 556f1f8fe4b0d9246a9fc751 556f1f8fe4b0d9246a9fc751
+627 nwis_422719121571400 556f2920e4b0d9246a9fce8c 556f2920e4b0d9246a9fce8c
+628 nwis_422749121540700 556f1f91e4b0d9246a9fc759 556f1f91e4b0d9246a9fc759
+629 nwis_422808122024400 556f1f92e4b0d9246a9fc75d 556f1f92e4b0d9246a9fc75d
+630 nwis_422842121584300 556f1f93e4b0d9246a9fc761 556f1f93e4b0d9246a9fc761
+631 nwis_423124121583400 556f1f94e4b0d9246a9fc765 556f1f94e4b0d9246a9fc765
+632 nwis_423335121564300 556f2922e4b0d9246a9fce90 556f2922e4b0d9246a9fce90
+633 nwis_431037090043401 556f2992e4b0d9246a9fcfea 556f2992e4b0d9246a9fcfea
+634 nwis_433422116323200 556f1e37e4b0d9246a9fc2fa 556f1e37e4b0d9246a9fc2fa
+635 nwis_434821116444300 556f1e38e4b0d9246a9fc2fe 556f1e38e4b0d9246a9fc2fe
+636 nwis_443320089212303 556f2993e4b0d9246a9fcfee 556f2993e4b0d9246a9fcfee
+637 nwis_443320089212304 556f2994e4b0d9246a9fcff2 556f2994e4b0d9246a9fcff2
+638 nwis_444728122450000 556f2923e4b0d9246a9fce94 556f2923e4b0d9246a9fce94
+639 nwis_452230122512201 556f1f97e4b0d9246a9fc771 556f1f97e4b0d9246a9fc771
+640 nwis_453004122510301 556f2925e4b0d9246a9fce98 556f2925e4b0d9246a9fce98
+641 nwis_453030122560101 556f2926e4b0d9246a9fce9c 556f2926e4b0d9246a9fce9c
+642 nwis_453040123065201 556f1f9be4b0d9246a9fc77d 556f1f9be4b0d9246a9fc77d
+643 nwis_453113123003501 556f1f9ce4b0d9246a9fc781 556f1f9ce4b0d9246a9fc781
+644 nwis_453604122060000 556f2070e4b0d9246a9fca54 556f2070e4b0d9246a9fca54
+645 nwis_454554119121801 556f2928e4b0d9246a9fcea0 556f2928e4b0d9246a9fcea0
+646 nwis_454705122451400 556f2071e4b0d9246a9fca58 556f2071e4b0d9246a9fca58
+647 nwis_454919119184701 556f1f9ee4b0d9246a9fc789 556f1f9ee4b0d9246a9fc789
+648 nwis_455415119314601 556f2929e4b0d9246a9fcea4 556f2929e4b0d9246a9fcea4
+649 nwis_460939123201600 556f2072e4b0d9246a9fca5c 556f2072e4b0d9246a9fca5c
+650 nwis_461518123285700 556f292ae4b0d9246a9fcea8 556f292ae4b0d9246a9fcea8
+651        nwis_50048565 556f1fdfe4b0d9246a9fc85d 556f1fdfe4b0d9246a9fc85d
+652        nwis_50048580 556f1fe0e4b0d9246a9fc861 556f1fe0e4b0d9246a9fc861
+653        nwis_50231500 556f2949e4b0d9246a9fcf08 556f2949e4b0d9246a9fcf08
+sites that are on SB but not in the nwis sitelist:
+nwis_50231505
+nwis_05406500
+nwis_07060001
+nwis_07059998
