@@ -5,7 +5,7 @@ args <- process_make_args(c("sb_user", "sb_password", "outfile", "on_exists", "v
 #' 
 #' Include data for all variables with src="NLDAS" in var_codes, all sites
 #' currently on SB, and the date range specified
-add_nldas_data <- function(on_exists="stop", verbose=TRUE) {
+add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE) {
   # identify the data to download
   vars <- get_var_codes() %>% filter(src=="nldas") %>% .$var
   sites <- sort(get_sites())
@@ -48,7 +48,11 @@ add_nldas_data <- function(on_exists="stop", verbose=TRUE) {
         
         
         files <- stage_nldas_ts(sites=sites_to_get, var=var, times=time_vals, verbose=verbose)
-        # -- I suggest we re-auth here if possible -- 
+        # reauthenticate if needed
+        if(is.null(current_session())) {
+          message("\re-authenticating with ScienceBase with the password you set.\n")
+          authenticate_sb(sb_user, sb_password) 
+        }
         post_ts(files, on_exists=on_exists, verbose=verbose)
       } 
     } else {
@@ -59,4 +63,4 @@ add_nldas_data <- function(on_exists="stop", verbose=TRUE) {
   
   invisible()
 }
-add_nldas_data(on_exists=args$on_exists, verbose=args$verbose)
+add_nldas_data(on_exists=args$on_exists, sb_user=args$sb_user, sb_password=args$sb_password, verbose=args$verbose)
