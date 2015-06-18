@@ -28,13 +28,13 @@ init_sites : p1_import/out/00_init_sites.Rout
 p1_import/out/00_init_sites.Rout : p1_import/code/00_init_sites.R p1_import/code/process_make_args.R
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@ update_sitelist=FALSE on_exists=skip delete_all=FALSE verbose=TRUE" p1_import/code/00_init_sites.R $@
 
-add_nwis_data : init_sites $(addprefix add_nwis_data_,$(addsuffix .Rout,doobs wtr disch stage par))
-p1_import/out/01_add_nwis_data_%.Rout : p1_import/code/01_add_nwis_data.R
-	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@ var=$* on_exists=skip verbose=TRUE" p1_import/code/01_add_nwis_data.R $@
+add_nwis_data : init_sites $(addprefix p1_import/out/is_ready_nwis_,$(addsuffix .txt,doobs wtr disch stage par))
+p1_import/out/is_ready_nwis_%.txt : p1_import/code/01_add_nwis_data.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=skip verbose=TRUE" p1_import/code/01_add_nwis_data.R p1_import/out/01_add_nwis_data_$*.Rout
 
 add_nldas_data : init_sites p1_import/out/01_add_nldas_data.Rout
-p1_import/out/01_add_nldas_data.Rout : p1_import/code/01_add_nldas_data.R
-	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@ on_exists=skip verbose=TRUE" p1_import/code/01_add_nldas_data.R $@
+p1_import/out/is_ready_nldas_%.txt : p1_import/code/01_add_nldas_data.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) on_exists=skip verbose=TRUE" p1_import/code/01_add_nldas_data.R p1_import/out/01_add_nldas_data_$*.Rout
 
 ## p2_metab
 
