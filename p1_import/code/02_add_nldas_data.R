@@ -19,7 +19,7 @@ add_nldas_data <- function(on_exists="stop", verbose=TRUE) {
   # break the calls into manageably sized time chunks to avoid incomplete downloads, 
   # which bother geo data portal (and us). ScienceBase probably won't mind the
   # smaller tasks, either.
-  times_per_group <- 24
+  times_per_group <- 48
   time_groups <- round(seq(as.POSIXct(times[1], tz = 'UTC'), to=as.POSIXct(times[2], tz = 'UTC'), length.out = times_per_group+1), 'days')
   times <- data.frame(
     time_start=head(time_groups,-1),
