@@ -32,6 +32,7 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
   for(var in vars) {
     if(verbose) message("# variable: ", var)
     
+    # call summarize_ts here --------
     # refresh site_group list; may be changed on any var in vars
     sites_to_get <- sites 
     
@@ -58,7 +59,8 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
     } else {
       if(verbose) message("no data to acquire or post in this group.")
     }
-  
+    message("NLDAS data are fully posted to SB for var=", var)
+    writeLines(as.character(Sys.time()), sprintf("p1_import/out/is_ready_nldas_%s.txt",var))
   }
   
   invisible()
