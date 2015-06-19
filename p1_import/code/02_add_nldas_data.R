@@ -49,7 +49,7 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
       last_data <- sort(unique(sb_dates$end_date))[1]
       rmv_dates <- times_to_get$time_start < last_data
       times_to_get <- times_to_get[!rmv_dates,]
-      times_to_get$time_start <- last_data
+      times_to_get$time_start[1] <- last_data
     }
     
     if(length(sites_to_get) > 0) {
