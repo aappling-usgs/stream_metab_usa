@@ -51,7 +51,7 @@ add_nwis_data <- function(var="doobs", on_exists="stop", sb_user, sb_password, v
         for(stg in sites_to_get) {
           # reauthenticate if needed
           if(is.null(current_session())) {
-            message("\re-authenticating with ScienceBase with the password you set.\n")
+            message("re-authenticating with ScienceBase with the password you set.\n")
             authenticate_sb(sb_user, sb_password) 
           }
           tryCatch({
@@ -69,7 +69,7 @@ add_nwis_data <- function(var="doobs", on_exists="stop", sb_user, sb_password, v
   }
   
   message("NWIS data are fully posted to SB for var=", var)
-  writeLines(as.character(Sys.time()), "p1_import/out/is_ready_nwis_doobs.txt")
+  writeLines(as.character(Sys.time()), sprintf("p1_import/out/is_ready_nwis_%s.txt", var))
   invisible()
 }
 add_nwis_data(var=args$var, on_exists=args$on_exists, sb_user=args$sb_user, sb_password=args$sb_password, verbose=args$verbose)
