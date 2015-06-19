@@ -32,19 +32,30 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
   for(var in vars) {
     if(verbose) message("# variable: ", var)
     
-    # call summarize_ts here --------
+    
     # refresh site_group list; may be changed on any var in vars
     sites_to_get <- sites 
-    
+    times_to_get <- times
     if(on_exists == "skip") {
       if(verbose) message("checking for existing data...")
       ts_locs <- locate_ts(var_src=make_var_src(var, "nldas"), site_name=sites_to_get)
       sites_to_get <- sites_to_get[is.na(ts_locs)]
     }
+    
+    if(on_exists == 'append') {
+      if(verbose) message("subsetting time based on existing data...")
+      warning('append functionality is untested')
+      sb_dates <- summarize_ts('baro_nldas', site_name = sites_to_get, out = c('end_date'))
+      last_data <- sort(unique(sb_dates$end_date))[1]
+      rmv_dates <- times_to_get$time_start < last_data
+      times_to_get <- times_to_get[!rmv_dates,]
+      times_to_get$time_start <- last_data
+    }
+    
     if(length(sites_to_get) > 0) {
     # loop through groups and vars to download and post files.
-      for(group in unique(times$group)) {
-        time_vals <- c(times[times$group==group,"time_start"], times[times$group==group,"time_end"])
+      for(group in unique(times_to_get$group)) {
+        time_vals <- c(times_to_get[times_to_get$group==group,"time_start"], times_to_get[times_to_get$group==group,"time_end"])
         if(verbose) message("\n## time group ", group, ":\n", paste0(time_vals, collapse=", "))
         
         
