@@ -42,6 +42,6 @@ process_make_args <- function(expect_args=c("sb_user","sb_password","outfile")) 
   message("\nsigning into ScienceBase with the password you set.\n")
   authenticate_sb(args$sb_user, args$sb_password) 
 
-  return(args[-which(names(args) %in% c("sb_user", "sb_password"))])
+  return(args)
 }
 

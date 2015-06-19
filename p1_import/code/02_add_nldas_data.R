@@ -1,5 +1,5 @@
 source("p1_import/code/process_make_args.R")
-args <- process_make_args(c("sb_user", "sb_password", "outfile", "on_exists", "verbose"))
+args <- process_make_args(c("sb_user", "sb_password", "on_exists", "verbose"))
 
 #' Pull data from NLDAS onto ScienceBase
 #' 
