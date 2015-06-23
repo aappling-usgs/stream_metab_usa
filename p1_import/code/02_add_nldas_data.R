@@ -42,9 +42,9 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
       sites_to_get <- sites_to_get[is.na(ts_locs)]
     }
     
-    if(on_exists == 'append') {
+    if(on_exists == 'merge') {
       if(verbose) message("subsetting time based on existing data...")
-      warning('append functionality is untested')
+      warning('merge functionality is untested')
       sb_dates <- summarize_ts('baro_nldas', site_name = sites_to_get, out = c('end_date'))
       last_data <- sort(unique(sb_dates$end_date))[1]
       rmv_dates <- times_to_get$time_start < last_data
