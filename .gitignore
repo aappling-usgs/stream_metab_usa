@@ -5,3 +5,4 @@
 .Rproj.user
 temp
 *.Rout
+starter_files/*.RData
