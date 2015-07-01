@@ -1,13 +1,13 @@
 source("p1_import/code/process_make_args.R")
-args <- process_make_args(c("sb_user", "sb_password", "on_exists", "verbose"))
+args <- process_make_args(c("sb_user", "sb_password", "var", "on_exists", "verbose"))
 
 #' Pull data from NLDAS onto ScienceBase
 #' 
 #' Include data for all variables with src="NLDAS" in var_codes, all sites
 #' currently on SB, and the date range specified
-add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE) {
+add_nldas_data <- function(on_exists="stop", var, sb_user, sb_password, verbose=TRUE) {
   # identify the data to download
-  vars <- get_var_codes() %>% filter(src=="nldas") %>% .$var
+  vars <- var
   sites <- sort(get_sites())
   times <- unlist(read.table("p1_import/in/date_range.tsv", header=TRUE, stringsAsFactors=FALSE))
   if(verbose) {
@@ -27,9 +27,9 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
     group = seq(length.out = times_per_group),
     stringsAsFactors=FALSE)
   
-  if(verbose) message("downloading temp data to ", tempdir())
   
-  for(var in vars) {
+  
+  for(var in vars) { # -- cut out this loop --
     if(verbose) message("# variable: ", var)
     
     
@@ -57,14 +57,11 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
       for(group in unique(times_to_get$group)) {
         time_vals <- c(times_to_get[times_to_get$group==group,"time_start"], times_to_get[times_to_get$group==group,"time_end"])
         if(verbose) message("\n## time group ", group, ":\n", paste0(time_vals, collapse=", "))
-        
-        
-        files <- stage_nldas_ts(sites=sites_to_get, var=var, times=time_vals, verbose=verbose)
-        # reauthenticate if needed
-        if(is.null(current_session())) {
-          message("\re-authenticating with ScienceBase with the password you set.\n")
-          authenticate_sb(sb_user, sb_password) 
-        }
+        folder = file.path('nldas',paste0(var,'_', strftime(time_vals[2],'%Y_%m_%d')))
+        dir.create(folder)
+        if(verbose) message("downloading temp data to ", folder)
+        files <- stage_nldas_ts(sites=sites_to_get, var=var, times=time_vals, folder = folder, verbose=verbose)
+        authenticate_sb(sb_user, sb_password) 
         post_ts(files, on_exists=on_exists, verbose=verbose)
       } 
     } else {
@@ -76,4 +73,4 @@ add_nldas_data <- function(on_exists="stop", sb_user, sb_password, verbose=TRUE)
   
   invisible()
 }
-add_nldas_data(on_exists=args$on_exists, sb_user=args$sb_user, sb_password=args$sb_password, verbose=args$verbose)
+add_nldas_data(on_exists=args$on_exists, var=args$var, sb_user=args$sb_user, sb_password=args$sb_password, verbose=args$verbose)

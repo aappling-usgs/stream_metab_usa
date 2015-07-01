@@ -32,9 +32,9 @@ add_nwis_data : init_sites $(addprefix p1_import/out/is_ready_nwis_,$(addsuffix 
 p1_import/out/is_ready_nwis_%.txt : p1_import/code/01_add_nwis_data.R
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=skip verbose=TRUE" p1_import/code/01_add_nwis_data.R p1_import/out/01_add_nwis_data_$*.Rout
 
-add_nldas_data : init_sites p1_import/out/01_add_nldas_data.Rout
-p1_import/out/is_ready_nldas_%.txt : p1_import/code/01_add_nldas_data.R p1_import/in/date_range.tsv
-	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) on_exists=skip verbose=TRUE" p1_import/code/01_add_nldas_data.R p1_import/out/01_add_nldas_data_$*.Rout
+add_nldas_data : init_sites $(addprefix p1_import/out/is_ready_nldas_,$(addsuffix .txt,baro sw))
+p1_import/out/is_ready_nldas_%.txt : p1_import/code/02_add_nldas_data.R p1_import/in/date_range.tsv
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=merge verbose=TRUE" p1_import/code/02_add_nldas_data.R p1_import/out/02_add_nldas_data_$*.Rout
 
 ## p2_metab
 
