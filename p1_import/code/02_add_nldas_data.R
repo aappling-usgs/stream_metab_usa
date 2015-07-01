@@ -27,7 +27,7 @@ add_nldas_data <- function(on_exists="stop", var, sb_user, sb_password, verbose=
     group = seq(length.out = times_per_group),
     stringsAsFactors=FALSE)
   
-  if(verbose) message("downloading temp data to ", tempdir())
+  
   
   for(var in vars) { # -- cut out this loop --
     if(verbose) message("# variable: ", var)
@@ -57,9 +57,10 @@ add_nldas_data <- function(on_exists="stop", var, sb_user, sb_password, verbose=
       for(group in unique(times_to_get$group)) {
         time_vals <- c(times_to_get[times_to_get$group==group,"time_start"], times_to_get[times_to_get$group==group,"time_end"])
         if(verbose) message("\n## time group ", group, ":\n", paste0(time_vals, collapse=", "))
-        
-        
-        files <- stage_nldas_ts(sites=sites_to_get, var=var, times=time_vals, verbose=verbose)
+        folder = file.path('nldas',paste0(var,'_', strftime(time_vals[2],'%Y_%m_%d')))
+        dir.create(folder)
+        if(verbose) message("downloading temp data to ", folder)
+        files <- stage_nldas_ts(sites=sites_to_get, var=var, times=time_vals, folder = folder, verbose=verbose)
         authenticate_sb(sb_user, sb_password) 
         post_ts(files, on_exists=on_exists, verbose=verbose)
       } 
