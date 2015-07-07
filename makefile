@@ -28,6 +28,10 @@ init_sites : p1_import/out/00_init_sites.Rout
 p1_import/out/00_init_sites.Rout : p1_import/code/00_init_sites.R p1_import/code/process_make_args.R
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@ update_sitelist=FALSE on_exists=skip delete_all=FALSE verbose=TRUE" p1_import/code/00_init_sites.R $@
 
+add_site_metadata : init_sites $(addprefix p1_import/out/is_ready_meta_,$(addsuffix .txt,basic))
+p1_import/out/is_ready_meta_%.txt : p1_import/code/00_add_site_metadata.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) type=$* on_exists=skip verbose=TRUE outfile=$@" p1_import/code/00_add_site_metadata.R p1_import/out/00_add_site_metadata_$*.Rout
+
 add_nwis_data : init_sites $(addprefix p1_import/out/is_ready_nwis_,$(addsuffix .txt,doobs wtr disch stage par))
 p1_import/out/is_ready_nwis_%.txt : p1_import/code/01_add_nwis_data.R p1_import/in/date_range.tsv
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=skip verbose=TRUE" p1_import/code/01_add_nwis_data.R p1_import/out/01_add_nwis_data_$*.Rout
