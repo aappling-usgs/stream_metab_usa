@@ -8,7 +8,7 @@ args <- process_make_args(c("sb_user", "sb_password", "var", "on_exists", "verbo
 add_nwis_data <- function(var="doobs", on_exists="stop", sb_user, sb_password, verbose=TRUE) {
   # identify the data to download
   vars <- var # get_var_codes() %>% filter(src=="nwis") %>% .$var
-  sites <- sort(get_sites())
+  sites <- list_sites()
   times <- unlist(read.table("p1_import/in/date_range.tsv", header=TRUE, stringsAsFactors=FALSE))
   if(verbose) {
     message("will get data for these parameter codes: ", paste0(vars, collapse=", "))

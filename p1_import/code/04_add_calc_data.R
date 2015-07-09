@@ -11,7 +11,7 @@ add_calc_data <- function(var_src="suntime_calcLon", on_exists="stop", sb_user, 
   if(length(var_src) != 1) stop("expecting exactly 1 var_src")
   var <- parse_var_src(var_src)$var
   src <- parse_var_src(var_src)$src
-  sites <- sort(get_sites())
+  sites <- list_sites()
   if(verbose) {
     message("will get data for this var_src: ", var_src)
     message("will calculate data for up to ", length(sites), " sites")
