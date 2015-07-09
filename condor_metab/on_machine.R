@@ -146,14 +146,14 @@ out_dir <- paste0("p2_metab/out/", format(date, "%y%m%d"), " ", tag, " ", strate
 sites <- list_sites()
 clusterExport(c1, 'sites')
 site_ids <- 1:length(sites)
-run_site_inventory <- function(site_id) {
+run_site_inventory <- function(site_id, sleep=runif(1, min=0, max=10)) {
   
   # sleep to avoid sending many similar requests all at once
-  Sys.sleep(runif(1, min=0, max=10))
+  Sys.sleep(sleep)
   
   # model metabolism & return results or error
   tryCatch({
-    summarize_ts(parse_ts_name(list_datasets(sites[site_id])), sites[site_id])
+    summarize_ts(list_datasets(sites[site_id]), sites[site_id])
   }, 
   error=function(e){e})
   
@@ -164,6 +164,76 @@ save(site_inventory, file=file.path(out_dir, "site_inventory.RData"))
 
 si <- bind_rows(site_inventory[which(sapply(site_inventory, function(i1) isTRUE(is.data.frame(i1))))])
 write.table(si, file=file.path(out_dir, "site_inventory.tsv"), sep="\t", row.names=FALSE)
+
+# explore site inventory
+si <- read.table(file.path(out_dir, "site_inventory_4.tsv"), sep="\t", header=TRUE, stringsAsFactors = FALSE) %>% tbl_df
+si %>% summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows))
+si %>% mutate(src_db=parse_var_src(as.character(var_src), out="src"))
+si %>% mutate(src_type=sapply(var_src, function(vs) get_var_src_codes(var_src==vs, out="src_type")),
+              src_db=parse_var_src(as.character(var_src), out="src"),
+              src_cat=ifelse(src_type=="data", src_db, src_type)) %>% 
+  group_by(src_cat) %>% summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows))
+si %>% group_by(var_src) %>% summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows)) %>%
+  mutate(src_type=sapply(var_src, function(vs) get_var_src_codes(var_src==vs, out="src_type")),
+         src_db=parse_var_src(as.character(var_src), out="src"),
+         src_cat=ifelse(src_type=="data", src_db, src_type)) %>% arrange(src_cat)
+# ts files with all NAs
+si %>% filter(num_complete < 50)
+
+# inventory SB items. (in the chunk below, on 7/9/15 item 259 failed with 'Error
+# in curl::curl_fetch_memory(url, handle = handle): Timeout was reached' the
+# first time through. but then i reran it and it was fine.)
+tses <- levels(si$var_src)
+sites <- list_sites()
+item_inventory <- lapply(sites, function(site) {
+  cat(".")
+  tryCatch(
+    data_frame(
+      site=site,
+      ts=tses, 
+      by_tag=locate_ts(tses, site, by="tag") %>% replace(is.na(.), "na"),
+      by_dir=locate_ts(tses, site, by="dir") %>% replace(is.na(.), "na"),
+      by_kid=tses %in% list_datasets(site)) %>%
+      mutate(all_agree=by_tag==by_dir & by_kid==(by_tag!="na"))
+    , error=function(e) e)
+}); cat("\n")
+save(item_inventory, file=file.path(out_dir, "item_inventory.RData"))
+ii <- bind_rows(item_inventory)
+write.table(ii, file=file.path(out_dir, "item_inventory.tsv"), sep="\t", row.names=FALSE)
+
+ii <- read.table(file.path(out_dir, "item_inventory.tsv"), sep="\t", header=TRUE, stringsAsFactors = FALSE) %>% tbl_df
+# ts items without tags
+ii %>% filter(!all_agree)
+# ts items that didn't download
+si_by_either <- lapply(1:nrow(si), function(sirow) { 
+  tryCatch(locate_ts(si[[sirow,'var_src']], si[[sirow,'site']], by="either"), error=function(e) e)
+})
+si_by_either[which(!sapply(si_by_either, is.character))]
+sirow=3414; si_by_either[[sirow]] <- tryCatch(locate_ts(si[[sirow,'var_src']], si[[sirow,'site']], by="either"), error=function(e) e)
+si_by_either_vec <- unlist(si_by_either)
+si$by_either <- si_by_either_vec
+write.table(si, file=file.path(out_dir, "site_inventory_plus.tsv"), sep="\t", row.names=FALSE)
+# something went wrong in download
+(ts_problems <- setdiff(ii$by_dir, si$by_either))
+# ts items without files
+ts_prob_file_count <- sapply(ts_problems[-1], function(tp) {
+  tryCatch(nrow(sbtools::item_list_files(tp)), error=function(e) as.character(e))
+})
+names(ts_prob_file_count[-1][as.numeric(ts_prob_file_count[-1]) < 1])
+# ts items with multiple files
+names(ts_prob_file_count[-1][as.numeric(ts_prob_file_count[-1]) > 1])
+# site items without tags
+site_item_inventory <- data_frame(
+  site=sites, 
+  by_tag=locate_site(sites, by="tag") %>% replace(is.na(.), "na"), 
+  by_dir=locate_site(sites, by="dir") %>% replace(is.na(.), "na")) 
+site_item_inventory %>%
+  filter(by_tag!=by_dir | is.na(by_tag))
+
+
+
+# to unload and reload a package: detach(package:mda.streams, unload=TRUE)
+
 
 #### Metabolism ####
 
