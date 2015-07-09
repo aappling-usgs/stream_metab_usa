@@ -28,13 +28,21 @@ init_sites : p1_import/out/00_init_sites.Rout
 p1_import/out/00_init_sites.Rout : p1_import/code/00_init_sites.R p1_import/code/process_make_args.R
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@ update_sitelist=FALSE on_exists=skip delete_all=FALSE verbose=TRUE" p1_import/code/00_init_sites.R $@
 
-add_nwis_data : init_sites $(addprefix p1_import/out/is_ready_nwis_,$(addsuffix .txt,doobs wtr disch stage par))
-p1_import/out/is_ready_nwis_%.txt : p1_import/code/01_add_nwis_data.R
+add_site_metadata : init_sites $(addprefix p1_import/out/is_ready_meta_,$(addsuffix .txt,basic))
+p1_import/out/is_ready_meta_%.txt : p1_import/code/00_add_site_metadata.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) type=$* on_exists=skip verbose=TRUE outfile=$@" p1_import/code/00_add_site_metadata.R p1_import/out/00_add_site_metadata_$*.Rout
+
+add_nwis_data : init_sites $(addprefix p1_import/out/is_ready_nwis_,$(addsuffix .txt,doobs wtr disch stage par airtemp))
+p1_import/out/is_ready_nwis_%.txt : p1_import/code/01_add_nwis_data.R p1_import/in/date_range.tsv
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=skip verbose=TRUE" p1_import/code/01_add_nwis_data.R p1_import/out/01_add_nwis_data_$*.Rout
 
 add_nldas_data : init_sites $(addprefix p1_import/out/is_ready_nldas_,$(addsuffix .txt,baro sw))
 p1_import/out/is_ready_nldas_%.txt : p1_import/code/02_add_nldas_data.R p1_import/in/date_range.tsv
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=merge verbose=TRUE" p1_import/code/02_add_nldas_data.R p1_import/out/02_add_nldas_data_$*.Rout
+
+add_calc_data : init_sites $(addprefix p1_import/out/is_ready_calc_,$(addsuffix .txt,suntime_calcLon par_calcLat depth_calcDisch dosat_calcGGbts sitetime_calcLon))
+p1_import/out/is_ready_calc_%.txt : p1_import/code/04_add_calc_data.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var_src=$* on_exists=skip verbose=TRUE" p1_import/code/04_add_calc_data.R p1_import/out/04_add_calc_data_$*.Rout
 
 ## p2_metab
 
