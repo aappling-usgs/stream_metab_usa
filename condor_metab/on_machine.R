@@ -10,29 +10,42 @@
 
 library(parallel)
 
-#Start a cluster, wait for them to connect
-c1 = makePSOCKcluster(paste0('machine', 1:50), manual=TRUE, port=4043)
+# Set our choice between a local or Condor run
+cluster <- c("localhost", "condor")[1]
 
-#' At this point go to putty, cd into condor_R_snow.
-#' 
-#' 3. Edit simple.sh to contain MASTER=YOUR.LOCAL.IP.ADDRESS
-#' 
-#' 4. Type condor_submit condor.sub. This will yield the text:
-#' 
-#' Submitting job(s).......................................................... 
-#' 60 job(s) submitted to cluster XXXX.
-#' 
-#' 5. Query for updates using condor_q. We're looking for jobs to appear in that
-#' list with the cluster ID declared above (whatever number replaces XXXX).
-#' 
-#' 6. We're also looking to see them show up in the local console as replies to 
-#' the makePSOCKcluster call. If the local console appears to have stalled while
-#' condor_q suggests all jobs have been dispatched, you can run condor_submit
-#' condor.sub again to add more worker nodes. Any nodes that don't find a master
-#' just disappear.
-#' 
-#' 7. When the makePSOCKcluster call has finished, we're ready to make 
-#' clusterCalls.
+# Start a cluster
+switch(
+  cluster,
+  "condor" = {
+    # Start a cluster, wait for them to connect
+    c1 = makePSOCKcluster(paste0('machine', 1:50), manual=TRUE, port=4043)
+    #' At this point go to putty, cd into condor_R_snow.
+    #' 
+    #' 3. Edit simple.sh to contain MASTER=YOUR.LOCAL.IP.ADDRESS
+    #' 
+    #' 4. Type condor_submit condor.sub. This will yield the text:
+    #' 
+    #' Submitting job(s).......................................................... 
+    #' 60 job(s) submitted to cluster XXXX.
+    #' 
+    #' 5. Query for updates using condor_q. We're looking for jobs to appear in that
+    #' list with the cluster ID declared above (whatever number replaces XXXX).
+    #' 
+    #' 6. We're also looking to see them show up in the local console as replies to 
+    #' the makePSOCKcluster call. If the local console appears to have stalled while
+    #' condor_q suggests all jobs have been dispatched, you can run condor_submit
+    #' condor.sub again to add more worker nodes. Any nodes that don't find a master
+    #' just disappear.
+    #' 
+    #' 7. When the makePSOCKcluster call has finished, we're ready to make 
+    #' clusterCalls.
+  } ,
+  "localhost" = {
+    # Alternatively, start a local cluster. If installs are needed, start with a 
+    # 1-node cluster to run clusterCall(c1, function(){ install_check(...) }))
+    c1 = makePSOCKcluster(rep('localhost', 1))
+  })
+
 
 #### Test ####
 hello_world <- clusterCall(c1, function(){ 
@@ -67,7 +80,7 @@ install_check <- function(repo, pkg, ghuser) {
 }
 clusterExport(c1, 'install_check')
 
-# Local utilities for looking at results
+# Define local utilities for looking at results
 all_first_out <- function(out) {
   all(sapply(out, function(o) o[[1]]))
 }
@@ -87,8 +100,8 @@ view_installed_packages <- function() {
   pkg_needs=pkg_needs
   suppressWarnings(
     as.data.frame(inst) %>%
-      setNames(paste0('n',1:50)) %>%
-      gather(key=node, value=pkg, 1:50) %>%
+      setNames(paste0('n',1:length(c1))) %>%
+      gather(key=node, value=pkg, 1:length(c1)) %>%
       filter(pkg %in% pkg_needs) %>%
       mutate(has=TRUE) %>%
       full_join(data.frame(pkg=pkg_needs, node=factor("none"), has=FALSE), by=c("node","pkg","has")) %>%
@@ -123,8 +136,16 @@ view_install_out(out)
 clusterCall(c1, function() { dir("/usr/local/lib") })
 
 # for seeing overall install status
-view_installed_packages()[,1:6]
+view_installed_packages()#[,1:6]
 
+
+if(cluster=="localhost") {
+  # stop the 1-node cluster and start a multi-node cluster
+  stopCluster(c1)
+  # My machine has '8' nodes, which probably means 4 hyperthreaded nodes, so 6
+  # may be a maximal use of those resources.
+  c1 = makePSOCKcluster(rep('localhost', 6)) # for running models
+}
 
 # load packages
 clusterCall(c1, function() { library(mda.streams) })
@@ -134,9 +155,9 @@ clusterCall(c1, function() { library(mda.streams) })
 
 library(mda.streams)
 # identify today's folder to hold results
-tag="0.0.1"
-strategy="first full run"
-date=as.Date("2015-07-07")
+tag="0.0.2"
+strategy="retry first full run"
+date=as.Date("2015-07-13")
 out_dir <- paste0("p2_metab/out/", format(date, "%y%m%d"), " ", tag, " ", strategy)
 
 
@@ -237,8 +258,16 @@ site_item_inventory %>%
 
 #### Metabolism ####
 
-# load the config file, which we created with p2_metab/code/01_model_metab.R
+# stage & load the config file, with code similar to that in
+# p2_metab/code/01_model_metab.R
 config_path <- file.path(out_dir, "condor_config.tsv")
+
+# stage
+sites <- list_sites(c("doobs_nwis","disch_nwis","wtr_nwis"))[1:10]
+config_file <- stage_metab_config(
+  tag=tag, strategy=strategy, 
+  model="metab_mle", model_args="list()",
+  site=sites, filename=config_path)
 config <- read.table(config_path, sep="\t", header=TRUE, colClasses="character")
 
 # run each line of the config as a cluster job
@@ -272,6 +301,12 @@ metab_ests <- bind_rows(lapply(names(metab_out), function(monm) {
 }))
 
 save(metab_ests, file.path(out_dir, "metab_ests.RData"))
+
+
+#### End ####
+
+stopCluster(c1)
+
 
 #### Notes ####
 
