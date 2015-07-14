@@ -7,10 +7,18 @@ model_metab <- function(tag="0.0.1", strategy="test write_metab_config", model='
   strategy="first full run"
   # identify folder to hold results
   out_dir <- paste0("p2_metab/out/", format(Sys.Date(), "%y%m%d"), " ", tag, " ", strategy)
+  if(!dir.exists(out_dir)) dir.create(out_dir)
   config_path <- file.path(out_dir, "condor_config.tsv")
   
   # stage
-  sites <- list_sites(c("doobs_nwis","disch_nwis","wtr_nwis"))[1:10]
+  sites <- list_sites(list(
+    "sitetime_calcLon", 
+    "doobs_nwis", 
+    any=c("dosat_calcGGbts","dosat_calcGGbconst"),
+    "depth_calcDisch",
+    "wtr_nwis",
+    any=c("par_nwis","par_calcLat")), 
+    logic="all")
   config_file <- stage_metab_config(
     tag=tag, strategy=strategy, 
     model=model, model_args=model_args,
