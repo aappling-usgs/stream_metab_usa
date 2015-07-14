@@ -9,9 +9,12 @@
 #' calls simple.sh and passes .Renviron to child nodes.
 
 library(parallel)
+library(tidyr)
+library(dplyr)
+library(mda.streams)
 
 # Set our choice between a local or Condor run
-cluster <- c("localhost", "condor")[1]
+cluster <- c("localhost", "condor")[2]
 
 # Start a cluster
 switch(
@@ -93,8 +96,6 @@ pkg_needs <- c('dataRetrieval', 'devtools', 'dplyr', 'geoknife', 'httr', 'jsonli
                'LakeMetabolizer', 'lazyeval', 'lubridate', 'mda.streams', 'methods', 'parallel', 'RCurl', 
                'runjags', 'sbtools', 'streamMetabolizer', 'stringr', 'unitted', 'XML') #'rjags', 
 
-library(tidyr)
-library(dplyr)
 view_installed_packages <- function() {
   inst <- clusterCall(c1, function() { unname(installed.packages()[,"Package"]) })
   pkg_needs=pkg_needs
@@ -159,6 +160,7 @@ tag="0.0.2"
 strategy="retry first full run"
 date=as.Date("2015-07-13")
 out_dir <- paste0("p2_metab/out/", format(date, "%y%m%d"), " ", tag, " ", strategy)
+if(!dir.exists(out_dir)) dir.create(out_dir)
 
 
 #### Data Inventory ####
@@ -262,21 +264,32 @@ site_item_inventory %>%
 # p2_metab/code/01_model_metab.R
 config_path <- file.path(out_dir, "condor_config.tsv")
 
-# stage
-sites <- list_sites(c("doobs_nwis","disch_nwis","wtr_nwis"))[1:10]
+# stage config. no sense trying for those sites we know won't have what we need,
+# so get a short list using list_sites()
+sites <- list_sites(list(
+  "sitetime_calcLon", 
+  "doobs_nwis", 
+  any=c("dosat_calcGGbts","dosat_calcGGbconst"),
+  "depth_calcDisch",
+  "wtr_nwis",
+  any=c("par_nwis","par_calcLat")), 
+  logic="all")
+# write to file
 config_file <- stage_metab_config(
   tag=tag, strategy=strategy, 
   model="metab_mle", model_args="list()",
   site=sites, filename=config_path)
+# read from file
 config <- read.table(config_path, sep="\t", header=TRUE, colClasses="character")
+nrow(config)
 
 # run each line of the config as a cluster job
 clusterExport(c1, 'config')
-run_ids = 26:nrow(config)
-run_config_to_metab <- function(run_id) {
+run_ids = 1#:nrow(config)
+run_config_to_metab <- function(run_id, sleep=runif(1, min=0, max=5)) {
     
   # sleep to avoid sending many similar requests all at once
-  Sys.sleep(runif(1, min=0, max=30))
+  Sys.sleep(sleep)
   
   # model metabolism & return results or error
   tryCatch({
