@@ -285,8 +285,10 @@ nrow(config)
 
 # run each line of the config as a cluster job
 clusterExport(c1, 'config')
-run_ids = 1#:nrow(config)
+run_ids = 1:nrow(config)
 run_config_to_metab <- function(run_id, sleep=runif(1, min=0, max=5)) {
+  
+  print(run_id)
     
   # sleep to avoid sending many similar requests all at once
   Sys.sleep(sleep)
@@ -298,8 +300,9 @@ run_config_to_metab <- function(run_id, sleep=runif(1, min=0, max=5)) {
   error=function(e){e})
 
 }
-metab_out <- clusterApplyLB(c1, run_ids, run_config_to_metab) %>% # LB = load balance
-  setNames(paste0("run_", run_ids))
+#metab_out <- clusterApplyLB(c1, run_ids, run_config_to_metab) %>% # LB = load balance
+#  setNames(paste0("run_", run_ids))
+metab_out <- config_to_metab()
 save(metab_out, file.path(out_dir, "metab_out.RData"))
 
 library(streamMetabolizer)

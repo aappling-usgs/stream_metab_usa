@@ -48,7 +48,12 @@ p1_import/out/is_ready_calc_%.txt : p1_import/code/04_add_calc_data.R
 
 #p2_metab : model_metab
 
-#model_metab : p2_metab/out/model_metab.Rout
+model_metab : p2_metab/out/model_metab.Rout
+p2_metab/out/01_model_metab.Rout : p2_metab/code/01_model_metab.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) tag=0.0.2 strategy=local_makefile_run model=metab_mle model_args=list() cluster=local_cluster verbose=TRUE" p2_metab/code/01_model_metab.R $@
+
+p2_metab/out/02_post_metab.Rout : p2_metab/code/02_post_metab.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) date=150714 tag=0.0.2 strategy=local_makefile_run on_run_exists=skip all_out_file= on_ts_exists=skip verbose=TRUE" p2_metab/code/02_post_metab.R $@
 
 #p2_metab/out/model_metab.Rout : 
 #$(CALL_R) "--args sb_user=SBUSER sb_password=SBPASS outfile='$@'" p1_import/code/00_init_sites.R $@
