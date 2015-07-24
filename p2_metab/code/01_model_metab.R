@@ -65,7 +65,7 @@ model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night'
   if(verbose) message("running metabolism models on a ", cluster, " for ", length(run_ids)," of ", nrow(config), " config rows")
   run_names <- paste0("run_", run_ids)
   if(cluster=='local_process') {
-    all_out <- lapply(setNames(run_ids, run_names), run_config_to_metab, sleep=0)
+    metab_all <- lapply(setNames(run_ids, run_names), run_config_to_metab, sleep=0)
   } else if(cluster=='local_cluster') {
     library(parallel)
     # My machine has '8' nodes, which probably means 4 hyperthreaded nodes, so 6
@@ -74,17 +74,17 @@ model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night'
     clusterCall(c1, function() { library(mda.streams) })
     assign('config', envir=.GlobalEnv, value=config) # clusterExport looks in .GlobalEnv
     clusterExport(c1, 'config')
-    all_out <- clusterApplyLB(c1, run_ids, run_config_to_metab)
-    all_out <- setNames(all_out, run_names)
+    metab_all <- clusterApplyLB(c1, run_ids, run_config_to_metab)
+    metab_all <- setNames(metab_all, run_names)
     stopCluster(c1)
   } else if(cluster=='condor_cluster') {
-    all_out <- model_metab_by_condor_cluster() # lengthy, so defined below
+    metab_all <- model_metab_by_condor_cluster() # lengthy, so defined below
   }
   
   # save everything
   all_out_file <- file.path(out_dir, "metab_all.RData")
   if(verbose) message("saving the full list of models to ", all_out_file)
-  save(all_out, file=all_out_file)
+  save(metab_all, file=all_out_file)
 }
 
 model_metab_by_condor_cluster <- function() {
