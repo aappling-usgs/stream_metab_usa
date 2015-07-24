@@ -24,21 +24,23 @@ switch(
     c1 = makePSOCKcluster(paste0('machine', 1:50), manual=TRUE, port=4043)
     #' At this point go to putty, cd into condor_R_snow.
     #' 
-    #' 3. Edit simple.sh to contain MASTER=YOUR.LOCAL.IP.ADDRESS
+    #' 3. Edit simple.sh to contain MASTER=YOUR.LOCAL.IP.ADDRESS (can find from
+    #' R with system("ipconfig"))
     #' 
     #' 4. Type condor_submit condor.sub. This will yield the text:
     #' 
     #' Submitting job(s).......................................................... 
     #' 60 job(s) submitted to cluster XXXX.
     #' 
-    #' 5. Query for updates using condor_q. We're looking for jobs to appear in that
-    #' list with the cluster ID declared above (whatever number replaces XXXX).
+    #' 5. Query for updates using condor_q. We're looking for jobs to appear in
+    #' that list with the cluster ID declared above (whatever number replaces
+    #' XXXX).
     #' 
-    #' 6. We're also looking to see them show up in the local console as replies to 
-    #' the makePSOCKcluster call. If the local console appears to have stalled while
-    #' condor_q suggests all jobs have been dispatched, you can run condor_submit
-    #' condor.sub again to add more worker nodes. Any nodes that don't find a master
-    #' just disappear.
+    #' 6. We're also looking to see them show up in the local console as replies
+    #' to the makePSOCKcluster call. If the local console appears to have
+    #' stalled while condor_q suggests all jobs have been dispatched, you can
+    #' run condor_submit condor.sub again to add more worker nodes. Any nodes
+    #' that don't find a master just disappear.
     #' 
     #' 7. When the makePSOCKcluster call has finished, we're ready to make 
     #' clusterCalls.
