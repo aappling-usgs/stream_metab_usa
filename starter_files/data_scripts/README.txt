@@ -1,0 +1,1 @@
+This folder is for data scripts that don't follow the regular mda.streams format but have been used to produce data for sciencebase.
