@@ -5,13 +5,12 @@ args <- process_make_args(c("sb_user", "sb_password", "var_src", "on_exists", "v
 #' 
 #' Include data for all variables with src="calc" in var_codes, all sites
 #' currently on SB, and the date range specified
-add_calc_data <- function(var_src="suntime_calcLon", on_exists="stop", sb_user, sb_password, verbose=TRUE) {
+add_calc_data <- function(var_src="suntime_calcLon", sites=list_sites(), on_exists="stop", sb_user, sb_password, verbose=TRUE) {
   # identify the data to download
   
   if(length(var_src) != 1) stop("expecting exactly 1 var_src")
   var <- parse_var_src(var_src)$var
   src <- parse_var_src(var_src)$src
-  sites <- list_sites()
   if(verbose) {
     message("will get data for this var_src: ", var_src)
     message("will calculate data for up to ", length(sites), " sites")
@@ -51,4 +50,4 @@ add_calc_data <- function(var_src="suntime_calcLon", on_exists="stop", sb_user, 
   writeLines(as.character(Sys.time()), sprintf("p1_import/out/is_ready_calc_%s.txt", var_src))
   invisible()
 }
-add_calc_data(var_src=args$var_src, on_exists=args$on_exists, sb_user=args$sb_user, sb_password=args$sb_password, verbose=args$verbose)
+add_calc_data(var_src=args$var_src, sites=list_sites(), on_exists=args$on_exists, sb_user=args$sb_user, sb_password=args$sb_password, verbose=args$verbose)
