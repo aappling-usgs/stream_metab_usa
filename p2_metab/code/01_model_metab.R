@@ -16,7 +16,7 @@ model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night'
       "sitetime_calcLon", 
       "doobs_nwis", 
       any=c("dosat_calcGGbts","dosat_calcGGbconst"),
-      "depth_calcDisch",
+      any=c("depth_calcDischRaymond","depth_calcDischHarvey"),
       "wtr_nwis",
       any=c("par_nwis","par_calcLat")), 
       logic="all")
@@ -49,7 +49,7 @@ model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night'
     # save the output. keep just a tiny bit of data, because saving it all would
     # be crazy - e.g., 1.7, 1.4 MB apiece, and redundant with what's already on
     # SB
-    metab_out@data <- rbind(head(metab_out@data,5), tail(metab_out@data,5))
+    # NO DON'T DO THIS: metab_out@data <- rbind(head(metab_out@data,5), tail(metab_out@data,5))
     if(cluster != 'condor_cluster') {
       out_file <- file.path(out_dir, sprintf("metab_out_%03d.RData", row_id))
       message("row ", row_id, ": saving to ", out_file)
@@ -90,6 +90,9 @@ model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night'
 model_metab_by_condor_cluster <- function() {
   
   #### Launch ####
+  library(parallel)
+  library(dplyr)
+  library(tidyr)
   
   # Start a cluster, wait for them to connect
   c1 = makePSOCKcluster(paste0('machine', 1:50), manual=TRUE, port=4043)
@@ -117,7 +120,30 @@ model_metab_by_condor_cluster <- function() {
   #' 7. When the makePSOCKcluster call has finished, we're ready to make 
   #' clusterCalls.
 
-    
+  
+  #### Test ####
+  hello_world <- function() {
+    clusterCall(c1, function(){ 
+      message("anonymous message in a log file")
+      return(list(hi="hello world!", session=sessionInfo()))
+    })
+  }
+  hello_jobs <- function() {
+    clusterApplyLB(c1, 1:77, function(job_id){ 
+      message("message from job ", job_id, " in a log file")
+      return(paste0("hello world from job ", job_id))
+    })
+  }
+  is_active_node <- function() {
+    sapply(1:length(c1), function(cid) {
+      tryCatch(
+        clusterCall(c1[cid], function(){ 
+          return(TRUE)
+        })[[1]],
+        error=function(e) FALSE)
+    })
+  }
+  
   #### Configure ####
   
   # Define utility fun and send it to all nodes
@@ -168,8 +194,16 @@ model_metab_by_condor_cluster <- function() {
         select(-none))
   }
   
+  has_installed <- function(pkg) {
+    inst <- clusterCall(c1, function() { unname(installed.packages()[,"Package"]) })
+    sapply(inst, function(x) pkg %in% x)
+  }
+  
   # Now actually install packages, checking for completion each time. already installed: methods, parallel
+  #all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'git2r') })) # the problem dependency of devtools
+  #all_first_out(out <- clusterCall(c1[!has_installed('git2r')], function(){ install_check('cran', 'git2r') })) # the problem dependency of devtools
   all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'devtools') }))
+  c1 <- c1[has_installed('devtools')] # give up on the ones that can't do it
   all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'dplyr') })) # also installs lazyeval
   all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'httr') })) # also installs jsonlite, stringr
   all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'LakeMetabolizer') }))

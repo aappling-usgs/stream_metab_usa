@@ -11,4 +11,4 @@ should_transfer_files = YES
 #+WantFlocking = true
 when_to_transfer_output = ON_EXIT
 notification = never
-queue 60
+queue 75
