@@ -1,5 +1,18 @@
-# Note that the original method was discontinued. It was insprired by a
-# very slow internet connection that timed out.
+# Dave Lorenz's original script, reworked by Alison Appling to be runnable as a
+# script
+
+# define the list of sites for which to acquire data. AA doesn't know where the
+# original list of 640 came from, so just use the current site list here.
+library(mda.streams)
+comid_640 <- data.frame(site_name=substring(grep("^nwis_", list_sites(), value=TRUE),6), stringsAsFactors = FALSE)
+
+#### Pull data from NWIS ####
+library(smwrQW)
+
+# Note that the original method was discontinued. It was insprired by a very slow
+# internet connection that timed out. (AA guesses that the new method is to break the
+# comids into chunks of 100)
+
 # Suspended sediment
 PC <- "80154"
 Tm1 <- importNWISqw(comid_640[1:100,1], PC, begin.date="2007-01-01")
@@ -7,8 +20,8 @@ Tm2 <- importNWISqw(comid_640[101:200,1], PC, begin.date="2007-01-01")
 Tm3 <- importNWISqw(comid_640[201:300,1], PC, begin.date="2007-01-01")
 Tm4 <- importNWISqw(comid_640[301:400,1], PC, begin.date="2007-01-01")
 Tm5 <- importNWISqw(comid_640[401:500,1], PC, begin.date="2007-01-01")
-Tm6 <- importNWISqw(comid_640[501:636,1], PC, begin.date="2007-01-01")
-SS <- rbindQW(Tm1, Tm2, Tm3, Tm4, Tm5, Tm6)
+Tm6 <- importNWISqw(comid_640[501:nrow(comid_640),1], PC, begin.date="2007-01-01")
+SS <- rbindQW(Tm5, Tm1, Tm2, Tm3, Tm4, Tm6) # was getting 'Error in charToDate(x) : character string is not in a standard unambiguous format' until I put Tm5 at the start of the list
 rm(Tm1, Tm2, Tm3, Tm4, Tm5, Tm6)
 # For > 5% censoring
 # with the exception of site 041482663, simple sub should be OK. For that site, the 
