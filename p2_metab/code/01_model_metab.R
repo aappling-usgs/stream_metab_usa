@@ -18,52 +18,62 @@ model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night'
       any=c("dosat_calcGGbts","dosat_calcGGbconst"),
       any=c("depth_calcDischRaymond","depth_calcDischHarvey"),
       "wtr_nwis",
-      any=c("par_nwis","par_calcLat")), 
+      any=c("par_nwis","par_calcLat","par_calcSw")), 
       logic="all")
     config_file <- stage_metab_config(
       tag=tag, strategy=strategy, 
       model=model, model_args=model_args,
-      site=sites, filename=config_path)
+      site=sites, filename=config_path,
+      par=choose_data_source('par', sites, src='calcSw', type='ts', logic='NLDAS light data'))
   } else {
     if(verbose) message("using existing config_file; to replace change the tag, strategy, or file")
     config_file <- config_path
   }
   
-  # define model function. variables the caller needs to know: verbose, config, out_dir, cluster
-  run_config_to_metab <- function(row_id, sleep=runif(1, min=0, max=5)) {
-    if(verbose) message("row ", row_id, ": starting at ", Sys.time())
-    
-    # really, truly model
-    metab_out <- config_to_metab(config, row_id, verbose=TRUE)[[1]]
-    
-    # report
-    if(verbose && is.null(attr(metab_out, 'errors')) && !is.character(metab_out) && is(metab_out, 'metab_model')) {
-      if(config[row_id,'model']=='metab_night') {
-        num_complete <- length(which(complete.cases(metab_out@fit[c('ER','K600')])))
-      } else {
-        num_complete <- length(which(complete.cases(metab_out@fit[c('GPP','ER','K600')])))
-      }
-      message("row ", row_id, ": metab_model produced with ", num_complete, " complete estimates")
-    }
-    
-    # save the output. keep just a tiny bit of data, because saving it all would
-    # be crazy - e.g., 1.7, 1.4 MB apiece, and redundant with what's already on
-    # SB
-    # NO DON'T DO THIS: metab_out@data <- rbind(head(metab_out@data,5), tail(metab_out@data,5))
-    if(cluster != 'condor_cluster') {
-      out_file <- file.path(out_dir, sprintf("metab_out_%03d.RData", row_id))
-      message("row ", row_id, ": saving to ", out_file)
-      save(metab_out, file=out_file)
-    }
-    
-    metab_out
-  }
-  
-  # execute model function
+  # prepare to execute model function
   config <- read.table(config_path, sep="\t", header=TRUE, colClasses="character")
+  rownames(config) <- 1:nrow(config) # this is usually (always?) unnecessary, but i really really want row names to match for the stage_metab_model step
   run_ids <- 1:nrow(config)
   if(verbose) message("running metabolism models on a ", cluster, " for ", length(run_ids)," of ", nrow(config), " config rows")
   run_names <- paste0("run_", run_ids)
+  
+  # define model function. variables the caller needs to know: verbose, config, out_dir, sb_user, sb_password
+  run_config_to_metab <- function(row_id, sleep=runif(1, min=0, max=5)) {
+    tryCatch({
+      
+      if(verbose) message("row ", row_id, ": starting at ", Sys.time())
+      
+      # really, truly model
+      metab_out <- config_to_metab(config, row_id, verbose=TRUE)[[1]]
+      
+      # report
+      if(verbose && is.null(attr(metab_out, 'errors')) && !is.character(metab_out) && is(metab_out, 'metab_model')) {
+        if(config[row_id,'model']=='metab_night') {
+          num_complete <- length(which(complete.cases(metab_out@fit[c('ER','K600')])))
+        } else {
+          num_complete <- length(which(complete.cases(metab_out@fit[c('GPP','ER','K600')])))
+        }
+        message("row ", row_id, ": metab_model produced with ", num_complete, " complete estimates")
+      }
+      
+      # save the output
+      staged <- stage_metab_model(
+        title=make_metab_run_title(format(as.Date(config[row_id,'date']), '%y%m%d'), config[row_id,'tag'], config[row_id,'strategy']), 
+        metab_outs=metab_out, folder=tempdir(), verbose=TRUE)
+      if(is.null(sbtools::current_session())) {
+        message("re-authenticating with ScienceBase with the password you set.\n")
+        sbtools::authenticate_sb(sb_user, sb_password) 
+      }
+      post_metab_model(staged)    
+      
+      # for the metab_all list, keep just a tiny bit of data, because we're
+      # already saving it in individual metab_model files
+      metab_out@data <- rbind(head(metab_out@data,5), tail(metab_out@data,5))
+      metab_out
+    }, error=function(e) e)
+  }
+  
+  # execute model function
   if(cluster=='local_process') {
     metab_all <- lapply(setNames(run_ids, run_names), run_config_to_metab, sleep=0)
   } else if(cluster=='local_cluster') {
@@ -79,12 +89,17 @@ model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night'
     stopCluster(c1)
   } else if(cluster=='condor_cluster') {
     metab_all <- model_metab_by_condor_cluster() # lengthy, so defined below
+    metab_all <- setNames(metab_all, run_names)
   }
   
   # save everything
   all_out_file <- file.path(out_dir, "metab_all.RData")
   if(verbose) message("saving the full list of models to ", all_out_file)
   save(metab_all, file=all_out_file)
+  
+  # post to ScienceBase
+  sbtools::authenticate_sb()
+  post_metab_run(out_dir, files=c("config.tsv", "metab_all.RData"))
 }
 
 model_metab_by_condor_cluster <- function() {
@@ -241,17 +256,23 @@ model_metab_by_condor_cluster <- function() {
   assign('config', envir=.GlobalEnv, value=config)
   assign('verbose', envir=.GlobalEnv, value=verbose)
   assign('out_dir', envir=.GlobalEnv, value=out_dir)
-  assign('cluster', envir=.GlobalEnv, value=cluster)
   clusterExport(c1, 'config')
   clusterExport(c1, 'verbose')
   clusterExport(c1, 'out_dir')
-  clusterExport(c1, 'cluster')
+  # manually assign values to SBUSER and SBPASS in the console
+  assign('sb_user', envir=.GlobalEnv, value=SBUSER)
+  assign('sb_password', envir=.GlobalEnv, value=SBPASS)
+  clusterExport(c1, 'sb_user')
+  clusterExport(c1, 'sb_password')
   
   # run the model
-  all_out <- clusterApplyLB(c1, run_ids, run_config_to_metab)
+  all_out <- clusterApplyLB(c1, 1:nrow(config), run_config_to_metab)
+  # check for completion
+  sites <- config$site
+  model_up <- sapply(sites, function(site) !is.null(grep(pattern=paste0(site,'(.*)MLE_for_PRK_wHarvey_and_sw'), x=model_list)))
   all_out <- setNames(all_out, run_names)
   
-
+  
   ### CAREFUL! ### clean up the cluster if we're done
   stopCluster(c1)
   
