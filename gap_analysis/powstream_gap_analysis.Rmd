@@ -1,0 +1,431 @@
+---
+title: "Gap Analysis"
+author: "Lindsay R. Carr"
+date: "October 16, 2015"
+output: pdf_document
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+#run this if you don't have csv files already saved on the computer
+
+library(powstreams)
+library(ggplot2)
+library(knitr)
+library(dplyr)
+library(tidyr)
+
+# read dbf files (that's what is downloaded from ScienceBase)
+# then convert dbf's into csv
+library(foreign)
+allData_precip <- read.dbf("ppt30yr.dbf")
+write.table(allData_precip, "PPT30YR_AC.csv", sep=",")
+
+#grab metabolism site data
+metabDataAll <- get_meta()
+metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
+
+
+```
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+
+library(powstreams)
+library(unitted)
+library(ggplot2)
+library(knitr)
+library(dplyr)
+library(tidyr)
+
+metabDataAll <- get_meta()
+metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
+
+# metabDataAll <- read.csv("../metabData.csv")
+# metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
+
+# load data for accumulated watersheds for the entire US
+allData_pop <- read.csv("../AC_popd10.csv")
+allData_land <- read.csv("../AC_NLCD11.csv") #watershed area + agriculture
+allData_run <- read.csv("../RUNOFF_AC.csv")
+allData_temp <- read.csv("../TMEAN_AC.csv")
+allData_precip <- read.csv("../PPT30YR_AC.csv")
+
+# load data for reach catchments for entire US
+#cannot find pop density file for reach catchment on science base
+allData_land_RE <- read.csv("../NLCD11.csv")
+#cannot find runoff for reach catchment
+#cannot find temperature for reach catchment
+#cannot find precipitation for reach catchment
+
+```
+
+```{r functions, echo=FALSE, warning=FALSE, message=FALSE}
+
+format.df <- function(metab_var, all_var, metabData, allData, type){
+  metab_vals <- metabData[[metab_var]]
+  
+  if(!is.null(type) && type == "ac_ag") {
+    all_vals <- allData[, all_var]/allData[, "ACLU_AREA"]
+  } else if(!is.null(type) && type == "re_ag"){
+    all_vals <- allData[, all_var]/allData[, "NLCD11_ARE"]
+  } else {
+    all_vals <- allData[, all_var]
+  }
+    
+  df <- data.frame(data_type=c(rep("metab", length(metab_vals)),
+                               rep("all", length(all_vals))),
+                   data_vals=c(v(metab_vals), all_vals))
+}
+
+format.catchment.df <- function(accum_df, reach_df){
+  accum_df <- mutate(.data = accum_df, catchment = rep("Accumulated Watershed", 
+                                                       length(accum_df$data_vals)))
+  reach_df <- mutate(.data = reach_df, catchment = rep("Reach Catchment", 
+                                                       length(reach_df$data_vals)))
+  df <- rbind(accum_df, reach_df)
+}
+
+count.table <- function(df){
+  
+  metab_vals <- df %>% filter(data_type == "metab") %>% select(data_vals)
+  all_vals <- df %>% filter(data_type == "all") %>% select(data_vals)
+  
+  data_count <- data.frame("Metabolism Sites" = c(na.count(metab_vals),
+                                                  notNa.count(metab_vals)),
+                           "All US Sites" = c(na.count(all_vals),
+                                              notNa.count(all_vals)),
+                           row.names = c("Missing", "Not Missing"))
+  
+} 
+
+na.count <- function(data) {
+  num_nas <- length(which(is.na(data)))
+}
+
+notNa.count <- function(data) {
+  num_nas <- length(which(!is.na(data)))
+}
+
+get.median <- function(df, type, catchment){
+#   vals <- df %>% 
+#     filter(data_type == type) %>% 
+#     filter(catchment == catchment) %>% 
+#     .$data_vals
+#   
+#   median(vals)
+  
+  vals <- df$data_vals[which(df$data_type == type & df$catchment == catchment)]
+  med_val <- median(na.omit(vals))
+  return(round(med_val, digits=3))
+}
+
+format.med.df <- function(df, reach){
+  
+  median_all_ac <- get.median(df, type="all", catchment="Accumulated Watershed")
+  median_metab_ac <- get.median(df, type="metab", catchment="Accumulated Watershed")
+  median_df <- data.frame(data_vals = c(median_all_ac, median_metab_ac),
+                          data_type = c("all", "metab"),
+                          catchment = rep("Accumulated Watershed", 2),
+                          plot_labels = c(paste(median_all_ac, "(Accum)"),
+                                          paste(median_metab_ac, "(Accum)")))
+  
+  if(reach){
+    median_all_re <- get.median(df, type="all", catchment="Reach Catchment")
+    median_metab_re <- get.median(df, type="metab", catchment="Reach Catchment")
+    median_df_re <- data.frame(data_vals = c(median_all_re, median_metab_re),
+                            data_type = c("all", "metab"),
+                            catchment = rep("Reach Catchment", 2),
+                            plot_labels = c(paste(median_all_re, "(Reach)"),
+                                            paste(median_metab_re, "(Reach)")))
+    median_df <- rbind(median_df, median_df_re)
+  }
+
+  return(median_df)  
+}
+
+plot.dens <- function(df, title, log, reach, xlabel){
+  
+  median_df <- format.med.df(df, reach)
+  # working on plot labels for medians:
+  all_label <- paste("All US Sites:\n", 
+                     paste(filter(median_df, data_type=="all") %>% 
+                             .$plot_labels, collapse="\n "))
+  metab_label <- paste("Metabolism Sites:\n", 
+                       paste(filter(median_df, data_type=="metab") %>% 
+                               .$plot_labels, collapse="\n "))
+  
+  densPlot <- ggplot(df, aes(x=data_vals)) + 
+    geom_density(aes(fill=data_type), alpha=0.5) +
+    ggtitle(title) + 
+    labs(y="Density", x=xlabel) +
+    geom_vline(data=median_df, aes(xintercept = data_vals,
+                                   color = data_type),
+               show_guide = TRUE) +
+    scale_fill_manual(name="Site Type",
+                      breaks=c("all", "metab"),
+                      labels=c("All US Sites", "Metabolism Sites"),
+                      values=c("red", "blue")) +
+    scale_colour_manual(name="Median Values",
+                        breaks=c("all", "metab"),
+                        labels=c(all_label, metab_label),
+                        values=c("red", "blue"))
+  
+  if(log){
+    densPlot <- densPlot + scale_x_log10()
+  }
+
+  if(reach){
+    densPlot <- densPlot + facet_grid(. ~ catchment)
+  }
+  
+  print(densPlot)
+  
+}
+
+eflow.mag7 <- function(sites){
+  startDate <- "1900"
+  endDate <- "2015"
+  stats <- "magnifSeven"
+  allstats <- c()
+  
+  for(x in sites){
+    statsout <- ObservedStatsUSGS(x, startDate, endDate, stats)
+    allstats <- rbind(allstats, statsout)
+  }
+  
+  return(allstats)
+}
+
+eflowPlot <- function(stat_df, title){
+  
+  all_stat_df <- gather(stat_df, stat, value, -site_no, -min_date, -max_date, -comment)
+  
+   eflowPlot <- ggplot(all_stat_df, aes(x=stat, y=value)) + 
+     geom_boxplot() +
+     ggtitle(title) +
+     scale_y_log10() +
+     labs(x="Statistic", y="Value", title="Eflow Statistics")
+    
+   return(eflowPlot)
+}
+
+```
+
+This analysis will compare conditions at stream sites that have metabolism estimates with the rest of the stream sites in the US. The goal is to identify which conditions of US streams have not been fully represented by the collection of current metabolism sites. Identification of such underrepresented conditions will help in choosing 30 new monitoring sites to create a more robust dataset for metabolism estimates. 
+
+Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 Accumulated and Reach Catchment Variables* dataset on ScienceBase. Data representing the current metabolism sites comes from using the `get_meta()` function in `powstreams.R` and has data for the 291 sites with metabolism estimates. Seven metrics have been used in this analysis; additionally, each metric has an *Accumulated Watershed* (entire watershed) density plot and a *Reach Catchment* plot.
+
+**Metrics used for this analysis:**
+
+* [Population Density](#popdens)
+* [Agriculture](#agriculture)
+* [Runoff](#runoff)
+* [Temperature](#temp)
+* [Precipitation](#precip)
+* [Watershed Area](#watershed)
+* [Eflow Stats](#eflow)
+
+\newpage
+
+```{r popdens, echo=FALSE}
+```
+
+##Population Density
+
+Population density is based on the 2010 US Population Census and is measured in people per square kilometer. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+df_pop_AC <- format.df("landcover.AC_POPD10", "POPD10_AC", metabData, allData_pop, type=NULL)
+df_pop_RE <- format.df("landcover.RE_POPD10", "MEAN", metabData, allData_pop, type=NULL)
+
+df_pop <- format.catchment.df(df_pop_AC, df_pop_RE)
+plot.dens(df_pop, "Population Density (2010 US Population Census)", log=TRUE, reach=TRUE, 
+          xlabel="Population Density\n(people per square kilometer)")
+
+```
+
+
+\newpage
+
+```{r agriculture, echo=FALSE}
+```
+
+##Agriculture
+
+Data representing agriculture is the sum of the land-use classes 81 (Pasture/Hay) and 82 (Cultivated Crops). The values are shown as the percent of the watershed area covered in pasture/hay or cultivated crops.    
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+df_ag_crop_AC <- format.df("landcover.AC_NLCD11Buffpct82", "ACLU11_82", metabData, allData_land, type="ac_ag")
+df_ag_hay_AC <- format.df("landcover.AC_NLCD11Buffpct81", "ACLU11_81", metabData, allData_land, type="ac_ag")
+df_ag_AC <- data.frame(data_type = df_ag_crop_AC$data_type, 
+                       data_vals = df_ag_crop_AC$data_vals + df_ag_hay_AC$data_vals)
+
+df_ag_crop_RE <- format.df("landcover.RE_NLCD11Buffpct82", "NLCD11_82", metabData, allData_land_RE, type="re_ag")
+df_ag_hay_RE <- format.df("landcover.RE_NLCD11Buffpct81", "NLCD11_81", metabData, allData_land_RE, type="re_ag")
+df_ag_RE <- data.frame(data_type = df_ag_crop_RE$data_type, 
+                       data_vals = df_ag_crop_RE$data_vals + df_ag_hay_RE$data_vals)
+
+df_ag <- format.catchment.df(df_ag_AC, df_ag_RE) 
+plot.dens(df_ag, "Fractional Coverage of Agriculture\n(National Land Cover Database 2011)", log=FALSE, reach=TRUE,
+          xlabel="Fraction of Pasture + Crops in Watershed Area")
+
+```
+
+
+\newpage
+
+```{r runoff, echo=FALSE}
+```
+
+##Runoff
+
+Runoff data is based on streamflow records from 1971-2000, and is measured in cubic feet per second (cfs).    
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+df_run_AC <- format.df("hydrol.RUNOFF_AC", "RUNOFF_AC", metabData, allData_run, type=NULL)
+df_run_RE <- format.df("hydrol.RUNOFF_RE", "MEAN", metabData, allData_run, type=NULL)
+
+df_run <- format.catchment.df(df_run_AC, df_run_RE) 
+plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE,
+          xlabel="Runoff (cfs)")
+
+```
+
+
+```{r eval=FALSE, echo=FALSE}
+library('geoknife')
+
+#doesn't work:
+allMetab_sites <- as.character(metabData$site_name[which(metabData$site_database == "nwis")])
+coords <- mda.streams::get_site_coords(allMetab_sites, format="geoknife")
+job <- geoknife(wait=T, REQUIRE_FULL_COVERAGE="false",
+                stencil = coords, 
+                fabric = webdata('prism', 
+                                 times=c('1971-01-01','2000-12-31'), 
+                                 variables=c('ppt','tmx')))
+data <- result(job, with.units=TRUE)
+
+
+##works:
+sites <- c("nwis_02110815")
+coords <- mda.streams::get_site_coords(sites, format="geoknife")
+job <- geoknife(wait=T, 
+                stencil = coords, 
+                fabric = webdata('prism', 
+                                 times=c('1971-01-01','2000-12-31'), 
+                                 variables=c('ppt','tmx')))
+data <- result(job, with.units=TRUE)
+
+metab_precips <- colMeans(data[which(data$variable == "ppt"),sites])
+metab_temps <- colMeans(data[which(data$variable == "tmx"),sites])
+
+```
+
+
+\newpage
+
+```{r temp, echo=FALSE}
+```
+
+##Temperature
+
+Temperature data is the average 30 year temperature (in deg C) from 1971-2000 based on 800 meter PRISM source grids.    
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+df_temp_AC <- format.df("climate.TMEAN_AC", "TMEAN_AC", metabData, allData_temp, type=NULL)
+df_temp_RE <- format.df("climate.TMEAN_RE", "MEAN", metabData, allData_temp, type=NULL)
+
+df_temp <- format.catchment.df(df_temp_AC, df_temp_RE)
+plot.dens(df_temp, "Average Temperature\n(1971-2000)", log=FALSE, reach=TRUE,
+          xlabel="Temperature (deg C)")
+
+```
+
+
+\newpage
+
+```{r precip, echo=FALSE}
+```
+
+##Precipitation
+
+Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data.    
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+df_precip_AC <- format.df("climate.PPT30YR_AC", "PPT30YR_AC", metabData, allData_precip, type=NULL)
+df_precip_RE <- format.df("climate.PPT30YR_RE", "MEAN", metabData, allData_precip, type=NULL)
+
+df_precip <- format.catchment.df(df_precip_AC, df_precip_RE)
+plot.dens(df_precip, "Average Annual Precipitation\n(1971-2000)", log=TRUE, reach=TRUE,
+          xlabel="Precipitation (cm)")
+
+```
+
+
+\newpage
+
+##Watershed Area
+
+The drainage area for either the accumulated watershed or the reach catchment, measured in square meters.
+
+```{r watershed, echo=FALSE, warning=FALSE, message=FALSE}
+
+df_area_AC <- format.df("landcover.ACCUM_AREA", "ACLU_AREA", metabData, allData_land, type=NULL) 
+df_area_RE <- format.df("landcover.REACH_AREA", "NLCD11_ARE", metabData, allData_land_RE, type=NULL)
+
+df_area <- format.catchment.df(df_area_AC, df_area_RE)
+plot.dens(df_area, "Watershed Areas", log=TRUE, reach=TRUE, xlabel="Watershed Area (sq. meters)")
+
+```
+
+
+\newpage
+
+##Hydrologic Indicator Statistics
+
+A collection of hydrologic indicator statistics calculated using streamflow data for the 291 metabolism sites. The R package EflowStats, developed by Jessica Thompson and Stacey Archfield, was used to pull streamflow data from NWIS and calculate the stats. Some of the sites had incomplete data to calculate the statistics (see Table 2 below).   
+
+```{r eflow, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE, eval=TRUE}
+
+#sites must be from the get_meta() because the csv dropped the leading 0
+
+library(EflowStats)
+
+not_working <- c("0166818623", "0166818985", "02110400", "02148315", "02162035",
+                 "02336152", "02344630", "03259813", "04119400", "05406469", 
+                 "05406479", "08437710", "08447300", "11463682", "11463980", 
+                 "11465240", "13173600", "13206400")
+working <- which(!metabData$site_num %in% not_working)
+
+#eflow_metab <- eflow.mag7(metabData$site_num[working])
+eflow_metab <- read.csv("../eflow_metab.csv")
+
+missing_table <- data.frame(`Site Number`=not_working)
+
+var_table <- data.frame(Variable=c("lam1Obs", "tau2Obs", "tau3Obs", "tau4Obs", 
+                                  "ar1Obs", "amplitudeObs", "phaseObs"),
+                       Definition=c("Arithmetic mean", 
+                                    "Coefficient of L-variation - analagous to coefficient of variation.",
+                                    "The third L-moment ratio or L-skew.",
+                                    "The fourth L-moment ratio or L-kurtosis.",
+                                    "AR1 correlation coefficient.",
+                                    "Amplitude of the seasonal signal. Compute seasonality variables by first
+                                    standardizing flows, using the fitting relation A*cos(2*pi*t) + B*sin(2*pi*t).",
+                                    "Phase of the seasonal signal. Compute seasonality variables by first 
+                                    standardizing flows, the fitting relation A*cos(2*pi*t) + B*sin(2*pi*t)."))
+
+```
+
+```{r eflow_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+eflowPlot(eflow_metab, "")
+
+kable(var_table, caption="Table 1. EflowStats variable definitions")
+
+kable(missing_table, caption="Table 2. Metabolism sites not included in hydrologic indicator stats calculations.")
+
+```
