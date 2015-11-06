@@ -44,15 +44,15 @@ metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", 
 # metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
 
 # load data for accumulated watersheds for the entire US
-allData_pop <- read.csv("../AC_popd10.csv")
-allData_land <- read.csv("../AC_NLCD11.csv") #watershed area + agriculture
-allData_run <- read.csv("../RUNOFF_AC.csv")
-allData_temp <- read.csv("../TMEAN_AC.csv")
-allData_precip <- read.csv("../PPT30YR_AC.csv")
+allData_pop <- read.csv("data(DO_NOT_COMMIT)/AC_popd10.csv")
+allData_land <- read.csv("data(DO_NOT_COMMIT)/AC_NLCD11.csv") #watershed area + agriculture
+allData_run <- read.csv("data(DO_NOT_COMMIT)/RUNOFF_AC.csv")
+allData_temp <- read.csv("data(DO_NOT_COMMIT)/TMEAN_AC.csv")
+allData_precip <- read.csv("data(DO_NOT_COMMIT)/PPT30YR_AC.csv")
 
 # load data for reach catchments for entire US
 #cannot find pop density file for reach catchment on science base
-allData_land_RE <- read.csv("../NLCD11.csv")
+allData_land_RE <- read.csv("data(DO_NOT_COMMIT)/NLCD11.csv")
 #cannot find runoff for reach catchment
 #cannot find temperature for reach catchment
 #cannot find precipitation for reach catchment
@@ -403,7 +403,7 @@ not_working <- c("0166818623", "0166818985", "02110400", "02148315", "02162035",
 working <- which(!metabData$site_num %in% not_working)
 
 #eflow_metab <- eflow.mag7(metabData$site_num[working])
-eflow_metab <- read.csv("../eflow_metab.csv")
+eflow_metab <- read.csv("data(DO_NOT_COMMIT)/eflow_metab.csv")
 
 missing_table <- data.frame(`Site Number`=not_working)
 
