@@ -5,29 +5,6 @@ date: "October 16, 2015"
 output: pdf_document
 ---
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
-#run this if you don't have csv files already saved on the computer
-
-library(powstreams)
-library(ggplot2)
-library(knitr)
-library(dplyr)
-library(tidyr)
-
-# read dbf files (that's what is downloaded from ScienceBase)
-# then convert dbf's into csv
-library(foreign)
-allData_precip <- read.dbf("ppt30yr.dbf")
-write.table(allData_precip, "PPT30YR_AC.csv", sep=",")
-
-#grab metabolism site data
-metabDataAll <- get_meta()
-metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
-
-
-```
-
-
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 
 library(powstreams)
@@ -43,19 +20,16 @@ metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", 
 # metabDataAll <- read.csv("../metabData.csv")
 # metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
 
-# load data for accumulated watersheds for the entire US
+# load data for watersheds for the entire US
 allData_pop <- read.csv("data(DO_NOT_COMMIT)/AC_popd10.csv")
 allData_land <- read.csv("data(DO_NOT_COMMIT)/AC_NLCD11.csv") #watershed area + agriculture
+allData_land_RE <- read.csv("data(DO_NOT_COMMIT)/NLCD11.csv")
 allData_run <- read.csv("data(DO_NOT_COMMIT)/RUNOFF_AC.csv")
 allData_temp <- read.csv("data(DO_NOT_COMMIT)/TMEAN_AC.csv")
 allData_precip <- read.csv("data(DO_NOT_COMMIT)/PPT30YR_AC.csv")
 
-# load data for reach catchments for entire US
-#cannot find pop density file for reach catchment on science base
-allData_land_RE <- read.csv("data(DO_NOT_COMMIT)/NLCD11.csv")
-#cannot find runoff for reach catchment
-#cannot find temperature for reach catchment
-#cannot find precipitation for reach catchment
+allData_order <- read.table("data(DO_NOT_COMMIT)/nhdplus_v2_streamorder", 
+                           sep=";", header = TRUE)
 
 ```
 
@@ -217,13 +191,14 @@ Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 
 
 **Metrics used for this analysis:**
 
-* [Population Density](#popdens)
-* [Agriculture](#agriculture)
-* [Runoff](#runoff)
-* [Temperature](#temp)
-* [Precipitation](#precip)
-* [Watershed Area](#watershed)
-* [Eflow Stats](#eflow)
+* Population Density
+* Agriculture
+* Runoff
+* Temperature
+* Precipitation
+* Watershed Area
+* Hydrologic Indicator Statistics
+* Stream Order
 
 \newpage
 
@@ -383,6 +358,33 @@ plot.dens(df_area, "Watershed Areas", log=TRUE, reach=TRUE, xlabel="Watershed Ar
 
 ```
 
+\newpage
+
+##Stream Order
+
+Stream order is a representation of the size and complexity of a stream or river. Stream order values used in this comparison come from NHDPlus, which uses the Strahler stream ordering methodology to calculate stream order values. 
+
+```{r order, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+
+metab_order <- filter(allData_order, comid %in% metabData$nhdplus_id)
+df_order <- format.df("streamorde", "streamorde", metab_order, allData_order, type=NULL) 
+
+stream_order_range <- range(allData_order$streamord)
+hist_breaks <- stream_order_range[1]:stream_order_range[2]
+
+ggplot(data=df_order, aes(data_vals)) +
+  geom_histogram(alpha = .5, binwidth=1, origin = -0.5,
+                 col="black", aes(fill=data_type)) +
+  scale_x_continuous(breaks=hist_breaks) +
+  facet_grid(data_type ~ ., scales="free") +
+  ggtitle("Strahler Stream Order Values") + 
+  labs(y="Count", x="Stream Order") + 
+  scale_fill_manual(name="Site Type",
+                  breaks=c("all", "metab"),
+                  labels=c("All US Sites", "Metabolism Sites"),
+                  values=c("red", "blue"))
+
+```
 
 \newpage
 
@@ -390,7 +392,7 @@ plot.dens(df_area, "Watershed Areas", log=TRUE, reach=TRUE, xlabel="Watershed Ar
 
 A collection of hydrologic indicator statistics calculated using streamflow data for the 291 metabolism sites. The R package EflowStats, developed by Jessica Thompson and Stacey Archfield, was used to pull streamflow data from NWIS and calculate the stats. Some of the sites had incomplete data to calculate the statistics (see Table 2 below).   
 
-```{r eflow, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE, eval=TRUE}
+```{r eflow, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE, eval=FALSE}
 
 #sites must be from the get_meta() because the csv dropped the leading 0
 
@@ -421,7 +423,7 @@ var_table <- data.frame(Variable=c("lam1Obs", "tau2Obs", "tau3Obs", "tau4Obs",
 
 ```
 
-```{r eflow_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r eflow_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
 eflowPlot(eflow_metab, "")
 
 kable(var_table, caption="Table 1. EflowStats variable definitions")
@@ -429,3 +431,4 @@ kable(var_table, caption="Table 1. EflowStats variable definitions")
 kable(missing_table, caption="Table 2. Metabolism sites not included in hydrologic indicator stats calculations.")
 
 ```
+
