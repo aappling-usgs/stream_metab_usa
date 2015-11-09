@@ -7,11 +7,10 @@ output: pdf_document
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
 #run this if you don't have csv files already saved on the computer
-
+library(dplyr)
 library(powstreams)
 library(ggplot2)
 library(knitr)
-library(dplyr)
 library(tidyr)
 
 # read dbf files (that's what is downloaded from ScienceBase)
@@ -430,7 +429,8 @@ kable(missing_table, caption="Table 2. Metabolism sites not included in hydrolog
 
 ```
 
-```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=3.5, fig.width=5.2}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, results='hide'}
 
 
 library(rgeos)
@@ -439,6 +439,7 @@ library(mda.streams)
 library(dplyr)
 library(unitted)
 library(RColorBrewer)
+library(httr)
 
 plot.CRS <- "+init=epsg:2163"
 
@@ -452,7 +453,7 @@ site.color = rgb(1,0,0,0.3)
 # ecoregions:
 destination = tempfile(pattern = 'eco_shape', fileext='.zip')
 query <- 'http://cida.usgs.gov/gdp/geoserver/wfs?service=WFS&request=GetFeature&typeName=derivative:Level_III_Ecoregions&outputFormat=shape-zip&version=1.0.0'
-file <- httr::GET(query, httr::write_disk(destination, overwrite=T), httr::progress())
+file <- GET(query, write_disk(destination, overwrite=T), progress())
 shp.path <- tempdir()
 unzip(destination, exdir = shp.path)
 eco = readOGR(shp.path, layer='Level_III_Ecoregions') %>% 
@@ -468,6 +469,9 @@ sp2 <- SpatialPoints(site.points, proj4string=CRS("+proj=longlat + datum=wgs84")
   spTransform(CRS(plot.CRS))
 ## -- get spatial data /--
 
+```
+
+```{r echo=FALSE, eval=TRUE}
 ## -- analyze point in polygon --
 point.in = gContains(eco, sp2, byid=TRUE)
 
@@ -480,9 +484,11 @@ bins = pretty(counts.by.id, 100)
 key.bins = pretty(counts.by.id, 5)
 pal = colorRampPalette(brewer.pal(9, 'YlGnBu'))(length(bins))
 key.cols = colorRampPalette(brewer.pal(9, 'YlGnBu'))(length(key.bins))
+```
 
+```{r echo=FALSE, eval=TRUE}
 if (bins[1] != 0 | key.cols[1] != 0)
-  stop('cannot assign zero color when there is no zero value')
+  #stop('cannot assign zero color when there is no zero value')
 pal[1] <- missing.data # 0 is grey
 key.cols[1] <- missing.data  # 0 is grey
 #get closest bin
@@ -491,8 +497,9 @@ cols = rep(NA, length(counts.by.id))
 cols[!is.na(bin)] = pal[bin[!is.na(bin)]]
 ## -- color markers /-- 
 
+```
 
-## -- plot map -- 
+```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=3.5, fig.width=5.2}
 layout(matrix(data = c(1,1,1,1,1,1,2), ncol=1))
 par(mai = c(0,0,0,0), omi = c(0,0,0,0))
 
