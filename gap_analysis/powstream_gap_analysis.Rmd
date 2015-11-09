@@ -429,3 +429,90 @@ kable(var_table, caption="Table 1. EflowStats variable definitions")
 kable(missing_table, caption="Table 2. Metabolism sites not included in hydrologic indicator stats calculations.")
 
 ```
+
+```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=3.5, fig.width=5.2}
+
+
+library(rgeos)
+library(rgdal)
+library(mda.streams)
+library(dplyr)
+library(unitted)
+library(RColorBrewer)
+
+plot.CRS <- "+init=epsg:2163"
+
+missing.data = "#B3B3B3"
+site.color = rgb(1,0,0,0.3)
+
+
+# level III Ecoregions come from GDP geoserver
+
+## -- get spatial data --
+# ecoregions:
+destination = tempfile(pattern = 'eco_shape', fileext='.zip')
+query <- 'http://cida.usgs.gov/gdp/geoserver/wfs?service=WFS&request=GetFeature&typeName=derivative:Level_III_Ecoregions&outputFormat=shape-zip&version=1.0.0'
+file <- httr::GET(query, httr::write_disk(destination, overwrite=T), httr::progress())
+shp.path <- tempdir()
+unzip(destination, exdir = shp.path)
+eco = readOGR(shp.path, layer='Level_III_Ecoregions') %>% 
+  spTransform(CRS(plot.CRS))
+
+# sites: 
+metabDataAll <- get_meta()
+metab.sites <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ]$site_name
+
+site.loc <- get_site_coords(metab.sites, format="normal")
+site.points <- data.frame(lon=site.loc$lon, lat = site.loc$lat)
+sp2 <- SpatialPoints(site.points, proj4string=CRS("+proj=longlat + datum=wgs84")) %>% 
+  spTransform(CRS(plot.CRS))
+## -- get spatial data /--
+
+## -- analyze point in polygon --
+point.in = gContains(eco, sp2, byid=TRUE)
+
+counts.by.id = colSums(point.in)
+## -- analyze point in polygon /--
+
+
+## -- color markers -- 
+bins = pretty(counts.by.id, 100)
+key.bins = pretty(counts.by.id, 5)
+pal = colorRampPalette(brewer.pal(9, 'YlGnBu'))(length(bins))
+key.cols = colorRampPalette(brewer.pal(9, 'YlGnBu'))(length(key.bins))
+
+if (bins[1] != 0 | key.cols[1] != 0)
+  stop('cannot assign zero color when there is no zero value')
+pal[1] <- missing.data # 0 is grey
+key.cols[1] <- missing.data  # 0 is grey
+#get closest bin
+bin = unname(sapply(counts.by.id, function(x) ifelse(is.na(x),NA,which.min(abs(x-bins)))))
+cols = rep(NA, length(counts.by.id))
+cols[!is.na(bin)] = pal[bin[!is.na(bin)]]
+## -- color markers /-- 
+
+
+## -- plot map -- 
+layout(matrix(data = c(1,1,1,1,1,1,2), ncol=1))
+par(mai = c(0,0,0,0), omi = c(0,0,0,0))
+
+xlim <- c(-1534607.9,2050000.1) # specific to the transform we are using
+ylim <- c(-2072574.6,727758.7)
+
+plot(eco, add = FALSE, col = cols, border = 'grey35', lwd = 0.5, xlim = xlim, ylim = ylim)
+plot(sp2, add = TRUE, col=site.color, pch=20, cex=0.5)
+
+
+# secondary plot for color legend
+plot(c(NA,NA),c(NA,NA), axes=F, ylim=c(0,1),xlim=c(0,1))
+bin.w = 0.07
+spc = .02
+text(.1,.5, 'Number of sites', pos=3, offset=0.1)
+for(i in 1:length(key.cols)){
+  x1 = 0.20+(i-1)*(bin.w+spc)
+  graphics::rect(x1, 0.3, x1+bin.w, 0.8, col=key.cols[i], lwd=NA)
+  text(x1+bin.w/2, y=0.33, labels=key.bins[i], pos=1)
+}
+## -- plot map /-- 
+
+```
