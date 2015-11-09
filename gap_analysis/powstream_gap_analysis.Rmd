@@ -42,6 +42,8 @@ format.df <- function(metab_var, all_var, metabData, allData, type){
     all_vals <- allData[, all_var]/allData[, "ACLU_AREA"]
   } else if(!is.null(type) && type == "re_ag"){
     all_vals <- allData[, all_var]/allData[, "NLCD11_ARE"]
+  } else if(!is.null(type) && type == "re_precip"){
+    all_vals <- allData[, all_var]/1000
   } else {
     all_vals <- allData[, all_var]
   }
@@ -333,7 +335,7 @@ Precipitation data is the average annual precipitation (cm/year) from 1971-2000 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 df_precip_AC <- format.df("climate.PPT30YR_AC", "PPT30YR_AC", metabData, allData_precip, type=NULL)
-df_precip_RE <- format.df("climate.PPT30YR_RE", "MEAN", metabData, allData_precip, type=NULL)
+df_precip_RE <- format.df("climate.PPT30YR_RE", "MEAN", metabData, allData_precip, type="re_precip")
 
 df_precip <- format.catchment.df(df_precip_AC, df_precip_RE)
 plot.dens(df_precip, "Average Annual Precipitation\n(1971-2000)", log=TRUE, reach=TRUE,
