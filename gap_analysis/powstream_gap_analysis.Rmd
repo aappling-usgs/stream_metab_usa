@@ -330,7 +330,7 @@ plot.dens(df_temp, "Average Temperature\n(1971-2000)", log=FALSE, reach=TRUE,
 
 ##Precipitation
 
-Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data.    
+Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data. A correction has been applied to the data coming from Science Base for all US sites at the reach catchment scale. Ted Stets divided the reach catchment values for the metabolism sites by 1000; the same correction has been applied for all the sites in the US.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
