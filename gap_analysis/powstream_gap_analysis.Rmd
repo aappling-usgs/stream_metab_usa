@@ -202,6 +202,15 @@ Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 
 * Hydrologic Indicator Statistics
 * Stream Order
 
+```{r}
+allsites_data <- list(allData_land, allData_land_RE, allData_pop, allData_precip, allData_run, allData_temp)
+num_allsites <- max(sapply(allsites_data, function(x) {length(unique(x$COMID))}))
+num_metabsites <- length(unique(metabData$site_num))
+num_sites_table <- data.frame(`Number of Sites`=c(num_metabsites, num_allsites),
+                              row.names = c("Metabolism", "All US"))
+kable(num_sites_table)
+```
+
 \newpage
 
 ```{r popdens, echo=FALSE}
