@@ -2,7 +2,7 @@
 title: "Gap Analysis"
 author: "Lindsay R. Carr"
 date: "October 16, 2015"
-output: pdf_document
+output: html_document
 ---
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
@@ -151,7 +151,7 @@ plot.dens <- function(df, title, log, reach, xlabel){
   }
 
   if(reach){
-    densPlot <- densPlot + facet_grid(. ~ catchment)
+    densPlot <- densPlot + facet_grid(catchment ~ .)
   }
   
   print(densPlot)
@@ -202,11 +202,11 @@ Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 
 * Hydrologic Indicator Statistics
 * Stream Order
 
-```{r}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 allsites_data <- list(allData_land, allData_land_RE, allData_pop, allData_precip, allData_run, allData_temp)
 num_allsites <- max(sapply(allsites_data, function(x) {length(unique(x$COMID))}))
 num_metabsites <- length(unique(metabData$site_num))
-num_sites_table <- data.frame(`Number of Sites`=c(num_metabsites, num_allsites),
+num_sites_table <- data.frame(`Num Sites`=c(num_metabsites, num_allsites),
                               row.names = c("Metabolism", "All US"))
 kable(num_sites_table)
 ```
