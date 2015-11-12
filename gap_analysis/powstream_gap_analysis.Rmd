@@ -2,7 +2,7 @@
 title: "Gap Analysis"
 author: "Lindsay R. Carr"
 date: "October 16, 2015"
-output: html_document
+output: pdf_document
 ---
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
@@ -122,7 +122,7 @@ format.med.df <- function(df, reach){
 plot.dens <- function(df, title, log, reach, xlabel){
   
   median_df <- format.med.df(df, reach)
-  # working on plot labels for medians:
+
   all_label <- paste("All US Sites:\n", 
                      paste(filter(median_df, data_type=="all") %>% 
                              .$plot_labels, collapse="\n "))
@@ -130,13 +130,13 @@ plot.dens <- function(df, title, log, reach, xlabel){
                        paste(filter(median_df, data_type=="metab") %>% 
                                .$plot_labels, collapse="\n "))
   
-  densPlot <- ggplot(df, aes(x=data_vals)) + 
-    geom_density(aes(fill=data_type), alpha=0.5) +
+  densPlot <- ggplot() + 
+    geom_density(data = df, alpha=0.5,
+                 aes(x=data_vals, fill=data_type)) +
     ggtitle(title) + 
     labs(y="Density", x=xlabel) +
-    geom_vline(data=median_df, aes(xintercept = data_vals,
-                                   color = data_type),
-               show_guide = TRUE) +
+    geom_vline(data=median_df, show_guide = TRUE,
+               aes(xintercept = data_vals, color = data_type)) +
     scale_fill_manual(name="Site Type",
                       breaks=c("all", "metab"),
                       labels=c("All US Sites", "Metabolism Sites"),
@@ -149,12 +149,12 @@ plot.dens <- function(df, title, log, reach, xlabel){
   if(log){
     densPlot <- densPlot + scale_x_log10()
   }
-
+  
   if(reach){
     densPlot <- densPlot + facet_grid(catchment ~ .)
   }
   
-  print(densPlot)
+  return(densPlot)
   
 }
 
@@ -189,7 +189,8 @@ eflowPlot <- function(stat_df, title){
 
 This analysis will compare conditions at stream sites that have metabolism estimates with the rest of the stream sites in the US. The goal is to identify which conditions of US streams have not been fully represented by the collection of current metabolism sites. Identification of such underrepresented conditions will help in choosing 30 new monitoring sites to create a more robust dataset for metabolism estimates. 
 
-Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 Accumulated and Reach Catchment Variables* dataset on ScienceBase. Data representing the current metabolism sites comes from using the `get_meta()` function in `powstreams.R` and has data for the 291 sites with metabolism estimates. Seven metrics have been used in this analysis; additionally, each metric has an *Accumulated Watershed* (entire watershed) density plot and a *Reach Catchment* plot.
+Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 Accumulated and Reach Catchment Variables* dataset on ScienceBase. Data representing the current metabolism sites comes from using the `get_meta()` function in `powstreams.R` and has data for the 291 sites with metabolism estimates. Seven metrics have been used in this analysis; additionally, each metric has an *Accumulated Watershed* (entire watershed) density plot and a *Reach Catchment* plot.  
+
 
 **Metrics used for this analysis:**
 
@@ -200,13 +201,14 @@ Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 
 * Precipitation
 * Watershed Area
 * Hydrologic Indicator Statistics
-* Stream Order
+* Stream Order  
+
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 allsites_data <- list(allData_land, allData_land_RE, allData_pop, allData_precip, allData_run, allData_temp)
 num_allsites <- max(sapply(allsites_data, function(x) {length(unique(x$COMID))}))
 num_metabsites <- length(unique(metabData$site_num))
-num_sites_table <- data.frame(`Num Sites`=c(num_metabsites, num_allsites),
+num_sites_table <- data.frame(Sites=c(num_metabsites, num_allsites),
                               row.names = c("Metabolism", "All US"))
 kable(num_sites_table)
 ```
@@ -241,7 +243,7 @@ plot.dens(df_pop, "Population Density (2010 US Population Census)", log=TRUE, re
 
 Data representing agriculture is the sum of the land-use classes 81 (Pasture/Hay) and 82 (Cultivated Crops). The values are shown as the percent of the watershed area covered in pasture/hay or cultivated crops.    
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=5}
 
 df_ag_crop_AC <- format.df("landcover.AC_NLCD11Buffpct82", "ACLU11_82", metabData, allData_land, type="ac_ag")
 df_ag_hay_AC <- format.df("landcover.AC_NLCD11Buffpct81", "ACLU11_81", metabData, allData_land, type="ac_ag")
@@ -254,8 +256,21 @@ df_ag_RE <- data.frame(data_type = df_ag_crop_RE$data_type,
                        data_vals = df_ag_crop_RE$data_vals + df_ag_hay_RE$data_vals)
 
 df_ag <- format.catchment.df(df_ag_AC, df_ag_RE) 
-plot.dens(df_ag, "Fractional Coverage of Agriculture\n(National Land Cover Database 2011)", log=FALSE, reach=TRUE,
-          xlabel="Fraction of Pasture + Crops in Watershed Area")
+mainplot <- plot.dens(df_ag, "Fractional Coverage of Agriculture\n(National Land Cover Database 2011)", 
+                      log=FALSE, reach=TRUE, xlabel="Fraction of Pasture + Crops in Watershed Area")
+
+rect_df <- data.frame(xmin=0, xmax=0.15, ymin=-Inf, ymax=Inf)
+  
+secondplot <- mainplot + coord_cartesian(xlim=c(0, 0.15)) + 
+    ggtitle("Lower Range of\nFractional Coverage of Agriculture\n(National Land Cover Database 2011")
+
+mainplot <- mainplot + geom_rect(data = rect_df, color="khaki4", alpha=0.3,
+                                 aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax)) +
+  geom_text(data = data.frame(x1 = 0.25, y1 = 12, label = "See graph below\nfor a closer view"), 
+            aes(x = x1, y = y1, label = label))
+
+mainplot
+secondplot
 
 ```
 
@@ -275,7 +290,7 @@ df_run_AC <- format.df("hydrol.RUNOFF_AC", "RUNOFF_AC", metabData, allData_run, 
 df_run_RE <- format.df("hydrol.RUNOFF_RE", "MEAN", metabData, allData_run, type=NULL)
 
 df_run <- format.catchment.df(df_run_AC, df_run_RE) 
-plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE,
+plot.dens(df_run, "Average Runoff\n(1971-2000)", log=FALSE, reach=TRUE,
           xlabel="Runoff (cfs)")
 
 ```
