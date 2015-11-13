@@ -282,7 +282,7 @@ secondplot
 
 ##Runoff
 
-Runoff data is based on streamflow records from 1971-2000, and is measured in cubic feet per second (cfs).    
+Runoff data is based on streamflow records from 1971-2000, and is measured in millimeters (mm).    
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -291,7 +291,7 @@ df_run_RE <- format.df("hydrol.RUNOFF_RE", "MEAN", metabData, allData_run, type=
 
 df_run <- format.catchment.df(df_run_AC, df_run_RE) 
 plot.dens(df_run, "Average Runoff\n(1971-2000)", log=FALSE, reach=TRUE,
-          xlabel="Runoff (cfs)")
+          xlabel="Runoff (mm)")
 
 ```
 
