@@ -5,184 +5,18 @@ date: "October 16, 2015"
 output: pdf_document
 ---
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, eval=TRUE}
 
-library(powstreams)
 library(unitted)
 library(ggplot2)
 library(knitr)
 library(dplyr)
 library(tidyr)
 
-metabDataAll <- get_meta()
-metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
+allData_list <- load.gapanalysis.data()
 
-# metabDataAll <- read.csv("../metabData.csv")
-# metabData <- metabDataAll[which(metabDataAll$manual.assessment %in% c("accept", "examine")), ] 
-
-# load data for watersheds for the entire US
-allData_pop <- read.csv("data(DO_NOT_COMMIT)/AC_popd10.csv")
-allData_land <- read.csv("data(DO_NOT_COMMIT)/AC_NLCD11.csv") #watershed area + agriculture
-allData_land_RE <- read.csv("data(DO_NOT_COMMIT)/NLCD11.csv")
-allData_run <- read.csv("data(DO_NOT_COMMIT)/RUNOFF_AC.csv")
-allData_temp <- read.csv("data(DO_NOT_COMMIT)/TMEAN_AC.csv")
-allData_precip <- read.csv("data(DO_NOT_COMMIT)/PPT30YR_AC.csv")
-
-allData_order <- read.table("data(DO_NOT_COMMIT)/nhdplus_v2_streamorder", 
-                           sep=";", header = TRUE)
-
-```
-
-```{r functions, echo=FALSE, warning=FALSE, message=FALSE}
-
-format.df <- function(metab_var, all_var, metabData, allData, type){
-  metab_vals <- metabData[[metab_var]]
-  
-  if(!is.null(type) && type == "ac_ag") {
-    all_vals <- allData[, all_var]/allData[, "ACLU_AREA"]
-  } else if(!is.null(type) && type == "re_ag"){
-    all_vals <- allData[, all_var]/allData[, "NLCD11_ARE"]
-  } else if(!is.null(type) && type == "re_precip"){
-    all_vals <- allData[, all_var]/1000
-  } else {
-    all_vals <- allData[, all_var]
-  }
-    
-  df <- data.frame(data_type=c(rep("metab", length(metab_vals)),
-                               rep("all", length(all_vals))),
-                   data_vals=c(v(metab_vals), all_vals))
-}
-
-format.catchment.df <- function(accum_df, reach_df){
-  accum_df <- mutate(.data = accum_df, catchment = rep("Accumulated Watershed", 
-                                                       length(accum_df$data_vals)))
-  reach_df <- mutate(.data = reach_df, catchment = rep("Reach Catchment", 
-                                                       length(reach_df$data_vals)))
-  df <- rbind(accum_df, reach_df)
-}
-
-count.table <- function(df){
-  
-  metab_vals <- df %>% filter(data_type == "metab") %>% select(data_vals)
-  all_vals <- df %>% filter(data_type == "all") %>% select(data_vals)
-  
-  data_count <- data.frame("Metabolism Sites" = c(na.count(metab_vals),
-                                                  notNa.count(metab_vals)),
-                           "All US Sites" = c(na.count(all_vals),
-                                              notNa.count(all_vals)),
-                           row.names = c("Missing", "Not Missing"))
-  
-} 
-
-na.count <- function(data) {
-  num_nas <- length(which(is.na(data)))
-}
-
-notNa.count <- function(data) {
-  num_nas <- length(which(!is.na(data)))
-}
-
-get.median <- function(df, type, catchment){
-#   vals <- df %>% 
-#     filter(data_type == type) %>% 
-#     filter(catchment == catchment) %>% 
-#     .$data_vals
-#   
-#   median(vals)
-  
-  vals <- df$data_vals[which(df$data_type == type & df$catchment == catchment)]
-  med_val <- median(na.omit(vals))
-  return(round(med_val, digits=3))
-}
-
-format.med.df <- function(df, reach){
-  
-  median_all_ac <- get.median(df, type="all", catchment="Accumulated Watershed")
-  median_metab_ac <- get.median(df, type="metab", catchment="Accumulated Watershed")
-  median_df <- data.frame(data_vals = c(median_all_ac, median_metab_ac),
-                          data_type = c("all", "metab"),
-                          catchment = rep("Accumulated Watershed", 2),
-                          plot_labels = c(paste(median_all_ac, "(Accum)"),
-                                          paste(median_metab_ac, "(Accum)")))
-  
-  if(reach){
-    median_all_re <- get.median(df, type="all", catchment="Reach Catchment")
-    median_metab_re <- get.median(df, type="metab", catchment="Reach Catchment")
-    median_df_re <- data.frame(data_vals = c(median_all_re, median_metab_re),
-                            data_type = c("all", "metab"),
-                            catchment = rep("Reach Catchment", 2),
-                            plot_labels = c(paste(median_all_re, "(Reach)"),
-                                            paste(median_metab_re, "(Reach)")))
-    median_df <- rbind(median_df, median_df_re)
-  }
-
-  return(median_df)  
-}
-
-plot.dens <- function(df, title, log, reach, xlabel){
-  
-  median_df <- format.med.df(df, reach)
-
-  all_label <- paste("All US Sites:\n", 
-                     paste(filter(median_df, data_type=="all") %>% 
-                             .$plot_labels, collapse="\n "))
-  metab_label <- paste("Metabolism Sites:\n", 
-                       paste(filter(median_df, data_type=="metab") %>% 
-                               .$plot_labels, collapse="\n "))
-  
-  densPlot <- ggplot() + 
-    geom_density(data = df, alpha=0.5,
-                 aes(x=data_vals, fill=data_type)) +
-    ggtitle(title) + 
-    labs(y="Density", x=xlabel) +
-    geom_vline(data=median_df, show_guide = TRUE,
-               aes(xintercept = data_vals, color = data_type)) +
-    scale_fill_manual(name="Site Type",
-                      breaks=c("all", "metab"),
-                      labels=c("All US Sites", "Metabolism Sites"),
-                      values=c("red", "blue")) +
-    scale_colour_manual(name="Median Values",
-                        breaks=c("all", "metab"),
-                        labels=c(all_label, metab_label),
-                        values=c("red", "blue"))
-  
-  if(log){
-    densPlot <- densPlot + scale_x_log10()
-  }
-  
-  if(reach){
-    densPlot <- densPlot + facet_grid(catchment ~ .)
-  }
-  
-  return(densPlot)
-  
-}
-
-eflow.mag7 <- function(sites){
-  startDate <- "1900"
-  endDate <- "2015"
-  stats <- "magnifSeven"
-  allstats <- c()
-  
-  for(x in sites){
-    statsout <- ObservedStatsUSGS(x, startDate, endDate, stats)
-    allstats <- rbind(allstats, statsout)
-  }
-  
-  return(allstats)
-}
-
-eflowPlot <- function(stat_df, title){
-  
-  all_stat_df <- gather(stat_df, stat, value, -site_no, -min_date, -max_date, -comment)
-  
-   eflowPlot <- ggplot(all_stat_df, aes(x=stat, y=value)) + 
-     geom_boxplot() +
-     ggtitle(title) +
-     scale_y_log10() +
-     labs(x="Statistic", y="Value", title="Eflow Statistics")
-    
-   return(eflowPlot)
+for(i in 1:length(allData_list)){
+  eval(parse(text=paste0(names(allData_list)[i], " <- allData_list[[", i, "]]")))
 }
 
 ```
@@ -282,7 +116,7 @@ secondplot
 
 ##Runoff
 
-Runoff data is based on streamflow records from 1971-2000, and is measured in millimeters (mm).    
+Runoff data is based on streamflow records from 1971-2000, and is measured in millimeters (mm). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -290,40 +124,12 @@ df_run_AC <- format.df("hydrol.RUNOFF_AC", "RUNOFF_AC", metabData, allData_run, 
 df_run_RE <- format.df("hydrol.RUNOFF_RE", "MEAN", metabData, allData_run, type=NULL)
 
 df_run <- format.catchment.df(df_run_AC, df_run_RE) 
-plot.dens(df_run, "Average Runoff\n(1971-2000)", log=FALSE, reach=TRUE,
+plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE,
           xlabel="Runoff (mm)")
 
 ```
 
-
-```{r eval=FALSE, echo=FALSE}
-library('geoknife')
-
-#doesn't work:
-allMetab_sites <- as.character(metabData$site_name[which(metabData$site_database == "nwis")])
-coords <- mda.streams::get_site_coords(allMetab_sites, format="geoknife")
-job <- geoknife(wait=T, REQUIRE_FULL_COVERAGE="false",
-                stencil = coords, 
-                fabric = webdata('prism', 
-                                 times=c('1971-01-01','2000-12-31'), 
-                                 variables=c('ppt','tmx')))
-data <- result(job, with.units=TRUE)
-
-
-##works:
-sites <- c("nwis_02110815")
-coords <- mda.streams::get_site_coords(sites, format="geoknife")
-job <- geoknife(wait=T, 
-                stencil = coords, 
-                fabric = webdata('prism', 
-                                 times=c('1971-01-01','2000-12-31'), 
-                                 variables=c('ppt','tmx')))
-data <- result(job, with.units=TRUE)
-
-metab_precips <- colMeans(data[which(data$variable == "ppt"),sites])
-metab_temps <- colMeans(data[which(data$variable == "tmx"),sites])
-
-```
+Note: There are 3,099 runoff values equal to 0 for the accumulated catchments for the entire United States dataset, and 4,757 runoff values equal to 0 for the reach catchments for the entire United States dataset. This skews the density plot for runoff when the values are logged because 0s are treated as NAs.  
 
 
 \newpage
