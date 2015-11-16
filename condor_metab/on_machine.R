@@ -100,16 +100,8 @@ pkg_needs <- c('dataRetrieval', 'devtools', 'dplyr', 'geoknife', 'httr', 'jsonli
 
 view_installed_packages <- function() {
   inst <- clusterCall(c1, function() { unname(installed.packages()[,"Package"]) })
-  pkg_needs=pkg_needs
-  suppressWarnings(
-    as.data.frame(inst) %>%
-      setNames(paste0('n',1:length(c1))) %>%
-      gather(key=node, value=pkg, 1:length(c1)) %>%
-      filter(pkg %in% pkg_needs) %>%
-      mutate(has=TRUE) %>%
-      full_join(data.frame(pkg=pkg_needs, node=factor("none"), has=FALSE), by=c("node","pkg","has")) %>%
-      spread(key=node, value=has) %>%
-      select(-none))
+  as.data.frame(c(list(pkg=pkg_needs), lapply(inst, function(nodeinst) pkg_needs %in% nodeinst))) %>%
+    setNames(c("package", sprintf("node%02d",1:length(c1))))
 }
 
 # Now actually install packages, checking for completion each time. already installed: methods, parallel
@@ -122,6 +114,7 @@ all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'RCurl') 
 all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'reshape2') }))
 #all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'rjags') }))
 all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'runjags') }))
+c1 <- c1[which(unlist(view_installed_packages()[which(pkg_needs=="runjags"),2:(1+length(c1))]))]
 all_first_out(out <- clusterCall(c1, function(){ install_check('cran', 'XML') }))
 all_first_out(out <- clusterCall(c1, function(){ install_check('gran', 'dataRetrieval') }))
 clusterCall(c1, function() { library(devtools) })
@@ -171,7 +164,7 @@ if(!dir.exists(out_dir)) dir.create(out_dir)
 sites <- list_sites()
 clusterExport(c1, 'sites')
 site_ids <- 1:length(sites)
-run_site_inventory <- function(site_id, sleep=runif(1, min=0, max=10)) {
+run_site_inventory <- function(site_id, sleep=runif(1, min=0, max=5)) {
   
   # sleep to avoid sending many similar requests all at once
   Sys.sleep(sleep)
@@ -185,23 +178,28 @@ run_site_inventory <- function(site_id, sleep=runif(1, min=0, max=10)) {
 }
 site_inventory <- clusterApplyLB(c1, site_ids, run_site_inventory) %>% # LB = load balance
   setNames(sites)
-save(site_inventory, file=file.path(out_dir, "site_inventory.RData"))
+save(site_inventory, file=file.path("p1_import/out", "site_inventory.RData"))
 
 si <- bind_rows(site_inventory[which(sapply(site_inventory, function(i1) isTRUE(is.data.frame(i1))))])
-write.table(si, file=file.path(out_dir, "site_inventory.tsv"), sep="\t", row.names=FALSE)
+write.table(si, file=file.path("p1_import/out", "site_inventory.tsv"), sep="\t", row.names=FALSE)
 
 # explore site inventory
-si <- read.table(file.path(out_dir, "site_inventory_4.tsv"), sep="\t", header=TRUE, stringsAsFactors = FALSE) %>% tbl_df
-si %>% summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows))
+si <- read.table(file.path("p1_import/out", "site_inventory.tsv"), sep="\t", header=TRUE, stringsAsFactors = FALSE) %>% tbl_df
+si %>% dplyr::filter(grepl("nwis|calc|nldas", var_src)) %>% 
+  summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows))
 si %>% mutate(src_db=parse_var_src(as.character(var_src), out="src"))
 si %>% mutate(src_type=sapply(var_src, function(vs) get_var_src_codes(var_src==vs, out="src_type")),
               src_db=parse_var_src(as.character(var_src), out="src"),
               src_cat=ifelse(src_type=="data", src_db, src_type)) %>% 
   group_by(src_cat) %>% summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows))
-si %>% group_by(var_src) %>% summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows)) %>%
+si %>% dplyr::filter(grepl("nwis|calc|nldas", var_src)) %>% 
+  group_by(var_src) %>% summarize(num_tbls=length(site), num_dates=sum(num_dates), num_rows=sum(num_rows)) %>%
   mutate(src_type=sapply(var_src, function(vs) get_var_src_codes(var_src==vs, out="src_type")),
          src_db=parse_var_src(as.character(var_src), out="src"),
          src_cat=ifelse(src_type=="data", src_db, src_type)) %>% arrange(src_cat)
+m <- get_meta(c("basic","manual"))
+good_sites <- m[m$manual.assessment %in% c("accept","examine"), "site_name"]
+filter(si, var_src=="gpp_estBest" & site %in% good_sites) %>% summarize(num_dates=sum(num_dates), num_rows=sum(num_rows), num_complete=sum(num_complete), num_sites=length(site))
 # ts files with all NAs
 si %>% filter(num_complete < 50)
 
