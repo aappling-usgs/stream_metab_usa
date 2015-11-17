@@ -253,7 +253,9 @@ kable(missing_table, caption="Table 2. Metabolism sites not included in hydrolog
 
 ```
 
-##Ecoregions
+##Ecoregion
+
+Below is a map showing the geographic location of the metabolism sites (red dots) and a count of the metabolism sites located in each of the 84 ecoregions of the contiguous US (color of ecoregion based on number of sites).  
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, results='hide'}
 
