@@ -5,7 +5,7 @@ date: "October 16, 2015"
 output: pdf_document
 ---
 
-```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, eval=TRUE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, eval=TRUE, results='hide'}
 
 library(unitted)
 library(ggplot2)
@@ -21,11 +21,11 @@ for(i in 1:length(allData_list)){
 
 ```
 
-This analysis will compare conditions at stream sites that have metabolism estimates with the rest of the stream sites in the US. The goal is to identify which conditions of US streams have not been fully represented by the collection of current metabolism sites. Identification of such underrepresented conditions will help in choosing 30 new monitoring sites to create a more robust dataset for metabolism estimates. 
+This analysis will compare conditions at stream sites that have metabolism estimates with all NHDPlus stream sites in the US. The goal is to identify which conditions of US streams have not been fully represented by the collection of current metabolism sites. Identification of such underrepresented conditions will help in choosing 30 new monitoring sites to create a more robust dataset for metabolism estimates. 
 
-Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 Accumulated and Reach Catchment Variables* dataset on ScienceBase. Data representing the current metabolism sites comes from using the `get_meta()` function in `powstreams.R` and has data for the 291 sites with metabolism estimates. Seven metrics have been used in this analysis; additionally, each metric has an *Accumulated Watershed* (entire watershed) density plot and a *Reach Catchment* plot.  
+Data for NHDPlus streams comes from Mike Wieczorek's *NHDPlus Version 2 Accumulated and Reach Catchment Variables* dataset on ScienceBase. Data representing the current metabolism sites comes from using the `get_meta()` function in `powstreams.R` and has data for the 291 sites with metabolism estimates. Seven metrics have been used in this analysis; additionally, each metric has an *Accumulated Watershed* (watershed down the NHDPlus network at each catchment) density plot and a *Reach Catchment* plot (watershed for each specific NHDPlus catchment).  
 
-
+  
 **Metrics used for this analysis:**
 
 * Population Density
@@ -35,14 +35,15 @@ Data representing "All US Sites" comes from Mike Wieczorek's *NHDPlus Version 2 
 * Precipitation
 * Watershed Area
 * Hydrologic Indicator Statistics
-* Stream Order  
+* Stream Order
+* Ecoregions
 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 allsites_data <- list(allData_land, allData_land_RE, allData_pop, allData_precip, allData_run, allData_temp)
 num_allsites <- max(sapply(allsites_data, function(x) {length(unique(x$COMID))}))
 num_metabsites <- length(unique(metabData$site_num))
-num_sites_table <- data.frame(Sites=c(num_metabsites, num_allsites),
+num_sites_table <- data.frame(`Sites`=c(num_metabsites, num_allsites),
                               row.names = c("Metabolism", "All US"))
 kable(num_sites_table)
 ```
@@ -116,7 +117,9 @@ secondplot
 
 ##Runoff
 
-Runoff data is based on streamflow records from 1971-2000, and is measured in millimeters (mm). 
+Runoff data is the average estimated runoff based on streamflow records from 1971-2000, and is measured in millimeters (mm). 
+
+Note: no estimation method was reported with this dataset. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -139,7 +142,7 @@ Note: There are 3,099 runoff values equal to 0 for the accumulated catchments fo
 
 ##Temperature
 
-Temperature data is the average 30 year temperature (in deg C) from 1971-2000 based on 800 meter PRISM source grids.    
+Temperature data is the average annual air temperature (in deg C) from 1971-2000 based on 800 meter PRISM source grids.    
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -160,7 +163,7 @@ plot.dens(df_temp, "Average Temperature\n(1971-2000)", log=FALSE, reach=TRUE,
 
 ##Precipitation
 
-Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data. A correction has been applied to the data coming from Science Base for all US sites at the reach catchment scale. Ted Stets divided the reach catchment values for the metabolism sites by 1000; the same correction has been applied for all the sites in the US.
+Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data. A correction has been applied to the data coming from Science Base for NHD+ Sites at the reach catchment scale. For the metabolism sites, Ted Stets divided the reach catchment values by 1000; the same correction has been applied for reach-scale precipitation values coming from the NHD+ dataset.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -201,20 +204,7 @@ Stream order is a representation of the size and complexity of a stream or river
 metab_order <- filter(allData_order, comid %in% metabData$nhdplus_id)
 df_order <- format.df("streamorde", "streamorde", metab_order, allData_order, type=NULL) 
 
-stream_order_range <- range(allData_order$streamord)
-hist_breaks <- stream_order_range[1]:stream_order_range[2]
-
-ggplot(data=df_order, aes(data_vals)) +
-  geom_histogram(alpha = .5, binwidth=1, origin = -0.5,
-                 col="black", aes(fill=data_type)) +
-  scale_x_continuous(breaks=hist_breaks) +
-  facet_grid(data_type ~ ., scales="free") +
-  ggtitle("Strahler Stream Order Values") + 
-  labs(y="Count", x="Stream Order") + 
-  scale_fill_manual(name="Site Type",
-                  breaks=c("all", "metab"),
-                  labels=c("All US Sites", "Metabolism Sites"),
-                  values=c("red", "blue"))
+plot.orderHist(allData_order, df_order)
 
 ```
 
@@ -264,6 +254,7 @@ kable(missing_table, caption="Table 2. Metabolism sites not included in hydrolog
 
 ```
 
+##Ecoregions
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, results='hide'}
 

@@ -1,6 +1,6 @@
 
 # report render
-# render.gapanalysis('pdf')
+# render.gapanalysis('html')
 render.gapanalysis <- function(output) {
   library(rmarkdown)
   output_dir <- file.path(getwd(), "gap_analysis")
@@ -66,6 +66,20 @@ load.data.streamorder <- function(){
   
 }
 
+load.data.latlon <- function(){
+  
+  library(readr)
+  comidcoords <- read_csv("gap_analysis/test_net.csv")
+  
+  startcoords <- substr(comidcoords$startpoint, 10, nchar(comidcoords$startpoint)-3)
+  startsplit <- strsplit(startcoords, " ")
+  startlon <- as.numeric(sapply(startsplit, `[`, 1))
+  startlat <- as.numeric(sapply(startsplit, `[`, 2))
+  
+  coords <- data.frame(comid=comidcoords$comid, lat=startlat, lon=startlon)
+  
+}
+
 
 # data mining 
 
@@ -81,10 +95,11 @@ format.df <- function(metab_var, all_var, metabData, allData, type){
   } else {
     all_vals <- allData[, all_var]
   }
-  
-  df <- data.frame(data_type=c(rep("metab", length(metab_vals)),
-                               rep("all", length(all_vals))),
+
+  df <- data.frame(data_type=c(rep("Metabolism Sites", length(metab_vals)),
+                               rep("NHD+ Sites", length(all_vals))),
                    data_vals=c(v(metab_vals), all_vals))
+  # df$data_type <- ordered(df$data_type, c("NHD+ Sites", "Metabolism Sites"))
 }
 
 format.catchment.df <- function(accum_df, reach_df){
@@ -110,19 +125,19 @@ get.median <- function(df, type, catchment){
 
 format.med.df <- function(df, reach){
   
-  median_all_ac <- get.median(df, type="all", catchment="Accumulated Watershed")
-  median_metab_ac <- get.median(df, type="metab", catchment="Accumulated Watershed")
+  median_all_ac <- get.median(df, type="NHD+ Sites", catchment="Accumulated Watershed")
+  median_metab_ac <- get.median(df, type="Metabolism Sites", catchment="Accumulated Watershed")
   median_df <- data.frame(data_vals = c(median_all_ac, median_metab_ac),
-                          data_type = c("all", "metab"),
+                          data_type = c("NHD+ Sites", "Metabolism Sites"),
                           catchment = rep("Accumulated Watershed", 2),
                           plot_labels = c(paste(median_all_ac, "(Accum)"),
                                           paste(median_metab_ac, "(Accum)")))
   
   if(reach){
-    median_all_re <- get.median(df, type="all", catchment="Reach Catchment")
-    median_metab_re <- get.median(df, type="metab", catchment="Reach Catchment")
+    median_all_re <- get.median(df, type="NHD+ Sites", catchment="Reach Catchment")
+    median_metab_re <- get.median(df, type="Metabolism Sites", catchment="Reach Catchment")
     median_df_re <- data.frame(data_vals = c(median_all_re, median_metab_re),
-                               data_type = c("all", "metab"),
+                               data_type = c("NHD+ Sites", "Metabolism Sites"),
                                catchment = rep("Reach Catchment", 2),
                                plot_labels = c(paste(median_all_re, "(Reach)"),
                                                paste(median_metab_re, "(Reach)")))
@@ -134,13 +149,15 @@ format.med.df <- function(df, reach){
 
 plot.dens <- function(df, title, log, reach, xlabel){
   
+  df$data_type <- ordered(df$data_type, c("NHD+ Sites", "Metabolism Sites"))
+  
   median_df <- format.med.df(df, reach)
   
-  all_label <- paste("All US Sites:\n", 
-                     paste(filter(median_df, data_type=="all") %>% 
+  all_label <- paste("NHD+ Sites:\n", 
+                     paste(filter(median_df, data_type=="NHD+ Sites") %>% 
                              .$plot_labels, collapse="\n "))
   metab_label <- paste("Metabolism Sites:\n", 
-                       paste(filter(median_df, data_type=="metab") %>% 
+                       paste(filter(median_df, data_type=="Metabolism Sites") %>% 
                                .$plot_labels, collapse="\n "))
   
   densPlot <- ggplot() + 
@@ -151,11 +168,10 @@ plot.dens <- function(df, title, log, reach, xlabel){
     geom_vline(data=median_df, show_guide = TRUE,
                aes(xintercept = data_vals, color = data_type)) +
     scale_fill_manual(name="Site Type",
-                      breaks=c("all", "metab"),
-                      labels=c("All US Sites", "Metabolism Sites"),
+                      breaks=c("NHD+ Sites", "Metabolism Sites"),
                       values=c("red", "blue")) +
     scale_colour_manual(name="Median Values",
-                        breaks=c("all", "metab"),
+                        breaks=c("NHD+ Sites", "Metabolism Sites"),
                         labels=c(all_label, metab_label),
                         values=c("red", "blue"))
   
@@ -169,6 +185,25 @@ plot.dens <- function(df, title, log, reach, xlabel){
   
   return(densPlot)
   
+}
+
+plot.orderHist <- function(allData_order, df_order){
+  
+  df_order$data_type <- ordered(df_order$data_type, c("NHD+ Sites", "Metabolism Sites"))
+  
+  stream_order_range <- range(allData_order$streamord)
+  hist_breaks <- stream_order_range[1]:stream_order_range[2]
+  
+  ggplot(data=df_order, aes(data_vals)) +
+    geom_histogram(alpha = .5, binwidth=1, origin = -0.5,
+                   col="black", aes(fill=data_type)) +
+    scale_x_continuous(breaks=hist_breaks) +
+    facet_grid(data_type ~ ., scales="free") +
+    ggtitle("Strahler Stream Order Values") + 
+    labs(y="Count", x="Stream Order") + 
+    scale_fill_manual(name="Site Type",
+                      breaks=c("NHD+ Sites", "Metabolism Sites"),
+                      values=c("red", "blue"))
 }
 
 eflow.mag7 <- function(sites){
@@ -198,15 +233,42 @@ eflowPlot <- function(stat_df, title){
   return(eflowPlot)
 }
 
-map.runoff <- function(runoff_data){
+matchLatLon.comid <- function(data, latlon_data, metric_var){
+  latlon_index <- match(data$COMID, latlon_data$comid)
+  data <- data %>% 
+    mutate(LAT = latlon_data$lat[latlon_index]) %>% 
+    mutate(LON = latlon_data$lon[latlon_index]) %>% 
+    filter(data[metric_var] == 0)
+}
+
+map.runoff.ggmap <- function(runoff_data, latlon_data){
+  
+  runoff_data <- matchLatLon.comid(runoff_data, latlon_data, "RUNOFF_AC")
+  runoff_data <- matchLatLon.comid(runoff_data, latlon_data, "MEAN")
   
   library(ggmap)
   
-  mapSetup <- get_map(location = c(lon = -98.5795, lat = 39.8282), 
-                      zoom = 3, source = "google", maptype = "terrain")
+  latitude_ctr <- 39.8282
+  longitude_ctr <- -98.5795
   
-#   runoffMap <- ggmap(mapSetup, extent = "device", legend = "bottomright") +
-#     geom_point(data = runoff_data, aes(x = ))
+  mapSetup <- get_map(location = c(lon = longitude_ctr, lat = latitude_ctr), 
+                      zoom = 5, source = "google", maptype = "terrain")
+  
+  runoffMap <- ggmap(mapSetup, extent = "device") +
+    geom_point(data = runoff_data, aes(x = LON, y = LAT), color = "red")
+  runoffMap
+  
+}
+
+map.runoff.leaflet <- function(runoff_data, latlon_data){
+  
+  runoff_data <- matchLatLon.comid(runoff_data, latlon_data, "RUNOFF_AC")
+  
+  library(leaflet)
+  
+  latitude_ctr <- 39.8282
+  longitude_ctr <- -98.5795
+  
   
   
 }
