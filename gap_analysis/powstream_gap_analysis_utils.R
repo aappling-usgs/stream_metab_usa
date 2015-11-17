@@ -21,15 +21,13 @@ load.gapanalysis.data <- function(){
   allData_list <- append(allData_list, sb_data)
 }
 
+library(sbtools)
 authenticate_sb()
 
 load.data.sb <- function(){
   
-  library(sbtools)
   library(foreign)
-  
-  
-  
+
   listofitems_files <- list(allData_pop = list(item="51fbee3fe4b04b00e3d891c0", file="Ac_popd10"), 
                             allData_land = list(item="534c35d0e4b0af6611b1d0d0", file="AC_NLCD11"),
                             allData_land_RE = list(item="534c1bd0e4b0858a36dc41eb", file="NLCD11"),

@@ -36,14 +36,15 @@ Data for NHDPlus streams comes from Mike Wieczorek's *NHDPlus Version 2 Accumula
 * Hydrologic Indicator Statistics
 * Stream Order
 * Ecoregions
+* State Discharge & DO
 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 allsites_data <- list(allData_land, allData_land_RE, allData_pop, allData_precip, allData_run, allData_temp)
 num_allsites <- max(sapply(allsites_data, function(x) {length(unique(x$COMID))}))
 num_metabsites <- length(unique(metabData$site_num))
-num_sites_table <- data.frame(`Sites`=c(num_metabsites, num_allsites),
-                              row.names = c("Metabolism", "All US"))
+num_sites_table <- data.frame(Source = c("Metabolism", "All US"), 
+                              `Number of Sites`=c(num_metabsites, num_allsites))
 kable(num_sites_table)
 ```
 
@@ -209,11 +210,13 @@ plot.orderHist(allData_order, df_order)
 
 \newpage
 
-##Hydrologic Indicator Statistics
-
-A collection of hydrologic indicator statistics calculated using streamflow data for the 291 metabolism sites. The R package EflowStats, developed by Jessica Thompson and Stacey Archfield, was used to pull streamflow data from NWIS and calculate the stats. Some of the sites had incomplete data to calculate the statistics (see Table 2 below).   
 
 ```{r eflow, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE, eval=FALSE}
+
+##Hydrologic Indicator Statistics
+
+# A collection of hydrologic indicator statistics calculated using streamflow data for the 291 metabolism sites. The R package EflowStats, developed by Jessica Thompson and Stacey Archfield, was used to pull streamflow data from NWIS and calculate the stats. Some of the sites had incomplete data to calculate the statistics (see Table 2 below).   
+
 
 #sites must be from the get_meta() because the csv dropped the leading 0
 
@@ -351,10 +354,17 @@ for(i in 1:length(key.cols)){
 
 ```
 
+
+
+##State Discharge & DO 
+
+The following state maps depict the geographic locations for dissolved oxygen (DO) and discharge sites. The states shown below are New Hampshire, Puerto Rico, North Carolina, Florida, Wisconsin, Arizona, and Connecticut.   
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 
 
 library(leaflet)
+library(dataRetrieval)
 
 disch.code = unique(get_var_src_codes(var=="disch", out='p_code'))
 doobs.code = "00300"
@@ -377,47 +387,51 @@ make_map <- function(state){
   m = leaflet() %>% 
     addProviderTiles("CartoDB.Positron",
                        options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
-    addCircleMarkers(lng = do.sites$dec_long_va, lat = do.sites$dec_lat_va, popup = do.sites$station_nm, color = '#ff0000') %>% 
-    addCircleMarkers(lng = disch.sites$dec_long_va, lat = disch.sites$dec_lat_va, popup = disch.sites$station_nm, color = 'blue', radius = 3)
+    addCircleMarkers(lng = do.sites$dec_long_va, 
+                     lat = do.sites$dec_lat_va, 
+                     popup = do.sites$station_nm, color = '#ff0000') %>% 
+    addCircleMarkers(lng = disch.sites$dec_long_va, 
+                     lat = disch.sites$dec_lat_va, 
+                     popup = disch.sites$station_nm, color = 'blue', radius = 3) %>% 
+    addLegend("bottomright", labels = c('DO', 'Discharge'), 
+              colors = c('red', 'blue'), title = 'Metabolism Site Types')
   
   return(m)
 }
 ```
 
-New Hampshire
+####New Hampshire
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('New Hampshire')
 ```
 
-Puerto Rico
+####Puerto Rico
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('Puerto Rico')
 ```
 
-North Carolina
+####North Carolina
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('North Carolina')
 ```
 
-Florida
+####Florida
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('Florida')
 ```
 
-Wisconsin
+####Wisconsin
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('Wisconsin')
 ```
 
-Arizona
+####Arizona
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('Arizona')
 ```
 
-Connecticut
+####Connecticut
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('Connecticut')
 ```
-=======
-state map for 
->>>>>>> master
+
