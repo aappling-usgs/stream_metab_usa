@@ -349,16 +349,9 @@ for(i in 1:length(key.cols)){
 
 ```
 
-states 
-
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 
-library(mda.streams)
-library(rgdal)
-library(rgeos)
-library(dplyr)
-library(dataRetrieval)
-library(httr)
+
 library(leaflet)
 
 disch.code = unique(get_var_src_codes(var=="disch", out='p_code'))
@@ -423,3 +416,6 @@ Connecticut
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 make_map('Connecticut')
 ```
+=======
+state map for 
+>>>>>>> master
