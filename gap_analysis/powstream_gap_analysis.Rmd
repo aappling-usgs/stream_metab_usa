@@ -348,3 +348,78 @@ for(i in 1:length(key.cols)){
 ## -- plot map /-- 
 
 ```
+
+states 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+
+library(mda.streams)
+library(rgdal)
+library(rgeos)
+library(dplyr)
+library(dataRetrieval)
+library(httr)
+library(leaflet)
+
+disch.code = unique(get_var_src_codes(var=="disch", out='p_code'))
+doobs.code = "00300"
+min.count = 100
+skip.types = c('GW','LK','ES')
+
+get_site <- function(stateCd, pCd){
+  filter(readNWISdata(service = "site", stateCd=stateCd,seriesCatalogOutput="true",outputDataTypeCd="iv",parameterCd=pCd,Access="3"), parm_cd==pCd) %>% 
+    filter(count_nu > min.count) %>% 
+    filter(!(site_tp_cd %in% skip.types)) %>% 
+    filter(!is.na(dec_long_va))
+}
+
+make_map <- function(state){
+  state.cd = stateCd$STUSAB[stateCd$STATE_NAME == state]
+  
+  do.sites = get_site(state.cd, doobs.code)
+  disch.sites = get_site(state.cd, disch.code)
+  
+  m = leaflet() %>% 
+    addProviderTiles("CartoDB.Positron",
+                       options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
+    addCircleMarkers(lng = do.sites$dec_long_va, lat = do.sites$dec_lat_va, popup = do.sites$station_nm, color = '#ff0000') %>% 
+    addCircleMarkers(lng = disch.sites$dec_long_va, lat = disch.sites$dec_lat_va, popup = disch.sites$station_nm, color = 'blue', radius = 3)
+  
+  return(m)
+}
+```
+
+New Hampshire
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+make_map('New Hampshire')
+```
+
+Puerto Rico
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+make_map('Puerto Rico')
+```
+
+North Carolina
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+make_map('North Carolina')
+```
+
+Florida
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+make_map('Florida')
+```
+
+Wisconsin
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+make_map('Wisconsin')
+```
+
+Arizona
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+make_map('Arizona')
+```
+
+Connecticut
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+make_map('Connecticut')
+```
