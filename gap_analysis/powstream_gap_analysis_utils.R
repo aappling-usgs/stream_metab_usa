@@ -10,6 +10,13 @@ render.gapanalysis <- function(output='html') {
   return(out_file)
 }
 
+render.maptest <- function(output='html') {
+  library(rmarkdown)
+  output_dir <- file.path(getwd(), "gap_analysis")
+  rmd_file <- file.path(getwd(), "gap_analysis", "powstream_map_test.Rmd")
+  out_file <- render(rmd_file, paste0(output,"_document"), output_dir = output_dir)
+  return(out_file)
+}
 
 # data loading
 
