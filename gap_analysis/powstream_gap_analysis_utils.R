@@ -2,7 +2,7 @@
 # report render
 # source this file, authenticate, then run:
 # render.gapanalysis('html')
-render.gapanalysis <- function(output) {
+render.gapanalysis <- function(output='html') {
   library(rmarkdown)
   output_dir <- file.path(getwd(), "gap_analysis")
   rmd_file <- file.path(getwd(), "gap_analysis", "powstream_gap_analysis.Rmd")
