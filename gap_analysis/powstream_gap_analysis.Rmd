@@ -1,6 +1,6 @@
 ---
 title: "Powstream Gap Analysis"
-author: "Alison, Appling, Lindsay Carr, Jordan Read"
+author: "Lindsay Carr, Alison Appling, Jordan Read"
 date: "November 17, 2015"
 ---
 
