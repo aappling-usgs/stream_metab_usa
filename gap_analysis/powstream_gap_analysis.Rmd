@@ -27,16 +27,15 @@ Data for NHDPlus streams comes from Mike Wieczorek's *NHDPlus Version 2 Accumula
   
 **Metrics used for this analysis:**
 
-* Population Density
-* Agriculture
-* Runoff
-* Temperature
-* Precipitation
-* Watershed Area
-* Hydrologic Indicator Statistics
-* Stream Order
-* Ecoregions
-* State Discharge & DO
+* Stream Order: metabolism sites have larger streams than is seen nationally in NHD+
+* Watershed Area: metabolism sites have slightly large watershed areas than all NHD+ reaches
+* Runoff: metabolism sites do not capture the extreme low flows that are seen in NHD+ reaches
+* Precipitation: metabolism sites cover the range of precipitation, except for the extreme lows
+* Temperature: metabolism sites cover the range of temperatures, except for the extreme lows
+* Agriculture: metabolism sites represent NHD+ reaches agricultural activity well, but miss the extreme highs
+* Population Density: metabolism sites represent higher populated areas than seen nationally
+* Ecoregions: metabolism sites represent eastern ecoregions well, but miss much of the western ecoregions
+* State Discharge & DO: maps showing locations of the metabolism sites in relation to existing discharge measurement sites
 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -50,26 +49,117 @@ kable(num_sites_table)
 
 \newpage
 
-```{r popdens, echo=FALSE}
+
+
+
+##Stream Order
+
+Stream order is a representation of the size and complexity of a stream or river. Stream order values used in this comparison come from NHDPlus, which uses the Strahler stream ordering methodology to calculate stream order values. 
+
+```{r order, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+
+metab_order <- filter(allData_order, comid %in% metabData$nhdplus_id)
+df_order <- format.df("streamorde", "streamorde", metab_order, allData_order, type=NULL) 
+
+plot.orderHist(allData_order, df_order)
+
 ```
 
-##Population Density
+\newpage
 
-Population density is based on the 2010 US Population Census and is measured in people per square kilometer. 
+
+##Watershed Area
+
+The drainage area for either the accumulated watershed or the reach catchment, measured in square meters.
+
+```{r watershed, echo=FALSE, warning=FALSE, message=FALSE}
+
+df_area_AC <- format.df("landcover.ACCUM_AREA", "ACLU_AREA", metabData, allData_land, type=NULL) 
+df_area_RE <- format.df("landcover.REACH_AREA", "NLCD11_ARE", metabData, allData_land_RE, type=NULL)
+
+df_area <- format.catchment.df(df_area_AC, df_area_RE)
+plot.dens(df_area, "Watershed Areas", log=TRUE, reach=TRUE, type="", xlabel="Watershed Area (sq. meters)")
+
+```
+
+\newpage
+
+```{r runoff, echo=FALSE}
+```
+
+##Runoff
+
+Runoff data is the average estimated runoff based on streamflow records from 1971-2000, and is measured in millimeters (mm). 
+
+Note: no estimation method was reported with this dataset. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-df_pop_AC <- format.df("landcover.AC_POPD10", "POPD10_AC", metabData, allData_pop, type=NULL)
-df_pop_RE <- format.df("landcover.RE_POPD10", "MEAN", metabData, allData_pop, type=NULL)
+df_run_AC <- format.df("hydrol.RUNOFF_AC", "RUNOFF_AC", metabData, allData_run, type=NULL)
+df_run_RE <- format.df("hydrol.RUNOFF_RE", "MEAN", metabData, allData_run, type=NULL)
 
-df_pop <- format.catchment.df(df_pop_AC, df_pop_RE)
-plot.dens(df_pop, "Population Density (2010 US Population Census)", log=TRUE, reach=TRUE, 
-          xlabel="Population Density\n(people per square kilometer)")
+df_run <- format.catchment.df(df_run_AC, df_run_RE) 
+plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE, type="runoff"
+          xlabel="Runoff (mm)")
+
+```
+
+Note: The presence of zero values in the dataset skews this density plot because 0s are treated as NAs on a log scale. Additionally, there values below 0.1 mm are not shown on this density plot because there were so few observations. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+kable(format.runoff.count(df_run))
+```
+
+\newpage
+
+```{r precip, echo=FALSE}
+```
+
+##Precipitation
+
+Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data. A correction has been applied to the data coming from Science Base for NHD+ Sites at the reach catchment scale. For the metabolism sites, Ted Stets divided the reach catchment values by 1000; the same correction has been applied for reach-scale precipitation values coming from the NHD+ dataset.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+df_precip_AC <- format.df("climate.PPT30YR_AC", "PPT30YR_AC", metabData, allData_precip, type=NULL)
+df_precip_RE <- format.df("climate.PPT30YR_RE", "MEAN", metabData, allData_precip, type="re_precip")
+
+df_precip <- format.catchment.df(df_precip_AC, df_precip_RE)
+
+#convert from cm to mm
+df_precip$data_vals <- df_precip$data_vals*10
+
+plot.dens(df_precip, "Average Annual Precipitation\n(1971-2000)", log=FALSE, reach=TRUE, type="",
+          xlabel="Precipitation (mm)")
 
 ```
 
 
 \newpage
+
+
+```{r temp, echo=FALSE}
+```
+
+##Temperature
+
+Temperature data is the average annual air temperature (in deg C) from 1971-2000 based on 800 meter PRISM source grids.    
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+df_temp_AC <- format.df("climate.TMEAN_AC", "TMEAN_AC", metabData, allData_temp, type=NULL)
+df_temp_RE <- format.df("climate.TMEAN_RE", "MEAN", metabData, allData_temp, type=NULL)
+
+df_temp <- format.catchment.df(df_temp_AC, df_temp_RE)
+plot.dens(df_temp, "Average Temperature\n(1971-2000)", log=FALSE, reach=TRUE, type="",
+          xlabel="Temperature (deg C)")
+
+```
+
+
+\newpage
+
+
 
 ```{r agriculture, echo=FALSE}
 ```
@@ -92,7 +182,7 @@ df_ag_RE <- data.frame(data_type = df_ag_crop_RE$data_type,
 
 df_ag <- format.catchment.df(df_ag_AC, df_ag_RE) 
 mainplot <- plot.dens(df_ag, "Fractional Coverage of Agriculture\n(National Land Cover Database 2011)", 
-                      log=FALSE, reach=TRUE, xlabel="Fraction of Pasture + Crops in Watershed Area")
+                      log=FALSE, reach=TRUE, type="", xlabel="Fraction of Pasture + Crops in Watershed Area")
 
 rect_df <- data.frame(xmin=0, xmax=0.15, ymin=-Inf, ymax=Inf)
   
@@ -112,101 +202,25 @@ secondplot
 
 \newpage
 
-```{r runoff, echo=FALSE}
+
+```{r popdens, echo=FALSE}
 ```
 
-##Runoff
+##Population Density
 
-Runoff data is the average estimated runoff based on streamflow records from 1971-2000, and is measured in millimeters (mm). 
-
-Note: no estimation method was reported with this dataset. 
+Population density is based on the 2010 US Population Census and is measured in people per square kilometer. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-df_run_AC <- format.df("hydrol.RUNOFF_AC", "RUNOFF_AC", metabData, allData_run, type=NULL)
-df_run_RE <- format.df("hydrol.RUNOFF_RE", "MEAN", metabData, allData_run, type=NULL)
+df_pop_AC <- format.df("landcover.AC_POPD10", "POPD10_AC", metabData, allData_pop, type=NULL)
+df_pop_RE <- format.df("landcover.RE_POPD10", "MEAN", metabData, allData_pop, type=NULL)
 
-df_run <- format.catchment.df(df_run_AC, df_run_RE) 
-plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE,
-          xlabel="Runoff (mm)")
-
-```
-
-Note: There are 3,099 runoff values equal to 0 for the accumulated catchments for the entire United States dataset, and 4,757 runoff values equal to 0 for the reach catchments for the entire United States dataset. This skews the density plot for runoff when the values are logged because 0s are treated as NAs.  
-
-
-\newpage
-
-```{r temp, echo=FALSE}
-```
-
-##Temperature
-
-Temperature data is the average annual air temperature (in deg C) from 1971-2000 based on 800 meter PRISM source grids.    
-
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-
-df_temp_AC <- format.df("climate.TMEAN_AC", "TMEAN_AC", metabData, allData_temp, type=NULL)
-df_temp_RE <- format.df("climate.TMEAN_RE", "MEAN", metabData, allData_temp, type=NULL)
-
-df_temp <- format.catchment.df(df_temp_AC, df_temp_RE)
-plot.dens(df_temp, "Average Temperature\n(1971-2000)", log=FALSE, reach=TRUE,
-          xlabel="Temperature (deg C)")
+df_pop <- format.catchment.df(df_pop_AC, df_pop_RE)
+plot.dens(df_pop, "Population Density (2010 US Population Census)", log=TRUE, reach=TRUE, type="",
+          xlabel="Population Density\n(people per square kilometer)")
 
 ```
 
-
-\newpage
-
-```{r precip, echo=FALSE}
-```
-
-##Precipitation
-
-Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data. A correction has been applied to the data coming from Science Base for NHD+ Sites at the reach catchment scale. For the metabolism sites, Ted Stets divided the reach catchment values by 1000; the same correction has been applied for reach-scale precipitation values coming from the NHD+ dataset.
-
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-
-df_precip_AC <- format.df("climate.PPT30YR_AC", "PPT30YR_AC", metabData, allData_precip, type=NULL)
-df_precip_RE <- format.df("climate.PPT30YR_RE", "MEAN", metabData, allData_precip, type="re_precip")
-
-df_precip <- format.catchment.df(df_precip_AC, df_precip_RE)
-plot.dens(df_precip, "Average Annual Precipitation\n(1971-2000)", log=TRUE, reach=TRUE,
-          xlabel="Precipitation (cm)")
-
-```
-
-
-\newpage
-
-##Watershed Area
-
-The drainage area for either the accumulated watershed or the reach catchment, measured in square meters.
-
-```{r watershed, echo=FALSE, warning=FALSE, message=FALSE}
-
-df_area_AC <- format.df("landcover.ACCUM_AREA", "ACLU_AREA", metabData, allData_land, type=NULL) 
-df_area_RE <- format.df("landcover.REACH_AREA", "NLCD11_ARE", metabData, allData_land_RE, type=NULL)
-
-df_area <- format.catchment.df(df_area_AC, df_area_RE)
-plot.dens(df_area, "Watershed Areas", log=TRUE, reach=TRUE, xlabel="Watershed Area (sq. meters)")
-
-```
-
-\newpage
-
-##Stream Order
-
-Stream order is a representation of the size and complexity of a stream or river. Stream order values used in this comparison come from NHDPlus, which uses the Strahler stream ordering methodology to calculate stream order values. 
-
-```{r order, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-
-metab_order <- filter(allData_order, comid %in% metabData$nhdplus_id)
-df_order <- format.df("streamorde", "streamorde", metab_order, allData_order, type=NULL) 
-
-plot.orderHist(allData_order, df_order)
-
-```
 
 \newpage
 
@@ -329,7 +343,7 @@ cols[!is.na(bin)] = pal[bin[!is.na(bin)]]
 
 ```
 
-```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=3.5, fig.width=5.2}
+```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=5.5, fig.width=7.2}
 layout(matrix(data = c(1,1,1,1,1,1,2), ncol=1))
 par(mai = c(0,0,0,0), omi = c(0,0,0,0))
 
