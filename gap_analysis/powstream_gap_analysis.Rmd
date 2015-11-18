@@ -99,7 +99,7 @@ df_run_AC <- format.df("hydrol.RUNOFF_AC", "RUNOFF_AC", metabData, allData_run, 
 df_run_RE <- format.df("hydrol.RUNOFF_RE", "MEAN", metabData, allData_run, type=NULL)
 
 df_run <- format.catchment.df(df_run_AC, df_run_RE) 
-plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE, type="runoff"
+plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE, type="runoff",
           xlabel="Runoff (mm)")
 
 ```
