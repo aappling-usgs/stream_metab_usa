@@ -344,6 +344,8 @@ cols[!is.na(bin)] = pal[bin[!is.na(bin)]]
 ```
 
 ```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=5.5, fig.width=7.2}
+
+library(DT)
 layout(matrix(data = c(1,1,1,1,1,1,2), ncol=1))
 par(mai = c(0,0,0,0), omi = c(0,0,0,0))
 
@@ -365,6 +367,10 @@ for(i in 1:length(key.cols)){
   text(x1+bin.w/2, y=0.33, labels=key.bins[i], pos=1)
 }
 ## -- plot map /-- 
+eco.table = data.frame('Ecoregion'=as.character(eco$LEVEL3_NAM), 'Number of sites'=counts.by.id)
+row.names(eco.table) <- NULL
+srt.i = sort(eco.table[, 2], decreasing = TRUE, index.return = TRUE)$ix
+DT::datatable(eco.table[srt.i, ], rownames = FALSE)
 
 ```
 
@@ -379,6 +385,7 @@ The following state maps depict the geographic locations for dissolved oxygen (D
 
 library(leaflet)
 library(dataRetrieval)
+library(DT)
 
 disch.code = unique(get_var_src_codes(var=="disch", out='p_code'))
 doobs.code = "00300"
@@ -395,57 +402,135 @@ get_site <- function(stateCd, pCd){
 make_map <- function(state){
   state.cd = stateCd$STUSAB[stateCd$STATE_NAME == state]
   
-  do.sites = get_site(state.cd, doobs.code)
-  disch.sites = get_site(state.cd, disch.code)
+  
+  clean_site <- function(site){
+    clean.site= select(site, site_no, station_nm, dec_lat_va, dec_long_va, loc_web_ds, begin_date, end_date, count_nu) %>%
+      rename(days_recorded = count_nu, device=loc_web_ds, latitude=dec_lat_va, longitude=dec_long_va) %>% 
+      mutate(name=gsub("\\b([a-z])([a-z]+)", "\\U\\1\\L\\2" ,tolower(station_nm), perl=TRUE)) %>% 
+      mutate(site_no = paste0('nwis_',site_no)) %>% 
+      select(-station_nm)
+    return(clean.site)
+  }
+  
+  do.sites = get_site(state.cd, doobs.code) %>% 
+    clean_site()
+  disch.sites = get_site(state.cd, disch.code) %>% 
+    clean_site()
   
   m = leaflet() %>% 
     addProviderTiles("CartoDB.Positron",
                        options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
-    addCircleMarkers(lng = do.sites$dec_long_va, 
-                     lat = do.sites$dec_lat_va, 
+    addCircleMarkers(lng = do.sites$longitude, 
+                     lat = do.sites$latitude, 
                      popup = do.sites$station_nm, color = '#ff0000') %>% 
-    addCircleMarkers(lng = disch.sites$dec_long_va, 
-                     lat = disch.sites$dec_lat_va, 
+    addCircleMarkers(lng = disch.sites$longitude, 
+                     lat = disch.sites$latitude, 
                      popup = disch.sites$station_nm, color = 'blue', radius = 3) %>% 
     addLegend("bottomright", labels = c('DO', 'Discharge'), 
               colors = c('red', 'blue'), title = 'Metabolism Site Types')
   
-  return(m)
+  return(list(map=m, disch=disch.sites, do = do.sites))
 }
 ```
 
 ####New Hampshire
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-make_map('New Hampshire')
+mapper = make_map('New Hampshire')
+print(mapper$map)
+```
+DO stations
+```{r}
+datatable(mapper$do, rownames = FALSE)
+```
+Discharge stations
+```{r}
+datatable(mapper$disch, rownames = FALSE)
 ```
 
 ####Puerto Rico
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-make_map('Puerto Rico')
+mapper = make_map('Puerto Rico')
+print(mapper$map)
 ```
+DO stations
+```{r}
+datatable(mapper$do, rownames = FALSE)
+```
+Discharge stations
+```{r}
+datatable(mapper$disch, rownames = FALSE)
+```
+
 
 ####North Carolina
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-make_map('North Carolina')
+mapper = make_map('North Carolina')print(mapper$map)
 ```
+DO stations
+```{r}
+datatable(mapper$do, rownames = FALSE)
+```
+Discharge stations
+```{r}
+datatable(mapper$disch, rownames = FALSE)
+```
+
 
 ####Florida
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-make_map('Florida')
+mapper = make_map('Florida')
+print(mapper$map)
 ```
+DO stations
+```{r}
+datatable(mapper$do, rownames = FALSE)
+```
+Discharge stations
+```{r}
+datatable(mapper$disch, rownames = FALSE)
+```
+
 
 ####Wisconsin
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-make_map('Wisconsin')
+mapper = make_map('Wisconsin')print(mapper$map)
 ```
+DO stations
+```{r}
+datatable(mapper$do, rownames = FALSE)
+```
+Discharge stations
+```{r}
+datatable(mapper$disch, rownames = FALSE)
+```
+
 
 ####Arizona
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-make_map('Arizona')
+mapper = make_map('Arizona')
+print(mapper$map)
 ```
+DO stations
+```{r}
+datatable(mapper$do, rownames = FALSE)
+```
+Discharge stations
+```{r}
+datatable(mapper$disch, rownames = FALSE)
+```
+
 
 ####Connecticut
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-make_map('Connecticut')
+mapper = make_map('Connecticut')
+print(mapper$map)
+```
+DO stations
+```{r}
+datatable(mapper$do, rownames = FALSE)
+```
+Discharge stations
+```{r}
+datatable(mapper$disch, rownames = FALSE)
 ```
 
