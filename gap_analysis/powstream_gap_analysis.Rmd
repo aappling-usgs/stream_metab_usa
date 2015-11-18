@@ -1,7 +1,7 @@
 ---
-title: "Powstream Gap Analysis"
+title: "Stream Metabolism Gap Analysis"
 author: "Lindsay Carr, Alison Appling, Jordan Read"
-date: "November 17, 2015"
+date: "November 18, 2015"
 ---
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, eval=TRUE, results='hide'}
@@ -20,22 +20,22 @@ for(i in 1:length(allData_list)){
 
 ```
 
-This analysis will compare conditions at stream sites that have metabolism estimates with all NHDPlus stream sites in the US. The goal is to identify which conditions of US streams have not been fully represented by the collection of current metabolism sites. Identification of such underrepresented conditions will help in choosing 30 new monitoring sites to create a more robust dataset for metabolism estimates. 
+This analysis will compare conditions at stream sites that have Powell Center metabolism estimates versus all NHDPlus stream sites in the US. The goal is to identify which conditions of US streams have not been fully represented by the collection of current metabolism sites. Identification of such underrepresented conditions will help in choosing 30 new monitoring sites to create a more robust dataset of metabolism estimates. 
 
-Data for NHDPlus streams comes from Mike Wieczorek's *NHDPlus Version 2 Accumulated and Reach Catchment Variables* dataset on ScienceBase. Data representing the current metabolism sites comes from using the `get_meta()` function in `powstreams.R` and has data for the 291 sites with metabolism estimates. Seven metrics have been used in this analysis; additionally, each metric has an *Accumulated Watershed* (watershed down the NHDPlus network at each catchment) density plot and a *Reach Catchment* plot (watershed for each specific NHDPlus catchment).  
+Data for NHDPlus stream reaches come from Mike Wieczorek's *NHDPlus Version 2 Accumulated and Reach Catchment Variables* dataset on ScienceBase (www.sciencebase.gov). 291 of those reaches are located at current Powell Center metabolism sites, whose NHDPlus data are also accessible by the `get_meta()` function in the `powstreams` R package. Seven metrics have been used in this analysis; additionally, each metric has density plots for the *Accumulated Watershed* (complete watershed draining to that point along the river network) and the *Reach Catchment* (local watershed draining directly to the reach).  
 
-  
+
 **Metrics used for this analysis:**
 
-* Stream Order: metabolism sites have larger streams than is seen nationally in NHD+
-* Watershed Area: metabolism sites have slightly large watershed areas than all NHD+ reaches
-* Runoff: metabolism sites do not capture the extreme low flows that are seen in NHD+ reaches
-* Precipitation: metabolism sites cover the range of precipitation, except for the extreme lows
-* Temperature: metabolism sites cover the range of temperatures, except for the extreme lows
-* Agriculture: metabolism sites represent NHD+ reaches agricultural activity well, but miss the extreme highs
-* Population Density: metabolism sites represent higher populated areas than seen nationally
-* Ecoregions: metabolism sites represent eastern ecoregions well, but miss much of the western ecoregions
-* State Discharge & DO: maps showing locations of the metabolism sites in relation to existing discharge measurement sites
+* *Stream Order*: metabolism sites have larger streams than is seen nationally in NHD+ reaches
+* *Watershed Area*: metabolism sites have slightly large watershed areas than all NHD+ reaches
+* *Runoff*: metabolism sites do not capture the extreme low flows that are seen in NHD+ reaches
+* *Precipitation*: metabolism sites cover the range of precipitation, except for the extreme lows
+* *Temperature*: metabolism sites cover the range of temperatures, except for the extreme lows
+* *Agriculture*: metabolism sites represent NHD+ reaches' agricultural activity well, but miss the extreme highs
+* *Population Density*: metabolism sites overrepresent more populated areas relative to the NHD+ reaches
+* *Ecoregions*: metabolism sites represent eastern ecoregions well, but miss many of the western ecoregions
+* *State Discharge & DO*: these maps show all USGS sites with dissolved oxygen and/or discharge in each PI state
 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -47,14 +47,13 @@ num_sites_table <- data.frame(Source = c("Metabolism", "All US"),
 kable(num_sites_table)
 ```
 
-\newpage
 
 
 
 
 ##Stream Order
 
-Stream order is a representation of the size and complexity of a stream or river. Stream order values used in this comparison come from NHDPlus, which uses the Strahler stream ordering methodology to calculate stream order values. 
+Stream order is a measure of the size and complexity of a stream or river. Strahler stream order values used in this comparison come from NHDPlus.
 
 ```{r order, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 
@@ -64,8 +63,6 @@ df_order <- format.df("streamorde", "streamorde", metab_order, allData_order, ty
 plot.orderHist(allData_order, df_order)
 
 ```
-
-\newpage
 
 
 ##Watershed Area
@@ -82,16 +79,12 @@ plot.dens(df_area, "Watershed Areas", log=TRUE, reach=TRUE, type="", xlabel="Wat
 
 ```
 
-\newpage
-
 ```{r runoff, echo=FALSE}
 ```
 
 ##Runoff
 
-Runoff data is the average estimated runoff based on streamflow records from 1971-2000, and is measured in millimeters (mm). 
-
-Note: no estimation method was reported with this dataset. 
+Runoff data is the average estimated runoff based on streamflow records from 1971 to 2000, and is measured in millimeters (mm). Runoff in the NHD+ dataset was estimated by the Thornthwaite water balance method (http://wwwbrr.cr.usgs.gov/projects/SW_MoWS/Thornthwaite.html). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -104,20 +97,19 @@ plot.dens(df_run, "Average Runoff\n(1971-2000)", log=TRUE, reach=TRUE, type="run
 
 ```
 
-Note: The presence of zero values in the dataset skews this density plot because 0s are treated as NAs on a log scale. Additionally, there values below 0.1 mm are not shown on this density plot because there were so few observations. 
+Note: The above plot shows only reaches with runoff >= 0.1 mm. The omitted reaches, whose values can legitimately be 0 in some dry Western catchments, are a small fraction of the total dataset:
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 kable(format.runoff.count(df_run))
 ```
 
-\newpage
 
 ```{r precip, echo=FALSE}
 ```
 
 ##Precipitation
 
-Precipitation data is the average annual precipitation (cm/year) from 1971-2000 based on 800 meter PRISM data. A correction has been applied to the data coming from Science Base for NHD+ Sites at the reach catchment scale. For the metabolism sites, Ted Stets divided the reach catchment values by 1000; the same correction has been applied for reach-scale precipitation values coming from the NHD+ dataset.
+Precipitation data is the average annual precipitation (mm) from 1971 to 2000 based on 800 meter PRISM data. A correction has been applied to the data at the reach catchment scale according to Ted Stets's expert judgment: the raw values from ScienceBase have been divided by 1000.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -135,15 +127,13 @@ plot.dens(df_precip, "Average Annual Precipitation\n(1971-2000)", log=FALSE, rea
 ```
 
 
-\newpage
-
 
 ```{r temp, echo=FALSE}
 ```
 
 ##Temperature
 
-Temperature data is the average annual air temperature (in deg C) from 1971-2000 based on 800 meter PRISM source grids.    
+Temperature data is the average annual air temperature (in deg C) from 1971 to 2000 based on 800 meter PRISM data.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -157,8 +147,6 @@ plot.dens(df_temp, "Average Temperature\n(1971-2000)", log=FALSE, reach=TRUE, ty
 ```
 
 
-\newpage
-
 
 
 ```{r agriculture, echo=FALSE}
@@ -166,7 +154,7 @@ plot.dens(df_temp, "Average Temperature\n(1971-2000)", log=FALSE, reach=TRUE, ty
 
 ##Agriculture
 
-Data representing agriculture is the sum of the land-use classes 81 (Pasture/Hay) and 82 (Cultivated Crops). The values are shown as the percent of the watershed area covered in pasture/hay or cultivated crops.    
+Agricultural land cover is taken as the sum of the land-use classes 81 (Pasture/Hay) and 82 (Cultivated Crops). The values are shown as the percent of the watershed area covered in pasture/hay or cultivated crops.    
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=5}
 
@@ -185,9 +173,9 @@ mainplot <- plot.dens(df_ag, "Fractional Coverage of Agriculture\n(National Land
                       log=FALSE, reach=TRUE, type="", xlabel="Fraction of Pasture + Crops in Watershed Area")
 
 rect_df <- data.frame(xmin=0, xmax=0.15, ymin=-Inf, ymax=Inf)
-  
+
 secondplot <- mainplot + coord_cartesian(xlim=c(0, 0.15)) + 
-    ggtitle("Lower Range of\nFractional Coverage of Agriculture\n(National Land Cover Database 2011")
+  ggtitle("Lower Range of\nFractional Coverage of Agriculture\n(National Land Cover Database 2011")
 
 mainplot <- mainplot + geom_rect(data = rect_df, color="khaki4", alpha=0.3,
                                  aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax)) +
@@ -200,7 +188,6 @@ secondplot
 ```
 
 
-\newpage
 
 
 ```{r popdens, echo=FALSE}
@@ -222,7 +209,6 @@ plot.dens(df_pop, "Population Density (2010 US Population Census)", log=TRUE, re
 ```
 
 
-\newpage
 
 
 ```{r eflow, echo=FALSE, warning=FALSE, message=FALSE, include=FALSE, eval=FALSE}
@@ -248,13 +234,13 @@ eflow_metab <- read.csv("data(DO_NOT_COMMIT)/eflow_metab.csv")
 missing_table <- data.frame(`Site Number`=not_working)
 
 var_table <- data.frame(Variable=c("lam1Obs", "tau2Obs", "tau3Obs", "tau4Obs", 
-                                  "ar1Obs", "amplitudeObs", "phaseObs"),
-                       Definition=c("Arithmetic mean", 
-                                    "Coefficient of L-variation - analagous to coefficient of variation.",
-                                    "The third L-moment ratio or L-skew.",
-                                    "The fourth L-moment ratio or L-kurtosis.",
-                                    "AR1 correlation coefficient.",
-                                    "Amplitude of the seasonal signal. Compute seasonality variables by first
+                                   "ar1Obs", "amplitudeObs", "phaseObs"),
+                        Definition=c("Arithmetic mean", 
+                                     "Coefficient of L-variation - analagous to coefficient of variation.",
+                                     "The third L-moment ratio or L-skew.",
+                                     "The fourth L-moment ratio or L-kurtosis.",
+                                     "AR1 correlation coefficient.",
+                                     "Amplitude of the seasonal signal. Compute seasonality variables by first
                                     standardizing flows, using the fitting relation A*cos(2*pi*t) + B*sin(2*pi*t).",
                                     "Phase of the seasonal signal. Compute seasonality variables by first 
                                     standardizing flows, the fitting relation A*cos(2*pi*t) + B*sin(2*pi*t)."))
@@ -275,8 +261,6 @@ kable(missing_table, caption="Table 2. Metabolism sites not included in hydrolog
 Below is a map showing the geographic location of the metabolism sites (red dots) and a count of the metabolism sites located in each of the 84 ecoregions of the contiguous US (color of ecoregion based on number of sites).  
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, results='hide'}
-
-
 library(rgeos)
 library(rgdal)
 library(mda.streams)
@@ -289,7 +273,6 @@ plot.CRS <- "+init=epsg:2163"
 
 missing.data = "#B3B3B3"
 site.color = rgb(1,0,0,0.3)
-
 
 # level III Ecoregions come from GDP geoserver
 
@@ -312,16 +295,13 @@ site.points <- data.frame(lon=site.loc$lon, lat = site.loc$lat)
 sp2 <- SpatialPoints(site.points, proj4string=CRS("+proj=longlat + datum=wgs84")) %>% 
   spTransform(CRS(plot.CRS))
 ## -- get spatial data /--
-
 ```
 
 ```{r echo=FALSE, eval=TRUE}
 ## -- analyze point in polygon --
 point.in = gContains(eco, sp2, byid=TRUE)
-
 counts.by.id = colSums(point.in)
 ## -- analyze point in polygon /--
-
 
 ## -- color markers -- 
 bins = pretty(counts.by.id, 100)
@@ -333,18 +313,16 @@ key.cols = colorRampPalette(brewer.pal(9, 'YlGnBu'))(length(key.bins))
 ```{r echo=FALSE, eval=TRUE}
 if (bins[1] != 0 | key.cols[1] != 0)
   #stop('cannot assign zero color when there is no zero value')
-pal[1] <- missing.data # 0 is grey
+  pal[1] <- missing.data # 0 is grey
 key.cols[1] <- missing.data  # 0 is grey
 #get closest bin
 bin = unname(sapply(counts.by.id, function(x) ifelse(is.na(x),NA,which.min(abs(x-bins)))))
 cols = rep(NA, length(counts.by.id))
 cols[!is.na(bin)] = pal[bin[!is.na(bin)]]
 ## -- color markers /-- 
-
 ```
 
 ```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=5.5, fig.width=7.2}
-
 library(DT)
 layout(matrix(data = c(1,1,1,1,1,1,2), ncol=1))
 par(mai = c(0,0,0,0), omi = c(0,0,0,0))
@@ -371,18 +349,15 @@ eco.table = data.frame('Ecoregion'=as.character(eco$LEVEL3_NAM), 'Number of site
 row.names(eco.table) <- NULL
 srt.i = sort(eco.table[, 2], decreasing = TRUE, index.return = TRUE)$ix
 DT::datatable(eco.table[srt.i, ], rownames = FALSE)
-
 ```
 
 
 
-##State Discharge & DO 
+##State Discharge & DO
 
-The following state maps depict the geographic locations for dissolved oxygen (DO) and discharge sites. The states shown below are New Hampshire, Puerto Rico, North Carolina, Florida, Wisconsin, Arizona, and Connecticut.   
+The following state maps give the locations of sites with USGS-NWIS data on dissolved oxygen (DO) and/or discharge. The states shown below are those with StreamPULSE PIs: New Hampshire, Puerto Rico, North Carolina, Florida, Wisconsin, Arizona, and Connecticut.   
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-
-
 library(leaflet)
 library(dataRetrieval)
 library(DT)
@@ -393,7 +368,8 @@ min.count = 100
 skip.types = c('GW','LK','ES')
 
 get_site <- function(stateCd, pCd){
-  filter(readNWISdata(service = "site", stateCd=stateCd,seriesCatalogOutput="true",outputDataTypeCd="iv",parameterCd=pCd,Access="3"), parm_cd==pCd) %>% 
+  filter(readNWISdata(service = "site", stateCd=stateCd, seriesCatalogOutput="true", outputDataTypeCd="iv", 
+                      parameterCd=pCd, Access="3"), parm_cd==pCd) %>% 
     filter(count_nu > min.count) %>% 
     filter(!(site_tp_cd %in% skip.types)) %>% 
     filter(!is.na(dec_long_va))
@@ -401,7 +377,6 @@ get_site <- function(stateCd, pCd){
 
 make_map <- function(state){
   state.cd = stateCd$STUSAB[stateCd$STATE_NAME == state]
-  
   
   clean_site <- function(site){
     clean.site= select(site, site_no, station_nm, dec_lat_va, dec_long_va, loc_web_ds, begin_date, end_date, count_nu) %>%
@@ -419,7 +394,7 @@ make_map <- function(state){
   
   m = leaflet() %>% 
     addProviderTiles("CartoDB.Positron",
-                       options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
+                     options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
     addCircleMarkers(lng = do.sites$longitude, 
                      lat = do.sites$latitude, 
                      popup = do.sites$station_nm, color = '#ff0000') %>% 
@@ -436,7 +411,7 @@ make_map <- function(state){
 ####New Hampshire
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 mapper = make_map('New Hampshire')
-print(mapper$map)
+mapper$map
 ```
 DO stations
 ```{r}
@@ -450,7 +425,7 @@ datatable(mapper$disch, rownames = FALSE)
 ####Puerto Rico
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 mapper = make_map('Puerto Rico')
-print(mapper$map)
+mapper$map
 ```
 DO stations
 ```{r}
@@ -465,7 +440,7 @@ datatable(mapper$disch, rownames = FALSE)
 ####North Carolina
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 mapper = make_map('North Carolina')
-print(mapper$map)
+mapper$map
 ```
 DO stations
 ```{r}
@@ -480,7 +455,7 @@ datatable(mapper$disch, rownames = FALSE)
 ####Florida
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 mapper = make_map('Florida')
-print(mapper$map)
+mapper$map
 ```
 DO stations
 ```{r}
@@ -495,7 +470,7 @@ datatable(mapper$disch, rownames = FALSE)
 ####Wisconsin
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 mapper = make_map('Wisconsin')
-print(mapper$map)
+mapper$map
 ```
 DO stations
 ```{r}
@@ -510,7 +485,7 @@ datatable(mapper$disch, rownames = FALSE)
 ####Arizona
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 mapper = make_map('Arizona')
-print(mapper$map)
+mapper$map
 ```
 DO stations
 ```{r}
@@ -525,7 +500,7 @@ datatable(mapper$disch, rownames = FALSE)
 ####Connecticut
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
 mapper = make_map('Connecticut')
-print(mapper$map)
+mapper$map
 ```
 DO stations
 ```{r}
@@ -535,4 +510,3 @@ Discharge stations
 ```{r}
 datatable(mapper$disch, rownames = FALSE)
 ```
-
