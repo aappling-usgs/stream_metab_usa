@@ -111,6 +111,28 @@ format.catchment.df <- function(accum_df, reach_df){
   df <- rbind(accum_df, reach_df)
 }
 
+format.runoff.count <- function(df_run){
+  sum_notincluded_zero <- df_run %>% filter(data_vals == 0) %>% 
+    group_by(data_type, catchment) %>% summarize(count = n())
+  sum_notincluded_zero <- sum_notincluded_zero %>% mutate(condition = rep("Runoff=0", nrow(sum_notincluded_zero)))
+  
+  sum_notincluded_low <- df_run %>% filter(data_vals < 0.1 & data_vals > 0) %>% 
+    group_by(data_type, catchment) %>% summarize(count = n())
+  sum_notincluded_low <- sum_notincluded_low %>% mutate(condition = rep("0<Runoff<0.1", nrow(sum_notincluded_low)))
+  
+  sum_notincluded <- rbind(sum_notincluded_zero, sum_notincluded_low)
+  
+  sum_notincluded$data_type <- as.character(sum_notincluded$data_type)
+  sum_notincluded <- rbind(sum_notincluded, c("NHD+ & Metabolism", "Accum & Reach", 
+                                              max(nrow(df_run %>% filter(catchment == "Accumulated Watershed")), 
+                                                  nrow(df_run %>% filter(catchment == "Reach Catchment"))), 
+                                              "All Runoff Values"))
+  
+  sum_notincluded <- sum_notincluded[, c("condition", "data_type", "catchment", "count")]
+  colnames(sum_notincluded) <- c("Condition", "Data Source", "Catchment Type", "Count")
+  return(sum_notincluded)
+}
+
 get.median <- function(df, type, catchment){
   #   vals <- df %>% 
   #     filter(data_type == type) %>% 
@@ -148,11 +170,12 @@ format.med.df <- function(df, reach){
   return(median_df)  
 }
 
-plot.dens <- function(df, title, log, reach, xlabel){
+plot.dens <- function(df, title, log, reach, type, xlabel){
   
   df$data_type <- ordered(df$data_type, c("NHD+ Sites", "Metabolism Sites"))
   
   median_df <- format.med.df(df, reach)
+  median_df$data_type <- ordered(median_df$data_type, c("NHD+ Sites", "Metabolism Sites"))
   
   all_label <- paste("NHD+ Sites:\n", 
                      paste(filter(median_df, data_type=="NHD+ Sites") %>% 
@@ -176,8 +199,10 @@ plot.dens <- function(df, title, log, reach, xlabel){
                         labels=c(all_label, metab_label),
                         values=c("red", "blue"))
   
-  if(log){
+  if(log && type != "runoff"){
     densPlot <- densPlot + scale_x_log10()
+  } else if(log && type == "runoff"){
+    densPlot <- densPlot + scale_x_log10(limits = c(0.1, NA))
   }
   
   if(reach){
@@ -195,16 +220,27 @@ plot.orderHist <- function(allData_order, df_order){
   stream_order_range <- range(allData_order$streamord)
   hist_breaks <- stream_order_range[1]:stream_order_range[2]
   
+  median_df <- df_order %>% group_by(data_type) %>% summarize(Medians = median(data_vals)) 
+  median_df$data_type <- ordered(median_df$data_type, c("NHD+ Sites", "Metabolism Sites"))
+  all_label <- paste("NHD+ Sites:", median_df$Medians[which(median_df$data_type == "NHD+ Sites")])
+  metab_label <- paste("Metabolism Sites:", median_df$Medians[which(median_df$data_type == "Metabolism Sites")])
+  
   ggplot(data=df_order, aes(data_vals)) +
     geom_histogram(alpha = .5, binwidth=1, origin = -0.5,
                    col="black", aes(fill=data_type)) +
+    geom_vline(data=median_df, show_guide = TRUE,
+               aes(xintercept = Medians, color = data_type)) +
     scale_x_continuous(breaks=hist_breaks) +
     facet_grid(data_type ~ ., scales="free") +
     ggtitle("Strahler Stream Order Values") + 
     labs(y="Count", x="Stream Order") + 
     scale_fill_manual(name="Site Type",
                       breaks=c("NHD+ Sites", "Metabolism Sites"),
-                      values=c("red", "blue"))
+                      values=c("red", "blue")) +
+    scale_colour_manual(name="Median Values",
+                        breaks=c("NHD+ Sites", "Metabolism Sites"),
+                        labels=c(all_label, metab_label),
+                        values=c("red", "blue"))
 }
 
 eflow.mag7 <- function(sites){
