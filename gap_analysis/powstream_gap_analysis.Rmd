@@ -494,7 +494,8 @@ datatable(mapper$disch, rownames = FALSE)
 
 ####Wisconsin
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('Wisconsin')print(mapper$map)
+mapper = make_map('Wisconsin')
+print(mapper$map)
 ```
 DO stations
 ```{r}
