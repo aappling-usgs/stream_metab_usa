@@ -28,7 +28,7 @@ Data for NHDPlus stream reaches come from Mike Wieczorek's *NHDPlus Version 2 Ac
 **Metrics used for this analysis:**
 
 * *Stream Order*: metabolism sites have larger streams than is seen nationally in NHD+ reaches
-* *Watershed Area*: metabolism sites have slightly large watershed areas than all NHD+ reaches
+* *Watershed Area*: metabolism sites have slightly larger watershed areas than all NHD+ reaches
 * *Runoff*: metabolism sites do not capture the extreme low flows that are seen in NHD+ reaches
 * *Precipitation*: metabolism sites cover the range of precipitation, except for the extreme lows
 * *Temperature*: metabolism sites cover the range of temperatures, except for the extreme lows
@@ -258,7 +258,7 @@ kable(missing_table, caption="Table 2. Metabolism sites not included in hydrolog
 
 ##Ecoregion
 
-Below is a map showing the geographic location of the metabolism sites (red dots) and a count of the metabolism sites located in each of the 84 ecoregions of the contiguous US (color of ecoregion based on number of sites).  
+Below is a map showing the geographic location of the metabolism sites (red dots) and a count of the metabolism sites located in each of the level III ecoregions of the contiguous US (color of ecoregion based on number of sites).  
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, results='hide'}
 library(rgeos)
@@ -323,7 +323,7 @@ cols[!is.na(bin)] = pal[bin[!is.na(bin)]]
 ```
 
 ```{r ecoregion_plots, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, fig.height=5.5, fig.width=7.2}
-library(DT)
+
 layout(matrix(data = c(1,1,1,1,1,1,2), ncol=1))
 par(mai = c(0,0,0,0), omi = c(0,0,0,0))
 
@@ -345,168 +345,14 @@ for(i in 1:length(key.cols)){
   text(x1+bin.w/2, y=0.33, labels=key.bins[i], pos=1)
 }
 ## -- plot map /-- 
+
+```
+```{r ecoregion_table, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, results="as.is"} 
+
+library(DT)
 eco.table = data.frame('Ecoregion'=as.character(eco$LEVEL3_NAM), 'Number of sites'=counts.by.id)
 row.names(eco.table) <- NULL
 srt.i = sort(eco.table[, 2], decreasing = TRUE, index.return = TRUE)$ix
-DT::datatable(eco.table[srt.i, ], rownames = FALSE)
+datatable(eco.table[srt.i, ], rownames = FALSE)
 ```
 
-
-
-##State Discharge & DO
-
-The following state maps give the locations of sites with USGS-NWIS data on dissolved oxygen (DO) and/or discharge. The states shown below are those with StreamPULSE PIs: New Hampshire, Puerto Rico, North Carolina, Florida, Wisconsin, Arizona, and Connecticut.   
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-library(leaflet)
-library(dataRetrieval)
-library(DT)
-
-disch.code = unique(get_var_src_codes(var=="disch", out='p_code'))
-doobs.code = "00300"
-min.count = 100
-skip.types = c('GW','LK','ES')
-
-get_site <- function(stateCd, pCd){
-  filter(readNWISdata(service = "site", stateCd=stateCd, seriesCatalogOutput="true", outputDataTypeCd="iv", 
-                      parameterCd=pCd, Access="3"), parm_cd==pCd) %>% 
-    filter(count_nu > min.count) %>% 
-    filter(!(site_tp_cd %in% skip.types)) %>% 
-    filter(!is.na(dec_long_va))
-}
-
-make_map <- function(state){
-  state.cd = stateCd$STUSAB[stateCd$STATE_NAME == state]
-  
-  clean_site <- function(site){
-    clean.site= select(site, site_no, station_nm, dec_lat_va, dec_long_va, loc_web_ds, begin_date, end_date, count_nu) %>%
-      rename(days_recorded = count_nu, device=loc_web_ds, latitude=dec_lat_va, longitude=dec_long_va) %>% 
-      mutate(name=gsub("\\b([a-z])([a-z]+)", "\\U\\1\\L\\2" ,tolower(station_nm), perl=TRUE)) %>% 
-      mutate(site_no = paste0('nwis_',site_no)) %>% 
-      select(-station_nm)
-    return(clean.site)
-  }
-  
-  do.sites = get_site(state.cd, doobs.code) %>% 
-    clean_site()
-  disch.sites = get_site(state.cd, disch.code) %>% 
-    clean_site()
-  
-  m = leaflet() %>% 
-    addProviderTiles("CartoDB.Positron",
-                     options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
-    addCircleMarkers(lng = do.sites$longitude, 
-                     lat = do.sites$latitude, 
-                     popup = do.sites$station_nm, color = '#ff0000') %>% 
-    addCircleMarkers(lng = disch.sites$longitude, 
-                     lat = disch.sites$latitude, 
-                     popup = disch.sites$station_nm, color = 'blue', radius = 3) %>% 
-    addLegend("bottomright", labels = c('DO', 'Discharge'), 
-              colors = c('red', 'blue'), title = 'Metabolism Site Types')
-  
-  return(list(map=m, disch=disch.sites, do = do.sites))
-}
-```
-
-####New Hampshire
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('New Hampshire')
-mapper$map
-```
-DO stations
-```{r}
-datatable(mapper$do, rownames = FALSE)
-```
-Discharge stations
-```{r}
-datatable(mapper$disch, rownames = FALSE)
-```
-
-####Puerto Rico
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('Puerto Rico')
-mapper$map
-```
-DO stations
-```{r}
-datatable(mapper$do, rownames = FALSE)
-```
-Discharge stations
-```{r}
-datatable(mapper$disch, rownames = FALSE)
-```
-
-
-####North Carolina
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('North Carolina')
-mapper$map
-```
-DO stations
-```{r}
-datatable(mapper$do, rownames = FALSE)
-```
-Discharge stations
-```{r}
-datatable(mapper$disch, rownames = FALSE)
-```
-
-
-####Florida
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('Florida')
-mapper$map
-```
-DO stations
-```{r}
-datatable(mapper$do, rownames = FALSE)
-```
-Discharge stations
-```{r}
-datatable(mapper$disch, rownames = FALSE)
-```
-
-
-####Wisconsin
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('Wisconsin')
-mapper$map
-```
-DO stations
-```{r}
-datatable(mapper$do, rownames = FALSE)
-```
-Discharge stations
-```{r}
-datatable(mapper$disch, rownames = FALSE)
-```
-
-
-####Arizona
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('Arizona')
-mapper$map
-```
-DO stations
-```{r}
-datatable(mapper$do, rownames = FALSE)
-```
-Discharge stations
-```{r}
-datatable(mapper$disch, rownames = FALSE)
-```
-
-
-####Connecticut
-```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
-mapper = make_map('Connecticut')
-mapper$map
-```
-DO stations
-```{r}
-datatable(mapper$do, rownames = FALSE)
-```
-Discharge stations
-```{r}
-datatable(mapper$disch, rownames = FALSE)
-```
