@@ -21,7 +21,7 @@ add_calc_data <- function(var_src="suntime_calcLon", sites=list_sites(), on_exis
   sites_to_get <- sites
   if(on_exists %in% c("stop", "skip")) {
     if(verbose) message("checking for existing data...")
-    ts_locs <- locate_ts(var_src=var_src, site_name=sites)
+    ts_locs <- locate_ts(var_src=var_src, site_name=sites_to_get)
     if(on_exists == "stop" && length(ts_already <- which(!is.na(ts_locs))) > 0)
       stop("on_exists='stop' and ", length(ts_already), " sites already have data: ", paste0(sites[ts_already], collapse=","))
     sites_to_get <- sites_to_get[is.na(ts_locs)]
