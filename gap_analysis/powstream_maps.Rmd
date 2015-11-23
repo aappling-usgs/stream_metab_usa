@@ -42,11 +42,45 @@ make_map <- function(state.cd){
       rename(days_recorded = count_nu, device=loc_web_ds, latitude=dec_lat_va, longitude=dec_long_va) %>% 
       mutate(name=gsub("\\b([a-z])([a-z]+)", "\\U\\1\\L\\2" ,tolower(station_nm), perl=TRUE)) %>% 
       mutate(site_no = paste0('nwis_',site_no)) %>% 
-      select(-station_nm)
+      select(-station_nm) 
     return(clean.site)
   }
+
+  popup.strings <- function(site.nos, all.sites){
+    
+    popups <- lapply(site.nos, function(x) {
+    
+      site.string <- c()
+      
+      if(x %in% all.sites$disch.sites$site_no){
+        site.string <- c(site.string, "Discharge")
+      } 
+      
+      if(x %in% all.sites$do.sites$site_no){
+        site.string <- c(site.string, "DO")
+      }
+      
+      if(x %in% all.sites$sc.sites$site_no){
+        site.string <- c(site.string, "Spec Cond")
+      }
+      
+      if(x %in% all.sites$nitrate.sites$site_no){
+        site.string <- c(site.string, "Nitrate")
+      }
+      
+      if(length(site.string) > 1){
+        site.string <- paste(site.string, collapse=", ")
+        popup.string <- paste0(x, ": ", site.string)
+      } else {
+        popup.string <- x
+      }
   
-  do.sites = get_site(state.cd, doobs.code, "iv") %>% 
+    })
+ 
+    return(unlist(popups))
+  } 
+  
+   do.sites = get_site(state.cd, doobs.code, "iv") %>% 
     clean_site()
   disch.sites = get_site(state.cd, disch.code, "iv") %>% 
     clean_site()
@@ -55,25 +89,32 @@ make_map <- function(state.cd){
   nitrate.sites = get_site(state.cd, nitrate.code, "uv") %>% 
     clean_site()
   
+  all.site.nos <- list(disch.sites=disch.sites, do.sites=do.sites, 
+                       sc.sites=sc.sites, nitrate.sites=nitrate.sites)
+  
   m = leaflet() %>% 
     addProviderTiles("CartoDB.Positron",
                      options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
     addCircleMarkers(lng = do.sites$longitude, 
                      lat = do.sites$latitude, 
-                     popup = do.sites$station_nm, color = '#ff0000') %>% 
+                     popup = popup.strings(do.sites$site_no, all.site.nos), 
+                     color = '#ff0000') %>% 
     addCircleMarkers(lng = disch.sites$longitude, 
                      lat = disch.sites$latitude, 
-                     popup = disch.sites$station_nm, color = 'blue', radius = 3) %>% 
+                     popup = popup.strings(disch.sites$site_no, all.site.nos), 
+                     color = 'blue', radius = 3) %>% 
     addCircleMarkers(lng = sc.sites$longitude, 
                      lat = sc.sites$latitude, 
-                     popup = sc.sites$station_nm, color = 'green', radius = 2) %>% 
+                     popup = popup.strings(sc.sites$site_no, all.site.nos), 
+                     color = 'green', radius = 2) %>% 
     addLegend("bottomright", labels = c('DO', 'Discharge', 'Specific Conductance', 'Nitrate'), 
               colors = c('red', 'blue', 'green', 'goldenrod'), title = 'Metabolism Site Types')
   
   if(nrow(nitrate.sites) != 0){
     m = m %>% addCircleMarkers(lng = nitrate.sites$longitude, 
                        lat = nitrate.sites$latitude, 
-                       popup = nitrate.sites$station_nm, color = 'goldenrod', radius = 2) 
+                       popup = popup.strings(nitrate.sites$site_no, all.site.nos), 
+                       color = 'goldenrod', radius = 2) 
   }
     
   return(list(map=m, disch=disch.sites, do = do.sites, sc = sc.sites, nitrate = nitrate.sites))

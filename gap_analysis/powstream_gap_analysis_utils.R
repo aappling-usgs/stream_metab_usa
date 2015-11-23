@@ -12,6 +12,8 @@ render.gapanalysis <- function(output='html') {
 
 render.maps <- function(nm.state, output='html') {
   library(rmarkdown)
+  library(dataRetrieval)
+
   state.cd <- stateCd$STUSAB[stateCd$STATE_NAME == nm.state]
   output_dir <- file.path(getwd(), "gap_analysis/maps")
   rmd_file <- file.path(getwd(), "gap_analysis", "powstream_maps.Rmd")
