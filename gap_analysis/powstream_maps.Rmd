@@ -1,0 +1,106 @@
+---
+title: "State Discharge, DO & Specific Conductance "
+author: "Jordan Read, Alison Appling, Lindsay Carr"
+date: "November 23, 2015"
+---
+  
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+library(mda.streams)
+library(dplyr)
+library(unitted)
+```
+
+##`r nm.state`
+
+The following state map depicts the geographic locations for dissolved oxygen (DO), discharge sites, specific conductance, and nitrate. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+library(leaflet)
+library(dataRetrieval)
+library(DT)
+
+disch.code = unique(get_var_src_codes(var=="disch", out='p_code'))
+doobs.code = "00300"
+sc.code = "00095"
+nitrate.code = c("00630","99124","00631","99133","99137")  
+min.count = 100
+skip.types = c('GW','LK','ES')
+
+get_site <- function(stateCd, pCd, dataCd){
+  data <- readNWISdata(service = "site", stateCd=stateCd, seriesCatalogOutput="true", 
+                       outputDataTypeCd=dataCd, parameterCd=pCd, Access="3")
+  filter(data, parm_cd %in% pCd) %>% 
+    filter(count_nu > min.count) %>% 
+    filter(!(site_tp_cd %in% skip.types)) %>% 
+    filter(!is.na(dec_long_va))
+}
+
+make_map <- function(state.cd){
+  
+  clean_site <- function(site){
+    clean.site= select(site, site_no, station_nm, dec_lat_va, dec_long_va, loc_web_ds, begin_date, end_date, count_nu) %>%
+      rename(days_recorded = count_nu, device=loc_web_ds, latitude=dec_lat_va, longitude=dec_long_va) %>% 
+      mutate(name=gsub("\\b([a-z])([a-z]+)", "\\U\\1\\L\\2" ,tolower(station_nm), perl=TRUE)) %>% 
+      mutate(site_no = paste0('nwis_',site_no)) %>% 
+      select(-station_nm)
+    return(clean.site)
+  }
+  
+  do.sites = get_site(state.cd, doobs.code, "iv") %>% 
+    clean_site()
+  disch.sites = get_site(state.cd, disch.code, "iv") %>% 
+    clean_site()
+  sc.sites = get_site(state.cd, sc.code, "iv") %>% 
+    clean_site()
+  nitrate.sites = get_site(state.cd, nitrate.code, "uv") %>% 
+    clean_site()
+  
+  m = leaflet() %>% 
+    addProviderTiles("CartoDB.Positron",
+                     options = leaflet::providerTileOptions(noWrap = TRUE)) %>% 
+    addCircleMarkers(lng = do.sites$longitude, 
+                     lat = do.sites$latitude, 
+                     popup = do.sites$station_nm, color = '#ff0000') %>% 
+    addCircleMarkers(lng = disch.sites$longitude, 
+                     lat = disch.sites$latitude, 
+                     popup = disch.sites$station_nm, color = 'blue', radius = 3) %>% 
+    addCircleMarkers(lng = sc.sites$longitude, 
+                     lat = sc.sites$latitude, 
+                     popup = sc.sites$station_nm, color = 'green', radius = 2) %>% 
+    addLegend("bottomright", labels = c('DO', 'Discharge', 'Specific Conductance', 'Nitrate'), 
+              colors = c('red', 'blue', 'green', 'goldenrod'), title = 'Metabolism Site Types')
+  
+  if(nrow(nitrate.sites) != 0){
+    m = m %>% addCircleMarkers(lng = nitrate.sites$longitude, 
+                       lat = nitrate.sites$latitude, 
+                       popup = nitrate.sites$station_nm, color = 'goldenrod', radius = 2) 
+  }
+    
+  return(list(map=m, disch=disch.sites, do = do.sites, sc = sc.sites, nitrate = nitrate.sites))
+}
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+mapper = make_map(state.cd)
+mapper$map
+```
+
+###DO stations
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+datatable(mapper$do, rownames = FALSE)
+```
+
+###Discharge stations
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+datatable(mapper$disch, rownames = FALSE)
+```
+
+###Specific conductance stations
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+datatable(mapper$sc, rownames = FALSE)
+```
+
+###Nitrate stations
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE}
+datatable(mapper$nitrate, rownames = FALSE)
+```
