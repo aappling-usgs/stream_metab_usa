@@ -1,0 +1,31 @@
+# stream_metab_usa
+
+This project contains the core data analyses of the USGS Powell Center working group on continental-scale stream metabolism.
+
+These are the package dependencies for the stream_metab_usa R project.
+```{r}
+library(sbtools)
+library(mda.streams)
+library(powstreams)
+```
+
+Note: Package dependencies required for this project come from both the CRAN 
+and USGS repositories. To install them, execute the following code chunk, 
+then build the sbtools, mda.streams, and powstreams packages from within 
+their respective local repositories (or directly from GitHub using 
+install_github()).
+
+```{r}
+install.packages(
+ c("dataRetrieval", "R.utils"), 
+ repos=c("http://usgs-r.github.com","http://cran.us.r-project.org"),
+ dependencies=TRUE,
+ type="both")
+
+library(devtools)
+install_github("USGS-R/geoknife")
+```
+
+The workflow is documented and enforced in 'makefile', which can be run with a call to `make` from the command line, or using Ctrl-Shift-B in RStudio. At least, we would like this to be true; in practice, there's lots of babysitting of loops through web API calls and computing clusters. Still, the makefile should give you an idea of how we want things to flow.
+
+This software is in the public domain because it contains materials that originally came from the United States Geological Survey, an agency of the United States Department of Interior. For more information, see the official USGS copyright policy at http://www.usgs.gov/visual-id/credit_usgs.html#copyright
