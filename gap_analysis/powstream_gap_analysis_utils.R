@@ -10,11 +10,15 @@ render.gapanalysis <- function(output='html') {
   return(out_file)
 }
 
-render.maptest <- function(output='html') {
+render.maps <- function(nm.state, output='html') {
   library(rmarkdown)
-  output_dir <- file.path(getwd(), "gap_analysis")
-  rmd_file <- file.path(getwd(), "gap_analysis", "powstream_map_test.Rmd")
-  out_file <- render(rmd_file, paste0(output,"_document"), output_dir = output_dir)
+  library(dataRetrieval)
+
+  state.cd <- stateCd$STUSAB[stateCd$STATE_NAME == nm.state]
+  output_dir <- file.path(getwd(), "gap_analysis/maps")
+  rmd_file <- file.path(getwd(), "gap_analysis", "powstream_maps.Rmd")
+  out_file <- render(rmd_file, paste0(output,"_document"), output_dir = output_dir,
+                     output_file = paste0("siteMap_", state.cd, ".", output))
   return(out_file)
 }
 
