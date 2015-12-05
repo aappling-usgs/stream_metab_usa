@@ -6,6 +6,8 @@ library(streamMetabolizer)
 library(dplyr)
 outdir <- "idea_tests/151218_AGU/out"
 
+#### sciencebase downloads ####
+
 # get data from ScienceBase
 sbtools::authenticate_sb(SBUSER, SBPASS)
 # final PR(fixK) model predictions
@@ -82,15 +84,12 @@ ggsave(file.path(outdir, 'phases_GPP.png'), width=6, height=4)
 ggplot(eg_preds, aes(x=local.date, y=ER, color=phase)) + geom_point(size=0.8, alpha=0.8) + theme_bw() + ylim(-45,15)
 ggsave(file.path(outdir, 'phases_ER.png'), width=6, height=4)
 
-
-#### exclude, fill, and filter ####
-
-# load data from local cache
+# pick up at phase 4 - load data from local cache
 load('idea_tests/151218_AGU/out/preds.RData')
 load('idea_tests/151218_AGU/out/meta.RData')
 load('idea_tests/151218_AGU/out/dischveloc.RData')
 
-# attach date info (and then forget it...)
+# attach date info
 growlims <- as.Date(c("2014-03-01","2014-10-01")) %>% format("%j") %>% as.numeric()
 sypreds <- preds %>%
   mutate(
