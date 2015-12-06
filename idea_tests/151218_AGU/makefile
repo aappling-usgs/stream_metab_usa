@@ -10,7 +10,7 @@ CALL_R = R CMD BATCH  --no-save --no-restore --slave --no-timing
 
 # Main targets
 
-all : munge
+all : munge figures numbers
 
 #figures
 
@@ -18,17 +18,30 @@ all : munge
 
 ## munge
 
-munge : cache/preds_1_PRK.RData cache/preds_2_K.RData cache/preds_3_PR.RData
+munge : cache/preds_1_PRK.RData cache/preds_2_K.RData cache/preds_3_PR.RData cache/siteyears_raw.RData
 
-cache/preds_1_PRK.RData : munge/preds_1_PRK.R munge/preds_lib.R
-	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" munge/preds_1_PRK.R
+cache/preds_%.RData : munge/preds_%.R munge/preds_lib.R
+	touch $@
 
-cache/preds_2_K.RData : munge/preds_2_K.R munge/preds_lib.R
-	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" munge/preds_2_K.R
+#	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" munge/preds_$*.R log/preds_$*.Rout
 
-cache/preds_3_PR.RData : munge/preds_3_PR.R munge/preds_lib.R
-	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" munge/preds_3_PR.R
+cache/siteyears_%.RData : munge/siteyears_%.R munge/siteyears_lib.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" munge/siteyears_$*.R log/siteyears_$*.Rout
 
 ## figures
 
-#figures : map
+figures : out/methods_1_MLE.png out/methods_2_Ksmooth.png
+
+out/%.png : src/%.R
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" src/$*.R log/$*.Rout
+
+## numbers
+
+numbers : out/intro_datasize.tsv
+
+out/intro_datasize.tsv : src/intro_datasize.R cache/preds_3_PR.RData cache/siteyears_raw.RData
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" src/intro_datasize.R log/intro_datasize.Rout
+
+#out/%.tsv : src/%.R
+#	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" src/$*.R log/$*.Rout
+
