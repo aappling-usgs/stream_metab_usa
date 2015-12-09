@@ -16,7 +16,6 @@ load('cache/siteyears_raw.RData')
 datasize <- c(
   sites = length(unique(preds_3_PR$site)),
   sitedays = preds_3_PR %>% filter(!is.na(GPP)) %>% nrow(),
-  siteyears = NA,
   siteyears_raw_complete = length(which(siteyears_raw_complete)),
   sitegrows_raw_complete = length(which(sitegrows_raw_complete)))
 

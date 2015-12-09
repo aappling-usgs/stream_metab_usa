@@ -16,7 +16,7 @@ make_siteyears_dfs <- function(preds, values=c('GPP','ER','K600')) {
       right_join(data_frame(doy=1:365), by='doy') %>%
       select(-doy)
     emptycols <- which(sapply(siteyears, function(col) length(which(!is.na(col)))) == 0)
-    siteyears[-emptycols]
+    if(length(emptycols)==0) siteyears else siteyears[-emptycols]
   })
 }
 

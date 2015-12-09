@@ -35,13 +35,18 @@ process_make_args <- function(expect_args=c("sb_user","sb_password","outfile")) 
   # Print args, hiding the sb_password
   message("args:")
   args_for_print <- argdf
-  if(!is.na(args_for_print[args_for_print$key=="sb_password","value"])) args_for_print[args_for_print$key=="sb_password","value"] <- "*****"
+  if("sb_password" %in% args_for_print$key) {
+    if(!is.na(args_for_print[args_for_print$key=="sb_password","value"])) 
+      args_for_print[args_for_print$key=="sb_password","value"] <- "*****"
+  }
   print(args_for_print)
   
   # Log in
-  message("\nsigning into ScienceBase with the password you set.\n")
-  authenticate_sb(args$sb_user, args$sb_password) 
-
+  if(all(c("sb_user","sb_password") %in% names(args))) {
+    message("\nsigning into ScienceBase with the password you set.\n")
+    authenticate_sb(args$sb_user, args$sb_password) 
+  }
+  
   return(args)
 }
 

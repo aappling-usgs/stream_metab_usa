@@ -2,11 +2,10 @@
 # for raw metabolism predictions (PR+fixedK, MLE)
 
 if((manual=FALSE)) {
-  # manually define SBUSER & SBPASS
-  args <- list(sb_user=SBUSER, sb_password=SBPASS, outfile='out/siteyears_raw.RData')
+  args <- list(outfile='out/siteyears_raw.RData')
 } else {
   source("../../p1_import/code/process_make_args.R")
-  args <- process_make_args(c("sb_user", "sb_password", "outfile"))
+  args <- process_make_args(c("outfile"))
 }
 
 source('munge/siteyears_lib.R')
