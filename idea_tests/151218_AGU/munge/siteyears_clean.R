@@ -1,5 +1,5 @@
 # Munge: create list of dfs of GPP & ER & K600 with 365 days per col, 1 col per site-year
-# for clean metabolism predictions (after filtering + GAM)
+# for clean metabolism predictions (after filtering)
 
 if((manual=FALSE)) {
   args <- list(outfile='out/siteyears_clean.RData')
