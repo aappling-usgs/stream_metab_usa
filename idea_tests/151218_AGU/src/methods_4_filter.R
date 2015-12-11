@@ -51,4 +51,4 @@ if((manual=FALSE)) {
 }
 
 g <- plot_filter_stages(clean_1_filter, "nwis_06894000", vars='GPP', plot='.orig', keep_by='all')[[1]] + ylim(-5,8)
-ggsave(args$outfile, plot=g, height=4, width=7)
+ggsave(args$outfile, plot=g, width=6, height=3)

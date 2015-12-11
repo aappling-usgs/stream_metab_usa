@@ -19,7 +19,7 @@ mm <- get_metab_model("nwis_08068500-201-151125 0.0.13 PRK_initial" , update_sb=
 dopreds <- predict_DO(mm, "2014-04-15", "2014-04-15")
 
 g <- ggplot(dopreds, aes(x=local.time)) + 
-  geom_point(aes(y=DO.obs, shape='Observed', linetype='Observed'), color='blue', alpha=0.7) + 
+  geom_point(aes(y=DO.obs, shape='Observed', linetype='Observed'), color='orange') + 
   geom_line(aes(y=DO.mod, shape='Modeled', linetype='Modeled'), color='navy') + 
   scale_shape_manual('', values=c(NA, 19), guide='none') + 
   scale_linetype_manual('', values=c(1, 0), guide='none') +

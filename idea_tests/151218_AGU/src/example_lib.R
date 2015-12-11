@@ -36,7 +36,7 @@ build_example <- function(s, pred, dates=as.Date(c("2000-01-01","2030-01-01")), 
 #' @param dates two Dates, or NAs, limiting the time axis of the plot
 plot_example <- function(
   dat=build_example('nwis_08062500', pred='sw_nldas', ag_fun='max'), 
-  pred='sw', emphasize=c('quick','slow'), dates=as.Date(c("2000-01-01","2030-01-01"))) {
+  pred='sw', emphasize=c('quick','slow'), dates=as.Date(c("2000-01-01","2030-01-01")), title) {
   
   emphasize <- match.arg(emphasize)
   
@@ -75,9 +75,9 @@ plot_example <- function(
       'atop(GPP,gO[2]~m^-2~d^-1)',
       c(sw='atop(Light,W~m^-2)', disch='atop(Discharge,ft^3~s^-1)')[[pred]],
       sep='~"    "~'))) +
-    scale_color_manual('', breaks=levels(scale_breaks), values=scale_cols, labels=scale_labs) +
-    scale_shape_manual('', breaks=levels(scale_breaks), values=scale_pch, labels=scale_labs) + 
-    scale_linetype_manual('', breaks=levels(scale_breaks), values=scale_lty, labels=scale_labs) +
+    scale_color_manual(title, breaks=levels(scale_breaks), values=scale_cols, labels=scale_labs) +
+    scale_shape_manual(title, breaks=levels(scale_breaks), values=scale_pch, labels=scale_labs) + 
+    scale_linetype_manual(title, breaks=levels(scale_breaks), values=scale_lty, labels=scale_labs) +
     theme_classic() + theme(strip.background=element_blank(), strip.text=element_blank()) +
     facet_grid(var ~ ., scales='free_y')
 

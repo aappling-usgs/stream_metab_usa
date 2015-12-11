@@ -40,4 +40,4 @@ g <- ggplot(plotdat, aes(x=local.date, y=ER, color=strategy)) +
   scale_linetype_manual('', breaks=scale_breaks, values=scale_lty, labels=scale_labs) +
   ylim(-45,20) + 
   theme_classic() + ylab(parse(text='ER~(gO[2]~m^-2~d^-1)')) + xlab("Date")
-ggsave(args$outfile, plot=g, width=6, height=4)
+ggsave(args$outfile, plot=g, width=6, height=3)

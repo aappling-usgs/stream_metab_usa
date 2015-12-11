@@ -52,4 +52,4 @@ plot_gam <- function(s='nwis_385446094430700', v='ER') {
     ylab(parse(text=switch(v, GPP='GPP~(gO[2]~m^-2~d^-1)', ER='ER~(gO[2]~m^-2~d^-1)', K600='K600~(d^-1)')))
 }
 g <- plot_gam(s='nwis_02234000', v='ER')
-ggsave(args$outfile, plot=g, width=6, height=4)
+ggsave(args$outfile, plot=g, width=6, height=3)
