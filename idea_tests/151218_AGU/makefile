@@ -18,7 +18,7 @@ all : munge figures numbers
 
 ## munge
 
-munge : cache/preds_1_PRK.RData cache/preds_2_K.RData cache/preds_3_PR.RData cache/siteyears_raw.RData cache/clean_1_filter.RData cache/clean_2_GAM.RData cache/siteyears_clean.RData cache/siteyears_GAM.RData cache/timing.RData
+munge : cache/preds_1_PRK.RData cache/preds_2_K.RData cache/preds_3_PR.RData cache/siteyears_raw.RData cache/clean_1_filter.RData cache/clean_2_GAM.RData cache/siteyears_clean.RData cache/siteyears_GAM.RData cache/timing.RData cache/nldas.RData
 
 cache/preds_%.RData : munge/preds_%.R munge/preds_lib.R
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" munge/preds_$*.R log/preds_$*.Rout
@@ -41,9 +41,18 @@ cache/siteyears_GAM.RData : munge/siteyears_GAM.R munge/siteyears_lib.R cache/cl
 cache/timing.RData : munge/timing.R munge/timing_lib.R cache/siteyears_GAM.RData
 	$(CALL_R) "--args outfile=$@" munge/timing.R log/timing.Rout
 
+cache/nldas.RData : munge/nldas.R
+	$(CALL_R) "--args outfile=$@" munge/nldas.R log/nldas.Rout
+
 ## figures
 
-figures : out/methods_1_MLE.png out/methods_2_Ksmooth.png out/methods_3_PRfixK.png out/methods_4_filter.png out/methods_5_GAM.png out/storms_1_example.png out/storms_2_regression.png out/seasons_1_example.png out/timing_1_durmap.png out/timing_2_durhist.png out/timing_3_durEvG.png out/timing_4_durvclim.png out/timing_5_peakhist.png out/timing_6_peakEvG.png out/timing_7_peakvsize.png
+figures : out/data_1_NWIS.png out/data_2_NLDAS.png out/methods_1_MLE.png out/methods_2_Ksmooth.png out/methods_3_PRfixK.png out/methods_4_filter.png out/methods_5_GAM.png out/storms_1_example.png out/storms_2_regression.png out/seasons_1_example.png out/timing_1_durmap.png out/timing_2_durhist.png out/timing_3_durEvG.png out/timing_4_durvclim.png out/timing_5_peakhist.png out/timing_6_peakEvG.png out/timing_7_peakvsize.png
+
+out/data_1_NWIS.png : src/data_1_NWIS.R
+	$(CALL_R) "--args outfile=$@" src/data_1_NWIS.R log/data_1_NWIS.Rout
+
+out/data_2_NLDAS.png : src/data_2_NLDAS.R cache/nldas.RData
+	$(CALL_R) "--args outfile=$@" src/data_2_NLDAS.R log/data_2_NLDAS.Rout
 
 out/methods_1_MLE.png : src/methods_1_MLE.R
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) outfile=$@" src/methods_1_MLE.R log/methods_1_MLE.Rout
