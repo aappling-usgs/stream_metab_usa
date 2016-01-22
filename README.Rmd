@@ -17,13 +17,10 @@ install_github()).
 
 ```{r}
 install.packages(
- c("dataRetrieval", "R.utils"), 
- repos=c("http://usgs-r.github.com","http://cran.us.r-project.org"),
+ c("dataRetrieval", "R.utils", "geoknife"), 
+ repos=c("http://owi.usgs.gov/R","http://cran.us.r-project.org"),
  dependencies=TRUE,
  type="both")
-
-library(devtools)
-install_github("USGS-R/geoknife")
 ```
 
 The workflow is documented and enforced in 'makefile', which can be run with a call to `make` from the command line, or using Ctrl-Shift-B in RStudio. At least, we would like this to be true; in practice, there's lots of babysitting of loops through web API calls and computing clusters. Still, the makefile should give you an idea of how we want things to flow.
