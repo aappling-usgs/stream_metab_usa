@@ -13,8 +13,8 @@ library(tidyr)
 library(dplyr)
 
 # reinstall packages that may be out of date locally
-#devtools::install_github('aappling-usgs/mda.streams', ref='develop')
-#devtools::install_github('aappling-usgs/streamMetabolizer', ref='develop')
+devtools::install_github('aappling-usgs/mda.streams', ref='develop')
+devtools::install_github('aappling-usgs/streamMetabolizer', ref='develop')
 library(mda.streams)
 library(streamMetabolizer)
 
