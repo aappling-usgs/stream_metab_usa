@@ -1,4 +1,4 @@
-source("p1_import/code/process_make_args.R")
+source("lib/process_make_args.R")
 args <- process_make_args(c("sb_user", "sb_password", "var_src", "on_exists", "verbose"))
 
 #' Pull data from calc onto ScienceBase

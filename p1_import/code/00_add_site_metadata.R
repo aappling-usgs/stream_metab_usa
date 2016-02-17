@@ -1,4 +1,4 @@
-source("p1_import/code/process_make_args.R")
+source("lib/process_make_args.R")
 args <- process_make_args(c("sb_user", "sb_password", "type", "on_exists", "verbose", "outfile"))
 
 add_site_metadata <- function(type='basic', on_exists='merge', verbose=TRUE, outfile) {

@@ -1,4 +1,4 @@
-source("p1_import/code/process_make_args.R")
+source("lib/process_make_args.R")
 args <- process_make_args(c("sb_user", "sb_password", "tag", "strategy", "model", "model_args", "cluster", "verbose"))
 
 model_metab <- function(tag="0.0.4", strategy="nighttime_k", model='metab_night', model_args='list()', post=FALSE, cluster='local_process', verbose=TRUE) {
