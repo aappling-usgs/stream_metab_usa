@@ -37,7 +37,7 @@ Posted model run `"150730 0.0.7 MLE_for_PRK_wHarvey_and_sw"` as `gpp_estBest`, `
 
 ## 7/1/15 - 8/1/15
 
-Posted first generation of input data; see Page 2 of [Powstreams Cheatsheet](https://drive.google.com/open?id=0B-c5tErcTY2fMlA3OE55NGhjeWc) for complete definitions
+Posted first generation of input data; see Page 2 of [Powstreams Cheatsheet](https://drive.google.com/open?id=0B-c5tErcTY2fMlA3OE55NGhjeWc) for complete definitions. start_date = 2006-10-01; end_date = 2015-06-07
 
 - time translations. The `DateTime` column of every timeseries is in UTC. `sitetime` is the mean solar time, i.e., the local time at the exact longitude of the site, such that noon is close to solar noon and every day is exactly 24 hours long. `suntime` is the apparent solar time, such that noon is precisely the time of solar maximum
 
