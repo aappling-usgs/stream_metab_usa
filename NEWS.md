@@ -1,12 +1,14 @@
 # ScienceBase Data Status & History
 
-### This NEWS file is current as of 3/1/2016
+### This NEWS file is current as of 3/4/2016
 
 ## 12/3/15 - 12/4/15
 
 Posted model run `"151203 0.0.17 PR_fixed_K"` as `gpp_estBest`, `er_estBest`, and `K600_estBest`
 
 - pseudo-hierarchical approach: (1) fit GPP, ER, and K600 all at once with MLE, (2) fit regressions to estimated K600 vs log(discharge), then (3) use regression predictions to fix K600 and refit GPP and ER again with MLE
+
+- step (2) above weighted daily estimates by 1/CI for the regression. I now think this overweighted some low K600 values, so a next step is to rerun with weights of K600/CI instead. See [issue 64](https://github.com/USGS-CIDA/stream_metab_usa/issues/64).
 
 - uses simulated light curves (no clouds; `par_calcLon`), site-specific hydraulic geometry coefficients from Jud Harvey (`depth_calcDischHarvey`), and best available data on DO (`doobs_nwis`), water temperature (`wtr_nwis`), etc.
 
