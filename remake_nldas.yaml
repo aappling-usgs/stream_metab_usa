@@ -1,0 +1,39 @@
+packages:
+  - yaml
+  - dplyr
+  - geoknife
+  - XML
+  - doMC
+  - foreach
+  
+## All R files that are used must be listed here:
+sources:
+  - p1_import/code/00_subset_nldas.R
+
+targets:
+  all:
+    depends: 
+      - p1_import/out/nldas_nc_status.txt
+
+  internal.config:
+    command: load_internal()
+  
+  nldas.config:
+    command: yaml.load_file("configs/nldas_subset.yaml")
+    
+  nldas.grids:
+    command: nc_sub_grids(nldas.config)
+    
+  server.files:
+    command: nldas_server_files(nldas.config)
+    depends:
+      - p1_import/out/nldas_nc_status.txt
+  
+  p1_import/out/nldas_nc_files.tsv:
+    command: nldas_sub_files(nldas.grids, nldas.config, server.files, target_name)
+    
+  p1_import/out/nldas_nc_status.txt:
+    command: nccopy_nldas(p1_import/out/nldas_nc_files.tsv, target_name, internal.config)
+  
+
+
