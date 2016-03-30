@@ -1,4 +1,4 @@
-source("p1_import/code/process_make_args.R")
+source("lib/process_make_args.R")
 args <- process_make_args(c("sb_user", "sb_password", "date", "tag", "strategy", "on_run_exists", "all_out_file", "on_ts_exists", "verbose"))
 
 post_metab <- function(date="150717", tag="0.0.1", strategy="test write_metab_config", on_run_exists="addfiles", all_out_file=NA, on_ts_exists="skip", verbose=TRUE) {

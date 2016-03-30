@@ -1,4 +1,4 @@
-source("p1_import/code/process_make_args.R")
+source("lib/process_make_args.R")
 args <- process_make_args(c("sb_user", "sb_password", "outfile", "update_sitelist","on_exists", "delete_all", "verbose"))
 
 init_sites <- function(update_sitelist=TRUE, on_exists='clear', delete_all=FALSE, verbose=TRUE) {

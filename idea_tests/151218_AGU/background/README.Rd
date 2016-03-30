@@ -1,10 +1,9 @@
-The models used in the final AGU analysis were created by code in the p2_metab directory:
-stream_metab_usa/p2_metab/code/151125_01-03
+The models used in the final AGU 2015 analysis were created by code in the p2_metab directory:
+stream_metab_usa/p2_metab/code/151125_01-03 and 151204-5_01-03
 
-The AGU abstract results were created in
-150806_abstract.R
+Preliminary results are in this folder. The AGU abstract results were created in 150806_abstract.R. Another round of exploratory analyses is in 151202_lab_meeting.R. smooth_K.Rmd contains a vignette where I practiced doing the three-phase metabolism estimation.
 
-The final AGU abstract is:
+The final AGU 2015 abstract was:
 
 B51F-0489: Synchrony and Divergence in Stream Metabolism across the Continental United States
 River and stream ecosystems experience highly variable inputs of water, nutrients, organic matter, heat, and light over the scales of hours to storms to seasons. Despite the unstable physical and chemical environments of such ecosystems, benthic and pelagic communities persist and even thrive. Whole-stream metabolism estimates allow us to quantify the overall activity of these diverse and responsive communities. They also provide a holistic way to assess how the temporal patterns of that activity are structured by streams’ dynamic hydrology and resource availability. We synthesized continental-scale datasets of high-frequency dissolved oxygen, discharge, water temperature, and light to estimate metabolism in over 200 streams to answer the question, “What are the drivers of synchrony and divergence in the temporal patterns of metabolism among streams of North America?” We find that short-term disturbances in the form of storms and cloudy days have strong proximate, dampening effects on whole-ecosystem metabolism; however, despite these strong proximate effects, streams with similar resource and discharge regimes are largely synchronous in their overall seasonal patterns. The median date of peak gross primary productivity is close to the summer solstice in June, while ecosystem respiration has two most-common annual peaks, one in early spring and another in mid fall. These differences in peak timing point to systematic differences at the continental scale in the timing of light versus organic matter availability, with consequent seasonality in net ecosystem productivity.

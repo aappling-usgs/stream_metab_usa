@@ -40,7 +40,7 @@ add_nldas_data : init_sites $(addprefix p1_import/out/is_ready_nldas_,$(addsuffi
 p1_import/out/is_ready_nldas_%.txt : p1_import/code/02_add_nldas_data.R p1_import/in/date_range.tsv
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=merge verbose=TRUE" p1_import/code/02_add_nldas_data.R p1_import/out/02_add_nldas_data_$*.Rout
 
-add_calc_data : init_sites $(addprefix p1_import/out/is_ready_calc_,$(addsuffix .txt,sitetime_calcLon sitetimedaily_calcLon par_calcLat depth_calcDisch dosat_calcGGbts sitetime_calcLon dischdaily_calcDMean velocdaily_calcDMean))
+add_calc_data : init_sites $(addprefix p1_import/out/is_ready_calc_,$(addsuffix .txt,sitetime_calcLon sitetimedaily_calcLon par_calcLat depth_calcDisch dosat_calcGGbts sitedate_calcLon dischdaily_calcDMean velocdaily_calcDMean))
 p1_import/out/is_ready_calc_%.txt : p1_import/code/04_add_calc_data.R
 	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var_src=$* on_exists=skip verbose=TRUE" p1_import/code/04_add_calc_data.R p1_import/out/04_add_calc_data_$*.Rout
 
@@ -59,6 +59,11 @@ p2_metab/out/02_post_metab.Rout : p2_metab/code/02_post_metab.R
 #$(CALL_R) "--args sb_user=SBUSER sb_password=SBPASS outfile='$@'" p1_import/code/00_init_sites.R $@
 
 ## p3_auxvars
+
+add_nwisqw_data : init_sites $(addprefix p3_auxvars/out/is_ready_nwisqw_,$(addsuffix .txt,sed sedpfine so4 ca ph alk no3))
+p3_auxvars/out/is_ready_nwisqw_%.txt : p3_auxvars/code/01_add_nwisqw_data lib/01_add_nwis_data.R p3_auxvars/in/date_range.tsv
+	$(CALL_R) "--args sb_user=$(SBUSER) sb_password=$(SBPASS) var=$* on_exists=replace verbose=TRUE" p3_auxvars/code/01_add_nwisqw_data.R p3_auxvars/out/01_add_nwisqw_data_$*.Rout
+
 
 ## p4_explore
 
