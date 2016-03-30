@@ -23,17 +23,12 @@ targets:
     
   nldas.grids:
     command: nc_sub_grids(nldas.config)
-    
-  server.files:
-    command: nldas_server_files(nldas.config)
-    depends:
-      - p1_import/out/nldas_nc_status.txt
   
   p1_import/out/nldas_nc_files.tsv:
-    command: nldas_sub_files(nldas.grids, nldas.config, server.files, target_name)
+    command: nldas_sub_files(nldas.grids, nldas.config, target_name)
     
   p1_import/out/nldas_nc_status.txt:
-    command: nccopy_nldas(p1_import/out/nldas_nc_files.tsv, target_name, internal.config)
+    command: nccopy_nldas('p1_import/out/nldas_nc_files.tsv', target_name, internal.config)
   
 
 

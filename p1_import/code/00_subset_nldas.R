@@ -4,7 +4,9 @@ nc_sub_grids <- function(nldas_config){
   # mock up huge request in order to get the nccopy response as an exception from GDP:
   
   stencil <- webgeom('state')
-  fabric <- webdata(url=nldas_config$nldas_url, variables=nldas_config$sub_variables, times=nldas_config$sub_times)
+  fabric <- webdata(url=nldas_config$nldas_url)
+  vars <- query(fabric, 'variables')
+  fabric <- webdata(fabric, variables=vars, times=nldas_config$sub_times)
   knife <- webprocess('subset', OUTPUT_TYPE="netcdf", REQUIRE_FULL_COVERAGE = FALSE)
   job <- geoknife(stencil, fabric, knife = knife, wait=TRUE)
   grid.data <- strsplit(check(job)$status,'[,?]')[[1]][-1]
@@ -19,7 +21,7 @@ nc_sub_grids <- function(nldas_config){
   return(data.frame(lon=lon,lat=lat,time=time, stringsAsFactors = FALSE))
 }
 
-nldas_sub_files <- function(grids, nldas_config, server.files, file.out){
+nldas_sub_files <- function(grids, nldas_config, file.out){
   vars <- nldas_config$sub_variables
   start.i <- seq(as.numeric(grids$time[1]),to = as.numeric(grids$time[2]), by = nldas_config$sub_split)
   end.i <- c(tail(start.i-1,-1), as.numeric(grids$time[2]))
@@ -27,6 +29,8 @@ nldas_sub_files <- function(grids, nldas_config, server.files, file.out){
   # creates file string: "NLDAS_291000.291999_132.196_221.344_"
   time.files <- sprintf(paste0(sprintf("NLDAS_%i.%i",start.i,end.i),'_%s.%s_%s.%s_'), grids$lat[1], grids$lat[2], grids$lon[1], grids$lon[2])
   file.names <- as.vector(unlist(sapply(time.files, paste0, vars,'.nc')))
+  
+  server.files <- nldas_server_files(nldas_config)
   
   new.files <- setdiff(file.names, server.files)
   rm.files <- setdiff(server.files, file.names)
@@ -106,6 +110,24 @@ nccopy_nldas <- function(file.list, mssg.file, internal.config){
 
   }
   
+}
+
+create_nldas_ncml <- function(file='data/NLDAS_sub/NLDAS_file_list.tsv'){
+  files <- strsplit(readLines(file, n = -1),'\t')[[1]]
+  times <- unique(unname(sapply(files,function(x) paste(strsplit(x, '[_]')[[1]][1:4], collapse='_'))))
+  vars <- unique(unname(sapply(files,function(x) paste(strsplit(tail(strsplit(x, '[_]')[[1]],1),'[.]')[[1]][1], collapse='_'))))
+  
+  ncml <- newXMLNode('netcdf', namespace=c("http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2", xlink="http://www.w3.org/1999/xlink"))
+  agg <- newXMLNode('aggregation', parent = ncml, attrs = c(type="union"))
+  for (var in vars){
+    nc <- newXMLNode('netcdf', parent = agg)
+    join <- newXMLNode('aggregation', parent = nc, attrs=c(type="joinExisting", dimName="time"))
+    for (t in times){
+      newXMLNode('netcdf', parent = join, attrs=c(location=sprintf("%s_%s.nc", t, var)))
+    }
+    
+  }
+  saveXML(ncml, file = 'data/NLDAS_sub/nldas_miwimn.ncml')
 }
 
 load_internal = function(filename) {
