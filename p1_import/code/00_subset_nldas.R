@@ -1,5 +1,8 @@
 
 
+#' get time, lat, and lon grids for the chunk of data we need to pull out
+#' 
+#' @param nldas_config list config that specifies the data subset variables
 nc_sub_grids <- function(nldas_config){
   # mock up huge request in order to get the nccopy response as an exception from GDP:
   time.step <- 24 # hours per day
@@ -15,6 +18,12 @@ nc_sub_grids <- function(nldas_config){
   return(data.frame(lon=lon,lat=lat,time=time, stringsAsFactors = FALSE))
 }
 
+
+#' create a file list for subsets of the netcdf data
+#' 
+#' @param grids data.frame of grids returned by nc_sub_grids
+#' @param nldas_config list config that specifies the data subset variables
+#' @param file.out the file to write the list of files to
 nldas_sub_files <- function(grids, nldas_config, file.out){
   vars <- nldas_config$sub_variables
   start.i <- seq(as.numeric(grids$time[1]),to = as.numeric(grids$time[2]), by = nldas_config$sub_split)
@@ -39,6 +48,9 @@ nldas_sub_files <- function(grids, nldas_config, file.out){
   cat(files, '\n', file=file.out, sep='', append = TRUE)
 }
 
+#' figure out what files already exist on the server
+#' 
+#' @param nldas_config list config that specifies the data subset variables
 nldas_server_files <- function(nldas_config){
   server.data <- xmlParse(nldas_config$catalog_url, useInternalNodes = TRUE)
   
@@ -52,6 +64,11 @@ nldas_server_files <- function(nldas_config){
   return(ncdf.files)
 }
 
+#' actually move the files from one server to another
+#' 
+#' @param file.list a file that contains a list of the files to get and move to another server
+#' @param mssg.file the status file to log details to
+#' @param internal.confg a list that contains some things that shouldn't be checked into a repo, including server dir structure
 nccopy_nldas <- function(file.list, mssg.file, internal.config){
   
   files <- read.table(file.list, sep='\t', stringsAsFactors = FALSE, header = TRUE)
@@ -105,6 +122,10 @@ nccopy_nldas <- function(file.list, mssg.file, internal.config){
   
 }
 
+#' create an ncml file for thredds that describes the dataset
+#' 
+#' @param server.files a vector of file names that are on the thredds server
+#' @param ncml.out a file name for the ncml file to be created
 create_nldas_ncml <- function(server.files, ncml.out){
   files <- server.files
   
@@ -124,6 +145,10 @@ create_nldas_ncml <- function(server.files, ncml.out){
   saveXML(ncml, file = ncml.out)
 }
 
+#' move the ncml file out to the server
+#' 
+#' @param file the ncml file (see create_nldas_ncml)
+#' @param internal.confg a list that contains some things that shouldn't be checked into a repo, including server dir structure
 sync_ncml <- function(file, internal.config){
   server.file <- basename(file)
   output <- system(sprintf('rsync -rP --rsync-path="sudo -u tomcat rsync" %s %s@cida-eros-netcdfdev.er.usgs.gov:%s%s', file,  internal.config$metab_user, internal.config$thredds_dir, server.file),
@@ -134,6 +159,9 @@ sync_ncml <- function(file, internal.config){
     stop(output)
 }
 
+#' load the internals from a file
+#' 
+#' @param filename filename to use for internal yaml. Defaults to a yaml in R HOME if missing.
 load_internal = function(filename) {
   if (missing(filename)) {
     filename <- file.path(Sys.getenv("HOME"), ".R", "stream_metab.yaml")
