@@ -1,5 +1,5 @@
 data_name: "NLDAS"
-sub_times: ["2006-01-01 UTC", "2008-03-24 UTC"]
+sub_times: ["2006-01-01 UTC", "2016-03-27 UTC"]
 sub_variables: ['pressfc','dswrfsfc']
 nldas_url: "dods://hydro1.sci.gsfc.nasa.gov/dods/NLDAS_FORA0125_H.002"
 catalog_url: "http://cida-eros-netcdfdev.er.usgs.gov:8080/thredds/catalog/thredds_workspace/stream_metab/catalog.xml"

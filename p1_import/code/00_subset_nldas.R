@@ -2,21 +2,15 @@
 
 nc_sub_grids <- function(nldas_config){
   # mock up huge request in order to get the nccopy response as an exception from GDP:
+  time.step <- 24 # hours per day
+  # "13z01jan1979" is index 0
   
-  stencil <- webgeom('state')
-  fabric <- webdata(url=nldas_config$nldas_url)
-  vars <- query(fabric, 'variables')
-  fabric <- webdata(fabric, variables=vars, times=nldas_config$sub_times)
-  knife <- webprocess('subset', OUTPUT_TYPE="netcdf", REQUIRE_FULL_COVERAGE = FALSE)
-  job <- geoknife(stencil, fabric, knife = knife, wait=TRUE)
-  grid.data <- strsplit(check(job)$status,'[,?]')[[1]][-1]
-  get_grid <- function(data){
-    strsplit(strsplit(strsplit(data,'[[]')[[1]][2],'[]]')[[1]],'[:]')[[1]][-2]
-  }
+  time = c()
+  time[1] <- (as.numeric(as.POSIXct(nldas_config$sub_times[1], tz='UTC')-as.POSIXct("1979-01-01 13:00 UTC", tz='UTC')))*time.step
+  time[2] <- (as.numeric(as.POSIXct(nldas_config$sub_times[2], tz='UTC')-as.POSIXct("1979-01-01 13:00 UTC", tz='UTC')))*time.step
   
   lon <- c(0, 463) # this is known, we want the full dataset
-  lat <- c(0, 223)
-  time <- get_grid(grid.data[2]) # this is unknown, and based on `times`
+  lat <- c(0, 223) # this is known, we want the full dataset
   
   return(data.frame(lon=lon,lat=lat,time=time, stringsAsFactors = FALSE))
 }
@@ -72,7 +66,6 @@ nccopy_nldas <- function(file.list, mssg.file, internal.config){
   }
   
   registerDoMC(cores=4)
-  
   foreach(file=files$file) %dopar% {
     
     local.nc.file <- file.path(tempdir(), file)
@@ -88,7 +81,7 @@ nccopy_nldas <- function(file.list, mssg.file, internal.config){
     
     # to tempfolder...
     output <- system(sprintf("nccopy -m 15m %s %s", url, local.nc.file))
-    cat(sprintf('\n** nccopy %s%s to %s...', var, time.i, local.nc.file), file=mssg.file, append = TRUE)
+    cat(sprintf('\n** nccopy %s%s to %s...', var, time.i, basename(local.nc.file)), file=mssg.file, append = TRUE)
     if (!output){
       cat('done! **', file=mssg.file, append = TRUE)
       
@@ -107,13 +100,14 @@ nccopy_nldas <- function(file.list, mssg.file, internal.config){
       cat(url, ' FAILED **', file=mssg.file, append = TRUE)
     }
     unlink(local.nc.file)
-
+    
   }
   
 }
 
-create_nldas_ncml <- function(file='data/NLDAS_sub/NLDAS_file_list.tsv'){
-  files <- strsplit(readLines(file, n = -1),'\t')[[1]]
+create_nldas_ncml <- function(server.files, ncml.out){
+  files <- server.files
+  
   times <- unique(unname(sapply(files,function(x) paste(strsplit(x, '[_]')[[1]][1:4], collapse='_'))))
   vars <- unique(unname(sapply(files,function(x) paste(strsplit(tail(strsplit(x, '[_]')[[1]],1),'[.]')[[1]][1], collapse='_'))))
   
@@ -127,7 +121,17 @@ create_nldas_ncml <- function(file='data/NLDAS_sub/NLDAS_file_list.tsv'){
     }
     
   }
-  saveXML(ncml, file = 'data/NLDAS_sub/nldas_miwimn.ncml')
+  saveXML(ncml, file = ncml.out)
+}
+
+sync_ncml <- function(file, internal.config){
+  server.file <- basename(file)
+  output <- system(sprintf('rsync -rP --rsync-path="sudo -u tomcat rsync" %s %s@cida-eros-netcdfdev.er.usgs.gov:%s%s', file,  internal.config$metab_user, internal.config$thredds_dir, server.file),
+                   ignore.stdout = TRUE, ignore.stderr = TRUE)
+  if (!output)
+    invisible(output)
+  else 
+    stop(output)
 }
 
 load_internal = function(filename) {

@@ -14,6 +14,7 @@ targets:
   all:
     depends: 
       - p1_import/out/nldas_nc_status.txt
+      - nldas.ncml.sync
 
   internal.config:
     command: load_internal()
@@ -29,6 +30,16 @@ targets:
     
   p1_import/out/nldas_nc_status.txt:
     command: nccopy_nldas('p1_import/out/nldas_nc_files.tsv', target_name, internal.config)
+    
+  server.files:
+    command: nldas_server_files(nldas.config)
+    depends:
+      - p1_import/out/nldas_nc_status.txt
   
+  p1_import/out/nldas.ncml:
+    command: create_nldas_ncml(server.files, target_name)
+  
+  nldas.ncml.sync:
+    command: sync_ncml('p1_import/out/nldas.ncml', internal.config)
 
 
