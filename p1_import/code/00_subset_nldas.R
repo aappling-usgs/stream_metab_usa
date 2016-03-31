@@ -108,7 +108,7 @@ nccopy_nldas <- function(file.list, mssg.file, internal.config){
 create_nldas_ncml <- function(server.files, ncml.out){
   files <- server.files
   
-  times <- unique(unname(sapply(files,function(x) paste(strsplit(x, '[_]')[[1]][1:4], collapse='_'))))
+  times <- sort(unique(unname(sapply(files,function(x) paste(strsplit(x, '[_]')[[1]][1:4], collapse='_')))))
   vars <- unique(unname(sapply(files,function(x) paste(strsplit(tail(strsplit(x, '[_]')[[1]],1),'[.]')[[1]][1], collapse='_'))))
   
   ncml <- newXMLNode('netcdf', namespace=c("http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2", xlink="http://www.w3.org/1999/xlink"))
