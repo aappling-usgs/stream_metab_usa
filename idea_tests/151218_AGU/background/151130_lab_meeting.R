@@ -33,7 +33,7 @@ sites <- parse_metab_model_name(mms, out='site')
 dischveloc_list <- lapply(sites, function(site) {
   df <- get_ts(c('sitedate_calcLon', 'dischdaily_calcDMean', 'velocdaily_calcDMean'), site_name = site, method='full_join') %>%
     mutate(site=site) %>%
-    select(local.time=DateTime, local.date=sitedate, site, disch=dischdaily, veloc=velocdaily)
+    select(local.time=DateTime, local.date=sitedate, site, disch=dischdaily, veloc=velocdaily) # on 2/17/16, local.time=DateTime looks wrong to me b/c DateTime is UTC. but then maybe fine because appears to never be used.
 })
 dvunits <- unitted::get_units(dischveloc_list[[1]]) # disch="m^3 s^-1", veloc="m s^-1" 
 dischveloc <- lapply(dischveloc_list, unitted::v) %>% bind_rows()

@@ -85,7 +85,7 @@ if(redo_models) {
     site_data[[site_name]] %>% 
       rename(DO.obs=ts_doobs, 
              temp.water=ts_wtr)  %>%
-      mutate(date.time=convert_GMT_to_solartime(DateTime, longitude=site_location(site_ids[[site_name]])$longitude, time.type="apparent solar"),
+      mutate(date.time=convert_UTC_to_solartime(DateTime, longitude=site_location(site_ids[[site_name]])$longitude, time.type="apparent solar"),
              DO.sat=calc_DO_at_sat(temp.water=temp.water, pressure.air=1000),
              depth=calc_depth(Q=ts_disch*v(u(0.0283168466,"m3/s cfs^-1"))),
              light=calc_solar_insolation(date.time, latitude=site_location(site_ids[[site_name]])$latitude)) %>%
