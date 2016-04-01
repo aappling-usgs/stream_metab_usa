@@ -16,6 +16,13 @@ get_sites = function(huc){
   return(sites[c('site_no','count_nu')])
 }
 
+get_site_long_term <- function(huc){
+  sites = filter(readNWISdata(service = "site", huc=huc, seriesCatalogOutput="true", parameterCd="00300",Access="3"), parm_cd=="00300") %>% 
+    filter(data_type_cd == "dv") %>%
+    filter(count_nu > 1500) %>% 
+    filter(!(site_tp_cd %in% skip.types))
+  return(sites[c('site_no','count_nu')])
+}
 
 all_sites <- data.frame('site_no'=c(),'count_nu'=c())
 hucs <- sprintf('%02.0f',1:21)
