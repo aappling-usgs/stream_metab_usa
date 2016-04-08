@@ -10,6 +10,7 @@ packages:
 ## All R files that are used must be listed here:
 sources:
   - p1_import/code/00_subset_nldas.R
+  - p1_import/code/00_load_internals.R
 
 targets:
   all:
