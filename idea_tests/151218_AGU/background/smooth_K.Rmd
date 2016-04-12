@@ -18,21 +18,21 @@ Generate a preliminary estimate of K600. This could be done with `metab_night`, 
 site <- "nwis_08062500"
 
 # pull the data from ScienceBase
-data_choices <- c(local.time="sitetime_calcLon", DO.obs="doobs_nwis", DO.sat="dosat_calcGGbts", 
+data_choices <- c(solar.time="sitetime_calcLon", DO.obs="doobs_nwis", DO.sat="dosat_calcGGbts", 
                   depth="depth_calcDischHarvey", temp.water="wtr_nwis", light="par_calcLat")
 ts_merged <- get_ts(data_choices, site_name=site, method="approx", approx_tol=as.difftime(3, units="hours"))
 data <- ts_merged %>% setNames(c("DateTime", names(data_choices))) %>% select(-DateTime) %>% unitted::v() %>%
-  filter(local.time > as.POSIXct("2013-01-01") & local.time < as.POSIXct("2015-01-01"))
+  filter(solar.time > as.POSIXct("2013-01-01") & solar.time < as.POSIXct("2015-01-01"))
 
 # fit a first-round MLE and extract the K estimates
 mm1 <- metab_mle(data=data)
 K600_mm1 <- predict_metab(mm1) %>% select(local.date, K600, K600.lower, K600.upper)
 
 # smooth the K600s
-tdata_choices <- c(local.time="sitetime_calcLon", discharge='veloc_calcDischHarvey')
+tdata_choices <- c(solar.time="sitetime_calcLon", discharge='veloc_calcDischHarvey')
 kts_merged <- get_ts(tdata_choices, site_name=site, method="approx", approx_tol=as.difftime(3, units="hours"))
 kdata  <- kts_merged %>% setNames(c("DateTime", names(tdata_choices))) %>% select(-DateTime) %>% unitted::v() %>%
-  filter(local.time > as.POSIXct("2013-01-01") & local.time < as.POSIXct("2015-01-01"))
+  filter(solar.time > as.POSIXct("2013-01-01") & solar.time < as.POSIXct("2015-01-01"))
 mm2 <- metab_Kmodel(data=kdata, data_daily=K600_mm1, method='lm', weights = "CI", 
                     predictors=c("discharge.daily"), transforms=c(K600='log',discharge='log'))
 K600_mm2 <- predict_metab(mm2) %>% select(local.date, K600)

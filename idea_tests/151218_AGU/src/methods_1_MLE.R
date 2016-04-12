@@ -18,7 +18,7 @@ mm <- get_metab_model("nwis_08068500-201-151125 0.0.13 PRK_initial" , update_sb=
 #range(predict_metab(mm)$local.date) # check the date range of the model we pulled
 dopreds <- predict_DO(mm, "2014-04-15", "2014-04-15")
 
-g <- ggplot(dopreds, aes(x=local.time)) + 
+g <- ggplot(dopreds, aes(x=solar.time)) + 
   geom_point(aes(y=DO.obs, shape='Observed', linetype='Observed'), color='orange') + 
   geom_line(aes(y=DO.mod, shape='Modeled', linetype='Modeled'), color='navy') + 
   scale_shape_manual('', values=c(NA, 19), guide='none') + 
