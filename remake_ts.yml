@@ -1,0 +1,36 @@
+packages:
+  - yaml
+  - dplyr
+  - XML
+  - geoknife
+  - sbtools
+  - mda.streams
+  
+## All R files that are used must be listed here:
+sources:
+  - p1_import/code/02_add_ts_data.R
+  - p1_import/code/00_load_internals.R
+
+targets:
+  all:
+    depends: 
+      - sb_baro_nldas
+      - sb_sw_nldas
+  
+  ts.config:
+    command: yaml.load_file("configs/nldas_ts.yml")
+    
+  baro_nldas:
+    command: stage_ts(target_name, ts.config)
+    
+  sw_nldas:
+    command: stage_ts(target_name, ts.config)
+    
+  sb_baro_nldas:
+    command: sb_post_ts(baro_nldas, ts.config)
+    
+    
+  sb_sw_nldas:
+    command: sb_post_ts(sw_nldas, ts.config)
+  
+
