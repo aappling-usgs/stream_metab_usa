@@ -1,0 +1,3 @@
+min.count: 100
+skip.types: ['GW','LK','ES']
+has.param: "00300"
