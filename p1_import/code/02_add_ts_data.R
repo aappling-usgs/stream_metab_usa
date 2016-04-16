@@ -4,13 +4,13 @@
 #' @param target_name a var_src (e.g., baro_nldas or doobs_nwis)
 #' @param ts.config a config list used to parameterize calls to stage_nwis_ts or stage_nldas_ts
 #' @return files that were created
-stage_ts <- function(target_name, ts.config){
+stage_ts <- function(target_name, ts.config, sites){
   
   auth_internal()
   
   if (!dir.exists(ts.config$temp_dir))
     dir.create(ts.config$temp_dir)
-  gconfig(sleep.time=60, retries=2)
+  
   # targets will tell us what the function to call is
   ts_name <- make_ts_name(target_name)
   src <- parse_ts_name(ts_name, out = 'src')
@@ -19,12 +19,19 @@ stage_ts <- function(target_name, ts.config){
   times <- ts.config$times
   version <- ts.config$version
   
-  sites <- list_sites()
-  
   if (src == 'nldas'){
+    gconfig(sleep.time=60, retries=2)
     files = stage_nldas_ts(sites, var, times, version=version, folder=ts.config$temp_dir, url = ts.config$nldas_url, verbose=TRUE)
   } else if (src == 'nwis'){
-    stop('not implemented yet')
+    #chunk sites
+    site.db <- mda.streams:::parse_site_name(sites, out='database')
+    sites <- sites[site.db == 'nwis']
+    chunk.st <- seq(1, length(sites), by=ts.config$nwis.chunk)
+    chunk.en <- c(tail(chunk.st, -1) -1, length(sites))
+    files <- c()
+    for (i in seq_along(chunk.st)){
+      files = c(files, stage_nwis_ts(sites[chunk.st[i]:chunk.en[i]], var, times, version=version, folder=ts.config$temp_dir, verbose=TRUE))
+    }
   }
   return(files)
 }
