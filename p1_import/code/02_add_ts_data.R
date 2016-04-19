@@ -59,7 +59,23 @@ stage_ts <- function(ts.file){
 #' 
 #' @param files files created by stage_ts (or stage_nwis_ts; stage_nldas_ts)
 #' @param ts.config a config list used to parameterize the post_ts function
-sb_post_ts <- function(files, ts.config){
+sb_post_ts <- function(ts.file){
+  
+  
+  
+  ts.config <- yaml.load_file("configs/nldas_ts.yml")
   auth_internal()
-  post_ts(files, on_exists=ts.config$on_exists, verbose=TRUE)
+  
+  ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
+  files <- ts.table$filepath[ts.table$local]
+  
+  for (file in files){
+    
+    sb.id <- post_ts(file, on_exists=ts.config$on_exists, verbose=TRUE)
+    if (is.character(sb.id) & nchar(sb.id) > 0){
+      file.i <- which(file == ts.table$filepath)
+      ts.table$remote[file.i] <- TRUE
+      write_site_table(ts.table, ts.file)
+    }
+  }
 }
