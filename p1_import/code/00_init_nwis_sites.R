@@ -45,18 +45,22 @@ get_nwis_sites = function(huc, min.count, skip.types, has.param){
 #' @param file.out the file to write the table to
 create_nwis_ts_table <- function(sites, config, file.out){
   
-  var <- tail(strsplit(file.out,'[_.]')[[1]],2)[1]
-  
+  var <- tail(strsplit(file.out,'[_.]')[[1]],3)[1]
+  src <- tail(strsplit(file.out,'[_.]')[[1]],2)[1]
   site.db <- mda.streams:::parse_site_name(sites, out='database')
-  sites <- sites[site.db == 'nwis']
+  sites <- sites[site.db == src]
   
-  ts.name <- make_ts_name(var, 'nwis')
-  filenames <- make_ts_path(sites, ts.name, version = config$version)
-  false.vect <- rep(FALSE, length(filenames))
-  time.st <- rep(config$times[1], length(filenames))
-  time.en <- rep(config$times[2], length(filenames))
-  site.table <- data.frame(filename=filenames, local=false.vect, remote=false.vect, no.data=false.vect, 
+  ts.name <- make_ts_name(var, src)
+  filepaths <- make_ts_path(sites, ts.name, version = config$version, folder = config$temp_dir)
+  false.vect <- rep(FALSE, length(filepaths))
+  time.st <- rep(config$times[1], length(filepaths))
+  time.en <- rep(config$times[2], length(filepaths))
+  site.table <- data.frame(filepath=filepaths, local=false.vect, remote=false.vect, no.data=false.vect, 
                            time.st=time.st, time.en=time.en)
-  write.table(site.table, file=file.out, sep='\t', row.names=FALSE)
-  return(site.table)
+  write_site_table(site.table, file.out)
+  return(file.out)
+}
+
+write_site_table <- function(table, filename){
+  write.table(table, file=filename, sep='\t', row.names=FALSE)
 }

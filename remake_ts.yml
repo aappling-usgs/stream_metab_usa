@@ -17,7 +17,11 @@ targets:
     depends: 
       ##- sb_baro_nldas
       ##- sb_sw_nldas
-      - sb_doobs_nwis
+      - wtr_nwis
+      - disch_nwis
+      - doobs_nwis
+      ##- disch_nwis
+      ##- sb_doobs_nwis
   
   ts.config:
     command: yaml.load_file("configs/nldas_ts.yml")
@@ -27,21 +31,38 @@ targets:
   
   sites:
     command: init_site_list(sites.config)
+  
+  p1_import/out/files_ts_doobs_nwis.tsv:
+    command: create_nwis_ts_table(sites, ts.config, target_name)
+  
+  p1_import/out/files_ts_wtr_nwis.tsv:
+    command: create_nwis_ts_table(sites, ts.config, target_name)
+  
+  p1_import/out/files_ts_disch_nwis.tsv:
+    command: create_nwis_ts_table(sites, ts.config, target_name)
     
   doobs_nwis:
-    command: stage_ts(target_name, ts.config, sites)
+    command: stage_ts('p1_import/out/files_ts_doobs_nwis.tsv')
+    
+  wtr_nwis:
+    command: stage_ts('p1_import/out/files_ts_wtr_nwis.tsv')
+    
+  disch_nwis:
+    command: stage_ts('p1_import/out/files_ts_disch_nwis.tsv')
   
   sb_doobs_nwis:
-    command: sb_post_ts(doobs_nwis, ts.config, sites)
+    command: sb_post_ts('p1_import/out/files_ts_disch_nwis.tsv')
+    depends:
+      - doobs_nwis
 
   ##baro_nldas:
-  ##  command: stage_ts(target_name, ts.config, sites)
+  ##  command: stage_ts(target_name, ts.config)
     
   ##sw_nldas:
-  ##  command: stage_ts(target_name, ts.config, sites)
+  ##  command: stage_ts(target_name, ts.config)
     
   ##sb_baro_nldas:
-  ##  command: sb_post_ts(baro_nldas, ts.config, sites)
+  ##  command: sb_post_ts(baro_nldas, ts.config)
      
   ##sb_sw_nldas:
   ##  command: sb_post_ts(sw_nldas, ts.config, sites)
