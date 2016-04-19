@@ -19,6 +19,8 @@ stage_ts <- function(target_name, ts.config, sites){
   times <- ts.config$times
   version <- ts.config$version
   
+  ts.name <- make_ts_name(target_name)
+  
   if (src == 'nldas'){
     gconfig(sleep.time=60, retries=2)
     files = stage_nldas_ts(sites, var, times, version=version, folder=ts.config$temp_dir, url = ts.config$nldas_url, verbose=TRUE)
@@ -26,6 +28,9 @@ stage_ts <- function(target_name, ts.config, sites){
     #chunk sites
     site.db <- mda.streams:::parse_site_name(sites, out='database')
     sites <- sites[site.db == 'nwis']
+    new.sites <- !file.exists(make_ts_path(sites, ts.name, folder = ts.config$temp_dir, version = version))
+    sites <- sites[new.sites]
+    message('data pulls for ',length(sites),' sites')
     chunk.st <- seq(1, length(sites), by=ts.config$nwis.chunk)
     chunk.en <- c(tail(chunk.st, -1) -1, length(sites))
     files <- c()
