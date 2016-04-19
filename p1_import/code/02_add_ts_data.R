@@ -67,7 +67,7 @@ sb_post_ts <- function(ts.file){
   auth_internal()
   
   ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
-  files <- ts.table$filepath[ts.table$local]
+  files <- ts.table$filepath[ts.table$local & !ts.table$local]
   
   for (file in files){
     

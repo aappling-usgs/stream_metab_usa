@@ -20,8 +20,7 @@ targets:
       - wtr_nwis
       - disch_nwis
       - doobs_nwis
-      ##- disch_nwis
-      ##- sb_doobs_nwis
+      - sb_doobs_nwis
   
   ts.config:
     command: yaml.load_file("configs/nldas_ts.yml")
@@ -50,10 +49,20 @@ targets:
   disch_nwis:
     command: stage_ts('p1_import/out/files_ts_disch_nwis.tsv')
   
-  sb_doobs_nwis:
+  sb_disch_nwis:
     command: sb_post_ts('p1_import/out/files_ts_disch_nwis.tsv')
     depends:
+      - disch_nwis
+  
+  sb_doobs_nwis:
+    command: sb_post_ts('p1_import/out/files_ts_doobs_nwis.tsv')
+    depends:
       - doobs_nwis
+  
+  sb_wtr_nwis:
+    command: sb_post_ts('p1_import/out/files_ts_wtr_nwis.tsv')
+    depends:
+      - wtr_nwis
 
   ##baro_nldas:
   ##  command: stage_ts(target_name, ts.config)
