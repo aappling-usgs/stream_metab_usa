@@ -1,5 +1,6 @@
 <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" xmlns:xlink="http://www.w3.org/1999/xlink">
   <aggregation type="union">
+    <remove type="attribute" name="Conventions"/>
     <netcdf>
       <aggregation type="joinExisting" dimName="time">
         <netcdf location="NLDAS_236675.237674_0.223_0.463_pressfc.nc"/>

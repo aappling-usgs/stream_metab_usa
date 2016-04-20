@@ -134,6 +134,7 @@ create_nldas_ncml <- function(server.files, ncml.out){
   
   ncml <- newXMLNode('netcdf', namespace=c("http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2", xlink="http://www.w3.org/1999/xlink"))
   agg <- newXMLNode('aggregation', parent = ncml, attrs = c(type="union"))
+  newXMLNode('remove', parent = agg, attrs = c(type="attribute", name="Conventions"))
   for (var in vars){
     nc <- newXMLNode('netcdf', parent = agg)
     join <- newXMLNode('aggregation', parent = nc, attrs=c(type="joinExisting", dimName="time"))

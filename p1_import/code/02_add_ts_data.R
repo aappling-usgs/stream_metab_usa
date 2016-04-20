@@ -4,36 +4,99 @@
 #' @param target_name a var_src (e.g., baro_nldas or doobs_nwis)
 #' @param ts.config a config list used to parameterize calls to stage_nwis_ts or stage_nldas_ts
 #' @return files that were created
-stage_ts <- function(target_name, ts.config){
+stage_ts <- function(ts.file){
   
   auth_internal()
   
-  if (!dir.exists(ts.config$temp_dir))
-    dir.create(ts.config$temp_dir)
-  gconfig(sleep.time=60, retries=2)
+  ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
+  dir.name <- unique(dirname(ts.table$filepath))
+  lapply(dir.name, function(x) if(!dir.exists(x)) dir.create(x))
+
+  # // check local files
+  ts.table$local <- file.exists(ts.table$filepath)
   # targets will tell us what the function to call is
-  ts_name <- make_ts_name(target_name)
-  src <- parse_ts_name(ts_name, out = 'src')
-  var <- parse_ts_name(ts_name, out = 'var')
-  
-  times <- ts.config$times
-  version <- ts.config$version
-  
-  sites <- list_sites()
+  src <- tail(strsplit(ts.file,'[_.]')[[1]],2)[1]
   
   if (src == 'nldas'){
-    files = stage_nldas_ts(sites, var, times, version=version, folder=ts.config$temp_dir, url = ts.config$nldas_url, verbose=TRUE)
+    ts.config <- yaml.load_file("configs/nldas_ts.yml")
+    gconfig(sleep.time=60, retries=2)
+    use.i <- !ts.table$local & !ts.table$no.data
+    files <- ts.table$filepath[use.i]
+    message('data pulls for ',length(ts.table$filepath),' sites')
+    message(length(ts.table$filepath[ts.table$local]),' already exist, ', length(files), ' will be new')
+    if (length(files) > 0){
+      details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
+      times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
+      processed.files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
+                                       version=unique(details$version), folder=unique(details$dir_name), url = ts.config$nldas_url, verbose=TRUE)
+      # // if in files, but not processed.files, the site has no data
+      ts.table$local[use.i] <- file.exists(files)
+      ts.table$no.data[use.i] <- !files %in% processed.files
+    } #// else do nothing
+    
   } else if (src == 'nwis'){
-    stop('not implemented yet')
+    #chunk sites
+    message('data pulls for ',length(ts.table$filepath),' sites')
+    files <- ts.table$filepath[!ts.table$local & !ts.table$no.data]
+    message(length(ts.table$filepath[ts.table$local]),' already exist or have no data, ', length(files), ' will be new')
+    for (file in files){
+
+      file.i <- which(file == ts.table$filepath)
+      
+      details <- parse_ts_path(file)
+      # // catch warning here
+      local.file <- tryCatch(
+        stage_nwis_ts(details$site_name, details$var, times=c(ts.table$time.st[file.i], ts.table$time.en[file.i]), 
+                      version=details$version, folder=details$dir_name, verbose=TRUE),
+        warning=function(w) {
+          if (w$message == "error in data"){
+            return(FALSE)
+          } else {
+            return(NULL)
+          }
+        })
+      if (is.null(local.file)){
+        # no data in this site
+        ts.table$no.data[file.i] <- TRUE
+      } else if (is.character(local.file) && file.exists(local.file)){
+        ts.table$local[file.i] <- TRUE
+      } else {
+        message('seems to be an error for this site')
+      }
+    }
   }
-  return(files)
+  write_site_table(ts.table, ts.file)
 }
 
 #' helper function for posting files to sciencebase w/ post_ts
 #' 
 #' @param files files created by stage_ts (or stage_nwis_ts; stage_nldas_ts)
-#' @param ts.config a config list used to parameterize the post_ts function
-sb_post_ts <- function(files, ts.config){
+sb_post_ts <- function(ts.file){
+  
+  ts.config <- yaml.load_file("configs/nldas_ts.yml")
   auth_internal()
-  post_ts(files, on_exists=ts.config$on_exists, verbose=TRUE)
+  
+  remote.sites <- list_sites('doobs_nwis', with_ts_version='rds')
+  ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
+  details <- parse_ts_path(ts.table$filepath, out=c('site_name', 'var_src','version'))
+  remote.sites <- list_sites(unique(details$var_src), with_ts_version=unique(details$version))
+  remote <- ts.table$remote | details$site_name %in% remote.sites
+  ts.table$remote <- remote
+  
+  files <- ts.table$filepath[ts.table$local & !ts.table$remote]
+  
+  for (file in files){
+    site <- parse_ts_path(file, out='site_name', use_names = FALSE)
+    if(is.na(locate_site(site, by = 'tag'))){
+      post_site(site, on_exists = "skip", verbose=TRUE)
+    }
+    sb.id <- post_ts(file, on_exists=ts.config$on_exists, verbose=TRUE)
+    if (is.character(sb.id) & nchar(sb.id) > 0){
+      file.i <- which(file == ts.table$filepath)
+      ts.table$remote[file.i] <- TRUE
+      write_site_table(ts.table, ts.file)
+    }
+  }
+  remote.sites <- parse_ts_path(ts.table$filepath[ts.table$remote], out='site_name', use_names = FALSE)
+  return(remote.sites)
 }
