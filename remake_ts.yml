@@ -15,7 +15,7 @@ sources:
 targets:
   all:
     depends: 
-      ##- sb_baro_nldas
+      - sb_baro_nldas
       ##- sb_sw_nldas
       - sb_doobs_nwis
       - sb_wtr_nwis
@@ -62,17 +62,23 @@ targets:
     command: sb_post_ts('p1_import/out/files_ts_wtr_nwis.tsv')
     depends:
       - wtr_nwis
-
-  ##baro_nldas:
-  ##  command: stage_ts(target_name, ts.config)
+  
+  p1_import/out/files_ts_baro_nldas.tsv:
+    command: create_nldas_ts_table(sb_doobs_nwis, ts.config, target_name)
     
-  ##sw_nldas:
-  ##  command: stage_ts(target_name, ts.config)
+  metadata:
+    command: stage_meta_basic()
+    depends:
+      - sb_doobs_nwis
     
-  ##sb_baro_nldas:
-  ##  command: sb_post_ts(baro_nldas, ts.config)
-     
-  ##sb_sw_nldas:
-  ##  command: sb_post_ts(sw_nldas, ts.config, sites)
+  baro_nldas:
+    command: stage_ts('p1_import/out/files_ts_baro_nldas.tsv')
+    depends:
+      - metadata
+  
+  sb_baro_nldas:
+    command: sb_post_ts('p1_import/out/files_ts_baro_nldas.tsv')
+    depends:
+      - baro_nldas
   
 

@@ -3,4 +3,3 @@ on_exists: 'skip'
 nldas_url: 'dods://cida-eros-netcdfdev.er.usgs.gov:8080/thredds/dodsC/thredds_workspace/stream_metab/nldas.ncml'
 version: 'rds'
 temp_dir: '.temp_ts'
-nwis.chunk: 5
