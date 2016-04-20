@@ -20,19 +20,24 @@ stage_ts <- function(ts.file){
   if (src == 'nldas'){
     ts.config <- yaml.load_file("configs/nldas_ts.yml")
     gconfig(sleep.time=60, retries=2)
-    use.i <- !ts.table$local | ts.table$no.data
+    use.i <- !ts.table$local & !ts.table$no.data
     files <- ts.table$filepath[use.i]
     message('data pulls for ',length(ts.table$filepath),' sites')
     message(length(ts.table$filepath[ts.table$local]),' already exist, ', length(files), ' will be new')
-    details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
-    times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
-    files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
-                           version=unique(details$version), folder=unique(details$dir_name), url = ts.config$nldas_url, verbose=TRUE)
-    ts.table$local[use.i] = file.exists(files)
+    if (length(files) > 0){
+      details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
+      times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
+      processed.files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
+                                       version=unique(details$version), folder=unique(details$dir_name), url = ts.config$nldas_url, verbose=TRUE)
+      # // if in files, but not processed.files, the site has no data
+      ts.table$local[use.i] <- file.exists(files)
+      ts.table$no.data[use.i] <- !files %in% processed.files
+    } #// else do nothing
+    
   } else if (src == 'nwis'){
     #chunk sites
     message('data pulls for ',length(ts.table$filepath),' sites')
-    files <- ts.table$filepath[!ts.table$local | ts.table$no.data]
+    files <- ts.table$filepath[!ts.table$local & !ts.table$no.data]
     message(length(ts.table$filepath[ts.table$local]),' already exist or have no data, ', length(files), ' will be new')
     for (file in files){
 
@@ -81,8 +86,8 @@ sb_post_ts <- function(ts.file){
   files <- ts.table$filepath[ts.table$local & !ts.table$remote]
   
   for (file in files){
-    locate_site(site, by = 'tag')
-    if(is.na(locate_site(details$site, by = 'tag'))){
+    site <- parse_ts_path(file, out='site_name', use_names = FALSE)
+    if(is.na(locate_site(site, by = 'tag'))){
       post_site(site, on_exists = "skip", verbose=TRUE)
     }
     sb.id <- post_ts(file, on_exists=ts.config$on_exists, verbose=TRUE)
