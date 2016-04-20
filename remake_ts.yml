@@ -17,10 +17,9 @@ targets:
     depends: 
       ##- sb_baro_nldas
       ##- sb_sw_nldas
-      - wtr_nwis
-      - disch_nwis
-      - doobs_nwis
       - sb_doobs_nwis
+      - sb_wtr_nwis
+      - sb_disch_nwis
   
   ts.config:
     command: yaml.load_file("configs/nldas_ts.yml")
