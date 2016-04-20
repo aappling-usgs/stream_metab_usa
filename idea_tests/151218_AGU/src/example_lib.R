@@ -12,8 +12,8 @@ build_example <- function(s, pred, dates=as.Date(c("2000-01-01","2030-01-01")), 
   
   # pull in predictor data
   pdat <- get_ts(c('sitetime_calcLon', pred), s) %>% v() %>%
-    mutate(local.time = sitetime,
-           filt.date = as.Date(local.time)) %>% 
+    mutate(solar.time = sitetime,
+           filt.date = as.Date(solar.time)) %>% 
     filter(filt.date >= (dates[1] - as.difftime(1,units='days')), filt.date <= (dates[2] + as.difftime(1,units='days'))) %>%
     select(-filt.date)
   
