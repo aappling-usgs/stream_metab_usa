@@ -16,7 +16,7 @@ targets:
   all:
     depends: 
       - sb_baro_nldas
-      - sw_nldas
+      - sb_sw_nldas
       - sb_doobs_nwis
       - sb_wtr_nwis
       - sb_disch_nwis
