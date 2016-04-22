@@ -74,10 +74,13 @@ targets:
     depends:
       - sb_doobs_nwis
     
+  sb_metadata: 
+    command: post_meta(metadata)
+    
   baro_nldas:
     command: stage_ts('p1_import/out/files_ts_baro_nldas.tsv')
     depends:
-      - metadata
+      - sb_metadata
   
   sb_baro_nldas:
     command: sb_post_ts('p1_import/out/files_ts_baro_nldas.tsv')
@@ -87,7 +90,7 @@ targets:
   sw_nldas:
     command: stage_ts('p1_import/out/files_ts_sw_nldas.tsv')
     depends:
-      - metadata
+      - sb_metadata
   
   sb_sw_nldas:
     command: sb_post_ts('p1_import/out/files_ts_sw_nldas.tsv')
