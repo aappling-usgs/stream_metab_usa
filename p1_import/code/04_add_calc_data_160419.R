@@ -11,23 +11,22 @@ done_version='rds'
 mda.streams:::build_calc_ts_needs()
 trycalcts <- function(varsrc) try_calc_ts(varsrc, done_after=done_after, done_version=done_version, sb_user=SBUSER, sb_pass=SBPASS)
 
-trycalcts('dosat_calcGGbts') # 649/655 complete. the last 4 have nrow(baro) <= 1: nwis_11455142, nwis_323733107011002, nwis_324007107095501, nwis_324955107180902
-trycalcts('dopsat_calcObsSat') # 647/647 complete. nwis_06601200, nwis_06807000 remain, have 0 non-NA rows
+trycalcts('dosat_calcGGbts') # 651/655 complete. the last 4 have nrow(baro) <= 1: nwis_11455142, nwis_323733107011002, nwis_324007107095501, nwis_324955107180902
 trycalcts('baro_calcElev') # 545/545 complete
 trycalcts('dosat_calcGGbconst') # 514/514 complete
+trycalcts('dopsat_calcObsSat') # 645/647 complete. nwis_06601200, nwis_06807000 remain, have 0 non-NA rows
 trycalcts('depth_calcDischRaymond') # 429/429 complete
 trycalcts('depth_calcDischHarvey') # 266/266 complete
-trycalcts('sitetime_calcLon') # 657/657 complete, then added 30
-trycalcts('suntime_calcLon') # 657/657 complete
-trycalcts('par_calcLat') # 657/657 complete
+trycalcts('sitetime_calcLon') # 687/687 complete
+trycalcts('suntime_calcLon') # 687/687 complete
+trycalcts('par_calcLat') # 687/687 complete
 trycalcts('par_calcSw') # 706/706 complete
-trycalcts('sitedate_calcLon') # 657/657
-trycalcts('doamp_calcDAmp')
-trycalcts('dischdaily_calcDMean') # 404/410 complete. the last 6 have 0 rows of daily data
+trycalcts('sitedate_calcLon') # 687/687 complete
+trycalcts('doamp_calcDAmp') # 643/645 complete. other 2 have < 1 day of data
+trycalcts('dischdaily_calcDMean') # 416/422 complete. the last 6 have 0 rows of daily data
 
 # how is a run doing?
-staged <- stage_calc_ts('nwis_01467042', 'dosat','calcGGbts')
-summarize_ts_files('dosat_calcGGbts') %>% 
+summarize_ts_files('doamp_calcDAmp') %>% 
   filter(upload_date > as.POSIXct('2016-04-17') & version=='rds')
 
 # oops - stage_calc_ts allowed tsvs when rdses couldn't be found. i wonder how many tses this affected? but there's no way for me to 
