@@ -76,7 +76,6 @@ sb_post_ts <- function(ts.file){
   ts.config <- yaml.load_file("configs/nldas_ts.yml")
   auth_internal()
   
-  remote.sites <- list_sites('doobs_nwis', with_ts_version='rds')
   ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
   details <- parse_ts_path(ts.table$filepath, out=c('site_name', 'var_src','version'))
   remote.sites <- list_sites(unique(details$var_src), with_ts_version=unique(details$version))
