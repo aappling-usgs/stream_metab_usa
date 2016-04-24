@@ -26,7 +26,7 @@ switch(
   cluster,
   "condor" = {
     # Start a cluster, wait for them to connect
-    c1 = makePSOCKcluster(paste0('machine', 1:50), manual=TRUE, port=4043)
+    c1 = makePSOCKcluster(paste0('machine', 1:60), manual=TRUE, port=4043)
     #' At this point go to putty, cd into condor_R_snow.
     #' 
     #' 3. Edit simple.sh to contain MASTER=YOUR.LOCAL.IP.ADDRESS (can find from
@@ -77,7 +77,7 @@ all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'httr') 
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'lubridate') })))$install_success)
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'RCurl') })))$install_success)
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'reshape2') })))$install_success)
-#all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'rstan') })))$install_success)
+all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'rstan') })))$install_success)
 #all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'runjags') })))$install_success)
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('cran', 'XML') })))$install_success)
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('gran', 'dataRetrieval') })))$install_success) # dependencies: reshape2, lubridate, plyr, dplyr
@@ -85,9 +85,9 @@ clusterCall(c1, function() { library(devtools) })
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'LakeMetabolizer', 'GLEON') })))$install_success)
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'unitted', 'appling') })))$install_success)
 all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'geoknife', 'USGS-R') })))$install_success)
-all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'sbtools', 'aappling-usgs') })))$install_success)
-all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'streamMetabolizer', 'aappling-usgs', ref='develop') })))$install_success)
-all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'mda.streams', 'aappling-usgs', ref='develop') })))$install_success)
+all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'sbtools', 'USGS-R') })))$install_success)
+all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'streamMetabolizer', 'USGS-R', ref='master') })))$install_success)
+all((out <- bind_rows(clusterCall(c1, function(){ install_check('github', 'mda.streams', 'USGS-R', ref='master') })))$install_success)
 
 
 # DIAGNOSTICS
@@ -97,7 +97,7 @@ unlist(clusterCall(c1, function() { "JAGS" %in% dir("/usr/local/lib") }))
 # view the overall install status
 pkg_needs <- c('dataRetrieval', 'devtools', 'dplyr', 'geoknife', 'httr', 'jsonlite', 
                'LakeMetabolizer', 'lazyeval', 'lubridate', 'mda.streams', 'methods', 'parallel', 'RCurl', 
-               'rstan', 'runjags', 'sbtools', 'streamMetabolizer', 'stringr', 'unitted', 'XML') #'rjags', 
+               'rstan', 'sbtools', 'streamMetabolizer', 'stringr', 'unitted', 'XML') #'runjags', 
 inst <- view_installed_packages(pkg_needs)#[,1:6]
 good_nodes <- which(unlist(inst['runjags',]))
 c1 <- c1[good_nodes]
@@ -119,6 +119,11 @@ if(cluster=="localhost") {
 
 # this part goes in task-specific scripts.
 
+
+#### Optional Bandaids ####
+
+clusterExport(c1, 'reinstall_github')
+clusterCall(c1, function() {reinstall_github('mda.streams', 'USGS-R', 'master')}) #eg
 
 #### End ####
 
