@@ -1,6 +1,21 @@
 # ScienceBase Data Status & History
 
-### This NEWS file is current as of 3/4/2016
+### This NEWS file is current as of 4/25/2016
+
+# 4/25/2016
+
+First generation of ts data with version='rds'
+
+- any data available through NWIS and NLDAS for 2006/10/01 through 2016/03/01
+
+- many sites now have more data. some data may be revised. some sites lost data (still available here through get_ts(version='tsv'))
+
+Posted new three-phase, pseudo-hierarchical MLE model run 
+
+- uses new '.rds' data
+
+- uses weights of K600/(K600.upper - K600.lower) instead of 1/(K600.upper - K600.lower)
+
 
 ## 12/3/15 - 12/4/15
 
