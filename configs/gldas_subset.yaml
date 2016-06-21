@@ -1,0 +1,6 @@
+data_name: "GLDAS"
+sub_times: ["2006-01-01 UTC", "2016-06-15 UTC"]
+sub_variables: ['psurf','swdown']
+ldas_url: "dods://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H"
+catalog_url: "http://cida-eros-netcdfdev.er.usgs.gov:8080/thredds/catalog/thredds_workspace/stream_metab/catalog.xml"
+sub_split: 1000
