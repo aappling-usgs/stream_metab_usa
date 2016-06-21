@@ -1,1 +1,22 @@
-index of new files contains 6
+index of new files contains 58
+** nccopy swdown[19104:1:20103] to GLDAS_19104.20103_300.599_50.500_swdown.nc...done! **
+** nccopy psurf[19104:1:20103] to GLDAS_19104.20103_300.599_50.500_psurf.nc...done! **
+** nccopy swdown[20104:1:21103] to GLDAS_20104.21103_300.599_50.500_swdown.nc...done! **
+** nccopy psurf[20104:1:21103] to GLDAS_20104.21103_300.599_50.500_psurf.nc...done! **
+** transferring file to thredds server...done! **
+** transferring file to thredds server...done! **
+** transferring file to thredds server...done! **
+** transferring file to thredds server...done! **
+** nccopy swdown[21104:1:22103] to GLDAS_21104.22103_300.599_50.500_swdown.nc...done! **
+** transferring file to thredds server...done! **
+** nccopy psurf[21104:1:22103] to GLDAS_21104.22103_300.599_50.500_psurf.nc...done! **
+** nccopy psurf[22104:1:23103] to GLDAS_22104.23103_300.599_50.500_psurf.nc...done! **
+** nccopy swdown[22104:1:23103] to GLDAS_22104.23103_300.599_50.500_swdown.nc...done! **
+** transferring file to thredds server...done! **
+** transferring file to thredds server...done! **
+** transferring file to thredds server...done! **
+** nccopy swdown[23104:1:24103] to GLDAS_23104.24103_300.599_50.500_swdown.nc...done! **
+** transferring file to thredds server...done! **
+** nccopy psurf[23104:1:24103] to GLDAS_23104.24103_300.599_50.500_psurf.nc...done! **
+** nccopy psurf[24104:1:25103] to GLDAS_24104.25103_300.599_50.500_psurf.nc...done! **
+** nccopy swdown[24104:1:25103] to GLDAS_24104.25103_300.599_50.500_swdown.nc...done! **

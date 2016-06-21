@@ -103,10 +103,8 @@ nccopy_ldas <- function(file.list, mssg.file, internal.config){
     v <- strsplit(x,'[.]')[[1]]
     sprintf("[%s:1:%s]",v[1],v[2])
   }
-  # 
-  # registerDoMC(cores=4)
-  # foreach(file=files$file) %dopar% {
-  for (file in files$file){
+  registerDoMC(cores=4)
+  foreach(file=files$file) %dopar% {
     
     local.nc.file <- file.path(tempdir(), file)
     

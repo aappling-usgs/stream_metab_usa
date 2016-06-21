@@ -18,6 +18,7 @@ targets:
       - p1_import/out/nldas_nc_status.txt
       - nldas.ncml.sync
       - p1_import/out/gldas_nc_status.txt
+      - gldas.ncml.sync
 
   internal.config:
     command: load_internal()
@@ -50,12 +51,23 @@ targets:
     command: ldas_server_files(nldas.config)
     depends:
       - p1_import/out/nldas_nc_status.txt
+    
+  gldas.server.files:
+    command: ldas_server_files(gldas.config)
+    depends:
+      - p1_import/out/gldas_nc_status.txt
   
   p1_import/out/nldas.ncml:
     command: create_ldas_ncml(nldas.server.files, target_name)
   
+  p1_import/out/gldas.ncml:
+    command: create_ldas_ncml(gldas.server.files, target_name)
+  
   nldas.ncml.sync:
     command: sync_ncml('p1_import/out/nldas.ncml', internal.config)
+  
+  gldas.ncml.sync:
+    command: sync_ncml('p1_import/out/gldas.ncml', internal.config)
 
 
 
