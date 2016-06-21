@@ -17,33 +17,57 @@ targets:
     depends: 
       - p1_import/out/nldas_nc_status.txt
       - nldas.ncml.sync
+      - p1_import/out/gldas_nc_status.txt
+      - gldas.ncml.sync
 
   internal.config:
     command: load_internal()
   
   nldas.config:
     command: yaml.load_file("configs/nldas_subset.yaml")
+    
+  gldas.config:
+    command: yaml.load_file("configs/gldas_subset.yaml")
 
   nldas.grids:
-    command: nc_sub_grids(nldas.config)
+    command: nc_sub_grids(nldas.config, target_name)
+    
+  gldas.grids:
+    command: nc_sub_grids(gldas.config, target_name)
   
   p1_import/out/nldas_nc_files.tsv:
-    command: nldas_sub_files(nldas.grids, nldas.config, target_name)
+    command: ldas_sub_files(nldas.grids, nldas.config, target_name)
+  
+  p1_import/out/gldas_nc_files.tsv:
+    command: ldas_sub_files(gldas.grids, gldas.config, target_name)
     
   p1_import/out/nldas_nc_status.txt:
-    command: nccopy_nldas('p1_import/out/nldas_nc_files.tsv', target_name, internal.config)
+    command: nccopy_ldas('p1_import/out/nldas_nc_files.tsv', target_name, internal.config)
     
-  server.files:
-    command: nldas_server_files(nldas.config)
+  p1_import/out/gldas_nc_status.txt:
+    command: nccopy_ldas('p1_import/out/gldas_nc_files.tsv', target_name, internal.config)
+    
+  nldas.server.files:
+    command: ldas_server_files(nldas.config)
     depends:
       - p1_import/out/nldas_nc_status.txt
+    
+  gldas.server.files:
+    command: ldas_server_files(gldas.config)
+    depends:
+      - p1_import/out/gldas_nc_status.txt
   
   p1_import/out/nldas.ncml:
-    command: create_nldas_ncml(server.files, target_name)
+    command: create_ldas_ncml(nldas.server.files, target_name)
+  
+  p1_import/out/gldas.ncml:
+    command: create_ldas_ncml(gldas.server.files, target_name)
   
   nldas.ncml.sync:
     command: sync_ncml('p1_import/out/nldas.ncml', internal.config)
-    
-  ##stage
+  
+  gldas.ncml.sync:
+    command: sync_ncml('p1_import/out/gldas.ncml', internal.config)
+
 
 
