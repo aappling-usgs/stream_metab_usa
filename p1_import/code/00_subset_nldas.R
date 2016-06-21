@@ -49,8 +49,8 @@ ldas_sub_files <- function(grids, ldas_config, file.out){
   time.files <- sprintf(paste0(sprintf("%s_%i.%i",data.name, start.i,end.i),'_%s.%s_%s.%s_'), grids$lat[1], grids$lat[2], grids$lon[1], grids$lon[2])
   file.names <- as.vector(unlist(sapply(time.files, paste0, vars,'.nc')))
   
+
   server.files <- ldas_server_files(ldas_config)
-  
   new.files <- setdiff(file.names, server.files)
   rm.files <- setdiff(server.files, file.names)
   if (length(rm.files) > 0){
@@ -60,10 +60,10 @@ ldas_sub_files <- function(grids, ldas_config, file.out){
   # doing this explicitly to avoid the case where there are no new files, and we paste in a NA for the file name
   files <- ''
   for (file in new.files){
-    files <- paste0(files, paste(new.files, ldas_config$ldas_url, sep='\t'))
+    files <- paste0(files, paste(file, ldas_config$ldas_url, sep='\t', collapse=''),'\n')
   }
   cat('file\turl\n', file=file.out, append = FALSE)
-  cat(files, '\n', file=file.out, sep='', append = TRUE)
+  cat(files, file=file.out, sep='', append = TRUE)
 }
 
 #' figure out what files already exist on the server
@@ -77,6 +77,7 @@ ldas_server_files <- function(ldas_config){
   names(ns)[1] <- "xmlns"
   ncdf.datasets <- getNodeSet(server.data,'/xmlns:catalog/xmlns:dataset/xmlns:dataset[substring(@name, string-length(@name) - string-length(".nc") +1) = ".nc"]', ns)
   ncdf.files <- unlist(xmlApply(ncdf.datasets, function(x) xmlAttrs(x)[['name']]))
+  ncdf.files <- ncdf.files[grepl(pattern = ldas_config$data_name, ncdf.files)] # match to dataset name
   if (is.null(ncdf.files))
     ncdf.files = c() # no files on the server
   return(ncdf.files)
@@ -102,7 +103,7 @@ nccopy_ldas <- function(file.list, mssg.file, internal.config){
     v <- strsplit(x,'[.]')[[1]]
     sprintf("[%s:1:%s]",v[1],v[2])
   }
-
+  browser()
   registerDoMC(cores=4)
   foreach(file=files$file) %dopar% {
     
