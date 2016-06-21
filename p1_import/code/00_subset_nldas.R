@@ -24,7 +24,7 @@ nc_sub_grids <- function(ldas_config, target_name){
     time[1] <- (as.numeric(as.POSIXct(ldas_config$sub_times[1], tz='UTC')-as.POSIXct("2000-02-24 00:00 UTC", tz='UTC')))*time.step
     time[2] <- (as.numeric(as.POSIXct(ldas_config$sub_times[2], tz='UTC')-as.POSIXct("2000-02-24 00:00 UTC", tz='UTC')))*time.step
     lon <- c(50, 500) # this is a guess for something covering our project + AK and PR
-    lat <- c(300, 600) # this is a guess for something covering our project + AK and PR
+    lat <- c(300, 599) # this is a guess for something covering our project + AK and PR
   } else {
     stop(data.name, ' is not supported')
   }
@@ -103,9 +103,10 @@ nccopy_ldas <- function(file.list, mssg.file, internal.config){
     v <- strsplit(x,'[.]')[[1]]
     sprintf("[%s:1:%s]",v[1],v[2])
   }
-  browser()
-  registerDoMC(cores=4)
-  foreach(file=files$file) %dopar% {
+  # 
+  # registerDoMC(cores=4)
+  # foreach(file=files$file) %dopar% {
+  for (file in files$file){
     
     local.nc.file <- file.path(tempdir(), file)
     
