@@ -30,7 +30,7 @@ nldas_sub_files <- function(grids, nldas_config, file.out){
   end.i <- c(tail(start.i-1,-1), as.numeric(grids$time[2]))
   
   # creates file string: "NLDAS_291000.291999_132.196_221.344_"
-  time.files <- sprintf(paste0(sprintf("NLDAS_%i.%i",start.i,end.i),'_%s.%s_%s.%s_'), grids$lat[1], grids$lat[2], grids$lon[1], grids$lon[2])
+  time.files <- sprintf(paste0(sprintf("%s_%i.%i",nldas_config$data_name, start.i,end.i),'_%s.%s_%s.%s_'), grids$lat[1], grids$lat[2], grids$lon[1], grids$lon[2])
   file.names <- as.vector(unlist(sapply(time.files, paste0, vars,'.nc')))
   
   server.files <- nldas_server_files(nldas_config)
@@ -41,9 +41,11 @@ nldas_sub_files <- function(grids, nldas_config, file.out){
     message(sprintf('remove: %s',paste(paste0(rm.files), collapse=' ')))
     stop(sprintf('\n%s files are on the server but are no longer used and can be removed...',length(rm.files)))
   }
-  
-  files <- paste(new.files, nldas_config$nldas_url, sep='\t', collapse='\n')
-  
+  # doing this explicitly to avoid the case where there are no new files, and we paste in a NA for the file name
+  files <- ''
+  for (file in new.files){
+    files <- paste0(files, paste(new.files, nldas_config$nldas_url, sep='\t'))
+  }
   cat('file\turl\n', file=file.out, append = FALSE)
   cat(files, '\n', file=file.out, sep='', append = TRUE)
 }
@@ -74,14 +76,17 @@ nccopy_nldas <- function(file.list, mssg.file, internal.config){
   files <- read.table(file.list, sep='\t', stringsAsFactors = FALSE, header = TRUE)
   
   cat('index of new files contains', length(files$file), file=mssg.file, append = FALSE)
-  
+  if (length(files$file) == 0){
+    message('no new files to nccopy, doing nothing')
+    return()
+  }
   data.url <- unique(files$url)
   stopifnot(length(data.url) == 1)
   write_grid <- function(x){
     v <- strsplit(x,'[.]')[[1]]
     sprintf("[%s:1:%s]",v[1],v[2])
   }
-  
+
   registerDoMC(cores=4)
   foreach(file=files$file) %dopar% {
     
