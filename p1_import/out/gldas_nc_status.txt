@@ -1,7 +1,5 @@
-index of new files contains 4
-** nccopy swdown[47104:1:47648] to GLDAS_47104.47648_300.599_50.500_swdown.nc...
-** nccopy psurf[47104:1:47648] to GLDAS_47104.47648_300.599_50.500_psurf.nc...http://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H?lon[50:1:500],time[47104:1:47648],lat[300:1:599],swdown[47104:1:47648][300:1:599][50:1:500]  FAILED **http://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H?lon[50:1:500],time[47104:1:47648],lat[300:1:599],psurf[47104:1:47648][300:1:599][50:1:500]  FAILED **
-** nccopy swdown[44104:1:45103] to GLDAS_44104.45103_300.599_50.500_swdown.nc...done! **
-** nccopy psurf[45104:1:46103] to GLDAS_45104.46103_300.599_50.500_psurf.nc...done! **
+index of new files contains 2
+** nccopy swdown[47104:1:47608] to GLDAS_47104.47608_300.599_50.500_swdown.nc...done! **
+** nccopy psurf[47104:1:47608] to GLDAS_47104.47608_300.599_50.500_psurf.nc...done! **
 ** transferring file to thredds server...done! **
 ** transferring file to thredds server...done! **

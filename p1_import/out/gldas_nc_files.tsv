@@ -1,5 +1,3 @@
 file	url
-GLDAS_44104.45103_300.599_50.500_swdown.nc	dods://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H
-GLDAS_45104.46103_300.599_50.500_psurf.nc	dods://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H
-GLDAS_47104.47648_300.599_50.500_psurf.nc	dods://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H
-GLDAS_47104.47648_300.599_50.500_swdown.nc	dods://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H
+GLDAS_47104.47608_300.599_50.500_psurf.nc	dods://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H
+GLDAS_47104.47608_300.599_50.500_swdown.nc	dods://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H
