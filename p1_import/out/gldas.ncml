@@ -1,4 +1,10 @@
 <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <variable name="swdown">
+    <attribute name="units" value="W m^-2"/>
+  </variable>
+  <variable name="psurf">
+    <attribute name="units" value="Pa"/>
+  </variable>
   <aggregation type="union">
     <remove type="attribute" name="Conventions"/>
     <netcdf>
