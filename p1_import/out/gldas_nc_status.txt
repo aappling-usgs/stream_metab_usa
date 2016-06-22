@@ -1,22 +1,7 @@
-index of new files contains 58
-** nccopy swdown[19104:1:20103] to GLDAS_19104.20103_300.599_50.500_swdown.nc...done! **
-** nccopy psurf[19104:1:20103] to GLDAS_19104.20103_300.599_50.500_psurf.nc...done! **
-** nccopy swdown[20104:1:21103] to GLDAS_20104.21103_300.599_50.500_swdown.nc...done! **
-** nccopy psurf[20104:1:21103] to GLDAS_20104.21103_300.599_50.500_psurf.nc...done! **
+index of new files contains 4
+** nccopy swdown[47104:1:47648] to GLDAS_47104.47648_300.599_50.500_swdown.nc...
+** nccopy psurf[47104:1:47648] to GLDAS_47104.47648_300.599_50.500_psurf.nc...http://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H?lon[50:1:500],time[47104:1:47648],lat[300:1:599],swdown[47104:1:47648][300:1:599][50:1:500]  FAILED **http://hydro1.sci.gsfc.nasa.gov:80/dods/GLDAS_NOAH025SUBP_3H?lon[50:1:500],time[47104:1:47648],lat[300:1:599],psurf[47104:1:47648][300:1:599][50:1:500]  FAILED **
+** nccopy swdown[44104:1:45103] to GLDAS_44104.45103_300.599_50.500_swdown.nc...done! **
+** nccopy psurf[45104:1:46103] to GLDAS_45104.46103_300.599_50.500_psurf.nc...done! **
 ** transferring file to thredds server...done! **
 ** transferring file to thredds server...done! **
-** transferring file to thredds server...done! **
-** transferring file to thredds server...done! **
-** nccopy swdown[21104:1:22103] to GLDAS_21104.22103_300.599_50.500_swdown.nc...done! **
-** transferring file to thredds server...done! **
-** nccopy psurf[21104:1:22103] to GLDAS_21104.22103_300.599_50.500_psurf.nc...done! **
-** nccopy psurf[22104:1:23103] to GLDAS_22104.23103_300.599_50.500_psurf.nc...done! **
-** nccopy swdown[22104:1:23103] to GLDAS_22104.23103_300.599_50.500_swdown.nc...done! **
-** transferring file to thredds server...done! **
-** transferring file to thredds server...done! **
-** transferring file to thredds server...done! **
-** nccopy swdown[23104:1:24103] to GLDAS_23104.24103_300.599_50.500_swdown.nc...done! **
-** transferring file to thredds server...done! **
-** nccopy psurf[23104:1:24103] to GLDAS_23104.24103_300.599_50.500_psurf.nc...done! **
-** nccopy psurf[24104:1:25103] to GLDAS_24104.25103_300.599_50.500_psurf.nc...done! **
-** nccopy swdown[24104:1:25103] to GLDAS_24104.25103_300.599_50.500_swdown.nc...done! **
