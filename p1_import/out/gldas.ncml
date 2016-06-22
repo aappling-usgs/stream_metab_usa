@@ -1,0 +1,75 @@
+<netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <aggregation type="union">
+    <remove type="attribute" name="Conventions"/>
+    <netcdf>
+      <aggregation type="joinExisting" dimName="time">
+        <netcdf location="GLDAS_17104.18103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_18104.19103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_19104.20103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_20104.21103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_21104.22103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_22104.23103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_23104.24103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_24104.25103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_25104.26103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_26104.27103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_27104.28103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_28104.29103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_29104.30103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_30104.31103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_31104.32103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_32104.33103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_33104.34103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_34104.35103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_35104.36103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_36104.37103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_37104.38103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_38104.39103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_39104.40103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_40104.41103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_41104.42103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_42104.43103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_43104.44103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_44104.45103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_45104.46103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_46104.47103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_47104.47608_300.599_50.500_swdown.nc"/>
+      </aggregation>
+    </netcdf>
+    <netcdf>
+      <aggregation type="joinExisting" dimName="time">
+        <netcdf location="GLDAS_17104.18103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_18104.19103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_19104.20103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_20104.21103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_21104.22103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_22104.23103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_23104.24103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_24104.25103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_25104.26103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_26104.27103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_27104.28103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_28104.29103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_29104.30103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_30104.31103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_31104.32103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_32104.33103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_33104.34103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_34104.35103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_35104.36103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_36104.37103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_37104.38103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_38104.39103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_39104.40103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_40104.41103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_41104.42103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_42104.43103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_43104.44103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_44104.45103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_45104.46103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_46104.47103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_47104.47608_300.599_50.500_psurf.nc"/>
+      </aggregation>
+    </netcdf>
+  </aggregation>
+</netcdf>

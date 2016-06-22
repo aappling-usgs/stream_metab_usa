@@ -1,0 +1,5 @@
+index of new files contains 2
+** nccopy swdown[47104:1:47608] to GLDAS_47104.47608_300.599_50.500_swdown.nc...done! **
+** nccopy psurf[47104:1:47608] to GLDAS_47104.47608_300.599_50.500_psurf.nc...done! **
+** transferring file to thredds server...done! **
+** transferring file to thredds server...done! **
