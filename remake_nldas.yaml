@@ -40,7 +40,8 @@ targets:
   
   p1_import/out/gldas_nc_files.tsv:
     command: ldas_sub_files(gldas.grids, gldas.config, target_name)
-    
+    depends:  p1_import/out/nldas_nc_status.txt
+  
   p1_import/out/nldas_nc_status.txt:
     command: nccopy_ldas('p1_import/out/nldas_nc_files.tsv', target_name, internal.config)
     
