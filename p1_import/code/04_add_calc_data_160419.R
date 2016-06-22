@@ -17,6 +17,8 @@ trycalcts('dosat_calcGGbconst') # 514/514 complete
 trycalcts('dopsat_calcObsSat') # 645/647 complete. nwis_06601200, nwis_06807000 remain, have 0 non-NA rows
 trycalcts('depth_calcDischRaymond') # 429/429 complete
 trycalcts('depth_calcDischHarvey') # 266/266 complete
+trycalcts('veloc_calcDischRaymond') # 429/429 complete
+trycalcts('veloc_calcDischHarvey') # 266/266 complete
 trycalcts('sitetime_calcLon') # 687/687 complete
 trycalcts('suntime_calcLon') # 687/687 complete
 trycalcts('par_calcLat') # 687/687 complete
@@ -24,6 +26,7 @@ trycalcts('par_calcSw') # 706/706 complete
 trycalcts('sitedate_calcLon') # 687/687 complete
 trycalcts('doamp_calcDAmp') # 643/645 complete. other 2 have < 1 day of data
 trycalcts('dischdaily_calcDMean') # 416/422 complete. the last 6 have 0 rows of daily data
+trycalcts('velocdaily_calcDMean')
 
 # how is a run doing?
 summarize_ts_files('doamp_calcDAmp') %>% 
