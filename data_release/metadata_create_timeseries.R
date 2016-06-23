@@ -76,3 +76,5 @@ suppressWarnings(readLines('test.xml')) %>%
   gsub(pattern = '<place-template/>', replacement = place.template) %>% 
   cat(file = 'test.xml', sep = '\n')
  
+states <- c('Wisconsin','New Hampshire') %>% 
+  whisker::iteratelist(value='state.name')
