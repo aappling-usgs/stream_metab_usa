@@ -62,7 +62,7 @@ targets:
     command: create_ldas_ncml(nldas.server.files, target_name)
   
   p1_import/out/gldas.ncml:
-    command: create_ldas_ncml(gldas.server.files, target_name)
+    command: create_ldas_ncml(gldas.server.files, target_name, gldas.config)
   
   nldas.ncml.sync:
     command: sync_ncml('p1_import/out/nldas.ncml', internal.config)
