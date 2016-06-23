@@ -2,9 +2,9 @@ library(magrittr)
 library(xml2)
 
 
-m <- xml_new_document() %>%
-  xml_add_child("metadata") %>%
-  xml_add_child("idinfo")
+d <- xml_new_document() %>% 
+  xml_add_child("metadata")
+m <- xml_add_child(d, "idinfo")
 
 m %>%  xml_add_child("citation") %>%
   xml_add_child("citeinfo") %>%
@@ -59,17 +59,29 @@ m %>%
   xml_add_sibling('placekey','United States') %>% 
   xml_add_sibling('placekey','US')
 m %>% 
-  xml_add_child('place', "\n{{#states}}<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, 
+  xml_add_child('place-template')
+
+m %>% 
+  xml_add_child('state-template')
+  
+  
+  
+write_xml(d, file = 'test.xml')
+
+place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, 
                 the District of Columbia and the outlying areas of the United States, and associated areas 
                 (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-                <placekey>{{.}}</placekey>\n{{/states}}")
-  
-  
-  
-write_xml(m, file = 'test.xml')
+                <placekey>{{state-name}}</placekey>\n<placekey>{{state-abbr}}</placekey>\n</place>{{/states}}"
+
+state.template = "{{#states}}<place><placekt>none</placekt>
+                <placekey>{{state-name}}</placekey>\n</place>{{/states}}"
 
 suppressWarnings(readLines('test.xml')) %>% 
   gsub(pattern = '&gt;',replacement = '>',.) %>% 
   gsub(pattern = '&lt;',replacement = '<',.) %>% 
+  gsub(pattern = '<place-template/>', replacement = place.template) %>% 
+  gsub(pattern = '<state-template/>', replacement = state.template) %>% 
   cat(file = 'test.xml', sep = '\n')
  
+states <- list(c('state-name'='Wisconsin','state-abbr'='WI'),
+               c('state-name'='New Hampshire','state-abbr'='NH'))
