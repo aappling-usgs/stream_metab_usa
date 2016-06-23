@@ -60,6 +60,9 @@ m %>%
   xml_add_sibling('placekey','US')
 m %>% 
   xml_add_child('place-template')
+
+m %>% 
+  xml_add_child('state-template')
   
   
   
@@ -70,11 +73,15 @@ place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, 
                 (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
                 <placekey>{{state-name}}</placekey>\n<placekey>{{state-abbr}}</placekey>\n</place>{{/states}}"
 
+state.template = "{{#states}}<place><placekt>none</placekt>
+                <placekey>{{state-name}}</placekey>\n</place>{{/states}}"
+
 suppressWarnings(readLines('test.xml')) %>% 
   gsub(pattern = '&gt;',replacement = '>',.) %>% 
   gsub(pattern = '&lt;',replacement = '<',.) %>% 
   gsub(pattern = '<place-template/>', replacement = place.template) %>% 
+  gsub(pattern = '<state-template/>', replacement = state.template) %>% 
   cat(file = 'test.xml', sep = '\n')
  
-states <- c('Wisconsin','New Hampshire') %>% 
-  whisker::iteratelist(value='state-name')
+states <- list(c('state-name'='Wisconsin','state-abbr'='WI'),
+               c('state-name'='New Hampshire','state-abbr'='NH'))
