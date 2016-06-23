@@ -68,7 +68,7 @@ write_xml(d, file = 'test.xml')
 place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, 
                 the District of Columbia and the outlying areas of the United States, and associated areas 
                 (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-                <placekey>{{state.name}}</placekey>\n<placekey>{{state.abbr}}</placekey>\n</place>{{/states}}"
+                <placekey>{{state-name}}</placekey>\n<placekey>{{state-abbr}}</placekey>\n</place>{{/states}}"
 
 suppressWarnings(readLines('test.xml')) %>% 
   gsub(pattern = '&gt;',replacement = '>',.) %>% 
@@ -77,4 +77,4 @@ suppressWarnings(readLines('test.xml')) %>%
   cat(file = 'test.xml', sep = '\n')
  
 states <- c('Wisconsin','New Hampshire') %>% 
-  whisker::iteratelist(value='state.name')
+  whisker::iteratelist(value='state-name')
