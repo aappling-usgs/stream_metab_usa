@@ -19,7 +19,6 @@ sources:
   - ../1_timeseries/code/create_ldas_ts_table.R
   - ../1_timeseries/code/stage_ts.R
   - ../1_timeseries/code/sb_post_ts.R
-  - ../1_timeseries/out/files_ts_sw_gldas.tsv
 
 targets:
   1_timeseries:
@@ -29,6 +28,7 @@ targets:
       - sb_disch_nwis
       - sb_baro_nldas
       - sb_sw_nldas
+      - ../1_timeseries/out/files_ts_sw_gldas.tsv
   
   ts.config:
     command: yaml.load_file("../1_timeseries/in/ts_config.yml")
