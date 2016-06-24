@@ -5,9 +5,8 @@ packages:
 
 includes:
   - 1_site_data.yml
-
-sources:
-  - lib/remake.R
+  - 1_ldas_host.yml
+  - 1_timeseries.yml
 
 targets:
   all:

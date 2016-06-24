@@ -14,18 +14,18 @@ sources:
 targets:
   1_site_data:
     depends: 
-      - ../1_site_data/out/site_list.txt
+      - sites
+      - sb_metadata
   
   sites.config:
     command: yaml.load_file('../1_site_data/in/nwis_sites.yml')
   
-  ../1_site_data/out/site_list.txt:
-    command: init_site_list(sites.config, target_name)
+  sites:
+    command: init_site_list(sites.config, '../1_site_data/out/site_list.txt')
 
   metadata:
     command: stage_meta_basic()
-    depends:
-      - sb_doobs_nwis
+    # depends: sb_doobs_nwis
     
   sb_metadata: 
     command: post_meta(metadata)
