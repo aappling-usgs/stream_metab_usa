@@ -51,19 +51,29 @@ k %>%
   xml_add_sibling('themekey','007') %>% 
   xml_add_sibling('themekey','012') 
 
-m %>% 
+k %>% 
   xml_add_child('place') %>% 
   xml_add_child('placekt','Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
                 Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
                 Washington, D.C., National Institute of Standards and Technology') %>% 
   xml_add_sibling('placekey','United States') %>% 
   xml_add_sibling('placekey','US')
-m %>% 
+k %>% 
   xml_add_child('place-template')
 
-m %>% 
+k %>% 
   xml_add_child('state-template')
   
+p <- xml_add_child(m, 'accconst','none')
+
+p %>% 
+  xml_add_sibling('useconst','{{usage-rules}}') %>% 
+  xml_add_sibling('ptcontac') %>% 
+  xml_add_child('cntinfo') %>% 
+  xml_add_child('cntperp') %>% 
+  xml_add_child('cntper','{{contact-person}}') %>% 
+  xml_add_sibling('cntorg','U.S. Geological Survey')
+
   
   
 write_xml(d, file = 'test.xml')
