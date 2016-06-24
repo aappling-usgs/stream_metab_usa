@@ -10,7 +10,7 @@ packages:
 ## All R files that are used must be listed here:
 sources:
   - p1_import/code/00_subset_nldas.R
-  - p1_import/code/00_load_internals.R
+  - lib/load_profile.R
 
 targets:
   all:
@@ -21,7 +21,7 @@ targets:
       - gldas.ncml.sync
 
   internal.config:
-    command: load_internal()
+    command: load_profile()
   
   nldas.config:
     command: yaml.load_file("configs/nldas_subset.yaml")
