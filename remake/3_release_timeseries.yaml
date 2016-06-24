@@ -8,7 +8,7 @@ sources:
   - ../3_data_release/code/render_FGDC_metadata.R
   
 targets:
-  all:
+  3_release_timeseries:
     depends: 
       - ../3_data_release/out/FGDC_template.mustache
       - ../3_data_release/out/timeseries_model_inputs.xml
