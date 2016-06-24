@@ -155,9 +155,8 @@ dt %>%
 dt %>% xml_add_child('attr-template')
 
 ds <- xml_add_child(mt, 'distinfo')
-ds %>% 
-  xml_add_child('distrib')
-ci <-  xml_add_child(ds, 'cntinfo')
+db <- xml_add_child(ds, 'distrib')
+ci <-  xml_add_child(db, 'cntinfo')
 ci %>% 
   xml_add_child('cntperp') %>% 
   xml_add_child('cntper','{{distro-person}}') %>% 
@@ -173,7 +172,48 @@ ci %>% xml_add_child('cntaddr') %>%
 ci %>% xml_add_child('cntvoice','1-888-275-8747') %>% 
   xml_add_sibling('cntemail','sciencebase@usgs.gov')
 
-xml_add_child(mt, 'distliab','{{dist-statement}}')
+ds %>% xml_add_child('distliab','{{liability-statement}}')
+so <- xml_add_child(ds, 'stdorder')
+df <-  xml_add_child(so, 'digform')
+df %>% 
+  xml_add_child('digtinfo') %>% 
+  xml_add_child('formname','{{file-format}}') %>% 
+  xml_add_sibling('formvern','none')
+  
+df %>% 
+  xml_add_child('digtopt') %>% 
+  xml_add_child('onlinopt') %>% 
+  xml_add_child('computer') %>% 
+  xml_add_child('networka') %>% 
+  xml_add_child('networkr','{{doi}}')
+
+xml_add_child(so,'fees','None')
+
+mi <- xml_add_child(mt, 'metainfo')
+mi %>% 
+  xml_add_child('metd','{{metadata-date}}') %>% 
+  xml_add_sibling('metc')
+cni <- xml_add_child(mi,'cntinfo')
+cni %>% 
+  xml_add_child('cntperp') %>% 
+  xml_add_child('cntper','{{metadata-person}}') %>% 
+  xml_add_sibling('cntorg','U.S. Geological Survey')
+cni %>% 
+  xml_add_child('cntpos','Data Chief') %>% 
+  xml_add_sibling('cntaddr') %>%
+  xml_add_child('addrtype','Mailing and Physical') %>% 
+  xml_add_sibling('address','8551 Research Way #120') %>% 
+  xml_add_sibling('city','Middleton') %>% 
+  xml_add_sibling('state','WI') %>% 
+  xml_add_sibling('postal','53562') %>% 
+  xml_add_sibling('country','U.S.A.')
+cni %>% 
+  xml_add_child('cntvoice','{{metadata-phone}}') %>% 
+  xml_add_sibling('cntfax','608 821-3817') %>% 
+  xml_add_sibling('cntemail','{{metadata-email}}')
+mi %>% 
+  xml_add_child('metstdn','FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata') %>% 
+  xml_add_sibling('metstdv','FGDC-STD-001.1-1999')
 
 write_xml(d, file = 'test.xml')
 
