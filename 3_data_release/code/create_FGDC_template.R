@@ -1,6 +1,7 @@
 library(magrittr)
 library(xml2)
 
+#' @param file.out the file to write the template to
 create_FGDC_template <- function(file.out){
   tempxml <- tempfile(fileext = '.xml')
   

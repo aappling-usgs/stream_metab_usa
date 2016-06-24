@@ -1,15 +1,23 @@
 packages:
   - yaml
   - xml2
+  - whisker
   
 sources:
   - ../3_data_release/code/create_FGDC_template.R
+  - ../3_data_release/code/render_FGDC_metadata.R
   
 targets:
   all:
     depends: 
-      - ../3_data_release/in/FGDC_template.mustache
-      
+      - ../3_data_release/out/FGDC_template.mustache
+      - ../3_data_release/out/timeseries_model_inputs.xml
+
   ../3_data_release/out/FGDC_template.mustache:
     command: create_FGDC_template(target_name)
+    
+  timeseries.text:
+    command: yaml.load_file("../3_data_release/in/text_timeseries_model_inputs.yaml")
 
+  ../3_data_release/out/timeseries_model_inputs.xml:
+    command: render_FGDC_metadata("../3_data_release/out/FGDC_template.mustache", timeseries.text, target_name)
