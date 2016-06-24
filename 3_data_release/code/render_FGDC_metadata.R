@@ -5,4 +5,6 @@
 render_FGDC_metadata <- function(template.file, text, file.out){
   template <- paste(readLines(template.file ),collapse = '\n')
   cat(whisker::whisker.render(template, text), file = file.out)
+  xml <- xml2::read_xml(file.out)
+  xml2::write_xml(xml, file.out)
 }

@@ -38,15 +38,15 @@
   </spdom>
   <keywords>
     <theme>
-                  <themekt>none</themekt>
-                  <themekey>water</themekey>
-                                    <themekey>streams</themekey>
-                                    <themekey>rivers</themekey>
-                                    <themekey>metabolism</themekey>
-                                    <themekey>primary productivity</themekey>
-                                    <themekey>carbon</themekey>
-                                    <themekey>respiration</themekey>
-                  </theme>
+      <themekt>none</themekt>
+      <themekey>water</themekey>
+      <themekey>streams</themekey>
+      <themekey>rivers</themekey>
+      <themekey>metabolism</themekey>
+      <themekey>primary productivity</themekey>
+      <themekey>carbon</themekey>
+      <themekey>respiration</themekey>
+    </theme>
     <theme>
       <themekt>ISO 19115 Topic Category</themekt>
       <themekey>environment</themekey>
@@ -62,12 +62,12 @@
       <placekey>US</placekey>
     </place>
     <place>
-			<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
+      <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
       <placekey>Wisconsin</placekey>
       <placekey>WI</placekey>
     </place>
     <place>
-			<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
+      <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
       <placekey>New Hampshire</placekey>
       <placekey>NH</placekey>
     </place>
@@ -75,7 +75,7 @@
       <placekt>none</placekt>
       <placekey>Wisconsin</placekey>
     </place>
-<place>
+    <place>
       <placekt>none</placekt>
       <placekey>New Hampshire</placekey>
     </place>
@@ -168,41 +168,41 @@
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
-          <attrlabl>DateTime</attrlabl>
-          <attrdef>The date and time of day</attrdef>
-          <attrdefs>Pope Gregory XIII</attrdefs>
-          <attrdomv>
-            <rdom>
-              <rdommin>SCRIPT 2007-01-01 00:00:00</rdommin>
-              <rdommax>SCRIPT 2016-03-16 00:00:00</rdommax>
-              <attrunit>time</attrunit>
-            </rdom>
-          </attrdomv>
-        </attr>
-<attr>
-          <attrlabl>site_id</attrlabl>
-          <attrdef>the site location identifier</attrdef>
-          <attrdefs>NWIS</attrdefs>
-          <attrdomv>
-            <rdom>
-              <rdommin>not applicable</rdommin>
-              <rdommax>not applicable</rdommax>
-              <attrunit>not applicable</attrunit>
-            </rdom>
-          </attrdomv>
-        </attr>
-<attr>
-          <attrlabl>doobs</attrlabl>
-          <attrdef>dissolved oxygen observation</attrdef>
-          <attrdefs>NWIS</attrdefs>
-          <attrdomv>
-            <rdom>
-              <rdommin>SCRIPT 0</rdommin>
-              <rdommax>SCRIPT 40</rdommax>
-              <attrunit>mg L^1</attrunit>
-            </rdom>
-          </attrdomv>
-        </attr>
+        <attrlabl>DateTime</attrlabl>
+        <attrdef>The date and time of day</attrdef>
+        <attrdefs>Pope Gregory XIII</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>SCRIPT 2007-01-01 00:00:00</rdommin>
+            <rdommax>SCRIPT 2016-03-16 00:00:00</rdommax>
+            <attrunit>time</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>site_id</attrlabl>
+        <attrdef>the site location identifier</attrdef>
+        <attrdefs>NWIS</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>not applicable</rdommin>
+            <rdommax>not applicable</rdommax>
+            <attrunit>not applicable</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>doobs</attrlabl>
+        <attrdef>dissolved oxygen observation</attrdef>
+        <attrdefs>NWIS</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>SCRIPT 0</rdommin>
+            <rdommax>SCRIPT 40</rdommax>
+            <attrunit>mg L^1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
     </detailed>
   </eainfo>
   <distinfo>
