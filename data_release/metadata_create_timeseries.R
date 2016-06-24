@@ -8,7 +8,7 @@ m <- xml_add_child(d, "idinfo")
 
 m %>%  xml_add_child("citation") %>%
   xml_add_child("citeinfo") %>%
-  xml_add_child("origin", "{{authors}}") %>%
+  xml_add_child("origin-template") %>%
   xml_add_sibling('pubdate', "{{pubdate}}") %>%
   xml_add_sibling('title', "{{title}}") %>%
   xml_add_sibling('geoform', "text files") %>%
@@ -76,11 +76,15 @@ place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, 
 state.template = "{{#states}}<place><placekt>none</placekt>
                 <placekey>{{state-name}}</placekey>\n</place>{{/states}}"
 
+origin.template = "{{#authors}}<origin><placekt>none</placekt>
+                <placekey>{{state-name}}</placekey>\n</place>{{/states}}"
+
 suppressWarnings(readLines('test.xml')) %>% 
   gsub(pattern = '&gt;',replacement = '>',.) %>% 
   gsub(pattern = '&lt;',replacement = '<',.) %>% 
   gsub(pattern = '<place-template/>', replacement = place.template) %>% 
   gsub(pattern = '<state-template/>', replacement = state.template) %>% 
+  sub(pattern = '<origin-template/>', replacement = origin.template) %>% 
   cat(file = 'test.xml', sep = '\n')
  
 states <- list(c('state-name'='Wisconsin','state-abbr'='WI'),
