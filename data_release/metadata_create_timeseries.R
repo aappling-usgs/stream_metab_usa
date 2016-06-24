@@ -2,8 +2,8 @@ library(magrittr)
 library(xml2)
 
 
-d <- xml_new_document() %>% 
-  xml_add_child("metadata")
+d <- xml_new_document()
+mt <-  xml_add_child(d, "metadata")
 m <- xml_add_child(d, "idinfo")
 
 m %>%  xml_add_child("citation") %>%
@@ -66,7 +66,7 @@ k %>%
   
 p <- xml_add_child(m, 'accconst','none')
 
-pt <-  xml_add_sibling(p,'ptcontac') 
+pt <-  xml_add_child(m,'ptcontac') 
 
 pt %>% 
   xml_add_child('cntinfo') %>% 
@@ -101,7 +101,7 @@ m %>%
   xml_add_child('pubplace',"{{publisher}}") %>% 
   xml_add_sibling('publish','{{journal}}')
 
-q <- xml_add_sibling(m, 'dataqual')
+q <- xml_add_child(mt, 'dataqual')
 
 q %>% xml_add_child('attracc') %>% 
   xml_add_child('attraccr','No formal attribute accuracy tests were conducted.')
@@ -109,7 +109,7 @@ q %>% xml_add_child('attracc') %>%
 q %>% xml_add_child('logic','not applicable') %>% 
   xml_add_sibling('complete','not applicable')
 
-p <- xml_add_sibling(q, 'posacc') 
+p <- xml_add_child(mt, 'posacc') 
 p %>% xml_add_child('horizpa') %>% 
   xml_add_child('horizpar','A formal accuracy assessment of the horizontal positional information in the data set has not been conducted.')
 
@@ -130,6 +130,51 @@ p %>% xml_add_sibling('lineage') %>%
   xml_add_child('procdesc','{{process-description}}') %>% 
   xml_add_sibling('procdate','{{process-date}}')
 
+s <- xml_add_child(mt, 'spref')
+h <- xml_add_child(s, 'horizsys') 
+h %>% 
+  xml_add_child('geograph') %>% 
+  xml_add_child('latres','{{latitude-res}}') %>% 
+  xml_add_sibling('longres','{{longitude-res}}') %>% 
+  xml_add_sibling('geogunit','Decimal degrees')
+
+h %>% xml_add_child('geodetic') %>% 
+  xml_add_child('horizdn','North American Datum of 1983') %>% 
+  xml_add_sibling('ellips','Geodetic Reference System 80') %>% 
+  xml_add_sibling('semiaxis','6378137.0') %>% 
+  xml_add_sibling('denflat','298.257')
+
+dt <- xml_add_child(mt, 'eainfo') %>% 
+  xml_add_child('detailed')
+dt %>% 
+  xml_add_child('enttyp') %>% 
+  xml_add_child('enttypl','{{data-name}}') %>% 
+  xml_add_sibling('enttypd','{{data-description}}') %>% 
+  xml_add_sibling('enttypds','Producer Defined')
+  
+dt %>% xml_add_child('attr-template')
+
+ds <- xml_add_child(mt, 'distinfo')
+ds %>% 
+  xml_add_child('distrib')
+ci <-  xml_add_child(ds, 'cntinfo')
+ci %>% 
+  xml_add_child('cntperp') %>% 
+  xml_add_child('cntper','{{distro-person}}') %>% 
+  xml_add_sibling('cntorg','U.S. Geological Survey - ScienceBase')
+
+ci %>% xml_add_child('cntaddr') %>% 
+  xml_add_child('addrtype','Mailing and Physical') %>% 
+  xml_add_sibling('address','Denver Federal Center, Building 810, Mail Stop 302') %>% 
+  xml_add_sibling('city','Denver') %>% 
+  xml_add_sibling('state','CO') %>% 
+  xml_add_sibling('postal','80255') %>% 
+  xml_add_sibling('country','U.S.A.')
+ci %>% xml_add_child('cntvoice','1-888-275-8747') %>% 
+  xml_add_sibling('cntemail','sciencebase@usgs.gov')
+
+xml_add_child(mt, 'distliab','{{dist-statement}}')
+
 write_xml(d, file = 'test.xml')
 
 place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, 
@@ -140,11 +185,26 @@ place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, 
 state.template = "{{#states}}<place><placekt>none</placekt>
                 <placekey>{{state-name}}</placekey>\n</place>{{/states}}"
 
+attr.template = "{{#attributes}}
+        <attr>
+          <attrlabl>{{attr-label}}</attrlabl>
+          <attrdef>{{attr-def}}</attrdef>
+          <attrdefs>{{attr-defs}}</attrdefs>
+          <attrdomv>
+            <rdom>
+              <rdommin>{{data-min}}</rdommin>
+              <rdommax>{{data-max}}</rdommax>
+              <attrunit>{{data-units}}</attrunit>
+            </rdom>
+          </attrdomv>
+        </attr>{{/attributes}}"
+
 suppressWarnings(readLines('test.xml')) %>% 
   gsub(pattern = '&gt;',replacement = '>',.) %>% 
   gsub(pattern = '&lt;',replacement = '<',.) %>% 
   gsub(pattern = '<place-template/>', replacement = place.template) %>% 
   gsub(pattern = '<state-template/>', replacement = state.template) %>% 
+  gsub(pattern = '<attr-template/>', replacement = attr.template) %>% 
   cat(file = 'test.xml', sep = '\n')
  
 states <- list(c('state-name'='Wisconsin','state-abbr'='WI'),
