@@ -1,0 +1,21 @@
+# 1_site_data remake file
+
+packages:
+  - yaml
+  - dplyr
+  - mda.streams
+  
+sources:
+  - ../1_site_data/code/init_site_list.R
+  - ../lib/load_profile.R
+
+targets:
+  all:
+    depends: 
+      - '../1_site_data/out/site_list.txt'
+  
+  sites.config:
+    command: yaml.load_file('../1_site_data/in/nwis_sites.yml')
+  
+  '../1_site_data/out/site_list.txt':
+    command: init_site_list(sites.config, target_name)
