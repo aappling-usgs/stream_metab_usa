@@ -92,7 +92,9 @@
         <netcdf location="NLDAS_322675.323674_0.223_0.463_pressfc.nc"/>
         <netcdf location="NLDAS_323675.324674_0.223_0.463_pressfc.nc"/>
         <netcdf location="NLDAS_324675.325674_0.223_0.463_pressfc.nc"/>
-        <netcdf location="NLDAS_325675.326387_0.223_0.463_pressfc.nc"/>
+        <netcdf location="NLDAS_325675.326674_0.223_0.463_pressfc.nc"/>
+        <netcdf location="NLDAS_326675.327674_0.223_0.463_pressfc.nc"/>
+        <netcdf location="NLDAS_327675.328307_0.223_0.463_pressfc.nc"/>
       </aggregation>
     </netcdf>
     <netcdf>
@@ -186,7 +188,9 @@
         <netcdf location="NLDAS_322675.323674_0.223_0.463_dswrfsfc.nc"/>
         <netcdf location="NLDAS_323675.324674_0.223_0.463_dswrfsfc.nc"/>
         <netcdf location="NLDAS_324675.325674_0.223_0.463_dswrfsfc.nc"/>
-        <netcdf location="NLDAS_325675.326387_0.223_0.463_dswrfsfc.nc"/>
+        <netcdf location="NLDAS_325675.326674_0.223_0.463_dswrfsfc.nc"/>
+        <netcdf location="NLDAS_326675.327674_0.223_0.463_dswrfsfc.nc"/>
+        <netcdf location="NLDAS_327675.328307_0.223_0.463_dswrfsfc.nc"/>
       </aggregation>
     </netcdf>
   </aggregation>
