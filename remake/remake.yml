@@ -1,0 +1,14 @@
+# Ensures that the entire project is up to date
+
+packages:
+  - remake
+
+includes:
+  - 1_site_data.yml
+
+sources:
+  - lib/remake.R
+
+targets:
+  all:
+    depends: ../1_site_data/out/site_list.txt

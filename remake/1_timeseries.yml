@@ -8,9 +8,9 @@ packages:
   
 ## All R files that are used must be listed here:
 sources:
-  - p1_import/code/02_add_ts_data.R
-  - p1_import/code/00_init_nwis_sites.R
-  - lib/load_profile.R
+  - ../p1_import/code/02_add_ts_data.R
+  - ../p1_import/code/00_init_nwis_sites.R
+  - ../lib/load_profile.R
 
 targets:
   all:
