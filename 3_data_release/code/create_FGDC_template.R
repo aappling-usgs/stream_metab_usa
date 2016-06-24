@@ -283,5 +283,6 @@ create_FGDC_template <- function(file.out){
     sub(pattern = '<origin-template/>', replacement = origin.template) %>% 
     gsub(pattern = '<attr-template/>', replacement = attr.template) %>% 
     cat(file = file.out, sep = '\n')
+  return(file.out)
 }
 

@@ -1,0 +1,15 @@
+packages:
+  - yaml
+  - xml2
+  
+sources:
+  - ../3_data_release/code/create_FGDC_template.R
+  
+targets:
+  all:
+    depends: 
+      - ../3_data_release/in/FGDC_template.mustache
+      
+  ../3_data_release/out/FGDC_template.mustache:
+    command: create_FGDC_template(target_name)
+
