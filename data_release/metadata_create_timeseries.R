@@ -237,8 +237,7 @@ state.template = "{{#states}}<place>
 origin.template = "{{#authors}}
       <origin>{{.}}</origin>
       {{/authors}}"
-attr.template = "{{#attributes}}
-        <attr>
+attr.template = "{{#attributes}}<attr>
           <attrlabl>{{attr-label}}</attrlabl>
           <attrdef>{{attr-def}}</attrdef>
           <attrdefs>{{attr-defs}}</attrdefs>
@@ -249,7 +248,7 @@ attr.template = "{{#attributes}}
               <attrunit>{{data-units}}</attrunit>
             </rdom>
           </attrdomv>
-        </attr>{{/attributes}}"
+        </attr>\n{{/attributes}}"
 
 suppressWarnings(readLines('test.xml')) %>% 
   gsub(pattern = '&gt;',replacement = '>',.) %>% 
