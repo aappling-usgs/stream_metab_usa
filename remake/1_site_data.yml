@@ -1,21 +1,31 @@
-# 1_site_data remake file
+target_default: 1_site_data
 
 packages:
   - yaml
   - dplyr
+  - dataRetrieval
   - mda.streams
   
 sources:
   - ../1_site_data/code/init_site_list.R
+  - ../1_site_data/code/get_nwis_sites.R
   - ../lib/load_profile.R
 
 targets:
-  all:
+  1_site_data:
     depends: 
-      - '../1_site_data/out/site_list.txt'
+      - ../1_site_data/out/site_list.txt
   
   sites.config:
     command: yaml.load_file('../1_site_data/in/nwis_sites.yml')
   
-  '../1_site_data/out/site_list.txt':
+  ../1_site_data/out/site_list.txt:
     command: init_site_list(sites.config, target_name)
+
+  metadata:
+    command: stage_meta_basic()
+    depends:
+      - sb_doobs_nwis
+    
+  sb_metadata: 
+    command: post_meta(metadata)
