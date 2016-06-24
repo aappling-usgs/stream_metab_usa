@@ -33,7 +33,7 @@ stage_ts <- function(ts.file){
       ts.table$no.data[use.i] <- !files %in% processed.files
     } #// else do nothing
     
-  } else if (src == 'nldas') {
+  } else if (src == 'gldas') {
     ts.config <- yaml.load_file("configs/gldas_ts.yml")
     gconfig(sleep.time=60, retries=2)
     use.i <- !ts.table$local & !ts.table$no.data
