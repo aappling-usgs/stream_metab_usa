@@ -1,5 +1,6 @@
 times: ['2006-10-01', '2016-03-01']
 on_exists: 'skip'
 nldas_url: 'dods://cida-eros-netcdfdev.er.usgs.gov:8080/thredds/dodsC/thredds_workspace/stream_metab/nldas.ncml'
+gldas_url: 'dods://cida-eros-netcdfdev.er.usgs.gov:8080/thredds/dodsC/thredds_workspace/stream_metab/gldas.ncml'
 version: 'rds'
 temp_dir: '.temp_ts'
