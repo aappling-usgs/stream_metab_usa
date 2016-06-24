@@ -4,5 +4,5 @@
 #'   located
 auth_from_profile = function(filename=file.path(Sys.getenv("HOME"), ".R", "stream_metab.yaml")){
   profile <- load_profile(filename)
-  authenticate_sb(profiles$sb_user, profiles$sb_password)
+  authenticate_sb(profile$sb_user, profile$sb_password)
 }
