@@ -6,6 +6,7 @@ d <- xml_new_document()
 mt <-  xml_add_child(d, "metadata")
 m <- xml_add_child(d, "idinfo")
 
+# <---Bibliodata--->
 m %>%  xml_add_child("citation") %>%
   xml_add_child("citeinfo") %>%
   xml_add_child("origin-template") %>%
@@ -29,7 +30,9 @@ m %>%
   xml_add_child('status') %>%
   xml_add_child("progress", "Complete") %>% 
   xml_add_sibling('update','{{update}}') 
+# </---Bibliodata--->
 
+# <---Spatial--->
 m %>% 
   xml_add_child('spdom') %>% 
   xml_add_child('bounding') %>% 
@@ -37,7 +40,9 @@ m %>%
   xml_add_sibling('eastbc', "{{ebbox}}") %>% 
   xml_add_sibling('northbc', "{{nbbox}}") %>% 
   xml_add_sibling('southbc', "{{sbbox}}")
+# </---Spatial--->
 
+# <---Keywords--->
 k <- xml_add_child(m, 'keywords') 
 
 k %>% 
@@ -67,7 +72,9 @@ k %>%
 
 k %>% 
   xml_add_child('state-template')
-  
+# </---Keywords--->  
+
+# <---Contact people --->
 p <- xml_add_child(m, 'accconst','none')
 
 pt <-  xml_add_child(m,'ptcontac') 
@@ -91,7 +98,9 @@ pt %>% xml_add_child('cntaddr') %>%
 
 pt %>%  xml_add_child('cntvoice','{{contact-phone}}') %>% 
   xml_add_sibling('cntemail','{{contact-email}}')
+# </---Contact people --->
 
+# <---Credit and external bibliodata--->
 m %>% 
   xml_add_child('datacred','{{funding-credits}}') %>% 
   xml_add_sibling('native','{{build-environment}}') %>% 
@@ -104,7 +113,9 @@ m %>%
   xml_add_sibling('pubinfo') %>% 
   xml_add_child('pubplace',"{{publisher}}") %>% 
   xml_add_sibling('publish','{{journal}}')
+# </---Credit and external bibliodata--->
 
+# <---Data quality--->
 q <- xml_add_child(mt, 'dataqual')
 
 q %>% xml_add_child('attracc') %>% 
@@ -128,7 +139,9 @@ xml_add_sibling(p, 'spdoinfo') %>%
   xml_add_child('sdtsterm') %>% 
   xml_add_child('sdtstype','Point') %>% 
   xml_add_sibling('ptvctcnt','{{point-count}}')
-  
+# </---Data quality--->
+
+# <---Processing steps--->
 p %>% xml_add_sibling('lineage') %>% 
   xml_add_child('procstep') %>% 
   xml_add_child('procdesc','{{process-description}}') %>% 
@@ -155,9 +168,13 @@ dt %>%
   xml_add_child('enttypl','{{data-name}}') %>% 
   xml_add_sibling('enttypd','{{data-description}}') %>% 
   xml_add_sibling('enttypds','Producer Defined')
-  
-dt %>% xml_add_child('attr-template')
+# </---Processing steps--->
 
+# <---Dataset details--->
+dt %>% xml_add_child('attr-template')
+# </---Dataset details--->
+
+# <---Distribution--->
 ds <- xml_add_child(mt, 'distinfo')
 db <- xml_add_child(ds, 'distrib')
 ci <-  xml_add_child(db, 'cntinfo')
@@ -178,6 +195,9 @@ ci %>% xml_add_child('cntvoice','1-888-275-8747') %>%
 
 ds %>% xml_add_child('distliab','{{liability-statement}}')
 so <- xml_add_child(ds, 'stdorder')
+# </---Distribution--->
+
+# <---Files--->
 df <-  xml_add_child(so, 'digform')
 df %>% 
   xml_add_child('digtinfo') %>% 
@@ -190,9 +210,11 @@ df %>%
   xml_add_child('computer') %>% 
   xml_add_child('networka') %>% 
   xml_add_child('networkr','{{doi}}')
+# </---Files--->
 
 xml_add_child(so,'fees','None')
 
+# <---Metadata creator--->
 mi <- xml_add_child(mt, 'metainfo')
 mi %>% 
   xml_add_child('metd','{{metadata-date}}') %>% 
@@ -218,6 +240,7 @@ cni %>%
 mi %>% 
   xml_add_child('metstdn','FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata') %>% 
   xml_add_sibling('metstdv','FGDC-STD-001.1-1999')
+# </---Metadata creator--->
 
 write_xml(d, file = 'test.xml')
 
