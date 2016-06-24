@@ -6,6 +6,7 @@ d <- xml_new_document()
 mt <-  xml_add_child(d, "metadata")
 m <- xml_add_child(d, "idinfo")
 
+# <---Bibliodata--->
 m %>%  xml_add_child("citation") %>%
   xml_add_child("citeinfo") %>%
   xml_add_child("origin-template") %>%
@@ -29,7 +30,9 @@ m %>%
   xml_add_child('status') %>%
   xml_add_child("progress", "Complete") %>% 
   xml_add_sibling('update','{{update}}') 
+# </---Bibliodata--->
 
+# <---Spatial--->
 m %>% 
   xml_add_child('spdom') %>% 
   xml_add_child('bounding') %>% 
@@ -37,11 +40,17 @@ m %>%
   xml_add_sibling('eastbc', "{{ebbox}}") %>% 
   xml_add_sibling('northbc', "{{nbbox}}") %>% 
   xml_add_sibling('southbc', "{{sbbox}}")
+# </---Spatial--->
 
+# <---Keywords--->
 k <- xml_add_child(m, 'keywords') 
 
 k %>% 
-  xml_add_child('theme', "\n<themekt>none</themekt>\n{{#themekeywords}}<themekey>{{.}}</themekey>\n{{/themekeywords}}")
+  xml_add_child('theme', "
+    <themekt>none</themekt>
+    {{#themekeywords}}
+    <themekey>{{.}}</themekey>
+    {{/themekeywords}}")
 
 k %>% 
   xml_add_child('theme') %>% 
@@ -63,7 +72,9 @@ k %>%
 
 k %>% 
   xml_add_child('state-template')
-  
+# </---Keywords--->  
+
+# <---Contact people --->
 p <- xml_add_child(m, 'accconst','none')
 
 pt <-  xml_add_child(m,'ptcontac') 
@@ -87,7 +98,9 @@ pt %>% xml_add_child('cntaddr') %>%
 
 pt %>%  xml_add_child('cntvoice','{{contact-phone}}') %>% 
   xml_add_sibling('cntemail','{{contact-email}}')
+# </---Contact people --->
 
+# <---Credit and external bibliodata--->
 m %>% 
   xml_add_child('datacred','{{funding-credits}}') %>% 
   xml_add_sibling('native','{{build-environment}}') %>% 
@@ -100,7 +113,9 @@ m %>%
   xml_add_sibling('pubinfo') %>% 
   xml_add_child('pubplace',"{{publisher}}") %>% 
   xml_add_sibling('publish','{{journal}}')
+# </---Credit and external bibliodata--->
 
+# <---Data quality--->
 q <- xml_add_child(mt, 'dataqual')
 
 q %>% xml_add_child('attracc') %>% 
@@ -124,7 +139,9 @@ xml_add_sibling(p, 'spdoinfo') %>%
   xml_add_child('sdtsterm') %>% 
   xml_add_child('sdtstype','Point') %>% 
   xml_add_sibling('ptvctcnt','{{point-count}}')
-  
+# </---Data quality--->
+
+# <---Processing steps--->
 p %>% xml_add_sibling('lineage') %>% 
   xml_add_child('procstep') %>% 
   xml_add_child('procdesc','{{process-description}}') %>% 
@@ -151,9 +168,13 @@ dt %>%
   xml_add_child('enttypl','{{data-name}}') %>% 
   xml_add_sibling('enttypd','{{data-description}}') %>% 
   xml_add_sibling('enttypds','Producer Defined')
-  
-dt %>% xml_add_child('attr-template')
+# </---Processing steps--->
 
+# <---Dataset details--->
+dt %>% xml_add_child('attr-template')
+# </---Dataset details--->
+
+# <---Distribution--->
 ds <- xml_add_child(mt, 'distinfo')
 db <- xml_add_child(ds, 'distrib')
 ci <-  xml_add_child(db, 'cntinfo')
@@ -174,6 +195,9 @@ ci %>% xml_add_child('cntvoice','1-888-275-8747') %>%
 
 ds %>% xml_add_child('distliab','{{liability-statement}}')
 so <- xml_add_child(ds, 'stdorder')
+# </---Distribution--->
+
+# <---Files--->
 df <-  xml_add_child(so, 'digform')
 df %>% 
   xml_add_child('digtinfo') %>% 
@@ -186,9 +210,11 @@ df %>%
   xml_add_child('computer') %>% 
   xml_add_child('networka') %>% 
   xml_add_child('networkr','{{doi}}')
+# </---Files--->
 
 xml_add_child(so,'fees','None')
 
+# <---Metadata creator--->
 mi <- xml_add_child(mt, 'metainfo')
 mi %>% 
   xml_add_child('metd','{{metadata-date}}') %>% 
@@ -214,22 +240,27 @@ cni %>%
 mi %>% 
   xml_add_child('metstdn','FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata') %>% 
   xml_add_sibling('metstdv','FGDC-STD-001.1-1999')
+# </---Metadata creator--->
 
 write_xml(d, file = 'test.xml')
 
-place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, 
-                the District of Columbia and the outlying areas of the United States, and associated areas 
-                (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-                <placekey>{{state-name}}</placekey>\n<placekey>{{state-abbr}}</placekey>\n</place>{{/states}}"
+place.template = "{{#states}}
+    <place>\n\t\t\t<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
+      <placekey>{{state-name}}</placekey>
+      <placekey>{{state-abbr}}</placekey>
+    </place>
+    {{/states}}"
 
-state.template = "{{#states}}<place><placekt>none</placekt>
-                <placekey>{{state-name}}</placekey>\n</place>{{/states}}"
+state.template = "{{#states}}<place>
+      <placekt>none</placekt>
+      <placekey>{{state-name}}</placekey>
+    </place>
+    {{/states}}"
 
 origin.template = "{{#authors}}
       <origin>{{.}}</origin>
       {{/authors}}"
-attr.template = "{{#attributes}}
-        <attr>
+attr.template = "{{#attributes}}<attr>
           <attrlabl>{{attr-label}}</attrlabl>
           <attrdef>{{attr-def}}</attrdef>
           <attrdefs>{{attr-defs}}</attrdefs>
@@ -240,7 +271,7 @@ attr.template = "{{#attributes}}
               <attrunit>{{data-units}}</attrunit>
             </rdom>
           </attrdomv>
-        </attr>{{/attributes}}"
+        </attr>\n{{/attributes}}"
 
 suppressWarnings(readLines('test.xml')) %>% 
   gsub(pattern = '&gt;',replacement = '>',.) %>% 
@@ -250,6 +281,3 @@ suppressWarnings(readLines('test.xml')) %>%
   sub(pattern = '<origin-template/>', replacement = origin.template) %>% 
   gsub(pattern = '<attr-template/>', replacement = attr.template) %>% 
   cat(file = 'test.xml', sep = '\n')
- 
-states <- list(c('state-name'='Wisconsin','state-abbr'='WI'),
-               c('state-name'='New Hampshire','state-abbr'='NH'))
