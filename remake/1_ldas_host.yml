@@ -1,3 +1,5 @@
+target_default: 1_ldas_host
+
 packages:
   - yaml
   - dplyr
@@ -9,11 +11,16 @@ packages:
   
 ## All R files that are used must be listed here:
 sources:
-  - p1_import/code/00_subset_nldas.R
-  - lib/load_profile.R
+  - ../1_ldas_host/code/nc_sub_grids.R
+  - ../1_ldas_host/code/ldas_sub_files.R
+  - ../1_ldas_host/code/ldas_server_files.R
+  - ../1_ldas_host/code/nccopy_ldas.R
+  - ../1_ldas_host/code/create_ldas_ncml.R
+  - ../1_ldas_host/code/sync_ncml.R
+  - ../lib/load_profile.R
 
 targets:
-  all:
+  1_ldas_host:
     depends: 
       - p1_import/out/nldas_nc_status.txt
       - nldas.ncml.sync
