@@ -259,6 +259,3 @@ suppressWarnings(readLines('test.xml')) %>%
   sub(pattern = '<origin-template/>', replacement = origin.template) %>% 
   gsub(pattern = '<attr-template/>', replacement = attr.template) %>% 
   cat(file = 'test.xml', sep = '\n')
- 
-states <- list(c('state-name'='Wisconsin','state-abbr'='WI'),
-               c('state-name'='New Hampshire','state-abbr'='NH'))
