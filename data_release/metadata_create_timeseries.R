@@ -41,7 +41,11 @@ m %>%
 k <- xml_add_child(m, 'keywords') 
 
 k %>% 
-  xml_add_child('theme', "\n<themekt>none</themekt>\n{{#themekeywords}}<themekey>{{.}}</themekey>\n{{/themekeywords}}")
+  xml_add_child('theme', "
+    <themekt>none</themekt>
+    {{#themekeywords}}
+    <themekey>{{.}}</themekey>
+    {{/themekeywords}}")
 
 k %>% 
   xml_add_child('theme') %>% 
@@ -217,13 +221,18 @@ mi %>%
 
 write_xml(d, file = 'test.xml')
 
-place.template = "{{#states}}<place><placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, 
-                the District of Columbia and the outlying areas of the United States, and associated areas 
-                (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-                <placekey>{{state-name}}</placekey>\n<placekey>{{state-abbr}}</placekey>\n</place>{{/states}}"
+place.template = "{{#states}}
+    <place>\n\t\t\t<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
+      <placekey>{{state-name}}</placekey>
+      <placekey>{{state-abbr}}</placekey>
+    </place>
+    {{/states}}"
 
-state.template = "{{#states}}<place><placekt>none</placekt>
-                <placekey>{{state-name}}</placekey>\n</place>{{/states}}"
+state.template = "{{#states}}<place>
+      <placekt>none</placekt>
+      <placekey>{{state-name}}</placekey>
+    </place>
+    {{/states}}"
 
 origin.template = "{{#authors}}
       <origin>{{.}}</origin>
