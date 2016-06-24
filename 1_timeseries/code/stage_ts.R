@@ -33,6 +33,23 @@ stage_ts <- function(ts.file){
       ts.table$no.data[use.i] <- !files %in% processed.files
     } #// else do nothing
     
+  } else if (src == 'gldas') {
+    ts.config <- yaml.load_file("configs/gldas_ts.yml")
+    gconfig(sleep.time=60, retries=2)
+    use.i <- !ts.table$local & !ts.table$no.data
+    files <- ts.table$filepath[use.i]
+    message('data pulls for ',length(ts.table$filepath),' sites')
+    message(length(ts.table$filepath[ts.table$local]),' already exist, ', length(files), ' will be new')
+    if (length(files) > 0){
+      details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
+      times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
+      processed.files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
+                                       version=unique(details$version), folder=unique(details$dir_name), url = ts.config$gldas_url, verbose=TRUE)
+      # // if in files, but not processed.files, the site has no data
+      ts.table$local[use.i] <- file.exists(files)
+      ts.table$no.data[use.i] <- !files %in% processed.files
+    } #// else do nothing
+    
   } else if (src == 'nwis'){
     #chunk sites
     message('data pulls for ',length(ts.table$filepath),' sites')
