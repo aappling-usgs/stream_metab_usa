@@ -6,7 +6,7 @@
 #' @return files that were created
 stage_ts <- function(ts.file){
   
-  auth_internal()
+  auth_from_profile()
   
   ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
   dir.name <- unique(dirname(ts.table$filepath))
@@ -74,7 +74,7 @@ stage_ts <- function(ts.file){
 sb_post_ts <- function(ts.file){
   
   ts.config <- yaml.load_file("configs/nldas_ts.yml")
-  auth_internal()
+  auth_from_profile()
   
   ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
   details <- parse_ts_path(ts.table$filepath, out=c('site_name', 'var_src','version'))
