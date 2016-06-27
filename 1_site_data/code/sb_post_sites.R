@@ -1,22 +1,35 @@
 #' helper function for posting sites to sciencebase w/ post_site
 #' 
-#' @param sites a vector of site IDs
-#' @param sites.config a read-in config file about acquiring site info
-sb_post_sites <- function(sites, sites.config) {
-  
-  stop("this function isn't done yet")
-  
+#' @param site.file a tsv containing status information on site availability and SB presence
+sb_post_sites <- function(site.file) {
+  # post to ScienceBase any sites that are not yet fully remotely posted
   auth_from_profile()
+  sites_to_post <- sb_check_site_status(site.file)
+  post_site(sites_to_post)
   
-  for (site in files){
-    post_site(site, on_exists=sites.config$on_exists, verbose=TRUE)
-    sb.id <- post_ts(file, on_exists=ts.config$on_exists, verbose=TRUE)
-    if (is.character(sb.id) & nchar(sb.id) > 0){
-      file.i <- which(file == ts.table$filepath)
-      ts.table$remote[file.i] <- TRUE
-      write_site_table(ts.table, ts.file)
-    }
-  }
-  remote.sites <- parse_ts_path(ts.table$filepath[ts.table$remote], out='site_name', use_names = FALSE)
-  return(remote.sites)
+  # stop with error if ANY sites haven't been properly posted & tagged
+  incomplete_sites <- sb_check_site_status(site.file)
+  if(length(incomplete_sites) > 0) stop('one or more sites were not successfully posted')
+
+  # if we haven't stopped, return the list of sites that are complete (i.e., all of them)
+  return(read_status_table(site.file)$site_name)
+}
+
+#' Update the site.file based on what's posted remotely, and return any
+#' site_names for sites that aren't yet posted
+sb_check_site_status <- function(site.file) {
+  # read in the site status table
+  site.table <- read_status_table(site.file)
+  
+  # recalculate the 'remote' column
+  sites_by_tbl <- site.table$site_name
+  sites_by_dir <- list_sites()
+  sites_by_tag <- locate_site(sites_by_tbl, by='tag')
+  site.table$remote <- (site.table$site_name %in% sites_by_dir) && !is.na(sites_by_tag)
+
+  # write the revised site status table
+  write_status_table(site.table, site.file)  
+  
+  # return the list of sites that still need to be posted/reposted
+  site.table$site_name[!site.table$remote]
 }
