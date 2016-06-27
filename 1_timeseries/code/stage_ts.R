@@ -17,7 +17,7 @@ stage_ts <- function(ts.file){
   src <- tail(strsplit(ts.file,'[_.]')[[1]],2)[1]
   
   if (src == 'nldas'){
-    ts.config <- yaml.load_file("configs/nldas_ts.yml")
+    ts.config <- yaml.load_file("../1_timeseries/in/ts_config.yml")
     gconfig(sleep.time=60, retries=2)
     use.i <- !ts.table$local & !ts.table$no.data
     files <- ts.table$filepath[use.i]
@@ -34,7 +34,7 @@ stage_ts <- function(ts.file){
     } #// else do nothing
     
   } else if (src == 'gldas') {
-    ts.config <- yaml.load_file("configs/gldas_ts.yml")
+    ts.config <- yaml.load_file("../1_timeseries/in/ts_config.yml")
     gconfig(sleep.time=60, retries=2)
     use.i <- !ts.table$local & !ts.table$no.data
     files <- ts.table$filepath[use.i]
@@ -81,5 +81,5 @@ stage_ts <- function(ts.file){
       }
     }
   }
-  write_site_table(ts.table, ts.file)
+  write_status_table(ts.table, ts.file)
 }

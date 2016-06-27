@@ -34,7 +34,7 @@ targets:
   ts.config:
     command: yaml.load_file("../1_timeseries/in/ts_config.yml")
   
-  # Create file statust tables
+  # Create file status tables
   ../1_timeseries/out/files_ts_doobs_nwis.tsv:
     command: create_nwis_ts_table(sites, ts.config, target_name)
   
