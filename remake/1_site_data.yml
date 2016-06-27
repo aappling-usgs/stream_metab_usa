@@ -18,14 +18,17 @@ targets:
       - sb_metadata
   
   sites.config:
-    command: yaml.load_file('../1_site_data/in/nwis_sites.yml')
+    command: yaml.load_file('../1_site_data/in/sites_config.yaml')
   
   sites:
     command: init_site_list(sites.config, '../1_site_data/out/site_list.txt')
 
+  sb_sites:
+    command: sb_post_sites(sites, sites.config)
+
   metadata:
     command: stage_meta_basic()
-    # depends: sb_doobs_nwis
+    depends: sb_sites
     
   sb_metadata: 
     command: post_meta(metadata)
