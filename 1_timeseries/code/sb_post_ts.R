@@ -23,7 +23,7 @@ sb_post_ts <- function(ts.file){
     if (is.character(sb.id) & nchar(sb.id) > 0){
       file.i <- which(file == ts.table$filepath)
       ts.table$remote[file.i] <- TRUE
-      write_site_table(ts.table, ts.file)
+      write_status_table(ts.table, ts.file)
     }
   }
   remote.sites <- parse_ts_path(ts.table$filepath[ts.table$remote], out='site_name', use_names = FALSE)

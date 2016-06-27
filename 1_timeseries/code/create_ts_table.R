@@ -41,9 +41,6 @@ create_ts_table <- function(sites, config, outfile){
   time.en <- rep(config$times[2], length(filepaths))
   site.table <- data.frame(filepath=filepaths, local=false.vect, remote=false.vect, no.data=false.vect, 
                            time.st=time.st, time.en=time.en)
-  write_site_table(site.table, outfile)
+  write_status_table(site.table, outfile)
   return(outfile)
-}
-write_site_table <- function(table, filename){
-  write.table(table, file=filename, sep='\t', row.names=FALSE)
 }

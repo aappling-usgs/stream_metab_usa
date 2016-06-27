@@ -81,5 +81,5 @@ stage_ts <- function(ts.file){
       }
     }
   }
-  write_site_table(ts.table, ts.file)
+  write_status_table(ts.table, ts.file)
 }
