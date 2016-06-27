@@ -34,7 +34,7 @@
 #' @param config ts config file
 #' @param outfile file to which the table should be written
 create_site_table <- function(config, outfile){
-  sites <- init_site_list(config, outfile)
+  sites <- init_site_list(config)
 
   site.table <- data.frame(
     site_name=sites, 
