@@ -19,14 +19,7 @@
 #'  \item{"no.data"}{Starts as FALSE. If it is discovered in \code{stage_ts()} 
 #'  that there are no remote data on NWIS/NLDAS/GLDAS available for a site, this
 #'  is set to TRUE in the corresponding row.}
-#'  \item{"time.st"}{Start datetime for timeseries, same for all files}
-#'  \item{"time.en"}{End datetime for timeseries, same for all files}
 #' }
-#' \code{time.st} and \code{time.en} are included in the table for two reasons: 
-#' (1) ensure that each row of the table contains a full description of each
-#' dataset, and (2) break the direct dependency of each post_ts operation on the
-#' original ts_config.yml so that changing other parts of ts_config don't force
-#' a re-stage and re-post of all the data.
 #' 
 #' @param sites vector of SB site IDs
 #' @param config ts config file
@@ -35,12 +28,10 @@ create_ts_table <- function(sites, config, outfile){
   var <- tail(strsplit(outfile,'[_.]')[[1]],3)[1]
   src <- tail(strsplit(outfile,'[_.]')[[1]],2)[1]
   ts.name <- make_ts_name(var, src)
+  if(!dir.exists(config$temp_dir)) dir.create(config$temp_dir)
   filepaths <- make_ts_path(sites, ts.name, version = config$version, folder = config$temp_dir)
   false.vect <- rep(FALSE, length(filepaths))
-  time.st <- rep(config$times[1], length(filepaths))
-  time.en <- rep(config$times[2], length(filepaths))
-  site.table <- data.frame(filepath=filepaths, local=false.vect, remote=false.vect, no.data=false.vect, 
-                           time.st=time.st, time.en=time.en)
+  site.table <- data.frame(filepath=filepaths, local=false.vect, remote=false.vect, no.data=false.vect)
   write_status_table(site.table, outfile)
   return(outfile)
 }
