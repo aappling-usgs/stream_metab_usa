@@ -9,7 +9,6 @@ packages:
   
 sources:
   - ../1_site_data/code/create_site_table.R
-  - ../1_site_data/code/get_nwis_sites.R
   - ../1_site_data/code/init_site_list.R
   - ../1_site_data/code/sb_post_meta.R
   - ../1_site_data/code/sb_post_sites.R

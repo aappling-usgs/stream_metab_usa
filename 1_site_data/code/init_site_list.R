@@ -3,16 +3,13 @@
 #' @param config a list that configures the rules for sites
 #' @return a character vector of site names as "nwis_{sitename}"
 #' 
-init_site_list <- function(config, outfile='out/site_list.txt'){
+init_site_list <- function(config){
   
+  # combine existing SB sites with all NWIS sites meeting our criteria
   project.sites <- mda.streams::list_sites()
-  
-  fresh.sites <- c()
-  hucs <- sprintf('%02.0f',1:21) # all HUCs (PR is 21 BTW)
-  for (huc in hucs){
-    fresh.sites = c(fresh.sites, get_nwis_sites(huc, config$min.count, config$skip.types, config$has.param))
-  }
-  sitelist <- unique(c(project.sites, fresh.sites))
-  writeLines(sitelist, outfile)
+  fresh.sites <- mda.streams::stage_nwis_sitelist(
+    vars=config$has.vars, min.obs=config$min.count, site.types=config$site.types, HUCs=1:21, folder = NULL, verbose = TRUE)
+  sitelist <- union(project.sites, fresh.sites)
+
   return(sitelist)
 }

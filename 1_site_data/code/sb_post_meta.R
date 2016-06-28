@@ -3,6 +3,7 @@
 #' 
 sb_post_meta <- function(meta.file) {
   # try the post operation
+  auth_from_profile()
   post_meta(meta.file, on_exists = 'replace')
   
   # for those meta files that were successfully posted just now, check the tags 
