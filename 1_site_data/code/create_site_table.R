@@ -17,32 +17,24 @@
 #'  NWIS in the past and/or was added manually, as in a 'styx' or 'indy' site. 
 #'  Sites will \emph{not} be deleted from ScienceBase even if no.data becomes 
 #'  TRUE.}
-#'  \item{"min.count"}{The minimum number of observations a site must have to be
-#'  added to the site table, same for all files}
-#'  \item{"skip.types"}{NWIS site types (site_tp_cd) to omit, same for all
-#'  files}
-#'  \item{"has.param"}{NWIS parameter code[s] (parm_cd) to require, same for all
-#'  files}
 #' }
-#' \code{min.count}, \code{skip.types}, and \code{has.param} are included in the
-#' table for two reasons: (1) ensure that each row of the table contains a full
-#' description of each site, and (2) break the direct dependency of each
-#' post_site operation on the original sites_config.yaml so that changing other
-#' parts of sites_config.yaml don't force a re-query and re-post of all the
-#' sites.
 #' 
 #' @param config ts config file
 #' @param outfile file to which the table should be written
 create_site_table <- function(config, outfile){
-  sites <- init_site_list(config)
 
+  # combine existing SB sites with all NWIS sites meeting our criteria
+  project.sites <- mda.streams::list_sites()
+  fresh.sites <- mda.streams::stage_nwis_sitelist(
+    vars=config$has.vars, min.obs=config$min.count, site.types=config$site.types, 
+    HUCs=1:21, folder=NULL, verbose=TRUE)
+  sites <- union(project.sites, fresh.sites)
+  
+  # create the site table
   site.table <- data.frame(
-    site_name=sites, 
-    remote=FALSE, 
-    no.data=FALSE,
-    min.count=config$min.count,
-    skip.types=paste(config$skip.types, collapse=';'),
-    has.param=paste(config$has.param, collapse=';'))
+    site_name=sites,
+    remote=FALSE,
+    no.data=sites %in% fresh.sites)
 
   write_status_table(site.table, outfile)
   
