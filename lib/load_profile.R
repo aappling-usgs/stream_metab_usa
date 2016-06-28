@@ -3,6 +3,8 @@
 #' 
 #' @param filename filename to use for internal profile yaml. Defaults to 
 #'   $HOME/.R/stream_metab.yaml if missing.
+#' @import yaml
+#' @seealso create_default_profile
 load_profile <- function(filename=file.path(Sys.getenv("HOME"), ".R", "stream_metab.yaml")) {
   if(!file.exists(filename)) {
     create_default_profile(filename)
