@@ -1,5 +1,5 @@
 has.vars: ['doobs']
 min.count: 100
 site.types: ['ST','ST-CA','ST-DCH','ST-TS','SP']
-temp_dir: '../1_site_data/cache'
-on_exists: 'skip'
+temp_dir: ../1_site_data/cache
+on_exists: skip
