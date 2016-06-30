@@ -1,10 +1,11 @@
-#' Replace existing metadata files with new ones
+#' Replace existing metadata files on SB with new ones
 #' 
-#' 
-sb_post_meta <- function(meta.file) {
+#' @import mda.streams
+#' @seealso auth_from_profile
+sb_post_meta <- function(meta.file, config=yaml::yaml.load_file('../1_site_data/in/meta_config.yaml')) {
   # try the post operation
   auth_from_profile()
-  post_meta(meta.file, on_exists = 'replace')
+  post_meta(meta.file, on_exists=config$on_exists)
   
   # for those meta files that were successfully posted just now, check the tags 
   # and repair if needed
@@ -14,8 +15,8 @@ sb_post_meta <- function(meta.file) {
   
   # check for metafiles that somehow still haven't been properly posted and/or 
   # tagged
-  m_by_tag <- locate_meta(parse_meta_path(meta.file)$type, by='tag')
-  m_by_dir <- locate_meta(parse_meta_path(meta.file)$type, by='dir')
+  m_by_tag <- locate_meta(types, by='tag')
+  m_by_dir <- locate_meta(types, by='dir')
   failures <- meta.file[which(is.na(m_by_tag) | is.na(m_by_dir))]
   
   # stop if there were failures

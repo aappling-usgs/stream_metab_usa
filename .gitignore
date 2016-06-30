@@ -6,6 +6,7 @@
 temp
 *.Rout
 starter_files/*.RData
+*/cache/
 p2_metab/out
 NEWS.html
 README.html

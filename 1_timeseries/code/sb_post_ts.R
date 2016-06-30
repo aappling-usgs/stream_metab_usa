@@ -1,9 +1,8 @@
 #' helper function for posting files to sciencebase w/ post_ts
 #' 
 #' @param files files created by stage_ts (or stage_nwis_ts; stage_nldas_ts)
-sb_post_ts <- function(ts.file){
+sb_post_ts <- function(ts.file, config=yaml::yaml.load_file("../1_timeseries/in/ts_config.yaml")){
   
-  ts.config <- yaml.load_file("../1_timeseries/in/ts_config.yaml")
   auth_from_profile()
   
   ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
@@ -19,7 +18,7 @@ sb_post_ts <- function(ts.file){
     # if(is.na(locate_site(site, by = 'tag'))){
     #   post_site(site, on_exists = "skip", verbose=TRUE)
     # } # this should be handled by sb_post_sites now
-    sb.id <- post_ts(file, on_exists=ts.config$on_exists, verbose=TRUE)
+    sb.id <- post_ts(file, on_exists=config$on_exists, verbose=TRUE)
     if (is.character(sb.id) & nchar(sb.id) > 0){
       file.i <- which(file == ts.table$filepath)
       ts.table$remote[file.i] <- TRUE

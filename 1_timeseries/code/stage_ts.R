@@ -1,9 +1,9 @@
 #' helper function for staging different data types from the config
 #' 
 #' @param target_name a var_src (e.g., baro_nldas or doobs_nwis)
-#' @param ts.config a config list used to parameterize calls to stage_nwis_ts or stage_nldas_ts
+#' @param config a config list used to parameterize calls to stage_nwis_ts or stage_nldas_ts
 #' @return files that were created
-stage_ts <- function(ts.file){
+stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_config.yml")){
   
   auth_from_profile()
   
@@ -17,7 +17,6 @@ stage_ts <- function(ts.file){
   src <- tail(strsplit(ts.file,'[_.]')[[1]],2)[1]
   
   if (src == 'nldas'){
-    ts.config <- yaml.load_file("../1_timeseries/in/ts_config.yml")
     gconfig(sleep.time=60, retries=2)
     use.i <- !ts.table$local & !ts.table$no.data
     files <- ts.table$filepath[use.i]
@@ -27,14 +26,13 @@ stage_ts <- function(ts.file){
       details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
       times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
       processed.files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
-                                       version=unique(details$version), folder=unique(details$dir_name), url = ts.config$nldas_url, verbose=TRUE)
+                                       version=unique(details$version), folder=unique(details$dir_name), url = config$nldas_url, verbose=TRUE)
       # // if in files, but not processed.files, the site has no data
       ts.table$local[use.i] <- file.exists(files)
       ts.table$no.data[use.i] <- !files %in% processed.files
     } #// else do nothing
     
   } else if (src == 'gldas') {
-    ts.config <- yaml.load_file("../1_timeseries/in/ts_config.yml")
     gconfig(sleep.time=60, retries=2)
     use.i <- !ts.table$local & !ts.table$no.data
     files <- ts.table$filepath[use.i]
@@ -44,7 +42,7 @@ stage_ts <- function(ts.file){
       details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
       times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
       processed.files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
-                                       version=unique(details$version), folder=unique(details$dir_name), url = ts.config$gldas_url, verbose=TRUE)
+                                       version=unique(details$version), folder=unique(details$dir_name), url = config$gldas_url, verbose=TRUE)
       # // if in files, but not processed.files, the site has no data
       ts.table$local[use.i] <- file.exists(files)
       ts.table$no.data[use.i] <- !files %in% processed.files
