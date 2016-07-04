@@ -37,7 +37,7 @@ sb_check_ts_status <- function(ts.file, phase=c('stage','post'), no_data, posted
     sites_by_tag <- ts_query$site_name[ts_query$by_tag]
     ts.table$posted <- sites_by_tbl %in% sites_by_dir
     ts.table$tagged <- sites_by_tbl %in% sites_by_tag
-    needed <- filter(ts.table, !posted | !tagged)
+    needed <- filter(ts.table, local & !posted | !tagged)
   }
   
   # write the revised site status table

@@ -16,8 +16,6 @@ sources:
   - ../lib/load_profile.R
   - ../1_timeseries/code/create_ts_table.R
   - ../1_timeseries/code/sb_check_ts_status.R
-  - ../1_timeseries/code/create_nwis_ts_table.R
-  - ../1_timeseries/code/create_ldas_ts_table.R
   - ../1_timeseries/code/stage_ts.R
   - ../1_timeseries/code/sb_post_ts.R
 
@@ -36,6 +34,16 @@ targets:
     command: yaml.load_file("../1_timeseries/in/ts_config.yml")
   
   # Create file status tables
+  status_tables:
+    depends:
+      - ../1_timeseries/out/files_ts_doobs_nwis.tsv
+      - ../1_timeseries/out/files_ts_wtr_nwis.tsv
+      - ../1_timeseries/out/files_ts_disch_nwis.tsv
+      - ../1_timeseries/out/files_ts_baro_nldas.tsv
+      - ../1_timeseries/out/files_ts_sw_nldas.tsv
+      - ../1_timeseries/out/files_ts_baro_gldas.tsv
+      - ../1_timeseries/out/files_ts_sw_gldas.tsv
+
   ../1_timeseries/out/files_ts_doobs_nwis.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
   
@@ -46,18 +54,28 @@ targets:
     command: create_ts_table(sb_sites, ts.config, target_name)
     
   ../1_timeseries/out/files_ts_baro_nldas.tsv:
-    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_sites, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_sw_nldas.tsv:
-    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_sites, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_sw_gldas.tsv:
-    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_sites, ts.config, target_name)
     
   ../1_timeseries/out/files_ts_baro_gldas.tsv:
-    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_sites, ts.config, target_name)
   
   # Download data from NWIS/LDAS and stage for SB
+  staged_tses:
+    depends:
+      - doobs_nwis
+      - wtr_nwis
+      - disch_nwis
+      - baro_nldas
+      - sw_nldas
+      - baro_gldas
+      - sw_gldas
+
   doobs_nwis:
     command: stage_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv')
     
@@ -69,56 +87,45 @@ targets:
   
   baro_nldas:
     command: stage_ts('../1_timeseries/out/files_ts_baro_nldas.tsv')
-    depends:
-      - sb_metadata
+    depends: sb_metadata
   
   sw_nldas:
     command: stage_ts('../1_timeseries/out/files_ts_sw_nldas.tsv')
-    depends:
-      - sb_metadata
-  
-  sw_gldas:
-    command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
-    depends:
-      - sb_metadata
+    depends: sb_metadata
   
   baro_gldas:
     command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
-    depends:
-      - sb_metadata
+    depends: sb_metadata
   
-  # Post
-  sb_disch_nwis:
-    command: sb_post_ts('../1_timeseries/out/files_ts_disch_nwis.tsv')
-    depends:
-      - disch_nwis
+  sw_gldas:
+    command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
+    depends: sb_metadata
   
+  # Post data to ScienceBase
   sb_doobs_nwis:
     command: sb_post_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv')
-    depends:
-      - doobs_nwis
+    depends: doobs_nwis
   
   sb_wtr_nwis:
     command: sb_post_ts('../1_timeseries/out/files_ts_wtr_nwis.tsv')
-    depends:
-      - wtr_nwis
+    depends: wtr_nwis
   
+  sb_disch_nwis:
+    command: sb_post_ts('../1_timeseries/out/files_ts_disch_nwis.tsv')
+    depends: disch_nwis
+
   sb_baro_nldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_baro_nldas.tsv')
-    depends:
-      - baro_nldas
+    depends: baro_nldas
     
   sb_sw_nldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_sw_nldas.tsv')
-    depends:
-      - sw_nldas
+    depends: sw_nldas
   
   sb_baro_gldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_baro_gldas.tsv')
-    depends:
-      - baro_gldas
+    depends: baro_gldas
     
   sb_sw_gldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
-    depends:
-      - sw_gldas
+    depends: sw_gldas

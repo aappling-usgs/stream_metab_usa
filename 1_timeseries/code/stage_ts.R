@@ -10,8 +10,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
   
   # update the ts.file for remote and local status. done here in case the status
   # table was last updated on someone else's computer
-  sb_check_ts_status(ts.file, phase='post', posted_after=config$posted_after)
-  to.stage <- sb_check_ts_status(ts.file, phase='stage') # query for phase='stage' after phase='post' b/c this filters by !local & !posted
+  to.stage <- sb_check_ts_status(ts.file, phase='stage')
   if(nrow(to.stage) == 0) {
     return(TRUE) # if we're already done, return now
   }
@@ -21,7 +20,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
   ts.table <- read_status_table(ts.file)
   message(
     'staging data for ', nrow(to.stage), ' new sites; ', 
-    nrow(ts.table) - nrow(to.stage),' are already local and/or posted; ', 
+    nrow(ts.table) - nrow(to.stage),' are already local/posted/unavailable; ', 
     nrow(ts.table), ' sites total')
   
   # make sure local staging dir exists
@@ -54,8 +53,10 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
             stage_nwis_ts(
               sites=to.stage$site_name[i], var=var, times=config$times, 
               version=config$version, folder=to.stage$dir_name[i], verbose=TRUE)
+          }, warning=function(w) {
+            if(grepl("NWIS error", w$message)) message(w$message)
           }, message=function(m) {
-            if(grepl("data are unavailable", m$message)) {
+            if(grepl("(data are unavailable)|(no non-NA data)", m$message)) {
               no_data <<- c(no_data, to.stage$filepath[i])
             }            
           })
