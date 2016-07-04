@@ -1,6 +1,6 @@
 target_default: 1_timeseries
 
-includes:
+include:
   - 1_site_data.yml
 
 packages:
@@ -15,6 +15,7 @@ packages:
 sources:
   - ../lib/load_profile.R
   - ../1_timeseries/code/create_ts_table.R
+  - ../1_timeseries/code/sb_check_ts_status.R
   - ../1_timeseries/code/create_nwis_ts_table.R
   - ../1_timeseries/code/create_ldas_ts_table.R
   - ../1_timeseries/code/stage_ts.R
@@ -36,25 +37,25 @@ targets:
   
   # Create file status tables
   ../1_timeseries/out/files_ts_doobs_nwis.tsv:
-    command: create_nwis_ts_table(sites, ts.config, target_name)
+    command: create_ts_table(sb_sites, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_wtr_nwis.tsv:
-    command: create_nwis_ts_table(sites, ts.config, target_name)
+    command: create_ts_table(sb_sites, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_disch_nwis.tsv:
-    command: create_nwis_ts_table(sites, ts.config, target_name)
+    command: create_ts_table(sb_sites, ts.config, target_name)
     
   ../1_timeseries/out/files_ts_baro_nldas.tsv:
-    command: create_ldas_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_sw_nldas.tsv:
-    command: create_ldas_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_sw_gldas.tsv:
-    command: create_ldas_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
     
   ../1_timeseries/out/files_ts_baro_gldas.tsv:
-    command: create_ldas_ts_table(sb_doobs_nwis, ts.config, target_name)
+    command: create_ts_table(sb_doobs_nwis, ts.config, target_name)
   
   # Download data from NWIS/LDAS and stage for SB
   doobs_nwis:
@@ -117,7 +118,7 @@ targets:
     depends:
       - baro_gldas
     
-  sb_sw_nldas:
+  sb_sw_gldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
     depends:
       - sw_gldas
