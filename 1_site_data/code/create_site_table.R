@@ -28,7 +28,7 @@ create_site_table <- function(config, outfile){
   fresh.sites <- mda.streams::stage_nwis_sitelist(
     vars=config$has.vars, min.obs=config$min.count, site.types=config$site.types, 
     HUCs=1:21, folder=NULL, verbose=TRUE)
-  sites <- union(project.sites, fresh.sites)
+  sites <- sort(union(project.sites, fresh.sites))
   
   # create the site table
   site.table <- data.frame(

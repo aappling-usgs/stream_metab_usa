@@ -9,6 +9,7 @@ packages:
   
 sources:
   - ../1_site_data/code/create_site_table.R
+  - ../1_site_data/code/sb_check_site_status.R
   - ../1_site_data/code/sb_post_sites.R
   - ../1_site_data/code/cache_meta_basic.R
   - ../lib/write_status_table.R
