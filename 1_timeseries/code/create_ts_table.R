@@ -24,14 +24,22 @@
 #' @param sites vector of SB site IDs
 #' @param config ts config file
 #' @param outfile file to which the table should be written
+#' 
+#' @seealso write_status_table
 create_ts_table <- function(sites, config, outfile){
+  
+  # create the filepaths appropriate to the var and src implied by outfile
   var <- tail(strsplit(outfile,'[_.]')[[1]],3)[1]
   src <- tail(strsplit(outfile,'[_.]')[[1]],2)[1]
   ts.name <- make_ts_name(var, src)
   if(!dir.exists(config$temp_dir)) dir.create(config$temp_dir)
   filepaths <- make_ts_path(sites, ts.name, version = config$version, folder = config$temp_dir)
-  false.vect <- rep(FALSE, length(filepaths))
-  site.table <- data.frame(filepath=filepaths, local=false.vect, remote=false.vect, no.data=false.vect)
+  
+  # create and write the site table
+  site.table <- data.frame(filepath=filepaths, local=FALSE, no.data=FALSE, posted=FALSE, tagged=FALSE)
   write_status_table(site.table, outfile)
-  return(outfile)
+  sb_check_ts_status(outfile, phase='stage')
+  sb_check_ts_status(outfile, phase='post', posted_after=config$posted_after)
+  
+  return()
 }

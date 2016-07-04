@@ -1,83 +1,75 @@
 #' helper function for staging different data types from the config
 #' 
-#' @param target_name a var_src (e.g., baro_nldas or doobs_nwis)
-#' @param config a config list used to parameterize calls to stage_nwis_ts or stage_nldas_ts
-#' @return files that were created
+#' @param ts.file the status file for this timeseries variable & all appropriate
+#'   sites
+#' @param config a config list used to parameterize calls to stage_nwis_ts or 
+#'   stage_nldas_ts
+#' @return side effect: creates files and updates the ts.file. Returns TRUE if
+#'   successful, stops on error otherwise
 stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_config.yml")){
   
-  auth_from_profile()
+  # update the ts.file for remote and local status. done here in case the status
+  # table was last updated on someone else's computer
+  to.stage <- sb_check_ts_status(ts.file, phase='stage')
+  if(nrow(to.stage) == 0) {
+    return(TRUE) # if we're already done, return now
+  }
+  to.stage <- bind_cols(to.stage, parse_ts_path(to.stage$filepath, out=c('site_name','version','dir_name')))
   
-  ts.table <- read.table(file=ts.file, sep='\t', header = TRUE, stringsAsFactors = FALSE)
-  dir.name <- unique(dirname(ts.table$filepath))
+  # read the full ts.table for reporting
+  ts.table <- read_status_table(ts.file)
+  message(
+    'staging data for ', nrow(to.stage), ' new sites; ', 
+    nrow(ts.table) - nrow(to.stage),' are already local/posted/unavailable; ', 
+    nrow(ts.table), ' sites total')
+  
+  # make sure local staging dir exists
+  dir.name <- unique(to.stage$dir_name)
   lapply(dir.name, function(x) if(!dir.exists(x)) dir.create(x))
-
-  # // check local files
-  ts.table$local <- file.exists(ts.table$filepath)
-  # targets will tell us what the function to call is
+  
+  # determine which function to call and for which sites
+  var <- tail(strsplit(ts.file,'[_.]')[[1]],3)[1]
   src <- tail(strsplit(ts.file,'[_.]')[[1]],2)[1]
   
-  if (src == 'nldas'){
-    gconfig(sleep.time=60, retries=2)
-    use.i <- !ts.table$local & !ts.table$no.data
-    files <- ts.table$filepath[use.i]
-    message('data pulls for ',length(ts.table$filepath),' sites')
-    message(length(ts.table$filepath[ts.table$local]),' already exist, ', length(files), ' will be new')
-    if (length(files) > 0){
-      details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
-      times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
-      processed.files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
-                                       version=unique(details$version), folder=unique(details$dir_name), url = config$nldas_url, verbose=TRUE)
-      # // if in files, but not processed.files, the site has no data
-      ts.table$local[use.i] <- file.exists(files)
-      ts.table$no.data[use.i] <- !files %in% processed.files
-    } #// else do nothing
-    
-  } else if (src == 'gldas') {
-    gconfig(sleep.time=60, retries=2)
-    use.i <- !ts.table$local & !ts.table$no.data
-    files <- ts.table$filepath[use.i]
-    message('data pulls for ',length(ts.table$filepath),' sites')
-    message(length(ts.table$filepath[ts.table$local]),' already exist, ', length(files), ' will be new')
-    if (length(files) > 0){
-      details <- parse_ts_path(files, out=c('site_name','version','var',"dir_name"))
-      times <- c(unique(ts.table$time.st[use.i]), unique(ts.table$time.en[use.i]))
-      processed.files = stage_nldas_ts(sites=details$site_name, var=unique(details$var), times = times, 
-                                       version=unique(details$version), folder=unique(details$dir_name), url = config$gldas_url, verbose=TRUE)
-      # // if in files, but not processed.files, the site has no data
-      ts.table$local[use.i] <- file.exists(files)
-      ts.table$no.data[use.i] <- !files %in% processed.files
-    } #// else do nothing
-    
-  } else if (src == 'nwis'){
-    #chunk sites
-    message('data pulls for ',length(ts.table$filepath),' sites')
-    files <- ts.table$filepath[!ts.table$local & !ts.table$no.data]
-    message(length(ts.table$filepath[ts.table$local]),' already exist or have no data, ', length(files), ' will be new')
-    for (file in files){
-
-      file.i <- which(file == ts.table$filepath)
+  if (nrow(to.stage) > 0) {
+    if (src %in% c('nldas','gldas')) {
+      # process all the sites all at once
+      gconfig(sleep.time=60, retries=2)
+      processed.files = stage_ldas_ts(
+        sites=to.stage$site_name, var=var, src=src, times=config$times, 
+        version=config$version, folder=unique(to.stage$dir_name), 
+        url=config[[paste0(src, '_url')]], verbose=TRUE)
+      no_data <- to.stage$site_name[!(to.stage$site_name %in% processed.files)]
       
-      details <- parse_ts_path(file)
-      # // catch warning here
-      local.file <- tryCatch(
-        stage_nwis_ts(details$site_name, details$var, times=c(ts.table$time.st[file.i], ts.table$time.en[file.i]), 
-                      version=details$version, folder=details$dir_name, verbose=TRUE),
-        warning=function(w) {
-          if (w$message == "error in data"){
-            return(FALSE)
-          } else {
-            return(NULL)
-          }
-        })
-      if (is.null(local.file)){
-        # no data in this site
-        ts.table$no.data[file.i] <- TRUE
-      } else if (is.character(local.file) && file.exists(local.file)){
-        ts.table$local[file.i] <- TRUE
-      } else {
-        message('seems to be an error for this site')
+    } else if (src == 'nwis'){
+      # dataRetrieval could handle sites in larger chunks, but doing them
+      # one-by-one to isolate site-specific errors
+      no_data <- c()
+      for (i in 1:nrow(to.stage)) {
+        if(parse_site_name(to.stage$site_name[i], out='database') != 'nwis') {
+          no_data <- c(no_data, to.stage$filepath[i])
+        } else {
+          local.file <- withCallingHandlers({ 
+            stage_nwis_ts(
+              sites=to.stage$site_name[i], var=var, times=config$times, 
+              version=config$version, folder=to.stage$dir_name[i], verbose=TRUE)
+          }, warning=function(w) {
+            if(grepl("NWIS error", w$message)) message(w$message)
+          }, message=function(m) {
+            if(grepl("(data are unavailable)|(no non-NA data)", m$message)) {
+              no_data <<- c(no_data, to.stage$filepath[i])
+            }            
+          })
+        }
       }
     }
   }
-  write_status_table(ts.table, ts.file)
+  to.stage <- sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
+  
+  if(nrow(to.stage) == 0) {
+    return(TRUE)
+  } else {
+    stop("staging was incomplete; ", nrow(to.stage), " ts files still to stage")
+  }
 }
+
