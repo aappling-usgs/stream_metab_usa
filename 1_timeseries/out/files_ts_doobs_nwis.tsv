@@ -681,7 +681,7 @@
 "../1_timeseries/cache/nwis_421410121492000-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_421838121513900-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_421933121550000-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_422042121513100-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	FALSE
+"../1_timeseries/cache/nwis_422042121513100-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_422128121530600-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_422305121553800-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_422305121553803-ts_doobs_nwis.rds"	FALSE	FALSE	TRUE	TRUE
