@@ -43,6 +43,7 @@ targets:
       - ../1_timeseries/out/files_ts_sw_nldas.tsv
       - ../1_timeseries/out/files_ts_baro_gldas.tsv
       - ../1_timeseries/out/files_ts_sw_gldas.tsv
+      - ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv
 
   ../1_timeseries/out/files_ts_doobs_nwis.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
@@ -63,6 +64,9 @@ targets:
     command: create_ts_table(sb_sites, ts.config, target_name)
     
   ../1_timeseries/out/files_ts_baro_gldas.tsv:
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  
+  ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
   
   # Download data from NWIS/LDAS and stage for SB
