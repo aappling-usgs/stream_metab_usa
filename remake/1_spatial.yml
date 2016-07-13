@@ -1,0 +1,22 @@
+target_default: 1_spatial
+
+include:
+  - 1_site_data.yml
+
+packages:
+  - yaml
+  - dplyr
+  - rgdal
+  - sbtools
+
+sources:
+  - ../lib/load_profile.R
+  - ../1_spatial/code/makeshape.R
+  
+targets:
+  1_spatial:
+    depends: powshapes
+    
+  
+  powshapes: 
+    command: makeshape(sb_sites)
