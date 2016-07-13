@@ -2,6 +2,7 @@
 #' 
 #' @param ldas_config list config that specifies the data subset variables
 ldas_server_files <- function(ldas_config, data.name){
+  data.name = toupper(strsplit(data.name,'[.]')[[1]][1]) #NLDAS or nldas.server.files homogenized
   server.data <- xmlParse(ldas_config$catalog_url, useInternalNodes = TRUE)
   
   nsDefs <- xmlNamespaceDefinitions(server.data )

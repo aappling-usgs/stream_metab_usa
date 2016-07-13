@@ -4,7 +4,6 @@
 #' @param mssg.file the status file to log details to
 #' @param internal.confg a list that contains some things that shouldn't be checked into a repo, including server dir structure
 nccopy_ldas <- function(file.list, mssg.file, internal.config){
-  
   files <- read.table(file.list, sep='\t', stringsAsFactors = FALSE, header = TRUE)
   
   cat('index of new files contains', length(files$file), file=mssg.file, append = FALSE)
@@ -18,7 +17,6 @@ nccopy_ldas <- function(file.list, mssg.file, internal.config){
     v <- strsplit(x,'[.]')[[1]]
     sprintf("[%s:1:%s]",v[1],v[2])
   }
-  
   registerDoMC(cores=4)
   foreach(file=files$file) %dopar% {
     

@@ -1,10 +1,4 @@
 <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <variable name="swdown">
-    <attribute name="units" value="W m^-2"/>
-  </variable>
-  <variable name="psurf">
-    <attribute name="units" value="Pa"/>
-  </variable>
   <aggregation type="union">
     <remove type="attribute" name="Conventions"/>
     <netcdf>
@@ -39,7 +33,7 @@
         <netcdf location="GLDAS_44104.45103_300.599_50.500_swdown.nc"/>
         <netcdf location="GLDAS_45104.46103_300.599_50.500_swdown.nc"/>
         <netcdf location="GLDAS_46104.47103_300.599_50.500_swdown.nc"/>
-        <netcdf location="GLDAS_47104.47608_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_47104.47616_300.599_50.500_swdown.nc"/>
       </aggregation>
     </netcdf>
     <netcdf>
@@ -74,7 +68,7 @@
         <netcdf location="GLDAS_44104.45103_300.599_50.500_psurf.nc"/>
         <netcdf location="GLDAS_45104.46103_300.599_50.500_psurf.nc"/>
         <netcdf location="GLDAS_46104.47103_300.599_50.500_psurf.nc"/>
-        <netcdf location="GLDAS_47104.47608_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_47104.47616_300.599_50.500_psurf.nc"/>
       </aggregation>
     </netcdf>
   </aggregation>
