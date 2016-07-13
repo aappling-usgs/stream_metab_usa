@@ -4,9 +4,8 @@
 #' @param target_name a dot-delimited output name (e.g., "nldas.grids")
 nc_sub_grids <- function(ldas_config, target_name){
   
-  # mock up huge request in order to get the nccopy response as an exception from GDP:
-  data.name <- strsplit(target_name,'[.]')[[1]][1]
-  if (data.name == 'nldas'){
+  data.name <- toupper(strsplit(target_name,'[.]')[[1]][1])
+  if (data.name == 'NLDAS'){
     time.step <- 24 # hours per day
     # "13z01jan1979" is index 0
     
@@ -16,7 +15,7 @@ nc_sub_grids <- function(ldas_config, target_name){
     
     lon <- c(0, 463) # this is known, we want the full dataset
     lat <- c(0, 223) # this is known, we want the full dataset
-  } else if (data.name == 'gldas'){
+  } else if (data.name == 'GLDAS'){
     time.step <- 8 # steps per day
     time = c()
     time[1] <- (as.numeric(as.POSIXct(ldas_config$sub_times[1], tz='UTC')-as.POSIXct("2000-02-24 00:00 UTC", tz='UTC')))*time.step
