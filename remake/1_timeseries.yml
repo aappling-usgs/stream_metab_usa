@@ -43,6 +43,7 @@ targets:
       - ../1_timeseries/out/files_ts_sw_nldas.tsv
       - ../1_timeseries/out/files_ts_baro_gldas.tsv
       - ../1_timeseries/out/files_ts_sw_gldas.tsv
+      - ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv
 
   ../1_timeseries/out/files_ts_doobs_nwis.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
@@ -63,6 +64,9 @@ targets:
     command: create_ts_table(sb_sites, ts.config, target_name)
     
   ../1_timeseries/out/files_ts_baro_gldas.tsv:
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  
+  ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
   
   # Download data from NWIS/LDAS and stage for SB
@@ -103,29 +107,29 @@ targets:
   
   # Post data to ScienceBase
   sb_doobs_nwis:
-    command: sb_post_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv')
+    command: sb_post_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv', ts.config)
     depends: doobs_nwis
   
   sb_wtr_nwis:
-    command: sb_post_ts('../1_timeseries/out/files_ts_wtr_nwis.tsv')
+    command: sb_post_ts('../1_timeseries/out/files_ts_wtr_nwis.tsv', ts.config)
     depends: wtr_nwis
   
   sb_disch_nwis:
-    command: sb_post_ts('../1_timeseries/out/files_ts_disch_nwis.tsv')
+    command: sb_post_ts('../1_timeseries/out/files_ts_disch_nwis.tsv', ts.config)
     depends: disch_nwis
 
   sb_baro_nldas:
-    command: sb_post_ts('../1_timeseries/out/files_ts_baro_nldas.tsv')
+    command: sb_post_ts('../1_timeseries/out/files_ts_baro_nldas.tsv', ts.config)
     depends: baro_nldas
     
   sb_sw_nldas:
-    command: sb_post_ts('../1_timeseries/out/files_ts_sw_nldas.tsv')
+    command: sb_post_ts('../1_timeseries/out/files_ts_sw_nldas.tsv', ts.config)
     depends: sw_nldas
   
   sb_baro_gldas:
-    command: sb_post_ts('../1_timeseries/out/files_ts_baro_gldas.tsv')
+    command: sb_post_ts('../1_timeseries/out/files_ts_baro_gldas.tsv', ts.config)
     depends: baro_gldas
     
   sb_sw_gldas:
-    command: sb_post_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
+    command: sb_post_ts('../1_timeseries/out/files_ts_sw_gldas.tsv', ts.config)
     depends: sw_gldas
