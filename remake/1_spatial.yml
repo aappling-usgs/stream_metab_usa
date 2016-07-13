@@ -19,4 +19,4 @@ targets:
     
   
   powshapes: 
-    command: makeshape(sb_sites)
+    command: makeshape(meta.file.basic)
