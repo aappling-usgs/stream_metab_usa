@@ -27,6 +27,7 @@ can help. For example:
 
 ```{r, eval=FALSE}
 source('remake/build.R')
+remake_smu('sb_sites', '1_site_data.yml')
 remake_smu('wtr_nwis', '1_timeseries.yml')
 ```
 

@@ -10,8 +10,7 @@
 #'  \item{"remote"}{Starts as FALSE. If it can be confirmed in 
 #'  \code{sb_post_site()} that the item has been successfully posted to 
 #'  ScienceBase, this is set to TRUE in the corresponding row.}
-#'  \item{"no.data"}{Starts as FALSE. If it is discovered in 
-#'  \code{create_site_table()} that the site criteria are not currently met on 
+#'  \item{"no.data"}{If the site criteria are not currently met on 
 #'  NWIS for this site, this is set to TRUE in the corresponding row. Thus this 
 #'  column is a record of whether a site was substantially more available on 
 #'  NWIS in the past and/or was added manually, as in a 'styx' or 'indy' site. 
@@ -34,7 +33,7 @@ create_site_table <- function(config, outfile){
   site.table <- data.frame(
     site_name=sites,
     remote=FALSE,
-    no.data=sites %in% fresh.sites)
+    no.data=!(sites %in% fresh.sites))
 
   write_status_table(site.table, outfile)
   
