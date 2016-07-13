@@ -1,9 +1,25 @@
-wd=getwd(); setwd('remake'); remake::make(); setwd(wd) #remake_file='remake.yml'
-wd=getwd(); setwd('remake'); remake::make(remake_file='1_site_data.yml'); setwd(wd)
-wd=getwd(); setwd('remake'); remake::make(remake_file='1_ldas_host.yml'); setwd(wd)
-wd=getwd(); setwd('remake'); remake::make(remake_file='1_timeseries.yml'); setwd(wd)
-setwd(wd) # run if remake::make stops on error
-
-# Each line is designed to be a complete script to run with a single Ctrl-Enter.
-# If you set your Build | "Custom build script" to this file then it opens right
-# away in your editor pane.
+#' Remake for SMU (stream_metab_usa)
+#' 
+#' If you set your Build | "Custom build script" to this file (enter 
+#' 'remake/build.R' in the text box), then it will open right away in your
+#' editor pane.
+#' 
+#' @examples
+#' remake_smu('../1_timeseries/out/files_ts_wtr_nwis.tsv', '1_timeseries.yml')
+#' remake_smu('wtr_nwis', '1_timeseries.yml')
+remake_smu <- function(target_names, remake_file) {
+  wd <- getwd()
+  message('current directory: ', wd)
+  if(!(basename(wd) %in% c('remake','stream_metab_usa')))
+    stop('current dir must be stream_metab_usa or stream_metab_usa/remake')
+  with_chdir <- (basename(wd) == 'stream_metab_usa')
+  if(with_chdir) {
+    setwd('remake')
+    message('running remake from ', getwd())
+  }
+  tryCatch(
+    remake::make(target_names=target_names, remake_file=remake_file),
+    finally = { if(with_chdir) setwd(wd) }
+  )
+  message('current directory: ', wd)
+}
