@@ -30,23 +30,20 @@ targets:
   internal.config:
     command: load_profile()
   
-  nldas.config:
-    command: yaml.load_file("../1_ldas_host/in/nldas_subset.yaml")
-    
-  gldas.config:
-    command: yaml.load_file("../1_ldas_host/in/gldas_subset.yaml")
+  ldas.config:
+    command: yaml.load_file("../1_ldas_host/in/ldas_subset.yml")
 
   nldas.grids:
-    command: nc_sub_grids(nldas.config, target_name)
+    command: nc_sub_grids(ldas.config, target_name)
     
   gldas.grids:
-    command: nc_sub_grids(gldas.config, target_name)
+    command: nc_sub_grids(ldas.config, target_name)
   
   ../1_ldas_host/out/nldas_nc_files.tsv:
-    command: ldas_sub_files(nldas.grids, nldas.config, target_name)
+    command: ldas_sub_files(nldas.grids, ldas.config, target_name)
   
   ../1_ldas_host/out/gldas_nc_files.tsv:
-    command: ldas_sub_files(gldas.grids, gldas.config, target_name)
+    command: ldas_sub_files(gldas.grids, ldas.config, target_name)
     depends:  ../1_ldas_host/out/nldas_nc_status.txt
   
   ../1_ldas_host/out/nldas_nc_status.txt:
@@ -56,12 +53,12 @@ targets:
     command: nccopy_ldas('../1_ldas_host/out/gldas_nc_files.tsv', target_name, internal.config)
     
   nldas.server.files:
-    command: ldas_server_files(nldas.config)
+    command: ldas_server_files(ldas.config, target_name)
     depends:
       - ../1_ldas_host/out/nldas_nc_status.txt
     
   gldas.server.files:
-    command: ldas_server_files(gldas.config)
+    command: ldas_server_files(ldas.config, target_name)
     depends:
       - ../1_ldas_host/out/gldas_nc_status.txt
   
@@ -69,7 +66,7 @@ targets:
     command: create_ldas_ncml(nldas.server.files, target_name)
   
   ../1_ldas_host/out/gldas.ncml:
-    command: create_ldas_ncml(gldas.server.files, target_name, gldas.config)
+    command: create_ldas_ncml(gldas.server.files, target_name, ldas.config)
   
   nldas.ncml.sync:
     command: sync_ncml('../1_ldas_host/out/nldas.ncml', internal.config)
