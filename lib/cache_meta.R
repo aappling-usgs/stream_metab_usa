@@ -10,6 +10,7 @@ cache_meta <- function(type, sites, folder) {
   # on_exists='replace' replaces cache file, not sb file  
   switch(
     type,
-    basic=stage_meta_basic(sites=sites, folder=folder, on_exists='replace')
+    basic=stage_meta_basic(sites=sites, folder=folder, on_exists='replace'),
+    dvqcoefs=stage_meta_dvqcoefs(folder=folder)
   )
 }
