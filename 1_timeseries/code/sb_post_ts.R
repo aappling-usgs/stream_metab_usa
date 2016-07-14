@@ -38,7 +38,7 @@ sb_post_ts <- function(ts.file, config=yaml::yaml.load_file("../1_timeseries/in/
   to.post <- filter(to.post.or.repair, !posted)
   if(nrow(to.post) > 0) {
     message('posting data for ', nrow(to.repair), ' timeseries')
-    post_ts(to.post$filepath, on_exists=config$on_exists, verbose=TRUE)
+    post_ts(to.post$filepath, on_exists=config$on_exists, archive_existing=config$archive_existing, verbose=TRUE)
   }
   
   # re-check and either return a vector of sites w/ this ts on SB or give error
