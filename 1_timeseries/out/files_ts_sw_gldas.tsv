@@ -11,6 +11,7 @@
 "../1_timeseries/cache/nwis_01193050-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_01193463-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_01194750-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
+"../1_timeseries/cache/nwis_01195510-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_01196222-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_01196500-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_01196528-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
@@ -433,6 +434,7 @@
 "../1_timeseries/cache/nwis_06805500-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_06807000-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_06818000-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
+"../1_timeseries/cache/nwis_06881430-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_06887500-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_06892350-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_06892513-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
@@ -711,7 +713,12 @@
 "../1_timeseries/cache/nwis_454705122451400-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_454919119184701-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_455415119314601-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
+"../1_timeseries/cache/nwis_455657111283501-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
+"../1_timeseries/cache/nwis_460230111253101-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
+"../1_timeseries/cache/nwis_460614111234801-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
+"../1_timeseries/cache/nwis_460709111241001-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_460939123201600-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
+"../1_timeseries/cache/nwis_461411111280601-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_461518123285700-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_50048565-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
 "../1_timeseries/cache/nwis_50048580-ts_sw_gldas.rds"	FALSE	FALSE	FALSE	FALSE
