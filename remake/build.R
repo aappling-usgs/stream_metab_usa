@@ -5,9 +5,10 @@
 #' editor pane.
 #' 
 #' @examples
+#' sbsites <- remake_smu('sb_sites', '1_site_data.yml')
 #' remake_smu('../1_timeseries/out/files_ts_wtr_nwis.tsv', '1_timeseries.yml')
 #' remake_smu('wtr_nwis', '1_timeseries.yml')
-remake_smu <- function(target_names, remake_file) {
+remake_smu <- function(target_names, remake_file, ...) {
   wd <- getwd()
   message('current directory: ', wd)
   if(!(basename(wd) %in% c('remake','stream_metab_usa')))
@@ -18,8 +19,9 @@ remake_smu <- function(target_names, remake_file) {
     message('running remake from ', getwd())
   }
   tryCatch(
-    remake::make(target_names=target_names, remake_file=remake_file),
+    { out <- remake::make(target_names=target_names, remake_file=remake_file, ...) },
     finally = { if(with_chdir) setwd(wd) }
   )
   message('current directory: ', wd)
+  return(out)
 }

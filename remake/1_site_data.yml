@@ -12,6 +12,7 @@ sources:
   - ../1_site_data/code/sb_check_site_status.R
   - ../1_site_data/code/sb_post_sites.R
   - ../1_site_data/code/cache_meta_basic.R
+  - ../1_site_data/code/cache_meta_dvqcoefs.R
   - ../lib/write_status_table.R
   - ../lib/auth_from_profile.R
   - ../lib/load_profile.R
@@ -22,7 +23,8 @@ targets:
   1_site_data:
     depends: 
       - sb_sites
-      - sb_metadata
+      - sb_meta_basic
+      - sb_meta_dvqcoefs
   
   ## Site List ##
   
@@ -43,8 +45,15 @@ targets:
   meta.config:
     command: yaml.load_file('../1_site_data/in/meta_config.yaml')
   
-  meta.file.basic:
+  meta_basic:
     command: cache_meta_basic(sb_sites, meta.config)
     
-  sb_metadata: 
-    command: sb_post_meta(meta.file.basic, meta.config)
+  meta_dvqcoefs:
+    command: cache_meta_dvqcoefs(meta.config)
+    depends: sb_meta_basic
+
+  sb_meta_basic: 
+    command: sb_post_meta(meta_basic, meta.config)
+    
+  sb_meta_dvqcoefs: 
+    command: sb_post_meta(meta_dvqcoefs, meta.config)

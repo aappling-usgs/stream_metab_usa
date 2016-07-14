@@ -1,41 +1,51 @@
 # stream_metab_usa
 
-These are the package dependencies for the stream_metab_usa R project.
-```{r}
-library(sbtools)
-library(mda.streams)
-library(powstreams)
-```
+This project contains the core data management scripts of the USGS Powell Center
+working group on continental-scale stream metabolism.
 
-Note: Package dependencies required for this project come from both the CRAN 
-and USGS repositories. To install them, execute the following code chunk, 
-then build the sbtools, mda.streams, and powstreams packages from within 
-their respective local repositories (or directly from GitHub using 
-install_github()).
-
-```{r}
-install.packages(
- c("dataRetrieval", "R.utils", "geoknife"), 
- repos=c("http://owi.usgs.gov/R","http://cran.us.r-project.org"),
- dependencies=TRUE,
- type="both")
-```
-
-The workflow is documented and enforced in 'makefile', which can be run with a call to `make` from the command line, or using Ctrl-Shift-B in RStudio. At least, we would like this to be true; in practice, there's lots of babysitting of loops through web API calls and computing clusters. Still, the makefile should give you an idea of how we want things to flow.
-This project contains the core data management scripts of the USGS Powell Center working group on continental-scale stream metabolism.
+## To Do
 
 | Name       |  Status |
 | :------------ |:-------------| 
 | Data News:  | [NEWS.md](https://github.com/USGS-CIDA/stream_metab_usa/blob/master/NEWS.md)  |
 | Priorities: | [![Issues Ready to Address](https://badge.waffle.io/USGS-CIDA/stream_metab_usa.png?label=ready&title=Ready)](http://waffle.io/USGS-CIDA/stream_metab_usa) [![Issues in Progress](https://badge.waffle.io/USGS-CIDA/stream_metab_usa.png?label=In%20Progress&title=In%20Progress)](http://waffle.io/USGS-CIDA/stream_metab_usa) |
 
-## Overview
+## Workflow
 
-The workflow is documented and enforced in the [makefile](https://github.com/USGS-CIDA/stream_metab_usa/blob/master/makefile) file, which can be run with a call to `make` from the command line, or using Ctrl-Shift-B in RStudio. At least, we would like this to be true; in practice, there's lots of babysitting of loops through web API calls and computing clusters. Still, the [makefile](https://github.com/USGS-CIDA/stream_metab_usa/blob/master/makefile) should give you an idea of how we want things to flow.
+The workflow is documented and enforced in 'remake/remake.yml', which can be run
+with these call in the R console:
+
+```{r, eval=FALSE}
+setwd('remake')
+remake::make()
+setwd('..')
+```
+
+For development, it may be easiest to run one target from one makefile at a
+time. (The 'remake.yml' makefile actually calls several other makefiles, all in
+the 'remake' directory.) The function `remake_smu`, defined in 'remake/build.R',
+can help. For example:
+
+```{r, eval=FALSE}
+source('remake/build.R')
+sb_sites <- remake_smu('sb_sites', '1_site_data.yml')
+wtr_nwis <- remake_smu('wtr_nwis', '1_timeseries.yml')
+```
 
 ## Dependencies
 
-The main package dependencies for the stream_metab_usa R project are `sbtools`, `dataRetrieval`, `geoknife`, and `mda.streams`. To install all four of these, see the installation instructions in [the `mda.streams` repository's README](https://github.com/USGS-R/mda.streams/blob/develop/README.md#first-time-installation).
+The main USGS package dependencies for the stream_metab_usa R project are `sbtools`,
+`dataRetrieval`, `geoknife`, and `mda.streams`. To install all four of these,
+execute the following code chunk.
+
+```{r, eval=FALSE}
+install.packages(
+ c("dataRetrieval", "R.utils", "geoknife", "sbtools"),
+ repos=c("http://owi.usgs.gov/R","http://cran.rstudio.com"),
+ dependencies=TRUE, type="both")
+devtools::install_github("USGS-R/mda.streams")
+```
+
 
 ## Disclaimer
 
