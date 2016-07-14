@@ -18,6 +18,7 @@ with these call in the R console:
 ```{r, eval=FALSE}
 setwd('remake')
 remake::make()
+setwd('..')
 ```
 
 For development, it may be easiest to run one target from one makefile at a
@@ -27,8 +28,8 @@ can help. For example:
 
 ```{r, eval=FALSE}
 source('remake/build.R')
-remake_smu('sb_sites', '1_site_data.yml')
-remake_smu('wtr_nwis', '1_timeseries.yml')
+sb_sites <- remake_smu('sb_sites', '1_site_data.yml')
+wtr_nwis <- remake_smu('wtr_nwis', '1_timeseries.yml')
 ```
 
 ## Dependencies
