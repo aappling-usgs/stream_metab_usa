@@ -10,7 +10,7 @@ packages:
   - mda.streams
   - sbtools
   - httr
-  - hydroMap  
+  - maptools
 
 sources:
   - ../lib/load_profile.R
@@ -20,23 +20,25 @@ targets:
   1_spatial:
     depends: 
       - ../1_spatial/out/site_catchment_map.png
-      - ../1_spatial/out/powstreams_catchments_shape.zip
-      - ../1_spatial/out/powstreams_sites_shape.zip
+      - spatial.points
+
     
   spatial.sites: 
-    command: spatial_filter_sites(meta.file.basic)
+    command: spatial_filter_sites(meta_basic)
     
   spatial.points:
     command: create_site_points(spatial.sites)
-    
-  spatial.catchments:
-    command: create_site_catchments(spatial.sites)
   
+  epa_basins:
+    command: get_catchments(spatial.sites, target_name)
+  
+  gagesii_basins:
+    command: get_catchments(spatial.sites, target_name, epa_basins)
+  
+  spatial.catchments:
+    command: combine_spatial(epa_basins, gagesii_basins)
+    
   ../1_spatial/out/site_catchment_map.png:
     command: inventory_map(spatial.points, spatial.catchments, target_name)
     
-  ../1_spatial/out/powstreams_sites_shape.zip
-    command: write_shapefile(spatial.points, target_name)
-    
-  ../1_spatial/out/powstreams_catchments_shape.zip
-    command: write_shapefile(spatial.catchments, target_name)
+  
