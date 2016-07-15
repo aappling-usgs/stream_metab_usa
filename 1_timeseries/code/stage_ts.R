@@ -35,7 +35,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
     if (src %in% c('nldas','gldas')) {
       # process all the sites all at once
       gconfig(sleep.time=60, retries=2)
-      processed.files = stage_ldas_ts(
+      processed.files <- stage_ldas_ts(
         sites=to.stage$site_name, var=var, src=src, times=config$times, 
         version=config$version, folder=unique(to.stage$dir_name), 
         url=config[[paste0(src, '_url')]], verbose=TRUE)
@@ -63,7 +63,8 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
         }
       }
     } else if (src == 'calc') {
-      # staged <- stage_calc_ts(sites[i], var=parse_var_src(var_src, out='var'), src=parse_var_src(var_src, out='src'))
+      # staged <- stage_calc_ts(sites[i], var=parse_var_src(var_src, out='var'),
+      # src=parse_var_src(var_src, out='src'), day_start=config$day_hours[1], day_end=config$day_hours[2])
     }
   }
   to.stage <- sb_check_ts_status(ts.file, phase='stage', no_data=no_data)

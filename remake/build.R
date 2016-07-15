@@ -9,19 +9,20 @@
 #' remake_smu('../1_timeseries/out/files_ts_wtr_nwis.tsv', '1_timeseries.yml')
 #' remake_smu('wtr_nwis', '1_timeseries.yml')
 remake_smu <- function(target_names, remake_file, ...) {
+  shortdir <- function(wd=getwd()) file.path(basename(dirname(wd)), basename(wd))
+  message('current directory: ', shortdir())
   wd <- getwd()
-  message('current directory: ', wd)
   if(!(basename(wd) %in% c('remake','stream_metab_usa')))
     stop('current dir must be stream_metab_usa or stream_metab_usa/remake')
   with_chdir <- (basename(wd) == 'stream_metab_usa')
   if(with_chdir) {
     setwd('remake')
-    message('running remake from ', getwd())
+    message('running remake from ', shortdir())
   }
   tryCatch(
     { out <- remake::make(target_names=target_names, remake_file=remake_file, ...) },
     finally = { if(with_chdir) setwd(wd) }
   )
-  message('current directory: ', wd)
+  message('current directory: ', shortdir())
   return(out)
 }

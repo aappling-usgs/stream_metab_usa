@@ -11,9 +11,12 @@ packages:
   - sbtools
   - mda.streams
   - dataRetrieval
+  - tidyr
+  - ggplot2
   
 sources:
   - ../lib/load_profile.R
+  - ../1_timeseries/code/summarize_ts_tables.R
   - ../1_timeseries/code/create_ts_table.R
   - ../1_timeseries/code/sb_check_ts_status.R
   - ../1_timeseries/code/stage_ts.R
@@ -29,6 +32,25 @@ targets:
       - sb_sw_nldas
       - sb_baro_gldas
       - sb_sw_gldas
+      - sb_dosat_calcGGbts
+      - sb_baro_calcElev
+      - sb_dosat_calcGGbconst
+      - sb_dopsat_calcObsSat
+      - sb_depth_calcDischRaymond
+      - sb_veloc_calcDischRaymond
+      - sb_depth_calcDischHarvey
+      - sb_veloc_calcDischHarvey
+      - sb_sitetime_calcLon
+      - sb_suntime_calcLon
+      - sb_par_calcLat
+      - sb_par_calcSw
+      - sb_sitedate_calcLon
+      - sb_doamp_calcDAmp
+      - sb_dischdaily_calcDMean
+      - sb_velocdaily_calcDMean
+  
+  ts_status:
+    command: summarize_ts_tables()
   
   ts.config:
     command: yaml.load_file("../1_timeseries/in/ts_config.yml")
@@ -43,31 +65,88 @@ targets:
       - ../1_timeseries/out/files_ts_sw_nldas.tsv
       - ../1_timeseries/out/files_ts_baro_gldas.tsv
       - ../1_timeseries/out/files_ts_sw_gldas.tsv
+      - ../1_timeseries/out/files_ts_dosat_calcGGbts.tsv
+      - ../1_timeseries/out/files_ts_baro_calcElev.tsv
+      - ../1_timeseries/out/files_ts_dosat_calcGGbconst.tsv
+      - ../1_timeseries/out/files_ts_dopsat_calcObsSat.tsv
+      - ../1_timeseries/out/files_ts_depth_calcDischRaymond.tsv
+      - ../1_timeseries/out/files_ts_veloc_calcDischRaymond.tsv
       - ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv
+      - ../1_timeseries/out/files_ts_veloc_calcDischHarvey.tsv
+      - ../1_timeseries/out/files_ts_sitetime_calcLon.tsv
+      - ../1_timeseries/out/files_ts_suntime_calcLon.tsv
+      - ../1_timeseries/out/files_ts_par_calcLat.tsv
+      - ../1_timeseries/out/files_ts_par_calcSw.tsv
+      - ../1_timeseries/out/files_ts_sitedate_calcLon.tsv
+      - ../1_timeseries/out/files_ts_doamp_calcDAmp.tsv
+      - ../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv
+      - ../1_timeseries/out/files_ts_velocdaily_calcDMean.tsv
 
   ../1_timeseries/out/files_ts_doobs_nwis.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
-  
   ../1_timeseries/out/files_ts_wtr_nwis.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
-  
   ../1_timeseries/out/files_ts_disch_nwis.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
     
   ../1_timeseries/out/files_ts_baro_nldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
-  
   ../1_timeseries/out/files_ts_sw_nldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
-  
   ../1_timeseries/out/files_ts_sw_gldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
-    
   ../1_timeseries/out/files_ts_baro_gldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
   
-  ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv:
+  ../1_timeseries/out/files_ts_dosat_calcGGbts.tsv:
+    depends: [sb_wtr_nwis, sb_baro_nldas, sb_baro_gldas]
     command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_baro_calcElev.tsv:
+    depends: [sb_meta_basic]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_dosat_calcGGbconst.tsv:
+    depends: [sb_baro_calcElev, sb_wtr_nwis]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_dopsat_calcObsSat.tsv:
+    depends: [sb_dosat_calcGGbts, sb_dosat_calcGGbconst, sb_doobs_nwis]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_depth_calcDischRaymond.tsv:
+    depends: [sb_disch_nwis]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_veloc_calcDischRaymond.tsv:
+    depends: [sb_disch_nwis]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv:
+    depends: [sb_disch_nwis, sb_meta_dvqcoefs]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_veloc_calcDischHarvey.tsv:
+    depends: [sb_disch_nwis, sb_meta_dvqcoefs]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_sitetime_calcLon.tsv:
+    depends: [sb_doobs_nwis, sb_meta_basic]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_suntime_calcLon.tsv:
+    depends: [sb_doobs_nwis, sb_meta_basic]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_par_calcLat.tsv:
+    depends: [sb_suntime_calcLon]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_par_calcSw.tsv:
+    depends: [sb_sw_nldas, sb_sw_gldas]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_sitedate_calcLon.tsv:
+    depends: [sb_sitetime_calcLon, sb_meta_basic]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_doamp_calcDAmp.tsv:
+    depends: [sb_sitedate_calcLon, sb_dopsat_calcObsSat]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv:
+    depends: [sb_sitedate_calcLon, sb_disch_nwis]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_velocdaily_calcDMean.tsv:
+    depends: [sb_sitedate_calcLon, sb_veloc_calcDischRaymond, sb_veloc_calcDischHarvey]
+    command: create_ts_table(sb_sites, ts.config, target_name)
+
   
   # Download data from NWIS/LDAS and stage for SB
   staged_tses:
@@ -79,41 +158,83 @@ targets:
       - sw_nldas
       - baro_gldas
       - sw_gldas
+      - dosat_calcGGbts
+      - baro_calcElev
+      - dosat_calcGGbconst
+      - dopsat_calcObsSat
+      - depth_calcDischRaymond
+      - veloc_calcDischRaymond
+      - depth_calcDischHarvey
+      - veloc_calcDischHarvey
+      - sitetime_calcLon
+      - suntime_calcLon
+      - par_calcLat
+      - par_calcSw
+      - sitedate_calcLon
+      - doamp_calcDAmp
+      - dischdaily_calcDMean
+      - velocdaily_calcDMean
 
   doobs_nwis:
     command: stage_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv')
-    
   wtr_nwis:
     command: stage_ts('../1_timeseries/out/files_ts_wtr_nwis.tsv')
-    
   disch_nwis:
     command: stage_ts('../1_timeseries/out/files_ts_disch_nwis.tsv')
   
   baro_nldas:
     command: stage_ts('../1_timeseries/out/files_ts_baro_nldas.tsv')
-    depends: sb_metadata
-  
+    depends: sb_meta_basic
   sw_nldas:
     command: stage_ts('../1_timeseries/out/files_ts_sw_nldas.tsv')
-    depends: sb_metadata
-  
+    depends: sb_meta_basic
   baro_gldas:
     command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
-    depends: sb_metadata
-  
+    depends: sb_meta_basic
   sw_gldas:
     command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
-    depends: sb_metadata
+    depends: sb_meta_basic
+    
+  dosat_calcGGbts:
+    command: stage_ts('../1_timeseries/out/files_ts_dosat_calcGGbts.tsv')
+  baro_calcElev:
+    command: stage_ts('../1_timeseries/out/files_ts_baro_calcElev.tsv')
+  dosat_calcGGbconst:
+    command: stage_ts('../1_timeseries/out/files_ts_dosat_calcGGbconst.tsv')
+  dopsat_calcObsSat:
+    command: stage_ts('../1_timeseries/out/files_ts_dopsat_calcObsSat.tsv')
+  depth_calcDischRaymond:
+    command: stage_ts('../1_timeseries/out/files_ts_depth_calcDischRaymond.tsv')
+  veloc_calcDischRaymond:
+    command: stage_ts('../1_timeseries/out/files_ts_veloc_calcDischRaymond.tsv')
+  depth_calcDischHarvey:
+    command: stage_ts('../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv')
+  veloc_calcDischHarvey:
+    command: stage_ts('../1_timeseries/out/files_ts_veloc_calcDischHarvey.tsv')
+  sitetime_calcLon:
+    command: stage_ts('../1_timeseries/out/files_ts_sitetime_calcLon.tsv')
+  suntime_calcLon:
+    command: stage_ts('../1_timeseries/out/files_ts_suntime_calcLon.tsv')
+  par_calcLat:
+    command: stage_ts('../1_timeseries/out/files_ts_par_calcLat.tsv')
+  par_calcSw:
+    command: stage_ts('../1_timeseries/out/files_ts_par_calcSw.tsv')
+  sitedate_calcLon:
+    command: stage_ts('../1_timeseries/out/files_ts_sitedate_calcLon.tsv')
+  doamp_calcDAmp:
+    command: stage_ts('../1_timeseries/out/files_ts_doamp_calcDAmp.tsv')
+  dischdaily_calcDMean:
+    command: stage_ts('../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv')
+  velocdaily_calcDMean:
+    command: stage_ts('../1_timeseries/out/files_ts_velocdaily_calcDMean.tsv')
   
   # Post data to ScienceBase
   sb_doobs_nwis:
     command: sb_post_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv', ts.config)
     depends: doobs_nwis
-  
   sb_wtr_nwis:
     command: sb_post_ts('../1_timeseries/out/files_ts_wtr_nwis.tsv', ts.config)
     depends: wtr_nwis
-  
   sb_disch_nwis:
     command: sb_post_ts('../1_timeseries/out/files_ts_disch_nwis.tsv', ts.config)
     depends: disch_nwis
@@ -121,15 +242,61 @@ targets:
   sb_baro_nldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_baro_nldas.tsv', ts.config)
     depends: baro_nldas
-    
   sb_sw_nldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_sw_nldas.tsv', ts.config)
     depends: sw_nldas
-  
   sb_baro_gldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_baro_gldas.tsv', ts.config)
     depends: baro_gldas
-    
   sb_sw_gldas:
     command: sb_post_ts('../1_timeseries/out/files_ts_sw_gldas.tsv', ts.config)
     depends: sw_gldas
+
+  sb_dosat_calcGGbts:
+    command: sb_post_ts('../1_timeseries/out/files_ts_dosat_calcGGbts.tsv', ts.config)
+    depends: dosat_calcGGbts
+  sb_baro_calcElev:
+    command: sb_post_ts('../1_timeseries/out/files_ts_baro_calcElev.tsv', ts.config)
+    depends: baro_calcElev
+  sb_dosat_calcGGbconst:
+    command: sb_post_ts('../1_timeseries/out/files_ts_dosat_calcGGbconst.tsv', ts.config)
+    depends: dosat_calcGGbconst
+  sb_dopsat_calcObsSat:
+    command: sb_post_ts('../1_timeseries/out/files_ts_dopsat_calcObsSat.tsv', ts.config)
+    depends: dopsat_calcObsSat
+  sb_depth_calcDischRaymond:
+    command: sb_post_ts('../1_timeseries/out/files_ts_depth_calcDischRaymond.tsv', ts.config)
+    depends: depth_calcDischRaymond
+  sb_veloc_calcDischRaymond:
+    command: sb_post_ts('../1_timeseries/out/files_ts_veloc_calcDischRaymond.tsv', ts.config)
+    depends: veloc_calcDischRaymond
+  sb_depth_calcDischHarvey:
+    command: sb_post_ts('../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv', ts.config)
+    depends: depth_calcDischHarvey
+  sb_veloc_calcDischHarvey:
+    command: sb_post_ts('../1_timeseries/out/files_ts_veloc_calcDischHarvey.tsv', ts.config)
+    depends: veloc_calcDischHarvey
+  sb_sitetime_calcLon:
+    command: sb_post_ts('../1_timeseries/out/files_ts_sitetime_calcLon.tsv', ts.config)
+    depends: sitetime_calcLon
+  sb_suntime_calcLon:
+    command: sb_post_ts('../1_timeseries/out/files_ts_suntime_calcLon.tsv', ts.config)
+    depends: suntime_calcLon
+  sb_par_calcLat:
+    command: sb_post_ts('../1_timeseries/out/files_ts_par_calcLat.tsv', ts.config)
+    depends: par_calcLat
+  sb_par_calcSw:
+    command: sb_post_ts('../1_timeseries/out/files_ts_par_calcSw.tsv', ts.config)
+    depends: par_calcSw
+  sb_sitedate_calcLon:
+    command: sb_post_ts('../1_timeseries/out/files_ts_sitedate_calcLon.tsv', ts.config)
+    depends: sitedate_calcLon
+  sb_doamp_calcDAmp:
+    command: sb_post_ts('../1_timeseries/out/files_ts_doamp_calcDAmp.tsv', ts.config)
+    depends: doamp_calcDAmp
+  sb_dischdaily_calcDMean:
+    command: sb_post_ts('../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv', ts.config)
+    depends: dischdaily_calcDMean
+  sb_velocdaily_calcDMean:
+    command: sb_post_ts('../1_timeseries/out/files_ts_velocdaily_calcDMean.tsv', ts.config)
+    depends: velocdaily_calcDMean
