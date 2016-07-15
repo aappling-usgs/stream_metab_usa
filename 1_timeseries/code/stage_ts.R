@@ -10,7 +10,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
   
   # update the ts.file for remote and local status. done here in case the status
   # table was last updated on someone else's computer
-  to.stage <- sb_check_ts_status(ts.file, phase='stage')
+  to.stage <- sb_check_ts_status(ts.file, phase='stage') # not used by 'stage': posted_after=config$posted_after
   if(nrow(to.stage) == 0) {
     return(TRUE) # if we're already done, return now
   }
@@ -39,7 +39,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
         sites=to.stage$site_name, var=var, src=src, times=config$times, 
         version=config$version, folder=unique(to.stage$dir_name), 
         url=config[[paste0(src, '_url')]], verbose=TRUE)
-      no_data <- to.stage$site_name[!(to.stage$site_name %in% processed.files)]
+      no_data <- to.stage$filepath[!(to.stage$site_name %in% processed.files)]
       
     } else if (src == 'nwis') {
       # dataRetrieval could handle sites in larger chunks, but doing them
@@ -67,7 +67,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
       # src=parse_var_src(var_src, out='src'), day_start=config$day_hours[1], day_end=config$day_hours[2])
     }
   }
-  to.stage <- sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
+  to.stage <- sb_check_ts_status(ts.file, phase='stage', no_data=no_data) # not used by 'stage': posted_after=config$posted_after
   
   if(nrow(to.stage) == 0) {
     return(TRUE)
