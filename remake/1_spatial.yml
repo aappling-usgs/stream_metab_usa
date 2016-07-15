@@ -1,0 +1,42 @@
+target_default: 1_spatial
+
+include:
+  - 1_site_data.yml
+
+packages:
+  - yaml
+  - dplyr
+  - rgdal
+  - mda.streams
+  - sbtools
+  - httr
+  - hydroMap  
+
+sources:
+  - ../lib/load_profile.R
+  - ../1_spatial/code/makeshape.R
+  
+targets:
+  1_spatial:
+    depends: 
+      - ../1_spatial/out/site_catchment_map.png
+      - ../1_spatial/out/powstreams_catchments_shape.zip
+      - ../1_spatial/out/powstreams_sites_shape.zip
+    
+  spatial.sites: 
+    command: spatial_filter_sites(meta.file.basic)
+    
+  spatial.points:
+    command: create_site_points(spatial.sites)
+    
+  spatial.catchments:
+    command: create_site_catchments(spatial.sites)
+  
+  ../1_spatial/out/site_catchment_map.png:
+    command: inventory_map(spatial.points, spatial.catchments, target_name)
+    
+  ../1_spatial/out/powstreams_sites_shape.zip
+    command: write_shapefile(spatial.points, target_name)
+    
+  ../1_spatial/out/powstreams_catchments_shape.zip
+    command: write_shapefile(spatial.catchments, target_name)
