@@ -34,10 +34,8 @@ create_site_points <- function(sites, crs.string = "+init=epsg:4326"){
     raw.points.sp <- sp::SpatialPointsDataFrame(coords, 
                                                 data = data.frame("site_name" = sites$site_name[use.i]), 
                                                 proj4string = sp::CRS(crs.strings[[datum]]))
-    browser()
     transformed.points.sp <- spTransform(x = raw.points.sp, sp::CRS(crs.string))
     if (exists('points.sp')){
-      browser()
       points.sp <- maptools::spRbind(points.sp, transformed.points.sp)
     } else {
       points.sp <- transformed.points.sp
@@ -47,27 +45,78 @@ create_site_points <- function(sites, crs.string = "+init=epsg:4326"){
   return(points.sp)
 }
 
-create_site_catchments <- function(sites, crs.string = "+init=epsg:4326"){
-  basin.ids <- mda.streams::parse_site_name(sites$site_name, out='sitenum')
-  
-  browser()
-  raw.catchments <- hydroMap::getBasin(basin.ids)
-  catchment.data <- raw.catchments@data
-  updated.data <- catchment.data %>% 
-    mutate(site_name = make_site_name(site_no)) %>% 
-    select(site_name, ogc_fid)
-  raw.catchments@data <- updated.data
-  catchments <- spTransform(raw.catchments, CRS(crs.string))
-  return(catchments)
+combine_spatial <- function(...){
+  to.combine <- list(...)
+  sp.out <- to.combine[[1]]
+  for (i in seq_len(length(to.combine))[-1L]){
+    row.names(to.combine[[i]]) <- as.character(as.numeric(row.names(to.combine[[i]]))+length(sp.out))
+    for (id in seq_len(length(row.names(to.combine[[i]])))){
+      slot(slot(to.combine[[i]], "polygons")[[id]],'ID') <- row.names(to.combine[[i]])[id]
+      slot(slot(to.combine[[i]], "polygons")[[id]],'plotOrder') <- as.integer(as.numeric(row.names(to.combine[[i]])[id])-1)
+    }
+    sp.out <- maptools::spRbind(sp.out, to.combine[[i]])
+  }
+  return(sp.out)
 }
 
 inventory_map <- function(points, catchments, outfile){
   catchment.ids <- as.character(unique(catchments@data$site_name))
+  message(length(catchment.ids), ' sites w/ catchments (out of ', length(points),')')
   png(filename = outfile, width = 10, height = 7, res = 350, units = 'in')
   plot(points[points@data$site_name %in% catchment.ids, ], col='green', pch=20, cex=0.4)
   plot(points[!points@data$site_name %in% catchment.ids, ], col='red', pch=20, cex=0.4, add=TRUE)
   plot(catchments, add=TRUE)
   dev.off()
+}
+
+get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'), ignore.sites=NULL, crs.string = "+init=epsg:4326"){
+  site.ids <- mda.streams::parse_site_name(sites$site_name, out='sitenum')
+  if (!is.null(ignore.sites)){
+    site.ids <- site.ids[!site.ids %in% mda.streams::parse_site_name(ignore.sites@data$site_name, out='sitenum')]
+  }
+  
+  feature.name <- match.arg(feature.name)
+  
+  site.lookup <- c('epa_basins'='site_no','gagesii_basins'='gage_id')
+  
+  postURL <- "http://cida.usgs.gov/nwc/geoserver/NWC/ows"
+  filterXML <- paste0('<?xml version="1.0"?>',
+                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="shape-zip" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
+                      sprintf('<wfs:Query xmlns:feature="http://owi.usgs.gov/NWC" typeName="feature:%s" srsName="EPSG:4326">', feature.name))
+  
+  siteText <- ""
+  for(site.id in site.ids){
+    siteText <- paste0(siteText,'<ogc:PropertyIsEqualTo  matchCase="true">',
+                       sprintf('<ogc:PropertyName>%s</ogc:PropertyName>',site.lookup[[feature.name]]),
+                       '<ogc:Literal>',site.id,'</ogc:Literal>',
+                       '</ogc:PropertyIsEqualTo>')
+  }
+  
+  filterXML <- paste0(filterXML,'<ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">',
+                      '<ogc:Or>',siteText,'</ogc:Or>',
+                      '</ogc:Filter>')
+  
+  
+  filterXML <- paste0(filterXML,'</wfs:Query>',
+                      '</wfs:GetFeature>')
+  
+  destination = tempfile(pattern = feature.name, fileext='.zip')
+  
+  file <- POST(postURL, body = filterXML, write_disk(destination, overwrite=T))
+  filePath <- tempdir()
+  unzip(destination, exdir = filePath)
+  raw.catchments <- readOGR(filePath, layer=feature.name)
+  catchment.data <- raw.catchments@data
+  if (feature.name == 'gagesii_basins'){
+    catchment.data <- rename(catchment.data, site_no=gage_id)
+  }
+  updated.data <- catchment.data %>% 
+    mutate(site_name = make_site_name(site_no)) %>% 
+    select(site_name, ogc_fid)
+  raw.catchments@data <- updated.data
+  catchments <- spTransform(raw.catchments, CRS(crs.string))
+  
+  return(catchments)
 }
 
 write_shapefile <- function(obj, fileout){
