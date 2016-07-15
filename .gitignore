@@ -2,6 +2,7 @@
 .Rproj.user/
 *.Rproj
 *.png
+*Thumbs.db
 .Rproj.user
 temp
 *.Rout

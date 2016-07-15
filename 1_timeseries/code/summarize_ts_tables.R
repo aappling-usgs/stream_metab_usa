@@ -5,19 +5,19 @@
 #' @import ggplot2
 #' @seealso read_status_table write_status_table
 summarize_ts_tables <- function() {
-  tbl_files <- dir('../1_timeseries/out', full.names=TRUE) %>% {.[!grepl('all_ts_files', .)]}
+  tbl_files <- dir('../1_timeseries/out', full.names=TRUE) %>% {.[!grepl('all_ts_files|Thumbs.db', .)]}
   tbls <- lapply(tbl_files, read_status_table)
+  all_var_srces <- c(
+    'doobs_nwis', 'wtr_nwis', 'disch_nwis', 
+    'baro_nldas', 'sw_nldas', 'baro_gldas', 'sw_gldas', 
+    'dosat_calcGGbts', 'baro_calcElev', 'dosat_calcGGbconst', 'dopsat_calcObsSat', 
+    'depth_calcDischRaymond', 'veloc_calcDischRaymond', 'depth_calcDischHarvey', 'veloc_calcDischHarvey', 
+    'sitetime_calcLon', 'suntime_calcLon', 'par_calcLat', 'par_calcSw', 
+    'sitedate_calcLon', 'doamp_calcDAmp', 'dischdaily_calcDMean', 'velocdaily_calcDMean')
   progress_bars <- bind_rows(lapply(tbls, function(tbl) {
     summarize(
       tbl, 
-      var_src = factor(
-        parse_ts_path(filepath[1], out='var_src'),
-        c('doobs_nwis', 'wtr_nwis', 'disch_nwis', 
-          'baro_nldas', 'sw_nldas', 'baro_gldas', 'sw_gldas', 
-          'dosat_calcGGbts', 'baro_calcElev', 'dosat_calcGGbconst', 'dopsat_calcObsSat', 
-          'depth_calcDischRaymond', 'veloc_calcDischRaymond', 'depth_calcDischHarvey', 'veloc_calcDischHarvey', 
-          'sitetime_calcLon', 'suntime_calcLon', 'par_calcLat', 'par_calcSw', 
-          'sitedate_calcLon', 'doamp_calcDAmp', 'dischdaily_calcDMean', 'velocdaily_calcDMean')),
+      var_src = ordered(parse_ts_path(filepath[1], out='var_src'), all_var_srces),
       total = length(filepath),
       untouched = length(which(!no.data & !local & !posted & !tagged)),
       no_data = length(which(no.data)),
@@ -30,6 +30,9 @@ summarize_ts_tables <- function() {
       uncounted = max(total)-total,
       barheight = uncounted + untouched + no_data + local + posted_untagged + posted_tagged)
   if(length(unique(progress_bars$barheight)) != 1) stop("couldn't reconcile barheights")
+  progress_bars <- progress_bars %>%
+    full_join(tibble(var_src=ordered(levels(progress_bars$var_src),levels(progress_bars$var_src))), by='var_src') %>%
+    arrange(var_src)
   
   # write a table
   write_status_table(progress_bars, '../1_timeseries/out/all_ts_files.tsv')
