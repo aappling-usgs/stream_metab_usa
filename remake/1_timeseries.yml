@@ -12,6 +12,7 @@ packages:
   - mda.streams
   - dataRetrieval
   - tidyr
+  - knitr
   - ggplot2
   
 sources:

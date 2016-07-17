@@ -29,7 +29,7 @@ summarize_ts_tables <- function() {
     mutate(
       uncounted = max(total)-total,
       barheight = uncounted + untouched + no_data + local + posted_untagged + posted_tagged)
-  if(length(unique(progress_bars$barheight)) != 1) stop("couldn't reconcile barheights")
+  if(length(unique(progress_bars$barheight)) != 1) warning("couldn't reconcile barheights")
   progress_bars <- progress_bars %>%
     full_join(tibble(var_src=ordered(levels(progress_bars$var_src),levels(progress_bars$var_src))), by='var_src') %>%
     arrange(var_src)
@@ -38,7 +38,7 @@ summarize_ts_tables <- function() {
   write_status_table(progress_bars, '../1_timeseries/out/all_ts_files.tsv')
   
   # write a pretty table
-  writeLines(kable(progress_bars), '../1_timeseries/out/all_ts_files.md')
+  writeLines(knitr::kable(progress_bars), '../1_timeseries/out/all_ts_files.md')
   
   # make a plot
   bardata <- progress_bars %>% 
