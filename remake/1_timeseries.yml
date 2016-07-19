@@ -94,9 +94,9 @@ targets:
     command: create_ts_table(sb_sites, ts.config, target_name)
   ../1_timeseries/out/files_ts_sw_nldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
-  ../1_timeseries/out/files_ts_sw_gldas.tsv:
-    command: create_ts_table(sb_sites, ts.config, target_name)
   ../1_timeseries/out/files_ts_baro_gldas.tsv:
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_sw_gldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_dosat_calcGGbts.tsv:
@@ -190,7 +190,7 @@ targets:
     command: stage_ts('../1_timeseries/out/files_ts_sw_nldas.tsv')
     depends: sb_meta_basic
   baro_gldas:
-    command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
+    command: stage_ts('../1_timeseries/out/files_ts_baro_gldas.tsv')
     depends: sb_meta_basic
   sw_gldas:
     command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
