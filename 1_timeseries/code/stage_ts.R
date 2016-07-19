@@ -39,7 +39,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
         sites=to.stage$site_name, var=var, src=src, times=config$times, 
         version=config$version, folder=unique(to.stage$dir_name), 
         url=config[[paste0(src, '_url')]], verbose=TRUE)
-      no_data <- to.stage$filepath[!(to.stage$site_name %in% processed.files)]
+      no_data <- to.stage$filepath[!(to.stage$filepath %in% processed.files)]
       
     } else if (src == 'nwis') {
       # dataRetrieval could handle sites in larger chunks, but doing them
@@ -61,6 +61,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
             }            
           })
         }
+        if((i %% 10) == 0) sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
       }
     } else if (src == 'calc') {
       # staged <- stage_calc_ts(sites[i], var=parse_var_src(var_src, out='var'),

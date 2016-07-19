@@ -4,6 +4,6 @@ gldas_url: 'dods://cida-eros-netcdfdev.er.usgs.gov:8080/thredds/dodsC/thredds_wo
 version: rds
 posted_after: '2016-07-12'
 temp_dir: ../1_timeseries/cache
-on_exists: skip
+on_exists: replace
 archive_existing: TRUE
 day_hours: [4, 28]

@@ -24,25 +24,31 @@ sb_post_ts <- function(ts.file, config=yaml::yaml.load_file("../1_timeseries/in/
   # read the full ts.table for reporting
   ts.table <- read_status_table(ts.file)
   message(
-    nrow(ts.table) - nrow(to.post.or.repair),' are already posted & tagged; ', 
+    nrow(ts.table) - nrow(to.post.or.repair),' are unavailable or already posted & tagged; ', 
     nrow(ts.table), ' sites total')
   
   # repair   
   to.repair <- filter(to.post.or.repair, posted & !tagged)
   if(nrow(to.repair) > 0) {
     message('repairing data for ', nrow(to.repair), ' timeseries')
-    repair_ts(var_src=to.repair$var_src, site_name=to.repair$site_name)
+    tryCatch(
+      repair_ts(var_src=to.repair$var_src, site_name=to.repair$site_name),
+      error=function(e) message('error in repair_ts: ', e)
+    )
   }
   
   # post
   to.post <- filter(to.post.or.repair, !posted)
   if(nrow(to.post) > 0) {
     message('posting data for ', nrow(to.repair), ' timeseries')
-    post_ts(to.post$filepath, on_exists=config$on_exists, archive_existing=config$archive_existing, verbose=TRUE)
+    tryCatch(
+      post_ts(to.post$filepath, on_exists=config$on_exists, archive_existing=config$archive_existing, verbose=TRUE),
+      error=function(e) message('error in post_ts: ', e)
+    )
   }
   
   # re-check and either return a vector of sites w/ this ts on SB or give error
-  incomplete <- sb_check_ts_status(outfile, phase='post', posted_after=config$posted_after)
+  incomplete <- sb_check_ts_status(ts.file, phase='post', posted_after=config$posted_after)
   if(nrow(incomplete) == 0) {
     posted <- read_status_table(ts.file) %>%
       filter(posted & tagged) %>%
