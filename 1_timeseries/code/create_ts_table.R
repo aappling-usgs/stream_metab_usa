@@ -28,26 +28,36 @@
 #' @seealso write_status_table
 create_ts_table <- function(sites, config, outfile){
   
-  # create the filepaths appropriate to the var and src implied by outfile
-  var <- tail(strsplit(outfile,'[_.]')[[1]],3)[1]
-  src <- tail(strsplit(outfile,'[_.]')[[1]],2)[1]
-  ts.name <- make_ts_name(var, src)
-  if(!dir.exists(config$temp_dir)) dir.create(config$temp_dir)
-  filepaths <- make_ts_path(sites, ts.name, version = config$version, folder = config$temp_dir)
-  
-  if(grepl("^calc", src)) {
-    # figure out the dependencies specific to this var_src and their availability
-    no_data <- create_calc_ts_nodata_table(sites, var, src)
-  } else {
-    # assume there's data on NWIS/LDAS until & unless stage_ts discovers otherwise
-    no_data <- data.frame(no.data=FALSE)
+  # Only create and update a fresh table if no current one exists. This fixes 
+  # the problem where the table was getting created here, updated in stage_ts, 
+  # and then overwritten by a re-creation because remake notices that the file 
+  # is now different from its hashed file. And stage_ts and sb_post_ts do plenty
+  # of status checking themselves, so no need even to check the status here if
+  # the file already exists.
+  if(!file.exists(outfile)) {
+    # create the filepaths appropriate to the var and src implied by outfile
+    var <- tail(strsplit(outfile,'[_.]')[[1]],3)[1]
+    src <- tail(strsplit(outfile,'[_.]')[[1]],2)[1]
+    ts.name <- make_ts_name(var, src)
+    if(!dir.exists(config$temp_dir)) dir.create(config$temp_dir)
+    filepaths <- make_ts_path(sites, ts.name, version = config$version, folder = config$temp_dir)
+    
+    if(grepl("^calc", src)) {
+      # figure out the dependencies specific to this var_src and their availability
+      no_data <- create_calc_ts_nodata_table(sites, var, src)
+    } else {
+      # assume there's data on NWIS/LDAS until & unless stage_ts discovers otherwise
+      no_data <- data.frame(no.data=FALSE)
+    }
+    
+    # create and write the site table
+    site.table <- data.frame(filepath=filepaths, local=FALSE, no_data, posted=FALSE, tagged=FALSE)
+    write_status_table(site.table, outfile)
+    
+    # udpate the local/posted/tagged columns
+    sb_check_ts_status(outfile, phase='stage')
+    sb_check_ts_status(outfile, phase='post', posted_after=config$posted_after)
   }
-  
-  # create and write the site table
-  site.table <- data.frame(filepath=filepaths, local=FALSE, no_data, posted=FALSE, tagged=FALSE)
-  write_status_table(site.table, outfile)
-  sb_check_ts_status(outfile, phase='stage')
-  sb_check_ts_status(outfile, phase='post', posted_after=config$posted_after)
   
   return()
 }
