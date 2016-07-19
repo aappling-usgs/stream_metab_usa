@@ -61,6 +61,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
             }            
           })
         }
+        if((i %% 10) == 0) sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
       }
     } else if (src == 'calc') {
       # staged <- stage_calc_ts(sites[i], var=parse_var_src(var_src, out='var'),

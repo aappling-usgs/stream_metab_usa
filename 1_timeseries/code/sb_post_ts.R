@@ -24,7 +24,7 @@ sb_post_ts <- function(ts.file, config=yaml::yaml.load_file("../1_timeseries/in/
   # read the full ts.table for reporting
   ts.table <- read_status_table(ts.file)
   message(
-    nrow(ts.table) - nrow(to.post.or.repair),' are already posted & tagged; ', 
+    nrow(ts.table) - nrow(to.post.or.repair),' are unavailable or already posted & tagged; ', 
     nrow(ts.table), ' sites total')
   
   # repair   
