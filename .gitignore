@@ -2,6 +2,7 @@
 .Rproj.user/
 *.Rproj
 *.png
+*Thumbs.db
 .Rproj.user
 temp
 *.Rout
@@ -12,3 +13,4 @@ NEWS.html
 README.html
 .remake
 **.DS_Store
+.Rprofile
