@@ -44,7 +44,7 @@ create_ts_table <- function(sites, config, outfile){
     
     if(grepl("^calc", src)) {
       # figure out the dependencies specific to this var_src and their availability
-      no_data <- create_calc_ts_nodata_table(sites, var, src)
+      no_data <- create_calc_ts_nodata_table(sites, var, src, config)
     } else {
       # assume there's data on NWIS/LDAS until & unless stage_ts discovers otherwise
       no_data <- data.frame(no.data=FALSE)
@@ -68,7 +68,7 @@ create_ts_table <- function(sites, config, outfile){
 #' 
 #' @import dplyr
 #' @import mda.streams
-create_calc_ts_nodata_table <- function(sites, var, src) {
+create_calc_ts_nodata_table <- function(sites, var, src, config) {
   # look up the dependencies and format them into a list of column names
   calc_ts_needs <- build_calc_ts_needs(var=var, src=src)
   var_choices <- strsplit(calc_ts_needs$var_src_needs, ' ')[[1]] %>%
@@ -91,7 +91,11 @@ create_calc_ts_nodata_table <- function(sites, var, src) {
     need_var <- strsplit(need, '\\.')[[1]][2]
     switch(
       need_type,
-      var=ifelse(sites %in% list_sites(with_var_src=var_choices[[need]], logic='any'), 'true', NA),
+      var=ifelse(
+        sites %in% list_sites(
+          with_var_src=var_choices[[need]], logic='any', with_ts_version=config$version, 
+          with_ts_archived=FALSE, with_ts_uploaded_after=config$posted_after), # only accept the freshest data
+        'true', NA),
       coord=ifelse(sites %in% coords[!is.na(coords[[need_var]]), 'site_name'], 'true', NA),
       dvqcoef=ifelse(sites %in% dvqcoefs[!is.na(dvqcoefs[[paste0('dvqcoefs.', need_var)]]), 'site_name'], 'true', NA)
     )
