@@ -16,7 +16,6 @@ packages:
   - ggplot2
   
 sources:
-  - ../lib/load_profile.R
   - ../1_timeseries/code/summarize_ts_tables.R
   - ../1_timeseries/code/create_ts_table.R
   - ../1_timeseries/code/sb_check_ts_status.R

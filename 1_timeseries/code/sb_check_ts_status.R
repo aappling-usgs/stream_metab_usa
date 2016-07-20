@@ -7,7 +7,7 @@
 #' @param no_data vector of filenames where we've confirmed that there are no
 #'   available data. The no.data status of filenames not mentioned will be 
 #'   untouched.
-#' @seealso read_status_table write_status_table auth_from_profile
+#' @seealso read_status_table write_status_table
 #' @import dplyr
 sb_check_ts_status <- function(ts.file, phase=c('stage','post'), no_data, posted_after='2016-04-01') {
   phase <- match.arg(phase)
@@ -30,7 +30,7 @@ sb_check_ts_status <- function(ts.file, phase=c('stage','post'), no_data, posted
   } else if(phase=='post') {
     # recalculate the 'remote' column
     message('checking timeseries status on ScienceBase')
-    auth_from_profile()
+    login_sb()
     sites_by_tbl <- details$site_name
     ts_query <- summarize_ts_files(var_src) %>%
       filter(version %in% details$version, !is_archive, upload_date > posted_after)
