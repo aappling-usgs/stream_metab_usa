@@ -16,7 +16,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
   }
   to.stage <- bind_cols(to.stage, parse_ts_path(to.stage$filepath, out=c('site_name','version','dir_name')))
   
-  # read the full ts.table for reporting
+  # read the full ts.table for reporting (and, for calc_ts, documenting progress)
   ts.table <- read_status_table(ts.file)
   message(
     'staging data for ', nrow(to.stage), ' new sites; ', 
@@ -37,7 +37,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
       gconfig(sleep.time=60, retries=2)
       processed.files <- stage_ldas_ts(
         sites=to.stage$site_name, var=var, src=src, times=config$times, 
-        version=config$version, folder=unique(to.stage$dir_name), 
+        version=config$version, folder=dir.name, 
         url=config[[paste0(src, '_url')]], verbose=TRUE)
       no_data <- to.stage$filepath[!(to.stage$filepath %in% processed.files)]
       
@@ -52,7 +52,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
           local.file <- withCallingHandlers({ 
             stage_nwis_ts(
               sites=to.stage$site_name[i], var=var, times=config$times, 
-              version=config$version, folder=to.stage$dir_name[i], verbose=TRUE)
+              version=config$version, folder=dir.name, verbose=TRUE)
           }, warning=function(w) {
             if(grepl("NWIS error", w$message)) message(w$message)
           }, message=function(m) {
@@ -63,9 +63,33 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
         }
         if((i %% 10) == 0) sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
       }
-    } else if (src == 'calc') {
-      # staged <- stage_calc_ts(sites[i], var=parse_var_src(var_src, out='var'),
-      # src=parse_var_src(var_src, out='src'), day_start=config$day_hours[1], day_end=config$day_hours[2])
+    } else if (substr(src, 1, 4) == 'calc') {
+      no_data <- c()
+      for(i in 1:nrow(to.stage)) {
+        tryCatch({
+          # do the staging
+          staged <- stage_calc_ts(
+            to.stage[i,'site_name'], var=var, src=src, folder=dir.name,
+            day_start=config$day_hours[1], day_end=config$day_hours[2], 
+            with_ts_version=config$version, with_ts_archived=FALSE, with_ts_uploaded_after=config$posted_after)
+          
+          # update the ts.status table and write to file
+          srces <- select(attr(staged, 'choices'), -site_name, -file_path)
+          status.row <- which(ts.table$filepath == attr(staged, 'choices')$file_path)
+          if((length(status.row) != 1) || !all(names(srces) %in% names(ts.table))) stop('ts.status update error')
+          for(var.src in colnames(srces)) {
+            ts.table[status.row, var.src] <- srces[1,var.src]
+          }
+          write_status_table(ts.table, ts.file)
+        }, error=function(e) {
+          suppressWarnings(file.remove(to.stage$filepath[i]))
+          if(grepl("(could not locate an appropriate ts)", e$message)) {
+            no_data <<- c(no_data, to.stage$filepath[i])
+          } else {
+            stop("unexpected error: ", e$message)
+          }
+        })
+      }
     }
   }
   to.stage <- sb_check_ts_status(ts.file, phase='stage', no_data=no_data) # not used by 'stage': posted_after=config$posted_after
