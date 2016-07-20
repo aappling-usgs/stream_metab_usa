@@ -14,8 +14,6 @@ sources:
   - ../1_site_data/code/cache_meta_basic.R
   - ../1_site_data/code/cache_meta_dvqcoefs.R
   - ../lib/write_status_table.R
-  - ../lib/auth_from_profile.R
-  - ../lib/load_profile.R
   - ../lib/cache_meta.R
   - ../lib/sb_post_meta.R
 

@@ -13,7 +13,6 @@ packages:
   - hydroMap  
 
 sources:
-  - ../lib/load_profile.R
   - ../1_spatial/code/makeshape.R
   
 targets:
