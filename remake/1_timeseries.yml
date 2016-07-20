@@ -22,6 +22,7 @@ sources:
   - ../1_timeseries/code/sb_check_ts_status.R
   - ../1_timeseries/code/stage_ts.R
   - ../1_timeseries/code/sb_post_ts.R
+  - ../1_timeseries/code/sb_archive_ts.R
 
 targets:
   1_timeseries:
