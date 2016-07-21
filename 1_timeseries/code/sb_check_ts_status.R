@@ -25,7 +25,7 @@ sb_check_ts_status <- function(ts.file, phase=c('stage','post'), no_data, posted
     if(!missing(no_data) && length(no_data) > 0) {
       ts.table[ts.table$filepath %in% no_data, 'no.data'] <- TRUE
     }
-    needed <- filter(ts.table, !local, !no.data, !posted, !tagged) 
+    needed <- dplyr::filter(ts.table, !local, !no.data, !posted, !tagged) 
     
   } else if(phase=='post') {
     # recalculate the 'remote' column

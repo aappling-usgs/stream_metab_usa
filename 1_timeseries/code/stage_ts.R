@@ -4,8 +4,11 @@
 #'   sites
 #' @param config a config list used to parameterize calls to stage_nwis_ts or 
 #'   stage_nldas_ts
-#' @return side effect: creates files and updates the ts.file. Returns TRUE if
+#' @return side effect: creates files and updates the ts.file. Returns TRUE if 
 #'   successful, stops on error otherwise
+#' @import mda.streams
+#' @import dplyr
+#' @seealso sb_check_ts_status read_status_table write_status_table
 stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_config.yml")){
   
   # update the ts.file for remote and local status. done here in case the status
@@ -68,6 +71,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
       for(i in 1:nrow(to.stage)) {
         tryCatch({
           # do the staging
+          message('staging ', var, '_', src, ' for site ', to.stage[i,'site_name'])
           staged <- stage_calc_ts(
             to.stage[i,'site_name'], var=var, src=src, folder=dir.name,
             day_start=config$day_hours[1], day_end=config$day_hours[2], 
@@ -77,9 +81,8 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
           srces <- select(attr(staged, 'choices'), -site_name, -file_path)
           status.row <- which(ts.table$filepath == attr(staged, 'choices')$file_path)
           if((length(status.row) != 1) || !all(names(srces) %in% names(ts.table))) stop('ts.status update error')
-          for(var.src in colnames(srces)) {
-            ts.table[status.row, var.src] <- srces[1,var.src]
-          }
+          ts.table[status.row, colnames(srces)] <- srces[1, colnames(srces)]
+          ts.table[status.row, 'local'] <- TRUE
           write_status_table(ts.table, ts.file)
         }, error=function(e) {
           suppressWarnings(file.remove(to.stage$filepath[i]))
