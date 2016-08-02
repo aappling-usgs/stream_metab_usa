@@ -104,7 +104,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
       }
     }, 
     error=function(e) {
-      message('error in sb_post_ts: ', e)
+      message('error in stage_ts: ', e)
       message('sleeping for 2 minutes before retry')
       Sys.sleep(60*2) # sleep a good long while to let SB recover
       FALSE

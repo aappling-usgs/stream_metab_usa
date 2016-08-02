@@ -68,4 +68,5 @@ summarize_ts_tables <- function() {
     
   }, finally = { if(with_chdir) setwd(wd) }
   )
+  progress_bars
 }
