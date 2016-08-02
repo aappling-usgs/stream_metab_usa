@@ -53,11 +53,11 @@ create_ts_table <- function(sites, config, outfile){
     # create and write the site table
     site.table <- data.frame(filepath=filepaths, local=FALSE, no_data, posted=FALSE, tagged=FALSE)
     write_status_table(site.table, outfile)
-    
-    # udpate the local/posted/tagged columns
-    sb_check_ts_status(outfile, phase='stage')
-    sb_check_ts_status(outfile, phase='post', posted_after=config$posted_after)
   }
+  
+  # udpate the local/posted/tagged columns
+  sb_check_ts_status(outfile, phase='stage')
+  sb_check_ts_status(outfile, phase='post', posted_after=config$posted_after)
   
   return()
 }
