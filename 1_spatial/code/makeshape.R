@@ -147,14 +147,20 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
 #' write a zipped shapefile to the path specified
 #' 
 #' @param obj the sp object to be written to shapefile
-#' @param fileout the filepath for the zipped shapefile
+#' @param layer the folder name and layer name for the shapefile
 #' 
-#' @details uses rgdal's writeOGR to write the individual shapefile files, 
-#' then zips them up into the specified directory
-write_zipped_shapefile <- function(obj, fileout){
-  layer = strsplit(basename(fileout),'[.]')[[1]][1]
-  dsn <- tempdir()
-  writeOGR(obj, dsn=dsn, layer = layer, driver = 'ESRI Shapefile', overwrite_layer=TRUE)
-  files <- file.path(dsn, dir(dsn)[grepl(pattern = layer, dir(dsn))])
-  zip(fileout, files = files)
+#' @details uses rgdal's writeOGR to write the individual shapefile files
+write_shapefile <- function(obj, layer){
+  shape.dir <- file.path('../1_spatial/cache',layer)
+  writeOGR(obj, dsn=shape.dir, layer = layer, driver = 'ESRI Shapefile', overwrite_layer=TRUE)
+  files <- file.path(shape.dir, dir(shape.dir))
+  return(files)
+}
+
+post_shapefile <- function(files, target_name){
+  spatial.id <- '57adfe26e4b0fc09faad6d97'
+  profile <- load_profile()
+  authenticate_sb(profile$sb_user, profile$sb_password)
+  item.id <- item_create(parent_id = spatial.id, title = target_name)
+  item_append_files(sb_id = item.id$id, files = files)
 }
