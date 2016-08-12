@@ -21,7 +21,7 @@ spatial_filter_sites <- function(metadata.file){
 #' 
 #' @param sites a data.frame with site ids and lat/lon values (from \code{spatial_filter_sites})
 create_site_points <- function(sites, crs.string = "+init=epsg:4326"){
-
+  
   crs.strings <- c('NAD83'='+init=epsg:4269', 'WGS84'='+init=epsg:4326')
   datums <- unique(sites$coord_datum)
   
@@ -45,20 +45,36 @@ create_site_points <- function(sites, crs.string = "+init=epsg:4326"){
   return(points.sp)
 }
 
+#' combine multiple similar sp objects into one
+#' 
+#' @param \dots sp objects of the same class and with the same attributes
+#' 
+#' This function combines sp objects and returns a single sp object. 
 combine_spatial <- function(...){
   to.combine <- list(...)
   sp.out <- to.combine[[1]]
+  uid <-1 
+  n <- length(slot(sp.out, "polygons"))  
+  sp.out <- spChFIDs(sp.out, as.character(uid:(uid+n-1)))
+  uid <- uid + n
   for (i in seq_len(length(to.combine))[-1L]){
-    row.names(to.combine[[i]]) <- as.character(as.numeric(row.names(to.combine[[i]]))+length(sp.out))
-    for (id in seq_len(length(row.names(to.combine[[i]])))){
-      slot(slot(to.combine[[i]], "polygons")[[id]],'ID') <- row.names(to.combine[[i]])[id]
-      slot(slot(to.combine[[i]], "polygons")[[id]],'plotOrder') <- as.integer(as.numeric(row.names(to.combine[[i]])[id])-1)
-    }
-    sp.out <- maptools::spRbind(sp.out, to.combine[[i]])
+    n <- length(slot(to.combine[[i]], "polygons"))
+    to.combine[[i]] <- spChFIDs(to.combine[[i]], as.character(uid:(uid+n-1)))
+    uid <- uid + n 
+    sp.out<- maptools::spRbind(sp.out,to.combine[[i]]) 
   }
   return(sp.out)
 }
 
+#' create a summary map of sites and catchments
+#' 
+#' @param points sp object of SpatialPointsDataFrame
+#' @param catchments sp object of SpatialPolygonsDataFrame
+#' @param outfile the name of the image to create (must end in '.png')
+#' 
+#' This is a summary function for seeing the sites and the catchments as a single figure. 
+#' The sites with a catchment are plotted as green, and sites w/o a catchment are red. 
+#' Only catchment boundaries are plotted (no fill color used).
 inventory_map <- function(points, catchments, outfile){
   catchment.ids <- as.character(unique(catchments@data$site_name))
   message(length(catchment.ids), ' sites w/ catchments (out of ', length(points),')')
@@ -69,6 +85,15 @@ inventory_map <- function(points, catchments, outfile){
   dev.off()
 }
 
+#' get catchments from web services and return sp objects
+#' 
+#' @param sites data.frame of site metadata that includes field for `site_name`
+#' @param feature.name what webservice endpoint to use. Currently epa_basins or gagesii_basins
+#' @param ignore.sites an sp object which will be used to get site names to leave out of the request (defaults to NULL)
+#' @param crs.string the coordinate reference to export as
+#' 
+#' returns an sp object with SpatialPolygonDataFrame for the catchments requested. 
+#' Only the matches are returned, so the result is often incomplete relative to the sites requested. 
 get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'), ignore.sites=NULL, crs.string = "+init=epsg:4326"){
   site.ids <- mda.streams::parse_site_name(sites$site_name, out='sitenum')
   if (!is.null(ignore.sites)){
@@ -119,6 +144,17 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
   return(catchments)
 }
 
-write_shapefile <- function(obj, fileout){
-  stop('asdf')#writeOGR
+#' write a zipped shapefile to the path specified
+#' 
+#' @param obj the sp object to be written to shapefile
+#' @param fileout the filepath for the zipped shapefile
+#' 
+#' @details uses rgdal's writeOGR to write the individual shapefile files, 
+#' then zips them up into the specified directory
+write_zipped_shapefile <- function(obj, fileout){
+  layer = strsplit(basename(fileout),'[.]')[[1]][1]
+  dsn <- tempdir()
+  writeOGR(obj, dsn=dsn, layer = layer, driver = 'ESRI Shapefile', overwrite_layer=TRUE)
+  files <- file.path(dsn, dir(dsn)[grepl(pattern = layer, dir(dsn))])
+  zip(fileout, files = files)
 }

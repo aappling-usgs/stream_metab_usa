@@ -18,8 +18,8 @@ sources:
 targets:
   1_spatial:
     depends: 
-      - ../1_spatial/out/site_catchment_map.png
-      - spatial.points
+      - ../1_spatial/out/site_catchment_shapefile.zip
+      - ../1_spatial/out/site_points_shapefile.zip
 
     
   spatial.sites: 
@@ -39,5 +39,11 @@ targets:
     
   ../1_spatial/out/site_catchment_map.png:
     command: inventory_map(spatial.points, spatial.catchments, target_name)
+    
+  ../1_spatial/out/site_catchment_shapefile.zip:
+    command: write_zipped_shapefile(spatial.catchments, target_name)
+    
+  ../1_spatial/out/site_points_shapefile.zip:
+    command: write_zipped_shapefile(spatial.points, target_name)
     
   
