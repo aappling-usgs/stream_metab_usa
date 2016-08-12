@@ -9,6 +9,7 @@
 #' remake_smu('../1_timeseries/out/files_ts_wtr_nwis.tsv', '1_timeseries.yml')
 #' remake_smu('wtr_nwis', '1_timeseries.yml')
 remake_smu <- function(target_names, remake_file, ...) {
+  message(Sys.time())
   shortdir <- function(wd=getwd()) file.path(basename(dirname(wd)), basename(wd))
   message('current directory: ', shortdir())
   wd <- getwd()
@@ -24,5 +25,6 @@ remake_smu <- function(target_names, remake_file, ...) {
     finally = { if(with_chdir) setwd(wd) }
   )
   message('current directory: ', shortdir())
+  message(Sys.time())
   return(out)
 }

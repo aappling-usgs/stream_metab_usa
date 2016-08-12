@@ -12,15 +12,15 @@ packages:
   - mda.streams
   - dataRetrieval
   - tidyr
+  - knitr
   - ggplot2
   
 sources:
-  - ../lib/load_profile.R
-  - ../1_timeseries/code/summarize_ts_tables.R
   - ../1_timeseries/code/create_ts_table.R
   - ../1_timeseries/code/sb_check_ts_status.R
   - ../1_timeseries/code/stage_ts.R
   - ../1_timeseries/code/sb_post_ts.R
+  - ../1_timeseries/code/sb_archive_ts.R
 
 targets:
   1_timeseries:
@@ -48,9 +48,6 @@ targets:
       - sb_doamp_calcDAmp
       - sb_dischdaily_calcDMean
       - sb_velocdaily_calcDMean
-  
-  ts_status:
-    command: summarize_ts_tables()
   
   ts.config:
     command: yaml.load_file("../1_timeseries/in/ts_config.yml")
@@ -93,9 +90,9 @@ targets:
     command: create_ts_table(sb_sites, ts.config, target_name)
   ../1_timeseries/out/files_ts_sw_nldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
-  ../1_timeseries/out/files_ts_sw_gldas.tsv:
-    command: create_ts_table(sb_sites, ts.config, target_name)
   ../1_timeseries/out/files_ts_baro_gldas.tsv:
+    command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_sw_gldas.tsv:
     command: create_ts_table(sb_sites, ts.config, target_name)
   
   ../1_timeseries/out/files_ts_dosat_calcGGbts.tsv:
@@ -189,7 +186,7 @@ targets:
     command: stage_ts('../1_timeseries/out/files_ts_sw_nldas.tsv')
     depends: sb_meta_basic
   baro_gldas:
-    command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')
+    command: stage_ts('../1_timeseries/out/files_ts_baro_gldas.tsv')
     depends: sb_meta_basic
   sw_gldas:
     command: stage_ts('../1_timeseries/out/files_ts_sw_gldas.tsv')

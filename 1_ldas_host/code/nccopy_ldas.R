@@ -1,8 +1,13 @@
 #' actually move the files from one server to another
 #' 
-#' @param file.list a file that contains a list of the files to get and move to another server
+#' @param file.list a file that contains a list of the files to get and move to 
+#'   another server
 #' @param mssg.file the status file to log details to
-#' @param internal.confg a list that contains some things that shouldn't be checked into a repo, including server dir structure
+#' @param internal.confg a list that contains some things that shouldn't be 
+#'   checked into a repo, including server dir structure. The fields used are 
+#'   \code{metab_user} and \code{thredds_dir}. See 
+#'   \code{\link[mda.streams]{login_sb}} for basic setup requirements for the 
+#'   profile; these fields may be added.
 nccopy_ldas <- function(file.list, mssg.file, internal.config){
   files <- read.table(file.list, sep='\t', stringsAsFactors = FALSE, header = TRUE)
   

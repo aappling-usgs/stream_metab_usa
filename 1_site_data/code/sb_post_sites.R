@@ -3,7 +3,7 @@
 #' @param site.file a tsv containing status information on site availability and SB presence
 sb_post_sites <- function(site.file, config) {
   # post to ScienceBase any sites that are not yet fully remotely posted
-  auth_from_profile()
+  login_sb()
   sites_to_post <- sb_check_site_status(site.file)
   post_site(sites_to_post, on_exists=config$on_exists)
   

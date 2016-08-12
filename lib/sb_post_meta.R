@@ -1,10 +1,9 @@
 #' Replace existing metadata files on SB with new ones
 #' 
 #' @import mda.streams
-#' @seealso auth_from_profile
 sb_post_meta <- function(meta.file, config=yaml::yaml.load_file('../1_site_data/in/meta_config.yaml')) {
   # try the post operation
-  auth_from_profile()
+  login_sb()
   post_meta(meta.file, on_exists=config$on_exists)
   
   # for those meta files that were successfully posted just now, check the tags 
