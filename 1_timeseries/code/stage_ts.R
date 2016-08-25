@@ -70,6 +70,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
               }
               if((i %% 10) == 0) sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
             }
+            
           } else if (substr(src, 1, 4) == 'calc') {
             no_data <- c()
             for(i in 1:nrow(to.stage)) {
@@ -100,11 +101,13 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
               })
             }
           }
+          
+          sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
         }
       }
     }, 
     error=function(e) {
-      message('error in sb_post_ts: ', e)
+      message('error in stage_ts: ', e)
       message('sleeping for 2 minutes before retry')
       Sys.sleep(60*2) # sleep a good long while to let SB recover
       FALSE
