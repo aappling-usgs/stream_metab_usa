@@ -9,6 +9,7 @@
 #'   untouched.
 #' @seealso read_status_table write_status_table
 #' @import dplyr
+#' @import mda.streams
 sb_check_ts_status <- function(ts.file, phase=c('stage','post'), no_data, posted_after='2016-04-01') {
   phase <- match.arg(phase)
   posted_after <- as.POSIXct(posted_after)
@@ -21,7 +22,7 @@ sb_check_ts_status <- function(ts.file, phase=c('stage','post'), no_data, posted
   var_src <- unique(details$var_src)
   
   if(phase=='stage') {
-    ts.table$local <- file.exists(ts.table$filepath)
+    ts.table$local <- ifelse(is.na(ts.table$local), NA, file.exists(ts.table$filepath))
     if(!missing(no_data) && length(no_data) > 0) {
       ts.table[ts.table$filepath %in% no_data, 'no.data'] <- TRUE
     }
@@ -38,6 +39,7 @@ sb_check_ts_status <- function(ts.file, phase=c('stage','post'), no_data, posted
     sites_by_tag <- ts_query$site_name[ts_query$by_tag]
     ts.table$posted <- sites_by_tbl %in% sites_by_dir
     ts.table$tagged <- sites_by_tbl %in% sites_by_tag
+    ts.table$local[ts.table$tagged | ts.table$no.data] <- NA
     needed <- filter(ts.table, local & (!posted | !tagged))
   }
   
