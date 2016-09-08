@@ -7,7 +7,7 @@ create_FGDC_template <- function(file.out){
   
   d <- xml_new_document()
   mt <-  xml_add_child(d, "metadata")
-  m <- xml_add_child(d, "idinfo")
+  m <- xml_add_child(mt, "idinfo")
   
   # <---Bibliodata--->
   m %>%  xml_add_child("citation") %>%
@@ -16,19 +16,23 @@ create_FGDC_template <- function(file.out){
     xml_add_sibling('pubdate', "{{pubdate}}") %>%
     xml_add_sibling('title', "{{title}}") %>%
     xml_add_sibling('geoform', "text files") %>%
-    xml_add_sibling('onlink', "{{doi}}")
+    xml_add_sibling('onlink', "{{doi}}") %>% 
+    xml_add_sibling('lworkcit-template')
   
   m %>%
     xml_add_child('descript') %>%
-    xml_add_child("abstract",'{{abstract}}') %>%
+    xml_add_child("abstract",'{{abstract}} This data set contains the following parameters: ABSCONTENT-TEMPLATEwhich are defined below.') %>%
     xml_add_sibling("purpose", '{{purpose}}')
   
-  m %>%
+  ti <- m %>%
     xml_add_child('timeperd') %>%
-    xml_add_child("timeinfo") %>%
+    xml_add_child("timeinfo") 
+  ti %>% 
     xml_add_child("rngdates") %>%
     xml_add_child('begdate','{{start-date}}') %>%
     xml_add_sibling('enddate','{{end-date}}')
+  ti %>% 
+    xml_add_sibling('current','model estimates')
   m %>%
     xml_add_child('status') %>%
     xml_add_child("progress", "Complete") %>% 
@@ -82,16 +86,18 @@ create_FGDC_template <- function(file.out){
   
   pt <-  xml_add_child(m,'ptcontac') 
   
-  pt %>% 
+  ci <- pt %>% 
     xml_add_child('cntinfo') %>% 
-    xml_add_child('cntperp') %>% 
+    xml_add_child('cntperp') 
+  ci %>% 
     xml_add_child('cntper','{{contact-person}}') %>% 
     xml_add_sibling('cntorg','U.S. Geological Survey')
   
   p %>% 
     xml_add_sibling('useconst','{{usage-rules}}')
   
-  pt %>% xml_add_child('cntaddr') %>% 
+  adr <- ci %>% xml_add_sibling('cntaddr') 
+  adr %>%
     xml_add_child('addrtype','Mailing and Physical') %>% 
     xml_add_sibling('address', '8551 Research Way') %>% 
     xml_add_sibling('city','Middleton') %>% 
@@ -99,7 +105,7 @@ create_FGDC_template <- function(file.out){
     xml_add_sibling('postal','53562') %>% 
     xml_add_sibling('country','U.S.A.')
   
-  pt %>%  xml_add_child('cntvoice','{{contact-phone}}') %>% 
+  adr %>% xml_add_sibling('cntvoice','{{contact-phone}}') %>% 
     xml_add_sibling('cntemail','{{contact-email}}')
   # </---Contact people --->
   
@@ -107,16 +113,7 @@ create_FGDC_template <- function(file.out){
   m %>% 
     xml_add_child('datacred','{{funding-credits}}') %>% 
     xml_add_sibling('native','{{build-environment}}') %>% 
-    xml_add_sibling('crossref') %>% 
-    xml_add_child('citeinfo') %>% 
-    xml_add_child('origin','{{cite-authors}}') %>% 
-    xml_add_sibling('pubdate','{{cite-date}}') %>% 
-    xml_add_sibling('title','{{cite-title}}') %>% 
-    xml_add_sibling('geoform','{{paper}}') %>% 
-    xml_add_sibling('pubinfo') %>% 
-    xml_add_child('pubplace',"{{publisher}}") %>% 
-    xml_add_sibling('publish','{{journal}}')
-  # </---Credit and external bibliodata--->
+    xml_add_sibling('crossref-template')
   
   # <---Data quality--->
   q <- xml_add_child(mt, 'dataqual')
@@ -127,7 +124,7 @@ create_FGDC_template <- function(file.out){
   q %>% xml_add_child('logic','not applicable') %>% 
     xml_add_sibling('complete','not applicable')
   
-  p <- xml_add_child(mt, 'posacc') 
+  p <- xml_add_child(q, 'posacc') 
   p %>% xml_add_child('horizpa') %>% 
     xml_add_child('horizpar','A formal accuracy assessment of the horizontal positional information in the data set has not been conducted.')
   
@@ -135,17 +132,17 @@ create_FGDC_template <- function(file.out){
     xml_add_child('vertacc') %>% 
     xml_add_child('vertaccr','A formal accuracy assessment of the vertical positional information in the data set has either not been conducted, or is not applicable.')
   
-  xml_add_sibling(p, 'spdoinfo') %>% 
+  xml_add_sibling(q, 'spdoinfo') %>% 
     xml_add_child('indspref','{{indirect-spatial}}') %>% 
     xml_add_sibling('direct','Point') %>% 
     xml_add_sibling('ptvctinf') %>% 
     xml_add_child('sdtsterm') %>% 
-    xml_add_child('sdtstype','Point') %>% 
-    xml_add_sibling('ptvctcnt','{{point-count}}')
+    xml_add_child('sdtstype','{{feature-type}}') %>% 
+    xml_add_sibling('ptvctcnt','{{feature-count}}')
   # </---Data quality--->
   
   # <---Processing steps--->
-  p %>% xml_add_sibling('lineage') %>% 
+  q %>% xml_add_child('lineage') %>% 
     xml_add_child('procstep') %>% 
     xml_add_child('procdesc','{{process-description}}') %>% 
     xml_add_sibling('procdate','{{process-date}}')
@@ -218,11 +215,10 @@ create_FGDC_template <- function(file.out){
   xml_add_child(so,'fees','None')
   
   # <---Metadata creator--->
-  mi <- xml_add_child(mt, 'metainfo')
-  mi %>% 
-    xml_add_child('metd','{{metadata-date}}') %>% 
-    xml_add_sibling('metc')
-  cni <- xml_add_child(mi,'cntinfo')
+  mi <- xml_add_child(mt, 'metainfo')%>% 
+    xml_add_child('metd','{{metadata-date}}')
+  mt <- mi %>% xml_add_sibling('metc')
+  cni <- xml_add_child(mt,'cntinfo')
   cni %>% 
     xml_add_child('cntperp') %>% 
     xml_add_child('cntper','{{metadata-person}}') %>% 
@@ -240,41 +236,69 @@ create_FGDC_template <- function(file.out){
     xml_add_child('cntvoice','{{metadata-phone}}') %>% 
     xml_add_sibling('cntfax','608 821-3817') %>% 
     xml_add_sibling('cntemail','{{metadata-email}}')
-  mi %>% 
-    xml_add_child('metstdn','FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata') %>% 
+  mt %>% 
+    xml_add_sibling('metstdn','FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata') %>% 
     xml_add_sibling('metstdv','FGDC-STD-001.1-1999')
   # </---Metadata creator--->
   
   write_xml(d, file = tempxml)
   
   place.template = "{{#states}}
-    <place>\n\t\t\t<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-      <placekey>{{state-name}}</placekey>
-      <placekey>{{state-abbr}}</placekey>
-    </place>
-    {{/states}}"
+  <place>\n\t\t\t<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
+  <placekey>{{state-name}}</placekey>
+  <placekey>{{state-abbr}}</placekey>
+  </place>
+  {{/states}}"
   
   state.template = "{{#states}}<place>
-      <placekt>none</placekt>
-      <placekey>{{state-name}}</placekey>
-    </place>
-    {{/states}}"
+  <placekt>none</placekt>
+  <placekey>{{state-name}}</placekey>
+  </place>
+  {{/states}}"
+  
+  abscontent.template = "{{#attributes}}{{attr-label}}, {{/attributes}}"
   
   origin.template = "{{#authors}}
-      <origin>{{.}}</origin>
-      {{/authors}}"
+  <origin>{{.}}</origin>
+  {{/authors}}"
   attr.template = "{{#attributes}}<attr>
-          <attrlabl>{{attr-label}}</attrlabl>
-          <attrdef>{{attr-def}}</attrdef>
-          <attrdefs>{{attr-defs}}</attrdefs>
-          <attrdomv>
-            <rdom>
-              <rdommin>{{data-min}}</rdommin>
-              <rdommax>{{data-max}}</rdommax>
-              <attrunit>{{data-units}}</attrunit>
-            </rdom>
-          </attrdomv>
-        </attr>\n{{/attributes}}"
+  <attrlabl>{{attr-label}}</attrlabl>
+  <attrdef>{{attr-def}}</attrdef>
+  <attrdefs>{{attr-defs}}</attrdefs>
+  <attrdomv>
+  <rdom>
+  <rdommin>{{data-min}}</rdommin>
+  <rdommax>{{data-max}}</rdommax>
+  <attrunit>{{data-units}}</attrunit>
+  </rdom>
+  </attrdomv>
+  </attr>\n{{/attributes}}"
+  
+  lworkcit.template = "{{#larger-cites}}<lworkcit>
+  <citeinfo>
+  {{#authors}}
+  <origin>{{.}}</origin>
+  {{/authors}} 
+  <pubdate>{{pubdate}}</pubdate>
+  <title>{{title}}</title>
+  {{#link}}
+  <onlink>{{.}}</onlink>
+  {{/link}} 
+  </citeinfo>
+  </lworkcit>\n{{/larger-cites}}"
+  
+  crossref.template = "{{#cross-cites}}<crossref>
+  <citeinfo>
+  {{#authors}}
+  <origin>{{.}}</origin>
+  {{/authors}} 
+  <pubdate>{{pubdate}}</pubdate>
+  <title>{{title}}</title>
+  {{#link}}
+  <onlink>{{.}}</onlink>
+  {{/link}} 
+  </citeinfo>
+  </crossref>\n{{/cross-cites}}"
   
   suppressWarnings(readLines(tempxml)) %>% 
     gsub(pattern = '&gt;',replacement = '>',.) %>% 
@@ -283,7 +307,10 @@ create_FGDC_template <- function(file.out){
     gsub(pattern = '<state-template/>', replacement = state.template) %>% 
     sub(pattern = '<origin-template/>', replacement = origin.template) %>% 
     gsub(pattern = '<attr-template/>', replacement = attr.template) %>% 
+    gsub(pattern = '<lworkcit-template/>', replacement = lworkcit.template) %>% 
+    gsub(pattern = '<crossref-template/>', replacement = crossref.template) %>% 
+    gsub(pattern = 'ABSCONTENT-TEMPLATE', replacement = abscontent.template) %>% 
     cat(file = file.out, sep = '\n')
   return(file.out)
-}
+  }
 
