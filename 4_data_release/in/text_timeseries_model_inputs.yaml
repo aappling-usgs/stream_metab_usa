@@ -29,7 +29,6 @@ journal: Nature Scientific Data
 process-description: data were pulled or synthesized from existing etc...
 process-date: SCRIPT 20161104
 indirect-spatial: U.S.A.
-point-count: SCRIPT 391
 latitude-res: 0.1?
 longitude-res: 0.1?
 data-name: River metabolism input data

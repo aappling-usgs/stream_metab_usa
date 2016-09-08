@@ -137,8 +137,8 @@ create_FGDC_template <- function(file.out){
     xml_add_sibling('direct','Point') %>% 
     xml_add_sibling('ptvctinf') %>% 
     xml_add_child('sdtsterm') %>% 
-    xml_add_child('sdtstype','Point') %>% 
-    xml_add_sibling('ptvctcnt','{{point-count}}')
+    xml_add_child('sdtstype','{{feature-type}}') %>% 
+    xml_add_sibling('ptvctcnt','{{feature-count}}')
   # </---Data quality--->
   
   # <---Processing steps--->

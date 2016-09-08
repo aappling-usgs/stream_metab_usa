@@ -2,9 +2,11 @@ extract_spatial_metadata <- function(sp.path){
   
   sp <- readOGR(dirname(sp.path[1]), strsplit(basename(sp.path[1]), "\\.")[[1]][1])
   
-  metadata.out <- list()
-  metadata.out <- append(metadata.out, get_bbox(sp))
-  metadata.out <- append(metadata.out, get_states(sp))
+  metadata.out <- list() %>% 
+    append(get_bbox(sp)) %>% 
+    append(get_states(sp)) %>% 
+    append(get_feature_count(sp))
+  
   return(metadata.out)
 }
 
@@ -15,6 +17,13 @@ get_bbox <- function(sp){
   bounds <- bbox(sp)
   return(list(wbbox=bounds[1,1], ebbox=bounds[1,2], 
               nbbox=bounds[2,1], sbbox=bounds[2,2]))
+}
+
+get_feature_count <- function(sp){
+  feature.type = switch(class(sp),
+                        "SpatialPointsDataFrame" = "Point",
+                        "SpatialPolygonsDataFrame" = "G-polygon")
+  list('feature-type'=feature.type, 'feature-count'=length(sp))
 }
 
 get_states <- function(sp){
