@@ -7,11 +7,17 @@ packages:
   - yaml
   - xml2
   - whisker
+  - rgdal
+  - httr
+  - sbtools
+  - rgeos
+  - dataRetrieval
   
 sources:
   - ../4_data_release/code/create_FGDC_template.R
   - ../4_data_release/code/render_FGDC_metadata.R
   - ../4_data_release/code/post_data_release.R
+  - ../4_data_release/code/extract_metadata.R
   - ../lib/load_profile.R
   
 targets:
@@ -31,12 +37,15 @@ targets:
     
   timeseries.text:
     command: yaml.load_file("../4_data_release/in/text_timeseries_model_inputs.yaml")
-
+    
+  catchments.metadata:
+    command: extract_spatial_metadata(site_catchment_shapefile)
+    
   ../4_data_release/out/site_catchment_shapefile.shp.xml:
-    command: render_FGDC_metadata("../4_data_release/out/FGDC_template.mustache", timeseries.text, target_name) ## placeholder text for now
+    command: render_FGDC_metadata("../4_data_release/out/FGDC_template.mustache", target_name, timeseries.text, catchments.metadata) ## placeholder text for now
     
   ../4_data_release/out/site_points_shapefile.shp.xml:
-    command: render_FGDC_metadata("../4_data_release/out/FGDC_template.mustache", timeseries.text, target_name) ## placeholder text for now
+    command: render_FGDC_metadata("../4_data_release/out/FGDC_template.mustache", target_name, timeseries.text) ## placeholder text for now
 
   site_catchments:
     command: create_release_item(pc1_spatial, target_name, site_catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
