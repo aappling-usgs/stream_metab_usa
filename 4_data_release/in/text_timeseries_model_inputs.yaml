@@ -9,18 +9,7 @@ purpose: To bring metabolism data to the world!
 start-date: SCRIPT 20070101
 end-date: SCRIPT 2016XXXX
 update: update planned for year 2020
-wbbox: SCRIPT -109
-ebbox: SCRIPT -68
-nbbox: SCRIPT 52
-sbbox: SCRIPT 26.3
 themekeywords: ["water","streams","rivers","metabolism","primary productivity","carbon","respiration"]
-states: 
-  - 
-    state-name: Wisconsin
-    state-abbr: WI
-  -
-    state-name: New Hampshire
-    state-abbr: NH
 usage-rules: >- 
   These data are subject to change and are not citable until reviewed and approved for official publication by the USGS
 
