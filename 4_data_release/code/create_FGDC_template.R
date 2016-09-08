@@ -21,7 +21,7 @@ create_FGDC_template <- function(file.out){
   
   m %>%
     xml_add_child('descript') %>%
-    xml_add_child("abstract",'{{abstract}}') %>%
+    xml_add_child("abstract",'{{abstract}} This data set contains the following parameters: ABSCONTENT-TEMPLATEwhich are defined below.') %>%
     xml_add_sibling("purpose", '{{purpose}}')
   
   ti <- m %>%
@@ -256,6 +256,8 @@ create_FGDC_template <- function(file.out){
   </place>
   {{/states}}"
   
+  abscontent.template = "{{#attributes}}{{attr-label}}, {{/attributes}}"
+  
   origin.template = "{{#authors}}
   <origin>{{.}}</origin>
   {{/authors}}"
@@ -307,6 +309,7 @@ create_FGDC_template <- function(file.out){
     gsub(pattern = '<attr-template/>', replacement = attr.template) %>% 
     gsub(pattern = '<lworkcit-template/>', replacement = lworkcit.template) %>% 
     gsub(pattern = '<crossref-template/>', replacement = crossref.template) %>% 
+    gsub(pattern = 'ABSCONTENT-TEMPLATE', replacement = abscontent.template) %>% 
     cat(file = file.out, sep = '\n')
   return(file.out)
   }
