@@ -21,12 +21,4 @@ render_FGDC_metadata <- function(template.file, file.out, ...){
   xml2::write_xml(xml, file.out)
 }
 
-#' @param list0 the list to append to (w/ replacement)
-#' @param list1 the list from which to take replace/append elements from
-list_append_replace <- function(list0, list1){
-  # remove duplicate list elements from list0
-  list0[names(list0) %in% names(list1)] <- NULL
-  # append new list
-  return(append(list0, list1))
-  
-}
+
