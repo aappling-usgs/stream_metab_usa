@@ -28,19 +28,16 @@ targets:
     
   ../4_data_release/out/1_catchment_attr.tsv:
     command: attribute_skeleton(site_catchment_shapefile, target_name)
-    
-  ../4_data_release/out/1_points_attr.tsv:
-    command: attribute_skeleton(site_points_shapefile, target_name)
-
+  
   # load up all the proper data
   #catchment_attr:
   #  command: merge_attr_table('../4_data_release/out/1_catchment_attr.tsv', other_info)
-  #catchments.metadata:
-  #  command: extract_spatial_metadata(site_catchment_shapefile)
+  catchments.metadata:
+    command: extract_feature(site_catchment_shapefile)
   
   # then call render:
   ../4_data_release/out/site_catchment_shapefile.shp.xml:
-    command: render("../4_data_release/in/text_timeseries_model_inputs.yaml", target_name) # then other data as lists, ...
+    command: render("../4_data_release/in/text_timeseries_model_inputs.yaml", target_name, catchments.metadata) # then other data as lists, ...
     
   #stream_metab_powell_release:
   #  command: create_release_parent(target_name)
