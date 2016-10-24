@@ -152,6 +152,7 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
 #' @details uses rgdal's writeOGR to write the individual shapefile files
 write_shapefile <- function(obj, layer){
   shape.dir <- file.path('../1_spatial/cache',layer)
+  if(!dir.exists(shape.dir)) dir.create(shape.dir, recursive=TRUE)
   writeOGR(obj, dsn=shape.dir, layer = layer, driver = 'ESRI Shapefile', overwrite_layer=TRUE)
   files <- file.path(shape.dir, dir(shape.dir))
   return(files)
