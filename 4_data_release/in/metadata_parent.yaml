@@ -1,0 +1,42 @@
+meddle-version: "0.0.3"
+document-created: "20161024"
+document-creator: "Jordan S Read"
+
+# ----data release----
+authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
+pubdate: 2017
+update: update planned for year 2020
+themekeywords: ["water","streams","rivers","metabolism","primary productivity","carbon","respiration"]
+usage-rules: >-
+  These data are subject to change and are not citable until reviewed and approved for official publication by the USGS
+doi: http://dx.doi.org/10.5066/REPLACE.w.REAL
+abstract: >-
+  Abstract text from paper
+contact-person: Jordan S Read
+contact-phone: 608 821-3922
+contact-email: jread@usgs.gov
+funding-credits: >-
+  This work has been funded by Powell Center and X and Y and Z...
+purpose: To bring metabolism data to the world!
+start-date: SCRIPT 20070101
+end-date: SCRIPT 2016XXXX
+  
+# ----dataset details----
+metadata-person: Alison P. Appling
+metadata-phone: 608 821-3927
+metadata-email: aappling@usgs.gov
+distro-person: Alison P. Appling
+liability-statement: >-
+  Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected.
+  Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS),
+  no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall
+  the act of distribution constitute any such warranty.
+
+# ----associated publication----
+cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
+cite-date: FAKE date of paper release
+cite-title: >-
+  Powstreams: A national database for river metabolism (2007-present)
+paper: paper
+publisher: Nature?
+journal: Nature Scientific Data
