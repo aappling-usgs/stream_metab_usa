@@ -15,36 +15,32 @@ packages:
   - meddle
   
 sources:
-  - ../4_data_release/code/create_FGDC_template.R
-  - ../4_data_release/code/render_FGDC_metadata.R
   - ../4_data_release/code/post_data_release.R
-  - ../4_data_release/code/extract_metadata.R
   - ../lib/load_profile.R
   
 targets:
   4_data_release:
     depends: 
-      - ../4_data_release/out/site_catchment_shapefile.shp.xml
+      - site_catchments
     
   ../4_data_release/out/1_catchment_attr.tsv:
     command: attribute_skeleton(site_catchment_shapefile, target_name)
-  
-  # load up all the proper data
-  #catchment_attr:
-  #  command: merge_attr_table('../4_data_release/out/1_catchment_attr.tsv', other_info)
-  catchments.metadata:
-    command: extract_feature(site_catchment_shapefile)
+
   
   # then call render:
   ../4_data_release/out/site_catchment_shapefile.shp.xml:
-    command: render("../4_data_release/in/text_timeseries_model_inputs.yaml", target_name, catchments.metadata) # then other data as lists, ...
-    
-  #stream_metab_powell_release:
-  #  command: create_release_parent(target_name)
-    
-  #pc1_spatial:
-  #  command: create_release_child(stream_metab_powell_release, target_name)
-  
-  #site_catchments:
-  #  command: create_release_item(pc1_spatial, target_name, site_catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
+    command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name)
+    depends: 
+      - ../4_data_release/out/1_catchment_attr.tsv
+      - ../4_data_release/in/metadata_parent.yaml
+      - site_catchment_shapefile
 
+
+  stream_metab_powell_release:
+    command: create_release_parent(target_name)
+
+  pc1_spatial:
+    command: create_release_child(stream_metab_powell_release, target_name)
+
+  site_catchments:
+    command: create_release_item(pc1_spatial, target_name, site_catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
