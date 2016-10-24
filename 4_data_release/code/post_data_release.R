@@ -49,5 +49,5 @@ create_release_item <- function(parent.id, key, ...){
 #' @param files a list of file paths to be uploaded
 append_release_files <- function(sb.id, files){
   safe_login()
-  item_replace_files(sb_id = parent.id, files = files, all = FALSE)
+  item_replace_files(sb_id = sb.id, files = files, all = FALSE)
 }
