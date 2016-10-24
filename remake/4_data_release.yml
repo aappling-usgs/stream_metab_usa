@@ -23,18 +23,20 @@ targets:
     depends: 
       - site_catchments
     
+  parent_metadata: 
+    command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
+
   ../4_data_release/out/1_catchment_attr.tsv:
     command: attribute_skeleton(site_catchment_shapefile, target_name)
 
+  catchment_metadata:
+    command: extract_feature(site_catchment_shapefile)
   
-  # then call render:
+  catchment_attr:
+    command: as.attr_list('../4_data_release/out/1_catchment_attr.tsv')
+    
   ../4_data_release/out/site_catchment_shapefile.shp.xml:
-    command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name)
-    depends: 
-      - ../4_data_release/out/1_catchment_attr.tsv
-      - ../4_data_release/in/metadata_parent.yaml
-      - site_catchment_shapefile
-
+    command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name, catchment_metadata, catchment_attr, parent_metadata)
 
   stream_metab_powell_release:
     command: create_release_parent(target_name)

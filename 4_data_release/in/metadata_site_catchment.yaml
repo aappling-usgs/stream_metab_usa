@@ -4,7 +4,7 @@ document-creator: "Jordan S Read"
 
 # ----data release----
 title: >-
-  Data release: A national database for river metabolism (2007-present)
+  Spatial catchments data release: A national database for river metabolism (2007-present)
 
 
 # ----dataset details----
@@ -29,8 +29,3 @@ attributes:
     attr-label: ogc_fid
     attr-def: The Open Geospatial Consortium identifier
 
-# ----external----
-external:
-- "`r as.attr_list('../out/1_catchment_attr.csv')`"
-- "`r extract_feature('../../1_spatial/cache/site_catchment_shapefile')`"
-- "`r yaml.load_file('metadata_parent.yaml')`"

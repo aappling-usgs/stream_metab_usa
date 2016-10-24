@@ -12,9 +12,9 @@ usage-rules: >-
 doi: http://dx.doi.org/10.5066/REPLACE.w.REAL
 abstract: >-
   Abstract text from paper
-contact-person: Jordan S Read
-contact-phone: 608 821-3922
-contact-email: jread@usgs.gov
+contact-person: Alison P. Appling
+contact-phone: 608 821-3927
+contact-email: aappling@usgs.gov
 funding-credits: >-
   This work has been funded by Powell Center and X and Y and Z...
 purpose: To bring metabolism data to the world!
@@ -22,10 +22,10 @@ start-date: SCRIPT 20070101
 end-date: SCRIPT 2016XXXX
   
 # ----dataset details----
-metadata-person: Alison P. Appling
-metadata-phone: 608 821-3927
-metadata-email: aappling@usgs.gov
-distro-person: Alison P. Appling
+metadata-person: Jordan S Read
+metadata-phone: 608 821-3922
+metadata-email: jread@usgs.gov
+distro-person: Jordan S Read
 liability-statement: >-
   Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected.
   Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS),
