@@ -82,7 +82,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
                   day_start=config$day_hours[1], day_end=config$day_hours[2], 
                   with_ts_version=config$version, with_ts_archived=FALSE, with_ts_uploaded_after=config$posted_after,
                   quietly=TRUE)
-                if(is.null(staged)) stop('output of stage_calc_ts is NULL')
+                if(is.null(staged)) stop('output of stage_calc_ts is unexpectedly NULL')
                 
                 # update the ts.status table and write to file
                 srces <- select(attr(staged, 'choices'), -site_name, -file_path)
@@ -91,14 +91,16 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
                 ts.table[status.row, colnames(srces)] <- srces[1, colnames(srces)]
                 ts.table[status.row, 'local'] <- TRUE
                 write_status_table(ts.table, ts.file)
-              }, error=function(e) {
+              }, warning=function(w) {
                 suppressWarnings(file.remove(to.stage$filepath[i]))
-                if(grepl("(could not locate an appropriate ts)", e$message)) {
+                if(grepl("(could not locate an appropriate ts)|(no complete rows)|(no non-NA values)", w$message)) {
                   no_data <<- c(no_data, to.stage$filepath[i])
                 } else {
-                  stop("unexpected error: ", e$message)
+                  sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
+                  stop("unexpected warning: ", w$message)
                 }
               })
+              if((i %% 10) == 0) sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
             }
           }
           
