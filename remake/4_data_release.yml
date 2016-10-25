@@ -22,21 +22,28 @@ targets:
   4_data_release:
     depends: 
       - site_catchments
+      - site_points
     
   parent_metadata: 
     command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
 
-  ../4_data_release/out/1_catchment_attr.tsv:
+  ../4_data_release/out/1_catchment_attr.csv:
     command: attribute_skeleton(site_catchment_shapefile, target_name)
 
   catchment_metadata:
     command: extract_feature(site_catchment_shapefile)
   
+  points_metadata:
+    command: extract_feature(site_points_shapefile)  
+  
   catchment_attr:
-    command: as.attr_list('../4_data_release/out/1_catchment_attr.tsv')
+    command: as.attr_list('../4_data_release/out/1_catchment_attr.csv')
     
   ../4_data_release/out/site_catchment_shapefile.shp.xml:
     command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name, catchment_metadata, catchment_attr, parent_metadata)
+  
+  ../4_data_release/out/site_points_shapefile.shp.xml:
+    command: render("../4_data_release/in/metadata_site_points.yaml", target_name, points_metadata, parent_metadata)
 
   stream_metab_powell_release:
     command: create_release_parent(target_name)
@@ -46,3 +53,6 @@ targets:
 
   site_catchments:
     command: create_release_item(pc1_spatial, target_name, site_catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
+
+  site_points:
+    command: create_release_item(pc1_spatial, target_name, site_points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
