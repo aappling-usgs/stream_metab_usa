@@ -24,6 +24,7 @@ targets:
       - site_catchments
       - site_points
       - metadata_basic
+      - metadata_dvqcoefs
     
   parent_metadata: 
     command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
@@ -58,11 +59,17 @@ targets:
   # -- meta --
   ../4_data_release/out/1_meta_basic_attr.csv:
     command: attribute_skeleton(meta_basic, target_name)
-  
   meta_basic_attr:
     command: as.attr_list('../4_data_release/out/1_meta_basic_attr.csv')  
   ../4_data_release/out/meta_basic.xml:
     command: render("../4_data_release/in/metadata_basic.yaml", target_name, points_metadata, meta_basic_attr, parent_metadata)
+    
+  ../4_data_release/out/1_meta_dvqcoefs_attr.csv:
+    command: attribute_skeleton(meta_dvqcoefs, target_name)
+  meta_dvqcoefs_attr:
+    command: as.attr_list('../4_data_release/out/1_meta_dvqcoefs_attr.csv') 
+  ../4_data_release/out/meta_dvqcoefs.xml:
+    command: render("../4_data_release/in/metadata_dvqcoefs.yaml", target_name, points_metadata, meta_dvqcoefs_attr, parent_metadata)
     
   # -- SB posting --
   site_catchments:
@@ -73,4 +80,7 @@ targets:
   
   metadata_basic:
     command: create_release_item(pc1_spatial, target_name, meta_basic, '../4_data_release/out/meta_basic.xml')
+  
+  metadata_dvqcoefs:
+    command: create_release_item(pc1_spatial, target_name, meta_dvqcoefs, '../4_data_release/out/meta_dvqcoefs.xml')
 
