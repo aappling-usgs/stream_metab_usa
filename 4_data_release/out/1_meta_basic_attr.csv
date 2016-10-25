@@ -1,5 +1,5 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
-site_name,the NWIS long name of the site,National Water Information System,NA,NA,NA 
+site_name,the {site_database}_{site_num} for the site,National Water Information System,NA,NA,NA 
 site_database,source of dataset for this site,see National Water Information System,NA,NA,NA 
 site_num,The NWIS site number,National Water Information System,NA,NA,NA 
 long_name, , , , , 
