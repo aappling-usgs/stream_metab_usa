@@ -23,10 +23,19 @@ targets:
     depends: 
       - site_catchments
       - site_points
+      - metadata_basic
     
   parent_metadata: 
     command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
 
+  # -- SB release --
+  stream_metab_powell_release:
+    command: create_release_parent(target_name)
+
+  pc1_spatial:
+    command: create_release_child(stream_metab_powell_release, target_name)
+    
+  # -- spatial --
   ../4_data_release/out/1_catchment_attr.csv:
     command: attribute_skeleton(site_catchment_shapefile, target_name)
 
@@ -45,14 +54,23 @@ targets:
   ../4_data_release/out/site_points_shapefile.shp.xml:
     command: render("../4_data_release/in/metadata_site_points.yaml", target_name, points_metadata, parent_metadata)
 
-  stream_metab_powell_release:
-    command: create_release_parent(target_name)
-
-  pc1_spatial:
-    command: create_release_child(stream_metab_powell_release, target_name)
-
+  
+  # -- meta --
+  ../4_data_release/out/1_meta_basic_attr.csv:
+    command: attribute_skeleton(meta_basic, target_name)
+  
+  meta_basic_attr:
+    command: as.attr_list('../4_data_release/out/1_meta_basic_attr.csv')  
+  ../4_data_release/out/meta_basic.xml:
+    command: render("../4_data_release/in/metadata_basic.yaml", target_name, points_metadata, meta_basic_attr, parent_metadata)
+    
+  # -- SB posting --
   site_catchments:
     command: create_release_item(pc1_spatial, target_name, site_catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
 
   site_points:
     command: create_release_item(pc1_spatial, target_name, site_points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
+  
+  metadata_basic:
+    command: create_release_item(pc1_spatial, target_name, meta_basic, '../4_data_release/out/meta_basic.xml')
+
