@@ -1,0 +1,14 @@
+attr-label,attr-def,attr-defs,data-min,data-max,data-units
+site_name,the {site_database}_{site_num} for the site,National Water Information System,NA,NA,NA 
+site_database,source of dataset for this site,see National Water Information System,NA,NA,NA 
+site_num,The NWIS site number,National Water Information System,NA,NA,NA 
+long_name, , , , , 
+lat,latitude measurement,latitude in degrees,see bounding box,see bounding box,degrees North
+lon,longitude measurement,longitude in degrees,see bounding box,see bounding box,degrees East
+coord_datum,reference datum for lat and lon,NA,NA,NA,NA 
+alt,altitude of site in meters, , , , 
+alt_datum,datum for alt,NA,NA,NA,NA
+site_type,NWIS specified site type,NA,NA,NA,NA
+nhdplus_id,NHDPlus comID,NA,NA,NA,NA
+nhdplus_id_confidence,manual observation for confidence in nhdplus_id mapping,NA,NA,NA,NA
+sciencebase_id,sciencebase identifier for this site,sciencebase.gov,NA,NA,NA
