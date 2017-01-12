@@ -22,9 +22,9 @@ nccopy_ldas <- function(file.list, mssg.file, internal.config){
     v <- strsplit(x,'[.]')[[1]]
     sprintf("[%s:1:%s]",v[1],v[2])
   }
+  
   registerDoMC(cores=4)
   foreach(file=files$file) %dopar% {
-    
     local.nc.file <- file.path(tempdir(), file)
     
     
@@ -34,9 +34,11 @@ nccopy_ldas <- function(file.list, mssg.file, internal.config){
     time.i = write_grid(file.chunks[2])
     var = strsplit(file.chunks[5],'[.]')[[1]][1]
     
-    url <- sprintf('http%s?lon%s,time%s,lat%s,%s%s%s%s', substr(data.url, 5, stop = nchar(data.url)), lon.i, time.i, lat.i, var, time.i, lat.i, lon.i)
+    url <- sprintf('https%s?lon%s,time%s,lat%s,%s%s%s%s', substr(data.url, 5, stop = nchar(data.url)), lon.i, time.i, lat.i, var, time.i, lat.i, lon.i)
     
     # to tempfolder...
+    # instructions from: https://disc.gsfc.nasa.gov/registration/registration-for-data-access#ncdump
+    # and followed the ncdump additional file creation, including making ~/.dodsrc with cookie locations. This worked for nccopy
     output <- system(sprintf("nccopy -m 15m %s %s", url, local.nc.file))
     cat(sprintf('\n** nccopy %s%s to %s...', var, time.i, basename(local.nc.file)), file=mssg.file, append = TRUE)
     if (!output){

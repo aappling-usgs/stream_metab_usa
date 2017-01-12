@@ -1,4 +1,4 @@
-sub_times: ["2006-01-01 UTC", "2016-06-11 UTC"]
+sub_times: ["2006-01-01 UTC", "2017-01-01 UTC"]
 catalog_url: "http://cida-eros-netcdfdev.er.usgs.gov:8080/thredds/catalog/thredds_workspace/stream_metab/catalog.xml"
 NLDAS:
   sub_variables: ['pressfc','dswrfsfc']
