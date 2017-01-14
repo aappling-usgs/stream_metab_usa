@@ -25,29 +25,13 @@ sources:
 targets:
   1_timeseries:
     depends:
-      - sb_doobs_nwis
       - sb_wtr_nwis
-      - sb_disch_nwis
+      - sb_doobs_nwis
       - sb_baro_nldas
       - sb_sw_nldas
       - sb_baro_gldas
       - sb_sw_gldas
-      - sb_dosat_calcGGbts
-      - sb_baro_calcElev
-      - sb_dosat_calcGGbconst
-      - sb_dopsat_calcObsSat
-      - sb_depth_calcDischRaymond
-      - sb_veloc_calcDischRaymond
-      - sb_depth_calcDischHarvey
-      - sb_veloc_calcDischHarvey
-      - sb_sitetime_calcLon
-      - sb_suntime_calcLon
-      - sb_par_calcLat
-      - sb_par_calcSw
-      - sb_sitedate_calcLon
-      - sb_doamp_calcDAmp
-      - sb_dischdaily_calcDMean
-      - sb_velocdaily_calcDMean
+
   
   ts.config:
     command: yaml.load_file("../1_timeseries/in/ts_config.yml")
