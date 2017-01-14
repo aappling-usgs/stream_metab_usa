@@ -59,8 +59,8 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
                 tryCatch({
                   local.file <- withCallingHandlers({ 
                     stage_nwis_ts(
-                      sites='nwis_02423130', var='wtr', times=c('2006-10-01', '2016-06-01'), 
-                      version='rds', folder=tempdir(), verbose=TRUE)
+                      sites=to.stage$site_name[i], var=var, times=config$times, 
+                      version=config$version, folder=dir.name, verbose=TRUE)
                   }, warning=function(w) {
                     if(grepl("NWIS error", w$message)) message(w$message)
                     if(grepl("verify_ts", w$message)) {
