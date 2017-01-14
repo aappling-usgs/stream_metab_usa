@@ -56,16 +56,27 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
               if(parse_site_name(to.stage$site_name[i], out='database') != 'nwis') {
                 no_data <- c(no_data, to.stage$filepath[i])
               } else {
-                local.file <- withCallingHandlers({ 
-                  stage_nwis_ts(
-                    sites=to.stage$site_name[i], var=var, times=config$times, 
-                    version=config$version, folder=dir.name, verbose=TRUE)
-                }, warning=function(w) {
-                  if(grepl("NWIS error", w$message)) message(w$message)
-                }, message=function(m) {
-                  if(grepl("(verify_ts)|(data are unavailable)|(no non-NA data)", m$message)) {
-                    no_data <<- c(no_data, to.stage$filepath[i])
-                  }            
+                tryCatch({
+                  local.file <- withCallingHandlers({ 
+                    stage_nwis_ts(
+                      sites='nwis_02423130', var='wtr', times=c('2006-10-01', '2016-06-01'), 
+                      version='rds', folder=tempdir(), verbose=TRUE)
+                  }, warning=function(w) {
+                    if(grepl("NWIS error", w$message)) message(w$message)
+                    if(grepl("verify_ts", w$message)) {
+                      no_data <<- c(no_data, to.stage$filepath[i])
+                    }
+                  }, message=function(m) {
+                    if(grepl("(data are unavailable)|(no non-NA data)", m$message)) {
+                      no_data <<- c(no_data, to.stage$filepath[i])
+                    }            
+                  })
+                }, error=function(e) {
+                  if(grepl("timeseries input for site .* is invalid", e$message))  {
+                    invisible()
+                  } else {
+                    stop(e)
+                  }
                 })
               }
               if((i %% 10) == 0) sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
