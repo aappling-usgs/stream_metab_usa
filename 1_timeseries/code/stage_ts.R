@@ -63,7 +63,7 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
                 }, warning=function(w) {
                   if(grepl("NWIS error", w$message)) message(w$message)
                 }, message=function(m) {
-                  if(grepl("(data are unavailable)|(no non-NA data)", m$message)) {
+                  if(grepl("(verify_ts)|(data are unavailable)|(no non-NA data)", m$message)) {
                     no_data <<- c(no_data, to.stage$filepath[i])
                   }            
                 })
