@@ -103,12 +103,15 @@ stage_ts <- function(ts.file, config=yaml.load_file("../1_timeseries/in/ts_confi
                 ts.table[status.row, 'local'] <- TRUE
                 write_status_table(ts.table, ts.file)
               }, warning=function(w) {
-                suppressWarnings(file.remove(to.stage$filepath[i]))
                 if(grepl("(could not locate an appropriate ts)|(no complete rows)|(no non-NA values)", w$message)) {
                   no_data <<- c(no_data, to.stage$filepath[i])
+                  suppressWarnings(file.remove(to.stage$filepath[i]))
+                } else if (grepl("'calc_velocity' is deprecated", w$message)){
+                  message('**warning, using deprecated function from streamMetabolizer')
                 } else {
                   sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
                   stop("unexpected warning: ", w$message)
+                  suppressWarnings(file.remove(to.stage$filepath[i]))
                 }
               })
               if((i %% 10) == 0) sb_check_ts_status(ts.file, phase='stage', no_data=no_data)
