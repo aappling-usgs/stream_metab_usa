@@ -25,14 +25,24 @@ sources:
 targets:
   1_timeseries:
     depends:
-      - sb_wtr_nwis
       - sb_doobs_nwis
+      - sb_wtr_nwis
+      - sb_disch_nwis
       - sb_baro_nldas
       - sb_sw_nldas
       - sb_baro_gldas
       - sb_sw_gldas
+      - sb_dosat_calcGGbts
+      - sb_baro_calcElev
+      - sb_dosat_calcGGbconst
+      - sb_dopsat_calcObsSat
+      - sb_sitetime_calcLon
+      - sb_suntime_calcLon
+      - sb_par_calcLat
+      - sb_par_calcSw
+      - sb_sitedate_calcLon
+      - sb_doamp_calcDAmp
 
-  
   ts.config:
     command: yaml.load_file("../1_timeseries/in/ts_config.yml")
   
@@ -50,10 +60,6 @@ targets:
       - ../1_timeseries/out/files_ts_baro_calcElev.tsv
       - ../1_timeseries/out/files_ts_dosat_calcGGbconst.tsv
       - ../1_timeseries/out/files_ts_dopsat_calcObsSat.tsv
-      - ../1_timeseries/out/files_ts_depth_calcDischRaymond.tsv
-      - ../1_timeseries/out/files_ts_veloc_calcDischRaymond.tsv
-      - ../1_timeseries/out/files_ts_depth_calcDischHarvey.tsv
-      - ../1_timeseries/out/files_ts_veloc_calcDischHarvey.tsv
       - ../1_timeseries/out/files_ts_sitetime_calcLon.tsv
       - ../1_timeseries/out/files_ts_suntime_calcLon.tsv
       - ../1_timeseries/out/files_ts_par_calcLat.tsv
@@ -143,18 +149,12 @@ targets:
       - baro_calcElev
       - dosat_calcGGbconst
       - dopsat_calcObsSat
-      - depth_calcDischRaymond
-      - veloc_calcDischRaymond
-      - depth_calcDischHarvey
-      - veloc_calcDischHarvey
       - sitetime_calcLon
       - suntime_calcLon
       - par_calcLat
       - par_calcSw
       - sitedate_calcLon
       - doamp_calcDAmp
-      - dischdaily_calcDMean
-      - velocdaily_calcDMean
 
   doobs_nwis:
     command: stage_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv')
