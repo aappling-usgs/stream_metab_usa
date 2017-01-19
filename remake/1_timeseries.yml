@@ -44,6 +44,7 @@ targets:
       - sb_suntime_calcLon
       - sb_par_calcLat
       - sb_par_calcSw
+      - sb_par_calcLatSw
       - sb_sitedate_calcLon
       - sb_doamp_calcDAmp
       - sb_dischdaily_calcDMean
@@ -74,6 +75,7 @@ targets:
       - ../1_timeseries/out/files_ts_suntime_calcLon.tsv
       - ../1_timeseries/out/files_ts_par_calcLat.tsv
       - ../1_timeseries/out/files_ts_par_calcSw.tsv
+      - ../1_timeseries/out/files_ts_par_calcLatSw.tsv
       - ../1_timeseries/out/files_ts_sitedate_calcLon.tsv
       - ../1_timeseries/out/files_ts_doamp_calcDAmp.tsv
       - ../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv
@@ -131,6 +133,9 @@ targets:
   ../1_timeseries/out/files_ts_par_calcSw.tsv:
     depends: [sb_sw_nldas, sb_sw_gldas]
     command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_par_calcLatSw.tsv:
+    depends: [sb_par_calcLat, sb_sw_nldas, sb_sw_gldas]
+    command: create_ts_table(sb_sites, ts.config, target_name)
   ../1_timeseries/out/files_ts_sitedate_calcLon.tsv:
     depends: [sb_sitetime_calcLon, sb_meta_basic]
     command: create_ts_table(sb_sites, ts.config, target_name)
@@ -167,6 +172,7 @@ targets:
       - suntime_calcLon
       - par_calcLat
       - par_calcSw
+      - par_calcLatSw
       - sitedate_calcLon
       - doamp_calcDAmp
       - dischdaily_calcDMean
@@ -216,6 +222,8 @@ targets:
     command: stage_ts('../1_timeseries/out/files_ts_par_calcLat.tsv')
   par_calcSw:
     command: stage_ts('../1_timeseries/out/files_ts_par_calcSw.tsv')
+  par_calcLatSw:
+    command: stage_ts('../1_timeseries/out/files_ts_par_calcLatSw.tsv')
   sitedate_calcLon:
     command: stage_ts('../1_timeseries/out/files_ts_sitedate_calcLon.tsv')
   doamp_calcDAmp:
@@ -285,6 +293,9 @@ targets:
   sb_par_calcSw:
     command: sb_post_ts('../1_timeseries/out/files_ts_par_calcSw.tsv', ts.config)
     depends: par_calcSw
+  sb_par_calcLatSw:
+    command: sb_post_ts('../1_timeseries/out/files_ts_par_calcLatSw.tsv', ts.config)
+    depends: par_calcLatSw
   sb_sitedate_calcLon:
     command: sb_post_ts('../1_timeseries/out/files_ts_sitedate_calcLon.tsv', ts.config)
     depends: sitedate_calcLon
