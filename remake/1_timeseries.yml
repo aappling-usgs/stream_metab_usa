@@ -188,6 +188,7 @@ targets:
     command: stage_ts('../1_timeseries/out/files_ts_baro_calcElev.tsv')
   dosat_calcGGbconst:
     command: stage_ts('../1_timeseries/out/files_ts_dosat_calcGGbconst.tsv')
+    depends: sb_baro_calcElev
   dopsat_calcObsSat:
     command: stage_ts('../1_timeseries/out/files_ts_dopsat_calcObsSat.tsv')
   depth_calcDischRaymond:
