@@ -384,8 +384,8 @@
 "../1_timeseries/cache/nwis_04208000-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04213152-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04213500-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_04226000-ts_baro_calcElev.rds"	NA	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/nwis_04231600-ts_baro_calcElev.rds"	NA	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_04226000-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_04231600-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04249000-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05054000-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05057000-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
@@ -557,7 +557,7 @@
 "../1_timeseries/cache/nwis_11285500-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_11313433-ts_baro_calcElev.rds"	NA	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_11337190-ts_baro_calcElev.rds"	NA	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/nwis_11447650-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_11447650-ts_baro_calcElev.rds"	NA	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_11447830-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_11447850-ts_baro_calcElev.rds"	NA	"basic"	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_11447890-ts_baro_calcElev.rds"	NA	NA	TRUE	FALSE	FALSE

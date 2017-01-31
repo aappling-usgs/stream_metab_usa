@@ -6,9 +6,8 @@
 #' @import dplyr
 #' @seealso sb_check_ts_status read_status_table sb_archive_ts
 sb_post_ts <- function(ts.file, config=yaml::yaml.load_file("../1_timeseries/in/ts_config.yml"), retries=30){
-  
   # check on staging
-  to.stage <- sb_check_ts_status(ts.file, phase='stage')
+  to.stage <- sb_check_ts_status(ts.file, phase='stage', posted_after = config$posted_after)
   if(nrow(to.stage) > 0) {
     warning("staging is still incomplete; ", nrow(to.stage), " ts files still to stage")
   }

@@ -92,7 +92,7 @@
 "../1_timeseries/cache/nwis_01656903-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01658000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_0166818623-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_0166818985-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_0166818985-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01673000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02035000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02042222-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
@@ -134,7 +134,7 @@
 "../1_timeseries/cache/nwis_021720698-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_021720709-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_021720869-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/nwis_02198840-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_02198840-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02198920-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02198950-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02198955-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
@@ -176,7 +176,7 @@
 "../1_timeseries/cache/nwis_02266495-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02293249-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02304000-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/nwis_02315626-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_02315626-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02319302-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02319520-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02319950-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
@@ -202,13 +202,13 @@
 "../1_timeseries/cache/nwis_02344673-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02394682-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02397530-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_02423130-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_02423160-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_02423397-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_02423496-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_02455980-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_02457595-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_02458450-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_02423130-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_02423160-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_02423397-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_02423496-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_02455980-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_02457595-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_02458450-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02469100-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02473085-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02489800-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
@@ -251,7 +251,7 @@
 "../1_timeseries/cache/nwis_03238140-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03238745-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03238772-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_03254520-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03254520-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03255349-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03259757-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03259813-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
@@ -269,10 +269,10 @@
 "../1_timeseries/cache/nwis_03292500-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03293000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03293500-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_03293510-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03293510-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03293530-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03294570-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_03297800-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03297800-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03297900-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03298000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03298135-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
@@ -324,7 +324,7 @@
 "../1_timeseries/cache/nwis_03539600-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03539778-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03597860-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_03612600-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03612600-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_04024000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04027000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04040000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
@@ -375,7 +375,7 @@
 "../1_timeseries/cache/nwis_04175120-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_04176500-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04182867-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/nwis_04183038-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_04183038-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04188496-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04193490-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_04195500-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
@@ -414,7 +414,7 @@
 "../1_timeseries/cache/nwis_05576195-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_05579630-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05586300-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/nwis_05595000-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_05595000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05599490-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06336000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06340590-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
@@ -458,7 +458,7 @@
 "../1_timeseries/cache/nwis_07054501-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_07054502-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_07054527-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/nwis_07055814-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_07055814-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_07056515-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_07059998-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_07060000-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
@@ -479,7 +479,7 @@
 "../1_timeseries/cache/nwis_07178200-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_071912213-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_07191222-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/nwis_071948095-ts_disch_nwis.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_071948095-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_07198000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_07239450-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_07241000-ts_disch_nwis.rds"	NA	FALSE	TRUE	TRUE

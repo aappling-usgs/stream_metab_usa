@@ -33,7 +33,9 @@
         <netcdf location="GLDAS_44104.45103_300.599_50.500_swdown.nc"/>
         <netcdf location="GLDAS_45104.46103_300.599_50.500_swdown.nc"/>
         <netcdf location="GLDAS_46104.47103_300.599_50.500_swdown.nc"/>
-        <netcdf location="GLDAS_47104.47616_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_47104.48103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_48104.49103_300.599_50.500_swdown.nc"/>
+        <netcdf location="GLDAS_49104.49247_300.599_50.500_swdown.nc"/>
       </aggregation>
     </netcdf>
     <netcdf>
@@ -68,7 +70,9 @@
         <netcdf location="GLDAS_44104.45103_300.599_50.500_psurf.nc"/>
         <netcdf location="GLDAS_45104.46103_300.599_50.500_psurf.nc"/>
         <netcdf location="GLDAS_46104.47103_300.599_50.500_psurf.nc"/>
-        <netcdf location="GLDAS_47104.47616_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_47104.48103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_48104.49103_300.599_50.500_psurf.nc"/>
+        <netcdf location="GLDAS_49104.49247_300.599_50.500_psurf.nc"/>
       </aggregation>
     </netcdf>
   </aggregation>
