@@ -1,6 +1,4 @@
 "filepath"	"local"	"no.data"	"posted"	"tagged"
-"../1_timeseries/cache/indy_frenchcreek-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
-"../1_timeseries/cache/indy_springcreek-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01021050-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01036390-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01073389-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -8,6 +6,7 @@
 "../1_timeseries/cache/nwis_01124000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01125100-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01184000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_01191000-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_01193050-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01193463-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01194750-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -91,11 +90,13 @@
 "../1_timeseries/cache/nwis_01654500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01656903-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01658000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_01668000-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_0166818623-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_0166818985-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_01673000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02035000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02042222-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_0205551460-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02079500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_0208062765-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02081022-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -129,6 +130,7 @@
 "../1_timeseries/cache/nwis_02169000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02171637-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_02171645-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_02172002-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_02172050-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_021720677-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_021720698-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -252,6 +254,7 @@
 "../1_timeseries/cache/nwis_03238745-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03238772-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03254520-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03254693-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03255349-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03259757-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03259813-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -259,6 +262,7 @@
 "../1_timeseries/cache/nwis_03277075-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03277130-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03277200-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03288180-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03289000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03289193-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03289200-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -302,6 +306,8 @@
 "../1_timeseries/cache/nwis_03401385-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03408500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03409500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03410590-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_03417500-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03418420-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03426310-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03428180-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -314,8 +320,11 @@
 "../1_timeseries/cache/nwis_0343233905-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03432350-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03432400-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_034324146-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_03432550-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03432670-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03432800-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_03433500-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_03434870-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03438220-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_03460795-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -330,6 +339,8 @@
 "../1_timeseries/cache/nwis_04040000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04059500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04067500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_04085061-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_04085082-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_04085108-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_040851385-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_04085427-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -405,11 +416,13 @@
 "../1_timeseries/cache/nwis_05451080-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05451210-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05515500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_05517500-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_05518000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05524500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05538010-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05538020-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05543010-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_05550001-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_05576100-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05576195-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_05579630-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -429,6 +442,7 @@
 "../1_timeseries/cache/nwis_06670500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06711565-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06795500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_06796500-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_06799089-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06800500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06805000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -439,6 +453,7 @@
 "../1_timeseries/cache/nwis_06887500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06892350-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06892513-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_06892518-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_06893300-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06893350-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_06893390-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -527,6 +542,7 @@
 "../1_timeseries/cache/nwis_08375300-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_08377200-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_08412500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_08419000-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_08420500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_08437710-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_08446500-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -579,6 +595,7 @@
 "../1_timeseries/cache/nwis_12098700-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_12100490-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_12101100-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_12101102-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_12102012-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_12102075-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_12165800-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -619,6 +636,7 @@
 "../1_timeseries/cache/nwis_14309000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_14316460-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_14317450-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_15236900-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_15298040-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_291830081362200-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_294213081345300-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -665,11 +683,14 @@
 "../1_timeseries/cache/nwis_385520094420000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_385608094380300-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_410333095530101-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_410536096194801-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_411955088280601-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_412126095565201-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_414037088003201-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_414042088003201-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_415007121102001-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_415639070032501-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_415716070031801-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_420451121510000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_420615121533600-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_420615121533601-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -709,6 +730,9 @@
 "../1_timeseries/cache/nwis_453030122560101-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_453040123065201-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_453113123003501-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_453250122494501-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_453302122491600-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
+"../1_timeseries/cache/nwis_453312122485800-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_453604122060000-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_454554119121801-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_454705122451400-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
@@ -721,15 +745,8 @@
 "../1_timeseries/cache/nwis_460939123201600-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_461411111280601-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
 "../1_timeseries/cache/nwis_461518123285700-ts_baro_nldas.rds"	NA	FALSE	TRUE	TRUE
+"../1_timeseries/cache/nwis_462107111312301-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_50048565-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_50048580-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_50231500-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
 "../1_timeseries/cache/nwis_50231505-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_000000-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_001001-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_001002-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_001003-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_004001-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_004002-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_004003-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
-"../1_timeseries/cache/styx_004004-ts_baro_nldas.rds"	NA	TRUE	FALSE	FALSE
