@@ -21,7 +21,7 @@ bundle_packages <- function(
   pkgList <- setdiff(pkgDep(remotepkgs, repos=repos), 'BiocInstaller')
   
   # create or update a repository with all of the desired packages
-  if(TRUE || !dir.exists(repoDir)) {
+  if(!dir.exists(repoDir)) {
     dir.create(file.path(repoDir, 'src/contrib'), recursive=TRUE)
     # prepare for bioconductor
     # source("https://bioconductor.org/biocLite.R")
@@ -46,7 +46,7 @@ bundle_packages <- function(
   # build some packages locally; replace any already in the miniCRAN repo with the
   # ones built here
   builds <- sapply(localpkgs, function(localpkg) {
-    oldbuilds <- dir(file.path(repoDir, 'src/contrib'), pattern=basename(localpkgs), full.names=TRUE)
+    oldbuilds <- dir(file.path(repoDir, 'src/contrib'), pattern=basename(localpkg), full.names=TRUE)
     if(length(oldbuilds) > 0) file.remove(oldbuilds)
     devtools::build(localpkg, path=file.path(repoDir, 'src/contrib'), vignettes=FALSE)
   })
@@ -59,8 +59,11 @@ bundle_packages <- function(
   
   #### Run for Fun ####
   
-  print(paste0('packages: ', paste0(rownames(pkgAvail(repos=repoDir, type="source")), collapse=', ')))
+  print(rownames(pkgAvail(repos=repoDir, type="source")))
   print(paste0('streamMetabolizer: ', pkgAvail(repos=repoDir, type="source")['streamMetabolizer','Version']))
   print(paste0('mda.streams: ', pkgAvail(repos=repoDir, type="source")['mda.streams','Version']))
+  
+  # return the file path to bundle
+  return(paste0(repoDir, '.zip'))
 }
 
