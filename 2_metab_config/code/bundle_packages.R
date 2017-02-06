@@ -53,7 +53,12 @@ bundle_packages <- function(
   updateRepoIndex(repoDir, type=c("source"))
   
   # zip the entire repository into a single file
-  zip(paste0(repoDir, '.zip'), repoDir)
+  olddir <- getwd()
+  on.exit(setwd(olddir))
+  setwd(normalizePath(file.path(repoDir, '..')))
+  zip('bundle.zip', 'bundle')
+  setwd(olddir)
+  
   message(paste0('the package files are all in ', repoDir, '.zip'))
   
   
