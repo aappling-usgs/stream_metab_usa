@@ -17,6 +17,7 @@ sources:
   - ../2_metab_config/code/cluster_prep_condor.R
   - ../2_metab_config/code/create_metab_config.R
   - ../2_metab_config/code/create_metab_table.R
+  - ../2_metab_config/code/sb_check_model_status.R
   - ../2_metab_config/prep/code/create_prep_config.R
   - ../lib/load_profile.R
   - ../lib/write_status_table.R
@@ -38,17 +39,24 @@ targets:
   
   # model config files
   
-  # ../2_metab_config/prep/out/config.tsv
-  metab.prep.config:
+  '../2_metab_config/prep/out/config.tsv': # metab.prep.config
     command: create_prep_config(metab.sites, smu.config)
   
-  # ../2_metab_config/out/config.tsv
-  metab.run.config:
+  '../2_metab_config/out/config.tsv': # metab.run.config
     command: create_metab_config(smu.config)
+
+  # model status files
+  
+  '../2_metab_config/prep/out/files_metab.tsv': # metab.prep.table
+    command: create_metab_table('../2_metab_config/prep/out/config.tsv', smu.config)
+  
+  '../2_metab_config/out/files_metab.tsv': # metab.run.table
+    command: create_metab_table('../2_metab_config/out/config.tsv', smu.config)
+
 
   # cluster support (still launch the cluster run manually)
   
-  package.bundle:
+  '../2_metab_config/cluster/packages/bundle.zip': # package.bundle
     command: bundle_packages()
   
   metab.prep.condor.prep:
@@ -56,8 +64,15 @@ targets:
       cluster_dir='../2_metab_config/prep/cluster/condor',
       '~/.R/stream_metab.yaml',
       '../2_metab_config/cluster/packages/bundle.zip',
-      '../2_metab_config/prep/cluster/run_model.R',
-      '../2_metab_config/prep/out/config.tsv')
+      '../2_metab_config/cluster/condor/unzip',
+      '../2_metab_config/cluster/condor/.Renviron',
+      '../2_metab_config/cluster/condor/condor.sub',
+      '../2_metab_config/cluster/condor/run_job.sh',
+      '../2_metab_config/cluster/condor/run_job.R',
+      '../2_metab_config/code/run_model_job.R',
+      '../2_metab_config/prep/code/run_model.R',
+      '../2_metab_config/prep/out/config.tsv',
+      '../2_metab_config/prep/out/files_metab.tsv')
   
   metab.run.condor.prep:
     command: cluster_prep_condor(

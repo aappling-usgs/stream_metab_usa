@@ -1,6 +1,6 @@
-executable = run_model.sh
-arguments = run_model.R $(Process)
-transfer_input_files = run_model.R, config.tsv, .Renviron, bundle.zip, unzip
+executable = run_job.sh
+arguments = run_job.R $(Process)
+transfer_input_files = run_job.R, run_model_job.R, run_model.R, config.tsv, files_metab.tsv, .Renviron, bundle.zip, unzip, stream_metab.yaml
 universe = vanilla
 output = out/$(Process).out
 error = err/$(Process).err
