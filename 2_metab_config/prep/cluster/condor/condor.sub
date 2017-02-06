@@ -1,0 +1,18 @@
+executable = run_model.sh
+arguments = run_model.R $(Process)
+transfer_input_files = run_model.R, config.Rds, inputs.Rds, .Renviron, bundle.zip, unzip
+universe = vanilla
+output = out/$(Process).out
+error = err/$(Process).err
+log = log/$(Process).log
+stream_output = True
+stream_error = True
+requirements = (TARGET.Arch == "X86_64") && (TARGET.OpSys == "LINUX")
+request_cpus = 4
+should_transfer_files = YES
+#+WantFlocking = true
+when_to_transfer_output = ON_EXIT
+notification = never
+transfer_output_files = job.zip
+transfer_output_remaps = "job.zip = results/job_$(Process).zip"
+queue 2

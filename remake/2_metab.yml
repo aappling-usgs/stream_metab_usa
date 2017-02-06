@@ -8,11 +8,13 @@ packages:
   - dplyr
   - mda.streams
   - sbtools
+  - miniCRAN
 
 sources:
   - ../2_metab_config/code/choose_metab_sites.R
   - ../2_metab_config/prep/code/create_prep_config.R
   - ../2_metab_config/code/create_metab_config.R
+  - ../2_metab_config/code/bundle_packages.R
   - ../lib/load_profile.R
   - ../lib/write_status_table.R
 
@@ -23,6 +25,9 @@ targets:
 
   config:
     command: yaml.load_file('../2_metab_config/in/metab_configs_config.yml')
+  
+  package.bundle:
+    command: bundle_packages()
   
   metab.sites:
     command: choose_metab_sites(config,

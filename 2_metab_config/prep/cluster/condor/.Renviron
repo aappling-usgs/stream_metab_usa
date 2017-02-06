@@ -1,0 +1,3 @@
+R_LIBS_USER="./rLibs"
+R_ENVIRON_USER=""
+R_PROFILE_USER =""
