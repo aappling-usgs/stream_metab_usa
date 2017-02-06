@@ -14,4 +14,8 @@ if(!dir.exists(outdir)) dir.create(outdir)
 
 # run the model
 source('run_model.R')
-run_model(job, outdir)
+model_out <- run_model(job, outdir)
+
+# summarize the model
+source('summarize_model.R')
+summarize_model(model_out)
