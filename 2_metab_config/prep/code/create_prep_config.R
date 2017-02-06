@@ -3,6 +3,7 @@
 #' @import mda.streams
 #' @import streamMetabolizer
 #' @import dplyr
+#' @import tidyr
 #' 
 #' @param config a config for the config
 create_prep_config <- function(sites, config=yaml::yaml.load_file('2_metab_config/in/metab_configs_config.yml'),
@@ -34,7 +35,7 @@ create_prep_config <- function(sites, config=yaml::yaml.load_file('2_metab_confi
     ungroup() %>%
     group_by(var) %>%
     mutate(priority = priority - min(priority) + 1)
-  write.table(vsc, '../2_metab_config/prep/out/src_priorities.tsv', sep='\t')
+  write.table(vsc, '../2_metab_config/prep/out/src_priorities.tsv', sep='\t', row.names=FALSE)
   
   return(cfgdf)
 }
