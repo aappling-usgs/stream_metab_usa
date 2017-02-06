@@ -26,9 +26,6 @@ targets:
   config:
     command: yaml.load_file('../2_metab_config/in/metab_configs_config.yml')
   
-  package.bundle:
-    command: bundle_packages()
-  
   metab.sites:
     command: choose_metab_sites(config,
       harvey.file='../1_site_data/in/sites_harvey_ask.txt',
@@ -39,3 +36,22 @@ targets:
   
   metab.config:
     command: create_metab_config(config)
+
+  package.bundle:
+    command: bundle_packages()
+  
+  metab.prep.cluster.prep.condor:
+    command: cluster_prep_condor(
+      cluster_dir='../2_metab_config/prep/cluster/condor',
+      '~/.R/stream_metab.yaml',
+      '../2_metab_config/cluster/packages/bundle.zip',
+      '../2_metab_config/prep/cluster/run_model.R',
+      '../2_metab_config/prep/out/config.tsv')
+  
+  metab.cluster.prep.condor:
+    command: cluster_prep_condor(
+      cluster_dir='../2_metab_config/cluster/condor',
+      '~/.R/stream_metab.yaml',
+      '../2_metab_config/cluster/packages/bundle.zip',
+      '../2_metab_config/cluster/run_model.R',
+      '../2_metab_config/out/config.tsv')
