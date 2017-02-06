@@ -18,4 +18,4 @@ model_out <- run_model(job, outdir)
 
 # summarize the model
 source('summarize_model.R')
-summarize_model(model_out)
+summarize_model(model_out, outdir)

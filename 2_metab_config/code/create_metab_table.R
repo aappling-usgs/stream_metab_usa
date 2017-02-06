@@ -7,13 +7,17 @@ create_metab_table <- function(config, outfile) {
   # of status checking themselves, so no need even to check the status here if
   # the file already exists.
   if(!file.exists(outfile)) {
-    model_title <- make_metab_run_title(
+    run_title <- make_metab_run_title(
       format(as.Date(config[,'date']), '%y%m%d'), config[,'tag'], config[,'strategy'])
-    model_name <- make_metab_model_name(model_title, 1:nrow(config), config[,'site'])
-    make_metab_model_path(model_name, '.')
+    model_names <- make_metab_model_name(run_title, 1:nrow(config), config[,'site'])
+    model_files <- make_metab_model_path(model_name, '.')
     
     # create and write the model status table
-    metab.table <- data.frame(name=model_title, local=FALSE, error=FALSE, posted=FALSE, tagged=FALSE)
+    metab.table <- data.frame(filename=model_files, local=FALSE, error=FALSE, posted=FALSE, tagged=FALSE)
     write_status_table(site.table, outfile)
   }
+  
+  # udpate the local/posted/tagged columns
+  sb_check_model_status(outfile, phase='stage')
+  sb_check_model_status(outfile, phase='post', posted_after=config$posted_after)
 }
