@@ -8,7 +8,7 @@
 #' 
 #' @param config a config for the config
 choose_metab_sites <- function(config=yaml::yaml.load_file('2_metab_config/in/metab_configs_config.yml'),
-                               harvey.file='../2_metab_config/in/sites_harvey_ask.txt',
+                               harvey.file='../1_site_data/in/sites_harvey_ask.txt',
                                site.file='../1_site_data/out/site_list.tsv') {
   # jud gave us more coefficients than we requested. use their union
   sites_harvey_ask <- make_site_name(readLines(harvey.file), 'nwis')
