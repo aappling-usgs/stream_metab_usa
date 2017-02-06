@@ -9,6 +9,7 @@ temp
 starter_files/*.RData
 */cache/
 2_metab_config/cluster/packages
+2_metab_config/prep/cluster/condor
 NEWS.html
 README.html
 .remake

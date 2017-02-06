@@ -59,6 +59,9 @@ targets:
   '../2_metab_config/cluster/packages/bundle.zip': # package.bundle
     command: bundle_packages()
   
+  '../2_metab_config/prep/cluster/condor':
+    command: dir.create('../2_metab_config/prep/cluster/condor')
+  
   metab.prep.condor.prep:
     command: cluster_prep_condor(
       cluster_dir='../2_metab_config/prep/cluster/condor',
