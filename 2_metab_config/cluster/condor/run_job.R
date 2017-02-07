@@ -1,15 +1,25 @@
-# put the shared credentials where mda.streams will find them for login_sb()
-pwdfile <- file.path(Sys.getenv("HOME"), ".R", "stream_metab.yaml")
-if(!dir.exists(dirname(pwdfile))) dir.create(dirname(pwdfile))
-file.copy(basename(pwdfile), pwdfile)
-
 # update & install packages from the local repo
-pkgdeps <- rownames(available.packages(repos="file:bundle"))
-update.packages(oldPkgs = pkgdeps, repos="file:bundle", ask=FALSE, type='source')
-install.packages(
-  c('streamMetabolizer', 'mda.streams', 'dplyr', 'tidyr', 'ggplot2', 'unitted', 'devtools'),
-  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs')
+library(xml2)
+library(httr)
 devtools::session_info()
+
+pkgdeps <- rownames(available.packages(repos="file:bundle"))
+install.packages(
+  c('memoise'), # these must be updated before attempting to install devtools
+  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', configure.args='--no-docs --no-html')
+install.packages(
+  c('httr', 'xml2', # these must be updated before attempting ot install dataRetrieval
+    'devtools', 'dplyr', 'tidyr', 'ggplot2', 'unitted'), # these might be nice to have before installing streamMetabolizer, mda.streams
+  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', configure.args='--no-docs --no-html')
+install.packages(
+  c('streamMetabolizer', 'mda.streams'),
+  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', configure.args='--no-docs --no-html')
+
+library(httr)
+library(devtools)
+library(streamMetabolizer)
+devtools::session_info()
+library(mda.streams)
 
 # get the model ID to run
 args <- commandArgs(trailingOnly = TRUE)

@@ -64,7 +64,7 @@ targets:
   
   metab.prep.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_config/prep/cluster/condor',
+      cluster_dir='../2_metab_config/prep/cluster/condor', smu.config,
       '~/.R/stream_metab.yaml',
       '../2_metab_config/cluster/packages/bundle.zip',
       '../2_metab_config/cluster/condor/unzip',
@@ -79,7 +79,7 @@ targets:
   
   metab.run.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_config/cluster/condor',
+      cluster_dir='../2_metab_config/cluster/condor', smu.config,
       '~/.R/stream_metab.yaml',
       '../2_metab_config/cluster/packages/bundle.zip',
       '../2_metab_config/cluster/run_model.R',

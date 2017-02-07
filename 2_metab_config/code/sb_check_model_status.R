@@ -8,9 +8,9 @@
 #' @import dplyr
 #' @import mda.streams
 #' @import sbtools
-sb_check_model_status <- function(metab.file, phase=c('stage','post'), posted_after='2017-02-01') {
+sb_check_model_status <- function(metab.file, phase=c('stage','post'), smu.config) {
   phase <- match.arg(phase)
-  posted_after <- as.POSIXct(posted_after)
+  posted_after <- as.POSIXct(if(grepl('prep', metab.file)) smu.config$prep_posted_after else smu.config$posted_after)
   
   # read in the status table
   metab.table <- read_status_table(metab.file)

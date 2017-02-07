@@ -12,7 +12,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   library(ggplot2)
   library(unitted)
   config <- read_config('config.tsv')
-  status <- read.table('status.tsv')
+  status <- read.table('files_metab.tsv', header=TRUE, sep='\t')
   
   # plan to run the jobth row that's incomplete in status
   row_num <- filter(status, tagged=FALSE)[job, 'config_row']

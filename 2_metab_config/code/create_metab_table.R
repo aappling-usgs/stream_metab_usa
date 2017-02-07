@@ -45,7 +45,6 @@ create_metab_table <- function(config_file="../2_metab_config/prep/out/config.ts
   }
   
   # update the local/posted/tagged columns
-  sb_check_model_status(outfile, phase='stage')
-  posted_after <- if(grepl('prep', config_file)) smu.config$prep_posted_after else smu.config$posted_after
-  sb_check_model_status(outfile, phase='post', posted_after=posted_after)
+  sb_check_model_status(outfile, phase='stage', smu.config)
+  sb_check_model_status(outfile, phase='post', smu.config)
 }
