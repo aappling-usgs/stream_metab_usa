@@ -4,7 +4,7 @@
 #' @import mda.streams
 #' @import dplyr
 #' @import unitted
-run_model(config_row, verbose, outdir) {
+run_model <- function(config_row, verbose, outdir) {
   library(streamMetabolizer)
   library(mda.streams)
   library(dplyr)

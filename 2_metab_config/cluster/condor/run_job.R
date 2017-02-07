@@ -1,7 +1,14 @@
-# install packages from the local repo
+# put the shared credentials where mda.streams will find them for login_sb()
+pwdfile <- file.path(Sys.getenv("HOME"), ".R", "stream_metab.yaml")
+if(!dir.exists(dirname(pwdfile))) dir.create(dirname(pwdfile))
+file.copy(basename(pwdfile), pwdfile)
+
+# update & install packages from the local repo
+pkgdeps <- rownames(available.packages(repos="file:bundle"))
+update.packages(oldPkgs = pkgdeps, repos="file:bundle", ask=FALSE, type='source')
 install.packages(
   c('streamMetabolizer', 'mda.streams', 'dplyr', 'tidyr', 'ggplot2', 'unitted', 'devtools'),
-  repo="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs')
+  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs')
 devtools::session_info()
 
 # get the model ID to run

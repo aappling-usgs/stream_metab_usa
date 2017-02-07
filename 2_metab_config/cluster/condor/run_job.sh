@@ -9,8 +9,8 @@ chmod 777 unzip
 mkdir rLibs
 
 # put stream_metab.yaml in ~/.R/stream_metab.yaml
-mkdir ~/.R
-mv stream_metab.yaml ~/.R
+# mkdir ~/.R
+# mv stream_metab.yaml ~/.R
 
 # make a directory to store results in
 mkdir job
