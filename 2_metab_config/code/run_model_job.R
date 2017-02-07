@@ -35,7 +35,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   error=function(e) {
     writeLines(e$message, file.path(outdir, sprintf("error %s.txt", stage_name)))
   })
-  modeled <- is(metab_out, 'metab_model')
+  modeled <- any(substring(class(metab_out), 1, 5) == 'metab')
   if(!modeled) {
     message('modeling or summarization failed; see error file')
     return()
