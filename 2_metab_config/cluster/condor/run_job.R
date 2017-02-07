@@ -1,25 +1,20 @@
-# update & install packages from the local repo
-library(xml2)
-library(httr)
-devtools::session_info()
-
+# update & install packages from the local repo. use an lapply to ensure ordering of installation
 pkgdeps <- rownames(available.packages(repos="file:bundle"))
-install.packages(
-  c('memoise'), # these must be updated before attempting to install devtools
-  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', configure.args='--no-docs --no-html')
-install.packages(
-  c('httr', 'xml2', # these must be updated before attempting ot install dataRetrieval
-    'devtools', 'dplyr', 'tidyr', 'ggplot2', 'unitted'), # these might be nice to have before installing streamMetabolizer, mda.streams
-  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', configure.args='--no-docs --no-html')
-install.packages(
-  c('streamMetabolizer', 'mda.streams'),
-  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', configure.args='--no-docs --no-html')
+installout <- lapply(
+  c('memoise', # must be updated before devtools
+    'devtools', 'dplyr', 'tidyr', 'ggplot2',
+    'httr', 'xml2', # must be updated before dataRetrieval
+    'unitted', # needed for streamMetabolizer
+    'streamMetabolizer', 'mda.streams'),
+  install.packages, 
+  repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', 
+  configure.args='--no-docs --no-html' # not sure this arg is working - looks like html is still getting built
+)
 
-library(httr)
-library(devtools)
+# report on package versions
 library(streamMetabolizer)
-devtools::session_info()
 library(mda.streams)
+devtools::session_info()
 
 # get the model ID to run
 args <- commandArgs(trailingOnly = TRUE)

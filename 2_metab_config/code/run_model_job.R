@@ -12,11 +12,14 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   library(ggplot2)
   library(unitted)
   config <- read_config('config.tsv')
-  status <- read.table('files_metab.tsv', header=TRUE, sep='\t')
+  status <- read.table('files_metab.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
   # plan to run the jobth row that's incomplete in status
-  row_num <- filter(status, tagged=FALSE)[job, 'config_row']
-  config_row <- config[row_num, ]
+  row_num <- filter(status, tagged==FALSE) %>%
+    .[[job, 'filepath']] %>%
+    parse_metab_model_path(out='row') %>%
+    as.numeric()
+  config_row <- filter(config, config.row == row_num)
   
   # get standardized names for the model for interacting with SB
   stage_title <- make_metab_run_title(
