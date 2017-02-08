@@ -5,12 +5,12 @@
 run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   
   # load the basics
-  library(streamMetabolizer)
-  library(mda.streams)
-  library(dplyr)
-  library(tidyr)
-  library(ggplot2)
-  library(unitted)
+  library(dplyr, lib.loc='rLibs')
+  library(tidyr, lib.loc='rLibs')
+  library(ggplot2, lib.loc='rLibs')
+  library(unitted, lib.loc='rLibs')
+  library(streamMetabolizer, lib.loc='rLibs')
+  library(mda.streams, lib.loc='rLibs')
   config <- read_config('config.tsv')
   status <- read.table('files_metab.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
   

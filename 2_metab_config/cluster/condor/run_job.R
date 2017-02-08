@@ -13,9 +13,15 @@ installout <- lapply(
 )
 
 # report on package versions
-library(streamMetabolizer)
-library(mda.streams)
-devtools::session_info()
+print(.libPaths())
+print("A")
+installed.packages(lib.loc='rLibs')
+print("B")
+installed.packages()
+tryCatch({
+  print(packageVersion(streamMetabolizer, lib.loc='rLibs'))
+  print(packageVersion(mda.streams, lib.loc='rLibs'))
+}, error=function(e) print("couldn't identify packageVersions for sM, m.s"))
 
 # get the model ID to run
 args <- commandArgs(trailingOnly = TRUE)
