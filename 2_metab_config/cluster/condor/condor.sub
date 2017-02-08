@@ -11,9 +11,8 @@ stream_error = True
 requirements = (TARGET.Arch == "X86_64") && (TARGET.OpSys == "LINUX")
 request_cpus = 4
 should_transfer_files = YES
-#+WantFlocking = true
 when_to_transfer_output = ON_EXIT
+transfer_output_files = job
+transfer_output_remaps = "job = results/job_$(Process)"
 notification = never
-transfer_output_files = job.zip
-transfer_output_remaps = "job.zip = results/job_$(Process).zip"
 queue 2

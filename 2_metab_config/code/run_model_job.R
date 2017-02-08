@@ -33,6 +33,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
     run_fun(config_row, verbose, outdir)
   }, 
   error=function(e) {
+    warning(e)
     writeLines(e$message, file.path(outdir, sprintf("error %s.txt", stage_name)))
   })
   modeled <- any(substring(class(metab_out), 1, 5) == 'metab')
