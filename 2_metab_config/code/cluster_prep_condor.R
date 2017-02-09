@@ -14,7 +14,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   }
   
   # create directories to accept output files
-  dirs <- c('out','log','err','results')
+  dirs <- c('log','results')
   for(dir in dirs) {
     login_node_dir <- file.path(cluster_dir, dir)
     if(!dir.exists(login_node_dir)) {
@@ -31,7 +31,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
     # any mods for the main run?
   }
   needed <- sb_check_model_status(file.path(cluster_dir, 'files_metab.tsv'), phase=c('stage','post'), smu.config)
-  needed <- data.frame(x=1:2) #### FOR TESTING ONLY ####
+  needed <- data.frame(x=1) #### FOR TESTING ONLY ####
   condor.sub <- condor.sub %>%
     gsub('queue 2', sprintf('queue %d', nrow(needed)), .)
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))

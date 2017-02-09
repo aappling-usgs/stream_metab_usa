@@ -5,13 +5,13 @@
 run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   
   # load the basics
-  library(dplyr, lib.loc='rLibs')
-  library(tidyr, lib.loc='rLibs')
-  library(ggplot2, lib.loc='rLibs')
-  library(unitted, lib.loc='rLibs')
-  library(streamMetabolizer, lib.loc='rLibs')
-  library(mda.streams, lib.loc='rLibs')
   library(methods)
+  library(dplyr)
+  library(tidyr)
+  library(ggplot2)
+  library(unitted)
+  library(streamMetabolizer)
+  library(mda.streams)
   config <- read_config('config.tsv')
   status <- read.table('files_metab.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
@@ -31,8 +31,8 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   # model metabolism
   metab_out <- tryCatch({
     if(verbose) message("modeling metabolism for config row ", row_num, ": starting at ", Sys.time())
-    run_fun(config_row, verbose, outdir)
-  }, 
+    run_fun(config_row, verbose, outdir, stage_name)
+  },
   error=function(e) {
     warning(e)
     writeLines(e$message, file.path(outdir, sprintf("error %s.txt", stage_name)))
@@ -40,6 +40,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   modeled <- any(substring(class(metab_out), 1, 5) == 'metab')
   if(!modeled) {
     message('modeling or summarization failed; see error file')
+    print(metab_out)
     return()
   }
   
