@@ -11,6 +11,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   library(unitted, lib.loc='rLibs')
   library(streamMetabolizer, lib.loc='rLibs')
   library(mda.streams, lib.loc='rLibs')
+  library(methods)
   config <- read_config('config.tsv')
   status <- read.table('files_metab.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
