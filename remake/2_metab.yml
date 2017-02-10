@@ -83,7 +83,7 @@ targets:
       cluster_dir='../2_metab_config/cluster/condor', smu.config,
       '~/.R/stream_metab.yaml',
       '../2_metab_config/cluster/packages/bundle.zip',
-      '../2_metab_config/cluster/run_model.R',
+      '../2_metab_config/code/run_model_job.R',
       '../2_metab_config/out/config.tsv')
       
   

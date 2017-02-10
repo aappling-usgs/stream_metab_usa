@@ -52,7 +52,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   # post the output, with retries
   posted <- tagged <- FALSE
   for(attempt in seq_len(retries)) {
-    if(!sbtools::is_logged_in()) login_sb()
+    if(!sbtools::is_logged_in()) login_sb(filename='stream_metab.yaml')
     # try to post
     if(!posted) {
       posted <- tryCatch({

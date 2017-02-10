@@ -7,8 +7,6 @@
 #' @import unitted
 run_model <- function(config_row, verbose, outdir, model_name) {
   
-  login_sb()
-  
   # run the model
   if(verbose) message('running model')
   print(config_row)
