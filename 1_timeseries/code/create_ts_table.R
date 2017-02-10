@@ -55,7 +55,7 @@ create_ts_table <- function(sites, config, outfile){
     write_status_table(site.table, outfile)
   }
   
-  # udpate the local/posted/tagged columns
+  # update the local/posted/tagged columns
   sb_check_ts_status(outfile, phase='stage')
   sb_check_ts_status(outfile, phase='post', posted_after=config$posted_after)
   
