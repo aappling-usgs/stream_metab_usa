@@ -30,7 +30,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   } else {
     # any mods for the main run?
   }
-  needed <- sb_check_model_status(file.path(cluster_dir, 'files_metab.tsv'), phase='post', smu.config)
+  needed <- sb_check_model_status(file.path(cluster_dir, 'files_metab.tsv'), smu.config)
   condor.sub <- condor.sub %>%
     gsub('queue 2', sprintf('queue %d', nrow(needed)), .)
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))

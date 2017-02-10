@@ -11,7 +11,11 @@ run_model <- function(config_row, verbose, outdir, model_name) {
   if(verbose) message('running model')
   print(config_row)
   model_out <- config_to_metab(config=config_row, rows=1, verbose=verbose)[[1]]
-
+  print(model_out)
+  if(is.character(model_out)) {
+    stop(model_out)
+  }
+  
   # summarize the model & associated data
   if(verbose) message('summarizing model')
   fit <- get_fit(model_out)

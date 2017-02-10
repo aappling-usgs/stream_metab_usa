@@ -45,6 +45,5 @@ create_metab_table <- function(config_file="../2_metab_config/prep/out/config.ts
   }
   
   # update the local/posted/tagged columns
-  sb_check_model_status(outfile, phase='stage', smu.config)
-  sb_check_model_status(outfile, phase='post', smu.config)
+  sb_check_model_status(outfile, smu.config)
 }
