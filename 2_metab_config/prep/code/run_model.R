@@ -1,4 +1,5 @@
-#' For prep MLE run, run the model and compile daily K and Q
+#' Do the modeling stuff specific to one config row. For the prep MLE run, run 
+#' the model and compile daily K and Q into a summary data.frame
 #' 
 #' @import streamMetabolizer
 #' @import mda.streams

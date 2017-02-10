@@ -1,7 +1,7 @@
-#' Self-contained function to run the model and data specified by a specific
-#' config row (job) and save the results in a specific output directory
-#' 
-#' 
+#' Self-contained function to run the model and data specified by a specific 
+#' config row (job) and save the results in a specific output directory. When
+#' this is called, the requisite packages should already be installed and
+#' argument values filled out.
 run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   
   # load the basics
@@ -90,5 +90,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
     file.remove(stage_path)
     message('model was successfully run and posted')
     invisible()
+  } else {
+    message("posting failed; saved the model .RData file")
   }
 }

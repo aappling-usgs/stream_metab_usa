@@ -72,6 +72,7 @@ targets:
       '../2_metab_config/cluster/condor/condor.sub',
       '../2_metab_config/cluster/condor/run_job.sh',
       '../2_metab_config/cluster/condor/run_job.R',
+      '../2_metab_config/code/install_packages.R',
       '../2_metab_config/code/run_model_job.R',
       '../2_metab_config/prep/code/run_model.R',
       '../2_metab_config/prep/out/config.tsv',
