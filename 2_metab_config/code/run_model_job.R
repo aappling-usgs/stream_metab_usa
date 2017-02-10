@@ -87,7 +87,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   # clean up before returning if posting worked; otherwise leave the model in
   # place to be zipped and returned
   if(posted && tagged) {
-    file.remove(stage_path)
+    # file.remove(stage_path)
     message('model was successfully run and posted')
     invisible()
   } else {
