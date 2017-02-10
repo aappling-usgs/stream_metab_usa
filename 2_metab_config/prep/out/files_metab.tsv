@@ -1,5 +1,5 @@
 "filepath"	"local"	"posted"	"tagged"	"error"
-"./mm_nwis_01104430-1-170206 1.0.0 MLE_prep_run.RData"	FALSE	FALSE	FALSE	NA
+"./mm_nwis_01104430-1-170206 1.0.0 MLE_prep_run.RData"	FALSE	TRUE	TRUE	NA
 "./mm_nwis_01124000-2-170206 1.0.0 MLE_prep_run.RData"	FALSE	FALSE	FALSE	NA
 "./mm_nwis_01125100-3-170206 1.0.0 MLE_prep_run.RData"	FALSE	FALSE	FALSE	NA
 "./mm_nwis_01184000-4-170206 1.0.0 MLE_prep_run.RData"	FALSE	FALSE	FALSE	NA

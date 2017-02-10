@@ -30,12 +30,12 @@ sb_check_model_status <- function(metab.file, phase=c('stage','post'), smu.confi
     mms_by_tbl <- details$model_name
     
     # get mms by query from SB on text; filter by posted_after
-    mms_by_dir <- sbtools::query_item_in_folder(text=tag, folder=locate_folder('metab_models'), limit=10000) 
-    mms_posted_after <- sapply(mms_by_dir, function(mmd) max(sapply(mmd$files, function(f) f$dateUploaded))) > as.POSIXct(posted_after, tz='UTC')
-    mms_by_dir <- mms_by_dir[mms_posted_after]
+    mms_query <- sbtools::query_item_in_folder(text=tag, folder=locate_folder('metab_models'), limit=10000) 
+    mms_posted_after <- sapply(mms_query, function(mmd) max(sapply(mmd$files, function(f) f$dateUploaded))) > as.POSIXct(posted_after, tz='UTC')
+    mms_by_dir <-  unlist(lapply(mms_query[mms_posted_after], function(mmitem) sbtools::item_get_fields(mmitem, 'identifiers')[[1]]$key))
     
     # get mm tags. many SB calls =(
-    mms_by_tag <- unlist(lapply(mms_by_dir, function(mmitem) sbtools::item_get_fields(mmitem, 'identifiers')[[1]]$key))
+    mms_by_tag <- unlist(lapply(mms_query, function(mmitem) sbtools::item_get_fields(mmitem, 'identifiers')[[1]]$key))
     
     # find status of metab.table elements by comparing above lists
     metab.table$posted <- mms_by_tbl %in% mms_by_dir
