@@ -43,8 +43,13 @@ create_prep_config <- function(prepdir="../2_metab_config/prep/out/",
           K600_max = max(K600.daily))
     })) %>%
     # summarize the discharges
-    mutate(Qstats = lapply(data, function(dat) {
-      bins <- calc_bins(log(dat$discharge.daily), "width", width=0.2, center=0)
+    mutate(Qbins = lapply(data, function(dat) {
+      calc_bins(log(dat$discharge.daily), "width", width=0.2, center=0)
+    })) %>%
+    mutate(Qbounds = lapply(Qbins, function(bins) {
+      data_frame(Qnodemin=min(bins$bounds), Qnodemax=max(bins$bounds))
+    })) %>%
+    mutate(Qstats = lapply(Qbins, function(bins) {
       bintable <- as_data_frame(table(bins$names[bins$vec])) %>% setNames(c('name', 'nbin'))
       data_frame(
         name = bins$names,
@@ -53,11 +58,19 @@ create_prep_config <- function(prepdir="../2_metab_config/prep/out/",
         center = (lbound + ubound)/2,
         median = median(bins$bounds),
         range = max(bins$bounds) - min(bins$bounds),
-        numbins = length(bins$bounds),
-        ntot = nrow(dat)) %>%
+        numbins = length(bins$bounds)) %>%
         left_join(bintable, by='name') %>%
         mutate(nbin = replace(nbin, is.na(nbin), 0))
     }))
+  
+  params <- resnest %>%
+    unnest(Kstats) %>%
+    unnest(Qbounds) %>%
+    select(site_name, K600_med, Qnodemin, Qnodemax) %>%
+    mutate(K600_med = format(K600_med, digits=3),
+           Qnodemin = format(Qnodemin, digits=2),
+           Qnodemax = format(Qnodemax, digits=2))
+  write.table(params, file.path(outdir, 'params.tsv'), row.names=FALSE, sep='\t', quote=FALSE)
   
   library(ggplot2)
   
