@@ -8,7 +8,7 @@
 #' @param prepdir the location of the output files (in their directories as copied over from condor)
 create_prep_config <- function(prepdir="../2_metab_config/prep/out/", 
                                smu.config=yaml::yaml.load_file('../2_metab_config/in/metab_configs_config.yml'),
-                               outfile="../2_metab_config/prep/out/params.tsv") {
+                               outdir="../2_metab_config/prep/out") {
   
   # collect and combine summary data.frames from the jobs
   resultsdirs <- grep('results_', dir(prepdir, full.names=TRUE), value=TRUE)
@@ -52,61 +52,71 @@ create_prep_config <- function(prepdir="../2_metab_config/prep/out/",
         ubound = bins$bounds[-1],
         center = (lbound + ubound)/2,
         median = median(bins$bounds),
+        range = max(bins$bounds) - min(bins$bounds),
+        numbins = length(bins$bounds),
         ntot = nrow(dat)) %>%
         left_join(bintable, by='name') %>%
         mutate(nbin = replace(nbin, is.na(nbin), 0))
     }))
   
   library(ggplot2)
-  library(ggExtra)
   
   # plot the median Ks
-  unnest(resnest, Kstats) %>%
+  g <- unnest(resnest, Kstats) %>%
     ggplot(aes(x=n, y=K600_med)) + geom_point() +
     geom_errorbar(aes(ymin=pmax(K600_q25, 0.1), ymax=K600_q75)) + 
     scale_y_log10(breaks=10^(-1:4), labels=sprintf('%5.1f', 10^(-1:4))) + theme_bw() +
-    ylab('Median K600 after filtering') + xlab('Number of filtered K600s')
+    ylab('Median K600') + xlab('Number of daily Ks') +
+    ggtitle("K: K600 after filtering to sd/K < 0.5")
+  ggsave(file.path(outdir, 'K_by_n.png'), plot=g, width=8, height=4, dpi=300)
   
-  (unnest(resnest, Kstats) %>%
-      arrange(K600_med) %>%
-      mutate(site_order = 1:n()) %>%
-      ggplot(aes(x=site_order, y=K600_med, color=log(n))) + geom_point() +
-      geom_errorbar(aes(ymin=pmax(K600_q25, 0.1), ymax=K600_q75)) + 
-      scale_y_log10(breaks=10^(-1:4), labels=sprintf('%5.1f', 10^(-1:4))) + 
-      scale_color_continuous("Log number of filtered K600s per point") +
-      theme_bw() +
-      ylab('Median K600 and interquartile range after filtering') + xlab('Site') + theme(axis.text.x=element_blank(), legend.position='bottom')) %>%
-    ggExtra::ggMarginal(type = "histogram", margins = "y", size = 10, fill = "blue")
+  g <- unnest(resnest, Kstats) %>%
+    arrange(K600_med) %>%
+    mutate(site_order = 1:n()) %>%
+    ggplot(aes(x=site_order, y=K600_med, color=log(n))) + geom_point() +
+    geom_errorbar(aes(ymin=pmax(K600_q25, 0.1), ymax=K600_q75)) + 
+    scale_y_log10(breaks=10^(-1:4), labels=sprintf('%5.1f', 10^(-1:4))) + 
+    scale_color_continuous("Log number of daily Ks per site") +
+    theme_bw() +
+    ylab('Median K600 and interquartile range') + xlab('Site, ordered by median K600') + 
+    theme(axis.text.x=element_blank(), legend.position='bottom') +
+    ggtitle("K: K600 after filtering to sd/K < 0.5")
+  ggsave(file.path(outdir, 'K_by_Korder.png'), plot=g, width=8, height=4, dpi=300)
   
-  unnest(resnest, Kstats) %>%
+  g <- unnest(resnest, Kstats) %>%
     ggplot(aes(x=K600_med)) + geom_density(fill='lightgrey') + 
     geom_rug(sides='b') + 
-    scale_x_log10(breaks=c(0.5,1,5,10,50,100)) + theme_bw()
+    scale_x_log10(breaks=c(0.5,1,5,10,50,100)) + theme_bw() +
+    xlab("Median K600 (1/d) for each site") + ylab("Density") +
+    ggtitle("K: Density of median Ks")
+  ggsave(file.path(outdir, 'K_density.png'), plot=g, width=6, height=4, dpi=300)
   
   # plot the discharges
-  resnest %>%
+  g <- resnest %>%
     mutate(Q_med = sapply(Qstats, function(qs) unique(qs$median))) %>%
     arrange(Q_med) %>%
     mutate(site_order = 1:n()) %>%
     unnest(Qstats) %>%
-    ggplot(aes(x=site_order, y=exp(center), color=log(nbin))) + geom_point() + scale_y_log10() + theme_bw() +
-    ylab('Bin Centers') + xlab('Site') + theme(axis.text.x=element_blank())
+    ggplot(aes(x=site_order, y=exp(center), color=log(nbin))) + 
+    geom_point(size=0.6, shape=15) + scale_y_log10() + theme_bw() +
+    ylab('Bin Centers (m^3 s^-1)') + xlab('Site') + theme(axis.text.x=element_blank()) +
+    ggtitle("Q: Bin Qs and sizes, sites arranged by median Q")
+  ggsave(file.path(outdir, 'Q_by_Qorder.png'), plot=g, width=8, height=4, dpi=300)
   
-  # boxplot of bin sizes
-  unnest(resnest, Qstats) %>%
-    ggplot(aes(x=site_name, y=nbin+1, color=center)) + geom_boxplot(color='grey80', fill='grey95') + 
-    geom_point() + theme_bw() + scale_y_log10(breaks=c(1, 11, 101), labels=c(0, 10, 100)) + 
-    ylab('Days per Bin') + xlab('Site') + theme(axis.text.x=element_blank())
+  g <- unnest(resnest, Qstats) %>%
+    ggplot(aes(x=nbin)) + geom_histogram(binwidth=5) + #scale_y_log10() +
+    geom_rug() + theme_bw() +
+    xlab("Number (N) of days per Q bin") + ylab("Number of bins having N days/bin") +
+    ggtitle('Q: Histogram of bin sizes')
+  ggsave(file.path(outdir, 'Q_histogram.png'), plot=g, width=8, height=4, dpi=300)
   
-  unnest(resnest, data) %>%
-    ggplot(aes(x=site_name, y=discharge.daily)) + geom_boxplot() + scale_y_log10() + theme_bw()
-  
-  results %>%
-    filter(ply_validity == 'TRUE') %>%
-    group_by(site_name) %>%
-    summarize(
-      n = n(),
-      qlogrange = diff(range(log(discharge.daily)))
-    ) %>%
-    ggplot(aes(x=n, y=qlogrange)) + geom_point()
+  g <- resnest %>%
+    mutate(Q_med = sapply(Qstats, function(qs) unique(qs$median))) %>%
+    unnest(Qstats) %>%
+    ggplot(aes(x=exp(Q_med), y=numbins)) + geom_point() + theme_bw() +
+    scale_x_log10() +
+    xlab("Median Q of each site (m^3 s^-1)") + 
+    ylab("Number of bins per site") +
+    ggtitle('Q: Number of bins per site, by median Q')
+  ggsave(file.path(outdir, 'Qnumbins_vs_Qmedian.png'), plot=g, width=6, height=4, dpi=300)
 }
