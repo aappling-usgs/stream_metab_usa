@@ -11,21 +11,23 @@ run_model <- function(config_row, verbose, outdir, model_name) {
   Sys.sleep(60*runif(1,0,20))
   
   # run the model
-  if(verbose) message('read to run model')
+  if(verbose) message('ready to run model')
   print(config_row)
   if(verbose) message('preparing model')
   model_prep <- config_to_metab(config=config_row, rows=1, verbose=verbose, prep_only=TRUE)[[1]]
   tryCatch({
-    lapply(model_prep, head)
-    lapply(model_prep, dim)
+    print(lapply(model_prep, head))
+    print(lapply(model_prep, dim))
   }, error=function(e) warning(e))
   if(verbose) message('running model')
   model_out <- config_to_metab(config=config_row, rows=1, verbose=verbose)[[1]]
+  if(verbose) message('printing model')
   tryCatch({
     print(class(model_out))
     print(model_out)
   }, error=function(e) warning(e))
-  if(is.character(model_out)) {
+  if(verbose) message('determining whether modeling worked')
+  if(length(model_out) == 0 || is.character(model_out)) {
     msg <- attr(model_out, 'errors')
     if(length(msg) == 0) msg <- model_out
     stop(msg)

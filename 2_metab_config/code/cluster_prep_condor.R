@@ -40,6 +40,6 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   message("2. log on to the HTCondor submit node, then run these:")
   message("  dos2unix run_job.sh")
   message("  condor_submit condor.sub")
-  message(sprintf("3. scp or sftp the files back to %s", cluster_dir))
+  message(sprintf("3. scp or sftp the files from results and log back to %s", file.path(dirname(dirname(cluster_dir)), 'out')))
   
 }
