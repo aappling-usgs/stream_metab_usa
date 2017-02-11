@@ -6,9 +6,15 @@
 #' @param cluster_dir the local folder whose contents you will manually transfer
 cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/condor', smu.config, ...) {
   
-  # copy files into the condor directory
+  # collect arguments into list
   files <- unlist(list(...))
-    for(file in files) {
+  
+  # update the status file, save needed list for condor.sub updates below
+  status.file <- grep('files_metab\\.tsv', files, value=TRUE)
+  needed <- sb_check_model_status(status.file, smu.config)
+  
+  # copy files into the condor directory
+  for(file in files) {
     success <- file.copy(file, file.path(cluster_dir, basename(file)), overwrite=TRUE)
     if(!success) stop("file could not be copied: ", file)
   }
@@ -30,7 +36,6 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   } else {
     # any mods for the main run?
   }
-  needed <- sb_check_model_status(file.path(cluster_dir, 'files_metab.tsv'), smu.config)
   condor.sub <- condor.sub %>%
     gsub('queue 2', sprintf('queue %d', nrow(needed)), .)
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))
