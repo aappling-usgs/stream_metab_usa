@@ -7,6 +7,7 @@ packages:
   - yaml
   - dplyr
   - tidyr
+  - ggplot2
   - mda.streams
   - sbtools
   - miniCRAN
@@ -19,6 +20,7 @@ sources:
   - ../2_metab_config/code/create_metab_table.R
   - ../2_metab_config/code/sb_check_model_status.R
   - ../2_metab_config/prep/code/create_prep_config.R
+  - ../2_metab_config/prep/code/choose_params.R
   - ../lib/load_profile.R
   - ../lib/write_status_table.R
 
@@ -79,6 +81,7 @@ targets:
       '../2_metab_config/prep/out/files_metab.tsv')
   
   metab.run.condor.prep:
+    depends: metab.prep
     command: cluster_prep_condor(
       cluster_dir='../2_metab_config/cluster/condor', smu.config,
       '~/.R/stream_metab.yaml',
@@ -86,4 +89,6 @@ targets:
       '../2_metab_config/code/run_model_job.R',
       '../2_metab_config/out/config.tsv')
       
-  
+  metab.prep: # prep/out/ params.tsv, various.png
+    depends: '../2_metab_config/prep/out/files_metab.tsv'
+    command: choose_params(smu.config=smu.config)
