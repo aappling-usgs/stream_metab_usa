@@ -2,13 +2,17 @@
 #' 
 #' @import tidyr
 #' @import dplyr
+#' @import lubridate
 #' @import streamMetabolizer
 #' @import ggplot2
-#' @import ggExtra
-#' @param prepdir the location of the output files (in their directories as copied over from condor)
-create_prep_config <- function(prepdir="../2_metab_config/prep/out/", 
-                               smu.config=yaml::yaml.load_file('../2_metab_config/in/metab_configs_config.yml'),
-                               outdir="../2_metab_config/prep/out") {
+#' @param prepdir the location of the output files (in their directories as
+#'   copied over from condor)
+#' @param smu.config the remake-related config, to be distinguished from the
+#'   model config we're working toward
+#' @param outdir the directory in which to save the params and plots we create
+choose_params <- function(prepdir="../2_metab_config/prep/out/", 
+                          smu.config=yaml::yaml.load_file('../2_metab_config/in/metab_configs_config.yml'),
+                          outdir="../2_metab_config/prep/out") {
   
   # collect and combine summary data.frames from the jobs
   resultsdirs <- grep('results_', dir(prepdir, full.names=TRUE), value=TRUE)
@@ -24,11 +28,35 @@ create_prep_config <- function(prepdir="../2_metab_config/prep/out/",
       }))
     } else NULL
   }))
+  saveRDS(results, file.path(outdir, 'results.Rds'))
   
-  # compute metrics for K and Q
+  # compute metrics for timestep, K, and Q
   resnest <- results %>%
     group_by(site_name) %>%
     nest() %>%
+    # summarize the timesteps
+    mutate(Tsteps = lapply(data, function(dat) {
+      dat %>%
+        filter(ply_validity == 'TRUE') %>%
+        group_by(timestep_days) %>%
+        summarize(
+          num_dates = length(date),
+          start_date = min(date),
+          end_date = max(date)
+        ) %>%
+        mutate(
+          num_tsteps = length(num_dates),
+          timestep_mins = round(timestep_days * 24 * 60, 0.1),
+          start_Date = as.Date(start_date),
+          end_Date = as.Date(end_date))
+    })) %>%
+    mutate(Tstats = lapply(Tsteps, function(Ts) {
+      tsdat <- Ts %>% filter(num_dates >= 30) # decision: don't model data chunks with fewer than 30 dates
+      data_frame(
+        tsteps_min = paste0(tsdat$timestep_mins, collapse=','),
+        modal_tstep = tsdat$timestep_mins[which.max(tsdat$num_dates)][1]
+      )
+    })) %>%
     # summarize the median Ks
     mutate(Kstats = lapply(data, function(dat) {
       dat %>%
@@ -62,23 +90,45 @@ create_prep_config <- function(prepdir="../2_metab_config/prep/out/",
         left_join(bintable, by='name') %>%
         mutate(nbin = replace(nbin, is.na(nbin), 0))
     }))
+  saveRDS(resnest, file.path(outdir, 'results_nested.Rds'))
   
+  # write out the essential info for creating the next config file
   params <- resnest %>%
-    unnest(Kstats) %>%
-    unnest(Qbounds) %>%
-    select(site_name, K600_med, Qnodemin, Qnodemax) %>%
+    unnest(Tstats, Kstats, Qbounds) %>%
+    select(site_name, tsteps_min, K600_med, Qnodemin, Qnodemax) %>%
     mutate(K600_med = format(K600_med, digits=3),
            Qnodemin = format(Qnodemin, digits=2),
            Qnodemax = format(Qnodemax, digits=2))
   write.table(params, file.path(outdir, 'params.tsv'), row.names=FALSE, sep='\t', quote=FALSE)
   
-  library(ggplot2)
+  # plot the timesteps
+  tsteps <- unnest(resnest, Tsteps)
+  g <- ggplot(filter(tsteps, num_tsteps > 1), aes(x=site_name, color=as.factor(timestep_mins))) + 
+    geom_errorbar(aes(ymin=start_Date, ymax=end_Date), size=1) +
+    scale_color_discrete('Timestep (mins)') +
+    theme_bw() +
+    ylab('Date') + xlab('Site') +
+    theme(axis.text.x=element_blank(), legend.position='bottom') +
+    guides(color = guide_legend(nrow = 1)) +
+    ggtitle("T: Temporal coverage by timestep length: sites with >1 unique timestep")
+  ggsave(file.path(outdir, 'T_by_date_multiT.png'), plot=g, width=8, height=5, dpi=300)
+  
+  g <- ggplot(filter(tsteps, num_tsteps <= 1), aes(x=site_name, color=as.factor(timestep_mins))) + 
+    geom_errorbar(aes(ymin=start_Date, ymax=end_Date)) +
+    scale_color_discrete('Timestep (mins)') +
+    theme_bw() +
+    ylab('Date') + xlab('Site') +
+    theme(axis.text.x=element_blank(), legend.position='bottom') +
+    guides(color = guide_legend(nrow = 1)) +
+    ggtitle("T: Temporal coverage by timestep length: sites with <=1 unique timestep")
+  ggsave(file.path(outdir, 'T_by_date_singleT.png'), plot=g, width=8, height=5, dpi=300)
   
   # plot the median Ks
   g <- unnest(resnest, Kstats) %>%
     ggplot(aes(x=n, y=K600_med)) + geom_point() +
     geom_errorbar(aes(ymin=pmax(K600_q25, 0.1), ymax=K600_q75)) + 
-    scale_y_log10(breaks=10^(-1:4), labels=sprintf('%5.1f', 10^(-1:4))) + theme_bw() +
+    scale_y_log10(breaks=10^(-1:4), labels=sprintf('%5.1f', 10^(-1:4))) + 
+    theme_bw() +
     ylab('Median K600') + xlab('Number of daily Ks') +
     ggtitle("K: K600 after filtering to sd/K < 0.5")
   ggsave(file.path(outdir, 'K_by_n.png'), plot=g, width=8, height=4, dpi=300)
