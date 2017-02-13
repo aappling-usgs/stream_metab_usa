@@ -30,6 +30,7 @@ create_metab_config <- function(smu.config=yaml::yaml.load_file('../2_metab_conf
         "K600_lnQ_nodediffs_sdlog=0.1,",
         "K600_daily_sigma_sigma=%0.04f,", # K600_daily_sigma_sigma
         "params_out=c('GPP_daily','ER_daily','K600_daily','K600_daily_predlog','lnK600_lnQ_nodes','K600_daily_sigma','err_obs_iid_sigma','err_proc_iid_sigma')",
+        "burnin_steps=1000,saved_steps=500,",
         "))"), 
         ts_day,
         Qnodemin, Qnodemax, 
