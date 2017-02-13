@@ -72,7 +72,13 @@ choose_params <- function(prepdir="../2_metab_config/prep/out/",
     })) %>%
     # summarize the discharges
     mutate(Qbins = lapply(data, function(dat) {
-      calc_bins(log(dat$discharge.daily), "width", width=0.2, center=0)
+      logeQ <- filter(dat, ply_validity == 'TRUE')$discharge.daily
+      logeQ <- if(length(!is.na(logeQ))) na.omit(log(logeQ))
+      if(length(logeQ) > 0) {
+        calc_bins(logeQ, "width", width=0.2, center=0) # decision: bin width of 0.2 natural log units
+      } else {
+        list(vec=1, bounds=c(0,0), names='NA')
+      }
     })) %>%
     mutate(Qbounds = lapply(Qbins, function(bins) {
       data_frame(Qnodemin=min(bins$bounds), Qnodemax=max(bins$bounds))
