@@ -7,9 +7,11 @@
 #' 
 #' @param config a config for the config
 create_metab_config <- function(smu.config=yaml::yaml.load_file('../2_metab_config/in/metab_configs_config.yml'),
+                                prep.config.file='../2_metab_config/prep/out/config.tsv',
                                 param.file='../2_metab_config/prep/out/params.tsv',
                                 outfile='../2_metab_config/out/config.tsv') {
   
+  prep.config <- read_config('../2_metab_config/prep/out/config.tsv')
   params <- read.table(param.file, header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
   cfg.calcs <- params %>%
@@ -34,18 +36,20 @@ create_metab_config <- function(smu.config=yaml::yaml.load_file('../2_metab_conf
         K600_daily_sigma_sigma)
     ) %>%
     mutate(
-      strategy=sprintf('bayes_%smin', ts_min)
+      strat=sprintf('bayes_%smin', ts_min)
     ) %>%
-    select(site_name, strategy, specs)
-  
-  cfg <- stage_metab_config(
-    tag=smu.config$tag,
-    strategy=cfg.calcs$strategy,
-    model='metab_bayes',
-    model_args=cfg.calcs$specs,
-    site=cfg.calcs$site_name,
-    disch=choose_data_source('disch', cfg.calcs$site_name),
-    filename=outfile
-  )
+    select(site_name, strat, specs)
+
+  cfg <- prep.config %>%
+    inner_join(cfg.calcs, by=c(site='site_name')) %>%
+    mutate(
+      tag=smu.config[['tag']],
+      strategy=strat,
+      model='metab_bayes',
+      model_args=specs,
+      config.row=1:n()) %>%
+    select_(.dots=names(prep.config))
+    
+  cfg.file <- write_config(cfg, outfile)
   
 }
