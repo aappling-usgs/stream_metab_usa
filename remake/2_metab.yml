@@ -45,7 +45,7 @@ targets:
     command: create_prep_config(metab.sites, smu.config)
   
   '../2_metab_config/out/config.tsv': # metab.run.config
-    command: create_metab_config(smu.config)
+    command: create_metab_config(smu.config, '../2_metab_config/prep/out/params.tsv')
 
   # model status files
   
@@ -86,9 +86,17 @@ targets:
       cluster_dir='../2_metab_config/cluster/condor', smu.config,
       '~/.R/stream_metab.yaml',
       '../2_metab_config/cluster/packages/bundle.zip',
+      #'../2_metab_config/cluster/condor/unzip',
+      #'../2_metab_config/cluster/condor/.Renviron',
+      #'../2_metab_config/cluster/condor/condor.sub',
+      #'../2_metab_config/cluster/condor/run_job.sh',
+      #'../2_metab_config/cluster/condor/run_job.R',
+      '../2_metab_config/code/install_packages.R',
       '../2_metab_config/code/run_model_job.R',
-      '../2_metab_config/out/config.tsv')
-      
+      '../2_metab_config/code/run_model.R',
+      '../2_metab_config/out/config.tsv',
+      '../2_metab_config/out/files_metab.tsv')
+  
   metab.prep: # prep/out/ params.tsv, various.png
     depends: '../2_metab_config/prep/out/files_metab.tsv'
     command: choose_params(smu.config=smu.config)
