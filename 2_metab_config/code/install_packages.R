@@ -5,8 +5,9 @@ install_packages <- function() {
   # ordering of installation
   message('installing packages')
   oldpkgs <- rownames(old.packages(repos="file:bundle"))
-  keypkgs <-   c('dplyr', 'tidyr', 'ggplot2', 'yaml', 'streamMetabolizer', 'mda.streams')
-  toinstall <- c(setdiff(oldpkgs, keypkgs), keypkgs)
+  prereqs <- c('devtools', 'Rcpp', 'RcppEigen')
+  keypkgs <-   c('rstan', 'dplyr', 'tidyr', 'ggplot2', 'yaml', 'streamMetabolizer', 'mda.streams')
+  toinstall <- c(setdiff(oldpkgs, c(prereqs, keypkgs)), prereqs, keypkgs)
   print(toinstall)
   installout <- lapply(
     toinstall,

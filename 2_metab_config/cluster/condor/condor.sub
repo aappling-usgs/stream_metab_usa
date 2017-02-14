@@ -8,11 +8,11 @@ error = log/$(Process).err
 log = log/$(Process).log
 stream_output = True
 stream_error = True
-requirements = (TARGET.Arch == "X86_64") && (TARGET.OpSys == "LINUX")
+requirements = (TARGET.Arch == "X86_64") && (TARGET.OpSys == "LINUX") && (Machine == "licon32.er.usgs.gov")
 request_cpus = 4
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
 transfer_output_files = job
 transfer_output_remaps = "job = results/job_$(Process)"
 notification = never
-queue 433
+queue 1

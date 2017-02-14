@@ -31,13 +31,12 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   # modify the condor submit file for this run
   condor.sub <- readLines(file.path(cluster_dir, 'condor.sub'))
   if(grepl('prep', cluster_dir)) {
-    condor.sub <- condor.sub %>%
-      gsub('request_cpus = 4', 'request_cpus = 1', .)
+    condor.sub[grep('request_cpus', condor.sub)] <- 'request_cpus = 1'
   } else {
     # any mods for the main run?
   }
-  condor.sub <- condor.sub %>%
-    gsub('queue 2', sprintf('queue %d', nrow(needed)), .)
+  condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', 1) #### TEMPORARY ####
+  #condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))
   
   # remind how to run on cluster
