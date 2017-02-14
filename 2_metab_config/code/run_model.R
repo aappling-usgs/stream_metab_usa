@@ -27,13 +27,17 @@ run_model <- function(config_row, verbose, outdir, model_name) {
   # summarize the model & associated data
   if(verbose) message('summarizing model')
   tryCatch({
-    fit <- get_params(model_out, uncertainty='ci')
-    site <- get_info(model_out)$config$site
-    row <- get_info(model_out)$config$config.row
-    smry <- fit %>%
-      select(site_name=site, config_row=row, everything())
+    # save the model fit as a list
+    fit <- get_fit(model_out)
+    fit.file <- file.path(outdir, sprintf("fit %s.tsv", model_name))
+    saveRDS(fit, fit.file)
     
-    # write the summary
+    # save the model parameters as a table
+    pars <- get_params(model_out, uncertainty='ci')
+    pars$site <- get_info(model_out)$config$site
+    pars$row <- get_info(model_out)$config$config.row
+    smry <- pars %>%
+      select(site_name=site, config_row=row, everything())
     smry.file <- file.path(outdir, sprintf("summary %s.tsv", model_name))
     write.table(smry, smry.file, sep='\t', row.names=FALSE)
   }, error=function(e) {

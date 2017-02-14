@@ -29,8 +29,8 @@ create_metab_config <- function(smu.config=yaml::yaml.load_file('../2_metab_conf
         "K600_lnQ_nodes_centers=seq(%s,%s,by=0.2),", # Qnodemin, Qnodemax, 
         "K600_lnQ_nodediffs_sdlog=0.1,",
         "K600_daily_sigma_sigma=%0.04f,", # K600_daily_sigma_sigma
-        "params_out=c('GPP_daily','ER_daily','K600_daily','K600_daily_predlog','lnK600_lnQ_nodes','K600_daily_sigma','err_obs_iid_sigma','err_proc_iid_sigma')",
-        "burnin_steps=1000,saved_steps=500,",
+        "params_out=c('GPP_daily','ER_daily','K600_daily','K600_daily_predlog','lnK600_lnQ_nodes','K600_daily_sigma','err_obs_iid_sigma','err_proc_iid_sigma'),",
+        "burnin_steps=1000,saved_steps=500",
         "))"), 
         ts_day,
         Qnodemin, Qnodemax, 
@@ -44,6 +44,7 @@ create_metab_config <- function(smu.config=yaml::yaml.load_file('../2_metab_conf
   cfg <- prep.config %>%
     inner_join(cfg.calcs, by=c(site='site_name')) %>%
     mutate(
+      date="2017-02-14 09:25:46",
       tag=smu.config[['tag']],
       strategy=strat,
       model='metab_bayes',
