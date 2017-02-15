@@ -1,13 +1,19 @@
 #' Installs and reports on packages, using ./bundle/ as the source of packages
 #' for installation.
-install_packages <- function(rlib='rLibs') {
+install_packages <- function(rlib='rLibs', oldonly=FALSE) {
   # update & install packages from the local repo. use an lapply to ensure
   # ordering of installation
   message('installing packages')
   oldpkgs <- rownames(old.packages(repos="file:bundle"))
-  prereqs <- c('devtools', 'Rcpp', 'RcppEigen')
-  keypkgs <-   c('rstan', 'dplyr', 'tidyr', 'ggplot2', 'yaml', 'streamMetabolizer', 'mda.streams')
-  toinstall <- c(setdiff(oldpkgs, c(prereqs, keypkgs)), prereqs, keypkgs)
+  if(oldonly) {
+    # the yeti solution, where up-to-date packages are the norm for each job
+    toinstall <- oldpkgs
+  } else {
+    # the condor solution, where every package is likely to need an update every time
+    prereqs <- c('devtools', 'Rcpp', 'RcppEigen')
+    keypkgs <-   c('rstan', 'dplyr', 'tidyr', 'ggplot2', 'yaml', 'streamMetabolizer', 'mda.streams')
+    toinstall <- c(setdiff(oldpkgs, c(prereqs, keypkgs)), prereqs, keypkgs)
+  }
   print(toinstall)
   installout <- lapply(
     toinstall,

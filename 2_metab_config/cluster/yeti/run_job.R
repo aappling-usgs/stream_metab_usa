@@ -14,7 +14,7 @@ if(!dir.exists(libdir)) dir.create(libdir)
 
 # install the packages needed for this job
 source('install_packages.R')
-install_packages(libdir)
+install_packages(libdir, oldonly=TRUE)
 
 # get the model ID to run
 batch <- as.integer(Sys.getenv('SLURM_ARRAY_JOB_ID', 'NA')) # these are exactly the indices you request in #SBATCH --array
