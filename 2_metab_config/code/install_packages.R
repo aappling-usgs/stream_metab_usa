@@ -1,6 +1,6 @@
 #' Installs and reports on packages, using ./bundle/ as the source of packages
 #' for installation.
-install_packages <- function() {
+install_packages <- function(rlib='rLibs') {
   # update & install packages from the local repo. use an lapply to ensure
   # ordering of installation
   message('installing packages')
@@ -12,7 +12,7 @@ install_packages <- function() {
   installout <- lapply(
     toinstall,
     install.packages, 
-    repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib='rLibs', 
+    repos="file:bundle", type="source", dependencies=c("Depends","Imports"), lib=rlib, 
     INSTALL_opts=c('--no-docs','--no-html')
   )
   
