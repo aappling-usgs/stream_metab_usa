@@ -11,7 +11,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   
   # update the status file, save needed list for condor.sub updates below
   status.file <- grep('files_metab\\.tsv', files, value=TRUE)
-  needed <- sb_check_model_status(status.file, smu.config)
+  needed <- sb_check_model_status(status.file, smu.config, cluster='condor')
   
   # copy files into the condor directory
   for(file in files) {

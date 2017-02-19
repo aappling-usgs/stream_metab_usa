@@ -17,4 +17,4 @@ message(paste0('this is job ', job))
 # specific to each
 source('run_model_job.R')
 source('run_model.R')
-model_out <- run_model_job(job, outdir='job', run_fun=run_model)
+model_out <- run_model_job(job, outdir='job', run_fun=run_model, cluster='condor')
