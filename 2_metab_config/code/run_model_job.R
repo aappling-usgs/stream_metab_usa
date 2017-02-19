@@ -2,7 +2,7 @@
 #' config row (job) and save the results in a specific output directory. When
 #' this is called, the requisite packages should already be installed and
 #' argument values filled out.
-run_model_job <- function(job, outdir, run_fun, cluster='condor', retries=5, verbose=TRUE) {
+run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   
   # load the basics
   library(methods)
@@ -15,8 +15,7 @@ run_model_job <- function(job, outdir, run_fun, cluster='condor', retries=5, ver
   config <- read_config('config.tsv')
   status <- read.table('cluster_jobs.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
-  # plan to run the jobth row that's incomplete in status and permitted/assigned
-  # to this cluster run
+  # plan to run the jobth row of the status file
   row_num <- status %>%
     .[[job, 'filepath']] %>%
     parse_metab_model_path(out='row') %>%

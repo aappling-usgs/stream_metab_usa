@@ -27,4 +27,4 @@ tryCatch(
 # specific to each
 source('run_model_job.R')
 source('run_model.R')
-model_out <- run_model_job(job, outdir=outdir, run_fun=run_model, cluster='condor')
+model_out <- run_model_job(job, outdir=outdir, run_fun=run_model)
