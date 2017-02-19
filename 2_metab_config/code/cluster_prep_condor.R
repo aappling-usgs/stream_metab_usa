@@ -20,7 +20,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   }
   
   # create directories to accept output files
-  dirs <- c('log','results')
+  dirs <- c('log_170218','results_170218')
   for(dir in dirs) {
     login_node_dir <- file.path(cluster_dir, dir)
     if(!dir.exists(login_node_dir)) {
@@ -35,8 +35,8 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   } else {
     # any mods for the main run?
   }
-  condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', 1) #### TEMPORARY ####
-  #condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
+  #condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', 1) #### TEMPORARY ####
+  condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))
   
   # remind how to run on cluster
