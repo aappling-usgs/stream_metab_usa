@@ -24,6 +24,7 @@ condor170218:
   - nwis_01463500-19-170214 1.0.1 bayes_60min
   - nwis_01474500-22-170214 1.0.1 bayes_30min
   - nwis_01487150-31-170214 1.0.1 bayes_15min
+  - nwis_01540500-33-170214 1.0.1 bayes_15min
   - nwis_01542500-34-170214 1.0.1 bayes_15min
   - nwis_01549700-37-170214 1.0.1 bayes_15min
   - nwis_01567000-38-170214 1.0.1 bayes_30min
@@ -41,6 +42,7 @@ condor170218:
   - nwis_02344630-137-170214 1.0.1 bayes_15min
   - nwis_02492620-139-170214 1.0.1 bayes_15min
   - nwis_03007800-140-170214 1.0.1 bayes_15min
+  - nwis_03025500-141-170214 1.0.1 bayes_15min
   - nwis_03034000-143-170214 1.0.1 bayes_15min
   - nwis_03298300-190-170214 1.0.1 bayes_15min
 condor170218error:
@@ -91,7 +93,6 @@ condor170218error:
 condor170218underway:
   - nwis_01481500-29-170214 1.0.1 bayes_15min
   - nwis_01484525-30-170214 1.0.1 bayes_15min
-  - nwis_01540500-33-170214 1.0.1 bayes_15min
   - nwis_01544500-35-170214 1.0.1 bayes_15min
   - nwis_01608500-40-170214 1.0.1 bayes_30min
   - nwis_01654500-58-170214 1.0.1 bayes_15min
@@ -112,7 +113,6 @@ condor170218underway:
   - nwis_02336526-132-170214 1.0.1 bayes_15min
   - nwis_02336728-133-170214 1.0.1 bayes_15min
   - nwis_02397530-138-170214 1.0.1 bayes_15min
-  - nwis_03025500-141-170214 1.0.1 bayes_15min
   - nwis_03027500-142-170214 1.0.1 bayes_15min
   - nwis_03298250-189-170214 1.0.1 bayes_15min
 condor:

@@ -13,11 +13,11 @@ run_model_job <- function(job, outdir, run_fun, cluster='condor', retries=5, ver
   library(streamMetabolizer)
   library(mda.streams)
   config <- read_config('config.tsv')
-  status <- read.table('files_metab.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
+  status <- read.table('cluster_jobs.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
   # plan to run the jobth row that's incomplete in status and permitted/assigned
   # to this cluster run
-  row_num <- filter(status, tagged==FALSE, is.na(assigned_to) | assigned_to==cluster) %>%
+  row_num <- status %>%
     .[[job, 'filepath']] %>%
     parse_metab_model_path(out='row') %>%
     as.numeric()

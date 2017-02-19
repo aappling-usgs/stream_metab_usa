@@ -4,7 +4,7 @@
 #' sb_password first
 #' 
 #' @param cluster_dir the local folder whose contents you will manually transfer
-cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/condor', smu.config, ...) {
+cluster_prep_yeti <- function(cluster_dir='../2_metab_config/prep/cluster/yeti', smu.config, ...) {
   
   # collect arguments into list
   files <- unlist(list(...))

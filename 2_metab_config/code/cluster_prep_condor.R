@@ -4,14 +4,24 @@
 #' sb_password first
 #' 
 #' @param cluster_dir the local folder whose contents you will manually transfer
-cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/condor', smu.config, ...) {
+cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/condor', smu.config, status.file, ...) {
+  
+  # identify the run ID to use for this run: use the first on the config list,
+  # letting following IDs indicate previous runs
+  runid <- if(grepl('/prep/', cluster_dir)) smu.config$prep_runid[[1]] else smu.config$runid[[1]]
   
   # collect arguments into list
   files <- unlist(list(...))
   
   # update the status file, save needed list for condor.sub updates below
-  status.file <- grep('files_metab\\.tsv', files, value=TRUE)
   needed <- sb_check_model_status(status.file, smu.config, cluster='condor')
+  
+  # also write needed to a new status file that's explicitly for jobs to be 
+  # included in this cluster run. write it both to /out (with a runid stamp) and
+  # to /condor (with no stamp)
+  job.file <- file.path(dirname(status.file), paste0('cluster_jobs_', runid, '.tsv'))
+  write.table(needed, job.file, row.names=FALSE, sep='\t')
+  file.copy(job.file, file.path(cluster_dir, 'cluster_jobs.tsv'))
   
   # copy files into the condor directory
   for(file in files) {
@@ -20,7 +30,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   }
   
   # create directories to accept output files
-  dirs <- c('log_170218','results_170218')
+  dirs <- paste0(c('log_','results_'), runid)
   for(dir in dirs) {
     login_node_dir <- file.path(cluster_dir, dir)
     if(!dir.exists(login_node_dir)) {

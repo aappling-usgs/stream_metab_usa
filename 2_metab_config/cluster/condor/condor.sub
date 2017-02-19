@@ -1,7 +1,7 @@
 batch_name = powmetab
 executable = run_job.sh
 arguments = run_job.R $(Process)
-transfer_input_files = run_job.R, install_packages.R, run_model_job.R, run_model.R, config.tsv, files_metab.tsv, .Renviron, bundle.zip, unzip, stream_metab.yaml
+transfer_input_files = run_job.R, install_packages.R, run_model_job.R, run_model.R, config.tsv, cluster_jobs.tsv, .Renviron, bundle.zip, unzip, stream_metab.yaml
 universe = vanilla
 output = log_170218/$(Process).out
 error = log_170218/$(Process).err
@@ -15,4 +15,4 @@ when_to_transfer_output = ON_EXIT
 transfer_output_files = job
 transfer_output_remaps = "job = results_170218/job_$(Process)"
 notification = never
-queue 416
+queue 323

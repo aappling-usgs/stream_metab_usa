@@ -13,7 +13,7 @@ starter_files/*.RData
 2_metab_config/prep/out/log_*/*
 2_metab_config/prep/out/results_*/
 2_metab_config/cluster/condor/config.tsv
-2_metab_config/cluster/condor/files_metab.tsv
+2_metab_config/cluster/condor/cluster_jobs.tsv
 2_metab_config/cluster/condor/install_packages.R
 2_metab_config/cluster/condor/run_model.R
 2_metab_config/cluster/condor/run_model_job.R
