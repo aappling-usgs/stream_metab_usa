@@ -11,23 +11,34 @@ collect_errors <- function(resdir='../2_metab_config/prep/out/results_170210D',
       if(length(errfi) > 1) warning("multiple error files; only using the first")
       if(length(errfi) > 0) errfi[1] else NA
     }),
+    sumfile = sapply(jobdirs, function(jobdir) {
+      sumfi <- grep("^summary ", dir(jobdir), value=TRUE)
+      if(length(sumfi) > 1) warning("multiple summary files; only using the first")
+      if(length(sumfi) > 0) sumfi[1] else NA
+    }),
     model_path = status[job+1,'filepath']) %>%
     { bind_cols(., parse_metab_model_path(.$model_path)) } %>%
     select(job, row, site, everything())
 
-  errs <- file.path(job.tbl$jobdir, job.tbl$errfile) %>%
-    setNames(basename(job.tbl$jobdir)) %>%
-    lapply(function(errfile) {
-      if(basename(errfile) != 'NA') {
-        readLines(errfile)
+  done <- setNames(!is.na(job.tbl$sumfile), basename(job.tbl$jobdir))
+  errs <- lapply(setNames(1:nrow(job.tbl), basename(job.tbl$jobdir)), function(rownum) {
+    jtrow <- job.tbl[rownum, ]
+    errfile <- jtrow$errfile
+    if(!is.na(errfile)) {
+      readLines(file.path(jtrow$jobdir, errfile))
+    } else {
+      sumfile <- jtrow$sumfile
+      if(!is.na(sumfile)) {
+        'Success!'
       } else {
-        NA
+        'Incomplete run'
       }
-    })
+    }
+  })
   err.uniq <- unique(errs)
   err.tbl <- lapply(err.uniq, function(eu) {
       list(
-        error = if(all(is.na(eu))) 'Success!' else eu,
+        error = eu,
         jobs = sort(as.numeric(substring(names(which(sapply(errs, function(err) isTRUE(all.equal(err, eu))))), 5)))
       )
     }) %>%
