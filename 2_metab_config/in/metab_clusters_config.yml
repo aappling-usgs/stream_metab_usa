@@ -1,5 +1,6 @@
-condor170214:
+condor170214A:
   - nwis_01104430-1-170214 1.0.1 bayes_15min
+condor170217:
   - nwis_01124000-2-170214 1.0.1 bayes_15min
   - nwis_01125100-3-170214 1.0.1 bayes_15min
   - nwis_01184000-4-170214 1.0.1 bayes_15min
@@ -8,16 +9,112 @@ condor170214:
   - nwis_01201487-7-170214 1.0.1 bayes_15min
   - nwis_01208500-8-170214 1.0.1 bayes_15min
   - nwis_01208990-9-170214 1.0.1 bayes_15min
-condor170214error:
+  - nwis_01433500-17-170214 1.0.1 bayes_15min
+condor170217error:
   - nwis_01400500-12-170214 1.0.1 bayes_15min
   - nwis_01400500-13-170214 1.0.1 bayes_30min
   - nwis_01400500-14-170214 1.0.1 bayes_60min
   - nwis_01408500-15-170214 1.0.1 bayes_30min
   - nwis_01408500-16-170214 1.0.1 bayes_60min
-condor170214underway:
+condor170217underway:
   - nwis_01382210-10-170214 1.0.1 bayes_15min
   - nwis_01388000-11-170214 1.0.1 bayes_60min
-  - nwis_01433500-17-170214 1.0.1 bayes_15min
+condor170218:
+  - nwis_01454700-18-170214 1.0.1 bayes_15min
+  - nwis_01463500-19-170214 1.0.1 bayes_60min
+  - nwis_01474500-22-170214 1.0.1 bayes_30min
+  - nwis_01487150-31-170214 1.0.1 bayes_15min
+  - nwis_01542500-34-170214 1.0.1 bayes_15min
+  - nwis_01549700-37-170214 1.0.1 bayes_15min
+  - nwis_01567000-38-170214 1.0.1 bayes_30min
+  - nwis_01570500-39-170214 1.0.1 bayes_30min
+  - nwis_01654000-57-170214 1.0.1 bayes_15min
+  - nwis_0166818623-61-170214 1.0.1 bayes_15min
+  - nwis_0166818985-62-170214 1.0.1 bayes_15min
+  - nwis_02110701-69-170214 1.0.1 bayes_15min
+  - nwis_02110704-70-170214 1.0.1 bayes_15min
+  - nwis_02148315-74-170214 1.0.1 bayes_60min
+  - nwis_02156500-75-170214 1.0.1 bayes_60min
+  - nwis_02244040-107-170214 1.0.1 bayes_15min
+  - nwis_02245260-108-170214 1.0.1 bayes_15min
+  - nwis_023432415-136-170214 1.0.1 bayes_15min
+  - nwis_02344630-137-170214 1.0.1 bayes_15min
+  - nwis_02492620-139-170214 1.0.1 bayes_15min
+  - nwis_03007800-140-170214 1.0.1 bayes_15min
+  - nwis_03034000-143-170214 1.0.1 bayes_15min
+  - nwis_03298300-190-170214 1.0.1 bayes_15min
+condor170218error:
+  - nwis_01473500-20-170214 1.0.1 bayes_15min
+  - nwis_01473500-21-170214 1.0.1 bayes_30min
+  - nwis_01480617-23-170214 1.0.1 bayes_15min
+  - nwis_01480617-24-170214 1.0.1 bayes_30min
+  - nwis_01480870-25-170214 1.0.1 bayes_15min
+  - nwis_01480870-26-170214 1.0.1 bayes_30min
+  - nwis_01481000-27-170214 1.0.1 bayes_15min
+  - nwis_01481000-28-170214 1.0.1 bayes_30min
+  - nwis_01493112-32-170214 1.0.1 bayes_15min
+  - nwis_01548303-36-170214 1.0.1 bayes_15min
+  - nwis_01611500-41-170214 1.0.1 bayes_30min
+  - nwis_0212378405-71-170214 1.0.1 bayes_5min
+  - nwis_0212378405-72-170214 1.0.1 bayes_15min
+  - nwis_02162035-78-170214 1.0.1 bayes_5min
+  - nwis_02162035-79-170214 1.0.1 bayes_15min
+  - nwis_02234000-97-170214 1.0.1 bayes_15min
+  - nwis_02234000-98-170214 1.0.1 bayes_30min
+  - nwis_02234500-99-170214 1.0.1 bayes_15min
+  - nwis_02234500-100-170214 1.0.1 bayes_30min
+  - nwis_02236000-102-170214 1.0.1 bayes_15min
+  - nwis_02236000-103-170214 1.0.1 bayes_30min
+  - nwis_02236125-104-170214 1.0.1 bayes_15min
+  - nwis_02236125-105-170214 1.0.1 bayes_30min
+  - nwis_02236125-106-170214 1.0.1 bayes_60min
+  - nwis_02264000-109-170214 1.0.1 bayes_15min
+  - nwis_02264000-110-170214 1.0.1 bayes_60min
+  - nwis_02264100-111-170214 1.0.1 bayes_15min
+  - nwis_02264100-112-170214 1.0.1 bayes_30min
+  - nwis_02266200-113-170214 1.0.1 bayes_15min
+  - nwis_02266200-114-170214 1.0.1 bayes_30min
+  - nwis_02266200-115-170214 1.0.1 bayes_60min
+  - nwis_02266300-116-170214 1.0.1 bayes_15min
+  - nwis_02337170-134-170214 1.0.1 bayes_15min
+  - nwis_02337170-135-170214 1.0.1 bayes_60min
+  - nwis_03036000-144-170214 1.0.1 bayes_15min
+  - nwis_03036000-145-170214 1.0.1 bayes_30min
+  - nwis_03036000-146-170214 1.0.1 bayes_60min
+  - nwis_03058000-147-170214 1.0.1 bayes_15min
+  - nwis_03058000-148-170214 1.0.1 bayes_30min
+  - nwis_03058000-149-170214 1.0.1 bayes_60min
+  - nwis_03061000-150-170214 1.0.1 bayes_15min
+  - nwis_03061000-151-170214 1.0.1 bayes_30min
+  - nwis_03061000-152-170214 1.0.1 bayes_60min
+  - nwis_03067510-153-170214 1.0.1 bayes_15min
+condor170218underway:
+  - nwis_01481500-29-170214 1.0.1 bayes_15min
+  - nwis_01484525-30-170214 1.0.1 bayes_15min
+  - nwis_01540500-33-170214 1.0.1 bayes_15min
+  - nwis_01544500-35-170214 1.0.1 bayes_15min
+  - nwis_01608500-40-170214 1.0.1 bayes_30min
+  - nwis_01654500-58-170214 1.0.1 bayes_15min
+  - nwis_01656903-59-170214 1.0.1 bayes_15min
+  - nwis_01658000-60-170214 1.0.1 bayes_15min
+  - nwis_01673000-63-170214 1.0.1 bayes_15min
+  - nwis_02035000-64-170214 1.0.1 bayes_15min
+  - nwis_02101726-65-170214 1.0.1 bayes_15min
+  - nwis_02110400-66-170214 1.0.1 bayes_15min
+  - nwis_02110500-67-170214 1.0.1 bayes_15min
+  - nwis_02110550-68-170214 1.0.1 bayes_15min
+  - nwis_02135000-73-170214 1.0.1 bayes_15min
+  - nwis_02160105-76-170214 1.0.1 bayes_60min
+  - nwis_02160700-77-170214 1.0.1 bayes_60min
+  - nwis_02208493-95-170214 1.0.1 bayes_15min
+  - nwis_02217643-96-170214 1.0.1 bayes_15min
+  - nwis_02235500-101-170214 1.0.1 bayes_15min
+  - nwis_02336526-132-170214 1.0.1 bayes_15min
+  - nwis_02336728-133-170214 1.0.1 bayes_15min
+  - nwis_02397530-138-170214 1.0.1 bayes_15min
+  - nwis_03025500-141-170214 1.0.1 bayes_15min
+  - nwis_03027500-142-170214 1.0.1 bayes_15min
+  - nwis_03298250-189-170214 1.0.1 bayes_15min
 condor:
   
 yeti:
