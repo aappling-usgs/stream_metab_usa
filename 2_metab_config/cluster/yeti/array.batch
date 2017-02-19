@@ -2,7 +2,7 @@
 #SBATCH -J metab          # job name for reference in squeue
 #SBATCH -p normal         # the partition you want to use
 #SBATCH -A powstreams     # your account for accounting
-#SBATCH -t 0-05:00:00     # time at which the process will be cancelled if unfinished
+#SBATCH -t 5-00:00:00     # time at which the process will be cancelled if unfinished
 #SBATCH -o log/%A_%a.log  # sets output log file to array_job.log
 #SBATCH -e log/%A_%a.err  # sets error log file to array_job.err
 #SBATCH --export=ALL      # environment variables to export
