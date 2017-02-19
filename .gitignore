@@ -10,6 +10,15 @@ starter_files/*.RData
 */cache/
 2_metab_config/cluster/packages
 2_metab_config/prep/cluster/condor
+2_metab_config/prep/out/log_*/*
+2_metab_config/prep/out/results_*/
+2_metab_config/cluster/condor/config.tsv
+2_metab_config/cluster/condor/files_metab.tsv
+2_metab_config/cluster/condor/install_packages.R
+2_metab_config/cluster/condor/run_model.R
+2_metab_config/cluster/condor/run_model_job.R
+2_metab_config/out/log_*/*
+2_metab_config/out/results_*/*
 NEWS.html
 README.html
 .remake
