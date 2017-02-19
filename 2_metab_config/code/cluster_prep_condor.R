@@ -21,7 +21,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   # to /condor (with no stamp)
   job.file <- file.path(dirname(status.file), paste0('cluster_jobs_', runid, '.tsv'))
   write.table(needed, job.file, row.names=FALSE, sep='\t')
-  file.copy(job.file, file.path(cluster_dir, 'cluster_jobs.tsv'))
+  file.copy(job.file, file.path(cluster_dir, 'cluster_jobs.tsv'), overwrite=TRUE)
   
   # copy files into the condor directory
   for(file in files) {
@@ -42,11 +42,15 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   condor.sub <- readLines(file.path(cluster_dir, 'condor.sub'))
   if(grepl('prep', cluster_dir)) {
     condor.sub[grep('request_cpus', condor.sub)] <- 'request_cpus = 1'
-  } else {
-    # any mods for the main run?
   }
-  #condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', 1) #### TEMPORARY ####
+  # map the log and results files to runid-specific folders
+  condor.sub[grep('output =', condor.sub)] <- sprintf('output = log_%s/$(Process).out', runid)
+  condor.sub[grep('error = ', condor.sub)] <- sprintf('output = log_%s/$(Process).err', runid)
+  condor.sub[grep('log = ', condor.sub)] <- sprintf('output = log_%s/$(Process).log', runid)
+  condor.sub[grep('transfer_output_remaps = ', condor.sub)] <- sprintf('transfer_output_remaps = "job = results_%s/job_$(Process)"', runid)
+  # only request as many jobs as we need
   condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
+  # save the file
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))
   
   # remind how to run on cluster
