@@ -11,6 +11,7 @@ create_prep_config <- function(sites, config=yaml::yaml.load_file('2_metab_confi
   cfg <- stage_metab_config(
     tag=config$prep_tag,
     strategy='MLE_prep_run',
+    date='2017-02-06 15:15:15 -0600',
     model='metab_mle',
     model_args="list(specs=specs('m_np_oi_tr_plrckm.nlm'))",
     site=sites,
