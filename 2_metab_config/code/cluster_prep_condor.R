@@ -44,12 +44,12 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
     condor.sub[grep('request_cpus', condor.sub)] <- 'request_cpus = 1'
   }
   # map the log and results files to runid-specific folders
-  condor.sub[grep('output =', condor.sub)] <- sprintf('output = log_%s/$(Process).out', runid)
-  condor.sub[grep('error = ', condor.sub)] <- sprintf('output = log_%s/$(Process).err', runid)
-  condor.sub[grep('log = ', condor.sub)] <- sprintf('output = log_%s/$(Process).log', runid)
-  condor.sub[grep('transfer_output_remaps = ', condor.sub)] <- sprintf('transfer_output_remaps = "job = results_%s/job_$(Process)"', runid)
+  condor.sub[grep('^output =', condor.sub)] <- sprintf('output = log_%s/$(Process).out', runid)
+  condor.sub[grep('^error = ', condor.sub)] <- sprintf('error = log_%s/$(Process).err', runid)
+  condor.sub[grep('^log = ', condor.sub)] <- sprintf('log = log_%s/$(Process).log', runid)
+  condor.sub[grep('^transfer_output_remaps = ', condor.sub)] <- sprintf('transfer_output_remaps = "job = results_%s/job_$(Process)"', runid)
   # only request as many jobs as we need
-  condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
+  condor.sub[grep('^queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
   # save the file
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))
   
