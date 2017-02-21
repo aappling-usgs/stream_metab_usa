@@ -8,6 +8,8 @@ collect_errors <- function(resdir='../2_metab_config/prep/out',
                            status.file=paste0('cluster_jobs_', runid, '.tsv'),
                            outfile=paste0(resdir, '/results_', runid, '_errors.txt')) {
   
+  library(dplyr)
+  
   # read in file info from job directories within resdir/results_runid
   jobdirs <- dir(file.path(resdir, paste0('results_', runid)), full.names=TRUE)
   job.tbl <- data_frame(
