@@ -12,11 +12,12 @@ run_model <- function(config_row, verbose, outdir, model_name) {
   print(config_row)
   if(verbose) message('running model')
   model_out <- config_to_metab(config=config_row, rows=1, verbose=verbose)[[1]]
+  saveRDS(metab_out, file.path(outdir, sprintf("partial %s.Rds", model_name)))
   if(verbose) message('printing model')
   tryCatch({
     print(class(model_out))
     print(model_out)
-  }, error=function(e) warning(e))
+  }, error=function(e) message(e$message))
   if(length(model_out) == 0 || is.character(model_out)) {
     message('modeling failed; returning')
     return(model_out)

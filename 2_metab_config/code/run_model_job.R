@@ -36,15 +36,13 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   error=function(e) {
     message('modeling or summarization had an error; see error file')
     writeLines(e$message, file.path(outdir, sprintf("error %s.txt", stage_name)))
-    warning(e)
+    warning(e$message)
   })
   modeled <- any(substring(class(metab_out), 1, 5) == 'metab')
   if(!modeled) {
     message("modeling or summarization output wasn't complete; see partial file")
     message(paste0("class(metab_out): ", class(metab_out)))
-    saveRDS(metab_out, file.path(outdir, sprintf("partial %s.Rds", stage_name)))
-    warning(metab_out)
-    return()
+    stop(metab_out)
   }
   
   # stage/save
