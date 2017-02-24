@@ -4,4 +4,4 @@ prep_runid: ['170212A', '170211A', '170210C', '170210B', '170210A'] # first ID i
 
 tag: 1.0.1
 posted_after: 2017-02-01
-runid: ['170221', '170219', '170218', '170217', '170214A', '170213A', '170212B'] # first ID in list will get used to create next set of cluster files
+runid: ['170224', '170221', '170219', '170218', '170217', '170214A', '170213A', '170212B'] # first ID in list will get used to create next set of cluster files

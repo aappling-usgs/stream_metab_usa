@@ -275,10 +275,6 @@ condor170219underway:
   - nwis_08155500-360-170214 1.0.1 bayes_15min
 condor170221errormodelrun:
   - nwis_02168504-80-170214 1.0.1 bayes_60min
-condor170221errordataprep:
-  - nwis_05579630-295-170214 1.0.1 bayes_5min
-  - nwis_06711565-305-170214 1.0.1 bayes_15min
-  - nwis_07106000-325-170214 1.0.1 bayes_15min
 condor170221underway:
   - nwis_01649190-51-170214 1.0.1 bayes_5min
   - nwis_01649500-53-170214 1.0.1 bayes_5min
