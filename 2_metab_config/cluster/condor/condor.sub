@@ -3,14 +3,14 @@ executable = run_job.sh
 arguments = run_job.R $(Process)
 transfer_input_files = run_job.R, install_packages.R, run_model_job.R, run_model.R, config.tsv, cluster_jobs.tsv, .Renviron, bundle.zip, unzip, stream_metab.yaml
 universe = vanilla
-output = log_170224/$(Process).out
-error = log_170224/$(Process).err
-log = log_170224/$(Process).log
+output = log_170302/$(Process).out
+error = log_170302/$(Process).err
+log = log_170302/$(Process).log
 requirements = (TARGET.Arch == "X86_64") && (TARGET.OpSys == "LINUX")
 request_cpus = 4
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
 transfer_output_files = job
-transfer_output_remaps = "job = results_170224/job_$(Process)"
+transfer_output_remaps = "job = results_170302/job_$(Process)"
 notification = never
 queue 3
