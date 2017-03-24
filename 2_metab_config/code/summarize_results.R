@@ -10,31 +10,42 @@ config$model_name <- make_metab_model_name(make_metab_run_title(format(as.Date(c
 summary_files <- dir('../2_metab_config/out/summaries', full.names = TRUE)
 fit_files <- dir('../2_metab_config/out/fits', full.names = TRUE)
 
-# there are 8 models with empty predictions and the fit$errors value, "dates have differing numbers of rows; observations cannot be combined in matrix"
-login_sb()
-mms <- list_metab_models('1.0.1')
-done_mms <- parse_metab_model_name(mms)$row
-done_sums <- parse_metab_model_name(substring(basename(summary_files), 9))$row
-done_fits <- parse_metab_model_name(substring(basename(fit_files), 5))$row
-setdiff(config$config.row, done_mms) # not done at all: 360
-setdiff(done_mms, done_fits) # everything has a fit, but it's empty for the following 8 models:
-setdiff(done_mms, done_sums) # 36 179 180 188 283 284 336 342
-sorta_dones <- sapply(setdiff(done_mms, done_sums), function(row) grep(paste0('-',row,'-'), mms, value=TRUE))
-sorta_done_fits <- lapply(sorta_dones, function(sd) {
-  mm <- get_metab_model(sd, version = 'original', update_sb = FALSE)
-  filter(get_fit(mm)$daily, !is.na(GPP_daily_50pct))
-}) # every one is empty (all NAs)
-sorta_done_warns <- lapply(sorta_dones, function(sd) {
-  mm <- get_metab_model(sd, version = 'original', update_sb = FALSE)
-  get_fit(mm)$warnings
-}) # warnings about differing temporal resolutions
-sorta_done_errs <- lapply(sorta_dones, function(sd) {
-  mm <- get_metab_model(sd, version = 'original', update_sb = FALSE)
-  get_fit(mm)$errors
-}) # error "dates have differing numbers of rows; observations cannot be combined in matrix"
+summarize_sorta_dones <- function() {
+  # there are 8 models with empty predictions and the fit$errors value, "dates have differing numbers of rows; observations cannot be combined in matrix"
+  login_sb()
+  mms <- list_metab_models('1.0.1')
+  done_mms <- parse_metab_model_name(mms)$row
+  done_sums <- parse_metab_model_name(substring(basename(summary_files), 9))$row
+  done_fits <- parse_metab_model_name(substring(basename(fit_files), 5))$row
+  setdiff(config$config.row, done_mms) # not done at all: 360
+  setdiff(done_mms, done_fits) # everything has a fit, but it's empty for the following 8 models:
+  setdiff(done_mms, done_sums) # 36 179 180 188 283 284 336 342
+  sorta_dones <- sapply(setdiff(done_mms, done_sums), function(row) grep(paste0('-',row,'-'), mms, value=TRUE))
+  sorta_done_fits <- lapply(sorta_dones, function(sd) {
+    mm <- get_metab_model(sd, version = 'original', update_sb = FALSE)
+    filter(get_fit(mm)$daily, !is.na(GPP_daily_50pct))
+  }) # every one is empty (all NAs)
+  sorta_done_warns <- lapply(sorta_dones, function(sd) {
+    mm <- get_metab_model(sd, version = 'original', update_sb = FALSE)
+    get_fit(mm)$warnings
+  }) # warnings about differing temporal resolutions
+  sorta_done_errs <- lapply(sorta_dones, function(sd) {
+    mm <- get_metab_model(sd, version = 'original', update_sb = FALSE)
+    get_fit(mm)$errors
+  }) # error "dates have differing numbers of rows; observations cannot be combined in matrix"
+} # run this function line by line, manually. i just stuck it in a function for convenience of testing other code chunks in the file.
 
 # summarize the remaining
-summarize_results <- function(config_row) {
+summarize_results <- function(config_row, outdir='../2_metab_config/out/resummaries') {
+  
+  message('summarizing config_row ', config_row)
+  
+  # Prepare to save things
+  if(!dir.exists(outdir)) dir.create(outdir)
+  row_id <- filter(config, config.row==config_row) %>% .$model_name
+  make_filename <- function(file_id, ext) {
+    file.path(outdir, sprintf("%s %s.%s", row_id, file_id, ext))
+  }
   
   # Get old estimates and/or discharge
   old_estBest <- tryCatch(
@@ -53,7 +64,7 @@ summarize_results <- function(config_row) {
     select(date, param, age, value)
   
   # Read the summary file (daily params) if available
-  summary_file <- grep(config$model_name[config_row], summary_files, value=TRUE)
+  summary_file <- grep(config$model_name[which(config$config.row == config_row)], summary_files, value=TRUE)
   if(length(summary_file) == 1) {
     smry <- read.table(summary_file, stringsAsFactors=FALSE, header=TRUE, sep="\t")
     new_daily <- smry %>%
@@ -67,6 +78,7 @@ summarize_results <- function(config_row) {
   } else if(length(summary_file) > 1) {
     stop("found more than 1 summary file for row ", config_row, ": ", paste0(summary_file, collapse=','))
   } else {
+    stop("couldn't find a summary file for row ", config_row)
     new_daily <- NULL
   }
   
@@ -77,15 +89,17 @@ summarize_results <- function(config_row) {
     group_by(param) %>%
     mutate(min=min(value[age == 'new']), max=max(value[age == 'new'])) %>%
     ungroup() %>%
-    filter(param=='Q' | (min < value & value <= max))
+    filter(param=='Q' | (min <= value & value <= max))
   
   # Read the fit file (all params, with Rhats) if available
-  fit_file <- grep(config$model_name[config_row], fit_files, value=TRUE)
+  fit_file <- grep(config$model_name[which(config$config.row == config_row)], fit_files, value=TRUE)
   if(length(fit_file) == 1) {
     fit <- readRDS(fit_file) # it says .tsv but is really .RDS
   } else if(length(fit_file) > 1) {
     stop("found more than 1 fit file for row ", config_row, ": ", paste0(fit_file, collapse=','))
   } else {
+    stop("couldn't find a fit file for row ", config_row)
+    fit <- NULL
   }
   
   #### Plots ####
@@ -95,35 +109,45 @@ summarize_results <- function(config_row) {
     daily %>%
       mutate(
         age=ordered(age, c('old','new')),
-        param = ordered(param, c('GPP','ER','K600','Q','Warning','Error'))) %>%
-      ggplot(aes(x=date, y=value, color=param, alpha=age, shape=age)) + geom_point() +
+        param = ordered(param, c('GPP','ER','K600','Q','Warning','Error')),
+        param_age = paste0(param, '_', age)) %>%
+      ggplot(aes(x=date, y=value, color=param_age, shape=age)) + geom_point() +
       facet_grid(param ~ ., scales='free_y') +
-      scale_alpha_manual(values=c(old=0.6, new=1)) +
-      scale_shape_manual(values=c(old=20, new=19)) +
-      theme_bw()
+      scale_shape_manual(guide='none', values=c(old=4, new=1)) +
+      scale_color_manual(values=c(GPP_old='seagreen1', ER_old='tomato1', K600_old='turquoise1', Q_old='royalblue4',
+                                  GPP_new='seagreen4', ER_new='tomato4', K600_new='turquoise4', Q_new='royalblue4')) +
+      theme_bw() + ggtitle(row_id)
   }
   plot_daily <- fun_plot_daily(daily)
-  plot_daily
+  ggsave(filename=make_filename('plot_daily', 'png'), plot=plot_daily, width=7, height=7)
   plot_daily_newscale <- fun_plot_daily(daily_newscale)
-  plot_daily_newscale
+  ggsave(filename=make_filename('plot_daily_newscale', 'png'), plot=plot_daily_newscale, width=7, height=7)
   
   # Calculate correlations among daily values
   daily_mat <- daily %>%
     mutate(par_age = paste(param, age, sep='_')) %>%
     select(-param, -age) %>%
     spread(par_age, value)
-  correlations <- data_frame(
-    GPP_newold = cor(daily_mat$GPP_new, daily_mat$GPP_old, use='complete.obs'),
-    ER_newold = cor(daily_mat$ER_new, daily_mat$ER_old, use='complete.obs'),
-    K600_newold = cor(daily_mat$K600_new, daily_mat$K600_old, use='complete.obs'),
-    K600ER_old = cor(daily_mat$K600_old, daily_mat$ER_old, use='complete.obs'),
-    K600ER_new = cor(daily_mat$K600_new, daily_mat$ER_new, use='complete.obs'),
-    K600GPP_old = cor(daily_mat$K600_old, daily_mat$GPP_old, use='complete.obs'),
-    K600GPP_new = cor(daily_mat$K600_new, daily_mat$GPP_new, use='complete.obs'),
-    GPPER_old = cor(daily_mat$GPP_old, daily_mat$ER_old, use='complete.obs'),
-    GPPER_new = cor(daily_mat$GPP_new, daily_mat$ER_new, use='complete.obs')
-  )
-  
+  if('GPP_old' %in% daily_mat) {
+    correlations <- data_frame(
+      cor.GPP_newold = cor(daily_mat$GPP_new, daily_mat$GPP_old, use='complete.obs', method='kendall'),
+      cor.ER_newold = cor(daily_mat$ER_new, daily_mat$ER_old, use='complete.obs', method='kendall'),
+      cor.K600_newold = cor(daily_mat$K600_new, daily_mat$K600_old, use='complete.obs', method='kendall'),
+      cor.K600ER_old = cor(daily_mat$K600_old, daily_mat$ER_old, use='complete.obs', method='kendall'),
+      cor.K600ER_new = cor(daily_mat$K600_new, daily_mat$ER_new, use='complete.obs', method='kendall'),
+      cor.K600GPP_old = cor(daily_mat$K600_old, daily_mat$GPP_old, use='complete.obs', method='kendall'),
+      cor.K600GPP_new = cor(daily_mat$K600_new, daily_mat$GPP_new, use='complete.obs', method='kendall'),
+      cor.GPPER_old = cor(daily_mat$GPP_old, daily_mat$ER_old, use='complete.obs', method='kendall'),
+      cor.GPPER_new = cor(daily_mat$GPP_new, daily_mat$ER_new, use='complete.obs', method='kendall')
+    ) %>% as.data.frame(stringsAsFactors=FALSE)
+  } else {
+    correlations <- data_frame(
+      cor.K600ER_new = cor(daily_mat$K600_new, daily_mat$ER_new, use='complete.obs', method='kendall'),
+      cor.K600GPP_new = cor(daily_mat$K600_new, daily_mat$GPP_new, use='complete.obs', method='kendall'),
+      cor.GPPER_new = cor(daily_mat$GPP_new, daily_mat$ER_new, use='complete.obs', method='kendall')
+    ) %>% as.data.frame(stringsAsFactors=FALSE)
+  }
+
   # Calculate ranges of values
   functions <- list(
     min = function(x) min(x, na.rm=TRUE),
@@ -135,7 +159,138 @@ summarize_results <- function(config_row) {
   )
   ranges <- bind_rows(lapply(functions[1:6], function(fun) summarize_all(select(daily_mat, -date, -Q_new), fun))) %>%
     mutate(stat=names(functions)) %>%
-    select(stat, everything())
+    select(stat, everything()) %>%
+    gather(param, value, -stat) %>%
+    mutate(param_stat=paste0(param, '.', stat)) %>%
+    select(-stat, -param) %>%
+    spread(param_stat, value)
   
+  # Summarize warnings and errors
+  messages <- capture.output({
+    cat('## Global Warnings ##\n')
+    cat(fit$warnings, sep='\n')
+    cat('\n## Global Errors ##\n')
+    cat(fit$errors, sep='\n')
+    cat('\n## Daily Warnings ##\n')
+    cat(streamMetabolizer:::summarize_stopwarn_msgs(fit$daily$warnings), sep='\n')
+    cat('\n## Daily Errors ##\n')
+    cat(streamMetabolizer:::summarize_stopwarn_msgs(fit$daily$errors), sep='\n')
+  })
+  writeLines(messages, con=make_filename('messages','txt'))
+  
+  # Summarize Rhats
+  data_fits <- fit[!names(fit) %in% c('warnings','errors')]
+  Rhatvecs <- do.call(c, unname(lapply(data_fits, function(df) {
+    select(df, ends_with('Rhat')) %>%
+      as.list()
+  })))
+  Rhats <- bind_rows(lapply(names(Rhatvecs), function(parname) {
+    data_frame(param=parname, Rhat=Rhatvecs[[parname]])
+  })) %>%
+    group_by(param) %>% 
+    mutate(n=n(), count=ifelse(n() == 1, 'one', 'many')) %>% 
+    ungroup()
+  Rhats$param <- ordered(Rhats$param, distinct(select(Rhats, param, n)) %>% arrange(n) %>% .$param)
+  Rhatsum <- Rhats %>%
+    filter(!is.na(Rhat)) %>%
+    group_by(param) %>%
+    summarize(
+      min=min(Rhat),
+      max=max(Rhat),
+      mean=mean(Rhat),
+      median=median(Rhat),
+      n=n[1]
+    ) %>%
+    gather(stat, value, -param) %>%
+    mutate(param_stat=paste0(param, '.', stat)) %>%
+    select(-stat, -param) %>%
+    spread(param_stat, value)
+  
+  # Plot Rhats
+  plot_Rhats <- ggplot(Rhats, aes(x=param, y=Rhat)) + 
+    geom_violin(fill='skyblue', color=NA, scale='width') + 
+    geom_hline(yintercept=1) +
+    geom_point(aes(size=count), alpha=0.3, position=position_jitter(width=0.2)) +
+    scale_size_discrete(guide='none') + xlab('') +
+    theme_bw() + coord_flip() + ggtitle(row_id)
+  ggsave(filename=make_filename('plot_Rhats', 'png'), plot=plot_Rhats, width=7, height=7)
+  
+  # Summarize priors
+  specs <- eval(parse(text=config$model_args[config$config.row == config_row]))$specs
+  pars <- c('GPP_daily','ER_daily','lnK600_lnQ_nodes','err_obs_iid_sigma','err_proc_iid_sigma','K600_daily_sigma')
+  posteriors <- bind_rows(lapply(
+    pars,
+    function(param) {
+      fitname <- names(which(sapply(fit, function(f) length(grep(param, names(f))) > 0)))
+      fitdm <- fit[[fitname]] %>%
+        select_(paste0(param, '_50pct'), paste0(param, '_2.5pct'), paste0(param, '_97.5pct')) %>%
+        setNames(c('post50','post2.5','post97.5')) %>%
+        filter(!is.na(post50)) %>%
+        mutate(param=param)
+    }))
+  #%>% {setNames(., paste0(param, '.', names(.)))} 
+  priors <- bind_rows(lapply(
+    pars,
+    function(param) {
+      as.data.frame(as.list(switch(
+        param,
+        GPP_daily = setNames(specs[c('GPP_daily_mu','GPP_daily_sigma')], c('mu','sigma')),
+        ER_daily = setNames(specs[c('ER_daily_mu','ER_daily_sigma')], c('mu','sigma')),
+        lnK600_lnQ_nodes = setNames(specs[c('K600_lnQ_nodes_meanlog','K600_lnQ_nodes_sdlog')], c('meanlog','sdlog')),
+        err_obs_iid_sigma = setNames(specs[c('err_obs_iid_sigma_scale')], 'scale'),
+        err_proc_iid_sigma = setNames(specs[c('err_proc_iid_sigma_scale')], 'scale'),
+        K600_daily_sigma = setNames(specs[c('K600_daily_sigma_sigma')], 'sigma')
+      ))) %>% distinct() %>% mutate(param=param)
+    })) %>%
+    select(param, everything())
+  distsum <- posteriors %>%
+    group_by(param) %>%
+    summarize(
+      min.p50 = min(post50),
+      median.p50 = median(post50),
+      max.p50 = max(post50)) %>%
+    full_join(priors, by='param') %>%
+    gather(stat, value, -param) %>%
+    mutate(param_stat=paste0(param, '.', stat)) %>%
+    select(-stat, -param) %>%
+    spread(param_stat, value)
+  
+  # Plot priors
+  distpoints <- function(fitdf, param='K600_daily_sigma', index=TRUE) {
+    g <- plot_distribs(specs, param, index=index, style='ggplot2')
+    y.range <- range(as.numeric(ggplot_build(g)$layout$panel_ranges[[1]]$y.labels))
+    fitdm <- select_(fitdf, paste0(param, '_50pct'), paste0(param, '_2.5pct'), paste0(param, '_97.5pct')) %>%
+      setNames(c('p50','p2.5','p97.5')) %>%
+      mutate(y=runif(length(p50), min=y.range[1], max=y.range[2]))
+    g + 
+      geom_point(data=fitdm, aes(x=p50, y=y), inherit.aes = FALSE) + 
+      geom_errorbarh(data=fitdm, aes(y=y, xmin=p2.5, x=p50, xmax=p97.5), 
+                     height=0, inherit.aes=FALSE) +
+      guides(fill=FALSE, color=FALSE) + ylab('') + xlab('')
+  }
+  Kfit <- fit[[which(!names(fit) %in% c('daily','overall','warnings','errors'))]] %>%
+    select(K600_lnQ_nodes_50pct=lnK600_lnQ_nodes_50pct, K600_lnQ_nodes_2.5pct=lnK600_lnQ_nodes_2.5pct, K600_lnQ_nodes_97.5pct=lnK600_lnQ_nodes_97.5pct)
+  plot_dists <- suppressWarnings(cowplot::plot_grid(
+    distpoints(Kfit, 'K600_lnQ_nodes'),
+    distpoints(fit$overall, 'err_obs_iid_sigma'),
+    distpoints(fit$overall, 'err_proc_iid_sigma'),
+    distpoints(fit$overall, 'K600_daily_sigma'),
+    distpoints(fit$daily, 'GPP_daily'),
+    distpoints(fit$daily, 'ER_daily')
+  ))
+  ggsave(filename=make_filename('plot_dists', 'png'), plot=plot_dists, width=7, height=6)
+  
+  # Combine all the numbers
+  allstats <- bind_cols(ranges, correlations, Rhatsum, distsum) %>%
+    mutate(model_name=row_id) %>%
+    select(model_name, everything())
+  write.csv(allstats, make_filename('stats','csv'), row.names=FALSE)
+}
+stop_msgs <- c()
+for(cr in config$config.row[-c(1:35)]) {
+  tryCatch(summarize_results(cr), error=function(e) {
+    stop_msgs <<- c(stop_msgs, setNames(e$message, cr))
+    message('  error: ', e$message)
+  })
 }
 
