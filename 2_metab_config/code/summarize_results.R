@@ -342,7 +342,7 @@ summarize_results <- function(config_row, outdir='../2_metab_config/out/resummar
   write.csv(allstats, make_filename('stats','csv'), row.names=FALSE)
 }
 stop_msgs <- c()
-for(cr in config$config.row[-c(1:66)]) {
+for(cr in config$config.row) {
   tryCatch(summarize_results(cr), error=function(e) {
     stop_msgs <<- c(stop_msgs, setNames(e$message, cr))
     message('  error: ', e$message)
@@ -371,8 +371,8 @@ all_stats <- bind_rows(lapply(stats_csvs, function(sc) {
 write.csv(all_stats, '../2_metab_config/out/resummaries/all_stats.csv', row.names=FALSE)
 
 # fix issue (now correted above) where all_stats$all_params_Rhat.meanq95 was wrong
-meanq95 <- apply(select(select(all_stats, ends_with('.q95')), -all_params_Rhat.q95), MARGIN=1, mean)
-all_stats$all_params_Rhat.meanq95 <- meanq95
+# meanq95 <- apply(select(select(all_stats, ends_with('.q95')), -all_params_Rhat.q95), MARGIN=1, mean)
+# all_stats$all_params_Rhat.meanq95 <- meanq95
 
 # plot distributions of various metrics of whole-model convergence
 rhat_stats_wide <- select(all_stats, model_name, starts_with('all_params_Rhat')) %>% 
