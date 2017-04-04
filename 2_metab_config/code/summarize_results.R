@@ -363,12 +363,12 @@ for(cr in config$config.row) {
 # 359 "no applicable method for 'select_' applied to an object of class \"c('double', 'numeric')\""
 # 360 "couldn't find a summary file for row 360"      
 
-file.remove('../2_metab_config/out/resummaries/all_stats.csv')
-stats_csvs <- dir('../2_metab_config/out/resummaries', pattern='stats.csv', full.names=TRUE)
+file.remove('../2_metab_config/out/resummaries/z_all_stats.csv')
+stats_csvs <- dir('../2_metab_config/out/resummaries', pattern=' stats.csv', full.names=TRUE)
 all_stats <- bind_rows(lapply(stats_csvs, function(sc) {
   read.csv(sc, header=TRUE, stringsAsFactors=FALSE)
 }))
-write.csv(all_stats, '../2_metab_config/out/resummaries/all_stats.csv', row.names=FALSE)
+write.csv(all_stats, '../2_metab_config/out/resummaries/z_all_stats.csv', row.names=FALSE)
 
 # fix issue (now correted above) where all_stats$all_params_Rhat.meanq95 was wrong
 # meanq95 <- apply(select(select(all_stats, ends_with('.q95')), -all_params_Rhat.q95), MARGIN=1, mean)
@@ -410,3 +410,23 @@ plot_K600_sig_vs_median <- cowplot::plot_grid(
   ggplot(all_stats, aes(x=K600_new.median, y=K600_daily_sigma.median.p50)) + geom_point(color='black') + theme_bw()
 )
 ggsave('../2_metab_config/out/resummaries/plot_K600_sig_vs_median.png', plot_K600_sig_vs_median, width=7, height=4)
+
+# starter file for bob and maite's expert assessment
+bm_model_rows <- all_stats %>%
+  full_join(select(config, model_name), by='model_name') %>%
+  arrange(model_name) %>%
+  mutate(max_key_Rhat=pmax(err_obs_iid_sigma_Rhat.max, err_proc_iid_sigma_Rhat.max, K600_daily_sigma_Rhat.max),
+         is_converged=max_key_Rhat < 1.2)
+bm_model_rows <- bm_model_rows %>%
+  bind_cols(parse_metab_model_name(bm_model_rows$model_name, use_names=FALSE)) %>%
+  mutate(resolution=substring(strategy, 7)) %>%
+  select(model_name, site, resolution, max_key_Rhat, is_converged)
+bm_sum_rows <- bm_model_rows %>%
+  group_by(site) %>%
+  summarize(model_name='Overall', num_models = length(resolution)) %>%
+  ungroup()
+bob_maite <- full_join(bm_model_rows, select(filter(bm_sum_rows, num_models > 1), -num_models), by=c('site','model_name')) %>%
+  arrange(site, model_name) %>%
+  select(site, everything()) %>%
+  mutate(confidence = NA)
+write.csv(bob_maite, '../2_metab_config/out/resummaries/z_bob_maite.csv', row.names=FALSE)
