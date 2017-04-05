@@ -12,7 +12,7 @@ bundle_packages <- function(
   localpkgs = paste0('../../', c('unitted', 'streamMetabolizer', 'mda.streams')),
   repoDir = '../2_metab_config/cluster/packages/bundle') {
   
-  #### Run This ####
+  ## Create the package bundle
   
   library(miniCRAN)
   
@@ -62,7 +62,7 @@ bundle_packages <- function(
   message(paste0('the package files are all in ', repoDir, '.zip'))
   
   
-  #### Run for Fun ####
+  ## Report on the package bundle contents
   
   print(rownames(pkgAvail(repos=repoDir, type="source")))
   print(paste0('streamMetabolizer: ', pkgAvail(repos=repoDir, type="source")['streamMetabolizer','Version']))

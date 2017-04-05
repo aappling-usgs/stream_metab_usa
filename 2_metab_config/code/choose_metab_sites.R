@@ -5,11 +5,9 @@
 #' @import unitted
 #' 
 #' @import lib/write_status_table.R
-#' 
-#' @param config a config for the config
-choose_metab_sites <- function(config=yaml::yaml.load_file('2_metab_config/in/metab_configs_config.yml'),
-                               harvey.file='../1_site_data/in/sites_harvey_ask.txt',
+choose_metab_sites <- function(harvey.file='../1_site_data/in/sites_harvey_ask.txt',
                                site.file='../1_site_data/out/site_list.tsv') {
+  
   # jud gave us more coefficients than we requested. use their union
   sites_harvey_ask <- make_site_name(readLines(harvey.file), 'nwis')
   sites_harvey_got <- get_meta('dvqcoefs') %>% unitted::v() %>% filter(!is.na(dvqcoefs.c)) %>% .$site_name
