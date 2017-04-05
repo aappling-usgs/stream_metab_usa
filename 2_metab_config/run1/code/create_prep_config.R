@@ -9,7 +9,7 @@
 create_prep_config <- function(sites, config=yaml::yaml.load_file('2_metab_config/in/metab_configs_config.yml'),
                                outfile="../2_metab_config/prep/out/config.tsv") {
   cfg <- stage_metab_config(
-    tag=config$prep_tag,
+    tag=config$run1_tag,
     strategy='MLE_prep_run',
     date='2017-02-06 15:15:15 -0600',
     model='metab_mle',
