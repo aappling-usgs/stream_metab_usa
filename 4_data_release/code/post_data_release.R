@@ -33,6 +33,7 @@ create_release_item <- function(parent.id, key, ...){
   safe_login()
   if (item_exists(scheme = 'powell_center', type = 'data_release', key = key)){
     sb.id <- query_item_identifier(scheme = 'powell_center', type = 'data_release', key = key)[[1]]$id
+    item_rm_files(sb_id = sb.id)
   } else {
     sb.id <- item_create(parent_id = parent.id, title = key)$id
     item_update_identifier(sb.id, scheme = 'powell_center', type = 'data_release', key = key)
