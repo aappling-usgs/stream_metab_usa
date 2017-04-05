@@ -6,12 +6,13 @@
 #' @import tidyr
 #' 
 #' @param config a config for the config
-create_metab_config <- function(smu.config=yaml::yaml.load_file('../2_metab_config/in/metab_configs_config.yml'),
-                                prep.config.file='../2_metab_config/prep/out/config.tsv',
-                                param.file='../2_metab_config/prep/out/params.tsv',
-                                outfile='../2_metab_config/out/config.tsv') {
+create_run2_config <- function(
+  run2_yaml=read_run2_yaml(),
+  prev.config.file='../2_metab_config/run1/out/config.tsv',
+  param.file='../2_metab_config/run1/out/params.tsv',
+  outfile='../2_metab_config/run2/out/config.tsv') {
   
-  prep.config <- read_config('../2_metab_config/prep/out/config.tsv')
+  prev.config <- read_config(prev.config.file)
   params <- read.table(param.file, header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
   cfg.calcs <- params %>%
@@ -41,16 +42,16 @@ create_metab_config <- function(smu.config=yaml::yaml.load_file('../2_metab_conf
     ) %>%
     select(site_name, strat, specs)
 
-  cfg <- prep.config %>%
+  cfg <- prev.config %>%
     inner_join(cfg.calcs, by=c(site='site_name')) %>%
     mutate(
       date="2017-02-14 09:25:46",
-      tag=smu.config[['tag']],
+      tag=run2_yaml[['tag']],
       strategy=strat,
       model='metab_bayes',
       model_args=specs,
       config.row=1:n()) %>%
-    select_(.dots=names(prep.config))
+    select_(.dots=names(prev.config))
     
   cfg.file <- write_config(cfg, outfile)
   

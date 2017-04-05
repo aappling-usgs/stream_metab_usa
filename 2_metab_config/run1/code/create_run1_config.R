@@ -6,10 +6,10 @@
 #' @import tidyr
 #' 
 #' @param config a config for the config
-create_prep_config <- function(sites, config=yaml::yaml.load_file('2_metab_config/in/metab_configs_config.yml'),
-                               outfile="../2_metab_config/prep/out/config.tsv") {
+create_run1_config <- function(run1_yaml=read_run1_yaml(), sites,
+                               outfile="../2_metab_config/run1/out/config.tsv") {
   cfg <- stage_metab_config(
-    tag=config$run1_tag,
+    tag=run1_yaml[['tag']],
     strategy='MLE_prep_run',
     date='2017-02-06 15:15:15 -0600',
     model='metab_mle',
@@ -36,7 +36,7 @@ create_prep_config <- function(sites, config=yaml::yaml.load_file('2_metab_confi
     ungroup() %>%
     group_by(var) %>%
     mutate(priority = priority - min(priority) + 1)
-  write.table(vsc, '../2_metab_config/prep/out/src_priorities.tsv', sep='\t', row.names=FALSE)
+  write.table(vsc, '../2_metab_config/run1/out/src_priorities.tsv', sep='\t', row.names=FALSE)
   
   return(cfgdf)
 }
