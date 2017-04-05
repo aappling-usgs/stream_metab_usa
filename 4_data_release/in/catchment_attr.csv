@@ -1,3 +1,3 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
-site_name, , , , , 
-ogc_fid, , , , , 
+site_name,The National Water Information System site name for the catchment of reference,http://dx.doi.org/10.5066/F7P55KJN,NA,NA,NA
+ogc_fid,The Open Geospatial Consortium identifier,http://www.opengeospatial.org/,NA,NA,NA
