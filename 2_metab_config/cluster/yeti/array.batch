@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH -J metab          # job name for reference in squeue
+#SBATCH -p normal         # the partition you want to use
+#SBATCH -A powstreams     # your account for accounting
+#SBATCH -t 5-00:00:00     # time at which the process will be cancelled if unfinished
+#SBATCH -o log/%A_%a.log  # sets output log file to array_job.log
+#SBATCH -e log/%A_%a.err  # sets error log file to array_job.err
+#SBATCH --export=ALL      # environment variables to export
+#SBATCH -c 4              # number of cores per task
+#SBATCH -D /cxfs/projects/usgs/water/owi/powstreams/stream_metab_usa  #working directory for the commands below
+#SBATCH --array=150-371   # the SLURM_ARRAY_TASK_IDs to run. can be comma separated list (14,16) or dash separated sequence (1-5)
+
+R CMD BATCH run_job.R log/${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}.Rout

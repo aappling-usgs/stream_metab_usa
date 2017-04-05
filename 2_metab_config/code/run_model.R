@@ -12,11 +12,12 @@ run_model <- function(config_row, verbose, outdir, model_name) {
   print(config_row)
   if(verbose) message('running model')
   model_out <- config_to_metab(config=config_row, rows=1, verbose=verbose)[[1]]
+  saveRDS(model_out, file.path(outdir, sprintf("partial %s.Rds", model_name)))
   if(verbose) message('printing model')
   tryCatch({
     print(class(model_out))
     print(model_out)
-  }, error=function(e) warning(e))
+  }, error=function(e) message(e$message))
   if(length(model_out) == 0 || is.character(model_out)) {
     message('modeling failed; returning')
     return(model_out)
@@ -27,13 +28,17 @@ run_model <- function(config_row, verbose, outdir, model_name) {
   # summarize the model & associated data
   if(verbose) message('summarizing model')
   tryCatch({
-    fit <- get_params(model_out, uncertainty='ci')
-    site <- get_info(model_out)$config$site
-    row <- get_info(model_out)$config$config.row
-    smry <- fit %>%
-      select(site_name=site, config_row=row, everything())
+    # save the model fit as a list
+    fit <- get_fit(model_out)
+    fit.file <- file.path(outdir, sprintf("fit %s.tsv", model_name))
+    saveRDS(fit, fit.file)
     
-    # write the summary
+    # save the model parameters as a table
+    pars <- get_params(model_out, uncertainty='ci')
+    pars$site <- get_info(model_out)$config$site
+    pars$row <- get_info(model_out)$config$config.row
+    smry <- pars %>%
+      select(site_name=site, config_row=row, everything())
     smry.file <- file.path(outdir, sprintf("summary %s.tsv", model_name))
     write.table(smry, smry.file, sep='\t', row.names=FALSE)
   }, error=function(e) {
