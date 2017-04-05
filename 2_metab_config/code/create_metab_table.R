@@ -21,13 +21,10 @@
 #' 
 #' @import mda.streams
 #' @seealso write_status_table sb_check_model_status
-create_metab_table <- function(config_file="../2_metab_config/prep/out/config.tsv", smu.config) {
+create_metab_table <- function(config_file="../2_metab_config/run1/out/config.tsv", run.yaml, outfile) {
   
-  # convert the config_file into the config table and an output file location. I
-  # wish remake would let us specify the outfile as a separate argument, but
-  # then it would be a file dependency before it's been created.
+  # convert the config_file into the config table
   config <- read_config(config_file)
-  outfile <- file.path(dirname(config_file), "files_metab.tsv")
   
   # Only create and update a fresh table if no current one exists. This fixes 
   # the problem where the table was getting created here, updated in an outside
@@ -45,5 +42,5 @@ create_metab_table <- function(config_file="../2_metab_config/prep/out/config.ts
   }
   
   # update the local/posted/tagged columns
-  sb_check_model_status(outfile, smu.config)
+  sb_check_model_status(outfile, run.yaml)
 }

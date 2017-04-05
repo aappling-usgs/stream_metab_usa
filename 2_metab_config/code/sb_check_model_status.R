@@ -2,7 +2,7 @@
 #' filenames for any models that aren't yet staged (or posted; see \code{phase})
 #' 
 #' @param metab.file the filename of the status table
-#' @param smu.config the read-in values from metab_configs_config.yml
+#' @param run.yaml the read-in values for this run from metab_configs_config.yml
 #' @param cluster NA to do nothing, or the name of an element from 
 #'   metab_clusters_config.yml to filter to only models in that element's list
 #' @param clust.config.file the filename of the cluster configuration file
@@ -10,8 +10,9 @@
 #' @import dplyr
 #' @import mda.streams
 #' @import sbtools
-sb_check_model_status <- function(metab.file, smu.config, cluster=NA, clust.config.file='../2_metab_config/in/metab_clusters_config.yml') {
-  posted_after <- as.POSIXct(if(grepl('prep', metab.file)) smu.config$prep_posted_after else smu.config$posted_after)
+sb_check_model_status <- function(metab.file, run.yaml, cluster=NA, clust.config.file='../2_metab_config/in/metab_clusters_config.yml') {
+  
+  posted_after <- as.POSIXct(run.yaml$posted_after)
   
   # read in the status table
   metab.table <- read_status_table(metab.file)

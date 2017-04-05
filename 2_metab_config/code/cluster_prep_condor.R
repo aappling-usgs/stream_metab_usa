@@ -1,20 +1,30 @@
 #' Copy files into a single folder for transfer to HTCondor
 #' 
-#' set up your ~/.R/stream_metab.yaml with fields for the group's sb_user and
+#' set up your ~/.R/stream_metab.yaml with fields for the group's sb_user and 
 #' sb_password first
 #' 
 #' @param cluster_dir the local folder whose contents you will manually transfer
-cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/condor', smu.config, status.file, ...) {
+#'   to the cluster after running this function
+#' @param run.yaml list of config parameters, read from yaml and specific to
+#'   this run, giving the desired model tag, posted_after, etc.
+#' @param status.file the filename for the relevant files_metab.tsv
+#' @param ... paths and names of other files to transfer
+cluster_prep_condor <- function(cluster_dir='../2_metab_config/run1/cluster/condor', run.yaml, status.file, ...) {
+  
+  # create the destination directory if needed
+  if(!dir.exists(cluster_dir)) {
+    dir.create(cluster_dir, recursive=TRUE)
+  }
   
   # identify the run ID to use for this run: use the first on the config list,
   # letting following IDs indicate previous runs
-  runid <- if(grepl('/prep/', cluster_dir)) smu.config$prep_runid[[1]] else smu.config$runid[[1]]
+  runid <- run.yaml$runid[[1]]
   
   # collect arguments into list
   files <- unlist(list(...))
   
   # update the status file, save needed list for condor.sub updates below
-  needed <- sb_check_model_status(status.file, smu.config, cluster='condor')
+  needed <- sb_check_model_status(status.file, run.yaml, cluster='condor')
   
   # also write needed to a new status file that's explicitly for jobs to be 
   # included in this cluster run. write it both to /out (with a runid stamp) and

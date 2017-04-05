@@ -1,17 +1,25 @@
 #' Copy files into a single folder for transfer to HTCondor
 #' 
-#' set up your ~/.R/stream_metab.yaml with fields for the group's sb_user and
+#' set up your ~/.R/stream_metab.yaml with fields for the group's sb_user and 
 #' sb_password first
 #' 
 #' @param cluster_dir the local folder whose contents you will manually transfer
-cluster_prep_yeti <- function(cluster_dir='../2_metab_config/prep/cluster/yeti', smu.config, ...) {
+#' @param run.yaml list of config parameters, read from yaml and specific to 
+#'   this run, giving the desired model tag, posted_after, etc.
+#' @param ... paths and names of other files to transfer
+cluster_prep_yeti <- function(cluster_dir='../2_metab_config/run1/cluster/yeti', run.yaml, ...) {
+  
+  # create the destination directory if needed
+  if(!dir.exists(cluster_dir)) {
+    dir.create(cluster_dir, recursive=TRUE)
+  }
   
   # collect arguments into list
   files <- unlist(list(...))
   
   # update the status file, save needed list for condor.sub updates below
   status.file <- grep('files_metab\\.tsv', files, value=TRUE)
-  needed <- sb_check_model_status(status.file, smu.config, cluster='yeti')
+  needed <- sb_check_model_status(status.file, run.yaml, cluster='yeti')
   
   # copy files into the condor directory
   for(file in files) {
