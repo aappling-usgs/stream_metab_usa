@@ -1,5 +1,1 @@
-index of new files contains 2
-** nccopy dswrfsfc[327675:1:328211] to NLDAS_327675.328211_0.223_0.463_dswrfsfc.nc...done! **
-** nccopy pressfc[327675:1:328211] to NLDAS_327675.328211_0.223_0.463_pressfc.nc...done! **
-** transferring file to thredds server...done! **
-** transferring file to thredds server...done! **
+index of new files contains 0

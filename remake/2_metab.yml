@@ -1,0 +1,104 @@
+target_default: 1_metab
+
+include:
+  - 1_site_data.yml
+
+packages:
+  - yaml
+  - dplyr
+  - tidyr
+  - ggplot2
+  - mda.streams
+  - sbtools
+  - miniCRAN
+
+sources:
+  - ../2_metab_config/code/bundle_packages.R
+  - ../2_metab_config/code/choose_metab_sites.R
+  - ../2_metab_config/code/cluster_prep_condor.R
+  - ../2_metab_config/code/create_metab_config.R
+  - ../2_metab_config/code/create_metab_table.R
+  - ../2_metab_config/code/sb_check_model_status.R
+  - ../2_metab_config/prep/code/create_prep_config.R
+  - ../2_metab_config/prep/code/choose_params.R
+  - ../lib/load_profile.R
+  - ../lib/write_status_table.R
+
+targets:
+  1_metab:
+   depends: 
+     - smu.config
+
+  # decisions for this stream_metab_usa data release
+
+  smu.config:
+    command: yaml.load_file('../2_metab_config/in/metab_configs_config.yml')
+  
+  metab.sites:
+    command: choose_metab_sites(smu.config,
+      harvey.file='../1_site_data/in/sites_harvey_ask.txt',
+      site.file='../1_site_data/out/site_list.tsv')
+  
+  # model config files
+  
+  '../2_metab_config/prep/out/config.tsv': # metab.prep.config
+    command: create_prep_config(metab.sites, smu.config)
+  
+  '../2_metab_config/out/config.tsv': # metab.run.config
+    command: create_metab_config(
+      smu.config, 
+      '../2_metab_config/prep/out/config.tsv',
+      '../2_metab_config/prep/out/params.tsv')
+
+  # model status files
+  
+  '../2_metab_config/prep/out/files_metab.tsv': # metab.prep.table
+    command: create_metab_table('../2_metab_config/prep/out/config.tsv', smu.config)
+  
+  '../2_metab_config/out/files_metab.tsv': # metab.run.table
+    command: create_metab_table('../2_metab_config/out/config.tsv', smu.config)
+
+
+  # cluster support (still launch the cluster run manually)
+  
+  '../2_metab_config/cluster/packages/bundle.zip': # package.bundle
+    command: bundle_packages()
+  
+  '../2_metab_config/prep/cluster/condor':
+    command: dir.create('../2_metab_config/prep/cluster/condor')
+  
+  metab.prep.condor.prep:
+    command: cluster_prep_condor(
+      cluster_dir='../2_metab_config/prep/cluster/condor', smu.config,
+      '~/.R/stream_metab.yaml',
+      '../2_metab_config/cluster/packages/bundle.zip',
+      '../2_metab_config/cluster/condor/unzip',
+      '../2_metab_config/cluster/condor/.Renviron',
+      '../2_metab_config/cluster/condor/condor.sub',
+      '../2_metab_config/cluster/condor/run_job.sh',
+      '../2_metab_config/cluster/condor/run_job.R',
+      '../2_metab_config/code/install_packages.R',
+      '../2_metab_config/code/run_model_job.R',
+      '../2_metab_config/prep/code/run_model.R',
+      '../2_metab_config/prep/out/config.tsv',
+      '../2_metab_config/prep/out/files_metab.tsv')
+  
+  metab.run.condor.prep:
+    command: cluster_prep_condor(
+      cluster_dir='../2_metab_config/cluster/condor', smu.config,
+      '~/.R/stream_metab.yaml',
+      '../2_metab_config/cluster/packages/bundle.zip',
+      '../2_metab_config/code/install_packages.R',
+      '../2_metab_config/code/run_model_job.R',
+      '../2_metab_config/code/run_model.R',
+      '../2_metab_config/out/config.tsv',
+      '../2_metab_config/out/files_metab.tsv')
+  #'../2_metab_config/cluster/condor/unzip',
+  #'../2_metab_config/cluster/condor/.Renviron',
+  #'../2_metab_config/cluster/condor/condor.sub',
+  #'../2_metab_config/cluster/condor/run_job.sh',
+  #'../2_metab_config/cluster/condor/run_job.R',
+     
+  '../2_metab_config/prep/out/params.tsv': # prep/out/ params.tsv, various.png
+    depends: '../2_metab_config/prep/out/files_metab.tsv'
+    command: choose_params(smu.config=smu.config)

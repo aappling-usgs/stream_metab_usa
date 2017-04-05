@@ -1,10 +1,13 @@
 #' Remake for SMU (stream_metab_usa)
 #' 
-#' If you set your Build | "Custom build script" to this file (enter 
-#' 'remake/build.R' in the text box), then it will open right away in your
-#' editor pane.
-#' 
 #' @examples
+#' \dontrun{
+#' # put this in your .Rprofile file in the top directory of this project:
+#' message('sourcing remake/build.R, 1_timeseries/code/summarize_ts_tables.R')
+#' source('remake/build.R')
+#' source('1_timeseries/code/summarize_ts_tables.R')
+#' }
+#' 
 #' sbsites <- remake_smu('sb_sites', '1_site_data.yml')
 #' remake_smu('../1_timeseries/out/files_ts_wtr_nwis.tsv', '1_timeseries.yml')
 #' remake_smu('wtr_nwis', '1_timeseries.yml')

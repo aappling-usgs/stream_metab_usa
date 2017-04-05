@@ -8,7 +8,8 @@ temp
 *.Rout
 starter_files/*.RData
 */cache/
-p2_metab/out
+2_metab_config/cluster/packages
+2_metab_config/prep/cluster/condor
 NEWS.html
 README.html
 .remake
@@ -16,3 +17,4 @@ README.html
 .Rprofile
 **.xml
 **.zip
+**stream_metab.yaml
