@@ -104,7 +104,7 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
   
   site.lookup <- c('epa_basins'='site_no','gagesii_basins'='gage_id')
   
-  postURL <- "http://cida.usgs.gov/nwc/geoserver/NWC/ows"
+  postURL <- "https://cida.usgs.gov/nwc/geoserver/NWC/ows"
   filterXML <- paste0('<?xml version="1.0"?>',
                       '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="shape-zip" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
                       sprintf('<wfs:Query xmlns:feature="http://owi.usgs.gov/NWC" typeName="feature:%s" srsName="EPSG:4326">', feature.name))

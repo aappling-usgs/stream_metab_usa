@@ -21,8 +21,7 @@ targets:
   1_site_data:
     depends: 
       - sb_sites
-      - sb_meta_basic
-      - sb_meta_dvqcoefs
+
   
   ## Site List ##
   

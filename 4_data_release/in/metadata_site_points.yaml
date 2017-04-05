@@ -21,10 +21,3 @@ metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
 indirect-spatial: U.S.A.
 latitude-res: unknown
 longitude-res: unknown
-attributes: 
-  - 
-    attr-label: site_name
-    attr-def: The National Water Information System site name for the site
-    data-min: NA
-    data-max: NA
-    data-units: NA

@@ -33,13 +33,19 @@ create_release_item <- function(parent.id, key, ...){
   safe_login()
   if (item_exists(scheme = 'powell_center', type = 'data_release', key = key)){
     sb.id <- query_item_identifier(scheme = 'powell_center', type = 'data_release', key = key)[[1]]$id
+    if (length(c(...)) > 0){
+      item_rm(sb.id, recursive = TRUE)
+      Sys.sleep(1)
+      sb.id <- item_create(parent_id = parent.id, title = key)$id
+    }
   } else {
     sb.id <- item_create(parent_id = parent.id, title = key)$id
-    item_update_identifier(sb.id, scheme = 'powell_center', type = 'data_release', key = key)
   }
+  
   if (length(c(...)) > 0){
     append_release_files(sb.id, c(...))
   }
+  item_update_identifier(sb.id, scheme = 'powell_center', type = 'data_release', key = key)
   return(sb.id)
 }
 
