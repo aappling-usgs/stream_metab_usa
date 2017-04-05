@@ -40,7 +40,7 @@ create_metab_table <- function(config_file="../2_metab_config/prep/out/config.ts
     model_files <- make_metab_model_path(model_names, '.')
     
     # create and write the model status table
-    metab.table <- data.frame(filepath=model_files, local=FALSE, posted=FALSE, tagged=FALSE, error=as.character(NA))
+    metab.table <- data.frame(filepath=model_files, local=FALSE, posted=FALSE, tagged=FALSE, assigned_to=as.character(NA))
     write_status_table(metab.table, outfile)
   }
   

@@ -13,10 +13,10 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   library(streamMetabolizer)
   library(mda.streams)
   config <- read_config('config.tsv')
-  status <- read.table('files_metab.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
+  status <- read.table('cluster_jobs.tsv', header=TRUE, sep='\t', stringsAsFactors=FALSE)
   
-  # plan to run the jobth row that's incomplete in status
-  row_num <- filter(status, tagged==FALSE) %>%
+  # plan to run the jobth row of the status file
+  row_num <- status %>%
     .[[job, 'filepath']] %>%
     parse_metab_model_path(out='row') %>%
     as.numeric()
@@ -36,15 +36,13 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   error=function(e) {
     message('modeling or summarization had an error; see error file')
     writeLines(e$message, file.path(outdir, sprintf("error %s.txt", stage_name)))
-    warning(e)
+    warning(e$message)
   })
   modeled <- any(substring(class(metab_out), 1, 5) == 'metab')
   if(!modeled) {
     message("modeling or summarization output wasn't complete; see partial file")
     message(paste0("class(metab_out): ", class(metab_out)))
-    saveRDS(metab_out, file.path(outdir, sprintf("partial %s.Rds", stage_name)))
-    warning(metab_out)
-    return()
+    stop(metab_out)
   }
   
   # stage/save
@@ -90,7 +88,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   # clean up before returning if posting worked; otherwise leave the model in
   # place to be zipped and returned
   if(posted && tagged) {
-    # file.remove(stage_path)
+    file.remove(stage_path)
     message('model was successfully run and posted')
     invisible()
   } else {

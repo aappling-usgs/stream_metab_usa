@@ -4,14 +4,24 @@
 #' sb_password first
 #' 
 #' @param cluster_dir the local folder whose contents you will manually transfer
-cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/condor', smu.config, ...) {
+cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/condor', smu.config, status.file, ...) {
+  
+  # identify the run ID to use for this run: use the first on the config list,
+  # letting following IDs indicate previous runs
+  runid <- if(grepl('/prep/', cluster_dir)) smu.config$prep_runid[[1]] else smu.config$runid[[1]]
   
   # collect arguments into list
   files <- unlist(list(...))
   
   # update the status file, save needed list for condor.sub updates below
-  status.file <- grep('files_metab\\.tsv', files, value=TRUE)
-  needed <- sb_check_model_status(status.file, smu.config)
+  needed <- sb_check_model_status(status.file, smu.config, cluster='condor')
+  
+  # also write needed to a new status file that's explicitly for jobs to be 
+  # included in this cluster run. write it both to /out (with a runid stamp) and
+  # to /condor (with no stamp)
+  job.file <- file.path(dirname(status.file), paste0('cluster_jobs_', runid, '.tsv'))
+  write.table(needed, job.file, row.names=FALSE, sep='\t')
+  file.copy(job.file, file.path(cluster_dir, 'cluster_jobs.tsv'), overwrite=TRUE)
   
   # copy files into the condor directory
   for(file in files) {
@@ -20,7 +30,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   }
   
   # create directories to accept output files
-  dirs <- c('log','results')
+  dirs <- paste0(c('log_','results_'), runid)
   for(dir in dirs) {
     login_node_dir <- file.path(cluster_dir, dir)
     if(!dir.exists(login_node_dir)) {
@@ -31,13 +41,16 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_config/prep/cluster/cond
   # modify the condor submit file for this run
   condor.sub <- readLines(file.path(cluster_dir, 'condor.sub'))
   if(grepl('prep', cluster_dir)) {
-    condor.sub <- condor.sub %>%
-      gsub('request_cpus = 4', 'request_cpus = 1', .)
-  } else {
-    # any mods for the main run?
+    condor.sub[grep('request_cpus', condor.sub)] <- 'request_cpus = 1'
   }
-  condor.sub <- condor.sub %>%
-    gsub('queue 2', sprintf('queue %d', nrow(needed)), .)
+  # map the log and results files to runid-specific folders
+  condor.sub[grep('^output =', condor.sub)] <- sprintf('output = log_%s/$(Process).out', runid)
+  condor.sub[grep('^error = ', condor.sub)] <- sprintf('error = log_%s/$(Process).err', runid)
+  condor.sub[grep('^log = ', condor.sub)] <- sprintf('log = log_%s/$(Process).log', runid)
+  condor.sub[grep('^transfer_output_remaps = ', condor.sub)] <- sprintf('transfer_output_remaps = "job = results_%s/job_$(Process)"', runid)
+  # only request as many jobs as we need
+  condor.sub[grep('^queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
+  # save the file
   writeLines(condor.sub, file.path(cluster_dir, 'condor.sub'))
   
   # remind how to run on cluster

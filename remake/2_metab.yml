@@ -11,6 +11,7 @@ packages:
   - mda.streams
   - sbtools
   - miniCRAN
+  - streamMetabolizer
 
 sources:
   - ../2_metab_config/code/bundle_packages.R
@@ -70,6 +71,7 @@ targets:
   metab.prep.condor.prep:
     command: cluster_prep_condor(
       cluster_dir='../2_metab_config/prep/cluster/condor', smu.config,
+      status.file='../2_metab_config/prep/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_config/cluster/packages/bundle.zip',
       '../2_metab_config/cluster/condor/unzip',
@@ -80,24 +82,36 @@ targets:
       '../2_metab_config/code/install_packages.R',
       '../2_metab_config/code/run_model_job.R',
       '../2_metab_config/prep/code/run_model.R',
-      '../2_metab_config/prep/out/config.tsv',
-      '../2_metab_config/prep/out/files_metab.tsv')
+      '../2_metab_config/prep/out/config.tsv')
   
   metab.run.condor.prep:
     command: cluster_prep_condor(
       cluster_dir='../2_metab_config/cluster/condor', smu.config,
+      status.file='../2_metab_config/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_config/cluster/packages/bundle.zip',
       '../2_metab_config/code/install_packages.R',
       '../2_metab_config/code/run_model_job.R',
       '../2_metab_config/code/run_model.R',
-      '../2_metab_config/out/config.tsv',
-      '../2_metab_config/out/files_metab.tsv')
-  #'../2_metab_config/cluster/condor/unzip',
-  #'../2_metab_config/cluster/condor/.Renviron',
-  #'../2_metab_config/cluster/condor/condor.sub',
-  #'../2_metab_config/cluster/condor/run_job.sh',
-  #'../2_metab_config/cluster/condor/run_job.R',
+      '../2_metab_config/out/config.tsv')
+  
+  '../2_metab_config/prep/cluster/yeti':
+    command: dir.create('../2_metab_config/prep/cluster/yeti')
+  
+  # metab.prep.yeti.prep: would look similar to metab.prep.condor.prep
+  
+  metab.run.yeti.prep:
+    command: cluster_prep_yeti(
+      cluster_dir='../2_metab_config/cluster/yeti', smu.config,
+      status.file='../2_metab_config/out/files_metab.tsv',
+      '~/.R/stream_metab.yaml',
+      '../2_metab_config/cluster/packages/bundle.zip',
+      '../2_metab_config/code/install_packages.R',
+      '../2_metab_config/code/run_model_job.R',
+      '../2_metab_config/code/run_model.R',
+      '../2_metab_config/out/config.tsv')
+      
+  # post-run analyses
      
   '../2_metab_config/prep/out/params.tsv': # prep/out/ params.tsv, various.png
     depends: '../2_metab_config/prep/out/files_metab.tsv'
