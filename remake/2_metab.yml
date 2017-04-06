@@ -164,5 +164,5 @@ targets:
   # post-run analyses
   
   '../2_metab_models/run1/out/params.tsv': # creates multiple files: prep/out/ params.tsv, various.png
-    depends: '../2_metab_models/run1/out/files_metab.tsv'
+    depends: '../2_metab_models/run1/out/files_metab.tsv' # requires results_* files to be local
     command: choose_params()

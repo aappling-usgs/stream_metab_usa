@@ -13,6 +13,10 @@ choose_params <- function(prepdir="../2_metab_models/run1/out/",
   
   # collect and combine summary data.frames from the jobs
   resultsdirs <- grep('results_', dir(prepdir, full.names=TRUE), value=TRUE)
+  if(length(resultsdirs) == 0) {
+    warning("need 1+ results_* files in local prepdir")
+    return(read.table(file.path(outdir, 'params.tsv'), header=TRUE, sep='\t', stringsAsFactors=FALSE))
+  }
   results <- bind_rows(lapply(resultsdirs, function(resdir) {
     jobdirs <- grep('job_', dir(resdir, full.names=TRUE), value=TRUE)
     if(length(jobdirs) > 0) {
