@@ -14,6 +14,7 @@ packages:
   - streamMetabolizer
 
 sources:
+  - ../lib/check_frozen.R
   - ../lib/load_profile.R
   - ../lib/write_status_table.R
   - ../2_metab_models/code/read_run_yaml.R
@@ -26,6 +27,7 @@ sources:
   - ../2_metab_models/run1/code/create_run1_config.R
   - ../2_metab_models/run1/code/choose_params.R
   - ../2_metab_models/run2/code/create_run2_config.R
+  - ../2_metab_models/run2/code/summarize_run2.R
 
 # collect_errors, collect_results, and summarize_results are manual for now
 
@@ -55,18 +57,21 @@ targets:
   '../2_metab_models/run1/out/config.tsv':
     command: create_run1_config(
       run1_yaml,
-      metab.sites)
+      metab.sites,
+      outfile=target_name)
   
   '../2_metab_models/run2/out/config.tsv':
     command: create_run2_config(
       run2_yaml, 
       '../2_metab_models/run1/out/config.tsv',
-      '../2_metab_models/run1/out/params.tsv')
+      '../2_metab_models/run1/out/params.tsv',
+      outfile=target_name)
   
   '../2_metab_models/run3/out/config.tsv':
     command: create_run3_config(
       run3_yaml, 
-      '../2_metab_models/run2/out/config.tsv')
+      '../2_metab_models/run2/out/config.tsv',
+      outfile=target_name)
 
   # model status files
   
@@ -166,3 +171,9 @@ targets:
   '../2_metab_models/run1/out/params.tsv': # creates multiple files: prep/out/ params.tsv, various.png
     depends: '../2_metab_models/run1/out/files_metab.tsv' # requires results_* files to be local
     command: choose_params()
+    
+  '../2_metab_models/run2/out/sorta_dones.txt': # report on the 8 models that got posted with empty fits in run2
+    command: summarize_run2_sorta_dones('../2_metab_models/run2/out/config.tsv', outfile=target_name)
+    
+  '../2_metab_models/run2/out/model_stats.csv':
+    command: summarize_run2_models('../2_metab_models/run2/out/config.tsv', outfile=target_name)
