@@ -78,7 +78,7 @@
 "./mm_nwis_02160700-77-170214 1.0.1 bayes_60min.RData"	FALSE	TRUE	TRUE	"condor170218"
 "./mm_nwis_02162035-78-170214 1.0.1 bayes_5min.RData"	FALSE	TRUE	TRUE	NA
 "./mm_nwis_02162035-79-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170221"
-"./mm_nwis_02168504-80-170214 1.0.1 bayes_60min.RData"	FALSE	FALSE	FALSE	NA
+"./mm_nwis_02168504-80-170214 1.0.1 bayes_60min.RData"	FALSE	TRUE	TRUE	NA
 "./mm_nwis_02169000-81-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170221"
 "./mm_nwis_02169000-82-170214 1.0.1 bayes_60min.RData"	FALSE	TRUE	TRUE	"condor170221"
 "./mm_nwis_02171645-83-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170221"
@@ -357,8 +357,8 @@
 "./mm_nwis_08065350-356-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170219"
 "./mm_nwis_08068000-357-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170219"
 "./mm_nwis_08068500-358-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170219"
-"./mm_nwis_08070200-359-170214 1.0.1 bayes_15min.RData"	FALSE	FALSE	FALSE	NA
-"./mm_nwis_08155500-360-170214 1.0.1 bayes_15min.RData"	FALSE	FALSE	FALSE	NA
+"./mm_nwis_08070200-359-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	NA
+"./mm_nwis_08155500-360-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	NA
 "./mm_nwis_08171290-361-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170219"
 "./mm_nwis_08180700-362-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170219"
 "./mm_nwis_08181500-363-170214 1.0.1 bayes_15min.RData"	FALSE	TRUE	TRUE	"condor170219"
