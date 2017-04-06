@@ -20,8 +20,10 @@
 #' 
 #' @param config ts config file
 #' @param outfile file to which the table should be written
-create_site_table <- function(config, outfile){
+create_site_table <- function(config, outfile) {
 
+  if(check_frozen(outfile)) return(NULL)
+  
   # combine existing SB sites with all NWIS sites meeting our criteria
   project.sites <- mda.streams::list_sites()
   fresh.sites <- mda.streams::stage_nwis_sitelist(
