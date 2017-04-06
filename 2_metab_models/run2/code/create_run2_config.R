@@ -12,6 +12,8 @@ create_run2_config <- function(
   param.file='../2_metab_models/run1/out/params.tsv',
   outfile='../2_metab_models/run2/out/config.tsv') {
   
+  if(check_frozen(outfile)) return(NULL)
+  
   prev.config <- read_config(prev.config.file)
   params <- read.table(param.file, header=TRUE, sep='\t', stringsAsFactors=FALSE)
   

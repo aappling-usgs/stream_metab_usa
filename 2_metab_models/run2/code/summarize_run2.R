@@ -63,6 +63,7 @@ summarize_run2_sorta_dones <- function(config.file='../2_metab_models/run2/out/c
 
 # summarize the remaining models
 summarize_run2_models <- function(config.file, outfile) {
+  
   if(check_frozen(outfile)) return(NULL)
   
   summarize_run2_model <- function(config_row, outdir='../2_metab_models/run2/out/resummaries') {
@@ -399,6 +400,11 @@ summarize_run2_models <- function(config.file, outfile) {
   write.csv(all_stats, outfile, row.names=FALSE)
 }  
 
+summarize_run2_stats <- function(model.stats.file='../2_metab_models/run2/out/model_stats.csv', 
+                                 outdir='../2_metab_models/run2/out/resummaries/') {
+  
+  all_stats <- read.csv(model.stats.file, header=TRUE, stringsAsFactors=FALSE)
+  
   # plot distributions of various metrics of whole-model convergence
   rhat_stats_wide <- select(all_stats, model_name, starts_with('all_params_Rhat')) %>% 
     setNames(., gsub('all_params_Rhat.', '', names(.))) %>%
@@ -414,7 +420,7 @@ summarize_run2_models <- function(config.file, outfile) {
     theme_bw() + theme(legend.position=c(0.2,0.8)) +
     scale_y_log10() + 
     ylab('mean/median/etc. of Rhats') + xlab('sites ordered by mean Rhat')
-  ggsave('../2_metab_models/out/resummaries/plot_rhatqs.png', plot_rhatqs, width=7, height=7)
+  ggsave(file.path(outdir, 'plot_rhatqs.png'), plot_rhatqs, width=7, height=7)
   plot_rhatovers <- rhat_stats_wide %>% arrange(meanpct_over_1.05) %>% mutate(id=1:n()) %>%
     gather(metric, value, -model_name, -id) %>%
     filter(metric %in% c('meanpct_over_1.05', 'meanpct_over_1.1', 'pct_over_1.05', 'pct_over_1.1')) %>%
@@ -422,19 +428,25 @@ summarize_run2_models <- function(config.file, outfile) {
     geom_point(aes(y=value, color=metric)) + 
     theme_bw() + theme(legend.position=c(0.2,0.8)) +
     ylab('Percent of Rhats exceeding a value') + xlab('sites ordered by meanpct_over_1.05')
-  ggsave('../2_metab_models/out/resummaries/plot_rhatovers.png', plot_rhatovers, width=7, height=7)
+  ggsave(file.path(outdir, 'plot_rhatovers.png'), plot_rhatovers, width=7, height=7)
   
   # plot K600_daily_sigma_sigma vs K600_daily_sigma
   plot_K600_daily_sigmas <- ggplot(all_stats, aes(x=K600_daily_sigma_sigma, y=K600_daily_sigma.median.p50)) + 
     geom_abline() + geom_point() + 
     theme_bw() + xlab('K600_daily_sigma_sigma (the prior)') + ylab('K600_daily_sigma_50pct (the posterior)')
-  ggsave('../2_metab_models/out/resummaries/plot_K600_daily_sigmas.png', plot_K600_daily_sigmas, width=7, height=7)
+  ggsave(file.path(outdir, 'plot_K600_daily_sigmas.png'), plot_K600_daily_sigmas, width=7, height=7)
   
   plot_K600_sig_vs_median <- cowplot::plot_grid(
     ggplot(all_stats, aes(x=K600_new.median, y=K600_daily_sigma_sigma)) + geom_point(color='red') + theme_bw(),
     ggplot(all_stats, aes(x=K600_new.median, y=K600_daily_sigma.median.p50)) + geom_point(color='black') + theme_bw()
   )
-  ggsave('../2_metab_models/out/resummaries/plot_K600_sig_vs_median.png', plot_K600_sig_vs_median, width=7, height=4)
+  ggsave(file.path(outdir, 'plot_K600_sig_vs_median.png'), plot_K600_sig_vs_median, width=7, height=4)
+}
+
+start_run2_expert_file <- function(model.stats.file='../2_metab_models/run2/out/model_stats.csv', 
+                                   outfile='../2_metab_models/run2/out/expert_file.csv') {
+  
+  all_stats <- read.csv(model.stats.file, header=TRUE, stringsAsFactors=FALSE)
   
   # starter file for bob and maite's expert assessment
   bm_model_rows <- all_stats %>%
@@ -454,5 +466,5 @@ summarize_run2_models <- function(config.file, outfile) {
     arrange(site, model_name) %>%
     select(site, everything()) %>%
     mutate(confidence = NA)
-  write.csv(bob_maite, '../2_metab_models/out/resummaries/z_bob_maite.csv', row.names=FALSE)
+  write.csv(bob_maite, outfile, row.names=FALSE)
 }

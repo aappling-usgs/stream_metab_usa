@@ -8,6 +8,9 @@
 #' @param config a config for the config
 create_run1_config <- function(run1_yaml=read_run1_yaml(), sites,
                                outfile="../2_metab_models/run1/out/config.tsv") {
+  
+  if(check_frozen(outfile)) return(NULL)
+  
   cfg <- stage_metab_config(
     tag=run1_yaml[['tag']],
     strategy='MLE_prep_run',

@@ -1,2 +1,10 @@
 - '../1_site_data/out/site_list.tsv'
+
+- '../2_metab_models/run1/out/config.tsv'
+- '../2_metab_models/run1/out/files_metab.tsv'
 - '../2_metab_models/run1/out/params.tsv'
+
+- '../2_metab_models/run2/out/config.tsv'
+- '../2_metab_models/run2/out/files_metab.tsv'
+- '../2_metab_models/run2/out/sorta_dones.txt'
+- '../2_metab_models/run2/out/model_stats.csv'
