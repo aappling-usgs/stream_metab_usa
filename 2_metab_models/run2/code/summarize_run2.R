@@ -18,7 +18,9 @@ read_run2_files <- function(config.file='../2_metab_models/run2/out/config.tsv',
 }
 
 # report on the 8 models that got posted with empty fits in run2
-summarize_run2_sorta_dones <- function(config.file='../2_metab_models/run2/out/config.tsv') {
+summarize_run2_sorta_dones <- function(config.file='../2_metab_models/run2/out/config.tsv', outfile) {
+  
+  if(check_frozen(outfile)) return(NULL)
   
   run2_files <- read_run2_files(config.file)
   if(is.logical(run2_files) && !run2_files) return(FALSE)
@@ -60,8 +62,10 @@ summarize_run2_sorta_dones <- function(config.file='../2_metab_models/run2/out/c
 }
 
 # summarize the remaining models
-summarize_run2_models <- function(config.file) {
-  summarize_results <- function(config_row, outdir='../2_metab_models/out/resummaries') {
+summarize_run2_models <- function(config.file, outfile) {
+  if(check_frozen(outfile)) return(NULL)
+  
+  summarize_run2_model <- function(config_row, outdir='../2_metab_models/run2/out/resummaries') {
     
     message('summarizing config_row ', config_row)
     
@@ -367,14 +371,12 @@ summarize_run2_models <- function(config.file) {
     write.csv(allstats, make_filename('stats','csv'), row.names=FALSE)
   }
   stop_msgs <- c()
-  for(cr in config$config.row) {
-    tryCatch(summarize_results(cr), error=function(e) {
+  for(cr in config$config.row[1]) {
+    tryCatch(summarize_run2_model(cr), error=function(e) {
       stop_msgs <<- c(stop_msgs, setNames(e$message, cr))
       message('  error: ', e$message)
     })
   }
-  writeLines(stop_msgs, file.path(dirname(config.file), 'summary_errors.txt'))
-  
   # > t(t(stop_msgs))
   # [,1]                                                                                         
   # 36  "couldn't find a summary file for row 36"                                                    
@@ -388,18 +390,15 @@ summarize_run2_models <- function(config.file) {
   # 342 "couldn't find a summary file for row 342"                                                   
   # 359 "no applicable method for 'select_' applied to an object of class \"c('double', 'numeric')\""
   # 360 "couldn't find a summary file for row 360"      
-  
-  file.remove('../2_metab_models/out/resummaries/z_all_stats.csv')
+  writeLines(c("Errors in summarize_run2_model:", capture.output(print(t(t(stop_msgs))))[-1]), file.path(dirname(config.file), 'summary_errors.txt'))
+
   stats_csvs <- dir('../2_metab_models/out/resummaries', pattern=' stats.csv', full.names=TRUE)
   all_stats <- bind_rows(lapply(stats_csvs, function(sc) {
     read.csv(sc, header=TRUE, stringsAsFactors=FALSE)
   }))
-  write.csv(all_stats, '../2_metab_models/out/resummaries/z_all_stats.csv', row.names=FALSE)
-  
-  # fix issue (now correted above) where all_stats$all_params_Rhat.meanq95 was wrong
-  # meanq95 <- apply(select(select(all_stats, ends_with('.q95')), -all_params_Rhat.q95), MARGIN=1, mean)
-  # all_stats$all_params_Rhat.meanq95 <- meanq95
-  
+  write.csv(all_stats, outfile, row.names=FALSE)
+}  
+
   # plot distributions of various metrics of whole-model convergence
   rhat_stats_wide <- select(all_stats, model_name, starts_with('all_params_Rhat')) %>% 
     setNames(., gsub('all_params_Rhat.', '', names(.))) %>%
