@@ -25,7 +25,7 @@ sources:
   - ../2_metab_models/code/cluster_prep_yeti.R
   - ../2_metab_models/run1/code/create_run1_config.R
   - ../2_metab_models/run1/code/choose_params.R
-  - ../2_metab_models/code/create_run2_config.R
+  - ../2_metab_models/run2/code/create_run2_config.R
 
 # collect_errors, collect_results, and summarize_results are manual for now
 
@@ -103,35 +103,35 @@ targets:
   
   metab.run2.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_models/cluster/condor', run2.yaml,
+      cluster_dir='../2_metab_models/run2/cluster/condor', run2.yaml,
       status.file='../2_metab_models/run2/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_models/cluster/packages/bundle.zip',
-      '../2_metab_models/code/run_model.R',
       '../2_metab_models/cluster/code/install_packages.R',
       '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run2/code/run_model.R',
       '../2_metab_models/run2/out/config.tsv')
   
   metab.run2.yeti.prep:
     command: cluster_prep_yeti(
-      cluster_dir='../2_metab_models/cluster/yeti', run2.yaml,
+      cluster_dir='../2_metab_models/run2/cluster/yeti', run2.yaml,
       status.file='../2_metab_models/run2/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_models/cluster/packages/bundle.zip',
-      '../2_metab_models/code/run_model.R',
       '../2_metab_models/cluster/code/install_packages.R',
       '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run2/code/run_model.R',
       '../2_metab_models/run2/out/config.tsv')
         
   metab.run3.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_models/cluster/condor', run3.yaml,
+      cluster_dir='../2_metab_models/run3/cluster/condor', run3.yaml,
       status.file='../2_metab_models/run3/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_models/cluster/packages/bundle.zip',
-      '../2_metab_models/code/run_model.R',
       '../2_metab_models/cluster/code/install_packages.R',
       '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run3/code/run_model.R',
       '../2_metab_models/run3/out/config.tsv')
   
   # post-run analyses
