@@ -32,17 +32,17 @@ sources:
 targets:
   1_metab:
    depends: 
-     - run1.yaml
+     - run1_yaml
 
   # decisions for this stream_metab_usa data release
-
-  run1.yaml:
+  
+  run1_yaml:
     command: read_run1_yaml()
-    
-  run2.yaml:
+  
+  run2_yaml:
     command: read_run2_yaml()
-    
-  run3.yaml:
+  
+  run3_yaml:
     command: read_run3_yaml()
   
   metab.sites:
@@ -54,30 +54,30 @@ targets:
   
   '../2_metab_models/run1/out/config.tsv':
     command: create_run1_config(
-      run1.yaml,
+      run1_yaml,
       metab.sites)
   
   '../2_metab_models/run2/out/config.tsv':
     command: create_run2_config(
-      run2.yaml, 
+      run2_yaml, 
       '../2_metab_models/run1/out/config.tsv',
       '../2_metab_models/run1/out/params.tsv')
   
   '../2_metab_models/run3/out/config.tsv':
     command: create_run3_config(
-      run3.yaml, 
+      run3_yaml, 
       '../2_metab_models/run2/out/config.tsv')
 
   # model status files
   
   '../2_metab_models/run1/out/files_metab.tsv':
-    command: create_metab_table('../2_metab_models/run1/out/config.tsv', run1.yaml, target_name)
+    command: create_metab_table('../2_metab_models/run1/out/config.tsv', run1_yaml, target_name)
   
   '../2_metab_models/run2/out/files_metab.tsv':
-    command: create_metab_table('../2_metab_models/run2/out/config.tsv', run2.yaml, target_name)
+    command: create_metab_table('../2_metab_models/run2/out/config.tsv', run2_yaml, target_name)
     
   '../2_metab_models/run3/out/files_metab.tsv':
-    command: create_metab_table('../2_metab_models/run3/out/config.tsv', run3.yaml, target_name)
+    command: create_metab_table('../2_metab_models/run3/out/config.tsv', run3_yaml, target_name)
 
 
   # cluster support (still launch the cluster run manually)
@@ -99,7 +99,7 @@ targets:
   
   metab.run1.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_models/run1/cluster/condor', run1.yaml,
+      cluster_dir='../2_metab_models/run1/cluster/condor', run1_yaml,
       status.file='../2_metab_models/run1/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_models/cluster/packages/bundle.zip',
@@ -115,7 +115,7 @@ targets:
   
   metab.run2.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_models/run2/cluster/condor', run2.yaml,
+      cluster_dir='../2_metab_models/run2/cluster/condor', run2_yaml,
       status.file='../2_metab_models/run2/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_models/cluster/packages/bundle.zip',
@@ -131,7 +131,7 @@ targets:
   
   metab.run2.yeti.prep:
     command: cluster_prep_yeti(
-      cluster_dir='../2_metab_models/run2/cluster/yeti', run2.yaml,
+      cluster_dir='../2_metab_models/run2/cluster/yeti', run2_yaml,
       status.file='../2_metab_models/run2/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
       '../2_metab_models/cluster/packages/bundle.zip',
