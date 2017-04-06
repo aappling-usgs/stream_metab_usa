@@ -10,7 +10,7 @@ bundle_packages <- function(
   remotepkgs = c('streamMetabolizer', 'mda.streams', 'rstan', 'dplyr', 'tidyr', 'ggplot2', 'unitted', 'devtools', 'yaml'),
   repos = c('https://owi.usgs.gov/R','https://cran.rstudio.org'),
   localpkgs = paste0('../../', c('unitted', 'streamMetabolizer', 'mda.streams')),
-  repoDir = '../2_metab_config/cluster/packages/bundle') {
+  repoDir = '../2_metab_models/cluster/packages/bundle') {
   
   ## Create the package bundle
   

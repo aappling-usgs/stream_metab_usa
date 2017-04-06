@@ -9,7 +9,7 @@
 #'   this run, giving the desired model tag, posted_after, etc.
 #' @param status.file the filename for the relevant files_metab.tsv
 #' @param ... paths and names of other files to transfer
-cluster_prep_condor <- function(cluster_dir='../2_metab_config/run1/cluster/condor', run.yaml, status.file, ...) {
+cluster_prep_condor <- function(cluster_dir='../2_metab_models/run1/cluster/condor', run.yaml, status.file, ...) {
   
   # create the destination directory if needed
   if(!dir.exists(cluster_dir)) {

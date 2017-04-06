@@ -8,9 +8,9 @@
 #' @param config a config for the config
 create_run2_config <- function(
   run2_yaml=read_run2_yaml(),
-  prev.config.file='../2_metab_config/run1/out/config.tsv',
-  param.file='../2_metab_config/run1/out/params.tsv',
-  outfile='../2_metab_config/run2/out/config.tsv') {
+  prev.config.file='../2_metab_models/run1/out/config.tsv',
+  param.file='../2_metab_models/run1/out/params.tsv',
+  outfile='../2_metab_models/run2/out/config.tsv') {
   
   prev.config <- read_config(prev.config.file)
   params <- read.table(param.file, header=TRUE, sep='\t', stringsAsFactors=FALSE)

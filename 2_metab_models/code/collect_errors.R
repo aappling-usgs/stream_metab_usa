@@ -3,7 +3,7 @@
 #' the resdir contains a folder called results_[runid] and a status.file called 
 #' cluster_jobs_[runid].tsv, where the rows of the status file match up 1:1
 #' (with 0-indexing of jobs on condor) with the job IDs on the cluster.
-collect_errors <- function(resdir='../2_metab_config/run1/out',
+collect_errors <- function(resdir='../2_metab_models/run1/out',
                            runid='170217',
                            status.file=paste0('cluster_jobs_', runid, '.tsv'),
                            outfile=paste0(resdir, '/results_', runid, '_errors.txt')) {

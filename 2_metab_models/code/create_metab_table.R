@@ -21,7 +21,7 @@
 #' 
 #' @import mda.streams
 #' @seealso write_status_table sb_check_model_status
-create_metab_table <- function(config_file="../2_metab_config/run1/out/config.tsv", run.yaml, outfile) {
+create_metab_table <- function(config_file="../2_metab_models/run1/out/config.tsv", run.yaml, outfile) {
   
   # convert the config_file into the config table
   config <- read_config(config_file)

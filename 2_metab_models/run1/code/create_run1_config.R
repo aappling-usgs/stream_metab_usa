@@ -7,7 +7,7 @@
 #' 
 #' @param config a config for the config
 create_run1_config <- function(run1_yaml=read_run1_yaml(), sites,
-                               outfile="../2_metab_config/run1/out/config.tsv") {
+                               outfile="../2_metab_models/run1/out/config.tsv") {
   cfg <- stage_metab_config(
     tag=run1_yaml[['tag']],
     strategy='MLE_prep_run',
@@ -36,7 +36,7 @@ create_run1_config <- function(run1_yaml=read_run1_yaml(), sites,
     ungroup() %>%
     group_by(var) %>%
     mutate(priority = priority - min(priority) + 1)
-  write.table(vsc, '../2_metab_config/run1/out/src_priorities.tsv', sep='\t', row.names=FALSE)
+  write.table(vsc, '../2_metab_models/run1/out/src_priorities.tsv', sep='\t', row.names=FALSE)
   
   return(cfgdf)
 }

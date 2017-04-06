@@ -7,7 +7,7 @@
 #' @param run.yaml list of config parameters, read from yaml and specific to 
 #'   this run, giving the desired model tag, posted_after, etc.
 #' @param ... paths and names of other files to transfer
-cluster_prep_yeti <- function(cluster_dir='../2_metab_config/run1/cluster/yeti', run.yaml, ...) {
+cluster_prep_yeti <- function(cluster_dir='../2_metab_models/run1/cluster/yeti', run.yaml, ...) {
   
   # create the destination directory if needed
   if(!dir.exists(cluster_dir)) {

@@ -10,7 +10,7 @@
 #' @import dplyr
 #' @import mda.streams
 #' @import sbtools
-sb_check_model_status <- function(metab.file, run.yaml, cluster=NA, clust.config.file='../2_metab_config/in/metab_clusters_config.yml') {
+sb_check_model_status <- function(metab.file, run.yaml, cluster=NA, clust.config.file='../2_metab_models/in/metab_clusters_config.yml') {
   
   posted_after <- as.POSIXct(run.yaml$posted_after)
   

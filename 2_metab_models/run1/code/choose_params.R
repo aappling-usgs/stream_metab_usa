@@ -8,8 +8,8 @@
 #' @param prepdir the location of the output files (in their directories as
 #'   copied over from condor)
 #' @param outdir the directory in which to save the params and plots we create
-choose_params <- function(prepdir="../2_metab_config/run1/out/", 
-                          outdir="../2_metab_config/run1/out") {
+choose_params <- function(prepdir="../2_metab_models/run1/out/", 
+                          outdir="../2_metab_models/run1/out") {
   
   # collect and combine summary data.frames from the jobs
   resultsdirs <- grep('results_', dir(prepdir, full.names=TRUE), value=TRUE)

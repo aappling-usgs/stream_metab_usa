@@ -1,6 +1,6 @@
 library(dplyr)
 library(mda.streams)
-resdir <- '../2_metab_config/out'
+resdir <- '../2_metab_models/out'
 resdirs <- dir(resdir, pattern='results_[[:alnum:]]*$', full.names=TRUE)
 jobdirs <- unlist(lapply(resdirs, dir, pattern='job_', full.names=TRUE))
 jobcont <- bind_rows(lapply(jobdirs, function(jobdir) {
@@ -24,15 +24,15 @@ filter(jobinfo, has_fit, !has_summary)
 summaryfiles <- filter(jobinfo, has_summary) %>%
   mutate(summary_file=file.path(jobdir, summary)) %>%
   {.$summary_file}
-dir.create('../2_metab_config/out/summaries')
+dir.create('../2_metab_models/out/summaries')
 for(s in seq_along(summaryfiles)) {
-  file.copy(summaryfiles[s], '../2_metab_config/out/summaries')
+  file.copy(summaryfiles[s], '../2_metab_models/out/summaries')
 }
 
 fitfiles <- filter(jobinfo, has_fit) %>%
   mutate(fit_file=file.path(jobdir, fit)) %>%
   {.$fit_file}
-dir.create('../2_metab_config/out/fits')
+dir.create('../2_metab_models/out/fits')
 for(s in seq_along(fitfiles)) {
-  file.copy(fitfiles[s], '../2_metab_config/out/fits')
+  file.copy(fitfiles[s], '../2_metab_models/out/fits')
 }

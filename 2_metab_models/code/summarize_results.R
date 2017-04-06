@@ -4,11 +4,11 @@ library(ggplot2)
 library(mda.streams)
 library(streamMetabolizer)
 
-config <- read_config('../2_metab_config/out/config.tsv')
+config <- read_config('../2_metab_models/out/config.tsv')
 config$model_name <- make_metab_model_name(make_metab_run_title(format(as.Date(config$date), '%y%m%d'), config$tag, config$strategy), config$config.row, config$site)
 
-summary_files <- dir('../2_metab_config/out/summaries', full.names = TRUE)
-fit_files <- dir('../2_metab_config/out/fits', full.names = TRUE)
+summary_files <- dir('../2_metab_models/out/summaries', full.names = TRUE)
+fit_files <- dir('../2_metab_models/out/fits', full.names = TRUE)
 
 summarize_sorta_dones <- function() {
   # there are 8 models with empty predictions and the fit$errors value, "dates have differing numbers of rows; observations cannot be combined in matrix"
@@ -36,7 +36,7 @@ summarize_sorta_dones <- function() {
 } # run this function line by line, manually. i just stuck it in a function for convenience of testing other code chunks in the file.
 
 # summarize the remaining
-summarize_results <- function(config_row, outdir='../2_metab_config/out/resummaries') {
+summarize_results <- function(config_row, outdir='../2_metab_models/out/resummaries') {
   
   message('summarizing config_row ', config_row)
   
@@ -363,12 +363,12 @@ for(cr in config$config.row) {
 # 359 "no applicable method for 'select_' applied to an object of class \"c('double', 'numeric')\""
 # 360 "couldn't find a summary file for row 360"      
 
-file.remove('../2_metab_config/out/resummaries/z_all_stats.csv')
-stats_csvs <- dir('../2_metab_config/out/resummaries', pattern=' stats.csv', full.names=TRUE)
+file.remove('../2_metab_models/out/resummaries/z_all_stats.csv')
+stats_csvs <- dir('../2_metab_models/out/resummaries', pattern=' stats.csv', full.names=TRUE)
 all_stats <- bind_rows(lapply(stats_csvs, function(sc) {
   read.csv(sc, header=TRUE, stringsAsFactors=FALSE)
 }))
-write.csv(all_stats, '../2_metab_config/out/resummaries/z_all_stats.csv', row.names=FALSE)
+write.csv(all_stats, '../2_metab_models/out/resummaries/z_all_stats.csv', row.names=FALSE)
 
 # fix issue (now correted above) where all_stats$all_params_Rhat.meanq95 was wrong
 # meanq95 <- apply(select(select(all_stats, ends_with('.q95')), -all_params_Rhat.q95), MARGIN=1, mean)
@@ -389,7 +389,7 @@ plot_rhatqs <- rhat_stats_wide %>% arrange(mean) %>% mutate(id=1:n()) %>%
   theme_bw() + theme(legend.position=c(0.2,0.8)) +
   scale_y_log10() + 
   ylab('mean/median/etc. of Rhats') + xlab('sites ordered by mean Rhat')
-ggsave('../2_metab_config/out/resummaries/plot_rhatqs.png', plot_rhatqs, width=7, height=7)
+ggsave('../2_metab_models/out/resummaries/plot_rhatqs.png', plot_rhatqs, width=7, height=7)
 plot_rhatovers <- rhat_stats_wide %>% arrange(meanpct_over_1.05) %>% mutate(id=1:n()) %>%
   gather(metric, value, -model_name, -id) %>%
   filter(metric %in% c('meanpct_over_1.05', 'meanpct_over_1.1', 'pct_over_1.05', 'pct_over_1.1')) %>%
@@ -397,19 +397,19 @@ plot_rhatovers <- rhat_stats_wide %>% arrange(meanpct_over_1.05) %>% mutate(id=1
   geom_point(aes(y=value, color=metric)) + 
   theme_bw() + theme(legend.position=c(0.2,0.8)) +
   ylab('Percent of Rhats exceeding a value') + xlab('sites ordered by meanpct_over_1.05')
-ggsave('../2_metab_config/out/resummaries/plot_rhatovers.png', plot_rhatovers, width=7, height=7)
+ggsave('../2_metab_models/out/resummaries/plot_rhatovers.png', plot_rhatovers, width=7, height=7)
 
 # plot K600_daily_sigma_sigma vs K600_daily_sigma
 plot_K600_daily_sigmas <- ggplot(all_stats, aes(x=K600_daily_sigma_sigma, y=K600_daily_sigma.median.p50)) + 
   geom_abline() + geom_point() + 
   theme_bw() + xlab('K600_daily_sigma_sigma (the prior)') + ylab('K600_daily_sigma_50pct (the posterior)')
-ggsave('../2_metab_config/out/resummaries/plot_K600_daily_sigmas.png', plot_K600_daily_sigmas, width=7, height=7)
+ggsave('../2_metab_models/out/resummaries/plot_K600_daily_sigmas.png', plot_K600_daily_sigmas, width=7, height=7)
 
 plot_K600_sig_vs_median <- cowplot::plot_grid(
   ggplot(all_stats, aes(x=K600_new.median, y=K600_daily_sigma_sigma)) + geom_point(color='red') + theme_bw(),
   ggplot(all_stats, aes(x=K600_new.median, y=K600_daily_sigma.median.p50)) + geom_point(color='black') + theme_bw()
 )
-ggsave('../2_metab_config/out/resummaries/plot_K600_sig_vs_median.png', plot_K600_sig_vs_median, width=7, height=4)
+ggsave('../2_metab_models/out/resummaries/plot_K600_sig_vs_median.png', plot_K600_sig_vs_median, width=7, height=4)
 
 # starter file for bob and maite's expert assessment
 bm_model_rows <- all_stats %>%
@@ -429,4 +429,4 @@ bob_maite <- full_join(bm_model_rows, select(filter(bm_sum_rows, num_models > 1)
   arrange(site, model_name) %>%
   select(site, everything()) %>%
   mutate(confidence = NA)
-write.csv(bob_maite, '../2_metab_config/out/resummaries/z_bob_maite.csv', row.names=FALSE)
+write.csv(bob_maite, '../2_metab_models/out/resummaries/z_bob_maite.csv', row.names=FALSE)
