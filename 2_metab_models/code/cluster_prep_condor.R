@@ -50,7 +50,7 @@ cluster_prep_condor <- function(cluster_dir='../2_metab_models/run1/cluster/cond
   
   # modify the condor submit file for this run
   condor.sub <- readLines(file.path(cluster_dir, 'condor.sub'))
-  if(grepl('prep', cluster_dir)) {
+  if(grepl('run1', cluster_dir)) {
     condor.sub[grep('request_cpus', condor.sub)] <- 'request_cpus = 1'
   }
   # map the log and results files to runid-specific folders

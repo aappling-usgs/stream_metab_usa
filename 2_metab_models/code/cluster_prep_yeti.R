@@ -38,10 +38,8 @@ cluster_prep_yeti <- function(cluster_dir='../2_metab_models/run1/cluster/yeti',
   
   # modify the condor submit file for this run
   condor.sub <- readLines(file.path(cluster_dir, 'condor.sub'))
-  if(grepl('prep', cluster_dir)) {
+  if(grepl('run1', cluster_dir)) {
     condor.sub[grep('request_cpus', condor.sub)] <- 'request_cpus = 1'
-  } else {
-    # any mods for the main run?
   }
   condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', 1) #### TEMPORARY ####
   #condor.sub[grep('queue', condor.sub)] <- sprintf('queue %d', nrow(needed))
