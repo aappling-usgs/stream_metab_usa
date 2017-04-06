@@ -85,6 +85,18 @@ targets:
   '../2_metab_models/cluster/packages/bundle.zip':
     command: bundle_packages()
   
+  '../2_metab_models/run1/cluster/condor':
+    command: dir.create(target_name)
+    
+  '../2_metab_models/run2/cluster/condor':
+    command: dir.create(target_name)
+    
+  '../2_metab_models/run2/cluster/yeti':
+    command: dir.create(target_name)
+    
+  '../2_metab_models/run3/cluster/condor':
+    command: dir.create(target_name)
+  
   metab.run1.condor.prep:
     command: cluster_prep_condor(
       cluster_dir='../2_metab_models/run1/cluster/condor', run1.yaml,

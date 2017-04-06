@@ -11,11 +11,6 @@
 #' @param ... paths and names of other files to transfer
 cluster_prep_condor <- function(cluster_dir='../2_metab_models/run1/cluster/condor', run.yaml, status.file, ...) {
   
-  # create the destination directory if needed
-  if(!dir.exists(cluster_dir)) {
-    dir.create(cluster_dir, recursive=TRUE)
-  }
-  
   # identify the run ID to use for this run: use the first on the config list,
   # letting following IDs indicate previous runs
   runid <- run.yaml$runid[[1]]
