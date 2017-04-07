@@ -1,0 +1,29 @@
+target_default: 4_manuscript
+
+include:
+  - 4_data_release.yml
+  
+packages:
+  - maps
+  - sp
+  - rgeos
+  - dplyr
+  - dataRetrieval
+  - mda.streams
+  
+sources:
+  - ../lib/load_profile.R
+  - ../4_manuscript/code/spatial_plotting.R
+ 
+targets:
+  4_manuscript:
+    depends: 
+      - "../4_manuscript/out/figure_01.png"
+  
+  sp_sites:
+    command: append_hucs(spatial.points)
+
+  ../4_manuscript/out/figure_01.png:
+    command: plot_national_site_map(target_name, sp_sites)
+    plot: true
+
