@@ -28,6 +28,7 @@ sources:
   - ../2_metab_models/run1/code/choose_params.R
   - ../2_metab_models/run2/code/create_run2_config.R
   - ../2_metab_models/run2/code/summarize_run2.R
+  - ../2_metab_models/run3/code/create_run3_config.R
 
 # collect_errors, collect_results, and summarize_results are manual for now
 
@@ -70,7 +71,8 @@ targets:
   '../2_metab_models/run3/out/config.tsv':
     command: create_run3_config(
       run3_yaml, 
-      '../2_metab_models/run2/out/config.tsv',
+      prev.config.file='../2_metab_models/run2/out/config.tsv',
+      prev.stats.file='../2_metab_models/run2/out/model_stats.csv',
       outfile=target_name)
 
   # model status files
