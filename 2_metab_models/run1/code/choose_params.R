@@ -11,6 +11,13 @@
 choose_params <- function(prepdir="../2_metab_models/run1/out/", 
                           outdir="../2_metab_models/run1/out") {
   
+  # if params.tsv is frozen, every file created by this function is effectively 
+  # frozen. sorta appropriate because you'd probably freeze params.tsv iff the 
+  # results directories aren't going to be locally available on all computers,
+  # which would also prevent the creation of results.Rds, T_by_date_multiT.png,
+  # etc.
+  if(check_frozen(file.path(outdir, 'params.tsv'))) return(NULL)
+  
   # collect and combine summary data.frames from the jobs
   resultsdirs <- grep('results_', dir(prepdir, full.names=TRUE), value=TRUE)
   if(length(resultsdirs) == 0) {
