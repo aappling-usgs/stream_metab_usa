@@ -6,7 +6,7 @@ universe = vanilla
 output = log_170302/$(Process).out
 error = log_170302/$(Process).err
 log = log_170302/$(Process).log
-requirements = (TARGET.Arch == "X86_64") && (TARGET.OpSys == "LINUX")
+requirements = (TARGET.OpSys == "LINUX") && (substr(Machine,0,5) == "licon")
 request_cpus = 4
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
