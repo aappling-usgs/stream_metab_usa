@@ -25,9 +25,9 @@ create_run3_config <- function(
     mutate(
       max_key_Rhat=pmax(err_obs_iid_sigma_Rhat.max, err_proc_iid_sigma_Rhat.max, K600_daily_sigma_Rhat.max),
       is_converged=max_key_Rhat < 1.2,
-      rerun_priority=ifelse(!is_converged & !is.na(is_converged), 1, ifelse(is.na(is_converged), 2, 3)),
-      burnin_steps=ifelse(!is_converged, 2000, 1000),
-      saved_steps=ifelse(!is_converged, 2000, 500),
+      rerun_priority=ifelse(!is_converged & !is.na(is_converged), 2, ifelse(is.na(is_converged), 1, 3)),
+      burnin_steps=ifelse(rerun_priority==2, 2000, 1000),
+      saved_steps=ifelse(rerun_priority==2, 2000, 500),
       model_args=mapply(function(ma, bs) {gsub('burnin_steps=1000', sprintf('burnin_steps=%0.0f', bs), ma)}, model_args, burnin_steps),
       model_args=mapply(function(ma, ss) {gsub('saved_steps=500', sprintf('saved_steps=%0.0f', ss), ma)}, model_args, saved_steps))
 
