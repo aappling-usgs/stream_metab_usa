@@ -39,13 +39,13 @@ targets:
   # decisions for this stream_metab_usa data release
   
   run1_yaml:
-    command: read_run1_yaml()
+    command: read_run1_yaml('../2_metab_models/in/metab_configs_config.yml')
   
   run2_yaml:
-    command: read_run2_yaml()
+    command: read_run2_yaml('../2_metab_models/in/metab_configs_config.yml')
   
   run3_yaml:
-    command: read_run3_yaml()
+    command: read_run3_yaml('../2_metab_models/in/metab_configs_config.yml')
   
   metab.sites:
     command: choose_metab_sites(
