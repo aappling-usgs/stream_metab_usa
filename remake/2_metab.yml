@@ -152,21 +152,22 @@ targets:
       '../2_metab_models/run2/code/run_model.R',
       '../2_metab_models/run2/out/config.tsv')
         
-  #metab.run3.condor.prep:
-  #  command: cluster_prep_condor(
-  #    cluster_dir='../2_metab_models/run3/cluster/condor', run3_yaml,
-  #    status.file='../2_metab_models/run3/out/files_metab.tsv',
-  #    '~/.R/stream_metab.yaml',
-  #    '../2_metab_models/cluster/packages/bundle.zip',
-  #    '../2_metab_models/cluster/condor/unzip',
-  #    '../2_metab_models/cluster/condor/.Renviron',
-  #    '../2_metab_models/cluster/condor/condor.sub',
-  #    '../2_metab_models/cluster/condor/run_job.sh',
-  #    '../2_metab_models/cluster/condor/run_job.R',
-  #    '../2_metab_models/cluster/code/install_packages.R',
-  #    '../2_metab_models/cluster/code/run_model_job.R',
-  #    '../2_metab_models/run3/code/run_model.R',
-  #    '../2_metab_models/run3/out/config.tsv')
+  metab.run3.condor.prep:
+    command: cluster_prep_condor(
+      cluster_dir='../2_metab_models/run3/cluster/condor', run3_yaml,
+      status.file='../2_metab_models/run3/out/files_metab.tsv',
+      '~/.R/stream_metab.yaml',
+      '../2_metab_models/cluster/packages/bundle.zip',
+      '../2_metab_models/cluster/condor/unzip',
+      '../2_metab_models/cluster/condor/.Renviron',
+      '../2_metab_models/cluster/condor/condor.sub',
+      '../2_metab_models/cluster/condor/run_job.sh',
+      '../2_metab_models/cluster/condor/run_job.R',
+      '../2_metab_models/cluster/code/install_packages.R',
+      '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run3/code/run_model.R',
+      '../2_metab_models/run3/code/summarize_model.R',
+      '../2_metab_models/run3/out/config.tsv')
   
   # post-run analyses
   
