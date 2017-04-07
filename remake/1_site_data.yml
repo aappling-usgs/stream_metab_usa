@@ -16,6 +16,7 @@ sources:
   - ../lib/write_status_table.R
   - ../lib/cache_meta.R
   - ../lib/sb_post_meta.R
+  - ../lib/check_frozen.R
 
 targets:
   1_site_data:

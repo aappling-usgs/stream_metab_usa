@@ -1,0 +1,12 @@
+Errors in summarize_run2_model:
+36  "couldn't find a summary file for row 36"                                                    
+80  "no applicable method for 'select_' applied to an object of class \"c('double', 'numeric')\""
+179 "couldn't find a summary file for row 179"                                                   
+180 "couldn't find a summary file for row 180"                                                   
+188 "couldn't find a summary file for row 188"                                                   
+283 "couldn't find a summary file for row 283"                                                   
+284 "couldn't find a summary file for row 284"                                                   
+336 "couldn't find a summary file for row 336"                                                   
+342 "couldn't find a summary file for row 342"                                                   
+359 "no applicable method for 'select_' applied to an object of class \"c('double', 'numeric')\""
+360 "couldn't find a summary file for row 360"                                                   
