@@ -445,6 +445,9 @@ summarize_run2_stats <- function(model.stats.file='../2_metab_models/run2/out/mo
 
 start_run2_expert_file <- function(model.stats.file='../2_metab_models/run2/out/model_stats.csv', 
                                    outfile='../2_metab_models/run2/out/expert_file.csv') {
+  # read the config file for this run
+  config <- read_config(config.file)
+  config$model_name <- make_metab_model_name(make_metab_run_title(format(as.Date(config$date), '%y%m%d'), config$tag, config$strategy), config$config.row, config$site)
   
   all_stats <- read.csv(model.stats.file, header=TRUE, stringsAsFactors=FALSE)
   
