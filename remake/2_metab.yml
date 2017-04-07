@@ -166,7 +166,6 @@ targets:
       '../2_metab_models/cluster/code/install_packages.R',
       '../2_metab_models/cluster/code/run_model_job.R',
       '../2_metab_models/run3/code/run_model.R',
-      '../2_metab_models/run3/code/summarize_model.R',
       '../2_metab_models/run3/out/config.tsv')
   
   # post-run analyses
