@@ -8,6 +8,7 @@ includes:
   - 1_ldas_host.yml
   - 1_timeseries.yml
   - 4_data_release.yml
+  - 4_manuscript.yml
 
 targets:
   all:

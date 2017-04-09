@@ -7,7 +7,7 @@
 #' 
 #' @import miniCRAN
 bundle_packages <- function(
-  remotepkgs = c('streamMetabolizer', 'mda.streams', 'rstan', 'dplyr', 'tidyr', 'ggplot2', 'unitted', 'devtools', 'yaml'),
+  remotepkgs = c('streamMetabolizer', 'mda.streams', 'rstan', 'dplyr', 'tidyr', 'ggplot2', 'cowplot', 'unitted', 'devtools', 'yaml'),
   repos = c('https://owi.usgs.gov/R','https://cran.rstudio.org'),
   localpkgs = paste0('../../', c('unitted', 'streamMetabolizer', 'mda.streams')),
   repoDir = '../2_metab_models/cluster/packages/bundle') {

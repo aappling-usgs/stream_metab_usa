@@ -42,6 +42,10 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   if(!modeled) {
     message("modeling or summarization output wasn't complete; see partial file")
     message(paste0("class(metab_out): ", class(metab_out)))
+    if(is.character(metab_out) && 'error_object' %in% names(attributes(metab_out))) {
+      print(c(metab_out))
+      print(attr(metab_out, 'error_object'))
+    }
     stop(metab_out)
   }
   
