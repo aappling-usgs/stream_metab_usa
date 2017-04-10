@@ -35,8 +35,11 @@ targets:
   gagesii_basins:
     command: get_catchments(spatial.sites, target_name, epa_basins)
   
-  spatial.catchments:
+  epa.gages:
     command: combine_spatial(epa_basins, gagesii_basins)
+    
+  spatial.catchments:
+    command: add_missing_catchments(epa.gages, spatial.sites, spatial.points)
     
   ../1_spatial/out/site_catchment_map.png:
     command: inventory_map(spatial.points, spatial.catchments, target_name)

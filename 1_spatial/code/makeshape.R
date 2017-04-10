@@ -157,3 +157,31 @@ write_shapefile <- function(obj, layer){
   files <- file.path(shape.dir, dir(shape.dir))
   return(files)
 }
+
+
+add_missing_catchments <- function(spatial.catchments, spatial.sites, spatial.points){
+  shp.root <- '../1_spatial/cache/POWSTREAMS_NAD83'
+  shp.files <- dir(shp.root)[grepl('.dbf', x = dir(shp.root))] %>% 
+    sapply(function(x) strsplit(x, '[.]')[[1]][1], USE.NAMES = FALSE) %>% 
+    mda.streams::make_site_name('nwis')
+  
+  no.catch <- spatial.sites$site_name[!spatial.sites$site_name %in% as.character(spatial.catchments$site_name)]
+  
+  new.catch <- shp.files[shp.files %in% no.catch]
+  
+  out <- spatial.catchments
+  for (catch in new.catch){
+    site.id <- mda.streams::parse_site_name(catch)
+    d <- readOGR(shp.root, site.id) %>% 
+      spTransform(proj4string(out))
+    if (length(d) > 1){
+      d <- d[2, ] # is always the second feature when this happens
+      message(site.id, ' is goofy, subsetting to single polygon')
+    } 
+    d@data <- data.frame(site_name = catch, ogc_fid = 'NA')
+    out <- rbind(out, d)
+    
+  }
+  
+  return(out)
+}
