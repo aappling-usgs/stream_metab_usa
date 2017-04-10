@@ -14,105 +14,174 @@ packages:
   - streamMetabolizer
 
 sources:
-  - ../2_metab_config/code/bundle_packages.R
-  - ../2_metab_config/code/choose_metab_sites.R
-  - ../2_metab_config/code/cluster_prep_condor.R
-  - ../2_metab_config/code/create_metab_config.R
-  - ../2_metab_config/code/create_metab_table.R
-  - ../2_metab_config/code/sb_check_model_status.R
-  - ../2_metab_config/prep/code/create_prep_config.R
-  - ../2_metab_config/prep/code/choose_params.R
+  - ../lib/check_frozen.R
   - ../lib/load_profile.R
   - ../lib/write_status_table.R
+  - ../2_metab_models/code/read_run_yaml.R
+  - ../2_metab_models/code/bundle_packages.R
+  - ../2_metab_models/code/choose_metab_sites.R
+  - ../2_metab_models/code/create_metab_table.R
+  - ../2_metab_models/code/sb_check_model_status.R
+  - ../2_metab_models/code/cluster_prep_condor.R
+  - ../2_metab_models/code/cluster_prep_yeti.R
+  - ../2_metab_models/run1/code/create_run1_config.R
+  - ../2_metab_models/run1/code/choose_params.R
+  - ../2_metab_models/run2/code/create_run2_config.R
+  - ../2_metab_models/run2/code/summarize_run2.R
+  - ../2_metab_models/run3/code/create_run3_config.R
+
+# collect_errors, collect_results, and summarize_results are manual for now
 
 targets:
   1_metab:
    depends: 
-     - smu.config
+     - run1_yaml
 
   # decisions for this stream_metab_usa data release
-
-  smu.config:
-    command: yaml.load_file('../2_metab_config/in/metab_configs_config.yml')
+  
+  run1_yaml:
+    command: read_run1_yaml('../2_metab_models/in/metab_configs_config.yml')
+  
+  run2_yaml:
+    command: read_run2_yaml('../2_metab_models/in/metab_configs_config.yml')
+  
+  run3_yaml:
+    command: read_run3_yaml('../2_metab_models/in/metab_configs_config.yml')
   
   metab.sites:
-    command: choose_metab_sites(smu.config,
+    command: choose_metab_sites(
       harvey.file='../1_site_data/in/sites_harvey_ask.txt',
       site.file='../1_site_data/out/site_list.tsv')
   
   # model config files
   
-  '../2_metab_config/prep/out/config.tsv': # metab.prep.config
-    command: create_prep_config(metab.sites, smu.config)
+  '../2_metab_models/run1/out/config.tsv':
+    command: create_run1_config(
+      run1_yaml,
+      metab.sites,
+      outfile=target_name)
   
-  '../2_metab_config/out/config.tsv': # metab.run.config
-    command: create_metab_config(
-      smu.config, 
-      '../2_metab_config/prep/out/config.tsv',
-      '../2_metab_config/prep/out/params.tsv')
+  '../2_metab_models/run2/out/config.tsv':
+    command: create_run2_config(
+      run2_yaml, 
+      '../2_metab_models/run1/out/config.tsv',
+      '../2_metab_models/run1/out/params.tsv',
+      outfile=target_name)
+  
+  '../2_metab_models/run3/out/config.tsv':
+    command: create_run3_config(
+      run3_yaml, 
+      prev.config.file='../2_metab_models/run2/out/config.tsv',
+      prev.stats.file='../2_metab_models/run2/out/model_stats.csv',
+      outfile=target_name)
 
   # model status files
   
-  '../2_metab_config/prep/out/files_metab.tsv': # metab.prep.table
-    command: create_metab_table('../2_metab_config/prep/out/config.tsv', smu.config)
+  '../2_metab_models/run1/out/files_metab.tsv':
+    command: create_metab_table('../2_metab_models/run1/out/config.tsv', run1_yaml, target_name)
   
-  '../2_metab_config/out/files_metab.tsv': # metab.run.table
-    command: create_metab_table('../2_metab_config/out/config.tsv', smu.config)
+  '../2_metab_models/run2/out/files_metab.tsv':
+    command: create_metab_table('../2_metab_models/run2/out/config.tsv', run2_yaml, target_name)
+    
+  '../2_metab_models/run3/out/files_metab.tsv':
+    command: create_metab_table('../2_metab_models/run3/out/config.tsv', run3_yaml, target_name)
 
 
   # cluster support (still launch the cluster run manually)
   
-  '../2_metab_config/cluster/packages/bundle.zip': # package.bundle
+  '../2_metab_models/cluster/packages/bundle.zip':
     command: bundle_packages()
   
-  '../2_metab_config/prep/cluster/condor':
-    command: dir.create('../2_metab_config/prep/cluster/condor')
+  '../2_metab_models/run1/cluster/condor':
+    command: dir.create(target_name)
+    
+  '../2_metab_models/run2/cluster/condor':
+    command: dir.create(target_name)
+    
+  '../2_metab_models/run2/cluster/yeti':
+    command: dir.create(target_name)
+    
+  '../2_metab_models/run3/cluster/condor':
+    command: dir.create(target_name)
   
-  metab.prep.condor.prep:
+  metab.run1.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_config/prep/cluster/condor', smu.config,
-      status.file='../2_metab_config/prep/out/files_metab.tsv',
+      cluster_dir='../2_metab_models/run1/cluster/condor', run1_yaml,
+      status.file='../2_metab_models/run1/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
-      '../2_metab_config/cluster/packages/bundle.zip',
-      '../2_metab_config/cluster/condor/unzip',
-      '../2_metab_config/cluster/condor/.Renviron',
-      '../2_metab_config/cluster/condor/condor.sub',
-      '../2_metab_config/cluster/condor/run_job.sh',
-      '../2_metab_config/cluster/condor/run_job.R',
-      '../2_metab_config/code/install_packages.R',
-      '../2_metab_config/code/run_model_job.R',
-      '../2_metab_config/prep/code/run_model.R',
-      '../2_metab_config/prep/out/config.tsv')
+      '../2_metab_models/cluster/packages/bundle.zip',
+      '../2_metab_models/cluster/condor/unzip',
+      '../2_metab_models/cluster/condor/.Renviron',
+      '../2_metab_models/cluster/condor/condor.sub',
+      '../2_metab_models/cluster/condor/run_job.sh',
+      '../2_metab_models/cluster/condor/run_job.R',
+      '../2_metab_models/cluster/code/install_packages.R',
+      '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run1/code/run_model.R',
+      '../2_metab_models/run1/out/config.tsv')
   
-  metab.run.condor.prep:
+  metab.run2.condor.prep:
     command: cluster_prep_condor(
-      cluster_dir='../2_metab_config/cluster/condor', smu.config,
-      status.file='../2_metab_config/out/files_metab.tsv',
+      cluster_dir='../2_metab_models/run2/cluster/condor', run2_yaml,
+      status.file='../2_metab_models/run2/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
-      '../2_metab_config/cluster/packages/bundle.zip',
-      '../2_metab_config/code/install_packages.R',
-      '../2_metab_config/code/run_model_job.R',
-      '../2_metab_config/code/run_model.R',
-      '../2_metab_config/out/config.tsv')
+      '../2_metab_models/cluster/packages/bundle.zip',
+      '../2_metab_models/cluster/condor/unzip',
+      '../2_metab_models/cluster/condor/.Renviron',
+      '../2_metab_models/cluster/condor/condor.sub',
+      '../2_metab_models/cluster/condor/run_job.sh',
+      '../2_metab_models/cluster/condor/run_job.R',
+      '../2_metab_models/cluster/code/install_packages.R',
+      '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run2/code/run_model.R',
+      '../2_metab_models/run2/out/config.tsv')
   
-  '../2_metab_config/prep/cluster/yeti':
-    command: dir.create('../2_metab_config/prep/cluster/yeti')
-  
-  # metab.prep.yeti.prep: would look similar to metab.prep.condor.prep
-  
-  metab.run.yeti.prep:
+  metab.run2.yeti.prep:
     command: cluster_prep_yeti(
-      cluster_dir='../2_metab_config/cluster/yeti', smu.config,
-      status.file='../2_metab_config/out/files_metab.tsv',
+      cluster_dir='../2_metab_models/run2/cluster/yeti', run2_yaml,
+      status.file='../2_metab_models/run2/out/files_metab.tsv',
       '~/.R/stream_metab.yaml',
-      '../2_metab_config/cluster/packages/bundle.zip',
-      '../2_metab_config/code/install_packages.R',
-      '../2_metab_config/code/run_model_job.R',
-      '../2_metab_config/code/run_model.R',
-      '../2_metab_config/out/config.tsv')
-      
+      '../2_metab_models/cluster/packages/bundle.zip',
+      '../2_metab_models/cluster/condor/unzip',
+      '../2_metab_models/cluster/condor/.Renviron',
+      '../2_metab_models/cluster/condor/condor.sub',
+      '../2_metab_models/cluster/condor/run_job.sh',
+      '../2_metab_models/cluster/condor/run_job.R',
+      '../2_metab_models/cluster/code/install_packages.R',
+      '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run2/code/run_model.R',
+      '../2_metab_models/run2/out/config.tsv')
+        
+  metab.run3.condor.prep:
+    command: cluster_prep_condor(
+      cluster_dir='../2_metab_models/run3/cluster/condor', run3_yaml,
+      status.file='../2_metab_models/run3/out/files_metab.tsv',
+      '~/.R/stream_metab.yaml',
+      '../2_metab_models/cluster/packages/bundle.zip',
+      '../2_metab_models/cluster/condor/unzip',
+      '../2_metab_models/cluster/condor/.Renviron',
+      '../2_metab_models/cluster/condor/condor.sub',
+      '../2_metab_models/cluster/condor/run_job.sh',
+      '../2_metab_models/cluster/condor/run_job.R',
+      '../2_metab_models/cluster/code/install_packages.R',
+      '../2_metab_models/cluster/code/run_model_job.R',
+      '../2_metab_models/run3/code/run_model.R',
+      '../2_metab_models/run3/out/config.tsv')
+  
   # post-run analyses
-     
-  '../2_metab_config/prep/out/params.tsv': # prep/out/ params.tsv, various.png
-    depends: '../2_metab_config/prep/out/files_metab.tsv'
-    command: choose_params(smu.config=smu.config)
+  
+  '../2_metab_models/run1/out/params.tsv': # creates multiple files: prep/out/ params.tsv, various.png
+    depends: '../2_metab_models/run1/out/files_metab.tsv' # requires results_* files to be local
+    command: choose_params()
+    
+  '../2_metab_models/run2/out/sorta_dones.txt': # report on the 8 models that got posted with empty fits in run2
+    command: summarize_run2_sorta_dones('../2_metab_models/run2/out/config.tsv', outfile=target_name)
+    
+  '../2_metab_models/run2/out/model_stats.csv': # runs for a long time, creates site-specific files in resummaries folder
+    command: summarize_run2_models('../2_metab_models/run2/out/config.tsv', outfile=target_name)
+
+  resummaries.plots: # creates 'plot_rhatqs.png', 'plot_K600_daily_sigmas.png', etc. in resummaries folder
+    command: summarize_run2_stats('../2_metab_models/run2/out/model_stats.csv')
+
+  '../2_metab_models/run2/out/expert_file.csv': # creates the starter file that bob and maite are using to categorize models
+    command: start_run2_expert_file('../2_metab_models/run2/out/model_stats.csv', outfile=target_name)
