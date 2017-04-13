@@ -19,8 +19,8 @@ sources:
 targets:
   1_spatial:
     depends: 
-      - site_catchment_shapefile
-      - site_points_shapefile
+      - spatial.catchments
+      - spatial.points
 
     
   spatial.sites: 
@@ -40,15 +40,3 @@ targets:
     
   spatial.catchments:
     command: add_missing_catchments(epa.gages, spatial.sites, spatial.points)
-    
-  ../1_spatial/out/site_catchment_map.png:
-    command: inventory_map(spatial.points, spatial.catchments, target_name)
-    
-  site_catchment_shapefile:
-    command: write_shapefile(spatial.catchments, target_name)
-    
-  site_points_shapefile:
-    command: write_shapefile(spatial.points, target_name)
-    
-  
-    
