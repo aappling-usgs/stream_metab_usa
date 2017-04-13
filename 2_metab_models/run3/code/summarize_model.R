@@ -1,5 +1,13 @@
 summarize_model <- function(model_out, model_name, outdir) {
   
+  library(methods)
+  library(dplyr)
+  library(tidyr)
+  library(ggplot2)
+  library(unitted)
+  library(streamMetabolizer)
+  library(mda.streams)
+  
   # Prepare to save things
   if(!dir.exists(outdir)) dir.create(outdir)
   make_filename <- function(file_id, ext) {
