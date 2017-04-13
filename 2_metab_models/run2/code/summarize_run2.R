@@ -443,7 +443,8 @@ summarize_run2_stats <- function(model.stats.file='../2_metab_models/run2/out/mo
   ggsave(file.path(outdir, 'plot_K600_sig_vs_median.png'), plot_K600_sig_vs_median, width=7, height=4)
 }
 
-start_run2_expert_file <- function(model.stats.file='../2_metab_models/run2/out/model_stats.csv', 
+start_run2_expert_file <- function(config.file='../2_metab_models/run3/out/config.tsv',
+                                   model.stats.file='../2_metab_models/run2/out/model_stats.csv', 
                                    outfile='../2_metab_models/run2/out/expert_file.csv') {
   # read the config file for this run
   config <- read_config(config.file)

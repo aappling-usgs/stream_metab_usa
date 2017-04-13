@@ -60,3 +60,14 @@ cat(paste0('  - ', stat$model_name), sep='\n')
 
 remake::delete('metab.run3.condor.prep', remake_file='2_metab.yml')
 remake_smu('metab.run3.condor.prep', '2_metab.yml')
+
+
+# update bob and maite's spreadsheet
+
+bob_maite <- read.csv('../2_metab_models/run2/out/expert_file.csv', header=TRUE, stringsAsFactors=FALSE)
+cfg3 <- read_config('../2_metab_models/run3/out/config.tsv') %>% 
+  mutate(resolution=substring(strategy, 7), 
+         model_name_run3=make_metab_model_name(make_metab_run_title(format(as.POSIXct(date),'%y%m%d'), tag, strategy), config.row, site))
+bm3 <- left_join(bob_maite, select(cfg3, site, resolution, model_name_run3), by=c('site','resolution')) %>%
+  select(site, model_name_run2=model_name, model_name_run3, everything())
+write.csv(bm3, '../2_metab_models/run3/out/expert_file.csv', row.names=FALSE)
