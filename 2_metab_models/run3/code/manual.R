@@ -47,3 +47,16 @@ for(mmname in needs_summary$model_name) {
   file.remove(dir(tempdir(), pattern='mm_.*.RData', full.names=TRUE))
   file.remove(dir(tempdir(), pattern='nwis.*.rds', full.names=TRUE))
 }
+
+
+# document which models are in progress
+source('../lib/write_status_table.R')
+ongoing <- 1 + c(10,100,110,119,24,30,32,34,47,51,59,87,9,179,193,195,232,234)
+stat <- read_status_table('../2_metab_models/run3/out/files_metab.tsv') %>%
+  mutate(model_name = parse_metab_model_path(filepath, out='model_name')) %>%
+  mutate(row = parse_metab_model_name(model_name, out='row')) %>%
+  filter(row %in% ongoing)
+cat(paste0('  - ', stat$model_name), sep='\n')
+
+remake::delete('metab.run3.condor.prep', remake_file='2_metab.yml')
+remake_smu('metab.run3.condor.prep', '2_metab.yml')
