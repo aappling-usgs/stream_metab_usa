@@ -10,6 +10,7 @@ packages:
   - rgdal
   - httr
   - sbtools
+  - dplyr
   - rgeos
   - dataRetrieval
   - meddle

@@ -106,7 +106,9 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
   
   postURL <- "https://cida.usgs.gov/nwc/geoserver/NWC/ows"
   filterXML <- paste0('<?xml version="1.0"?>',
-                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="shape-zip" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
+                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                      xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="shape-zip" 
+                      xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
                       sprintf('<wfs:Query xmlns:feature="http://owi.usgs.gov/NWC" typeName="feature:%s" srsName="EPSG:4326">', feature.name))
   
   siteText <- ""
@@ -158,16 +160,38 @@ write_shapefile <- function(obj, layer){
   return(files)
 }
 
+create_ted_index <- function(){
+  shp.relative.root <- '../cache/POWSTREAMS_NAD83'
+  # no, remake sources relative to the source...
+  library(dplyr) # needed because this is being sourced and is a remake hack
+  shp.layers <- data.frame(files = dir(shp.relative.root), stringsAsFactors = FALSE) %>% 
+    filter(grepl('.dbf', x = files)) %>% .$files %>% 
+    sapply(function(x) strsplit(x, '[.]')[[1]][1], USE.NAMES = FALSE)
+  
+  # get file modified date in here?
+  shp.root <- gsub('../cache/', replacement = '../1_spatial/cache/', x = shp.relative.root)
+  shp.index <- data.frame(dsn = shp.root, layer = shp.layers, stringsAsFactors = FALSE)
+  saveRDS(shp.index, file = file.path(shp.relative.root, 'ted_index.rds'))
+}
 
-add_missing_catchments <- function(spatial.catchments, spatial.sites, spatial.points){
-  shp.root <- '../1_spatial/cache/POWSTREAMS_NAD83'
-  shp.files <- dir(shp.root)[grepl('.dbf', x = dir(shp.root))] %>% 
-    sapply(function(x) strsplit(x, '[.]')[[1]][1], USE.NAMES = FALSE) %>% 
-    mda.streams::make_site_name('nwis')
+create_ted_index() # gets run when remake sources the code
+
+#' add catchments to a set of existing catchments
+#' 
+#' placeholder function for adding catchments from a directory of individual shapefiles
+#' 
+#' @param spatial.catchments sp object of polygons
+#' @param spatial.sites a character vector of site names
+#' @param spatial.points sp object of points
+#' @return an augmented spatial.catchments sp object
+add_missing_catchments <- function(spatial.catchments, spatial.sites, spatial.points, shp.index){
+  shp.index <- readRDS(shp.index) %>% 
+    mutate(ids = mda.streams::make_site_name(layer, 'nwis'))
+  browser()
   
   no.catch <- spatial.sites$site_name[!spatial.sites$site_name %in% as.character(spatial.catchments$site_name)]
   
-  new.catch <- shp.files[shp.files %in% no.catch]
+  new.catch <- filter(shp.index, ids %in% no.catch)
   
   out <- spatial.catchments
   for (catch in new.catch){

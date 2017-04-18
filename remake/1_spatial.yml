@@ -39,4 +39,4 @@ targets:
     command: combine_spatial(epa_basins, gagesii_basins)
     
   spatial.catchments:
-    command: add_missing_catchments(epa.gages, spatial.sites, spatial.points)
+    command: add_missing_catchments(epa.gages, spatial.sites, spatial.points, '../1_spatial/cache/POWSTREAMS_NAD83/ted_index.rds')
