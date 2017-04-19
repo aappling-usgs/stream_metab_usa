@@ -161,20 +161,20 @@ write_shapefile <- function(obj, layer){
 }
 
 create_ted_index <- function(){
-  shp.relative.root <- '../cache/POWSTREAMS_NAD83'
   # no, remake sources relative to the source...
+  shp.relative.root <- '../cache/POWSTREAMS_NAD83'
   library(dplyr) # needed because this is being sourced and is a remake hack
   shp.layers <- data.frame(files = dir(shp.relative.root), stringsAsFactors = FALSE) %>% 
     filter(grepl('.dbf', x = files)) %>% .$files %>% 
     sapply(function(x) strsplit(x, '[.]')[[1]][1], USE.NAMES = FALSE)
   
-  # get file modified date in here?
+  # get file modified date in here as a column?
   shp.root <- gsub('../cache/', replacement = '../1_spatial/cache/', x = shp.relative.root)
   shp.index <- data.frame(dsn = shp.root, layer = shp.layers, stringsAsFactors = FALSE)
   saveRDS(shp.index, file = file.path(shp.relative.root, 'ted_index.rds'))
 }
 
-create_ted_index() # gets run when remake sources the code
+create_ted_index() # gets run when remake sources the code ** this is a hack **
 
 #' add catchments to a set of existing catchments
 #' 
@@ -186,23 +186,21 @@ create_ted_index() # gets run when remake sources the code
 #' @return an augmented spatial.catchments sp object
 add_missing_catchments <- function(spatial.catchments, spatial.sites, spatial.points, shp.index){
   shp.index <- readRDS(shp.index) %>% 
-    mutate(ids = mda.streams::make_site_name(layer, 'nwis'))
-  browser()
+    mutate(id = mda.streams::make_site_name(layer, 'nwis'))
   
   no.catch <- spatial.sites$site_name[!spatial.sites$site_name %in% as.character(spatial.catchments$site_name)]
   
-  new.catch <- filter(shp.index, ids %in% no.catch)
+  new.catch <- filter(shp.index, id %in% no.catch)
   
   out <- spatial.catchments
-  for (catch in new.catch){
-    site.id <- mda.streams::parse_site_name(catch)
-    d <- readOGR(shp.root, site.id) %>% 
+  for (j in 1:nrow(new.catch)){
+    d <- readOGR(new.catch$dsn[j], new.catch$layer[j], verbose = FALSE) %>% 
       spTransform(proj4string(out))
     if (length(d) > 1){
       d <- d[2, ] # is always the second feature when this happens
-      message(site.id, ' is goofy, subsetting to single polygon')
+      message(new.catch$id[j], ' is goofy, subsetting to single polygon')
     } 
-    d@data <- data.frame(site_name = catch, ogc_fid = 'NA')
+    d@data <- data.frame(site_name = new.catch$id[j], ogc_fid = 'NA')
     out <- rbind(out, d)
     
   }
