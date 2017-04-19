@@ -1,7 +1,6 @@
 target_default: 1_spatial
 
 include:
-  - 1_site_data.yml
   - 1_user_catchments.yml
 
 packages:
@@ -36,8 +35,5 @@ targets:
   gagesii_basins:
     command: get_catchments(spatial.sites, target_name, epa_basins)
   
-  epa.gages:
-    command: combine_spatial(epa_basins, gagesii_basins)
-    
   spatial.catchments:
-    command: add_missing_catchments(epa.gages, spatial.sites, spatial.points, '../1_spatial/cache/POWSTREAMS_NAD83/ted_index.rds')
+    command: combine_spatial(epa_basins, gagesii_basins, user.spatial.catchments)

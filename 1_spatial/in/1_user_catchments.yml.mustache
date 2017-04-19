@@ -12,7 +12,6 @@ packages:
 
 sources:
   - ../1_spatial/code/makeshape.R
-  - ../1_spatial/code/user_catchments.R
   - ../lib/load_profile.R
   
 targets:
@@ -27,7 +26,7 @@ targets:
 {{#depends}}
       - '{{.}}'
 {{/depends}}
-	
+    
 {{/sites}}
 
   user.spatial.catchments:

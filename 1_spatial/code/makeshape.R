@@ -53,15 +53,19 @@ create_site_points <- function(sites, crs.string = "+init=epsg:4326"){
 combine_spatial <- function(...){
   to.combine <- list(...)
   sp.out <- to.combine[[1]]
+  proj.string <- proj4string(sp.out)
   uid <-1 
   n <- length(slot(sp.out, "polygons"))  
   sp.out <- spChFIDs(sp.out, as.character(uid:(uid+n-1)))
   uid <- uid + n
   for (i in seq_len(length(to.combine))[-1L]){
-    n <- length(slot(to.combine[[i]], "polygons"))
-    to.combine[[i]] <- spChFIDs(to.combine[[i]], as.character(uid:(uid+n-1)))
-    uid <- uid + n 
-    sp.out<- maptools::spRbind(sp.out,to.combine[[i]]) 
+    if (!to.combine[[i]]@data$site_name %in% sp.out@data$site_name){
+      n <- length(slot(to.combine[[i]], "polygons"))
+      to.combine[[i]] <- spChFIDs(to.combine[[i]], as.character(uid:(uid+n-1)))
+      uid <- uid + n 
+      to.combine[[i]] <- spTransform(to.combine[[i]], proj.string)
+      sp.out<- maptools::spRbind(sp.out,to.combine[[i]]) 
+    }
   }
   return(sp.out)
 }
