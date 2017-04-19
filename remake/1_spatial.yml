@@ -2,6 +2,7 @@ target_default: 1_spatial
 
 include:
   - 1_site_data.yml
+  - 1_user_catchments.yml
 
 packages:
   - yaml
