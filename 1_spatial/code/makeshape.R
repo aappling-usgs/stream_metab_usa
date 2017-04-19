@@ -160,21 +160,25 @@ write_shapefile <- function(obj, layer){
   return(files)
 }
 
-create_ted_index <- function(){
-  # no, remake sources relative to the source...
-  shp.relative.root <- '../cache/POWSTREAMS_NAD83'
-  library(dplyr) # needed because this is being sourced and is a remake hack
-  shp.layers <- data.frame(files = dir(shp.relative.root), stringsAsFactors = FALSE) %>% 
-    filter(grepl('.dbf', x = files)) %>% .$files %>% 
-    sapply(function(x) strsplit(x, '[.]')[[1]][1], USE.NAMES = FALSE)
-  
-  # get file modified date in here as a column?
-  shp.root <- gsub('../cache/', replacement = '../1_spatial/cache/', x = shp.relative.root)
-  shp.index <- data.frame(dsn = shp.root, layer = shp.layers, stringsAsFactors = FALSE)
-  saveRDS(shp.index, file = file.path(shp.relative.root, 'ted_index.rds'))
-}
 
-create_ted_index() # gets run when remake sources the code ** this is a hack **
+#' create a catchment polygon formatted for NWIS
+#' 
+#' take a file path for a shapfile file and create an sp object that 
+#' has data fields for NWIS site ID
+#' 
+#' @param shp.path the file path to a shapefile file relative to the \code{remake} directory
+#' @return an sp object for the catchment
+as.nwis_catchment <- function(shp.path){
+  shp.dir <- dirname(shp.path)
+  nwis.id <- strsplit(basename(shp.path), '[.]')[[1]][1]
+  poly <- readOGR(dsn = shp.dir, layer = nwis.id, verbose = FALSE)
+  if (length(poly) > 1){
+    poly <- poly[2, ] # is always the second feature when this happens
+    message(nwis.id, ' is goofy, subsetting to single polygon')
+  } 
+  poly@data <- data.frame(site_name = mda.streams::make_site_name(nwis.id, 'nwis'), ogc_fid = 'NA')
+  return(poly)
+}
 
 #' add catchments to a set of existing catchments
 #' 
@@ -185,6 +189,7 @@ create_ted_index() # gets run when remake sources the code ** this is a hack **
 #' @param spatial.points sp object of points
 #' @return an augmented spatial.catchments sp object
 add_missing_catchments <- function(spatial.catchments, spatial.sites, spatial.points, shp.index){
+  stop('we dont use the index anymore')
   shp.index <- readRDS(shp.index) %>% 
     mutate(id = mda.streams::make_site_name(layer, 'nwis'))
   
