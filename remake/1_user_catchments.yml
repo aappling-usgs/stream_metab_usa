@@ -1,0 +1,45 @@
+target_default: 1_user_catchments
+
+include:
+  - 1_site_data.yml
+
+packages:
+  - dplyr
+  - rgdal
+  - mda.streams
+  - maptools
+
+sources:
+  - ../1_spatial/code/makeshape.R
+  - ../1_spatial/code/user_catchments.R
+  - ../lib/load_profile.R
+  
+targets:
+  1_user_catchments:
+    depends: 
+      - user.spatial.catchments
+
+  sp.03075070:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03075070.shp')
+    depends: 
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.shx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.dbf'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.cpg'
+  
+  sp.040851385:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/040851385.shp')
+    depends: 
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.shx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.dbf'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.cpg'
+
+  user.spatial.catchments:
+    command: combine_spatial(sp.03075070, sp.040851385)
