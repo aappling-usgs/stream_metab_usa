@@ -1,0 +1,4175 @@
+target_default: 1_user_catchments
+
+# rendered with ....instructions here....
+include:
+  - 1_site_data.yml
+
+packages:
+  - dplyr
+  - rgdal
+  - mda.streams
+  - maptools
+
+sources:
+  - ../1_spatial/code/makeshape.R
+  - ../lib/load_profile.R
+  
+targets:
+  1_user_catchments:
+    depends: 
+      - user.spatial.catchments
+
+  sp.01124000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01124000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.shx'
+    
+  sp.01125100:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01125100.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.shx'
+    
+  sp.01184000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01184000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.shx'
+    
+  sp.01193050:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01193050.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.shx'
+    
+  sp.01196500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01196500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.shx'
+    
+  sp.01201487:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01201487.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.shx'
+    
+  sp.01208500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01208500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.shx'
+    
+  sp.01208990:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01208990.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.shx'
+    
+  sp.01382210:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01382210.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.shx'
+    
+  sp.01388000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01388000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.shx'
+    
+  sp.01400500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01400500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.shx'
+    
+  sp.01408500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01408500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.shx'
+    
+  sp.01433500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01433500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.shx'
+    
+  sp.01454700:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01454700.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.shx'
+    
+  sp.01463500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01463500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.shx'
+    
+  sp.01473500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01473500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.shx'
+    
+  sp.01474500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01474500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.shx'
+    
+  sp.01480617:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01480617.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.shx'
+    
+  sp.01480870:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01480870.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.shx'
+    
+  sp.01481000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01481000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.shx'
+    
+  sp.01481500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01481500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.shx'
+    
+  sp.01484085:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01484085.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.shx'
+    
+  sp.01484525:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01484525.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.shx'
+    
+  sp.01487150:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01487150.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.shx'
+    
+  sp.01493112:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01493112.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.shx'
+    
+  sp.01540500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01540500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.shx'
+    
+  sp.01542500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01542500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.shx'
+    
+  sp.01544500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01544500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.shx'
+    
+  sp.01548303:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01548303.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.shx'
+    
+  sp.01549700:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01549700.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.shx'
+    
+  sp.01567000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01567000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.shx'
+    
+  sp.01570500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01570500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.shx'
+    
+  sp.01608500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01608500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.shx'
+    
+  sp.01611500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01611500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.shx'
+    
+  sp.01632900:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01632900.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.shx'
+    
+  sp.01645704:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01645704.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.shx'
+    
+  sp.01645762:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01645762.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.shx'
+    
+  sp.01646000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.shx'
+    
+  sp.01646305:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646305.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.shx'
+    
+  sp.01646500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.shx'
+    
+  sp.01648010:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01648010.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.shx'
+    
+  sp.01649190:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01649190.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.shx'
+    
+  sp.01649500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01649500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.shx'
+    
+  sp.01650800:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01650800.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.shx'
+    
+  sp.01654000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01654000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.shx'
+    
+  sp.01654500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01654500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.shx'
+    
+  sp.01656903:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01656903.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.shx'
+    
+  sp.01658000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01658000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.shx'
+    
+  sp.01673000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01673000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.shx'
+    
+  sp.02035000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02035000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.shx'
+    
+  sp.02042222:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02042222.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.shx'
+    
+  sp.0209303205:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/0209303205.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.shx'
+    
+  sp.02101726:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02101726.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.shx'
+    
+  sp.02110400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.shx'
+    
+  sp.02110500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.shx'
+    
+  sp.02110550:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110550.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.shx'
+    
+  sp.02110701:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110701.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.shx'
+    
+  sp.02110704:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110704.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.shx'
+    
+  sp.0212378405:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/0212378405.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.shx'
+    
+  sp.02135000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02135000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.shx'
+    
+  sp.02148315:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02148315.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.shx'
+    
+  sp.02156500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02156500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.shx'
+    
+  sp.02160105:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02160105.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.shx'
+    
+  sp.02160700:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02160700.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.shx'
+    
+  sp.02162035:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02162035.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.shx'
+    
+  sp.02168504:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02168504.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.shx'
+    
+  sp.02169000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02169000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.shx'
+    
+  sp.02171645:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02171645.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.shx'
+    
+  sp.02198920:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02198920.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.shx'
+    
+  sp.02198950:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02198950.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.shx'
+    
+  sp.021989773:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/021989773.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.shx'
+    
+  sp.021989792:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/021989792.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.shx'
+    
+  sp.02203655:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203655.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.shx'
+    
+  sp.02203700:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203700.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.shx'
+    
+  sp.02203863:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203863.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.shx'
+    
+  sp.02203900:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203900.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.shx'
+    
+  sp.02203950:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203950.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.shx'
+    
+  sp.02203960:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203960.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.shx'
+    
+  sp.02204037:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02204037.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.shx'
+    
+  sp.02207135:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02207135.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.shx'
+    
+  sp.02207160:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02207160.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.shx'
+    
+  sp.02208450:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02208450.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.shx'
+    
+  sp.02208493:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02208493.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.shx'
+    
+  sp.02217643:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02217643.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.shx'
+    
+  sp.02231254:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02231254.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.shx'
+    
+  sp.02234000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02234000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.shx'
+    
+  sp.02234500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02234500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.shx'
+    
+  sp.02236000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02236000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.shx'
+    
+  sp.02236125:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02236125.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.shx'
+    
+  sp.02244040:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02244040.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.shx'
+    
+  sp.02245260:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02245260.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.shx'
+    
+  sp.02264000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02264000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.shx'
+    
+  sp.02264100:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02264100.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.shx'
+    
+  sp.02266200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02266200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.shx'
+    
+  sp.02266300:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02266300.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.shx'
+    
+  sp.02336120:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336120.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.shx'
+    
+  sp.02336152:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336152.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.shx'
+    
+  sp.023362095:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/023362095.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.shx'
+    
+  sp.02336240:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336240.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.shx'
+    
+  sp.02336300:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336300.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.shx'
+    
+  sp.02336313:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336313.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.shx'
+    
+  sp.02336340:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336340.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.shx'
+    
+  sp.02336360:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336360.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.shx'
+    
+  sp.02336410:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336410.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.shx'
+    
+  sp.02336526:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336526.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.shx'
+    
+  sp.02336728:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336728.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.shx'
+    
+  sp.02337170:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02337170.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.shx'
+    
+  sp.02344630:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02344630.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.shx'
+    
+  sp.02397530:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02397530.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.shx'
+    
+  sp.03007800:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03007800.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.shx'
+    
+  sp.03025500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03025500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.shx'
+    
+  sp.03027500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03027500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.shx'
+    
+  sp.03034000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03034000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.shx'
+    
+  sp.03036000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03036000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.shx'
+    
+  sp.03058000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03058000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.shx'
+    
+  sp.03061000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03061000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.shx'
+    
+  sp.03067510:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03067510.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.shx'
+    
+  sp.03072655:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03072655.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.shx'
+    
+  sp.03073000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03073000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.shx'
+    
+  sp.03075070:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03075070.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.shx'
+    
+  sp.03081000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03081000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.shx'
+    
+  sp.03083500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03083500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.shx'
+    
+  sp.03098600:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03098600.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.shx'
+    
+  sp.03105500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03105500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.shx'
+    
+  sp.03106000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03106000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.shx'
+    
+  sp.03121850:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03121850.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.shx'
+    
+  sp.03183500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03183500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.shx'
+    
+  sp.03219500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03219500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.shx'
+    
+  sp.03228300:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03228300.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.shx'
+    
+  sp.03255349:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03255349.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.shx'
+    
+  sp.03259757:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03259757.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.shx'
+    
+  sp.03259813:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03259813.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.shx'
+    
+  sp.03289200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03289200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.shx'
+    
+  sp.03292470:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292470.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.shx'
+    
+  sp.03292474:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292474.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.shx'
+    
+  sp.03292475:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292475.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.shx'
+    
+  sp.03292480:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292480.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.shx'
+    
+  sp.03293000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.shx'
+    
+  sp.03293500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.shx'
+    
+  sp.03293530:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293530.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.shx'
+    
+  sp.03294570:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03294570.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.shx'
+    
+  sp.03297900:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03297900.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.shx'
+    
+  sp.03298000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.shx'
+    
+  sp.03298135:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298135.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.shx'
+    
+  sp.03298150:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298150.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.shx'
+    
+  sp.03298200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.shx'
+    
+  sp.03298250:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298250.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.shx'
+    
+  sp.03298300:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298300.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.shx'
+    
+  sp.03301900:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03301900.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.shx'
+    
+  sp.03301940:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03301940.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.shx'
+    
+  sp.03302000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.shx'
+    
+  sp.03302030:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302030.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.shx'
+    
+  sp.03302050:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302050.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.shx'
+    
+  sp.03321500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03321500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.shx'
+    
+  sp.03339000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03339000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.shx'
+    
+  sp.03346500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03346500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.shx'
+    
+  sp.03353200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03353200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.shx'
+    
+  sp.03353420:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03353420.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.shx'
+    
+  sp.03374100:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03374100.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.shx'
+    
+  sp.03408500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03408500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.shx'
+    
+  sp.03409500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03409500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.shx'
+    
+  sp.03460795:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03460795.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.shx'
+    
+  sp.03512000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03512000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.shx'
+    
+  sp.03539600:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03539600.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.shx'
+    
+  sp.03539778:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03539778.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.shx'
+    
+  sp.03597860:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03597860.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.shx'
+    
+  sp.04024000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04024000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.shx'
+    
+  sp.04027000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04027000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.shx'
+    
+  sp.04040000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04040000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.shx'
+    
+  sp.04059500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04059500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.shx'
+    
+  sp.04067500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04067500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.shx'
+    
+  sp.04085108:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04085108.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.shx'
+    
+  sp.040851385:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/040851385.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.shx'
+    
+  sp.04085427:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04085427.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.shx'
+    
+  sp.04087050:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087050.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.shx'
+    
+  sp.04087119:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087119.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.shx'
+    
+  sp.040871488:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/040871488.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.shx'
+    
+  sp.04087170:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087170.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.shx'
+    
+  sp.04092750:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04092750.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.shx'
+    
+  sp.04095090:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04095090.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.shx'
+    
+  sp.04101500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04101500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.shx'
+    
+  sp.04108660:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04108660.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.shx'
+    
+  sp.04119400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04119400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.shx'
+    
+  sp.04121944:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04121944.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.shx'
+    
+  sp.04121970:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04121970.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.shx'
+    
+  sp.04124000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04124000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.shx'
+    
+  sp.04124200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04124200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.shx'
+    
+  sp.04125460:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04125460.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.shx'
+    
+  sp.04125550:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04125550.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.shx'
+    
+  sp.04136000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.shx'
+    
+  sp.04136500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.shx'
+    
+  sp.04136900:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136900.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.shx'
+    
+  sp.04137005:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04137005.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.shx'
+    
+  sp.04137500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04137500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.shx'
+    
+  sp.04142000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04142000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.shx'
+    
+  sp.041482663:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/041482663.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.shx'
+    
+  sp.04157005:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04157005.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.shx'
+    
+  sp.04165500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04165500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.shx'
+    
+  sp.04166500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04166500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.shx'
+    
+  sp.04167150:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04167150.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.shx'
+    
+  sp.04168400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04168400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.shx'
+    
+  sp.04174500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04174500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.shx'
+    
+  sp.04176500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04176500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.shx'
+    
+  sp.04188496:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04188496.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.shx'
+    
+  sp.04195500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04195500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.shx'
+    
+  sp.04199500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04199500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.shx'
+    
+  sp.04200500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04200500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.shx'
+    
+  sp.04208000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04208000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.shx'
+    
+  sp.04213152:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04213152.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.shx'
+    
+  sp.04213500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04213500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.shx'
+    
+  sp.04231600:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04231600.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.shx'
+    
+  sp.04249000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04249000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.shx'
+    
+  sp.05054000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05054000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.shx'
+    
+  sp.05057000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05057000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.shx'
+    
+  sp.05057200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05057200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.shx'
+    
+  sp.05082500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05082500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.shx'
+    
+  sp.05406457:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406457.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.shx'
+    
+  sp.05406469:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406469.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.shx'
+    
+  sp.05406479:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406479.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.shx'
+    
+  sp.05406500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.shx'
+    
+  sp.05418400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05418400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.shx'
+    
+  sp.05420500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05420500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.shx'
+    
+  sp.05435943:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05435943.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.shx'
+    
+  sp.05435950:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05435950.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.shx'
+    
+  sp.05446500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05446500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.shx'
+    
+  sp.05447500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05447500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.shx'
+    
+  sp.05451080:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05451080.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.shx'
+    
+  sp.05451210:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05451210.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.shx'
+    
+  sp.05515500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05515500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.shx'
+    
+  sp.05518000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05518000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.shx'
+    
+  sp.05524500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05524500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.shx'
+    
+  sp.05579630:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05579630.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.shx'
+    
+  sp.05595000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05595000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.shx'
+    
+  sp.05599490:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05599490.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.shx'
+    
+  sp.06336000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06336000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.shx'
+    
+  sp.06436760:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06436760.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.shx'
+    
+  sp.06461500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06461500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.shx'
+    
+  sp.06465500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06465500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.shx'
+    
+  sp.06670500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06670500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.shx'
+    
+  sp.06711565:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06711565.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.shx'
+    
+  sp.06795500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06795500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.shx'
+    
+  sp.06800500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06800500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.shx'
+    
+  sp.06805500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06805500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.shx'
+    
+  sp.06818000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06818000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.shx'
+    
+  sp.06892513:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06892513.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.shx'
+    
+  sp.06893300:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893300.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.shx'
+    
+  sp.06893350:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893350.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.shx'
+    
+  sp.06893620:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893620.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.shx'
+    
+  sp.06893820:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893820.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.shx'
+    
+  sp.06893890:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893890.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.shx'
+    
+  sp.06893970:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893970.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.shx'
+    
+  sp.06894000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06894000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.shx'
+    
+  sp.06934500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06934500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.shx'
+    
+  sp.07048600:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07048600.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.shx'
+    
+  sp.07061270:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07061270.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.shx'
+    
+  sp.07061290:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07061290.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.shx'
+    
+  sp.07075250:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07075250.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.shx'
+    
+  sp.07106000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07106000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.shx'
+    
+  sp.07109500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07109500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.shx'
+    
+  sp.07143672:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07143672.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.shx'
+    
+  sp.07144100:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07144100.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.shx'
+    
+  sp.07164500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07164500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.shx'
+    
+  sp.07177500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07177500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.shx'
+    
+  sp.07178200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07178200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.shx'
+    
+  sp.071912213:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/071912213.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.shx'
+    
+  sp.07191222:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07191222.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.shx'
+    
+  sp.07198000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07198000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.shx'
+    
+  sp.07239450:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07239450.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.shx'
+    
+  sp.07241000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.shx'
+    
+  sp.07241520:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241520.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.shx'
+    
+  sp.07241550:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241550.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.shx'
+    
+  sp.07263296:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07263296.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.shx'
+    
+  sp.072632966:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/072632966.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.shx'
+    
+  sp.07332620:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07332620.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.shx'
+    
+  sp.07332622:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07332622.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.shx'
+    
+  sp.07374000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07374000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.shx'
+    
+  sp.07381600:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07381600.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.shx'
+    
+  sp.08048000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08048000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.shx'
+    
+  sp.08049500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08049500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.shx'
+    
+  sp.08052700:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08052700.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.shx'
+    
+  sp.08052745:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08052745.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.shx'
+    
+  sp.08057000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08057000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.shx'
+    
+  sp.08057410:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08057410.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.shx'
+    
+  sp.08062500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08062500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.shx'
+    
+  sp.08065350:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08065350.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.shx'
+    
+  sp.08068000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08068000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.shx'
+    
+  sp.08068500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08068500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.shx'
+    
+  sp.08070200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08070200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.shx'
+    
+  sp.08171290:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08171290.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.shx'
+    
+  sp.08180700:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08180700.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.shx'
+    
+  sp.08181500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08181500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.shx'
+    
+  sp.08181800:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08181800.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.shx'
+    
+  sp.08188060:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08188060.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.shx'
+    
+  sp.08211200:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08211200.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.shx'
+    
+  sp.08317400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08317400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.shx'
+    
+  sp.08412500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08412500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.shx'
+    
+  sp.08437710:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08437710.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.shx'
+    
+  sp.08446500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08446500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.shx'
+    
+  sp.08447000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08447000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.shx'
+    
+  sp.08447300:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08447300.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.shx'
+    
+  sp.09041400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09041400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.shx'
+    
+  sp.09326500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09326500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.shx'
+    
+  sp.09327000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09327000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.shx'
+    
+  sp.09406000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09406000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.shx'
+    
+  sp.10129900:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10129900.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.shx'
+    
+  sp.10133650:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133650.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.shx'
+    
+  sp.10133800:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133800.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.shx'
+    
+  sp.10133980:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133980.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.shx'
+    
+  sp.11044000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11044000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.shx'
+    
+  sp.11126000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11126000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.shx'
+    
+  sp.11128500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11128500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.shx'
+    
+  sp.11273400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11273400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.shx'
+    
+  sp.11285500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11285500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.shx'
+    
+  sp.11313433:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11313433.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.shx'
+    
+  sp.11447650:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447650.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.shx'
+    
+  sp.11447830:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447830.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.shx'
+    
+  sp.11447850:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447850.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.shx'
+    
+  sp.11455165:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455165.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.shx'
+    
+  sp.11455315:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455315.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.shx'
+    
+  sp.11455350:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455350.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.shx'
+    
+  sp.11462500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11462500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.shx'
+    
+  sp.11463000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.shx'
+    
+  sp.11463682:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463682.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.shx'
+    
+  sp.11463980:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463980.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.shx'
+    
+  sp.11465240:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11465240.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.shx'
+    
+  sp.11467000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11467000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.shx'
+    
+  sp.12100490:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12100490.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.shx'
+    
+  sp.12101100:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12101100.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.shx'
+    
+  sp.12102075:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12102075.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.shx'
+    
+  sp.13013650:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13013650.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.shx'
+    
+  sp.13173600:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13173600.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.shx'
+    
+  sp.13206400:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13206400.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.shx'
+    
+  sp.13207500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13207500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.shx'
+    
+  sp.13213000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13213000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.shx'
+    
+  sp.13213100:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13213100.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.shx'
+    
+  sp.14151000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14151000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.shx'
+    
+  sp.14162500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14162500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.shx'
+    
+  sp.14182500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14182500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.shx'
+    
+  sp.14202650:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14202650.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.shx'
+    
+  sp.14206950:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14206950.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.shx'
+    
+  sp.14210000:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14210000.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.shx'
+    
+  sp.14211010:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14211010.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.shx'
+    
+  sp.14211720:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14211720.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.shx'
+    
+  sp.14301500:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14301500.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.shx'
+    
+  sp.14302480:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14302480.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.shx'
+    
+  sp.411955088280601:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.dbf')
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.shx'
+    
+  user.spatial.catchments:
+    command: combine_spatial(
+        sp.01124000,
+        sp.01125100,
+        sp.01184000,
+        sp.01193050,
+        sp.01196500,
+        sp.01201487,
+        sp.01208500,
+        sp.01208990,
+        sp.01382210,
+        sp.01388000,
+        sp.01400500,
+        sp.01408500,
+        sp.01433500,
+        sp.01454700,
+        sp.01463500,
+        sp.01473500,
+        sp.01474500,
+        sp.01480617,
+        sp.01480870,
+        sp.01481000,
+        sp.01481500,
+        sp.01484085,
+        sp.01484525,
+        sp.01487150,
+        sp.01493112,
+        sp.01540500,
+        sp.01542500,
+        sp.01544500,
+        sp.01548303,
+        sp.01549700,
+        sp.01567000,
+        sp.01570500,
+        sp.01608500,
+        sp.01611500,
+        sp.01632900,
+        sp.01645704,
+        sp.01645762,
+        sp.01646000,
+        sp.01646305,
+        sp.01646500,
+        sp.01648010,
+        sp.01649190,
+        sp.01649500,
+        sp.01650800,
+        sp.01654000,
+        sp.01654500,
+        sp.01656903,
+        sp.01658000,
+        sp.01673000,
+        sp.02035000,
+        sp.02042222,
+        sp.0209303205,
+        sp.02101726,
+        sp.02110400,
+        sp.02110500,
+        sp.02110550,
+        sp.02110701,
+        sp.02110704,
+        sp.0212378405,
+        sp.02135000,
+        sp.02148315,
+        sp.02156500,
+        sp.02160105,
+        sp.02160700,
+        sp.02162035,
+        sp.02168504,
+        sp.02169000,
+        sp.02171645,
+        sp.02198920,
+        sp.02198950,
+        sp.021989773,
+        sp.021989792,
+        sp.02203655,
+        sp.02203700,
+        sp.02203863,
+        sp.02203900,
+        sp.02203950,
+        sp.02203960,
+        sp.02204037,
+        sp.02207135,
+        sp.02207160,
+        sp.02208450,
+        sp.02208493,
+        sp.02217643,
+        sp.02231254,
+        sp.02234000,
+        sp.02234500,
+        sp.02236000,
+        sp.02236125,
+        sp.02244040,
+        sp.02245260,
+        sp.02264000,
+        sp.02264100,
+        sp.02266200,
+        sp.02266300,
+        sp.02336120,
+        sp.02336152,
+        sp.023362095,
+        sp.02336240,
+        sp.02336300,
+        sp.02336313,
+        sp.02336340,
+        sp.02336360,
+        sp.02336410,
+        sp.02336526,
+        sp.02336728,
+        sp.02337170,
+        sp.02344630,
+        sp.02397530,
+        sp.03007800,
+        sp.03025500,
+        sp.03027500,
+        sp.03034000,
+        sp.03036000,
+        sp.03058000,
+        sp.03061000,
+        sp.03067510,
+        sp.03072655,
+        sp.03073000,
+        sp.03075070,
+        sp.03081000,
+        sp.03083500,
+        sp.03098600,
+        sp.03105500,
+        sp.03106000,
+        sp.03121850,
+        sp.03183500,
+        sp.03219500,
+        sp.03228300,
+        sp.03255349,
+        sp.03259757,
+        sp.03259813,
+        sp.03289200,
+        sp.03292470,
+        sp.03292474,
+        sp.03292475,
+        sp.03292480,
+        sp.03293000,
+        sp.03293500,
+        sp.03293530,
+        sp.03294570,
+        sp.03297900,
+        sp.03298000,
+        sp.03298135,
+        sp.03298150,
+        sp.03298200,
+        sp.03298250,
+        sp.03298300,
+        sp.03301900,
+        sp.03301940,
+        sp.03302000,
+        sp.03302030,
+        sp.03302050,
+        sp.03321500,
+        sp.03339000,
+        sp.03346500,
+        sp.03353200,
+        sp.03353420,
+        sp.03374100,
+        sp.03408500,
+        sp.03409500,
+        sp.03460795,
+        sp.03512000,
+        sp.03539600,
+        sp.03539778,
+        sp.03597860,
+        sp.04024000,
+        sp.04027000,
+        sp.04040000,
+        sp.04059500,
+        sp.04067500,
+        sp.04085108,
+        sp.040851385,
+        sp.04085427,
+        sp.04087050,
+        sp.04087119,
+        sp.040871488,
+        sp.04087170,
+        sp.04092750,
+        sp.04095090,
+        sp.04101500,
+        sp.04108660,
+        sp.04119400,
+        sp.04121944,
+        sp.04121970,
+        sp.04124000,
+        sp.04124200,
+        sp.04125460,
+        sp.04125550,
+        sp.04136000,
+        sp.04136500,
+        sp.04136900,
+        sp.04137005,
+        sp.04137500,
+        sp.04142000,
+        sp.041482663,
+        sp.04157005,
+        sp.04165500,
+        sp.04166500,
+        sp.04167150,
+        sp.04168400,
+        sp.04174500,
+        sp.04176500,
+        sp.04188496,
+        sp.04195500,
+        sp.04199500,
+        sp.04200500,
+        sp.04208000,
+        sp.04213152,
+        sp.04213500,
+        sp.04231600,
+        sp.04249000,
+        sp.05054000,
+        sp.05057000,
+        sp.05057200,
+        sp.05082500,
+        sp.05406457,
+        sp.05406469,
+        sp.05406479,
+        sp.05406500,
+        sp.05418400,
+        sp.05420500,
+        sp.05435943,
+        sp.05435950,
+        sp.05446500,
+        sp.05447500,
+        sp.05451080,
+        sp.05451210,
+        sp.05515500,
+        sp.05518000,
+        sp.05524500,
+        sp.05579630,
+        sp.05595000,
+        sp.05599490,
+        sp.06336000,
+        sp.06436760,
+        sp.06461500,
+        sp.06465500,
+        sp.06670500,
+        sp.06711565,
+        sp.06795500,
+        sp.06800500,
+        sp.06805500,
+        sp.06818000,
+        sp.06892513,
+        sp.06893300,
+        sp.06893350,
+        sp.06893620,
+        sp.06893820,
+        sp.06893890,
+        sp.06893970,
+        sp.06894000,
+        sp.06934500,
+        sp.07048600,
+        sp.07061270,
+        sp.07061290,
+        sp.07075250,
+        sp.07106000,
+        sp.07109500,
+        sp.07143672,
+        sp.07144100,
+        sp.07164500,
+        sp.07177500,
+        sp.07178200,
+        sp.071912213,
+        sp.07191222,
+        sp.07198000,
+        sp.07239450,
+        sp.07241000,
+        sp.07241520,
+        sp.07241550,
+        sp.07263296,
+        sp.072632966,
+        sp.07332620,
+        sp.07332622,
+        sp.07374000,
+        sp.07381600,
+        sp.08048000,
+        sp.08049500,
+        sp.08052700,
+        sp.08052745,
+        sp.08057000,
+        sp.08057410,
+        sp.08062500,
+        sp.08065350,
+        sp.08068000,
+        sp.08068500,
+        sp.08070200,
+        sp.08171290,
+        sp.08180700,
+        sp.08181500,
+        sp.08181800,
+        sp.08188060,
+        sp.08211200,
+        sp.08317400,
+        sp.08412500,
+        sp.08437710,
+        sp.08446500,
+        sp.08447000,
+        sp.08447300,
+        sp.09041400,
+        sp.09326500,
+        sp.09327000,
+        sp.09406000,
+        sp.10129900,
+        sp.10133650,
+        sp.10133800,
+        sp.10133980,
+        sp.11044000,
+        sp.11126000,
+        sp.11128500,
+        sp.11273400,
+        sp.11285500,
+        sp.11313433,
+        sp.11447650,
+        sp.11447830,
+        sp.11447850,
+        sp.11455165,
+        sp.11455315,
+        sp.11455350,
+        sp.11462500,
+        sp.11463000,
+        sp.11463682,
+        sp.11463980,
+        sp.11465240,
+        sp.11467000,
+        sp.12100490,
+        sp.12101100,
+        sp.12102075,
+        sp.13013650,
+        sp.13173600,
+        sp.13206400,
+        sp.13207500,
+        sp.13213000,
+        sp.13213100,
+        sp.14151000,
+        sp.14162500,
+        sp.14182500,
+        sp.14202650,
+        sp.14206950,
+        sp.14210000,
+        sp.14211010,
+        sp.14211720,
+        sp.14301500,
+        sp.14302480,
+        sp.411955088280601)

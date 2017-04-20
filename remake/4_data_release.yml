@@ -10,6 +10,7 @@ packages:
   - rgdal
   - httr
   - sbtools
+  - dplyr
   - rgeos
   - dataRetrieval
   - meddle
@@ -34,20 +35,20 @@ targets:
     command: attribute_skeleton(meta_dvqcoefs, target_name)
     
   ../4_data_release/in/catchment_attr.csv:
-    command: attribute_skeleton(site_catchment_shapefile, target_name)
+    command: attribute_skeleton(spatial.catchments, target_name)
   
   ../4_data_release/in/points_attr.csv:
-    command: attribute_skeleton(site_points_shapefile, target_name)
+    command: attribute_skeleton(spatial.points, target_name)
   
   ../4_data_release/in/meta_basic_attr.csv:
     command: attribute_skeleton(meta_basic, target_name)
   
   # -- autopopulate metadata -- 
   catchment_metadata:
-    command: extract_feature(site_catchment_shapefile)
+    command: extract_feature(spatial.catchments)
   
   points_metadata:
-    command: extract_feature(site_points_shapefile)  
+    command: extract_feature(spatial.points)  
   
   
   # -- formulate manual entry and extracted metadata -- 
@@ -77,6 +78,12 @@ targets:
   ../4_data_release/out/site_points_shapefile.shp.xml:
     command: render("../4_data_release/in/metadata_site_points.yaml", target_name, points_metadata, points_attr, parent_metadata)
     
+  catchment_shapefile:
+    command: write_shapefile(spatial.catchments, target_name)
+    
+  points_shapefile:
+    command: write_shapefile(spatial.points, target_name)
+  
   # -- SB posting --
 
   stream_metab_powell_release:
@@ -89,10 +96,12 @@ targets:
     command: create_release_child(stream_metab_powell_release, target_name)
   
   site_catchments:
-    command: create_release_item(pc1_spatial, target_name, site_catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
+    command: create_release_item(pc1_spatial, target_name, catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
+    depends: spatial.catchments
 
   site_points:
-    command: create_release_item(pc1_spatial, target_name, site_points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
+    command: create_release_item(pc1_spatial, target_name, points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
+    depends: spatial.points
   
   metadata_basic:
     command: create_release_item(pc1_site_metadata, target_name, meta_basic, '../4_data_release/out/meta_basic.xml')

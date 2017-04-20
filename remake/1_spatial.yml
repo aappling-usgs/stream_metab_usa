@@ -1,7 +1,7 @@
 target_default: 1_spatial
 
 include:
-  - 1_site_data.yml
+  - 1_user_catchments.yml
 
 packages:
   - yaml
@@ -19,8 +19,8 @@ sources:
 targets:
   1_spatial:
     depends: 
-      - site_catchment_shapefile
-      - site_points_shapefile
+      - spatial.catchments
+      - spatial.points
 
     
   spatial.sites: 
@@ -36,16 +36,4 @@ targets:
     command: get_catchments(spatial.sites, target_name, epa_basins)
   
   spatial.catchments:
-    command: combine_spatial(epa_basins, gagesii_basins)
-    
-  ../1_spatial/out/site_catchment_map.png:
-    command: inventory_map(spatial.points, spatial.catchments, target_name)
-    
-  site_catchment_shapefile:
-    command: write_shapefile(spatial.catchments, target_name)
-    
-  site_points_shapefile:
-    command: write_shapefile(spatial.points, target_name)
-    
-  
-    
+    command: combine_spatial(epa_basins, gagesii_basins, user.spatial.catchments)

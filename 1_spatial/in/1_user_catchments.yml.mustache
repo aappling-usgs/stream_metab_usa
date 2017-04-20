@@ -1,0 +1,36 @@
+target_default: 1_user_catchments
+
+# rendered with ....instructions here....
+include:
+  - 1_site_data.yml
+
+packages:
+  - dplyr
+  - rgdal
+  - mda.streams
+  - maptools
+
+sources:
+  - ../1_spatial/code/makeshape.R
+  - ../lib/load_profile.R
+  
+targets:
+  1_user_catchments:
+    depends: 
+      - user.spatial.catchments
+
+{{#sites}}
+  sp.{{id}}:
+    command: as.nwis_catchment('{{dbf}}')
+    depends:
+{{#depends}}
+      - '{{.}}'
+{{/depends}}
+    
+{{/sites}}
+
+  user.spatial.catchments:
+    command: combine_spatial(
+	{{#sites}}
+        sp.{{id}}{{#comma}},{{/comma}}{{#close}}){{/close}}
+	{{/sites}}
