@@ -59,12 +59,14 @@ combine_spatial <- function(...){
   sp.out <- spChFIDs(sp.out, as.character(uid:(uid+n-1)))
   uid <- uid + n
   for (i in seq_len(length(to.combine))[-1L]){
-    if (!any(to.combine[[i]]@data$site_name %in% sp.out@data$site_name)){
-      n <- length(slot(to.combine[[i]], "polygons"))
-      to.combine[[i]] <- spChFIDs(to.combine[[i]], as.character(uid:(uid+n-1)))
+    combine.i <- !to.combine[[i]]@data$site_name %in% sp.out@data$site_name
+    if (any(combine.i)){
+      n <- length(slot(to.combine[[i]][combine.i, ], "polygons"))
+      bind.data <- to.combine[[i]][combine.i, ]
+      bind.data <- spChFIDs(bind.data, as.character(uid:(uid+n-1)))
       uid <- uid + n 
-      to.combine[[i]] <- spTransform(to.combine[[i]], proj.string)
-      sp.out<- maptools::spRbind(sp.out,to.combine[[i]]) 
+      bind.data <- spTransform(bind.data, proj.string)
+      sp.out<- maptools::spRbind(sp.out, bind.data) 
     }
   }
   return(sp.out)
@@ -127,7 +129,6 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
     select(site_name, ogc_fid)
   raw.catchments@data <- updated.data
   catchments <- spTransform(raw.catchments, CRS(crs.string))
-  
   return(catchments)
 }
 
