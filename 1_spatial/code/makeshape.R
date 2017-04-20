@@ -59,7 +59,7 @@ combine_spatial <- function(...){
   sp.out <- spChFIDs(sp.out, as.character(uid:(uid+n-1)))
   uid <- uid + n
   for (i in seq_len(length(to.combine))[-1L]){
-    if (!to.combine[[i]]@data$site_name %in% sp.out@data$site_name){
+    if (!any(to.combine[[i]]@data$site_name %in% sp.out@data$site_name)){
       n <- length(slot(to.combine[[i]], "polygons"))
       to.combine[[i]] <- spChFIDs(to.combine[[i]], as.character(uid:(uid+n-1)))
       uid <- uid + n 
@@ -68,25 +68,6 @@ combine_spatial <- function(...){
     }
   }
   return(sp.out)
-}
-
-#' create a summary map of sites and catchments
-#' 
-#' @param points sp object of SpatialPointsDataFrame
-#' @param catchments sp object of SpatialPolygonsDataFrame
-#' @param outfile the name of the image to create (must end in '.png')
-#' 
-#' This is a summary function for seeing the sites and the catchments as a single figure. 
-#' The sites with a catchment are plotted as green, and sites w/o a catchment are red. 
-#' Only catchment boundaries are plotted (no fill color used).
-inventory_map <- function(points, catchments, outfile){
-  catchment.ids <- as.character(unique(catchments@data$site_name))
-  message(length(catchment.ids), ' sites w/ catchments (out of ', length(points),')')
-  png(filename = outfile, width = 10, height = 7, res = 350, units = 'in')
-  plot(points[points@data$site_name %in% catchment.ids, ], col='green', pch=20, cex=0.4)
-  plot(points[!points@data$site_name %in% catchment.ids, ], col='red', pch=20, cex=0.4, add=TRUE)
-  plot(catchments, add=TRUE)
-  dev.off()
 }
 
 #' get catchments from web services and return sp objects
@@ -182,37 +163,4 @@ as.nwis_catchment <- function(shp.path){
   } 
   poly@data <- data.frame(site_name = mda.streams::make_site_name(nwis.id, 'nwis'), ogc_fid = 'NA')
   return(poly)
-}
-
-#' add catchments to a set of existing catchments
-#' 
-#' placeholder function for adding catchments from a directory of individual shapefiles
-#' 
-#' @param spatial.catchments sp object of polygons
-#' @param spatial.sites a character vector of site names
-#' @param spatial.points sp object of points
-#' @return an augmented spatial.catchments sp object
-add_missing_catchments <- function(spatial.catchments, spatial.sites, spatial.points, shp.index){
-  stop('we dont use the index anymore')
-  shp.index <- readRDS(shp.index) %>% 
-    mutate(id = mda.streams::make_site_name(layer, 'nwis'))
-  
-  no.catch <- spatial.sites$site_name[!spatial.sites$site_name %in% as.character(spatial.catchments$site_name)]
-  
-  new.catch <- filter(shp.index, id %in% no.catch)
-  
-  out <- spatial.catchments
-  for (j in 1:nrow(new.catch)){
-    d <- readOGR(new.catch$dsn[j], new.catch$layer[j], verbose = FALSE) %>% 
-      spTransform(proj4string(out))
-    if (length(d) > 1){
-      d <- d[2, ] # is always the second feature when this happens
-      message(new.catch$id[j], ' is goofy, subsetting to single polygon')
-    } 
-    d@data <- data.frame(site_name = new.catch$id[j], ogc_fid = 'NA')
-    out <- rbind(out, d)
-    
-  }
-  
-  return(out)
 }
