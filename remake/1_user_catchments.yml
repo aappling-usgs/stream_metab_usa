@@ -19,17 +19,6 @@ targets:
     depends: 
       - user.spatial.catchments
 
-  sp.01104430:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01104430.dbf')
-    depends:
-      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.cpg'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.prj'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.sbn'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.sbx'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.shp'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.shp.xml'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.shx'
-    
   sp.01124000:
     command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01124000.dbf')
     depends:
@@ -3012,7 +3001,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.shx'
     
   sp.07263296:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07263296.dbf,../1_spatial/cache/POWSTREAMS_NAD83/072632966.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07263296.dbf')
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.prj'
@@ -3021,13 +3010,6 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.shp'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.shp.xml'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.shx'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.cpg'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.prj'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.sbn'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.sbx'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.shp'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.shp.xml'
-      - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.shx'
     
   sp.072632966:
     command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/072632966.dbf')
@@ -3845,7 +3827,6 @@ targets:
     
   user.spatial.catchments:
     command: combine_spatial(
-        sp.01104430,
         sp.01124000,
         sp.01125100,
         sp.01184000,

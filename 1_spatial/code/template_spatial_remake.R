@@ -11,8 +11,10 @@ shp.layers <- data.frame(files = all.files, stringsAsFactors = FALSE) %>%
 
 sites <- list()
 for (id in shp.layers){
-  dbf.file <- file.path('..', shp.relative.root, all.files[grepl(sprintf('%s.', id), x = all.files) & grepl('.dbf', all.files)])
-  other.files <- file.path('..', shp.relative.root, all.files[grepl(sprintf('%s.', id), x = all.files) & !grepl('.dbf', all.files)])
+  layer.match <- grepl(sprintf('\\<%s\\>', id), x = all.files)
+  dbf.match <- grepl('.dbf', all.files)
+  dbf.file <- file.path('..', shp.relative.root, all.files[layer.match & dbf.match])
+  other.files <- file.path('..', shp.relative.root, all.files[layer.match & !dbf.match])
   sites <- append(sites, list(list(id = id, dbf = dbf.file, depends = other.files, comma = TRUE, close = FALSE)))
 }
 sites[[length(sites)]]$comma = FALSE
