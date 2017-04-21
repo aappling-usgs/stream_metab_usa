@@ -11,4 +11,4 @@ run2:
 run3:
   tag: 1.0.2
   posted_after: 2017-04-01
-  runid: ['170413','170406'] # first ID in list will get used to create next set of cluster files
+  runid: ['170420','170413','170406'] # first ID in list will get used to create next set of cluster files
