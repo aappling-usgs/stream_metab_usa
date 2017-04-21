@@ -2,27 +2,43 @@
 library(mda.streams)
 login_sb()
 
-unposted <- dir('../2_metab_models/run3/cluster/condor/results_170406_unposted/', full.names = TRUE)
+local <- dir('../2_metab_models/run3/cluster/condor/results_170413/', full.names = TRUE)
+loc_mmnames <- parse_metab_model_path(local, out='model_name', use_names = FALSE)
+on_sb <- list_metab_models('1.0.2')
+unposted <- sapply(setdiff(loc_mmnames, on_sb), grep, local, value=TRUE)
 
 post_metab_model(unposted, verbose=TRUE, on_exists = 'skip')
 up_mmnames <- parse_metab_model_path(unposted, out='model_name', use_names = FALSE)
 untagged <- names(which(is.na(setNames(locate_metab_model(up_mmnames), up_mmnames))))
-repair_metab_model(untagged)
+tagtotry <- untagged
+tagtries <- lapply(tagtotry, function(ut) {
+  message("trying to repair ", ut)
+  tryCatch(
+    repair_metab_model(ut),
+    error=function(e) e)
+})
+tagtotry <- tagtotry[sapply(tagtries, function(tt) !isTRUE(unname(tt)) & length(tt) > 0 & !is.na(tt))]
+cat(sprintf("https://www.sciencebase.gov/catalog/items?q=%s", tagtotry), sep='\n')
 
 # summarize the files that got saved locally becuase they weren't initially posted (save the download)
 source('../2_metab_models/run3/code/summarize_model.R')
 on_sb <- list_metab_models('1.0.2')
-posted <- sapply(unposted, function(up) {
+posted <- sapply(local, function(up) {
   mmname <- parse_metab_model_path(up, out='model_name')
-  if(any(grepl(mmname, on_sb))) {
+  message(mmname)
+  # if(any(grepl(mmname, on_sb))) {
     varname <- load(up)
     mm <- get(varname)
     summarize_model(mm, mmname, '../2_metab_models/run3/out/summaries/')
-    file.remove(up)
+    tsfiles <- stage_metab_ts(mm, folder='../2_metab_models/run3/out/tses/')
+    sapply(tsfiles, function(tsfile) {
+      
+    })
+    # file.remove(up)
     return(mmname)
-  } else {
-    return(c())
-  }
+  # } else {
+    # return(c())
+  # }
 })
 
 
@@ -49,6 +65,14 @@ for(mmname in needs_summary$model_name) {
 }
 
 
+# figure out which models didn't actually get posted
+mms_query <- sbtools::query_item_in_folder(text='1.0.2', folder=locate_folder('metab_models'), limit=10000) 
+mms_num_files <- sapply(mms_query, function(mmd) length(mmd$files))
+empty_items <- sapply(mms_query[mms_num_files == 0], function(mmd) mmd$title)
+mda.streams:::delete_metab_model(empty_items)
+mms_posted_after <- sapply(mms_query, function(mmd) max(sapply(mmd$files, function(f) f$dateUploaded))) > as.POSIXct(posted_after, tz='UTC')
+
+
 # document which models are in progress
 source('../lib/write_status_table.R')
 ongoing <- 1 + c(10,100,110,119,24,30,32,34,47,51,59,87,9,179,193,195,232,234)
@@ -60,6 +84,15 @@ cat(paste0('  - ', stat$model_name), sep='\n')
 
 remake::delete('metab.run3.condor.prep', remake_file='2_metab.yml')
 remake_smu('metab.run3.condor.prep', '2_metab.yml')
+
+
+# create a metab_run item on sciencebase; archive the config and package bundle
+run_title <- parse_metab_model_path(local[1], out='title')
+run_dir <- file.path('../2_metab_models/run3/out/', run_title)
+dir.create(run_dir)
+file.copy('../2_metab_models/run3/cluster/condor/bundle.zip', run_dir)
+file.copy('../2_metab_models/run3/out/config.tsv', run_dir)
+mda.streams::post_metab_run(folder=run_dir, files=dir(run_dir), on_exists = 'addfiles')
 
 
 # update bob and maite's spreadsheet
