@@ -2,7 +2,7 @@
 library(mda.streams)
 login_sb()
 
-local <- dir('../2_metab_models/run3/cluster/condor/results_170413/', full.names = TRUE)
+local <- dir('../2_metab_models/run3/cluster/condor/results_170420/', full.names = TRUE)
 loc_mmnames <- parse_metab_model_path(local, out='model_name', use_names = FALSE)
 on_sb <- list_metab_models('1.0.2')
 unposted <- sapply(setdiff(loc_mmnames, on_sb), grep, local, value=TRUE)
