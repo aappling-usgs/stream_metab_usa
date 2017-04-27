@@ -17,6 +17,9 @@ starter_files/*.RData
 2_metab_models/*/out/summaries
 2_metab_models/*/out/resummaries
 2_metab_outputs/out/ts
+2_metab_models/*/out/*.RData
+2_metab_models/*/out/preds/*
+2_metab_models/*/out/tses/*
 NEWS.html
 README.html
 .remake
