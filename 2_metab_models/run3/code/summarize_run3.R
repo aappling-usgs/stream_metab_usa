@@ -1,6 +1,5 @@
 # Do several kinds of summaries all at once, in the hope they'll all work:
 # diagnostic plots, estBest tses, table of predictions for data pub, 
-
 summarize_run3_models <- function(config.file='../2_metab_models/run3/out/config.tsv', outfile='../2_metab_models/run3/out/allstats.tsv') {
   
   if(check_frozen(outfile)) return(NULL)
@@ -8,13 +7,10 @@ summarize_run3_models <- function(config.file='../2_metab_models/run3/out/config
   library(dplyr)
   library(tidyr)
   library(mda.streams)
-  source('../2_metab_outputs/code/summarize_model.R')
-  source('../2_metab_outputs/code/stage_ts_metab.R')
-  
-  config <- read_config(config.file) %>%
-    mutate(
-      resolution = substring(strategy, 7),
-      model_name = make_metab_model_name(title=make_metab_run_title(date=format(as.Date(date), '%y%m%d'), tag=tag, strategy=strategy), row=config.row, site=site))
+  source('../2_metab_models/run3/code/make_model_summary.R')
+  source('../2_metab_models/run3/code/make_model_tses.R')
+  source('../2_metab_models/run3/code/make_model_preds.R')
+  source('../2_metab_models/run3/code/make_model_fit.R')
   
   sumdir <- file.path(dirname(config.file), 'summaries')
   tsdir <- file.path(dirname(config.file), 'tses')
@@ -22,6 +18,10 @@ summarize_run3_models <- function(config.file='../2_metab_models/run3/out/config
   fitdir <- file.path(dirname(config.file), 'fits')
   lapply(c(sumdir, tsdir, predsdir, fitdir), function(xdir) if(!dir.exists(xdir)) dir.create(xdir))
   
+  config <- read_config(config.file) %>%
+    mutate(
+      resolution = substring(strategy, 7),
+      model_name = make_metab_model_name(title=make_metab_run_title(date=format(as.Date(date), '%y%m%d'), tag=tag, strategy=strategy), row=config.row, site=site))
   file_tally <- tally_summary_files(config, sumdir)
   need_rows <- file_tally %>% filter(is.na(all_files)) %>% .$row
   
@@ -30,9 +30,8 @@ summarize_run3_models <- function(config.file='../2_metab_models/run3/out/config
   for(cr in need_rows) {
     message("summarizing config row ", cr)
     tryCatch({
-      model_name <- config$model_name[cr]
-      mm <- get_metab_model(model_name, version='original', update_sb=FALSE)
-      summarize_model(mm, model_name, outdir=sumdir)
+      mm <- get_metab_model(config$model_name[cr], version='original', update_sb=FALSE)
+      make_model_summary(mm, outdir=sumdir)
       make_model_tses(mm, outdir=tsdir)
       make_model_preds(mm, outdir=predsdir)
       make_model_fit(mm, outdir=fitdir)
