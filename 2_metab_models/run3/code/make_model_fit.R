@@ -19,10 +19,20 @@ make_model_fit <- function(model_out, outdir) {
   subdir <- file.path(outdir, config_row$model_name)
   if(!dir.exists(subdir)) dir.create(subdir)
   
-  # add non-R files, one per element of the fit list
-  fit <- get_fit(model_out)
-  lapply(names(fit), function(fitname) {
-    f <- fit[[fitname]]
+  # add non-R files, one per element of the fit list and the filtered input data
+  fitplus <- get_fit(model_out)
+  valid_dates <- filter(fitplus$daily, valid_day)$date
+  fitplus$data <- get_data(model_out) %>%
+    filter(date %in% valid_dates) %>%
+    select(solar.time, DO.obs, DO.sat, depth, temp.water, light, discharge)
+  fitplus$data_daily <- get_data_daily(model_out) %>%
+    filter(date %in% valid_dates) %>%
+    select(date, discharge.daily)
+  fitplus$specs <- get_specs(model_out) %>%
+    { .[-which(names(.) == 'model_path')] } %>%
+    { capture.output(dput(.)) }
+  lapply(names(fitplus), function(fitname) {
+    f <- fitplus[[fitname]]
     if(is.data.frame(f)) {
       write.table(f, file=file.path(subdir, sprintf("%s.tsv", fitname)), row.names = FALSE, sep='\t')
     } else {
