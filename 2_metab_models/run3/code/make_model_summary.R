@@ -1,6 +1,8 @@
+
+
 summarize_model <- function(model_out, model_name, outdir) {
   
-  library(methods)
+  library(methods) # necessary when running via 'Rscript' call at command line
   library(dplyr)
   library(tidyr)
   library(ggplot2)
@@ -32,6 +34,7 @@ summarize_model <- function(model_out, model_name, outdir) {
       age=ifelse(param=='Q','new','old')
     ) %>%
     select(date, param, age, value)
+  write.csv(old_daily, make_filename('old_daily','csv'), row.names=FALSE)
   
   # Read the daily params if available
   pars <- get_params(model_out, uncertainty='ci')
