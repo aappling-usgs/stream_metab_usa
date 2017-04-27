@@ -31,10 +31,10 @@ summarize_run3_models <- function(config.file='../2_metab_models/run3/out/config
     message("summarizing config row ", cr)
     tryCatch({
       mm <- get_metab_model(config$model_name[cr], version='original', update_sb=FALSE)
-      make_model_summary(mm, outdir=sumdir)
-      make_model_tses(mm, outdir=tsdir)
-      make_model_preds(mm, outdir=predsdir)
-      make_model_fit(mm, outdir=fitdir)
+      make_model_summary(mm, outdir=sumdir) # for devs + data paper
+      make_model_tses(mm, outdir=tsdir) # for collaborators
+      make_model_preds(mm, outdir=predsdir) # for data paper
+      make_model_fit(mm, outdir=fitdir) # ofr data paper
     }, error=function(e) {
       message('  error: ', e$message)
       cat(sprintf("Error in config.row %d:", cr),
@@ -44,6 +44,8 @@ summarize_run3_models <- function(config.file='../2_metab_models/run3/out/config
           file=file.path(dirname(config.file), 'summary_errors.txt'), 
           append=TRUE)
     })
+    rm(mm)
+    gc()
   }
   
   need_rows <- which_summaries_needed(config, sumdir)

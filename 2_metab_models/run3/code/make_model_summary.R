@@ -39,7 +39,7 @@ make_model_summary <- function(model_out, outdir) {
       age=ifelse(param=='Q','new','old')
     ) %>%
     select(date, param, age, value)
-  write.csv(old_daily, make_filename('old_daily','csv'), row.names=FALSE)
+  write.table(old_daily, make_filename('old_daily','tsv'), row.names=FALSE, sep='\t')
   
   # Read the daily params if available
   pars <- get_params(model_out, uncertainty='ci')
@@ -302,8 +302,10 @@ make_model_summary <- function(model_out, outdir) {
     mutate(
       model_name = config_row$model_name,
       K600_daily_sigma_sigma = specs$K600_daily_sigma_sigma,
+      burnin_steps = specs$burnin_steps,
+      saved_steps = specs$saved_steps,
       runtime = get_fitting_time(model_out)[['elapsed']]
     ) %>%
     select(model_name, everything())
-  write.csv(allstats, make_filename('stats','csv'), row.names=FALSE)
+  write.table(allstats, make_filename('stats','tsv'), row.names=FALSE, sep='\t')
 }

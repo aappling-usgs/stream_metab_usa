@@ -41,7 +41,7 @@ make_model_fit <- function(model_out, outdir) {
   })
   
   # compress and delete the uncompressed folder
-  tarfile <- paste0(basename(subdir), '_fit.tar.gz')
+  tarfile <- paste0(basename(subdir), ' fit.tar.gz')
   wd <- getwd()
   setwd(file.path(subdir, '..'))
   utils::tar(tarfile = tarfile, files=basename(subdir), compression='gzip', compression_level = 6)
