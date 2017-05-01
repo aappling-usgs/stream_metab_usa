@@ -16,5 +16,12 @@ make_expert_file <- function(model.stats.file='../2_metab_outputs/out/model_stat
     arrange(site, model_name) %>%
     select(site, everything()) %>%
     mutate(confidence = NA)
+  
+  # make sure the ordering matches the existing spreadsheet. Need to download
+  # Expert Model Assessment from Google Drive as tsv and put it in
+  # 2_metab_outputs/in for this to work.
+  prev_file <- read.table('../2_metab_outputs/in/Expert Model Assessment.tsv', header=TRUE, stringsAsFactors=FALSE, sep='\t')
+  bob_maite <- bob_maite[match(prev_file$model_name_run3, bob_maite$model_name),]
+  
   write.table(bob_maite, outfile, row.names=FALSE, sep='\t')
 }
