@@ -23,7 +23,8 @@ combine_summary_jobs <- function(config.file='../2_metab_outputs/out/config.tsv'
   # add additional model metadata
   all_stats <- all_stats %>%
     bind_cols(parse_metab_model_name(all_stats$model_name, use_names=FALSE)) %>%
-    mutate(resolution=substring(strategy, 7))
+    mutate(resolution=substring(strategy, 7),
+           num_days=ER_daily_Rhat.n)
   
   # compute our chosen metric of convergence
   all_stats <- all_stats %>%

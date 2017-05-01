@@ -9,7 +9,11 @@ summarize_model_stats <- function(model.stats.file='../2_metab_outputs/out/model
   library(tidyr)
   library(ggplot2)
   
-  ggplot(all_stats, aes(x=ER_daily_Rhat.n, y=runtime, color=is_converged)) + geom_point()
+  # plot convergence, runtime, resolution, number of iterations, and number of
+  # input days. resolution has a strong effect on runtime.
+  plot_convergence <- ggplot(all_stats, aes(x=num_days, y=runtime/(60*60*24), color=resolution, alpha=is_converged)) + 
+    geom_point() + facet_grid(saved_steps ~ .)
+  ggsave(file.path(outdir, 'plot_convergence.png'), plot_convergence, width=7, height=7)
   
   # plot distributions of various metrics of whole-model convergence
   rhat_stats_wide <- select(all_stats, model_name, starts_with('all_params_Rhat')) %>% 
