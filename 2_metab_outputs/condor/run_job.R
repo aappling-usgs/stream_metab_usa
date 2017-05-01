@@ -18,7 +18,7 @@ tryCatch(
   error=function(e) {
     message('package installation had an error; see error file')
     writeLines(c(e$message, capture.output(print(e$call))), file.path(outdir, sprintf("error job_%s.txt", job-1)))
-    saveRDS(e, file.path(outdir, sprintf("errRds job_%s.Rds", job-1)))
+    saveRDS(e, file.path(outdir, sprintf("errors job_%s.Rds", job-1)))
     stop(e)
   })
 

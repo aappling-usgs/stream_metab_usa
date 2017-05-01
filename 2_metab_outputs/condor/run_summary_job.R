@@ -31,17 +31,28 @@ run_summary_job <- function(rows, outdir='job') {
   fitdir <- file.path(outdir, 'fits')
   lapply(c(sumdir, tsdir, predsdir, fitdir), function(xdir) if(!dir.exists(xdir)) dir.create(xdir))
   
+  print(dir())
+  print(readLines('stream_metab.yaml', n=1))
+  print(login_sb)
+  
   # create the individual files for each model (config.row)
-  login_sb()
   for(cr in seq_len(nrow(config))) {
+    login_sb(filename='stream_metab.yaml')
     message("summarizing config row ", config$config.row[cr])
-    mm <- get_metab_model(config$model_name[cr], version='original', update_sb=FALSE)
-    make_model_summary(mm, outdir=sumdir) # for devs + data paper
-    make_model_tses(mm, outdir=tsdir) # for collaborators
-    make_model_preds(mm, outdir=predsdir) # for data paper
-    make_model_fit(mm, outdir=fitdir) # ofr data paper
-    rm(mm)
-    gc()
+    tryCatch({
+      mm <- get_metab_model(config$model_name[cr], version='original', update_sb=FALSE)
+      make_model_summary(mm, outdir=sumdir) # for devs + data paper
+      make_model_tses(mm, outdir=tsdir) # for collaborators
+      make_model_preds(mm, outdir=predsdir) # for data paper
+      make_model_fit(mm, outdir=fitdir) # ofr data paper
+      rm(mm)
+      gc()
+      file.remove(dir(tempdir(), pattern='.RData'))
+    }, error=function(e) {
+      message(e)
+      message("couldn't summarize row ", config$config.row[cr], ". snoozing and keeping on keeping on.")
+      Sys.sleep(120)
+    })
   }
   
 }
