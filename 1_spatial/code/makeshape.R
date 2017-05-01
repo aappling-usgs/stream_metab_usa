@@ -53,36 +53,23 @@ create_site_points <- function(sites, crs.string = "+init=epsg:4326"){
 combine_spatial <- function(...){
   to.combine <- list(...)
   sp.out <- to.combine[[1]]
+  proj.string <- proj4string(sp.out)
   uid <-1 
   n <- length(slot(sp.out, "polygons"))  
   sp.out <- spChFIDs(sp.out, as.character(uid:(uid+n-1)))
   uid <- uid + n
   for (i in seq_len(length(to.combine))[-1L]){
-    n <- length(slot(to.combine[[i]], "polygons"))
-    to.combine[[i]] <- spChFIDs(to.combine[[i]], as.character(uid:(uid+n-1)))
-    uid <- uid + n 
-    sp.out<- maptools::spRbind(sp.out,to.combine[[i]]) 
+    combine.i <- !to.combine[[i]]@data$site_name %in% sp.out@data$site_name
+    if (any(combine.i)){
+      n <- length(slot(to.combine[[i]][combine.i, ], "polygons"))
+      bind.data <- to.combine[[i]][combine.i, ]
+      bind.data <- spChFIDs(bind.data, as.character(uid:(uid+n-1)))
+      uid <- uid + n 
+      bind.data <- spTransform(bind.data, proj.string)
+      sp.out<- maptools::spRbind(sp.out, bind.data) 
+    }
   }
   return(sp.out)
-}
-
-#' create a summary map of sites and catchments
-#' 
-#' @param points sp object of SpatialPointsDataFrame
-#' @param catchments sp object of SpatialPolygonsDataFrame
-#' @param outfile the name of the image to create (must end in '.png')
-#' 
-#' This is a summary function for seeing the sites and the catchments as a single figure. 
-#' The sites with a catchment are plotted as green, and sites w/o a catchment are red. 
-#' Only catchment boundaries are plotted (no fill color used).
-inventory_map <- function(points, catchments, outfile){
-  catchment.ids <- as.character(unique(catchments@data$site_name))
-  message(length(catchment.ids), ' sites w/ catchments (out of ', length(points),')')
-  png(filename = outfile, width = 10, height = 7, res = 350, units = 'in')
-  plot(points[points@data$site_name %in% catchment.ids, ], col='green', pch=20, cex=0.4)
-  plot(points[!points@data$site_name %in% catchment.ids, ], col='red', pch=20, cex=0.4, add=TRUE)
-  plot(catchments, add=TRUE)
-  dev.off()
 }
 
 #' get catchments from web services and return sp objects
@@ -106,7 +93,9 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
   
   postURL <- "https://cida.usgs.gov/nwc/geoserver/NWC/ows"
   filterXML <- paste0('<?xml version="1.0"?>',
-                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="shape-zip" xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
+                      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                      xmlns:gml="http://www.opengis.net/gml" service="WFS" version="1.1.0" outputFormat="shape-zip" 
+                      xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.1.0/wfs.xsd">',
                       sprintf('<wfs:Query xmlns:feature="http://owi.usgs.gov/NWC" typeName="feature:%s" srsName="EPSG:4326">', feature.name))
   
   siteText <- ""
@@ -140,7 +129,6 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
     select(site_name, ogc_fid)
   raw.catchments@data <- updated.data
   catchments <- spTransform(raw.catchments, CRS(crs.string))
-  
   return(catchments)
 }
 
@@ -156,4 +144,24 @@ write_shapefile <- function(obj, layer){
   writeOGR(obj, dsn=shape.dir, layer = layer, driver = 'ESRI Shapefile', overwrite_layer=TRUE)
   files <- file.path(shape.dir, dir(shape.dir))
   return(files)
+}
+
+
+#' create a catchment polygon formatted for NWIS
+#' 
+#' take a file path for a shapfile file and create an sp object that 
+#' has data fields for NWIS site ID
+#' 
+#' @param shp.path the file path to a shapefile file relative to the \code{remake} directory
+#' @return an sp object for the catchment
+as.nwis_catchment <- function(shp.path){
+  shp.dir <- dirname(shp.path)
+  nwis.id <- strsplit(basename(shp.path), '[.]')[[1]][1]
+  poly <- readOGR(dsn = shp.dir, layer = nwis.id, verbose = FALSE)
+  if (length(poly) > 1){
+    poly <- poly[2, ] # is always the second feature when this happens
+    message(nwis.id, ' is goofy, subsetting to single polygon')
+  } 
+  poly@data <- data.frame(site_name = mda.streams::make_site_name(nwis.id, 'nwis'), ogc_fid = 'NA')
+  return(poly)
 }
