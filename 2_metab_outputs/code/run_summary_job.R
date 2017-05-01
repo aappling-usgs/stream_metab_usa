@@ -1,7 +1,10 @@
 #' Self-contained function to run the model and data specified by a specific 
-#' config row (job) and save the results in a specific output directory. When
-#' this is called, the requisite packages should already be installed and
-#' argument values filled out.
+#' config row (job) and save the results in a specific output directory. When 
+#' this is called, the requisite packages should already be installed and 
+#' argument values filled out. The working directory should be set to the same
+#' directory as a copy of make_model_summary.R, make_model_tses.R,
+#' make_model_preds.R, make_model_fit.R, and an empty folder with the name given
+#' by `outdir`.
 run_summary_job <- function(rows, outdir='job') {
   
   # load the basics
@@ -31,13 +34,9 @@ run_summary_job <- function(rows, outdir='job') {
   fitdir <- file.path(outdir, 'fits')
   lapply(c(sumdir, tsdir, predsdir, fitdir), function(xdir) if(!dir.exists(xdir)) dir.create(xdir))
   
-  print(dir())
-  print(readLines('stream_metab.yaml', n=1))
-  print(login_sb)
-  
   # create the individual files for each model (config.row)
   for(cr in seq_len(nrow(config))) {
-    login_sb(filename='stream_metab.yaml')
+    login_sb() # need login_sb(filename='stream_metab.yaml') if running on Condor cluster
     message("summarizing config row ", config$config.row[cr])
     tryCatch({
       mm <- get_metab_model(config$model_name[cr], version='original', update_sb=FALSE)
