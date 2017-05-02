@@ -1,7 +1,7 @@
 library(mda.streams)
 library(dplyr)
 library(streamMetabolizer)
-stage_ts_metab <- function(mm, config, outdir='../2_metab_outputs/out/ts') {
+stage_ts_metab <- function(site, config, outdir='../2_metab_outputs/out/ts') {
   
   if(!dir.exists(outdir)) dir.create(outdir)
   
