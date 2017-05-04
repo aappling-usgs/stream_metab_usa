@@ -1,0 +1,26 @@
+target_default: 1_metab
+
+include:
+  - 2_metab.yml
+
+packages:
+  - yaml
+  - dplyr
+  - tidyr
+  - ggplot2
+  - mda.streams
+  - sbtools
+  - miniCRAN
+  - streamMetabolizer
+
+sources:
+  - ../lib/check_frozen.R
+  - ../lib/load_profile.R
+  - ../lib/write_status_table.R
+  - ../2_metab_outputs/code/make_expert_file.R
+  - ../2_metab_outputs/code/stage_ts_metab.R
+  - ../2_metab_outputs/code/read_final_metab_sites.R
+
+targets:
+  metab.sites.final:
+    command: read_final_metab_sites('../2_metab_models/run3/out/config.tsv')
