@@ -75,10 +75,10 @@ targets:
   # Post data to ScienceBase
   sb_gpp_estBest:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_gpp_estBest.tsv', outputs.config)
-    depends: gpp_estBest
+    #depends: gpp_estBest # remove dependency while 2 models still running
   sb_er_estBest:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_er_estBest.tsv', outputs.config)
-    depends: er_estBest
+    #depends: er_estBest # remove dependency while 2 models still running
   sb_K600_estBest:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config)
-    depends: K600_estBest
+    #depends: K600_estBest # remove dependency while 2 models still running
