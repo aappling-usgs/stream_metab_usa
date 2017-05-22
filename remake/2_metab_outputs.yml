@@ -1,0 +1,84 @@
+target_default: 2_metab_outputs
+
+include:
+  - 2_metab_models.yml
+
+packages:
+  - yaml
+  - dplyr
+  - tidyr
+  - ggplot2
+  - mda.streams
+  - sbtools
+  - miniCRAN
+  - streamMetabolizer
+
+sources:
+  - ../lib/check_frozen.R
+  - ../lib/load_profile.R
+  - ../lib/write_status_table.R
+  - ../2_metab_outputs/code/make_expert_file.R
+  - ../2_metab_outputs/code/stage_ts_metab.R
+  - ../2_metab_outputs/code/read_final_metab_sites.R
+  - ../1_timeseries/code/create_ts_table.R
+  - ../1_timeseries/code/sb_check_ts_status.R
+  - ../1_timeseries/code/stage_ts.R
+  - ../1_timeseries/code/sb_post_ts.R
+  - ../1_timeseries/code/sb_archive_ts.R
+
+targets:
+  2_metab_outputs:
+    depends:
+      - sb_gpp_estBest
+      - sb_er_estBest
+      - sb_K600_estBest
+
+  outputs.config:
+    command: yaml.load_file("../2_metab_outputs/in/outputs_config.yml")
+
+  metab.config:
+    command: read_config('../2_metab_models/run3/out/config.tsv')
+
+  metab.sites.out:
+    command: read_final_metab_sites(metab.config)
+  
+  # Create file status tables
+  status_tables:
+    depends:
+      - ../2_metab_outputs/out/files_ts_gpp_estBest.tsv
+      - ../2_metab_outputs/out/files_ts_er_estBest.tsv
+      - ../2_metab_outputs/out/files_ts_K600_estBest.tsv
+  
+  ../2_metab_outputs/out/files_ts_gpp_estBest.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+  
+  ../2_metab_outputs/out/files_ts_er_estBest.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+
+  ../2_metab_outputs/out/files_ts_K600_estBest.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+  
+   # Merge model predictions for each site and stage for SB
+  staged_tses:
+    depends:
+      - gpp_estBest
+      - er_estBest
+      - K600_estBest
+  
+  gpp_estBest:
+    command: stage_ts_metab('../2_metab_outputs/out/files_ts_gpp_estBest.tsv', outputs.config, metab.config)
+  er_estBest:
+    command: stage_ts_metab('../2_metab_outputs/out/files_ts_er_estBest.tsv', outputs.config, metab.config)
+  K600_estBest:
+    command: stage_ts_metab('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config, metab.config)
+  
+  # Post data to ScienceBase
+  sb_gpp_estBest:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_gpp_estBest.tsv', outputs.config)
+    depends: gpp_estBest
+  sb_er_estBest:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_er_estBest.tsv', outputs.config)
+    depends: er_estBest
+  sb_K600_estBest:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config)
+    depends: K600_estBest
