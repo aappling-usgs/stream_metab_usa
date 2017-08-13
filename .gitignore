@@ -9,6 +9,7 @@ temp
 starter_files/*.RData
 */cache/
 1_spatial/in/CONF_struct_170407.csv
+1_spatial/in/POWSTREAMS_NAD83.7z
 2_metab_models/cluster/packages
 2_metab_models/*/cluster/*
 2_metab_models/*/out/log_*/*
