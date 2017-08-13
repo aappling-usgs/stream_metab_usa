@@ -1,4 +1,4 @@
-prep_summary_jobs <- function(config.file='../2_metab_outputs/condor/config.tsv', num.jobs=50) {
+prep_summary_jobs <- function(config.file='../2_metab_outputs/out/config.tsv', num.jobs=50) {
   library(dplyr)
   library(mda.streams)
   jobtbl_old <- read_config(config.file) %>%
@@ -7,7 +7,7 @@ prep_summary_jobs <- function(config.file='../2_metab_outputs/condor/config.tsv'
            job.id=rep(seq_len(50), length.out=n()))
   
   # use the fit files as a proxy for all of the files for a given site (for now)
-  donefits <- dir(file.path(dirname(config.file), 'results/fits')) %>%
+  donefits <- dir(file.path(dirname(config.file), 'fits')) %>%
     gsub(' fit\\.tar\\.gz', '', .) %>% 
     parse_metab_model_name(out='row', use_names=F)
   
