@@ -90,5 +90,5 @@ targets:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config)
     depends: K600_estBest
   sb_mfootdaily_calc3vK:
-    command: sb_post_ts('../1_timeseries/out/files_ts_doobs_nwis.tsv', outputs.config)
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv', outputs.config)
     depends: mfootdaily_calc3vK
