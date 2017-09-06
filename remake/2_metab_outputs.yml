@@ -10,7 +10,6 @@ packages:
   - ggplot2
   - mda.streams
   - sbtools
-  - miniCRAN
   - streamMetabolizer
 
 sources:
@@ -32,6 +31,7 @@ targets:
       - sb_gpp_estBest
       - sb_er_estBest
       - sb_K600_estBest
+      - sb_mfootdaily_calc3vK
 
   outputs.config:
     command: yaml.load_file("../2_metab_outputs/in/outputs_config.yml")
@@ -58,12 +58,16 @@ targets:
   ../2_metab_outputs/out/files_ts_K600_estBest.tsv:
     command: create_ts_table(metab.sites.out, outputs.config, target_name)
   
+  ../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+  
    # Merge model predictions for each site and stage for SB
   staged_tses:
     depends:
       - gpp_estBest
       - er_estBest
       - K600_estBest
+      - mfootdaily_calc3vK
   
   gpp_estBest:
     command: stage_ts_metab('../2_metab_outputs/out/files_ts_gpp_estBest.tsv', outputs.config, metab.config)
@@ -71,14 +75,20 @@ targets:
     command: stage_ts_metab('../2_metab_outputs/out/files_ts_er_estBest.tsv', outputs.config, metab.config)
   K600_estBest:
     command: stage_ts_metab('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config, metab.config)
+  mfootdaily_calc3vK:
+    command: stage_ts('../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv')
+    depends: sb_K600_estBest
   
   # Post data to ScienceBase
   sb_gpp_estBest:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_gpp_estBest.tsv', outputs.config)
-    #depends: gpp_estBest # remove dependency while 2 models still running
+    depends: gpp_estBest
   sb_er_estBest:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_er_estBest.tsv', outputs.config)
-    #depends: er_estBest # remove dependency while 2 models still running
+    depends: er_estBest
   sb_K600_estBest:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config)
-    #depends: K600_estBest # remove dependency while 2 models still running
+    depends: K600_estBest
+  sb_mfootdaily_calc3vK:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv', outputs.config)
+    depends: mfootdaily_calc3vK
