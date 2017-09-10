@@ -16,6 +16,7 @@ sources:
   - ../lib/check_frozen.R
   - ../lib/load_profile.R
   - ../lib/write_status_table.R
+  - ../lib/sb_post_meta.R
   - ../2_metab_outputs/code/make_expert_file.R
   - ../2_metab_outputs/code/stage_ts_metab.R
   - ../2_metab_outputs/code/read_final_metab_sites.R
@@ -24,7 +25,8 @@ sources:
   - ../1_timeseries/code/stage_ts.R
   - ../1_timeseries/code/sb_post_ts.R
   - ../1_timeseries/code/sb_archive_ts.R
-
+  - ../2_metab_outputs/code/make_meta_struct.R
+  
 targets:
   2_metab_outputs:
     depends:
@@ -32,6 +34,7 @@ targets:
       - sb_er_estBest
       - sb_K600_estBest
       - sb_mfootdaily_calc3vK
+      - sb_meta_struct
 
   outputs.config:
     command: yaml.load_file("../2_metab_outputs/in/outputs_config.yml")
@@ -92,3 +95,7 @@ targets:
   sb_mfootdaily_calc3vK:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv', outputs.config)
     depends: mfootdaily_calc3vK
+    
+  # site flags for upstream structures crossed with metabolic footprints
+  sb_meta_struct:
+    command: make_meta_struct("../1_spatial/in/CONF_struct_170407.csv", outputs.config, use_cached=TRUE, on_exists=I("replace"))
