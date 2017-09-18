@@ -1,6 +1,7 @@
 target_default: 4_data_release
 
 include:
+  - 1_site_data.yml
   - 1_spatial.yml
   
 packages:
@@ -16,6 +17,7 @@ packages:
   - meddle
   
 sources:
+  - ../4_data_release/code/prepare_site_data.R
   - ../4_data_release/code/post_data_release.R
   - ../lib/load_profile.R
   
@@ -26,12 +28,18 @@ targets:
       - site_points
       - metadata_basic
       - metadata_dvqcoefs
-    
+  
+  # -- data munging for release --
+  
+  meta_all:
+    command: combine_site_data(meta_basic, meta_dvqcoefs, target_name)
+  
+  # -- parent metadata --
   parent_metadata: 
     command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
     
   # -- intermediate tables --
-  ../4_data_release/in/meta_dvqcoefs_attr.csv:
+  ../4_data_release/in/meta_all_attr.csv:
     command: attribute_skeleton(meta_dvqcoefs, target_name)
     
   ../4_data_release/in/catchment_attr.csv:
@@ -58,20 +66,14 @@ targets:
   points_attr:
     command: as.attr_list('../4_data_release/in/points_attr.csv')
   
-  meta_basic_attr:
-    command: as.attr_list('../4_data_release/in/meta_basic_attr.csv')  
-
-  meta_dvqcoefs_attr:
-    command: as.attr_list('../4_data_release/in/meta_dvqcoefs_attr.csv') 
+  meta_all_attr:
+    command: as.attr_list('../4_data_release/in/meta_all_attr.csv')
   
   # -- meta out --
   
-  ../4_data_release/in/meta_basic.xml:
-    command: render("../4_data_release/in/metadata_basic.yaml", target_name, points_metadata, meta_basic_attr, parent_metadata)
+  ../4_data_release/in/meta_all.xml:
+    command: render("../4_data_release/in/metadata_all.yaml", target_name, points_metadata, meta_all_attr, parent_metadata)
   
-  ../4_data_release/out/meta_dvqcoefs.xml:
-    command: render("../4_data_release/in/metadata_dvqcoefs.yaml", target_name, points_metadata, meta_dvqcoefs_attr, parent_metadata)
-    
   ../4_data_release/out/site_catchment_shapefile.shp.xml:
     command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name, catchment_metadata, catchment_attr, parent_metadata)
   
@@ -103,9 +105,5 @@ targets:
     command: create_release_item(pc1_spatial, target_name, points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
     depends: spatial.points
   
-  metadata_basic:
-    command: create_release_item(pc1_site_metadata, target_name, meta_basic, '../4_data_release/out/meta_basic.xml')
-  
-  metadata_dvqcoefs:
-    command: create_release_item(pc1_site_metadata, target_name, meta_dvqcoefs, '../4_data_release/out/meta_dvqcoefs.xml')
-    
+  metadata_all:
+    command: create_release_item(pc1_site_metadata, target_name, meta_all, '../4_data_release/out/meta_all.xml')
