@@ -19,7 +19,7 @@ targets:
 
   
   
-  pc4_timeseries:
+  pc1_timeseries:
     command: create_release_child(stream_metab_powell_release, target_name)
     
   # -- for each site: ----  
@@ -31,4 +31,4 @@ targets:
     command: download_release_ts(target_name)
 
   nwis_01021050_timeseries:
-    command: merge_and_post_sb(target_name, pc4_timeseries, '../1_timeseries/cache/nwis_01021050-ts_baro_gldas.rds', '../1_timeseries/cache/nwis_01021050-ts_sw_nldas.rds')
+    command: merge_and_post_sb(target_name, pc1_timeseries, '../1_timeseries/cache/nwis_01021050-ts_baro_gldas.rds', '../1_timeseries/cache/nwis_01021050-ts_sw_nldas.rds')
