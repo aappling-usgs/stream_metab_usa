@@ -1,7 +1,7 @@
 target_default: 4_data_release
 
 include:
-  - 1_spatial.yml
+  - 1_spatial.yml # 1_site_data.yml gets included via this file
   
 packages:
   - yaml
@@ -16,75 +16,78 @@ packages:
   - meddle
   
 sources:
+  - ../4_data_release/code/prepare_site_data.R
   - ../4_data_release/code/post_data_release.R
   - ../lib/load_profile.R
   
 targets:
   4_data_release:
     depends: 
-      - site_catchments
-      - site_points
-      - metadata_basic
-      - metadata_dvqcoefs
+      - release_site_catchments
+      - release_site_points
+      - release_site_data
+  
+  # -- munge & write data for release --
+      
+  catchment_shapefile:
+    command: write_shapefile(spatial.catchments, target_name)
     
+  points_shapefile:
+    command: write_shapefile(spatial.points, target_name)
+    
+  meta_all_df:
+    command: combine_site_data(sb_meta_basic, sb_meta_dvqcoefs, sb_meta_struct)
+    
+  ../4_data_release/cache/site_data.tsv:
+    command: write_site_data(meta_all_df, outfile=target_name)
+  
+  # -- read parent metadata --
+  
   parent_metadata: 
     command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
     
-  # -- intermediate tables --
-  ../4_data_release/in/meta_dvqcoefs_attr.csv:
-    command: attribute_skeleton(meta_dvqcoefs, target_name)
-    
+  # -- create tables with partial info to complete manually --
+  
   ../4_data_release/in/catchment_attr.csv:
     command: attribute_skeleton(spatial.catchments, target_name)
   
   ../4_data_release/in/points_attr.csv:
     command: attribute_skeleton(spatial.points, target_name)
   
-  ../4_data_release/in/meta_basic_attr.csv:
-    command: attribute_skeleton(meta_basic, target_name)
+  ../4_data_release/in/site_data_attr.csv:
+    command: attribute_skeleton(meta_all_df, target_name)
+    
+  # -- read manual entry and extracted metadata -- 
   
-  # -- autopopulate metadata -- 
-  catchment_metadata:
-    command: extract_feature(spatial.catchments)
-  
-  points_metadata:
-    command: extract_feature(spatial.points)  
-  
-  
-  # -- formulate manual entry and extracted metadata -- 
   catchment_attr:
     command: as.attr_list('../4_data_release/in/catchment_attr.csv')  
   
   points_attr:
     command: as.attr_list('../4_data_release/in/points_attr.csv')
   
-  meta_basic_attr:
-    command: as.attr_list('../4_data_release/in/meta_basic_attr.csv')  
-
-  meta_dvqcoefs_attr:
-    command: as.attr_list('../4_data_release/in/meta_dvqcoefs_attr.csv') 
+  site_data_attr:
+    command: as.attr_list('../4_data_release/in/site_data_attr.csv')
   
-  # -- meta out --
+  # -- autopopulate metadata -- 
   
-  ../4_data_release/in/meta_basic.xml:
-    command: render("../4_data_release/in/metadata_basic.yaml", target_name, points_metadata, meta_basic_attr, parent_metadata)
+  catchment_metadata:
+    command: extract_feature(spatial.catchments)
   
-  ../4_data_release/out/meta_dvqcoefs.xml:
-    command: render("../4_data_release/in/metadata_dvqcoefs.yaml", target_name, points_metadata, meta_dvqcoefs_attr, parent_metadata)
-    
+  points_metadata:
+    command: extract_feature(spatial.points)  
+  
+  # -- create final metadata files --
+  
+  ../4_data_release/out/site_data.xml:
+    command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_metadata, site_data_attr, parent_metadata)
+  
   ../4_data_release/out/site_catchment_shapefile.shp.xml:
     command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name, catchment_metadata, catchment_attr, parent_metadata)
   
   ../4_data_release/out/site_points_shapefile.shp.xml:
     command: render("../4_data_release/in/metadata_site_points.yaml", target_name, points_metadata, points_attr, parent_metadata)
-    
-  catchment_shapefile:
-    command: write_shapefile(spatial.catchments, target_name)
-    
-  points_shapefile:
-    command: write_shapefile(spatial.points, target_name)
   
-  # -- SB posting --
+  # -- SB posting: create the items to host data and metadata --
 
   stream_metab_powell_release:
     command: create_release_parent(target_name, I('57adfa86e4b0fc09faad6d87'))
@@ -95,17 +98,15 @@ targets:
   pc1_site_metadata:
     command: create_release_child(stream_metab_powell_release, target_name)
   
-  site_catchments:
+  # -- final targets: post data and metadata to SB --
+  
+  release_site_catchments:
     command: create_release_item(pc1_spatial, target_name, catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
     depends: spatial.catchments
 
-  site_points:
+  release_site_points:
     command: create_release_item(pc1_spatial, target_name, points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
     depends: spatial.points
   
-  metadata_basic:
-    command: create_release_item(pc1_site_metadata, target_name, meta_basic, '../4_data_release/out/meta_basic.xml')
-  
-  metadata_dvqcoefs:
-    command: create_release_item(pc1_site_metadata, target_name, meta_dvqcoefs, '../4_data_release/out/meta_dvqcoefs.xml')
-    
+  release_site_data:
+    command: create_release_item(pc1_site_metadata, target_name, '../4_data_release/cache/site_data.tsv', '../4_data_release/out/site_data.xml')

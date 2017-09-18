@@ -11,8 +11,6 @@ sources:
   - ../1_site_data/code/create_site_table.R
   - ../1_site_data/code/sb_check_site_status.R
   - ../1_site_data/code/sb_post_sites.R
-  - ../1_site_data/code/cache_meta_basic.R
-  - ../1_site_data/code/cache_meta_dvqcoefs.R
   - ../lib/write_status_table.R
   - ../lib/cache_meta.R
   - ../lib/sb_post_meta.R
@@ -44,10 +42,14 @@ targets:
     command: yaml.load_file('../1_site_data/in/meta_config.yaml')
   
   meta_basic:
-    command: cache_meta_basic(sb_sites, meta.config)
+    command: cache_meta(type=I('basic'), config=meta.config, sites=sb_sites, on_exists=I('replace'))
     
   meta_dvqcoefs:
-    command: cache_meta_dvqcoefs(meta.config)
+    command: cache_meta(type=I('dvqcoefs'), config=meta.config)
+    depends: sb_meta_basic
+    
+  meta_struct:
+    command: cache_meta(type=I('struct'), config=meta.config, struct_file=I("../1_spatial/in/CONF_struct_170407.csv"))
     depends: sb_meta_basic
 
   sb_meta_basic: 
@@ -55,3 +57,6 @@ targets:
     
   sb_meta_dvqcoefs: 
     command: sb_post_meta(meta_dvqcoefs, meta.config)
+    
+  sb_meta_struct: 
+    command: sb_post_meta(meta_struct, meta.config)

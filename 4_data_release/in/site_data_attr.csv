@@ -1,0 +1,20 @@
+attr-label,attr-def,attr-defs,data-min,data-max,data-units
+site_name,NA,NA,NA,NA,NA
+nwis_id,NA,NA,NA,NA,NA
+nhdplus_id,NA,NA,NA,NA,NA
+long_name,NA,NA,NA,NA,NA
+lat,NA,NA,NA,NA,NA
+lon,NA,NA,NA,NA,NA
+coord_datum,NA,NA,NA,NA,NA
+alt,NA,NA,NA,NA,NA
+alt_datum,NA,NA,NA,NA,NA
+site_type,NA,NA,NA,NA,NA
+dvqcoefs.c,NA,NA,NA,NA,NA
+dvqcoefs.f,NA,NA,NA,NA,NA
+dvqcoefs.a,NA,NA,NA,NA,NA
+dvqcoefs.b,NA,NA,NA,NA,NA
+dvqcoefs.k,NA,NA,NA,NA,NA
+dvqcoefs.m,NA,NA,NA,NA,NA
+struct.canal_flag, , , , , 
+struct.dam_flag, , , , , 
+struct.npdes_flag, , , , , 
