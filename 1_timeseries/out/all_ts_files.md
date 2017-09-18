@@ -19,7 +19,7 @@
 |suntime_calcLon        |   751|         0|      52|     0|               0|           699|         0|       751|
 |par_calcLat            |   751|         0|      52|     0|               0|           699|         0|       751|
 |par_calcSw             |   751|         0|       2|     0|               0|           749|         0|       751|
-|par_calcLatSw          |   751|         0|      80|     0|               0|           671|         0|       751|
+|par_calcLatSw          |   751|         0|      53|     0|               0|           698|         0|       751|
 |sitedate_calcLon       |   751|         0|      52|     0|               0|           699|         0|       751|
 |doamp_calcDAmp         |   751|         0|      59|     0|               0|           692|         0|       751|
 |dischdaily_calcDMean   |   751|         0|     335|     0|               0|           416|         0|       751|

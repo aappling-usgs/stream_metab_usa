@@ -1,11 +1,14 @@
 #' Produce a plot and table giving the overall status of ts data staging/posting
 #' 
+#' @param progress.tsv the tab separated file to write the progress status to
+#' @param progress.md the markdown file to write the progress status to
+#' @param progress.png the filename for the png output
 #' @import mda.streams
 #' @import dplyr
 #' @import tidyr
 #' @import ggplot2
 #' @seealso read_status_table write_status_table
-summarize_ts_tables <- function() {
+summarize_ts_tables <- function(progress.tsv, progress.md = '../1_timeseries/out/all_ts_files.md', progress.png = '../1_timeseries/out/all_ts_files.png') {
   # change dirs if needed so this function can be run outside of remake
   wd <- getwd()
   if(!(basename(wd) %in% c('remake','stream_metab_usa')))
@@ -51,10 +54,10 @@ summarize_ts_tables <- function() {
       arrange(var_src)
     
     # write a table
-    write_status_table(progress_bars, '../1_timeseries/out/all_ts_files.tsv')
+    write_status_table(progress_bars, progress.tsv)
     
     # write a pretty table
-    writeLines(knitr::kable(progress_bars), '../1_timeseries/out/all_ts_files.md')
+    writeLines(knitr::kable(progress_bars), progress.md)
     
     # make a plot
     bardata <- progress_bars %>% 
@@ -64,7 +67,7 @@ summarize_ts_tables <- function() {
       geom_bar(aes(y=value, fill=status), position='stack', stat='identity') +
       ylab('Number of sites') + xlab('') +
       theme_bw() + theme(axis.text.x=element_text(angle=90))
-    ggsave('../1_timeseries/out/all_ts_files.png', plot=g, width=8, height=8, units='in')
+    ggsave(progress.png, plot=g, width=8, height=8, units='in')
     
   }, finally = { if(with_chdir) setwd(wd) }
   )
