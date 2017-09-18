@@ -27,17 +27,23 @@ targets:
       - site_points
       - metadata_all
   
-  # -- data munging for release --
-  
+  # -- munge data for release --
+      
+  catchment_shapefile:
+    command: write_shapefile(spatial.catchments, target_name)
+    
+  points_shapefile:
+    command: write_shapefile(spatial.points, target_name)
+    
   meta_all:
     command: combine_site_data(meta_basic, meta_dvqcoefs, outfile=target_name)
   
-  # -- parent metadata --
+  # -- read parent metadata --
   
   parent_metadata: 
     command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
     
-  # -- intermediate tables --
+  # -- create tables with partial info to complete manually --
   
   ../4_data_release/in/catchment_attr.csv:
     command: attribute_skeleton(spatial.catchments, target_name)
@@ -48,15 +54,7 @@ targets:
   ../4_data_release/in/site_data_attr.csv:
     command: attribute_skeleton(meta_all, target_name)
     
-  # -- autopopulate metadata -- 
-  
-  catchment_metadata:
-    command: extract_feature(spatial.catchments)
-  
-  points_metadata:
-    command: extract_feature(spatial.points)  
-  
-  # -- formulate manual entry and extracted metadata -- 
+  # -- read manual entry and extracted metadata -- 
   
   catchment_attr:
     command: as.attr_list('../4_data_release/in/catchment_attr.csv')  
@@ -67,7 +65,15 @@ targets:
   site_data_attr:
     command: as.attr_list('../4_data_release/in/site_data_attr.csv')
   
-  # -- meta out --
+  # -- autopopulate metadata -- 
+  
+  catchment_metadata:
+    command: extract_feature(spatial.catchments)
+  
+  points_metadata:
+    command: extract_feature(spatial.points)  
+  
+  # -- create final metadata files --
   
   ../4_data_release/out/site_data.xml:
     command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_metadata, site_data_attr, parent_metadata)
@@ -77,14 +83,8 @@ targets:
   
   ../4_data_release/out/site_points_shapefile.shp.xml:
     command: render("../4_data_release/in/metadata_site_points.yaml", target_name, points_metadata, points_attr, parent_metadata)
-    
-  catchment_shapefile:
-    command: write_shapefile(spatial.catchments, target_name)
-    
-  points_shapefile:
-    command: write_shapefile(spatial.points, target_name)
   
-  # -- SB posting --
+  # -- SB posting: create the items to host data and metadata --
 
   stream_metab_powell_release:
     command: create_release_parent(target_name, I('57adfa86e4b0fc09faad6d87'))
@@ -95,7 +95,7 @@ targets:
   pc1_site_metadata:
     command: create_release_child(stream_metab_powell_release, target_name)
   
-  # -- final targets --
+  # -- final targets: post data and metadata to SB --
   
   site_catchments:
     command: create_release_item(pc1_spatial, target_name, catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
