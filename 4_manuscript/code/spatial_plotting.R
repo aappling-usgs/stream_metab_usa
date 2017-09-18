@@ -9,11 +9,11 @@ plot_national_site_map <- function(target_name, sites){
   
   png(filename = target_name, width = 6, height = 4, units = 'in', res = 300)
   par(mai=c(0,0,0,0), omi=c(0,0,0,0))
-  plot(states)
+  plot(states, col = '#b8bfac', border = 'white', lwd = 0.5)
   sites.shifted <- spTransform(sites, proj.string) %>% 
     site_map()
   
-  plot(sites.shifted, add=TRUE, col='red', pch=20, cex=0.35)
+  plot(sites.shifted, add=TRUE, col='#2c5258', pch=20, cex=0.25)
   dev.off()
 }
 
