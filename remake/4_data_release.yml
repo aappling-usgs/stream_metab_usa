@@ -23,11 +23,11 @@ sources:
 targets:
   4_data_release:
     depends: 
-      - site_catchments
-      - site_points
-      - metadata_all
+      - release_site_catchments
+      - release_site_points
+      - release_site_data
   
-  # -- munge data for release --
+  # -- munge & write data for release --
       
   catchment_shapefile:
     command: write_shapefile(spatial.catchments, target_name)
@@ -35,8 +35,11 @@ targets:
   points_shapefile:
     command: write_shapefile(spatial.points, target_name)
     
-  meta_all:
-    command: combine_site_data(meta_basic, meta_dvqcoefs, outfile=target_name)
+  meta_all_df:
+    command: combine_site_data(sb_meta_basic, sb_meta_dvqcoefs, sb_meta_struct)
+    
+  ../4_data_release/cache/site_data.tsv:
+    command: write_site_data(meta_all_df, outfile=target_name)
   
   # -- read parent metadata --
   
@@ -52,7 +55,7 @@ targets:
     command: attribute_skeleton(spatial.points, target_name)
   
   ../4_data_release/in/site_data_attr.csv:
-    command: attribute_skeleton(meta_all, target_name)
+    command: attribute_skeleton(meta_all_df, target_name)
     
   # -- read manual entry and extracted metadata -- 
   
@@ -97,13 +100,13 @@ targets:
   
   # -- final targets: post data and metadata to SB --
   
-  site_catchments:
+  release_site_catchments:
     command: create_release_item(pc1_spatial, target_name, catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
     depends: spatial.catchments
 
-  site_points:
+  release_site_points:
     command: create_release_item(pc1_spatial, target_name, points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
     depends: spatial.points
   
-  metadata_all:
-    command: create_release_item(pc1_site_metadata, target_name, meta_all, '../4_data_release/out/site_data.xml')
+  release_site_data:
+    command: create_release_item(pc1_site_metadata, target_name, '../4_data_release/cache/site_data.tsv', '../4_data_release/out/site_data.xml')
