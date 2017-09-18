@@ -10,8 +10,7 @@ safe_login <- function(){
 #' 
 #' @param target_name the title of the parent item to be created
 #' @return a sciencebase ID
-create_release_parent <- function(target_name){
-  parent.id <- '57adfa86e4b0fc09faad6d87'
+create_release_parent <- function(target_name, parent.id ){
   create_release_child(parent.id, target_name)
 }
 
@@ -30,9 +29,11 @@ create_release_child <- function(parent.id, target_name){
 #' @param key the value to use when tagging items
 #' @param \dots optional files to append to the created item
 create_release_item <- function(parent.id, key, ...){
+  scheme <- 'powell_center_metabolism'
+  type <- 'data_release'
   safe_login()
-  if (item_exists(scheme = 'powell_center', type = 'data_release', key = key)){
-    sb.id <- query_item_identifier(scheme = 'powell_center', type = 'data_release', key = key)[[1]]$id
+  if (item_exists(scheme = scheme, type = type, key = key)){
+    sb.id <- query_item_identifier(scheme = scheme, type = type, key = key)[[1]]$id
     if (length(c(...)) > 0){
       item_rm(sb.id, recursive = TRUE)
       Sys.sleep(1)
@@ -45,7 +46,15 @@ create_release_item <- function(parent.id, key, ...){
   if (length(c(...)) > 0){
     append_release_files(sb.id, c(...))
   }
-  item_update_identifier(sb.id, scheme = 'powell_center', type = 'data_release', key = key)
+  item_update_identifier(sb.id, scheme = scheme, type = type, key = key)
+  
+  Sys.sleep(1)
+  
+  # check that it is indeed tagged
+  if (!item_exists(scheme = scheme, type = type, key = key)){
+    stop('item ', sb.id, ' failed to be properly tagged')
+  }
+  
   return(sb.id)
 }
 
