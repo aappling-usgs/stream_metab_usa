@@ -87,7 +87,7 @@ targets:
   # -- SB posting --
 
   stream_metab_powell_release:
-    command: create_release_parent(target_name)
+    command: create_release_parent(target_name, I('57adfa86e4b0fc09faad6d87'))
 
   pc1_spatial:
     command: create_release_child(stream_metab_powell_release, target_name)
