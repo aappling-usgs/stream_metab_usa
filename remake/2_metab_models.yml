@@ -1,4 +1,4 @@
-target_default: 1_metab
+target_default: 2_metab_models
 
 include:
   - 1_site_data.yml
@@ -33,9 +33,9 @@ sources:
 # collect_errors, collect_results, and summarize_results are manual for now
 
 targets:
-  1_metab:
-   depends: 
-     - run1_yaml
+  2_metab_models:
+   depends: # in the end, what's essential is that run3 models are created and posted to SB:
+     - '../2_metab_models/run3/out/files_metab.tsv'
 
   # decisions for this stream_metab_usa data release
   
@@ -180,8 +180,8 @@ targets:
   '../2_metab_models/run2/out/model_stats.csv': # runs for a long time, creates site-specific files in resummaries folder
     command: summarize_run2_models('../2_metab_models/run2/out/config.tsv', outfile=target_name)
 
-  resummaries.plots: # creates 'plot_rhatqs.png', 'plot_K600_daily_sigmas.png', etc. in resummaries folder
+  metab.run2.summaries: # creates 'plot_rhatqs.png', 'plot_K600_daily_sigmas.png', etc. in resummaries folder
     command: summarize_run2_stats('../2_metab_models/run2/out/model_stats.csv')
 
   '../2_metab_models/run2/out/expert_file.csv': # creates the starter file that bob and maite are using to categorize models
-    command: start_run2_expert_file('../2_metab_models/run2/out/model_stats.csv', outfile=target_name)
+    command: start_run2_expert_file('../2_metab_models/run2/out/config.tsv', '../2_metab_models/run2/out/model_stats.csv', outfile=target_name)

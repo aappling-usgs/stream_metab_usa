@@ -10,8 +10,8 @@ install_packages <- function(rlib='rLibs', oldonly=FALSE) {
     toinstall <- oldpkgs
   } else {
     # the condor solution, where every package is likely to need an update every time
-    prereqs <- c('BH', 'devtools', 'Rcpp', 'RcppEigen')
-    keypkgs <-   c('dplyr', 'rstan', 'tidyr', 'ggplot2', 'yaml', 'streamMetabolizer', 'mda.streams')
+    prereqs <- c('BH', 'devtools', 'Rcpp', 'RcppEigen', 'dataRetrieval', 'geoknife', 'sbtools') # last 3 for mda.streams?
+    keypkgs <-   c('dplyr', 'rstan', 'tidyr', 'ggplot2', 'cowplot', 'yaml', 'streamMetabolizer', 'mda.streams')
     toinstall <- c(setdiff(oldpkgs, c(prereqs, keypkgs)), prereqs, keypkgs)
   }
   print(toinstall)

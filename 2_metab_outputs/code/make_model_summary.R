@@ -1,19 +1,34 @@
-summarize_model <- function(model_out, model_name, outdir) {
+#' make a bunch of model summary files: diagnostic plots, statistics,
+#' comparisons to old estBest estimates, etc.
+make_model_summary <- function(model_out, outdir) {
   
+  library(methods) # necessary when running via 'Rscript' call at command line
+  library(dplyr)
+  library(tidyr)
+  library(ggplot2)
+  library(unitted)
+  library(streamMetabolizer)
+  library(mda.streams)
+
+  # Get model info
+  config_row <- get_info(model_out)$config %>%
+    mutate(
+      resolution = substring(strategy, 7),
+      model_name = make_metab_model_name(title=make_metab_run_title(date=format(as.Date(date), '%y%m%d'), tag=tag, strategy=strategy), row=config.row, site=site))
+    
   # Prepare to save things
   if(!dir.exists(outdir)) dir.create(outdir)
   make_filename <- function(file_id, ext) {
-    file.path(outdir, sprintf("%s %s.%s", model_name, file_id, ext))
+    file.path(outdir, sprintf("%s %s.%s", config_row$model_name, file_id, ext))
   }
-  config <- get_info(model_out)$config
   
   #### Read in Files ####
   
   # Get old estimates and/or discharge
   old_estBest <- tryCatch(
-    get_ts(c('sitedate_calcLon','gpp_estBest','er_estBest','K600_estBest','dischdaily_calcDMean'), config$site) %>%
+    get_ts(c('sitedate_calcLon','gpp_estBest','er_estBest','K600_estBest','dischdaily_calcDMean'), config_row$site) %>%
       unitted::v() %>% gather(param, value, gpp, er, K600, dischdaily),
-    error=function(e) get_ts(c('sitedate_calcLon','dischdaily_calcDMean'), config$site) %>%
+    error=function(e) get_ts(c('sitedate_calcLon','dischdaily_calcDMean'), config_row$site) %>%
       unitted::v() %>% gather(param, value, dischdaily)
   )
   old_daily <- old_estBest %>%
@@ -24,11 +39,12 @@ summarize_model <- function(model_out, model_name, outdir) {
       age=ifelse(param=='Q','new','old')
     ) %>%
     select(date, param, age, value)
+  write.table(old_daily, make_filename('old_daily','tsv'), row.names=FALSE, sep='\t')
   
   # Read the daily params if available
   pars <- get_params(model_out, uncertainty='ci')
-  pars$site <- config$site
-  pars$row <- config$config.row
+  pars$site <- config_row$site
+  pars$row <- config_row$config.row
   smry <- pars %>%
     select(site_name=site, config_row=row, everything())
   new_daily <- smry %>%
@@ -51,9 +67,7 @@ summarize_model <- function(model_out, model_name, outdir) {
   
   # Read the fit file (all params, with Rhats) if available
   fit <- get_fit(model_out)
-  # save the model fit as a list
-  fit.file <- file.path(outdir, sprintf("fit %s.Rds", model_name))
-  
+
   #### Plots and Stats ####
   
   # Plot daily values as time series
@@ -68,14 +82,14 @@ summarize_model <- function(model_out, model_name, outdir) {
       scale_shape_manual(guide='none', values=c(old=4, new=1)) +
       scale_color_manual(values=c(GPP_old='seagreen1', ER_old='tomato1', K600_old='turquoise1', Q_old='royalblue4',
                                   GPP_new='seagreen4', ER_new='tomato4', K600_new='turquoise4', Q_new='royalblue4')) +
-      theme_bw() + ggtitle(model_name)
+      theme_bw() + ggtitle(config_row$model_name)
   }
   plot_daily <- fun_plot_daily(daily)
-  ggsave(filename=make_filename('plot_daily', 'png'), plot=plot_daily, width=7, height=7)
+  ggsave(filename=make_filename('plot_daily_newold', 'png'), plot=plot_daily, width=7, height=7)
   plot_daily_newscale <- fun_plot_daily(daily_newscale)
   ggsave(filename=make_filename('plot_daily_newscale', 'png'), plot=plot_daily_newscale, width=7, height=7)
   plot_daily_new <- fun_plot_daily(new_daily)
-  ggsave(filename=make_filename('plot_daily_new', 'png'), plot=plot_daily_new, width=7, height=7)
+  ggsave(filename=make_filename('plot_daily', 'png'), plot=plot_daily_new, width=7, height=7)
   
   # Calculate correlations among daily values
   daily_mat <- daily %>%
@@ -196,7 +210,7 @@ summarize_model <- function(model_out, model_name, outdir) {
     geom_hline(yintercept=1.05, color='red') +
     geom_point(aes(size=count), alpha=0.3, position=position_jitter(width=0.2)) +
     scale_size_discrete(guide='none') + xlab('') +
-    theme_bw() + coord_flip() + ggtitle(model_name)
+    theme_bw() + coord_flip() + ggtitle(config_row$model_name)
   ggsave(filename=make_filename('plot_Rhats', 'png'), plot=plot_Rhats, width=7, height=7)
   
   # Summarize priors
@@ -256,7 +270,7 @@ summarize_model <- function(model_out, model_name, outdir) {
     select(K600_lnQ_nodes_50pct=lnK600_lnQ_nodes_50pct, K600_lnQ_nodes_2.5pct=lnK600_lnQ_nodes_2.5pct, K600_lnQ_nodes_97.5pct=lnK600_lnQ_nodes_97.5pct)
   plot_dists <- suppressWarnings(cowplot::plot_grid(
     distpoints(Kfit, 'K600_lnQ_nodes'),
-    distpoints(fit$overall, 'err_obs_iid_sigma') + xlab(model_name) + theme(axis.title.x=element_text(size=6)),
+    distpoints(fit$overall, 'err_obs_iid_sigma') + xlab(config_row$model_name) + theme(axis.title.x=element_text(size=6)),
     distpoints(fit$overall, 'err_proc_iid_sigma'),
     distpoints(fit$KQ_overall, 'K600_daily_sigma'),
     distpoints(fit$daily, 'GPP_daily'),
@@ -280,16 +294,18 @@ summarize_model <- function(model_out, model_name, outdir) {
     theme_bw() + theme(panel.grid.minor = element_blank(), axis.text.x=element_text(angle=90)) +
     #annotate('text', x=labx, y=laby, label=sprintf('K600_daily_sigma = %0.03f', fit$overall$K600_daily_sigma_50pct)) + 
     xlab(parse(text='Discharge~(m^3~s^-1)')) + ylab(parse(text=sprintf('K600~(d^-1)~"     K600_daily_sigma = %0.03f"', fit$KQ_overall$K600_daily_sigma_50pct))) + 
-    ggtitle(model_name)
+    ggtitle(config_row$model_name)
   ggsave(filename=make_filename('plot_KQ', 'png'), plot=plot_KQ, width=6, height=6)
   
   # Combine all the numbers and add a handful more
   allstats <- bind_cols(ranges, correlations, Rhatsum, distsum) %>%
     mutate(
-      model_name = model_name,
+      model_name = config_row$model_name,
       K600_daily_sigma_sigma = specs$K600_daily_sigma_sigma,
+      burnin_steps = specs$burnin_steps,
+      saved_steps = specs$saved_steps,
       runtime = get_fitting_time(model_out)[['elapsed']]
     ) %>%
     select(model_name, everything())
-  write.csv(allstats, make_filename('stats','csv'), row.names=FALSE)
+  write.table(allstats, make_filename('stats','tsv'), row.names=FALSE, sep='\t')
 }

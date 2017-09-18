@@ -35,6 +35,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   },
   error=function(e) {
     message('modeling or summarization had an error; see error file')
+    saveRDS(e, file.path(outdir, sprintf("error %s.Rds", stage_name)))
     writeLines(e$message, file.path(outdir, sprintf("error %s.txt", stage_name)))
     warning(e$message)
   })
@@ -93,7 +94,7 @@ run_model_job <- function(job, outdir, run_fun, retries=5, verbose=TRUE) {
   # place to be zipped and returned
   if(posted && tagged) {
     file.remove(file.path(outdir, sprintf("partial %s.Rds", stage_name)))
-    file.remove(stage_path)
+    # file.remove(stage_path) # keep it for faster summarization and staging tses
     message('model was successfully run and posted')
     invisible()
   } else {

@@ -3,10 +3,12 @@
 packages:
   - remake
 
-includes:
+include:
   - 1_site_data.yml
-  - 1_ldas_host.yml
+  - 1_spatial.yml
   - 1_timeseries.yml
+  - 2_metab_models.yml
+  - 2_metab_outputs.yml
   - 4_data_release.yml
   - 4_manuscript.yml
 

@@ -40,7 +40,13 @@ create_run3_config <- function(
       tag=run3_yaml[['tag']],
       config.row=1:n()) %>%
     select_(.dots=setdiff(names(prev.config), 'model_name'))
-    
+  
+  # also redo, for longer, those run3 models that first had saved_steps=500 but
+  # didn't converge
+  redos <- which(cfg$config.row %in% c(194,240,259,272,5,7,353,372,385,388,11,406))
+  cfg[redos,'model_args'] <- gsub('burnin_steps=1000', 'burnin_steps=2000', cfg[redos,'model_args'])
+  cfg[redos,'model_args'] <- gsub('saved_steps=500', 'saved_steps=2000', cfg[redos,'model_args'])
+  
   cfg.file <- write_config(cfg, outfile)
   
 }

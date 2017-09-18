@@ -1,0 +1,101 @@
+target_default: 2_metab_outputs
+
+include:
+  - 2_metab_models.yml
+
+packages:
+  - yaml
+  - dplyr
+  - tidyr
+  - ggplot2
+  - mda.streams
+  - sbtools
+  - streamMetabolizer
+
+sources:
+  - ../lib/check_frozen.R
+  - ../lib/load_profile.R
+  - ../lib/write_status_table.R
+  - ../lib/sb_post_meta.R
+  - ../2_metab_outputs/code/make_expert_file.R
+  - ../2_metab_outputs/code/stage_ts_metab.R
+  - ../2_metab_outputs/code/read_final_metab_sites.R
+  - ../1_timeseries/code/create_ts_table.R
+  - ../1_timeseries/code/sb_check_ts_status.R
+  - ../1_timeseries/code/stage_ts.R
+  - ../1_timeseries/code/sb_post_ts.R
+  - ../1_timeseries/code/sb_archive_ts.R
+  - ../2_metab_outputs/code/make_meta_struct.R
+  
+targets:
+  2_metab_outputs:
+    depends:
+      - sb_gpp_estBest
+      - sb_er_estBest
+      - sb_K600_estBest
+      - sb_mfootdaily_calc3vK
+      - sb_meta_struct
+
+  outputs.config:
+    command: yaml.load_file("../2_metab_outputs/in/outputs_config.yml")
+
+  metab.config:
+    command: read_config('../2_metab_models/run3/out/config.tsv')
+
+  metab.sites.out:
+    command: read_final_metab_sites(metab.config)
+  
+  # Create file status tables
+  status_tables:
+    depends:
+      - ../2_metab_outputs/out/files_ts_gpp_estBest.tsv
+      - ../2_metab_outputs/out/files_ts_er_estBest.tsv
+      - ../2_metab_outputs/out/files_ts_K600_estBest.tsv
+  
+  ../2_metab_outputs/out/files_ts_gpp_estBest.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+  
+  ../2_metab_outputs/out/files_ts_er_estBest.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+
+  ../2_metab_outputs/out/files_ts_K600_estBest.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+  
+  ../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv:
+    command: create_ts_table(metab.sites.out, outputs.config, target_name)
+  
+   # Merge model predictions for each site and stage for SB
+  staged_tses:
+    depends:
+      - gpp_estBest
+      - er_estBest
+      - K600_estBest
+      - mfootdaily_calc3vK
+  
+  gpp_estBest:
+    command: stage_ts_metab('../2_metab_outputs/out/files_ts_gpp_estBest.tsv', outputs.config, metab.config)
+  er_estBest:
+    command: stage_ts_metab('../2_metab_outputs/out/files_ts_er_estBest.tsv', outputs.config, metab.config)
+  K600_estBest:
+    command: stage_ts_metab('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config, metab.config)
+  mfootdaily_calc3vK:
+    command: stage_ts('../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv')
+    depends: sb_K600_estBest
+  
+  # Post data to ScienceBase
+  sb_gpp_estBest:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_gpp_estBest.tsv', outputs.config)
+    depends: gpp_estBest
+  sb_er_estBest:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_er_estBest.tsv', outputs.config)
+    depends: er_estBest
+  sb_K600_estBest:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_K600_estBest.tsv', outputs.config)
+    depends: K600_estBest
+  sb_mfootdaily_calc3vK:
+    command: sb_post_ts('../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv', outputs.config)
+    depends: mfootdaily_calc3vK
+    
+  # site flags for upstream structures crossed with metabolic footprints
+  sb_meta_struct:
+    command: make_meta_struct("../1_spatial/in/CONF_struct_170407.csv", outputs.config, use_cached=TRUE, on_exists=I("replace"))
