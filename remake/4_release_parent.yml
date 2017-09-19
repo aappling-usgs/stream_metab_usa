@@ -1,0 +1,46 @@
+target_default: 4_release_parent
+
+packages:
+  - yaml
+  - xml2
+  - whisker
+  - rgdal
+  - httr
+  - sbtools
+  - dplyr
+  - rgeos
+  - dataRetrieval
+  - meddle
+  
+sources:
+  - ../4_data_release/code/post_data_release.R
+  - ../lib/load_profile.R
+  
+targets:
+  4_release_parent:
+    depends: 
+      - stream_metab_powell_release
+  
+  # -- load shared metadata details --
+  
+  # points_metadata.yml is built in 4_release_spatial.yml, but we can't include
+  # 4_release_spatial.yml in the present remake .yml because it would create
+  # duplicated inclusions of 1_site_data.yml. So we load it by stealth. Also,
+  # this target (points_meta) should not be listed under the main target
+  # (4_release_parent), because we shouldn't try to build it the first time
+  # through (when we're building 4_release_spatial).
+  #
+  # If you don't already have points_meta, build 4_release_spatial.yml before
+  # building other data release items downstream of 4_release_parent.yml.
+  points_meta:
+    command: yaml.load_file(I('../4_data_release/cache/points_metadata.yml'))
+  
+  # -- read parent metadata --
+  
+  parent_metadata: 
+    command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
+    
+  # -- SB posting: create the items to host data and metadata --
+
+  stream_metab_powell_release:
+    command: create_release_parent(target_name, I('57adfa86e4b0fc09faad6d87'))

@@ -4,18 +4,17 @@ document-creator: "Jordan S Read"
 
 # ----data release----
 title: >-
-  Basic site data and discharge and flow coefficients release: A national database for river metabolism (2007-present)
-
+  Site names, identifiers, location details, and coefficients for estimating depth from discharge.
+  Part of a national database for river metabolism (2007-present)
 
 # ----dataset details----
 process-description: data were pulled or synthesized from existing etc...
-process-date: SCRIPT 20161104
-data-name: River metabolism input data
-data-description: Timeseries observations of environmental conditions made by sensors, subsetted gridded timeseries data, and derived data from both of these sources.
+process-date: "`r format(file.mtime('../4_data_release/cache/site_data.tsv'),'%Y%m%d')`"
+data-name: Site information for river metabolism estimates
+data-description: Information about sites at which water quality was monitored and metabolism was estimated.
 build-environment: stuff on mac things on pc, R versions etc
-file-format: Tab-delimted file
+file-format: Tab-delimited file
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
-
 
 # ----spatial data----
 indirect-spatial: U.S.A.

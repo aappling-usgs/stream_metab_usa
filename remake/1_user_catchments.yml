@@ -1,8 +1,6 @@
 target_default: 1_user_catchments
 
 # rendered with ....instructions here....
-include:
-  - 1_site_data.yml
 
 packages:
   - dplyr

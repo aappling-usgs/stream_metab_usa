@@ -1,0 +1,60 @@
+target_default: 4_release_site_data
+
+include:
+  - 2_metab_models.yml # 1_site_data.yml gets included via this file
+  - 4_release_parent.yml
+  
+packages:
+  - yaml
+  - xml2
+  - whisker
+  - rgdal
+  - httr
+  - sbtools
+  - dplyr
+  - rgeos
+  - dataRetrieval
+  - meddle
+  
+sources:
+  - ../4_data_release/code/prepare_site_data.R
+  - ../4_data_release/code/post_data_release.R
+  - ../lib/load_profile.R
+  
+targets:
+  4_release_site_data:
+    depends: 
+      - release_site_data
+  
+  # -- munge & write data for release --
+      
+  meta_all_df:
+    command: combine_site_data(sb_meta_basic, sb_meta_dvqcoefs, sb_meta_struct, sites=final.metab.sites)
+    
+  ../4_data_release/cache/site_data.tsv:
+    command: write_site_data(meta_all_df, outfile=target_name)
+  
+  # -- create tables with partial info to complete manually --
+  
+  ../4_data_release/in/site_data_attr.csv:
+    command: attribute_skeleton(meta_all_df, target_name)
+    
+  # -- read manual entry and extracted metadata -- 
+  
+  site_data_attr:
+    command: as.attr_list('../4_data_release/in/site_data_attr.csv')
+  
+  # -- create final metadata files --
+  
+  ../4_data_release/out/site_data.xml:
+    command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata)
+
+  # -- SB posting: create the items to host data and metadata --
+
+  pc1_site_metadata:
+    command: create_release_child(stream_metab_powell_release, target_name)
+  
+  # -- final targets: post data and metadata to SB --
+  
+  release_site_data:
+    command: create_release_item(pc1_site_metadata, target_name, '../4_data_release/cache/site_data.tsv', '../4_data_release/out/site_data.xml')
