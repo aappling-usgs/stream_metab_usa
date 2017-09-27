@@ -95,7 +95,3 @@ targets:
   sb_mfootdaily_calc3vK:
     command: sb_post_ts('../2_metab_outputs/out/files_ts_mfootdaily_calc3vK.tsv', outputs.config)
     depends: mfootdaily_calc3vK
-    
-  # site flags for upstream structures crossed with metabolic footprints
-  sb_meta_struct:
-    command: make_meta_struct("../1_spatial/in/CONF_struct_170407.csv", outputs.config, use_cached=TRUE, on_exists=I("replace"))

@@ -49,7 +49,7 @@ targets:
     depends: sb_meta_basic
     
   meta_struct:
-    command: cache_meta(type=I('struct'), config=meta.config, struct_file=I("../1_spatial/in/CONF_struct_170407.csv"))
+    command: cache_meta(type=I('struct'), config=meta.config, struct_file=I("../1_spatial/in/CONF_struct_170407.csv"), use_cached=TRUE)
     depends: sb_meta_basic
 
   sb_meta_basic: 
