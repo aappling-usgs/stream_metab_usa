@@ -1,4 +1,4 @@
-target_default: {{target_default}}
+target_default: {{#job}}{{target_name}}{{/job}}
 
 {{#has_include}}
 include:
@@ -22,15 +22,19 @@ sources:
 {{/has_sources}}
 
 targets:
-  {{target_default}}:
+{{#job}}
+  {{target_name}}:
     depends: 
-      - user.spatial.catchments
+{{#depends}}
+      - {{.}}
+{{/depends}}
+{{/job}}
 
 {{#tasks}}
-  # --- {{task_name}} ---
+  # --- {{task_name}} --- #
   
 {{#steps}}
-  {{target}}:
+  {{target_name}}:
     command: {{command}}
 {{#has_depends}}
     depends:
