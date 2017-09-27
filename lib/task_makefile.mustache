@@ -1,0 +1,43 @@
+target_default: {{target_default}}
+
+{{#has_include}}
+include:
+{{#include}}
+  - {{.}}
+{{/include}}
+{{/has_include}}
+
+{{#has_packages}}
+packages:
+{{#packages}}
+  - {{.}}
+{{/packages}}
+{{/has_packages}}
+
+{{#has_sources}}
+sources:
+{{#sources}}
+  - {{.}}
+{{/sources}}
+{{/has_sources}}
+
+targets:
+  {{target_default}}:
+    depends: 
+      - user.spatial.catchments
+
+{{#tasks}}
+  # --- {{task_name}} ---
+  
+{{#steps}}
+  {{target}}:
+    command: {{command}}
+{{#has_depends}}
+    depends:
+{{#depends}}
+      - {{.}}
+{{/depends}}
+{{/has_depends}}
+
+{{/steps}}
+{{/tasks}}
