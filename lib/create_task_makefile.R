@@ -193,11 +193,13 @@ create_task_makefile <- function(task_plan, job_target = 'all',
                                  makefile=NULL, template.file='../lib/task_makefile.mustache') {
   
   # prepare the variables to be rendered in the template
+  # prepare the overall job task
+  job <- list(
+    target_name = job_target,
+    depends = unlist(lapply(task_plan, function(task) lapply(task$steps, function(step) step$target_name)), use.names=FALSE)
+  )
   params <- list(
-    job = list(
-      target_name = job_target,
-      depends = lapply(unname(task_plan), function(task) { task$steps[[length(task$steps)]]$target_name })
-    ),
+    job = job,
     target_default = overall_target,
     include = include,
     has_include = length(include) > 0,
