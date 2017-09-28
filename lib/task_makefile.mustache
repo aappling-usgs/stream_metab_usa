@@ -21,15 +21,14 @@ sources:
 {{/sources}}
 {{/has_sources}}
 
-targets:
-{{#job}}
-  {{target_name}}:
-    depends: 
-{{#depends}}
-      - {{.}}
-{{/depends}}
-{{/job}}
+{{#has_file_extensions}}
+file_extensions:
+{{#file_extensions}}
+  - "{{.}}"
+{{/file_extensions}}
+{{/has_file_extensions}}
 
+targets:
 {{#tasks}}
   # --- {{task_name}} --- #
   
@@ -45,3 +44,11 @@ targets:
 
 {{/steps}}
 {{/tasks}}
+
+{{#job}}
+  {{target_name}}:
+    depends: 
+{{#depends}}
+      - {{.}}
+{{/depends}}
+{{/job}}

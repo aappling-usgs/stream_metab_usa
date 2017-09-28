@@ -44,7 +44,7 @@
 #' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3))
 #' create_task_makefile(task_plan, packages='mda.streams')
 create_task_makefile <- function(task_plan, job_target = 'all', 
-                                 include=c(), packages=c(), sources=c(),
+                                 include=c(), packages=c(), sources=c(), file_extensions=c(),
                                  makefile=NULL, template_file='../lib/task_makefile.mustache') {
   
   # prepare the overall job task: list every step of every job as a dependency
@@ -65,13 +65,15 @@ create_task_makefile <- function(task_plan, job_target = 'all',
   # prepare the final list of variables to be rendered in the template
   params <- list(
     job = job,
-    target_default = overall_target,
+    target_default = job_target,
     include = include,
     has_include = length(include) > 0,
     packages = packages,
     has_packages = length(packages) > 0,
     sources = sources,
     has_sources = length(sources) > 0,
+    file_extensions = file_extensions,
+    has_file_extensions = length(file_extensions) > 0,
     tasks = tasks
   )
   
