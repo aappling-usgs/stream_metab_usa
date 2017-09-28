@@ -25,7 +25,6 @@ sources:
   - ../1_timeseries/code/stage_ts.R
   - ../1_timeseries/code/sb_post_ts.R
   - ../1_timeseries/code/sb_archive_ts.R
-  - ../2_metab_outputs/code/make_meta_struct.R
   
 targets:
   2_metab_outputs:
