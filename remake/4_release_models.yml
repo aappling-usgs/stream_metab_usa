@@ -34,8 +34,8 @@ targets:
   4e_model_release.yml:
     command: create_model_release_makefile(makefile=target_name, task_plan=model_release_plan)
 
-  model_release_st:
-    command: remake_smu(I('../4_data_release/log/model_release.st'), '4e_model_release.yml')
+  ../4_data_release/log/model_release.st:
+    command: remake_smu(I('4e_model_release'), '4e_model_release.yml')
 
   # -- create tables with partial info to complete manually --
   

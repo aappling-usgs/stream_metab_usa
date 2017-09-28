@@ -1,0 +1,86 @@
+target_default: 4e_model_release
+
+include:
+  - 4_release_models.yml
+
+packages:
+  - mda.streams
+  - streamMetabolizer
+  - dplyr
+
+file_extensions:
+  - "st"
+  - "RData"
+
+targets:
+  # --- nwis_01548303-1-170406 1.0.2 bayes_15min --- #
+  
+  '../4_data_release/cache/models/mm_nwis_01548303-1-170406 1.0.2 bayes_15min.RData':
+    command: download_model(model_name=I('nwis_01548303-1-170406 1.0.2 bayes_15min'))
+
+  '../4_data_release/cache/models/nwis_01548303_15min_inputs.tsv':
+    command: extract_model_inputs(
+      '../4_data_release/cache/models/mm_nwis_01548303-1-170406 1.0.2 bayes_15min.RData',
+      target_name)
+
+  # --- nwis_02168504-2-170406 1.0.2 bayes_60min --- #
+  
+  '../4_data_release/cache/models/mm_nwis_02168504-2-170406 1.0.2 bayes_60min.RData':
+    command: download_model(model_name=I('nwis_02168504-2-170406 1.0.2 bayes_60min'))
+
+  '../4_data_release/cache/models/nwis_02168504_60min_inputs.tsv':
+    command: extract_model_inputs(
+      '../4_data_release/cache/models/mm_nwis_02168504-2-170406 1.0.2 bayes_60min.RData',
+      target_name)
+
+  # --- nwis_03292480-3-170406 1.0.2 bayes_15min --- #
+  
+  '../4_data_release/cache/models/mm_nwis_03292480-3-170406 1.0.2 bayes_15min.RData':
+    command: download_model(model_name=I('nwis_03292480-3-170406 1.0.2 bayes_15min'))
+
+  '../4_data_release/cache/models/nwis_03292480_15min_inputs.tsv':
+    command: extract_model_inputs(
+      '../4_data_release/cache/models/mm_nwis_03292480-3-170406 1.0.2 bayes_15min.RData',
+      target_name)
+
+  # --- nwis_03293000-4-170406 1.0.2 bayes_15min --- #
+  
+  '../4_data_release/cache/models/mm_nwis_03293000-4-170406 1.0.2 bayes_15min.RData':
+    command: download_model(model_name=I('nwis_03293000-4-170406 1.0.2 bayes_15min'))
+
+  '../4_data_release/cache/models/nwis_03293000_15min_inputs.tsv':
+    command: extract_model_inputs(
+      '../4_data_release/cache/models/mm_nwis_03293000-4-170406 1.0.2 bayes_15min.RData',
+      target_name)
+
+  # --- nwis_03298200-5-170406 1.0.2 bayes_15min --- #
+  
+  '../4_data_release/cache/models/mm_nwis_03298200-5-170406 1.0.2 bayes_15min.RData':
+    command: download_model(model_name=I('nwis_03298200-5-170406 1.0.2 bayes_15min'))
+
+  '../4_data_release/cache/models/nwis_03298200_15min_inputs.tsv':
+    command: extract_model_inputs(
+      '../4_data_release/cache/models/mm_nwis_03298200-5-170406 1.0.2 bayes_15min.RData',
+      target_name)
+
+  # --- nwis_05418400-6-170406 1.0.2 bayes_15min --- #
+  
+  '../4_data_release/cache/models/mm_nwis_05418400-6-170406 1.0.2 bayes_15min.RData':
+    command: download_model(model_name=I('nwis_05418400-6-170406 1.0.2 bayes_15min'))
+
+  '../4_data_release/cache/models/nwis_05418400_15min_inputs.tsv':
+    command: extract_model_inputs(
+      '../4_data_release/cache/models/mm_nwis_05418400-6-170406 1.0.2 bayes_15min.RData',
+      target_name)
+
+  # --- Overall job --- #
+
+  4e_model_release:
+    command: writeJobTimestamp(I('../4_data_release/log/model_release.st'))
+    depends: 
+      - '../4_data_release/cache/models/nwis_01548303_15min_inputs.tsv'
+      - '../4_data_release/cache/models/nwis_02168504_60min_inputs.tsv'
+      - '../4_data_release/cache/models/nwis_03292480_15min_inputs.tsv'
+      - '../4_data_release/cache/models/nwis_03293000_15min_inputs.tsv'
+      - '../4_data_release/cache/models/nwis_03298200_15min_inputs.tsv'
+      - '../4_data_release/cache/models/nwis_05418400_15min_inputs.tsv'

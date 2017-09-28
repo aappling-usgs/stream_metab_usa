@@ -10,7 +10,7 @@ create_model_release_task_plan <- function(metab.config) {
     model_titles, metab.config$config.row, metab.config$site)
   
   # temporary truncation for testing
-  model_names <- model_names[1:3]
+  model_names <- model_names[1:6]
   
   # define variables to be used by several steps or functions
   download_paths <- mda.streams::make_metab_model_path(
@@ -34,7 +34,10 @@ create_model_release_task_plan <- function(metab.config) {
   inputs <- create_task_step(
     step_name = 'inputs',
     target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s.%s.rds'", model_folder, step_name, task_name)
+      inputs_release_name <- parse_metab_model_name(task_name, out=c('site','strategy')) %>%
+        mutate(release_name=paste0(site, '_', substring(strategy, 7), '_inputs')) %>%
+        pull(release_name)
+      sprintf("'%s/%s.tsv'", model_folder, inputs_release_name)
     },
     command = function(task_name, ...) {
       newline <- "\n      "
@@ -62,7 +65,8 @@ create_model_release_makefile <- function(makefile, task_plan) {
   if(!dir.exists(st_dir)) dir.create(st_dir)
   create_task_makefile(
     makefile=makefile, task_plan=task_plan,
-    job_target = file.path(st_dir, 'model_release.st'),
+    indicator_file = file.path(st_dir, 'model_release.st'),
+    job_steps = 'inputs',
     include = '4_release_models.yml',
     packages=c('mda.streams', 'streamMetabolizer', 'dplyr'),
     file_extensions=c('st','RData'))
@@ -78,5 +82,5 @@ download_model <- function(model_name) {
 extract_model_inputs <- function(mm_path, inputs_path) {
   path_vars <- load(mm_path)
   dat <- get_data(mm)
-  write.table(dat, file=inputs_path, sep='\n', row.names=FALSE)
+  write.table(dat, file=inputs_path, sep='\t', row.names=FALSE, quote=TRUE)
 }
