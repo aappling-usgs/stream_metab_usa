@@ -50,11 +50,14 @@ create_model_release_task_plan <- function(metab.config) {
 }
 
 create_model_release_makefile <- function(makefile, task_plan) {
+  st_dir <- '../4_data_release/log'
+  if(!dir.exists(st_dir)) dir.create(st_dir)
   create_task_makefile(
     makefile=makefile, task_plan=task_plan,
-    job_target = 'model_release', include = '4_release_models.yml',
+    job_target = file.path(st_dir, 'model_release.st'),
+    include = '4_release_models.yml',
     packages=c('mda.streams', 'streamMetabolizer', 'dplyr'),
-    file_extensions=c('RData'))
+    file_extensions=c('st','RData'))
 }
 
 download_model <- function(model_name, folder, version) {

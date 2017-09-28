@@ -47,6 +47,7 @@ targets:
 
 {{#job}}
   {{target_name}}:
+    command: {{command}}
     depends: 
 {{#depends}}
       - {{.}}

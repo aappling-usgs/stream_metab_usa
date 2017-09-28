@@ -8,7 +8,10 @@
 #'
 #' @param task_plan a task plan as produced by `create_task_plan()`
 #' @param job_target single character string naming the default target, which
-#'   will include all tasks within the job
+#'   will include all tasks within the job. It's usually best for job_target to
+#'   be a status indicator file name.
+#' @param job_command character string defining a remake command to create the
+#'   `job_target`
 #' @param include character vector of any remake .yml files to include within
 #'   this one. If any files must be quoted in the remake file, quote them with
 #'   inner single quotes, e.g. `c("unquoted", "'quoted file name.tsv'")`
@@ -26,6 +29,10 @@
 #'   be displayed with `readLines()`).
 #' @export
 #' @examples
+#' task_config <- data.frame(
+#'   id=c('AZ','CO','CA'),
+#'   capital=c('Phoeniz','Denver','Sacramento')
+#' )
 #' step1 <- create_task_step(
 #'   step_name = 'prep',
 #'   target = function(task_name, step_name, ...) {
@@ -37,19 +44,28 @@
 #' step2 <- create_task_step(
 #'   step_name = 'plot',
 #'   command = function(target_name, task_name, ...) {
-#'     sprintf('visualize(\'%s\')', task_name)
+#'     capital <- task_config[task_config$id == task_name, 'capital']
+#'     sprintf('visualize(\'%s\', \'%s\')', task_name, capital)
 #'   }
 #' )
 #' step3 <- create_task_step('report')
 #' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3))
-#' create_task_makefile(task_plan, packages='mda.streams')
-create_task_makefile <- function(task_plan, job_target = 'all', 
-                                 include=c(), packages=c(), sources=c(), file_extensions=c(),
-                                 makefile=NULL, template_file='../lib/task_makefile.mustache') {
+#' cat(create_task_makefile(task_plan, job_target='states.st', file_extensions=c('st'), packages='mda.streams'))
+create_task_makefile <- function(
+  task_plan, job_target, 
+  job_command="writeJobTimestamp(target_name)",
+  include=c(), packages=c(), sources=c(), file_extensions=c('st'),
+  makefile=NULL, template_file='../lib/task_makefile.mustache') {
   
-  # prepare the overall job task: list every step of every job as a dependency
+  # prepare the overall job task: list every step of every job as a dependency.
+  # start by encouraging users to make job_target be a file
+  job_target_is_file <- (tools::file_ext(job_target) %in% c(remake::file_extensions(), file_extensions))
+  if(!job_target_is_file) {
+    warning('a filename target is recommended for job_target (and should be written by job_command)')
+  }
   job <- list(
     target_name = job_target,
+    command = job_command,
     depends = unlist(lapply(task_plan, function(task) lapply(task$steps, function(step) step$target_name)), use.names=FALSE)
   )
   
@@ -93,6 +109,10 @@ create_task_makefile <- function(task_plan, job_target = 'all',
   }
 }
 
+writeJobTimestamp <- function(job_target) {
+  writeLines(text=format(Sys.time(), '%Y-%m-%d %H:%M:%S UTC', tz='UTC'), con=job_target)
+}
+
 #' Convert a task_plan into a status table
 #'
 #' Create a data.frame or .tsv file representing a task_plan and our status
@@ -123,6 +143,10 @@ create_task_table <- function(task_plan, table_file) {
 #'   `create_task_table`
 #' @export
 #' @examples
+#' task_config <- data.frame(
+#'   id=c('AZ','CO','CA'),
+#'   capital=c('Phoeniz','Denver','Sacramento')
+#' )
 #' step1 <- create_task_step(
 #'   step_name = 'prep',
 #'   target = function(task_name, step_name, ...) {
@@ -134,7 +158,8 @@ create_task_table <- function(task_plan, table_file) {
 #' step2 <- create_task_step(
 #'   step_name = 'plot',
 #'   command = function(target_name, task_name, ...) {
-#'     sprintf('visualize(\'%s\')', task_name)
+#'     capital <- task_config[task_config$id == task_name, 'capital']
+#'     sprintf('visualize(\'%s\', \'%s\')', task_name, capital)
 #'   }
 #' )
 #' step3 <- create_task_step('report')
