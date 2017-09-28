@@ -4,7 +4,7 @@ create_timeseries_release_makefile <- function(makefile){
   
   list_files <- create_task_step(
     step_name = 'ts_files',
-    command = sprintf('files_for_download(target_name, I(\'%s\'))',ts.dir),
+    command = sprintf('ts_files_for_download(target_name, I(\'%s\'))',ts.dir),
     depends = file.path(ts.dir, dir(ts.dir))
   )
   

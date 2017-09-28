@@ -2,7 +2,7 @@
 #' figure out what files are ready to be downloaded from SB
 #' @param target_name the nwis_{site.id}_... target name. Format matters, since we parse it
 #' @return a vector of file names for this site
-files_for_download <- function(target_name, ts.dir){
+ts_files_for_download <- function(target_name, ts.dir){
   
   library(dplyr)
   match.id <- paste0(paste(strsplit(target_name, '[_]')[[1]][1:2], collapse = '_'), '-')
@@ -35,6 +35,7 @@ download_release_tses <- function(file.paths){
 
 post_release_tses <- function(target.name, parent.id, file.paths){
   
+  safe_login()
   tmpdir <- tempdir()
   zipfile <- file.path(tmpdir, paste0(target.name, '.zip'))
   
