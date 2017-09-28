@@ -1,3 +1,6 @@
+# model_folder gets used in a couple of functions in this script
+model_folder <- '../4_data_release/cache/models'
+
 create_model_release_task_plan <- function(metab.config) {
   
   # define the tasks as unique IDs for each model
@@ -6,8 +9,10 @@ create_model_release_task_plan <- function(metab.config) {
   model_names <- make_metab_model_name(
     model_titles, metab.config$config.row, metab.config$site)
   
+  # temporary truncation for testing
+  model_names <- model_names[1:3]
+  
   # define variables to be used by several steps or functions
-  model_folder <- '../4_data_release/cache/models'
   download_paths <- mda.streams::make_metab_model_path(
     model_name=model_names, folder=model_folder) %>%
     setNames(model_names)
@@ -19,9 +24,11 @@ create_model_release_task_plan <- function(metab.config) {
       sprintf("'%s'", download_paths[[task_name]])
     },
     command = function(task_name, ...) {
+      model_path <- download_paths[[task_name]]
+      model_name <- parse_metab_model_path(model_path, out='model_name')
       sprintf(
-        "download_model(model_name=I('%s'), folder=I('%s'), version=I('original'))",
-        download_paths[[task_name]], model_folder)
+        "download_model(model_name=I('%s'))",
+        model_name, model_folder)
     }
   )
   inputs <- create_task_step(
@@ -30,7 +37,8 @@ create_model_release_task_plan <- function(metab.config) {
       sprintf("'%s/%s.%s.rds'", model_folder, step_name, task_name)
     },
     command = function(task_name, ...) {
-      sprintf("extract_model_inputs('%s', target_name)", download_paths[[task_name]])
+      newline <- "\n      "
+      sprintf("extract_model_inputs(%s'%s',%starget_name)", newline, download_paths[[task_name]], newline)
     }
   )
   # dailies <- create_task_step(
@@ -60,9 +68,11 @@ create_model_release_makefile <- function(makefile, task_plan) {
     file_extensions=c('st','RData'))
 }
 
-download_model <- function(model_name, folder, version) {
+download_model <- function(model_name) {
   mda.streams::login_sb()
-  download_metab_model(model_name=model_name, folder=folder, version=version)
+  download_metab_model(
+    model_name=model_name, folder=model_folder, version='original',
+    on_local_exists='skip') #'skip' is a lot faster, safe because any new models would have new names on SB
 }
 
 extract_model_inputs <- function(mm_path, inputs_path) {
