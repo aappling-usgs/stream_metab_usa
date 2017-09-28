@@ -1,7 +1,7 @@
 target_default: 4_release_site_data
 
 include:
-  - 2_metab_models.yml # 1_site_data.yml gets included via this file
+  - 2_metab_outputs.yml # 1_site_data.yml and 2_metab_models.yml get included via this file
   - 4_release_parent.yml
   
 packages:
@@ -29,7 +29,7 @@ targets:
   # -- munge & write data for release --
       
   meta_all_df:
-    command: combine_site_data(sb_meta_basic, sb_meta_dvqcoefs, sb_meta_struct, sites=final.metab.sites)
+    command: combine_site_data(sb_meta_basic, sb_meta_dvqcoefs, sb_meta_struct, sites=metab.sites.out)
     
   ../4_data_release/cache/site_data.tsv:
     command: write_site_data(meta_all_df, outfile=target_name)

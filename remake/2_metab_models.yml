@@ -186,6 +186,3 @@ targets:
 
   '../2_metab_models/run2/out/expert_file.csv': # creates the starter file that bob and maite are using to categorize models
     command: start_run2_expert_file('../2_metab_models/run2/out/config.tsv', '../2_metab_models/run2/out/model_stats.csv', outfile=target_name)
-  
-  final.metab.sites:
-    command: get_modeled_sites('../2_metab_models/run3/out/config.tsv')
