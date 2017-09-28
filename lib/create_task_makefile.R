@@ -26,6 +26,10 @@
 #'   be displayed with `readLines()`).
 #' @export
 #' @examples
+#' task_config <- data.frame(
+#'   id=c('AZ','CO','CA'),
+#'   capital=c('Phoeniz','Denver','Sacramento')
+#' )
 #' step1 <- create_task_step(
 #'   step_name = 'prep',
 #'   target = function(task_name, step_name, ...) {
@@ -37,12 +41,13 @@
 #' step2 <- create_task_step(
 #'   step_name = 'plot',
 #'   command = function(target_name, task_name, ...) {
-#'     sprintf('visualize(\'%s\')', task_name)
+#'     capital <- task_config[task_config$id == task_name, 'capital']
+#'     sprintf('visualize(\'%s\', \'%s\')', task_name, capital)
 #'   }
 #' )
 #' step3 <- create_task_step('report')
 #' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3))
-#' create_task_makefile(task_plan, packages='mda.streams')
+#' cat(create_task_makefile(task_plan, packages='mda.streams'))
 create_task_makefile <- function(task_plan, job_target = 'all', 
                                  include=c(), packages=c(), sources=c(), file_extensions=c(),
                                  makefile=NULL, template_file='../lib/task_makefile.mustache') {
@@ -123,6 +128,10 @@ create_task_table <- function(task_plan, table_file) {
 #'   `create_task_table`
 #' @export
 #' @examples
+#' task_config <- data.frame(
+#'   id=c('AZ','CO','CA'),
+#'   capital=c('Phoeniz','Denver','Sacramento')
+#' )
 #' step1 <- create_task_step(
 #'   step_name = 'prep',
 #'   target = function(task_name, step_name, ...) {
@@ -134,7 +143,8 @@ create_task_table <- function(task_plan, table_file) {
 #' step2 <- create_task_step(
 #'   step_name = 'plot',
 #'   command = function(target_name, task_name, ...) {
-#'     sprintf('visualize(\'%s\')', task_name)
+#'     capital <- task_config[task_config$id == task_name, 'capital']
+#'     sprintf('visualize(\'%s\', \'%s\')', task_name, capital)
 #'   }
 #' )
 #' step3 <- create_task_step('report')
