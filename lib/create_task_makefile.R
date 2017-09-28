@@ -4,14 +4,21 @@
 #' Create a .yml makefile for a multi-task job
 #'
 #' Create a .yml makefile (for use with remake or scipiper) for a set of tasks
-#' that together form a single job
+#' that together form a single job.  The default target will be named after
+#' `makefile` (specifically,
+#' `indicator_file=tools::file_path_sans_ext(basename(makefile))`) and can be
+#' evoked from another remake file as `make(I('indicatorfile'),
+#' remake_file='thismakefile')` after replacing `indicatorfile` and
+#' `thismakefile` with their values.
 #'
 #' @param task_plan a task plan as produced by `create_task_plan()`
-#' @param job_target single character string naming the default target, which
-#'   will include all tasks within the job. It's usually best for job_target to
-#'   be a status indicator file name.
-#' @param job_command character string defining a remake command to create the
-#'   `job_target`
+#' @param indicator_file character file name (with path) to which a timestamp
+#'   should be written once all tasks and steps are complete.
+#' @param job_steps a character or numeric vector giving indices into the steps
+#'   list for only those steps whose targets should be included in the main job
+#'   target (i.e., those steps that must be completed before indicator_file can
+#'   be written). This vector should be a subset of all steps if some steps are
+#'   depended on by others and can therefore be referenced indirectly.
 #' @param include character vector of any remake .yml files to include within
 #'   this one. If any files must be quoted in the remake file, quote them with
 #'   inner single quotes, e.g. `c("unquoted", "'quoted file name.tsv'")`
@@ -50,24 +57,41 @@
 #' )
 #' step3 <- create_task_step('report')
 #' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3))
-#' cat(create_task_makefile(task_plan, job_target='states.st', file_extensions=c('st'), packages='mda.streams'))
+#' cat(create_task_makefile(task_plan, indicator_file='states.st',
+#'       file_extensions=c('st'), packages='mda.streams'))
 create_task_makefile <- function(
-  task_plan, job_target, 
-  job_command="writeJobTimestamp(target_name)",
+  task_plan, makefile=NULL, indicator_file, job_steps=length(task_plan[[1]]$steps),
   include=c(), packages=c(), sources=c(), file_extensions=c('st'),
-  makefile=NULL, template_file='../lib/task_makefile.mustache') {
+  template_file='../lib/task_makefile.mustache') {
   
   # prepare the overall job task: list every step of every job as a dependency.
-  # start by encouraging users to make job_target be a file
-  job_target_is_file <- (tools::file_ext(job_target) %in% c(remake::file_extensions(), file_extensions))
-  if(!job_target_is_file) {
-    warning('a filename target is recommended for job_target (and should be written by job_command)')
-  }
+  # first mutate the makefile file name into an object name to use as the
+  # default/overall job target. this should be an acceptable target name (not
+  # conflicting with other targets) and allows the calling remake file to use
+  # indicator_file as a target (even though this target is the one responsible
+  # for actually writing to indicator_file)
+  job_target <- tools::file_path_sans_ext(basename(makefile))
   job <- list(
     target_name = job_target,
-    command = job_command,
-    depends = unlist(lapply(task_plan, function(task) lapply(task$steps, function(step) step$target_name)), use.names=FALSE)
+    # even though target_name is an object (not file), job_command should write
+    # to indicator_file - again so the calling remake file can use
+    # indicator_file as its target
+    command = sprintf("writeJobTimestamp(I('%s'))", indicator_file),
+    # as dependencies of this overall/default job, extract the target_name from
+    # every task and all those steps indexed by job_steps. an alternative (or
+    # complement) would be to create a dummy target for each task (probably with
+    # indicator file, at least until
+    # https://github.com/richfitz/remake/issues/92 is resolved) and then have
+    # this overall target depend on those dummy targets.
+    depends = unlist(lapply(task_plan, function(task) {
+      lapply(task$steps[job_steps], function(step) {
+        step$target_name
+      })
+    }), use.names=FALSE)
   )
+  message(sprintf(
+    "run all tasks with\n%s:\n  command: make(I('%s'), remake_file='%s')",
+    indicator_file, job_target, makefile))
   
   # prepare the task list: remove names where they'd interfere with whisker.render
   tasks <- unname(task_plan)
