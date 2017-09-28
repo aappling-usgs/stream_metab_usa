@@ -9,7 +9,8 @@ include:
   - 1_timeseries.yml
   - 2_metab_models.yml
   - 2_metab_outputs.yml
-  - 4_data_release.yml
+  - 4_release_spatial.yml
+  - 4_release_timeseries.yml
   - 4_manuscript.yml
 
 targets:
