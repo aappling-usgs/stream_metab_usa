@@ -1,0 +1,54 @@
+target_default: {{#job}}{{target_name}}{{/job}}
+
+{{#has_include}}
+include:
+{{#include}}
+  - {{.}}
+{{/include}}
+{{/has_include}}
+
+{{#has_packages}}
+packages:
+{{#packages}}
+  - {{.}}
+{{/packages}}
+{{/has_packages}}
+
+{{#has_sources}}
+sources:
+{{#sources}}
+  - {{.}}
+{{/sources}}
+{{/has_sources}}
+
+{{#has_file_extensions}}
+file_extensions:
+{{#file_extensions}}
+  - "{{.}}"
+{{/file_extensions}}
+{{/has_file_extensions}}
+
+targets:
+{{#tasks}}
+  # --- {{task_name}} --- #
+  
+{{#steps}}
+  {{target_name}}:
+    command: {{command}}
+{{#has_depends}}
+    depends:
+{{#depends}}
+      - {{.}}
+{{/depends}}
+{{/has_depends}}
+
+{{/steps}}
+{{/tasks}}
+
+{{#job}}
+  {{target_name}}:
+    depends: 
+{{#depends}}
+      - {{.}}
+{{/depends}}
+{{/job}}
