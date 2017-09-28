@@ -54,12 +54,12 @@
 create_task_makefile <- function(
   task_plan, job_target, 
   job_command="writeJobTimestamp(target_name)",
-  include=c(), packages=c(), sources=c(), file_extensions=c(),
+  include=c(), packages=c(), sources=c(), file_extensions=c('st'),
   makefile=NULL, template_file='../lib/task_makefile.mustache') {
   
   # prepare the overall job task: list every step of every job as a dependency.
   # start by encouraging users to make job_target be a file
-  job_target_is_file <- (file_ext(job_target) %in% c(remake::file_extensions(), file_extensions))
+  job_target_is_file <- (tools::file_ext(job_target) %in% c(remake::file_extensions(), file_extensions))
   if(!job_target_is_file) {
     warning('a filename target is recommended for job_target (and should be written by job_command)')
   }
