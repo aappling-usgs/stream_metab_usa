@@ -36,7 +36,10 @@ targets:
       template_file='../lib/task_makefile.mustache')
 
   ../4_data_release/log/4e_model_release.ind:
-    command: remake_smu(I('4e_model_release'), '4e_model_release.yml')
+    command: loop_model_tasks(
+      job_target=I('4e_model_release'), 
+      task_plan=model_release_plan, 
+      task_makefile='4e_model_release.yml')
 
   # -- create tables with partial info to complete manually --
   
