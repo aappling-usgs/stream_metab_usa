@@ -114,7 +114,8 @@ create_task_makefile <- function(
     has_sources = length(sources) > 0,
     file_extensions = file_extensions,
     has_file_extensions = length(file_extensions) > 0,
-    tasks = tasks
+    tasks = tasks,
+    rendering_function = sprintf('%s() via %s()', as.character(sys.call(0)[[1]]), deparse(sys.call(-1)[[1]]))
   )
   
   # read the template

@@ -1,5 +1,8 @@
 target_default: 4e_model_release
 
+# Do not edit - automatically generated from the task_makefile.mustache template
+# by create_task_makefile() via create_model_release_makefile()
+
 include:
   - 4_release_models.yml
 
