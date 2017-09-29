@@ -7,18 +7,16 @@
 #' that together form a single job.  The default target will be named after
 #' `makefile` (specifically,
 #' `indicator_file=tools::file_path_sans_ext(basename(makefile))`) and can be
-#' evoked from another remake file as `make(I('indicatorfile'),
-#' remake_file='thismakefile')` after replacing `indicatorfile` and
-#' `thismakefile` with their values.
+#' evoked from another remake file as 
+#' `make(I('indicatorfile'),remake_file='thismakefile')`
+#' after replacing `indicatorfile` and `thismakefile` with their values.
 #'
 #' @param task_plan a task plan as produced by `create_task_plan()`
-#' @param indicator_file character file name (with path) to which a timestamp
-#'   should be written once all tasks and steps are complete.
-#' @param job_steps a character or numeric vector giving indices into the steps
-#'   list for only those steps whose targets should be included in the main job
-#'   target (i.e., those steps that must be completed before indicator_file can
-#'   be written). This vector should be a subset of all steps if some steps are
-#'   depended on by others and can therefore be referenced indirectly.
+#' @param makefile character name of the remake file to create
+#' @param indicator_dir directory path specifing the location where an overall
+#'   job indicator file should be written once all tasks and steps are complete.
+#'   This file will always be named after the makefile, but with '.ind' instead
+#'   of '.yml' as a suffix
 #' @param include character vector of any remake .yml files to include within
 #'   this one. If any files must be quoted in the remake file, quote them with
 #'   inner single quotes, e.g. `c("unquoted", "'quoted file name.tsv'")`
@@ -26,14 +24,10 @@
 #' @param sources character vector of any files that should be sourced before
 #'   running steps. If any files must be quoted in the remake file, quote them
 #'   with inner single quotes, e.g. `c("unquoted", "'quoted file name.tsv'")`
-#' @param makefile character name of the remake file to create, or NULL to
-#'   simply return the output as a long character string (can be displayed in
-#'   console with `cat()`)
 #' @param template_file character name of the mustache template to render into
 #'   `makefile`. The default is recommended
-#' @return if `makefile==NULL`, the output as a long character string (can be
-#'   displayed with `cat()`). If `makefile` is a file name, the file name (can
-#'   be displayed with `readLines()`).
+#' @return the file name of the makefile that was created (can be displayed with
+#'   `cat(readLines(makefile), sep='\n')`).
 #' @export
 #' @examples
 #' task_config <- data.frame(
@@ -56,12 +50,16 @@
 #'   }
 #' )
 #' step3 <- create_task_step('report')
-#' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3))
-#' cat(create_task_makefile(task_plan, indicator_file='states.st',
-#'       file_extensions=c('st'), packages='mda.streams'))
+#' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3),
+#'   final_steps='report', indicator_dir='states/log')
+#' task_makefile <- create_task_makefile(
+#'   task_plan, makefile=file.path(tempdir(), 'states.yml'),
+#'   file_extensions=c('ind'), packages='mda.streams')
+#' cat(readLines(task_makefile), sep='\n')
 create_task_makefile <- function(
-  task_plan, makefile=NULL, indicator_file, job_steps=length(task_plan[[1]]$steps),
-  include=c(), packages=c(), sources=c(), file_extensions=c('st'),
+  task_plan, makefile=NULL,
+  include=c(), packages=c(), sources=c(), file_extensions=c('ind'),
+  indicator_dir=attr(task_plan, 'indicator_dir'),
   template_file='../lib/task_makefile.mustache') {
   
   # prepare the overall job task: list every step of every job as a dependency.
@@ -71,12 +69,14 @@ create_task_makefile <- function(
   # indicator_file as a target (even though this target is the one responsible
   # for actually writing to indicator_file)
   job_target <- tools::file_path_sans_ext(basename(makefile))
+  job_steps <- attr(task_plan, 'final_steps')
+  indicator_file <- file.path(indicator_dir, paste0(job_target, '.ind'))
   job <- list(
     target_name = job_target,
     # even though target_name is an object (not file), job_command should write
     # to indicator_file - again so the calling remake file can use
     # indicator_file as its target
-    command = sprintf("writeJobTimestamp(I('%s'))", indicator_file),
+    command = sprintf("write_timestamp(I('%s'))", indicator_file),
     # as dependencies of this overall/default job, extract the target_name from
     # every task and all those steps indexed by job_steps. an alternative (or
     # complement) would be to create a dummy target for each task (probably with
@@ -93,13 +93,24 @@ create_task_makefile <- function(
     "run all tasks with\n%s:\n  command: make(I('%s'), remake_file='%s')",
     indicator_file, job_target, makefile))
   
-  # prepare the task list: remove names where they'd interfere with whisker.render
-  tasks <- unname(task_plan)
+  # prepare the task list for rendering
+  tasks <- unname(task_plan) # remove list element names where they'd interfere with whisker.render
   for(task in seq_along(tasks)) {
+    # remove lmore ist element names where they'd interfere with whisker.render
     tasks[[task]]$steps <- unname(tasks[[task]]$steps)
     for(step in seq_along(tasks[[task]]$steps)) {
+      # add a logical for has_depends
       tasks[[task]]$steps[[step]]$has_depends <- length(tasks[[task]]$steps[[step]]$depends) > 0
     }
+  }
+  
+  # Gather info about how this function is being called
+  this_fun <- as.character(sys.call(0)[[1]])
+  calling_fun <- as.character(sys.call(-1)[[1]])
+  call_info <- if(length(calling_fun) == 0) {
+    sprintf('%s()', this_fun)
+  } else {
+    sprintf('%s() via %s()', this_fun, calling_fun)
   }
   
   # prepare the final list of variables to be rendered in the template
@@ -114,7 +125,8 @@ create_task_makefile <- function(
     has_sources = length(sources) > 0,
     file_extensions = file_extensions,
     has_file_extensions = length(file_extensions) > 0,
-    tasks = tasks
+    tasks = tasks,
+    rendering_function = call_info
   )
   
   # read the template
@@ -124,16 +136,12 @@ create_task_makefile <- function(
   yml <- whisker::whisker.render(template, data=params)
   yml <- gsub('[\n]{3,}', '\\\n\\\n', yml) # reduce 3+ line breaks to just 2
   
-  # write and/or return the results
-  if(!is.null(makefile)) {
-    cat(yml, file=makefile)
-    return(makefile)
-  } else {
-    return(yml)
-  }
+  # write the makefile and return the file path
+  cat(yml, file=makefile)
+  return(makefile)
 }
 
-writeJobTimestamp <- function(job_target) {
+write_timestamp <- function(job_target) {
   writeLines(text=format(Sys.time(), '%Y-%m-%d %H:%M:%S UTC', tz='UTC'), con=job_target)
 }
 
@@ -163,6 +171,19 @@ create_task_table <- function(task_plan, table_file) {
 #'   data.frame.
 #' @param task_steps list of definitions steps to perform within each task. Each
 #'   step definition should be created by `create_task_step()`
+#' @param final_steps vector of step indices (either step_names or integers)
+#'   identifying those task_steps that must be completed to consider the entire
+#'   task complete. If one step depends on all previous steps (as indicated by
+#'   its remake `depends:` and `command:` fields) then only that one step need
+#'   be included in `final_steps`.
+#' @param add_complete logical. if TRUE, `indicator_dir` must be supplied and a
+#'   final step named 'complete' will be added to the step list. This step will
+#'   depend on all `final_steps` and will write an indicator file with a
+#'   timestamp when all final steps are complete.
+#' @param indicator_dir directory path, only used if `add_complete==TRUE`,
+#'   specifying the location where task-specific indicator files should be
+#'   written. Such files will always be named after their associated tasks, with
+#'   '.ind' as a suffix
 #' @return a structured list that can be passed to `create_task_makefile` or
 #'   `create_task_table`
 #' @export
@@ -187,25 +208,65 @@ create_task_table <- function(task_plan, table_file) {
 #'   }
 #' )
 #' step3 <- create_task_step('report')
-#' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3))
-create_task_plan <- function(task_names, task_steps) {
+#' task_plan <- create_task_plan(c('AZ','CA','CO'), list(step1, step2, step3),
+#'   final_steps='report', indicator_dir='states/log')
+create_task_plan <- function(
+  task_names, task_steps, 
+  final_steps=sapply(task_steps, `[[`, 'step_name'),
+  indicator_dir, add_complete=TRUE
+) {
   
-  # munge the task_names into a named list
-  task_names <- if(is.data.frame(task_names)) {
-    whisker::rowSplit(task_names)
-  } else if(is.list(task_names)) {
-    task_names
-  } else if(is.character(task_names)) {
-    setNames(as.list(rep(NA, length(task_names))), task_names)
+  # munge the task_names from a character vector into the names in a list (the
+  # list contents will be amended below)
+  if(!is.character(task_names)) {
+    stop('task_names must be a character vector')
   }
+  task_names <- setNames(as.list(rep(NA, length(task_names))), task_names)
   
   # check that task_steps is a list of task_steps
   if(!is.list(task_steps)) {
     stop('task_steps must be a list')
-  } else {
-    if(any(!sapply(task_steps, function(ts) is(ts, 'task_step')))) {
-      stop('task_steps must be a list of task_step objects (see ?create_task_step)')
-    }
+  } else if(any(!sapply(task_steps, function(ts) is(ts, 'task_step')))) {
+    stop('task_steps must be a list of task_step objects (see ?create_task_step)')
+  }
+  step_names <- sapply(task_steps, `[[`, 'step_name')
+  if(any(step_names == 'complete')) {
+    stop("'complete' is a reserved step name. it is added automatically by create_task_plan and should not be manually specified")
+  }
+  
+  # force the evaluation of final_steps now so that it won't include task_is_complete
+  force(final_steps)
+  
+  # check that final_steps is a valid vector of step_names
+  if(length(final_steps) == 0) {
+    stop('at least one final_steps is required if add_complete=TRUE')
+  }
+  unknown_choices <- setdiff(final_steps, step_names)
+  if(length(unknown_choices) > 0) {
+    stop(sprintf("unknown step %s in final_steps: %s",
+                 if(length(unknown_choices) == 1) "index" else "indices",
+                 paste0(ifelse(is.numeric(unknown_choices), unknown_choices, paste0("'", unknown_choices, "'")),
+                        collapse=", ")))
+  }
+  
+    # add a final step that ensures all other steps get run, produces an indicator
+  # file named after the task
+  if(add_complete) {
+    complete_task <- create_task_step(
+      step_name = 'complete',
+      target = function(task_name, ...) {
+        sprintf("'%s.ind'", file.path(indicator_dir, task_name))
+      },
+      depends = function(steps, ...) {
+        # when this final step is evaluated, steps will contain all preceding
+        # steps in the task. subset to final_steps
+        chosen_steps <- unname(steps[final_steps])
+        # return the target_names from each of the chosen_steps
+        sapply(chosen_steps, `[[`, 'target_name', USE.NAMES=FALSE)
+      },
+      command = "write_timestamp(target_name)"
+    )
+    task_steps <- c(task_steps, list(complete_task))
   }
   
   # prepare a list of the tasks and steps
@@ -228,9 +289,6 @@ create_task_plan <- function(task_names, task_steps) {
       step$depends <- evaluate_step_element(step_def, 'depends', task, step)
       step$command <- evaluate_step_element(step_def, 'command', task, step)
       
-      # add a T/F to help whisker avoid empty depends blocks. move this to the makefile function soon
-      step$has_depends <- length(step$depends) > 0
-      
       # add this step to the task. wait until now to append because easier to
       # type/read 'step' than 'task$steps[[j]]' above
       task$steps[[step$step_name]] <- step
@@ -239,6 +297,15 @@ create_task_plan <- function(task_names, task_steps) {
     # when task_names is a long list
     tasks[[task$task_name]] <- task
   }
+  
+  # attach the final set of final_steps as an attribute of the task list, for
+  # use in creating the makefile & table
+  if(add_complete) final_steps <- 'complete'
+  attr(tasks, 'final_steps') <- final_steps
+  
+  # attach the indicator_dir to use as the default indicator_dir in
+  # create_task_makefile
+  attr(tasks, 'indicator_dir') <- indicator_dir
   
   return(tasks)
 }
@@ -305,7 +372,10 @@ create_task_step <- function(
     } else if(is.function(element)) {
       # check that the arguments are as expected
       given_args <- names(formals(element))
-      expected_args <- c('...','task_name','step_name','target_name','depends')
+      expected_args <- c(
+        '...','task_name','step_name','steps', # all elements can see these (steps contains only the steps preceding the current one)
+        if(elem_name == 'depends') c('target_name'),
+        if(elem_name == 'command') c('target_name','depends'))
       unknown_args <- setdiff(given_args, expected_args)
       if(length(unknown_args) > 0) {
         stop(paste0("unknown argument name[s] ",paste("'",unknown_args,"'", collapse=", ")," in '", elem_name, "' element"))

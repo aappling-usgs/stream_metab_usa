@@ -21,6 +21,7 @@ starter_files/*.RData
 2_metab_outputs/out/summaries
 2_metab_outputs/out/fits
 2_metab_outputs/out/*.zip
+4_data_release/log/models
 NEWS.html
 README.html
 .remake
