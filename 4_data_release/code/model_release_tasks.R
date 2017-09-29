@@ -91,3 +91,51 @@ extract_model_inputs <- function(mm_path, inputs_path) {
   dat <- get_data(mm)
   write.table(dat, file=inputs_path, sep='\t', row.names=FALSE, quote=TRUE)
 }
+
+loop_model_tasks <- function(job_target='4e_model_release', task_plan, task_makefile='4e_model_release.yml') {
+  # identify the list of targets that might need to be run
+  task_targets <- gsub("'", "", sapply(unname(task_plan), function(task) task$steps$complete$target_name))
+  # run the targets in a loop, with retries, so that we complete (or skip) one
+  # task before trying the next. If we just ran remake_smu(job_target,
+  # task_makefile) right away, remake would try to build the first step for all
+  # tasks before proceeding to the second step for any task
+  total_tries <- 30
+  tries <- 1
+  while(tries <= total_tries) {
+    # identify remaining needs based on the presence or absence of an indicator
+    # file. if the file exists, don't bother. this is much quicker than asking
+    # remake to rehash every model file to check for changes before we even get
+    # started. if we somehow messed up and let an indicator file get out of
+    # date, remake will catch it in the final calls of this function when we run
+    # remake on the entire job, properly.
+    incomplete_targets <- which(!file.exists(task_targets))
+    num_targets <- length(incomplete_targets)
+    if(num_targets == 0) break
+    message(sprintf("### Starting loop attempt %s of %s for %s remaining tasks:", tries, total_tries, num_targets))
+    tries <- tries + 1
+    for(i in seq_len(num_targets)) {
+      tryCatch({
+        task_number <- incomplete_targets[i]
+        task_target <- task_targets[task_number]
+        message(sprintf("building task #%s (%s of %s): %s", task_number, i, num_targets, task_target))
+        suppressMessages(remake_smu(task_target, task_makefile, verbose=FALSE)) # verbose=FALSE isn't quiet enough, so also suppressMessages
+      }, error=function(e) {
+        message(sprintf("  %s", e$message))
+        message(sprintf("  skipping task #%s due to error", incomplete_targets[i]))
+        # sleep for a while on the assumption that this was an internet error
+        # that will disappear eventually
+        Sys.sleep(120)
+      })
+    }
+  }
+  # check the indicator files one last time; if we didn't make it this far, don't try remaking the entire job
+  incomplete_targets <- which(!file.exists(task_targets))
+  num_targets <- length(incomplete_targets)
+  if(num_targets > 0) {
+    stop(sprintf("All tries are exhausted, but %s tasks remain", num_targets))
+  }
+  # if we've made it this far, remake everything to ensure we're done and to
+  # write the job indicator file. this will take a few minutes because remake
+  # will check the hashes of every file (the big model files take the longest)
+  remake_smu(job_target, task_makefile)
+}
