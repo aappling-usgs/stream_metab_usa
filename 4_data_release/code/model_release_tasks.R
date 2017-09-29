@@ -60,7 +60,7 @@ create_model_release_task_plan <- function(metab.config) {
   task_plan <- create_task_plan(model_names, list(download, inputs))
 }
 
-create_model_release_makefile <- function(makefile, task_plan) {
+create_model_release_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
   st_dir <- '../4_data_release/log'
   if(!dir.exists(st_dir)) dir.create(st_dir)
   create_task_makefile(
@@ -69,7 +69,8 @@ create_model_release_makefile <- function(makefile, task_plan) {
     job_steps = 'inputs',
     include = '4_release_models.yml',
     packages=c('mda.streams', 'streamMetabolizer', 'dplyr'),
-    file_extensions=c('st','RData'))
+    file_extensions=c('st','RData'),
+    template_file=template_file)
 }
 
 download_model <- function(model_name) {

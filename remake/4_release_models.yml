@@ -28,11 +28,12 @@ targets:
   # -- munge & write data for release --
   
   model_release_plan:
-    depends: '../lib/task_makefile.mustache'
     command: create_model_release_task_plan(metab.config)
   
   4e_model_release.yml:
-    command: create_model_release_makefile(makefile=target_name, task_plan=model_release_plan)
+    command: create_model_release_makefile(
+      makefile=target_name, task_plan=model_release_plan,
+      template_file='../lib/task_makefile.mustache')
 
   ../4_data_release/log/model_release.st:
     command: remake_smu(I('4e_model_release'), '4e_model_release.yml')
