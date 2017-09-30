@@ -1,4 +1,4 @@
-create_model_release_task_plan <- function(metab.config) {
+create_model_info_task_plan <- function(metab.config) {
 
   # define & create model_folder & indicator_folder as needed. wait to create
   # them until we're within a function because when remake sources this file,
@@ -83,7 +83,7 @@ create_model_release_task_plan <- function(metab.config) {
     final_steps=c('inputs','dailies','fits'), indicator_dir=indicator_folder)
 }
 
-create_model_release_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
+create_model_info_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
   ind_dir <- '../4_data_release/log'
   if(!dir.exists(ind_dir)) dir.create(ind_dir)
   create_task_makefile(

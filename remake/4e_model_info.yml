@@ -1,8 +1,8 @@
 # Do not edit - automatically generated
 # from the task_makefile.mustache template
-# by create_task_makefile() via create_model_release_makefile()
+# by create_task_makefile() via create_model_info_makefile()
 
-target_default: 4e_model_release
+target_default: 4e_model_info
 
 include:
   - 4_release_models.yml
@@ -146,8 +146,8 @@ targets:
 
   # --- Overall job --- #
 
-  4e_model_release:
-    command: write_timestamp(I('../4_data_release/log/4e_model_release.ind'))
+  4e_model_info:
+    command: write_timestamp(I('../4_data_release/log/4e_model_info.ind'))
     depends: 
       - '../4_data_release/log/models/nwis_01548303-1-170406 1.0.2 bayes_15min.ind'
       - '../4_data_release/log/models/nwis_02168504-2-170406 1.0.2 bayes_60min.ind'
