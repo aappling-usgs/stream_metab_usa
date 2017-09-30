@@ -10,6 +10,52 @@ create_dirs <- function(...) {
   return(dirs)
 }
 
+#### HELPERS ####
+
+#' @param named_data a named list where the names are the tsv/txt files to write
+#'   and the values are the data to write. no file paths, just file names
+#' @param zipfile path and filename of the zip file to write
+write_zipfile <- function(named_data, zipfile) {
+  # go to the temp directory to create intermediate files
+  old.dir <- setwd(tempdir())
+  on.exit(setwd(old.dir))
+  
+  # write the data object[s] to file[s]
+  data_files <- sapply(names(named_data), function(dataname) {
+    file_type <- tools::file_ext(dataname)
+    if(file_type == 'txt') {
+      # this code block is pretty specialized - only expecting errors.txt and
+      # warnings.txt for the model release, and I want double line breaks
+      # between messages because some messages already contain '\n'
+      data_text <- named_data[[dataname]]
+      if(length(data_text) > 0) {
+        readr::write_lines(paste(data_text, collapse="\n\n"), path=dataname)
+        return(dataname)
+      }
+    } else if(file_type == 'tsv') {
+      data_df <- named_data[[dataname]]
+      readr::write_tsv(data_df, path=dataname)
+      return(dataname)
+    } else {
+      stop('unrecognized file extension')
+    }
+    return(NA)
+  })
+  data_files <- unname(c(na.omit(data_files)))
+  
+  # compress
+  zip(zipfile = basename(zipfile), files = data_files)
+  
+  # move the zip files from the temp dir into a more permanent cache location
+  setwd(old.dir)
+  file.copy(file.path(tempdir(), basename(zipfile)), zipfile)
+  
+  # clean up the tempdir in case we're running a lot of these
+  file.remove(file.path(tempdir(), c(data_files, basename(zipfile))))
+  
+  return(zipfile)
+}
+
 #### MODELS ####
 
 create_model_info_task_plan <- function(metab.config, folders) {
@@ -188,9 +234,9 @@ extract_model_dailies <- function(mm_path, inputs_path) {
   # extract the data, munge
   path_vars <- load(mm_path)
   site <- get_info(mm)$config$site
-  strategy <- substring(get_info(mm)$config$strategy, 7)
+  resolution <- substring(get_info(mm)$config$strategy, 7)
   dailies <- get_fit(mm)$daily %>%
-    mutate(site_name=site, resolution=strategy) %>%
+    mutate(site_name=site, resolution) %>%
     filter(valid_day) %>%
     select(
       site_name, resolution, date, 
@@ -203,41 +249,17 @@ extract_model_dailies <- function(mm_path, inputs_path) {
   saveRDS(dailies, file=inputs_path)
 }
 
-extract_model_fits <- function(mm_path, inputs_path) {
+extract_model_fits <- function(mm_path, fit_path) {
   # extract the data
   path_vars <- load(mm_path)
   site <- get_info(mm)$config$site
   fit <- get_fit(mm)
   
-  # go to the temp directory for intermediate files
-  old.dir <- setwd(tempdir())
-  on.exit(setwd(old.dir))
+  fit_files <- paste0(names(fit), '.', ifelse(names(fit) %in% c('warnings','errors'), 'txt', 'tsv'))
+  fit_data <- setNames(fit, fit_files)
+  write_zipfile(fit_data, zipfile=fit_path)
   
-  # write the output to tsv
-  fit_files <- sapply(names(fit), function(fitname) {
-    if(fitname %in% c('warnings','errors')) {
-      fit_text <- fit[[fitname]]
-      if(length(fit_text) > 0) {
-        fit_file <- sprintf("%s.txt", fitname)
-        readr::write_lines(paste(fit_text, collapse="\n\n"), path=fit_file)
-        return(fit_file)
-      }
-    } else {
-      fit_table <- fit[[fitname]]
-      fit_file <- sprintf("%s.tsv", fitname)
-      readr::write_tsv(fit_table, path=fit_file)
-      return(fit_file)
-    }
-    return(NA)
-  })
-  fit_files <- unname(c(na.omit(fit_files)))
-    
-  # compress
-  zip(zipfile = basename(inputs_path), files = fit_files)
-  
-  # post...actually, for now just move the zip files into the cache
-  setwd(old.dir)
-  file.copy(file.path(tempdir(), basename(inputs_path)), inputs_path)
+  # post
   # append_release_files(parent.id, basename(inputs_path))
 }
 
@@ -278,7 +300,7 @@ create_model_sites_task_plan <- function(metab.config, folders) {
   inputs <- create_task_step(
     step_name = 'inputs',
     target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s_input.tsv'", folders$post, task_name)
+      sprintf("'%s/%s_input.zip'", folders$post, task_name)
     },
     command = function(task_name, ...) {
       site_models <- model_short_names[names(model_short_names) == task_name]
@@ -323,6 +345,9 @@ combine_site_inputs <- function(inputs_path, ...) {
   
   # Write out the first input to file. No need to merge because inputs[[1]] is
   # identical to all the others or is the only one
-  print(getwd())
-  readr::write_tsv(inputs[[1]], path=inputs_path)
+  tsv_path <- gsub('\\.zip$', '.tsv', basename(inputs_path))
+  write_zipfile(setNames(list(inputs[[1]]), tsv_path), zipfile=inputs_path)
+  
+  # post
+  # append_release_files(parent.id, inputs_path)
 }
