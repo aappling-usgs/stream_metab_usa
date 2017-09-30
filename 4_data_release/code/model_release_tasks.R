@@ -1,3 +1,5 @@
+#### MODELS ####
+
 create_model_info_task_plan <- function(metab.config) {
 
   # define & create model_folder & indicator_folder as needed. wait to create
@@ -225,4 +227,65 @@ extract_model_diagnostics <- function(mm_path, inputs_path) {
   # 
   # # write the output to tsv
   # # readr::write_tsv(diagnostics, path=inputs_path)
+}
+
+#### SITES ####
+
+create_model_sites_task_plan <- function(metab.config) {
+  
+  # define & create model_folder & indicator_folder as needed. wait to create
+  # them until we're within a function because when remake sources this file,
+  # our working directory will be set to the directory of this file, and that's
+  # confusing
+  model_folder <- '../4_data_release/cache/models'
+  indicator_folder <- '../4_data_release/log/models'
+  if(!dir.exists(model_folder)) dir.create(model_folder)
+  if(!dir.exists(indicator_folder)) dir.create(indicator_folder)
+  
+  # define the tasks as unique IDs for each model
+  sites <- unique(metab.config$site)
+  
+  # temporary truncation for testing
+  sites <- sites[1:6]
+  
+  # define model info, named by site
+  model_titles <- make_metab_run_title(
+    format(as.Date(metab.config$date), '%y%m%d'), metab.config$tag, metab.config$strategy)
+  model_names <- make_metab_model_name(
+    model_titles, metab.config$config.row, metab.config$site) %>%
+    setNames(metab.config$site)
+  model_short_names <- parse_metab_model_name(model_names, out=c('site','strategy')) %>%
+    mutate(release_name=paste0(site, '_', substring(strategy, 7))) %>%
+    pull(release_name) %>%
+    setNames(metab.config$site)
+
+  # define the steps
+  inputs <- create_task_step(
+    step_name = 'inputs',
+    target = function(task_name, step_name, ...) {
+      sprintf("'%s/%s_input.tsv'", model_folder, task_name)
+    },
+    command = function(task_name, ...) {
+      site_models <- model_short_names[names(model_short_names) == task_name]
+      site_model_files <- sprintf("I('%s/%s_input.rds')", model_folder, site_models)
+      sprintf("combine_site_inputs(target_name, %s)", paste(site_model_files, collapse=', '))
+    }
+  )
+
+  # define the task plan
+  task_plan <- create_task_plan(
+    sites, list(inputs),
+    final_steps=c('inputs'), add_complete=FALSE, indicator_dir=indicator_folder)
+}
+
+create_model_sites_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
+  ind_dir <- '../4_data_release/log'
+  if(!dir.exists(ind_dir)) dir.create(ind_dir)
+  create_task_makefile(
+    makefile=makefile, task_plan=task_plan,
+    indicator_dir=dirname(attr(task_plan, 'indicator_dir')),
+    include='4_release_models.yml',
+    packages=c('mda.streams', 'streamMetabolizer', 'dplyr', 'readr'),
+    file_extensions=c('ind','RData'),
+    template_file=template_file)
 }

@@ -1,0 +1,61 @@
+# Do not edit - automatically generated
+# from the task_makefile.mustache template
+# by create_task_makefile() via create_model_sites_makefile()
+
+target_default: 4e_model_sites
+
+include:
+  - 4_release_models.yml
+
+packages:
+  - mda.streams
+  - streamMetabolizer
+  - dplyr
+  - readr
+
+file_extensions:
+  - "ind"
+  - "RData"
+
+targets:
+  # --- nwis_01548303 --- #
+  
+  '../4_data_release/cache/models/nwis_01548303_input.tsv':
+    command: combine_site_inputs(target_name, I('../4_data_release/cache/models/nwis_01548303_15min_input.rds'))
+
+  # --- nwis_02168504 --- #
+  
+  '../4_data_release/cache/models/nwis_02168504_input.tsv':
+    command: combine_site_inputs(target_name, I('../4_data_release/cache/models/nwis_02168504_60min_input.rds'))
+
+  # --- nwis_03292480 --- #
+  
+  '../4_data_release/cache/models/nwis_03292480_input.tsv':
+    command: combine_site_inputs(target_name, I('../4_data_release/cache/models/nwis_03292480_15min_input.rds'))
+
+  # --- nwis_03293000 --- #
+  
+  '../4_data_release/cache/models/nwis_03293000_input.tsv':
+    command: combine_site_inputs(target_name, I('../4_data_release/cache/models/nwis_03293000_15min_input.rds'))
+
+  # --- nwis_03298200 --- #
+  
+  '../4_data_release/cache/models/nwis_03298200_input.tsv':
+    command: combine_site_inputs(target_name, I('../4_data_release/cache/models/nwis_03298200_15min_input.rds'))
+
+  # --- nwis_05418400 --- #
+  
+  '../4_data_release/cache/models/nwis_05418400_input.tsv':
+    command: combine_site_inputs(target_name, I('../4_data_release/cache/models/nwis_05418400_15min_input.rds'))
+
+  # --- Overall job --- #
+
+  4e_model_sites:
+    command: write_timestamp(I('../4_data_release/log/4e_model_sites.ind'))
+    depends: 
+      - '../4_data_release/cache/models/nwis_01548303_input.tsv'
+      - '../4_data_release/cache/models/nwis_02168504_input.tsv'
+      - '../4_data_release/cache/models/nwis_03292480_input.tsv'
+      - '../4_data_release/cache/models/nwis_03293000_input.tsv'
+      - '../4_data_release/cache/models/nwis_03298200_input.tsv'
+      - '../4_data_release/cache/models/nwis_05418400_input.tsv'
