@@ -130,8 +130,8 @@ create_model_info_task_plan <- function(metab.config, folders) {
   )
 
   task_plan <- create_task_plan(
-    model_names, list(download, inputs, dailies, fits), #diagnostics
-    final_steps=c('inputs','dailies','fits'), indicator_dir=folders$log)
+    model_names, list(download, inputs, dailies, fits, diagnostics),
+    final_steps=c('inputs','dailies','fits','diagnostics'), indicator_dir=folders$log)
 }
 
 create_model_info_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
@@ -263,15 +263,31 @@ extract_model_fits <- function(mm_path, fit_path) {
   # append_release_files(parent.id, basename(inputs_path))
 }
 
-extract_model_diagnostics <- function(mm_path, inputs_path) {
-  # # extract the data
-  # path_vars <- load(mm_path)
-  # site <- get_info(mm)$config$site
-  # fit <- get_fit(mm)$daily
-  # #diagnostics <- ...
-  # 
-  # # write the output to tsv
-  # # readr::write_tsv(diagnostics, path=inputs_path)
+extract_model_diagnostics <- function(mm_path, out_file) {
+  # extract the data
+  path_vars <- load(mm_path)
+  site <- get_info(mm)$config$site
+  resolution <- substring(get_info(mm)$config$strategy, 7)
+  fit <- get_fit(mm)
+  
+  diagnostics <- data_frame(
+    site = site,
+    resolution = resolution,
+    K600_daily_sigma_Rhat = fit$KQ_overall$K600_daily_sigma_Rhat,
+    err_obs_iid_sigma_Rhat = fit$overall$err_obs_iid_sigma_Rhat,
+    err_proc_iid_sigma_Rhat = fit$overall$err_proc_iid_sigma_Rhat,
+    K_range = 
+      quantile(fit$daily$K600_daily_50pct, 0.9, na.rm = T) -
+      quantile(fit$daily$K600_daily_50pct, 0.1, na.rm = T),
+    neg_GPP = 100 *
+      length(which(fit$daily$GPP_daily_50pct < -0.5)) /
+      length(which(!is.na(fit$daily$GPP_daily_50pct))),
+    pos_ER = 100 *
+      length(which(fit$daily$ER_daily_50pct > 0.5)) /
+      length(which(!is.na(fit$daily$ER_daily_50pct))))
+  
+  # write the output to rds
+  saveRDS(diagnostics, file=out_file)
 }
 
 #### SITES ####
@@ -380,3 +396,54 @@ combine_model_dailies <- function(out_file, task_plan) {
   
   # post
   # append_release_files(parent.id, out_file)
+}
+
+combine_model_diagnostics <- function(out_file, task_plan) {
+  # identify the expected and available daily prediction files to combine
+  targets <- gsub("'", "", sapply(unname(task_plan), function(task) {
+    task$steps$diagnostics$target_name
+  }))
+  target_dir <- unique(sapply(targets, dirname))
+  targets <- basename(targets)
+  prepped_files <- dir(target_dir)
+  
+  # pick the targets that also exist as files. make a small stink if expected
+  # files don't exist, but not too big because we want to be able to test this
+  # function on subsets of the complete set of models
+  existing_targets <- intersect(targets, prepped_files)
+  missing_targets <- setdiff(targets, prepped_files)
+  if(length(missing_targets) > 0) {
+    warning(paste("these diagnostics.rds files don't yet exist:", paste0(missing_targets, collapse=', ')))
+  }
+  
+  # combine all the data into one big data.frame
+  all_diagnostics <- bind_rows(lapply(file.path(target_dir, existing_targets), readRDS))
+  
+  # assess models based on these diagnostics
+  all_diagnostics <- all_diagnostics %>%
+    mutate(
+      model_confidence = ifelse(
+        K600_daily_sigma_Rhat > 1.2, "L", ifelse(
+          err_obs_iid_sigma_Rhat > 1.2, "L", ifelse(
+            err_proc_iid_sigma_Rhat > 1.2, "L", ifelse(
+              K_range > 50, "L", ifelse(
+                neg_GPP > 50, "L", ifelse(
+                  pos_ER > 50, "L", ifelse(
+                    K_range > 15, "M", ifelse(
+                      neg_GPP > 25, "M", ifelse(
+                        pos_ER > 25, "M", "H"
+                      ))))))))))
+  
+  # determine a site-level assessment (possibly combining several models)
+  all_diagnostics <- all_diagnostics %>%
+    mutate(model_confidence = ordered(model_confidence, levels=c('L','M','H'))) %>%
+    group_by(site) %>%
+    mutate(
+      site_min_confidence = min(model_confidence),
+      site_confidence = paste0(sort(unique(model_confidence)), collapse=',')) %>%
+    ungroup()
+  
+  # write and zip the assessment table
+  tsv_path <- gsub('\\.zip$', '.tsv', basename(out_file))
+  write_zipfile(setNames(list(all_diagnostics), tsv_path), out_file)
+}
