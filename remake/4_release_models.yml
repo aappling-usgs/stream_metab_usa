@@ -33,6 +33,8 @@ targets:
       prep=I('../4_data_release/cache/models/prep'),
       post=I('../4_data_release/cache/models/post'),
       log=I('../4_data_release/log/models'))
+      
+  # model_config: '../2_metab_models/run3/out/config.tsv'
   
   model_info_plan:
     command: create_model_info_task_plan(metab.config, folders=model_release_folders)
