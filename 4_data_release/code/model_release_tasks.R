@@ -1,16 +1,19 @@
+#### DIRS ####
+
+#' @param ... named arguments, each giving a directory name; will be returned as
+#'   a named list
+create_dirs <- function(...) {
+  dirs <- list(...)
+  lapply(dirs, function(dirname) {
+    if(!dir.exists(dirname)) dir.create(dirname, recursive=TRUE)
+  })
+  return(dirs)
+}
+
 #### MODELS ####
 
-create_model_info_task_plan <- function(metab.config) {
+create_model_info_task_plan <- function(metab.config, folders) {
 
-  # define & create model_folder & indicator_folder as needed. wait to create
-  # them until we're within a function because when remake sources this file,
-  # our working directory will be set to the directory of this file, and that's
-  # confusing
-  model_folder <- '../4_data_release/cache/models'
-  indicator_folder <- '../4_data_release/log/models'
-  if(!dir.exists(model_folder)) dir.create(model_folder)
-  if(!dir.exists(indicator_folder)) dir.create(indicator_folder)
-  
   # define the tasks as unique IDs for each model
   model_titles <- make_metab_run_title(
     format(as.Date(metab.config$date), '%y%m%d'), metab.config$tag, metab.config$strategy)
@@ -18,11 +21,11 @@ create_model_info_task_plan <- function(metab.config) {
     model_titles, metab.config$config.row, metab.config$site)
   
   # temporary truncation for testing
-  model_names <- model_names[1:6]
+  model_names <- model_names[c(1:6,18:19)]
   
   # define variables to be used by several steps or functions
   download_paths <- mda.streams::make_metab_model_path(
-    model_name=model_names, folder=model_folder) %>%
+    model_name=model_names, folder=folders$model) %>%
     setNames(model_names)
   model_short_names <- parse_metab_model_name(model_names, out=c('site','strategy')) %>%
     mutate(release_name=paste0(site, '_', substring(strategy, 7))) %>%
@@ -40,13 +43,13 @@ create_model_info_task_plan <- function(metab.config) {
       model_name <- task_name
       sprintf(
         "download_model(model_name=I('%s'), model_folder=I('%s'))",
-        model_name, model_folder)
+        model_name, folders$model)
     }
   )
   inputs <- create_task_step(
     step_name = 'inputs',
     target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s_input.rds'", model_folder, model_short_names[[task_name]])
+      sprintf("'%s/%s_input.rds'", folders$prep, model_short_names[[task_name]])
     },
     command = function(task_name, ...) {
       sprintf("extract_model_inputs('%s', target_name)", download_paths[[task_name]])
@@ -55,7 +58,7 @@ create_model_info_task_plan <- function(metab.config) {
   dailies <- create_task_step(
     step_name = 'dailies',
     target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s_daily.rds'", model_folder, model_short_names[[task_name]])
+      sprintf("'%s/%s_daily.rds'", folders$prep, model_short_names[[task_name]])
     },
     command = function(task_name, ...) {
       sprintf("extract_model_dailies('%s', target_name)", download_paths[[task_name]])
@@ -64,7 +67,7 @@ create_model_info_task_plan <- function(metab.config) {
   fits <- create_task_step(
     step_name = 'fits',
     target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s_fit.zip'", model_folder, model_short_names[[task_name]])
+      sprintf("'%s/%s_fit.zip'", folders$post, model_short_names[[task_name]])
     },
     command = function(task_name, ...) {
       sprintf("extract_model_fits('%s', target_name)", download_paths[[task_name]])
@@ -73,16 +76,16 @@ create_model_info_task_plan <- function(metab.config) {
   diagnostics <- create_task_step(
     step_name = 'diagnostics',
     target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s_diagnostics.rds'", model_folder, model_short_names[[task_name]])
+      sprintf("'%s/%s_diagnostics.rds'", folders$prep, model_short_names[[task_name]])
     },
     command = function(task_name, ...) {
       sprintf("extract_model_diagnostics('%s', target_name)", download_paths[[task_name]])
     }
   )
-  
+
   task_plan <- create_task_plan(
     model_names, list(download, inputs, dailies, fits), #diagnostics
-    final_steps=c('inputs','dailies','fits'), indicator_dir=indicator_folder)
+    final_steps=c('inputs','dailies','fits'), indicator_dir=folders$log)
 }
 
 create_model_info_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
@@ -231,22 +234,13 @@ extract_model_diagnostics <- function(mm_path, inputs_path) {
 
 #### SITES ####
 
-create_model_sites_task_plan <- function(metab.config) {
-  
-  # define & create model_folder & indicator_folder as needed. wait to create
-  # them until we're within a function because when remake sources this file,
-  # our working directory will be set to the directory of this file, and that's
-  # confusing
-  model_folder <- '../4_data_release/cache/models'
-  indicator_folder <- '../4_data_release/log/models'
-  if(!dir.exists(model_folder)) dir.create(model_folder)
-  if(!dir.exists(indicator_folder)) dir.create(indicator_folder)
+create_model_sites_task_plan <- function(metab.config, folders) {
   
   # define the tasks as unique IDs for each model
   sites <- unique(metab.config$site)
   
   # temporary truncation for testing
-  sites <- sites[1:6]
+  sites <- c('nwis_01548303','nwis_03293000','nwis_01473500')
   
   # define model info, named by site
   model_titles <- make_metab_run_title(
@@ -258,24 +252,25 @@ create_model_sites_task_plan <- function(metab.config) {
     mutate(release_name=paste0(site, '_', substring(strategy, 7))) %>%
     pull(release_name) %>%
     setNames(metab.config$site)
+  newline <- "\n      "
 
   # define the steps
   inputs <- create_task_step(
     step_name = 'inputs',
     target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s_input.tsv'", model_folder, task_name)
+      sprintf("'%s/%s_input.tsv'", folders$post, task_name)
     },
     command = function(task_name, ...) {
       site_models <- model_short_names[names(model_short_names) == task_name]
-      site_model_files <- sprintf("I('%s/%s_input.rds')", model_folder, site_models)
-      sprintf("combine_site_inputs(target_name, %s)", paste(site_model_files, collapse=', '))
+      site_model_files <- sprintf("I('%s/%s_input.rds')", folders$prep, site_models)
+      sprintf("combine_site_inputs(target_name,%s)", paste0(newline, site_model_files, collapse=', '))
     }
   )
 
   # define the task plan
   task_plan <- create_task_plan(
     sites, list(inputs),
-    final_steps=c('inputs'), add_complete=FALSE, indicator_dir=indicator_folder)
+    final_steps=c('inputs'), add_complete=FALSE, indicator_dir=folders$log)
 }
 
 create_model_sites_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {

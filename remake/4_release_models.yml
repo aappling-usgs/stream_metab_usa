@@ -27,8 +27,15 @@ targets:
   
   # -- munge & write data for release --
   
+  model_release_folders:
+    command: create_dirs(
+      model=I('../4_data_release/cache/models/models'),
+      prep=I('../4_data_release/cache/models/prep'),
+      post=I('../4_data_release/cache/models/post'),
+      log=I('../4_data_release/log/models'))
+  
   model_info_plan:
-    command: create_model_info_task_plan(metab.config)
+    command: create_model_info_task_plan(metab.config, folders=model_release_folders)
   
   4e_model_info.yml:
     command: create_model_info_makefile(
@@ -42,7 +49,7 @@ targets:
       task_makefile='4e_model_info.yml')
       
   model_sites_plan:
-    command: create_model_sites_task_plan(metab.config)
+    command: create_model_sites_task_plan(metab.config, folders=model_release_folders)
     
   4e_model_sites.yml:
     command: create_model_sites_makefile(
@@ -57,7 +64,7 @@ targets:
 
   # -- create tables with partial info to complete manually --
   
-  #../4_data_release/in/site_data_attr.csv:
+  #../4_data_release/in/metab_config_attr.csv:
   #  command: attribute_skeleton(meta_all_df, target_name)
     
   # -- read manual entry and extracted metadata -- 
