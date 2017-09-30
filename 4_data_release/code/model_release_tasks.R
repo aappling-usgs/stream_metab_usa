@@ -304,3 +304,25 @@ create_model_sites_makefile <- function(makefile, task_plan, template_file='../l
     file_extensions=c('ind','RData'),
     template_file=template_file)
 }
+
+combine_site_inputs <- function(inputs_path, ...) {
+  # Read the input files and pare down to just the 7 usual input columns
+  input_files <- list(...)
+  inputs <- lapply(input_files, function(infi) {
+    readRDS(infi) %>%
+      select(solar.time, DO.obs, DO.sat, depth, temp.water, light, discharge)
+  })
+
+  # I'm pretty confident that the inputs are the same for all models...but do a
+  # check to confirm
+  if(!all(sapply(seq_len(length(inputs)-1)+1, function(i) {
+    all.equal(inputs[[1]], inputs[[i]])
+  }))) {
+    stop("all input files are not equal")
+  }
+  
+  # Write out the first input to file. No need to merge because inputs[[1]] is
+  # identical to all the others or is the only one
+  print(getwd())
+  readr::write_tsv(inputs[[1]], path=inputs_path)
+}
