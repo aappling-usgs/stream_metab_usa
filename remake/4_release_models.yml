@@ -57,10 +57,15 @@ targets:
       template_file='../lib/task_makefile.mustache')
 
   ../4_data_release/log/4e_model_sites.ind:
+    depends: ../4_data_release/log/4e_model_info.ind
     command: loop_model_tasks(
       job_target=I('4e_model_sites'), 
       task_plan=model_sites_plan, 
       task_makefile='4e_model_sites.yml')
+  
+  ../4_data_release/cache/models/post/daily_predictions.zip:
+    depends: ../4_data_release/log/4e_model_info.ind
+    command: combine_model_dailies(target_name, model_info_plan)
 
   # -- create tables with partial info to complete manually --
   

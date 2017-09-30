@@ -351,3 +351,32 @@ combine_site_inputs <- function(inputs_path, ...) {
   # post
   # append_release_files(parent.id, inputs_path)
 }
+
+combine_model_dailies <- function(out_file, task_plan) {
+  # identify the expected and available daily prediction files to combine
+  targets <- gsub("'", "", sapply(unname(task_plan), function(task) {
+    task$steps$dailies$target_name
+  }))
+  target_dir <- unique(sapply(targets, dirname))
+  targets <- basename(targets)
+  prepped_files <- dir(target_dir)
+  
+  # pick the targets that also exist as files. make a small stink if expected
+  # files don't exist, but not too big because we want to be able to test this
+  # function on subsets of the complete set of models
+  existing_targets <- intersect(targets, prepped_files)
+  missing_targets <- setdiff(targets, prepped_files)
+  if(length(missing_targets) > 0) {
+    warning(paste("these daily.rds files don't yet exist:", paste0(missing_targets, collapse=', ')))
+  }
+  
+  # combine all the data into one big data.frame
+  all_dailies <- bind_rows(lapply(file.path(target_dir, existing_targets), readRDS))
+  
+  # write the combined daily predictions to a file with the same name (other
+  # than extension) as the zip file that will contain it. write the zip, too
+  tsv_path <- gsub('\\.zip$', '.tsv', basename(out_file))
+  write_zipfile(setNames(list(all_dailies), tsv_path), zipfile=out_file)
+  
+  # post
+  # append_release_files(parent.id, out_file)
