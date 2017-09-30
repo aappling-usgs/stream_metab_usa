@@ -100,16 +100,35 @@ create_model_info_makefile <- function(makefile, task_plan, template_file='../li
     template_file=template_file)
 }
 
-loop_model_tasks <- function(job_target='4e_model_release', task_plan, task_makefile='4e_model_release.yml') {
+#' Build a job target by looping over individual tasks
+#'
+#' Attempts all steps in a task before moving on to the next task. Especially
+#' useful if intermediate files are created and deleted over several steps
+#' within a task, and if those files would take up too much space if
+#' intermediate files from one step of all tasks were simultaneously present
+#'
+#' @param job_target overall job target from task_makefile to build
+#' @param task_plan task plan as created by `create_task_plan()`
+#' @param task_makefile
+#' @param num_tries integer number of times to retry looping through all
+#'   remaining tasks
+#' @param sleep_on_error integer number of seconds to sleep immediately after a
+#'   failed task. Especially useful if the error was likely to be inconsistent
+#'   (e.g., a temporary network issue) and might not occur again if we wait a
+#'   while
+loop_model_tasks <- function(job_target='4e_model_info', task_plan, task_makefile='4e_model_info.yml',
+                             num_tries=30, sleep_on_error=0) {
   # identify the list of targets that might need to be run
-  task_targets <- gsub("'", "", sapply(unname(task_plan), function(task) task$steps$complete$target_name))
+  final_steps <- attr(task_plan, "final_steps")
+  task_targets <- gsub("'", "", sapply(unname(task_plan), function(task) {
+    sapply(unname(task$steps[final_steps]), `[[`, 'target_name')
+  }))
   # run the targets in a loop, with retries, so that we complete (or skip) one
   # task before trying the next. If we just ran remake_smu(job_target,
   # task_makefile) right away, remake would try to build the first step for all
   # tasks before proceeding to the second step for any task
-  total_tries <- 30
-  tries <- 1
-  while(tries <= total_tries) {
+  this_try <- 1
+  while(this_try <= num_tries) {
     # identify remaining needs based on the presence or absence of an indicator
     # file. if the file exists, don't bother. this is much quicker than asking
     # remake to rehash every model file to check for changes before we even get
@@ -119,8 +138,8 @@ loop_model_tasks <- function(job_target='4e_model_release', task_plan, task_make
     incomplete_targets <- which(!file.exists(task_targets))
     num_targets <- length(incomplete_targets)
     if(num_targets == 0) break
-    message(sprintf("\n### Starting loop attempt %s of %s for %s remaining tasks:", tries, total_tries, num_targets))
-    tries <- tries + 1
+    message(sprintf("\n### Starting loop attempt %s of %s for %s remaining tasks:", this_try, num_tries, num_targets))
+    this_try <- this_try + 1
     for(i in seq_len(num_targets)) {
       tryCatch({
         task_number <- incomplete_targets[i]
@@ -130,9 +149,10 @@ loop_model_tasks <- function(job_target='4e_model_release', task_plan, task_make
       }, error=function(e) {
         message(sprintf("  Error in %s : %s", deparse(e$call), e$message))
         message(sprintf("  Skipping task #%s due to error", incomplete_targets[i]))
-        # sleep for a while on the assumption that this was an internet error
-        # that will disappear eventually
-        # Sys.sleep(120)
+        # sleep for a while if requested
+        if(sleep_on_error > 0) {
+          Sys.sleep(sleep_on_error)
+        }
       })
     }
   }
