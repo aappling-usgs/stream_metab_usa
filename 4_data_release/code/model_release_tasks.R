@@ -67,7 +67,7 @@ create_model_info_task_plan <- function(metab.config, folders) {
     model_titles, metab.config$config.row, metab.config$site)
   
   # temporary truncation for testing
-  model_names <- model_names[c(1:6,18:19)]
+  # model_names <- model_names[c(1:6,18:19)]
   
   # define variables to be used by several steps or functions
   download_paths <- mda.streams::make_metab_model_path(
@@ -298,7 +298,7 @@ create_model_sites_task_plan <- function(metab.config, folders) {
   sites <- unique(metab.config$site)
   
   # temporary truncation for testing
-  sites <- c('nwis_01548303','nwis_03293000','nwis_01473500')
+  # sites <- c('nwis_01548303','nwis_03293000','nwis_01473500')
   
   # define model info, named by site
   model_titles <- make_metab_run_title(
