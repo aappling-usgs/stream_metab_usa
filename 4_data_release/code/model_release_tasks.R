@@ -219,6 +219,7 @@ download_model <- function(model_name, model_folder) {
   download_metab_model(
     model_name=model_name, folder=model_folder, version='original',
     on_local_exists='skip') #'skip' is a lot faster, safe because any new models would have new names on SB
+  unlink(file.path(tempdir(), '4_data_release'), recursive=TRUE)
 }
 
 extract_model_inputs <- function(mm_path, inputs_path) {
