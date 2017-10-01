@@ -200,6 +200,7 @@ loop_model_tasks <- function(job_target='4e_model_info', task_plan, task_makefil
           Sys.sleep(sleep_on_error)
         }
       })
+      gc()
     }
   }
   # check the indicator files one last time; if we didn't make it this far, don't try remaking the entire job
