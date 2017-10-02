@@ -49,6 +49,6 @@ create_timeseries_release_makefile <- function(makefile, template_file){
     indicator_dir=dirname(ind_dir),
     include='4_release_timeseries.yml',
     packages=c('mda.streams', 'readr', 'dplyr'),
-    sources = c('../lib/load_profile.R','../4_timeseries_release/code/download_release.R', '../4_data_release/code/post_data_release.R'), 
+    sources = c('../lib/load_profile.R','../4_data_release/code/timeseries_download_release.R', '../4_data_release/code/post_data_release.R'), 
     template_file=template_file)
 }
