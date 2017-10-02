@@ -29,6 +29,15 @@ targets:
   pc1_timeseries:
     command: create_release_child(stream_metab_powell_release, target_name)
   
+  # -- munge & write data for release --
+  
+  4b_timeseries.yml:
+    command: create_timeseries_release_makefile(makefile=target_name,
+      template_file='../lib/task_makefile.mustache')
+
+  ../4_data_release/log/4b_timeseries.ind:
+    command: make(I('4b_timeseries'), remake_file='4b_timeseries.yml')
+  
   # -- create tables with partial info to complete manually --
   
   #../4_data_release/in/metab_config_attr.csv:
