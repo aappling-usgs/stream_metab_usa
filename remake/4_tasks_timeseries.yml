@@ -2,7 +2,7 @@
 # from the task_makefile.mustache template
 # by create_task_makefile() via create_timeseries_release_makefile()
 
-target_default: 4b_timeseries
+target_default: 4_tasks_timeseries
 
 include:
   - 4_release_timeseries.yml
@@ -33067,8 +33067,8 @@ targets:
 
   # --- Overall job --- #
 
-  4b_timeseries:
-    command: write_timestamp(I('../4_data_release/log/4b_timeseries.ind'))
+  4_tasks_timeseries:
+    command: write_timestamp(I('../4_data_release/log/4_tasks_timeseries.ind'))
     depends: 
       - '../4_data_release/log/timeseries/nwis_01021050.ind'
       - '../4_data_release/log/timeseries/nwis_01036390.ind'
