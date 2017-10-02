@@ -16,6 +16,7 @@ sources:
   - ../4_data_release/code/model_release_tasks.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
+  - ../lib/check_frozen.R
   
 targets:
   4_release_models:

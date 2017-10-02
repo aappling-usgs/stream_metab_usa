@@ -164,6 +164,11 @@ create_model_info_makefile <- function(makefile, task_plan, template_file='../li
 #'   while
 loop_model_tasks <- function(job_target='4e_model_info', task_plan, task_makefile='4e_model_info.yml',
                              num_tries=30, sleep_on_error=0) {
+  
+  job_target_command <- yaml::yaml.load_file(task_makefile)$targets[[job_target]]$command
+  job_target_file <- parse(text=job_target_command)[[1]][[2]][[2]]
+  if(check_frozen(job_target_file)) return(NULL)
+  
   # identify the list of targets that might need to be run
   final_steps <- attr(task_plan, "final_steps")
   task_targets <- gsub("'", "", sapply(unname(task_plan), function(task) {
