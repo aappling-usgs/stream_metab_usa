@@ -21,7 +21,7 @@ sources:
 targets:
   4_release_models:
     depends: 
-      - ../4_data_release/log/4e_model_info.ind
+      - ../4_data_release/log/4_tasks_model_info.ind
   #    - release_model_inputs
   #    - release_model_preds
   #    - release_model_fits
@@ -40,38 +40,38 @@ targets:
   model_info_plan:
     command: create_model_info_task_plan(metab.config, folders=model_release_folders)
   
-  4e_model_info.yml:
+  4_tasks_model_info.yml:
     command: create_model_info_makefile(
       makefile=target_name, task_plan=model_info_plan,
       template_file='../lib/task_makefile.mustache')
 
-  ../4_data_release/log/4e_model_info.ind:
+  ../4_data_release/log/4_tasks_model_info.ind:
     command: loop_model_tasks(
-      job_target=I('4e_model_info'), 
+      job_target=I('4_tasks_model_info'), 
       task_plan=model_info_plan, 
-      task_makefile='4e_model_info.yml')
+      task_makefile='4_tasks_model_info.yml')
       
   model_sites_plan:
     command: create_model_sites_task_plan(metab.config, folders=model_release_folders)
     
-  4e_model_sites.yml:
+  4_tasks_model_sites.yml:
     command: create_model_sites_makefile(
       makefile=target_name, task_plan=model_sites_plan,
       template_file='../lib/task_makefile.mustache')
 
-  ../4_data_release/log/4e_model_sites.ind:
-    depends: ../4_data_release/log/4e_model_info.ind
+  ../4_data_release/log/4_tasks_model_sites.ind:
+    depends: ../4_data_release/log/4_tasks_model_info.ind
     command: loop_model_tasks(
-      job_target=I('4e_model_sites'), 
+      job_target=I('4_tasks_model_sites'), 
       task_plan=model_sites_plan, 
-      task_makefile='4e_model_sites.yml')
+      task_makefile='4_tasks_model_sites.yml')
   
   ../4_data_release/cache/models/post/daily_predictions.zip:
-    depends: ../4_data_release/log/4e_model_info.ind
+    depends: ../4_data_release/log/4_tasks_model_info.ind
     command: combine_model_dailies(target_name, model_info_plan)
 
   ../4_data_release/cache/models/post/diagnostics.zip:
-    depends: ../4_data_release/log/4e_model_info.ind
+    depends: ../4_data_release/log/4_tasks_model_info.ind
     command: combine_model_diagnostics(target_name, model_info_plan)
 
   # -- create tables with partial info to complete manually --
