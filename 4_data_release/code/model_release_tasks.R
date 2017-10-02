@@ -162,7 +162,7 @@ create_model_info_makefile <- function(makefile, task_plan, template_file='../li
 #'   failed task. Especially useful if the error was likely to be inconsistent
 #'   (e.g., a temporary network issue) and might not occur again if we wait a
 #'   while
-loop_model_tasks <- function(job_target='4e_model_info', task_plan, task_makefile='4e_model_info.yml',
+loop_model_tasks <- function(job_target='4_tasks_model_info', task_plan, task_makefile='4_tasks_model_info.yml',
                              num_tries=30, sleep_on_error=0) {
   
   job_target_command <- yaml::yaml.load_file(task_makefile)$targets[[job_target]]$command
