@@ -12,5 +12,5 @@
 - '../2_metab_models/run3/out/config.tsv'
 - '../2_metab_models/run3/out/files_metab.tsv'
 
-- '../4_data_release/log/4e_model_info.ind'
-- '../4_data_release/log/4e_model_sites.ind'
+- '../4_data_release/log/4_tasks_model_info.ind'
+- '../4_data_release/log/4_tasks_model_sites.ind'
