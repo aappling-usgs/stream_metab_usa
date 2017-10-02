@@ -51,6 +51,6 @@ targets:
   pc1_timeseries:
     command: create_release_child(stream_metab_powell_release, target_name)
     
-  4_release_timeseries.yml:
+  4b_release_timeseries.yml:
     depends: '../lib/task_makefile.mustache'
     command: create_timeseries_release_makefile(makefile=target_name)
