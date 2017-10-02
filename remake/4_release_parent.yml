@@ -16,13 +16,11 @@ sources:
   - ../4_data_release/code/post_data_release.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
-  - ../4_data_release/code/timeseries_release_makefile.R
   
 targets:
   4_release_parent:
     depends: 
       - stream_metab_powell_release
-      - 4_release_timeseries.yml
   
   # -- load shared metadata details --
   
@@ -47,10 +45,3 @@ targets:
 
   stream_metab_powell_release:
     command: create_release_parent(target_name, I('57adfa86e4b0fc09faad6d87'))
-    
-  pc1_timeseries:
-    command: create_release_child(stream_metab_powell_release, target_name)
-    
-  4b_release_timeseries.yml:
-    depends: '../lib/task_makefile.mustache'
-    command: create_timeseries_release_makefile(makefile=target_name)
