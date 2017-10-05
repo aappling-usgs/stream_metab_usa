@@ -35,7 +35,7 @@ download_release_tses <- function(file.paths){
 
 post_release_tses <- function(target.name, parent.id, file.paths){
   
-  safe_login()
+  
   tmpdir <- tempdir()
   zipfile <- file.path(tmpdir, paste0(target.name, '.zip'))
   
@@ -52,7 +52,10 @@ post_release_tses <- function(target.name, parent.id, file.paths){
   old.dir <- setwd(tmpdir)
   zip(zipfile = basename(zipfile), files = basename(tsv.files))
   setwd(old.dir)
-  append_release_files(parent.id, zipfile)
+  key <- strsplit(basename(zipfile), '[.]')[[1]][1]
+  
+  safe_login()
+  create_release_item(parent.id, key, zipfile)
   # zip those dogs and post
   unlink(c(zipfile, tsv.files))
 }
