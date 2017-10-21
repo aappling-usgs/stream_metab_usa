@@ -6,7 +6,7 @@
 .Rproj.user
 temp
 *.Rout
-*.ind
+
 starter_files/*.RData
 */cache/
 1_spatial/in/CONF_struct_170407.csv
