@@ -42,6 +42,7 @@ targets:
   ../4_data_release/log/4_tasks_timeseries.ind:
     command: loop_model_tasks(I('4_tasks_timeseries'), tasks_timeseries_plan,
       '4_tasks_timeseries.yml', sleep_on_error=120)
+    
   
   # -- create tables with partial info to complete manually --
   
