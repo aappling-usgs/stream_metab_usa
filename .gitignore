@@ -6,6 +6,7 @@
 .Rproj.user
 temp
 *.Rout
+
 starter_files/*.RData
 */cache/
 1_spatial/in/CONF_struct_170407.csv
@@ -22,6 +23,7 @@ starter_files/*.RData
 2_metab_outputs/out/fits
 2_metab_outputs/out/*.zip
 4_data_release/log/models
+4_data_release/log/timeseries
 NEWS.html
 README.html
 .remake
