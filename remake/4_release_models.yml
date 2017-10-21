@@ -20,8 +20,10 @@ sources:
 targets:
   4_release_models:
     depends: 
+      - post_config
       - ../4_data_release/log/4_tasks_model_info.ind
       - ../4_data_release/log/4_tasks_model_sites.ind
+      - post_diagnostics
       - post_metabolism
   
   # -- SB posting: create the items to host data and metadata --
@@ -46,7 +48,13 @@ targets:
       post=I('../4_data_release/cache/models/post'),
       log=I('../4_data_release/log/models'))
       
-  # model_config: '../2_metab_models/run3/out/config.tsv'
+  # model_config: post the file
+  
+  post_config:
+    command: append_release_files(
+      sb.id=pc1_model_config,
+      files='../2_metab_models/run3/out/config.tsv')
+  
   # model_info: extract inputs, outputs, diagnostics from each model.
   # no posting yet
   
@@ -84,15 +92,18 @@ targets:
       task_plan=model_sites_plan, 
       task_makefile='4_tasks_model_sites.yml')
   
-  ../4_data_release/cache/models/post/daily_predictions.zip:
-    depends: ../4_data_release/log/4_tasks_model_info.ind
-    command: combine_model_dailies(target_name, model_info_plan)
+  # model diagnostics: combine diagnostics for each file into single table,
+  # add columns for final model-level and site-level assessments
 
   ../4_data_release/cache/models/post/diagnostics.zip:
     depends: ../4_data_release/log/4_tasks_model_info.ind
     command: combine_model_diagnostics(target_name, model_info_plan)
 
-  # -- create tables with partial info to complete manually --
+  post_diagnostics:
+    command: append_release_files(
+      sb.id=pc1_diagnostics,
+      files='../4_data_release/cache/models/post/diagnostics.zip')
+
   # daily metabolism: combine model info and timeseries info into single
   # highly useful data.frame of many predictions & predictors, all sites.
   # post it.
@@ -118,11 +129,6 @@ targets:
   #../4_data_release/out/site_data.xml:
   #  command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata)
 
-  # -- SB posting: create the items to host data and metadata --
-
-  #pc1_site_metadata:
-  #  command: create_release_child(stream_metab_powell_release, target_name)
-  
   # -- final targets: post data and metadata to SB --
   
   #release_site_data:
