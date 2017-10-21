@@ -1,4 +1,4 @@
-create_timeseries_release_makefile <- function(makefile, template_file){
+create_timeseries_release_plan <- function() {
   
   ts.dir <- "../1_timeseries/out"
   
@@ -43,6 +43,10 @@ create_timeseries_release_makefile <- function(makefile, template_file){
     ts.sites, list(list_files, download_ts, timeseries),
     final_steps=c('ts_posted'), indicator_dir=ind_dir)
   
+  return(task_plan)
+}
+
+create_timeseries_release_makefile <- function(makefile, task_plan, template_file) {
   create_task_makefile(
     makefile=makefile,
     task_plan=task_plan,
