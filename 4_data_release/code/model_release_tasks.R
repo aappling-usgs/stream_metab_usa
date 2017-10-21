@@ -319,9 +319,12 @@ combine_site_inputs <- function(inputs_path, ...) {
   # append_release_files(parent.id, inputs_path)
 }
 
-combine_model_dailies <- function(out_file, task_plan) {
+combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {
+  
+  ### daily predictions ###
+
   # identify the expected and available daily prediction files to combine
-  targets <- gsub("'", "", sapply(unname(task_plan), function(task) {
+  targets <- gsub("'", "", sapply(unname(model_info_plan), function(task) {
     task$steps$dailies$target_name
   }))
   target_dir <- unique(sapply(targets, dirname))
@@ -337,12 +340,57 @@ combine_model_dailies <- function(out_file, task_plan) {
     warning(paste("these daily.rds files don't yet exist:", paste0(missing_targets, collapse=', ')))
   }
   
-  # combine all the data into one big data.frame
-  all_dailies <- bind_rows(lapply(file.path(target_dir, existing_targets), readRDS))
+  # combine all the predictions into one big data.frame
+  daily_preds <- bind_rows(lapply(file.path(target_dir, existing_targets), readRDS))
   
-  # TODO add in daily average depth, discharge, temperature, light, and velocity (and daylength?)
+  ### daily means of inst inputs ###
   
+  # as with daily predictions, check for the required files and make a small
+  # stink if they're not all there
+  inst_targets <- gsub("'", "", sapply(unname(model_info_plan), function(task) {
+    task$steps$inputs$target_name
+  }))
+  inst_target_dir <- unique(sapply(inst_targets, dirname))
+  inst_targets <- basename(inst_targets)
+  inst_prepped_files <- dir(inst_target_dir)
+  inst_existing_targets <- intersect(inst_targets, inst_prepped_files)
+  inst_missing_targets <- setdiff(inst_targets, inst_prepped_files)
+  if(length(inst_missing_targets) > 0) {
+    warning(paste("these input.rds files don't yet exist:", paste0(inst_missing_targets, collapse=', ')))
+  }
+  # extract and compute in daily means of instantaneous input variables: depth, temperature, light
+  sites <- unique(daily_preds$site_name)
+  daily_means <- bind_rows(lapply(sites, function(site) {
+    # in combine_site_inputs we confirm that all inputs for any site are the
+    # same, so just read the first file per site
+    first_input_file <- grep(paste0(site, '_.*_input.rds'), inst_existing_targets, value=TRUE)[1]
+    input <- readRDS(file.path(inst_target_dir, first_input_file)) %>%
+      mutate(DO.psat = 100*DO.obs/DO.sat) %>%
+      group_by(date) %>%
+      summarize(
+        DO.obs=mean(DO.obs),
+        DO.sat=mean(DO.sat),
+        DO.amp=diff(range(DO.psat)),
+        DO.psat=mean(DO.psat),
+        depth=mean(depth),
+        temp.water=mean(temp.water),
+        day.length=if(any(light > 0)) as.numeric(diff(range(solar.time[light>0])), units='hours') else NA,
+        light=mean(light),
+        discharge=mean(discharge)) %>%
+      mutate(site_name=site)
+    return(input)
+  }))
   
+  # read in daily average discharge, and velocity
+  daily_predictors <- readRDS(daily_preds_file) %>%
+    select(site_name=site, date=sitedate, velocity=velocdaily)
+  
+  # combine the daily predictions, daily mean inputs, and daily predictors into
+  # a single df. I've done some checking: daylength predicts mean light,
+  # DO.psat=doamp, discharge=dischdaily, GPP~DO.amp, GPP~daylength, etc.
+  all_dailies <- daily_preds %>%
+    left_join(daily_means, by=c('site_name', 'date')) %>%
+    left_join(daily_predictors, by=c('site_name', 'date'))
   
   # write the combined daily predictions to a file with the same name (other
   # than extension) as the zip file that will contain it. write the zip, too
