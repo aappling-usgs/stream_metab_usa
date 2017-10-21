@@ -1,8 +1,13 @@
 #' login that reads from profile and only does auth if needed
 safe_login <- function(){
   if (!is_logged_in()){
-    profile <- load_profile()
-    authenticate_sb(profile$sb_user, profile$sb_password)
+    tryCatch({
+      login_sb()
+    }, error=function(e) {
+      message('not configured for login_sb() so using load_profile()')
+      profile <- load_profile()
+      authenticate_sb(profile$sb_user, profile$sb_password)
+    })
   }
 }
 
