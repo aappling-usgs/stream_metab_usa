@@ -1,8 +1,7 @@
 target_default: 4_release_models
 
 include:
-  - 2_metab_outputs.yml # 1_site_data.yml and 2_metab_models.yml get included via this file
-  - 4_release_parent.yml
+  - 4_release_timeseries.yml # 1_site_data.yml, 2_metab_models.yml, 2_metab_outputs.yml, and 4_release_parent.yml get included via this file
   
 packages:
   - yaml
@@ -22,11 +21,22 @@ targets:
   4_release_models:
     depends: 
       - ../4_data_release/log/4_tasks_model_info.ind
-  #    - release_model_inputs
-  #    - release_model_preds
-  #    - release_model_fits
+      - ../4_data_release/log/4_tasks_model_sites.ind
   
-  # -- munge & write data for release --
+  # -- SB posting: create the items to host data and metadata --
+
+  pc1_model_config:
+    command: create_release_child(stream_metab_powell_release, target_name)
+  pc1_inputs:
+    command: create_release_child(stream_metab_powell_release, target_name)
+  pc1_model_fits:
+    command: create_release_child(stream_metab_powell_release, target_name)
+  pc1_diagnostics:
+    command: create_release_child(stream_metab_powell_release, target_name)
+  pc1_metabolism:
+    command: create_release_child(stream_metab_powell_release, target_name)
+  
+  # -- munge & write & post data for release --
   
   model_release_folders:
     command: create_dirs(
@@ -36,6 +46,8 @@ targets:
       log=I('../4_data_release/log/models'))
       
   # model_config: '../2_metab_models/run3/out/config.tsv'
+  # model_info: extract inputs, outputs, diagnostics from each model.
+  # no posting yet
   
   model_info_plan:
     command: create_model_info_task_plan(metab.config, folders=model_release_folders)
@@ -51,8 +63,13 @@ targets:
       task_plan=model_info_plan, 
       task_makefile='4_tasks_model_info.yml')
       
+  # model_sites: combine model info into site-level info,
+  # post inputs and fits to site-level SB items
+
   model_sites_plan:
-    command: create_model_sites_task_plan(metab.config, folders=model_release_folders)
+    command: create_model_sites_task_plan(
+      metab.config, folders=model_release_folders,
+      inputs_item=I('pc1_inputs'), fits_item=I('pc1_model_fits')) # quote the targets so the task file can refer to them symbolically
     
   4_tasks_model_sites.yml:
     command: create_model_sites_makefile(

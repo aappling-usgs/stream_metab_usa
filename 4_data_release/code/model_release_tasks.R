@@ -191,9 +191,6 @@ extract_model_fits <- function(mm_path, fit_path) {
   fit_files <- paste0(names(fit), '.', ifelse(names(fit) %in% c('warnings','errors'), 'txt', 'tsv'))
   fit_data <- setNames(fit, fit_files)
   write_zipfile(fit_data, zipfile=fit_path)
-  
-  # post
-  # append_release_files(parent.id, basename(inputs_path))
 }
 
 extract_model_diagnostics <- function(mm_path, out_file) {
@@ -209,6 +206,7 @@ extract_model_diagnostics <- function(mm_path, out_file) {
     K600_daily_sigma_Rhat = fit$KQ_overall$K600_daily_sigma_Rhat,
     err_obs_iid_sigma_Rhat = fit$overall$err_obs_iid_sigma_Rhat,
     err_proc_iid_sigma_Rhat = fit$overall$err_proc_iid_sigma_Rhat,
+    K_median = quantile(fit$daily$K600_daily_50pct, 0.5, na.rm = T),
     K_range = 
       quantile(fit$daily$K600_daily_50pct, 0.9, na.rm = T) -
       quantile(fit$daily$K600_daily_50pct, 0.1, na.rm = T),
@@ -225,13 +223,10 @@ extract_model_diagnostics <- function(mm_path, out_file) {
 
 #### SITES ####
 
-create_model_sites_task_plan <- function(metab.config, folders) {
+create_model_sites_task_plan <- function(metab.config, folders, inputs_item, fits_item) {
   
   # define the tasks as unique IDs for each model
   sites <- unique(metab.config$site)
-  
-  # temporary truncation for testing
-  # sites <- c('nwis_01548303','nwis_03293000','nwis_01473500')
   
   # define model info, named by site
   model_titles <- make_metab_run_title(
@@ -248,33 +243,43 @@ create_model_sites_task_plan <- function(metab.config, folders) {
   # define the steps
   inputs <- create_task_step(
     step_name = 'inputs',
-    target = function(task_name, step_name, ...) {
+    target_name = function(task_name, step_name, ...) {
       sprintf("'%s/%s_input.zip'", folders$post, task_name)
     },
     command = function(task_name, ...) {
       site_models <- model_short_names[names(model_short_names) == task_name]
-      site_model_files <- sprintf("I('%s/%s_input.rds')", folders$prep, site_models)
+      site_model_files <- sprintf("'%s/%s_input.rds'", folders$prep, site_models)
       sprintf("combine_site_inputs(target_name,%s)", paste0(newline, site_model_files, collapse=', '))
     }
   )
-  predictors <- create_task_step(
-    step_name = 'predictors',
-    target = function(task_name, step_name, ...) {
-      sprintf("'%s/%s_%s.zip'", folders$prep, task_name, step_name)
-    },
-    command = function(task_name, ...) {
-      inputs <- sprintf("'%s/%s_input.zip'", folders$post, task_name)
-      predictors <- sprintf(file.path("../1_timeseries/cache", c("%s-ts_dopsat_calcObsSat.rds", "%s-ts_velocdaily_calcDMean.rds")), task_name)
-      sprintf("combine_daily_predictors(target_name, %s, %s)", 
-              inputs,
-              paste0(newline, "'", predictors, "'", collapse=', '))
+  post_inputs <- create_task_step(
+    step_name = 'post_inputs',
+    # use default target: task_step
+    command = function(task_name, step_name, steps, ...) {
+      sprintf("create_release_item(%sparent.id=%s,%skey=I('%s'),%s)",
+              newline,
+              parent.id = inputs_item, newline,
+              key = paste0(task_name, "_input"),
+              files = paste0(newline, steps$inputs$target_name, collapse=', '))
     }
   )
-
+  post_fits <- create_task_step(
+    step_name = 'post_fits',
+    # use default target: task_step
+    command = function(task_name, step_name, steps, ...) {
+      fit_files <- dir(folders$post, pattern=paste0(task_name, '_[[:digit:]]+min_fit.zip'), full.names=TRUE)
+      sprintf("create_release_item(%sparent.id=%s,%skey=I('%s'),%s)",
+              newline,
+              parent.id = fits_item, newline,
+              key = paste0(task_name, "_fits"),
+              files = paste0(newline, "'", fit_files, "'", collapse=', '))
+    }
+  )
+  
   # define the task plan
   task_plan <- create_task_plan(
-    sites, list(inputs),
-    final_steps=c('inputs'), add_complete=FALSE, indicator_dir=folders$log)
+    sites, list(inputs, post_inputs, post_fits),
+    final_steps=c('post_inputs','post_fits'), add_complete=FALSE, indicator_dir=folders$log)
 }
 
 create_model_sites_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
