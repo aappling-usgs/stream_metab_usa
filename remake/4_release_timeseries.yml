@@ -15,6 +15,7 @@ packages:
 sources:
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/timeseries_release_makefile.R
+  - ../4_data_release/code/combine_daily_predictors.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
   - ../lib/check_frozen.R
@@ -43,6 +44,9 @@ targets:
     command: loop_model_tasks(I('4_tasks_timeseries'), tasks_timeseries_plan,
       '4_tasks_timeseries.yml', sleep_on_error=120)
     
+  ../4_data_release/cache/models/daily_predictors.rds:
+    depends: ../4_data_release/log/4_tasks_timeseries.ind
+    command: combine_daily_predictors(target_name, metab.config)
   
   # -- create tables with partial info to complete manually --
   
