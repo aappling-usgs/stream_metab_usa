@@ -13,6 +13,7 @@ packages:
 sources:
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/model_release_tasks.R
+  - ../4_data_release/code/model_release_meta.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
   - ../lib/check_frozen.R
@@ -121,7 +122,25 @@ targets:
       sb.id=pc1_metabolism,
       files='../4_data_release/cache/models/post/daily_predictions.zip')
 
+  # -- create metadata attribute tables with partial info to complete manually --
+  
+  ../4_data_release/in/attr_metab_config.csv:
+    command: attributes_metab_config('../4_data_release/cache/models/post/config.zip', target_name)
     
+  ../4_data_release/in/attr_metab_inputs.csv:
+    depends: ../4_data_release/log/4_tasks_model_sites.ind # we'll summarize all files like nwis_01124000_input.zip from this dir
+    command: attributes_metab_inputs('../4_data_release/cache/models/post', target_name)
+
+  ../4_data_release/in/attr_metab_fits.csv:
+    depends: ../4_data_release/log/4_tasks_model_sites.ind # we'll summarize all files like nwis_01124000_15min_fit.zip from this dir
+    command: attributes_metab_fits('../4_data_release/cache/models/post', target_name)
+
+  ../4_data_release/in/attr_metab_diagnostics.csv:
+    command: attributes_metab_diagnostics('../4_data_release/cache/models/post/diagnostics.zip', target_name)
+
+  ../4_data_release/in/attr_metab_daily_preds.csv:
+    command: attributes_daily_preds('../4_data_release/cache/models/post/daily_predictions.zip', target_name)
+
   # -- read manual entry and extracted metadata -- 
   
   #site_data_attr:
