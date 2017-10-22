@@ -50,10 +50,13 @@ targets:
       
   # model_config: post the file
   
+  ../4_data_release/cache/models/post/config.zip:
+    command: simplify_model_config(target_name, config.tsv='../2_metab_models/run3/out/config.tsv')
+  
   post_config:
     command: append_release_files(
       sb.id=pc1_model_config,
-      files='../2_metab_models/run3/out/config.tsv')
+      files='../4_data_release/cache/models/post/config.zip')
   
   # model_info: extract inputs, outputs, diagnostics from each model.
   # no posting yet
