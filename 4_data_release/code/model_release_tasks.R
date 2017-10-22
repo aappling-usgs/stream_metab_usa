@@ -56,6 +56,107 @@ write_zipfile <- function(named_data, zipfile) {
   return(zipfile)
 }
 
+#### CONFIG ####
+
+# rebuild the config we used with mda.streams into something more human-readable
+# and easier to explain in the metadata
+simplify_model_config <- function(out.zip, config.tsv) {
+  
+  config <- mda.streams::read_config(config.tsv)
+  
+  ## inspect the data and confirm that many columns can be excluded ##
+  
+  # only 7 variables get used: sitetime, doobs, dosat, depth, wtr, par, and disch
+  used.vars <- c('sitetime', 'doobs', 'dosat', 'depth', 'wtr', 'par', 'disch')
+  unused.vars <- c('veloc', 'sitedate', 'doinit', 'gpp', 'er', 'K600', 'K600lwr', 'K600upr', 'gppinit', 'erinit', 'K600init', 'dischdaily', 'velocdaily')
+  
+  # confirm that everybody uses the same variable sources except for depth.src,
+  # which can be Harvey (423 models) or Raymond (10 models)
+  stopifnot(select(config, ends_with('src')) %>% distinct() %>% nrow() == 2)
+  # select(config, 'depth.src') %>% group_by(depth.src) %>% count()
+      
+  # confirm that every site uses its own site as the data source, and type is
+  # always 'ts', and logic is always 'priority local' - i.e., they're all boring
+  # and can be removed
+  stopifnot(
+    config %>% 
+      transmute(site == sitetime.site,
+                site == doobs.site,
+                site == dosat.site,
+                site == depth.site,
+                site == wtr.site,
+                site == par.site,
+                site == disch.site) %>%
+      distinct() %>% unlist() %>% all())
+  stopifnot(
+    select(config, paste0(used.vars, '.type')) %>%
+      summarize_all(function(col) all(col == 'ts')) %>% unlist() %>% all())
+  stopifnot(
+    select(config, paste0(used.vars, '.logic')) %>%
+      summarize_all(function(col) all(col == 'priority local')) %>% unlist() %>% all())
+  
+  # confirm that every unused.var has NA in its site and src columns, 'none' in
+  # its type, and 'unused var' in its logic
+  stopifnot(
+    select(config, c(paste0(unused.vars, '.site'), paste0(unused.vars, '.src'))) %>%
+      summarize_all(function(col) all(is.na(col))) %>% unlist() %>% all())
+  stopifnot(
+    select(config, paste0(unused.vars, '.type')) %>%
+      summarize_all(function(col) all(col == 'none')) %>% unlist() %>% all())
+  stopifnot(
+    select(config, paste0(unused.vars, '.logic')) %>%
+      summarize_all(function(col) all(col == 'unused var')) %>% unlist() %>% all())
+  
+  # confirm that start_date and end_date are unused (NA)
+  stopifnot(
+    select(config, start_date, end_date) %>%
+      summarize_all(function(col) all(is.na(col))) %>% unlist() %>% all())
+  
+  ## unpack model_args
+  
+  # simplify the quoting scheme, write model args to a file, and read back in as
+  # csv to separate the arguments into columns of a data.frame
+  temp_model_args <- file.path(tempdir(), 'config_model_args.csv')
+  config$model_args %>%
+    gsub("'", '"', .) %>%
+    gsub('list\\(specs=specs\\("(.*)\\)\\)', '"model_name=\\1', .) %>%
+    gsub('(.+)(K600_lnQ_nodes_centers=seq\\(.*\\))(\\,K600_lnQ_nodediffs_sdlog.+)', '\\1"\\2"\\3', .) %>%
+    gsub('(.+)(params_out=c\\(.*\\))(\\,burnin_steps.+)', '\\1"\\2"\\3', .) %>%
+    writeLines(temp_model_args)
+  split_specs_args <- read.csv(temp_model_args, header=FALSE, stringsAsFactors=FALSE, quote='"')
+  specs_arg_names <- mutate_all(split_specs_args, function(col) {
+    unlist(lapply(col, function(co) {
+      strsplit(co, split='=')[[1]][1]
+    }))
+  }) %>% distinct() %>% {unlist(.[1,])}
+  specs_arg_values <- mutate_all(split_specs_args, function(col) {
+    unlist(lapply(col, function(co) {
+      paste(strsplit(co, split='=')[[1]][-1], collapse='=')
+    }))
+  })
+  specs_args <- setNames(specs_arg_values, specs_arg_names)
+  
+  # confirm that there's only one params_out list and we know what it is
+  stopifnot(unique(specs_args$params_out) == 
+              "c(GPP_daily,ER_daily,K600_daily,K600_daily_predlog,lnK600_lnQ_nodes,K600_daily_sigma,err_obs_iid_sigma,err_proc_iid_sigma)")
+  # c('GPP_daily','ER_daily','K600_daily','K600_daily_predlog','lnK600_lnQ_nodes','K600_daily_sigma','err_obs_iid_sigma','err_proc_iid_sigma')
+
+  ## exclude the boring columns and include the parsed version of model_args
+  
+  # select the interesting columns and rename the variables to match
+  # streamMetabolizer variable names
+  config <- config %>%
+    bind_cols(specs_args) %>%
+    select(tag, strategy, date, model, site, 
+           model_name, required_timestep, K600_lnQ_nodes_centers, K600_lnQ_nodediffs_sdlog, K600_daily_sigma_sigma, burnin_steps, saved_steps,
+           solar.time.src=sitetime.src, DO.obs.src=doobs.src, DO.sat.src=dosat.src, depth.src, temp.water.src=wtr.src, light.src=par.src, discharge.src=disch.src, 
+           config.row)
+  
+  # write and zip the assessment table
+  tsv_path <- gsub('\\.zip$', '.tsv', basename(out.zip))
+  write_zipfile(setNames(list(config), tsv_path), out.zip)
+}
+
 #### MODELS ####
 
 create_model_info_task_plan <- function(metab.config, folders) {
@@ -314,9 +415,6 @@ combine_site_inputs <- function(inputs_path, ...) {
   # identical to all the others or is the only one
   tsv_path <- gsub('\\.zip$', '.tsv', basename(inputs_path))
   write_zipfile(setNames(list(inputs[[1]]), tsv_path), zipfile=inputs_path)
-  
-  # post
-  # append_release_files(parent.id, inputs_path)
 }
 
 combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {

@@ -13,6 +13,7 @@ packages:
 sources:
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/model_release_tasks.R
+  - ../4_data_release/code/model_release_meta.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
   - ../lib/check_frozen.R
@@ -50,10 +51,13 @@ targets:
       
   # model_config: post the file
   
+  ../4_data_release/cache/models/post/config.zip:
+    command: simplify_model_config(target_name, config.tsv='../2_metab_models/run3/out/config.tsv')
+  
   post_config:
     command: append_release_files(
       sb.id=pc1_model_config,
-      files='../2_metab_models/run3/out/config.tsv')
+      files='../4_data_release/cache/models/post/config.zip')
   
   # model_info: extract inputs, outputs, diagnostics from each model.
   # no posting yet
@@ -118,7 +122,25 @@ targets:
       sb.id=pc1_metabolism,
       files='../4_data_release/cache/models/post/daily_predictions.zip')
 
+  # -- create metadata attribute tables with partial info to complete manually --
+  
+  ../4_data_release/in/attr_metab_config.csv:
+    command: attributes_metab_config('../4_data_release/cache/models/post/config.zip', target_name)
     
+  ../4_data_release/in/attr_metab_inputs.csv:
+    depends: ../4_data_release/log/4_tasks_model_sites.ind # we'll summarize all files like nwis_01124000_input.zip from this dir
+    command: attributes_metab_inputs('../4_data_release/cache/models/post', target_name)
+
+  ../4_data_release/in/attr_metab_fits.csv:
+    depends: ../4_data_release/log/4_tasks_model_sites.ind # we'll summarize all files like nwis_01124000_15min_fit.zip from this dir
+    command: attributes_metab_fits('../4_data_release/cache/models/post', target_name)
+
+  ../4_data_release/in/attr_metab_diagnostics.csv:
+    command: attributes_metab_diagnostics('../4_data_release/cache/models/post/diagnostics.zip', target_name)
+
+  ../4_data_release/in/attr_metab_daily_preds.csv:
+    command: attributes_daily_preds('../4_data_release/cache/models/post/daily_predictions.zip', target_name)
+
   # -- read manual entry and extracted metadata -- 
   
   #site_data_attr:
