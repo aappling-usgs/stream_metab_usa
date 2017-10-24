@@ -48,7 +48,7 @@ write_zipfile <- function(named_data, zipfile) {
   
   # move the zip files from the temp dir into a more permanent cache location
   setwd(old.dir)
-  file.copy(file.path(tempdir(), basename(zipfile)), zipfile)
+  file.copy(file.path(tempdir(), basename(zipfile)), zipfile, overwrite=TRUE)
   
   # clean up the tempdir in case we're running a lot of these
   file.remove(file.path(tempdir(), c(data_files, basename(zipfile))))
@@ -441,6 +441,12 @@ combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {
   # combine all the predictions into one big data.frame
   daily_preds <- bind_rows(lapply(file.path(target_dir, existing_targets), readRDS))
   
+  # a bit more tidying: make resolution numeric and remove the warnings column,
+  # which is always empty
+  daily_preds <- daily_preds %>%
+    mutate(resolution = as.numeric(gsub('min', '', resolution))) %>%
+    select(-warnings)
+  
   ### daily means of inst inputs ###
   
   # as with daily predictions, check for the required files and make a small
@@ -527,10 +533,10 @@ combine_model_diagnostics <- function(out_file, task_plan) {
         K600_daily_sigma_Rhat > 1.2, "L", ifelse(
           err_obs_iid_sigma_Rhat > 1.2, "L", ifelse(
             err_proc_iid_sigma_Rhat > 1.2, "L", ifelse(
-              K_range > 50, "L", ifelse(
+              K_range > 50, "L", ifelse( # tried K_range > pmax(50, K_median), but in practice has no effect on model_confidence
                 neg_GPP > 50, "L", ifelse(
                   pos_ER > 50, "L", ifelse(
-                    K_range > 15, "M", ifelse(
+                    K_range > 15, "M", ifelse( # tried K_range > pmax(15, 0.3*K_median), but in practice has no effect on model_confidence
                       neg_GPP > 25, "M", ifelse(
                         pos_ER > 25, "M", "H"
                       ))))))))))
