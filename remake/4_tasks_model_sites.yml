@@ -36,6 +36,12 @@ targets:
       key=I('nwis_01548303_fits'),
       '../4_data_release/cache/models/post/nwis_01548303_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01548303.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01548303_post_inputs
+      - nwis_01548303_post_fits
+
   # --- nwis_02168504 --- #
   
   '../4_data_release/cache/models/post/nwis_02168504_input.zip':
@@ -53,6 +59,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02168504_fits'),
       '../4_data_release/cache/models/post/nwis_02168504_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02168504.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02168504_post_inputs
+      - nwis_02168504_post_fits
 
   # --- nwis_03292480 --- #
   
@@ -72,6 +84,12 @@ targets:
       key=I('nwis_03292480_fits'),
       '../4_data_release/cache/models/post/nwis_03292480_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03292480.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03292480_post_inputs
+      - nwis_03292480_post_fits
+
   # --- nwis_03293000 --- #
   
   '../4_data_release/cache/models/post/nwis_03293000_input.zip':
@@ -89,6 +107,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03293000_fits'),
       '../4_data_release/cache/models/post/nwis_03293000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03293000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03293000_post_inputs
+      - nwis_03293000_post_fits
 
   # --- nwis_03298200 --- #
   
@@ -108,6 +132,12 @@ targets:
       key=I('nwis_03298200_fits'),
       '../4_data_release/cache/models/post/nwis_03298200_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03298200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03298200_post_inputs
+      - nwis_03298200_post_fits
+
   # --- nwis_05418400 --- #
   
   '../4_data_release/cache/models/post/nwis_05418400_input.zip':
@@ -125,6 +155,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05418400_fits'),
       '../4_data_release/cache/models/post/nwis_05418400_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05418400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05418400_post_inputs
+      - nwis_05418400_post_fits
 
   # --- nwis_05420500 --- #
   
@@ -144,6 +180,12 @@ targets:
       key=I('nwis_05420500_fits'),
       '../4_data_release/cache/models/post/nwis_05420500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05420500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05420500_post_inputs
+      - nwis_05420500_post_fits
+
   # --- nwis_07191222 --- #
   
   '../4_data_release/cache/models/post/nwis_07191222_input.zip':
@@ -161,6 +203,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07191222_fits'),
       '../4_data_release/cache/models/post/nwis_07191222_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07191222.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07191222_post_inputs
+      - nwis_07191222_post_fits
 
   # --- nwis_07241550 --- #
   
@@ -180,6 +228,12 @@ targets:
       key=I('nwis_07241550_fits'),
       '../4_data_release/cache/models/post/nwis_07241550_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07241550.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07241550_post_inputs
+      - nwis_07241550_post_fits
+
   # --- nwis_08070200 --- #
   
   '../4_data_release/cache/models/post/nwis_08070200_input.zip':
@@ -197,6 +251,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08070200_fits'),
       '../4_data_release/cache/models/post/nwis_08070200_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08070200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08070200_post_inputs
+      - nwis_08070200_post_fits
 
   # --- nwis_08155500 --- #
   
@@ -216,6 +276,12 @@ targets:
       key=I('nwis_08155500_fits'),
       '../4_data_release/cache/models/post/nwis_08155500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08155500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08155500_post_inputs
+      - nwis_08155500_post_fits
+
   # --- nwis_01104430 --- #
   
   '../4_data_release/cache/models/post/nwis_01104430_input.zip':
@@ -233,6 +299,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01104430_fits'),
       '../4_data_release/cache/models/post/nwis_01104430_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01104430.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01104430_post_inputs
+      - nwis_01104430_post_fits
 
   # --- nwis_01184000 --- #
   
@@ -252,6 +324,12 @@ targets:
       key=I('nwis_01184000_fits'),
       '../4_data_release/cache/models/post/nwis_01184000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01184000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01184000_post_inputs
+      - nwis_01184000_post_fits
+
   # --- nwis_01193050 --- #
   
   '../4_data_release/cache/models/post/nwis_01193050_input.zip':
@@ -270,6 +348,12 @@ targets:
       key=I('nwis_01193050_fits'),
       '../4_data_release/cache/models/post/nwis_01193050_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01193050.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01193050_post_inputs
+      - nwis_01193050_post_fits
+
   # --- nwis_01388000 --- #
   
   '../4_data_release/cache/models/post/nwis_01388000_input.zip':
@@ -287,6 +371,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01388000_fits'),
       '../4_data_release/cache/models/post/nwis_01388000_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01388000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01388000_post_inputs
+      - nwis_01388000_post_fits
 
   # --- nwis_01400500 --- #
   
@@ -310,6 +400,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01400500_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01400500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01400500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01400500_post_inputs
+      - nwis_01400500_post_fits
+
   # --- nwis_01454700 --- #
   
   '../4_data_release/cache/models/post/nwis_01454700_input.zip':
@@ -327,6 +423,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01454700_fits'),
       '../4_data_release/cache/models/post/nwis_01454700_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01454700.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01454700_post_inputs
+      - nwis_01454700_post_fits
 
   # --- nwis_01473500 --- #
   
@@ -348,6 +450,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01473500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01473500_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01473500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01473500_post_inputs
+      - nwis_01473500_post_fits
+
   # --- nwis_01474500 --- #
   
   '../4_data_release/cache/models/post/nwis_01474500_input.zip':
@@ -365,6 +473,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01474500_fits'),
       '../4_data_release/cache/models/post/nwis_01474500_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01474500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01474500_post_inputs
+      - nwis_01474500_post_fits
 
   # --- nwis_01480617 --- #
   
@@ -386,6 +500,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01480617_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01480617_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01480617.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01480617_post_inputs
+      - nwis_01480617_post_fits
+
   # --- nwis_01484525 --- #
   
   '../4_data_release/cache/models/post/nwis_01484525_input.zip':
@@ -403,6 +523,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01484525_fits'),
       '../4_data_release/cache/models/post/nwis_01484525_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01484525.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01484525_post_inputs
+      - nwis_01484525_post_fits
 
   # --- nwis_01487150 --- #
   
@@ -422,6 +548,12 @@ targets:
       key=I('nwis_01487150_fits'),
       '../4_data_release/cache/models/post/nwis_01487150_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01487150.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01487150_post_inputs
+      - nwis_01487150_post_fits
+
   # --- nwis_01570500 --- #
   
   '../4_data_release/cache/models/post/nwis_01570500_input.zip':
@@ -439,6 +571,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01570500_fits'),
       '../4_data_release/cache/models/post/nwis_01570500_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01570500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01570500_post_inputs
+      - nwis_01570500_post_fits
 
   # --- nwis_01646500 --- #
   
@@ -458,6 +596,12 @@ targets:
       key=I('nwis_01646500_fits'),
       '../4_data_release/cache/models/post/nwis_01646500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01646500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01646500_post_inputs
+      - nwis_01646500_post_fits
+
   # --- nwis_02110550 --- #
   
   '../4_data_release/cache/models/post/nwis_02110550_input.zip':
@@ -475,6 +619,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02110550_fits'),
       '../4_data_release/cache/models/post/nwis_02110550_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02110550.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02110550_post_inputs
+      - nwis_02110550_post_fits
 
   # --- nwis_02110704 --- #
   
@@ -494,6 +644,12 @@ targets:
       key=I('nwis_02110704_fits'),
       '../4_data_release/cache/models/post/nwis_02110704_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02110704.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02110704_post_inputs
+      - nwis_02110704_post_fits
+
   # --- nwis_02160105 --- #
   
   '../4_data_release/cache/models/post/nwis_02160105_input.zip':
@@ -511,6 +667,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02160105_fits'),
       '../4_data_release/cache/models/post/nwis_02160105_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02160105.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02160105_post_inputs
+      - nwis_02160105_post_fits
 
   # --- nwis_02162035 --- #
   
@@ -532,6 +694,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02162035_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02162035_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02162035.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02162035_post_inputs
+      - nwis_02162035_post_fits
+
   # --- nwis_02169000 --- #
   
   '../4_data_release/cache/models/post/nwis_02169000_input.zip':
@@ -552,6 +720,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02169000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02169000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02169000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02169000_post_inputs
+      - nwis_02169000_post_fits
+
   # --- nwis_02203700 --- #
   
   '../4_data_release/cache/models/post/nwis_02203700_input.zip':
@@ -570,6 +744,12 @@ targets:
       key=I('nwis_02203700_fits'),
       '../4_data_release/cache/models/post/nwis_02203700_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02203700.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02203700_post_inputs
+      - nwis_02203700_post_fits
+
   # --- nwis_02217643 --- #
   
   '../4_data_release/cache/models/post/nwis_02217643_input.zip':
@@ -587,6 +767,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02217643_fits'),
       '../4_data_release/cache/models/post/nwis_02217643_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02217643.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02217643_post_inputs
+      - nwis_02217643_post_fits
 
   # --- nwis_02234000 --- #
   
@@ -608,6 +794,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02234000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02234000_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02234000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02234000_post_inputs
+      - nwis_02234000_post_fits
+
   # --- nwis_02234500 --- #
   
   '../4_data_release/cache/models/post/nwis_02234500_input.zip':
@@ -628,6 +820,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02234500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02234500_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02234500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02234500_post_inputs
+      - nwis_02234500_post_fits
+
   # --- nwis_02235500 --- #
   
   '../4_data_release/cache/models/post/nwis_02235500_input.zip':
@@ -645,6 +843,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02235500_fits'),
       '../4_data_release/cache/models/post/nwis_02235500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02235500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02235500_post_inputs
+      - nwis_02235500_post_fits
 
   # --- nwis_02236000 --- #
   
@@ -665,6 +869,12 @@ targets:
       key=I('nwis_02236000_fits'),
       '../4_data_release/cache/models/post/nwis_02236000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02236000_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02236000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02236000_post_inputs
+      - nwis_02236000_post_fits
 
   # --- nwis_02236125 --- #
   
@@ -688,6 +898,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02236125_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02236125_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02236125.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02236125_post_inputs
+      - nwis_02236125_post_fits
+
   # --- nwis_02244040 --- #
   
   '../4_data_release/cache/models/post/nwis_02244040_input.zip':
@@ -705,6 +921,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02244040_fits'),
       '../4_data_release/cache/models/post/nwis_02244040_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02244040.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02244040_post_inputs
+      - nwis_02244040_post_fits
 
   # --- nwis_02264000 --- #
   
@@ -725,6 +947,12 @@ targets:
       key=I('nwis_02264000_fits'),
       '../4_data_release/cache/models/post/nwis_02264000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02264000_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02264000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02264000_post_inputs
+      - nwis_02264000_post_fits
 
   # --- nwis_02266200 --- #
   
@@ -748,6 +976,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02266200_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02266200_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02266200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02266200_post_inputs
+      - nwis_02266200_post_fits
+
   # --- nwis_02319302 --- #
   
   '../4_data_release/cache/models/post/nwis_02319302_input.zip':
@@ -765,6 +999,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02319302_fits'),
       '../4_data_release/cache/models/post/nwis_02319302_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02319302.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02319302_post_inputs
+      - nwis_02319302_post_fits
 
   # --- nwis_02320250 --- #
   
@@ -784,6 +1024,12 @@ targets:
       key=I('nwis_02320250_fits'),
       '../4_data_release/cache/models/post/nwis_02320250_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02320250.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02320250_post_inputs
+      - nwis_02320250_post_fits
+
   # --- nwis_02322688 --- #
   
   '../4_data_release/cache/models/post/nwis_02322688_input.zip':
@@ -801,6 +1047,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02322688_fits'),
       '../4_data_release/cache/models/post/nwis_02322688_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02322688.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02322688_post_inputs
+      - nwis_02322688_post_fits
 
   # --- nwis_02397530 --- #
   
@@ -820,6 +1072,12 @@ targets:
       key=I('nwis_02397530_fits'),
       '../4_data_release/cache/models/post/nwis_02397530_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02397530.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02397530_post_inputs
+      - nwis_02397530_post_fits
+
   # --- nwis_02492620 --- #
   
   '../4_data_release/cache/models/post/nwis_02492620_input.zip':
@@ -837,6 +1095,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02492620_fits'),
       '../4_data_release/cache/models/post/nwis_02492620_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02492620.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02492620_post_inputs
+      - nwis_02492620_post_fits
 
   # --- nwis_03025500 --- #
   
@@ -856,6 +1120,12 @@ targets:
       key=I('nwis_03025500_fits'),
       '../4_data_release/cache/models/post/nwis_03025500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03025500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03025500_post_inputs
+      - nwis_03025500_post_fits
+
   # --- nwis_03027500 --- #
   
   '../4_data_release/cache/models/post/nwis_03027500_input.zip':
@@ -873,6 +1143,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03027500_fits'),
       '../4_data_release/cache/models/post/nwis_03027500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03027500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03027500_post_inputs
+      - nwis_03027500_post_fits
 
   # --- nwis_03036000 --- #
   
@@ -896,6 +1172,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03036000_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03036000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03036000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03036000_post_inputs
+      - nwis_03036000_post_fits
+
   # --- nwis_03058000 --- #
   
   '../4_data_release/cache/models/post/nwis_03058000_input.zip':
@@ -917,6 +1199,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03058000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03058000_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03058000_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03058000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03058000_post_inputs
+      - nwis_03058000_post_fits
 
   # --- nwis_03061000 --- #
   
@@ -940,6 +1228,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03061000_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03061000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03061000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03061000_post_inputs
+      - nwis_03061000_post_fits
+
   # --- nwis_03072655 --- #
   
   '../4_data_release/cache/models/post/nwis_03072655_input.zip':
@@ -957,6 +1251,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03072655_fits'),
       '../4_data_release/cache/models/post/nwis_03072655_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03072655.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03072655_post_inputs
+      - nwis_03072655_post_fits
 
   # --- nwis_03075070 --- #
   
@@ -978,6 +1278,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03075070_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03075070_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03075070.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03075070_post_inputs
+      - nwis_03075070_post_fits
+
   # --- nwis_03083500 --- #
   
   '../4_data_release/cache/models/post/nwis_03083500_input.zip':
@@ -998,6 +1304,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03083500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03083500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03083500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03083500_post_inputs
+      - nwis_03083500_post_fits
+
   # --- nwis_03121850 --- #
   
   '../4_data_release/cache/models/post/nwis_03121850_input.zip':
@@ -1015,6 +1327,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03121850_fits'),
       '../4_data_release/cache/models/post/nwis_03121850_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03121850.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03121850_post_inputs
+      - nwis_03121850_post_fits
 
   # --- nwis_03321500 --- #
   
@@ -1034,6 +1352,12 @@ targets:
       key=I('nwis_03321500_fits'),
       '../4_data_release/cache/models/post/nwis_03321500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03321500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03321500_post_inputs
+      - nwis_03321500_post_fits
+
   # --- nwis_03346500 --- #
   
   '../4_data_release/cache/models/post/nwis_03346500_input.zip':
@@ -1051,6 +1375,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03346500_fits'),
       '../4_data_release/cache/models/post/nwis_03346500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03346500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03346500_post_inputs
+      - nwis_03346500_post_fits
 
   # --- nwis_03374100 --- #
   
@@ -1072,6 +1402,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03374100_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03374100_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03374100.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03374100_post_inputs
+      - nwis_03374100_post_fits
+
   # --- nwis_03539600 --- #
   
   '../4_data_release/cache/models/post/nwis_03539600_input.zip':
@@ -1089,6 +1425,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03539600_fits'),
       '../4_data_release/cache/models/post/nwis_03539600_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03539600.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03539600_post_inputs
+      - nwis_03539600_post_fits
 
   # --- nwis_03597860 --- #
   
@@ -1110,6 +1452,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03597860_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03597860_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03597860.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03597860_post_inputs
+      - nwis_03597860_post_fits
+
   # --- nwis_04024000 --- #
   
   '../4_data_release/cache/models/post/nwis_04024000_input.zip':
@@ -1128,6 +1476,12 @@ targets:
       key=I('nwis_04024000_fits'),
       '../4_data_release/cache/models/post/nwis_04024000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04024000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04024000_post_inputs
+      - nwis_04024000_post_fits
+
   # --- nwis_040851385 --- #
   
   '../4_data_release/cache/models/post/nwis_040851385_input.zip':
@@ -1145,6 +1499,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_040851385_fits'),
       '../4_data_release/cache/models/post/nwis_040851385_5min_fit.zip')
+
+  '../4_data_release/log/models/nwis_040851385.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_040851385_post_inputs
+      - nwis_040851385_post_fits
 
   # --- nwis_040871488 --- #
   
@@ -1166,6 +1526,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_040871488_5min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_040871488_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_040871488.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_040871488_post_inputs
+      - nwis_040871488_post_fits
+
   # --- nwis_04095090 --- #
   
   '../4_data_release/cache/models/post/nwis_04095090_input.zip':
@@ -1184,6 +1550,12 @@ targets:
       key=I('nwis_04095090_fits'),
       '../4_data_release/cache/models/post/nwis_04095090_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04095090.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04095090_post_inputs
+      - nwis_04095090_post_fits
+
   # --- nwis_04108660 --- #
   
   '../4_data_release/cache/models/post/nwis_04108660_input.zip':
@@ -1201,6 +1573,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04108660_fits'),
       '../4_data_release/cache/models/post/nwis_04108660_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04108660.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04108660_post_inputs
+      - nwis_04108660_post_fits
 
   # --- nwis_04121944 --- #
   
@@ -1222,6 +1600,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04121944_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04121944_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04121944.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04121944_post_inputs
+      - nwis_04121944_post_fits
+
   # --- nwis_04121970 --- #
   
   '../4_data_release/cache/models/post/nwis_04121970_input.zip':
@@ -1241,6 +1625,12 @@ targets:
       key=I('nwis_04121970_fits'),
       '../4_data_release/cache/models/post/nwis_04121970_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04121970_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04121970.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04121970_post_inputs
+      - nwis_04121970_post_fits
 
   # --- nwis_04124000 --- #
   
@@ -1262,6 +1652,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04124000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04124000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04124000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04124000_post_inputs
+      - nwis_04124000_post_fits
+
   # --- nwis_04136000 --- #
   
   '../4_data_release/cache/models/post/nwis_04136000_input.zip':
@@ -1279,6 +1675,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04136000_fits'),
       '../4_data_release/cache/models/post/nwis_04136000_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04136000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04136000_post_inputs
+      - nwis_04136000_post_fits
 
   # --- nwis_04136900 --- #
   
@@ -1300,6 +1702,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04136900_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04136900_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04136900.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04136900_post_inputs
+      - nwis_04136900_post_fits
+
   # --- nwis_04137005 --- #
   
   '../4_data_release/cache/models/post/nwis_04137005_input.zip':
@@ -1319,6 +1727,12 @@ targets:
       key=I('nwis_04137005_fits'),
       '../4_data_release/cache/models/post/nwis_04137005_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04137005_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04137005.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04137005_post_inputs
+      - nwis_04137005_post_fits
 
   # --- nwis_04157005 --- #
   
@@ -1340,6 +1754,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04157005_12min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04157005_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04157005.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04157005_post_inputs
+      - nwis_04157005_post_fits
+
   # --- nwis_04165500 --- #
   
   '../4_data_release/cache/models/post/nwis_04165500_input.zip':
@@ -1357,6 +1777,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04165500_fits'),
       '../4_data_release/cache/models/post/nwis_04165500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04165500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04165500_post_inputs
+      - nwis_04165500_post_fits
 
   # --- nwis_04195500 --- #
   
@@ -1378,6 +1804,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04195500_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04195500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04195500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04195500_post_inputs
+      - nwis_04195500_post_fits
+
   # --- nwis_04231600 --- #
   
   '../4_data_release/cache/models/post/nwis_04231600_input.zip':
@@ -1396,6 +1828,12 @@ targets:
       key=I('nwis_04231600_fits'),
       '../4_data_release/cache/models/post/nwis_04231600_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04231600.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04231600_post_inputs
+      - nwis_04231600_post_fits
+
   # --- nwis_04249000 --- #
   
   '../4_data_release/cache/models/post/nwis_04249000_input.zip':
@@ -1413,6 +1851,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04249000_fits'),
       '../4_data_release/cache/models/post/nwis_04249000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04249000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04249000_post_inputs
+      - nwis_04249000_post_fits
 
   # --- nwis_05054000 --- #
   
@@ -1436,6 +1880,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_05054000_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_05054000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05054000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05054000_post_inputs
+      - nwis_05054000_post_fits
+
   # --- nwis_05082500 --- #
   
   '../4_data_release/cache/models/post/nwis_05082500_input.zip':
@@ -1453,6 +1903,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05082500_fits'),
       '../4_data_release/cache/models/post/nwis_05082500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05082500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05082500_post_inputs
+      - nwis_05082500_post_fits
 
   # --- nwis_05446500 --- #
   
@@ -1472,6 +1928,12 @@ targets:
       key=I('nwis_05446500_fits'),
       '../4_data_release/cache/models/post/nwis_05446500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05446500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05446500_post_inputs
+      - nwis_05446500_post_fits
+
   # --- nwis_05515500 --- #
   
   '../4_data_release/cache/models/post/nwis_05515500_input.zip':
@@ -1489,6 +1951,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05515500_fits'),
       '../4_data_release/cache/models/post/nwis_05515500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05515500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05515500_post_inputs
+      - nwis_05515500_post_fits
 
   # --- nwis_05518000 --- #
   
@@ -1508,6 +1976,12 @@ targets:
       key=I('nwis_05518000_fits'),
       '../4_data_release/cache/models/post/nwis_05518000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05518000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05518000_post_inputs
+      - nwis_05518000_post_fits
+
   # --- nwis_05595000 --- #
   
   '../4_data_release/cache/models/post/nwis_05595000_input.zip':
@@ -1525,6 +1999,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05595000_fits'),
       '../4_data_release/cache/models/post/nwis_05595000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05595000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05595000_post_inputs
+      - nwis_05595000_post_fits
 
   # --- nwis_05599490 --- #
   
@@ -1544,6 +2024,12 @@ targets:
       key=I('nwis_05599490_fits'),
       '../4_data_release/cache/models/post/nwis_05599490_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05599490.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05599490_post_inputs
+      - nwis_05599490_post_fits
+
   # --- nwis_06461500 --- #
   
   '../4_data_release/cache/models/post/nwis_06461500_input.zip':
@@ -1561,6 +2047,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06461500_fits'),
       '../4_data_release/cache/models/post/nwis_06461500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06461500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06461500_post_inputs
+      - nwis_06461500_post_fits
 
   # --- nwis_06465500 --- #
   
@@ -1580,6 +2072,12 @@ targets:
       key=I('nwis_06465500_fits'),
       '../4_data_release/cache/models/post/nwis_06465500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06465500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06465500_post_inputs
+      - nwis_06465500_post_fits
+
   # --- nwis_06800500 --- #
   
   '../4_data_release/cache/models/post/nwis_06800500_input.zip':
@@ -1597,6 +2095,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06800500_fits'),
       '../4_data_release/cache/models/post/nwis_06800500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06800500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06800500_post_inputs
+      - nwis_06800500_post_fits
 
   # --- nwis_06805500 --- #
   
@@ -1616,6 +2120,12 @@ targets:
       key=I('nwis_06805500_fits'),
       '../4_data_release/cache/models/post/nwis_06805500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06805500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06805500_post_inputs
+      - nwis_06805500_post_fits
+
   # --- nwis_06934500 --- #
   
   '../4_data_release/cache/models/post/nwis_06934500_input.zip':
@@ -1633,6 +2143,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06934500_fits'),
       '../4_data_release/cache/models/post/nwis_06934500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06934500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06934500_post_inputs
+      - nwis_06934500_post_fits
 
   # --- nwis_07106000 --- #
   
@@ -1654,6 +2170,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_07106000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_07106000_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07106000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07106000_post_inputs
+      - nwis_07106000_post_fits
+
   # --- nwis_07109500 --- #
   
   '../4_data_release/cache/models/post/nwis_07109500_input.zip':
@@ -1674,6 +2196,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_07109500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_07109500_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07109500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07109500_post_inputs
+      - nwis_07109500_post_fits
+
   # --- nwis_07164500 --- #
   
   '../4_data_release/cache/models/post/nwis_07164500_input.zip':
@@ -1691,6 +2219,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07164500_fits'),
       '../4_data_release/cache/models/post/nwis_07164500_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07164500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07164500_post_inputs
+      - nwis_07164500_post_fits
 
   # --- nwis_07198000 --- #
   
@@ -1712,6 +2246,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_07198000_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_07198000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07198000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07198000_post_inputs
+      - nwis_07198000_post_fits
+
   # --- nwis_07241520 --- #
   
   '../4_data_release/cache/models/post/nwis_07241520_input.zip':
@@ -1729,6 +2269,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07241520_fits'),
       '../4_data_release/cache/models/post/nwis_07241520_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07241520.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07241520_post_inputs
+      - nwis_07241520_post_fits
 
   # --- nwis_072632966 --- #
   
@@ -1748,6 +2294,12 @@ targets:
       key=I('nwis_072632966_fits'),
       '../4_data_release/cache/models/post/nwis_072632966_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_072632966.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_072632966_post_inputs
+      - nwis_072632966_post_fits
+
   # --- nwis_07374000 --- #
   
   '../4_data_release/cache/models/post/nwis_07374000_input.zip':
@@ -1765,6 +2317,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07374000_fits'),
       '../4_data_release/cache/models/post/nwis_07374000_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07374000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07374000_post_inputs
+      - nwis_07374000_post_fits
 
   # --- nwis_07381600 --- #
   
@@ -1784,6 +2342,12 @@ targets:
       key=I('nwis_07381600_fits'),
       '../4_data_release/cache/models/post/nwis_07381600_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07381600.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07381600_post_inputs
+      - nwis_07381600_post_fits
+
   # --- nwis_08048000 --- #
   
   '../4_data_release/cache/models/post/nwis_08048000_input.zip':
@@ -1801,6 +2365,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08048000_fits'),
       '../4_data_release/cache/models/post/nwis_08048000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08048000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08048000_post_inputs
+      - nwis_08048000_post_fits
 
   # --- nwis_08052745 --- #
   
@@ -1820,6 +2390,12 @@ targets:
       key=I('nwis_08052745_fits'),
       '../4_data_release/cache/models/post/nwis_08052745_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08052745.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08052745_post_inputs
+      - nwis_08052745_post_fits
+
   # --- nwis_08057000 --- #
   
   '../4_data_release/cache/models/post/nwis_08057000_input.zip':
@@ -1837,6 +2413,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08057000_fits'),
       '../4_data_release/cache/models/post/nwis_08057000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08057000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08057000_post_inputs
+      - nwis_08057000_post_fits
 
   # --- nwis_08317400 --- #
   
@@ -1858,6 +2440,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_08317400_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_08317400_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08317400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08317400_post_inputs
+      - nwis_08317400_post_fits
+
   # --- nwis_08375300 --- #
   
   '../4_data_release/cache/models/post/nwis_08375300_input.zip':
@@ -1875,6 +2463,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08375300_fits'),
       '../4_data_release/cache/models/post/nwis_08375300_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08375300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08375300_post_inputs
+      - nwis_08375300_post_fits
 
   # --- nwis_08437710 --- #
   
@@ -1894,6 +2488,12 @@ targets:
       key=I('nwis_08437710_fits'),
       '../4_data_release/cache/models/post/nwis_08437710_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08437710.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08437710_post_inputs
+      - nwis_08437710_post_fits
+
   # --- nwis_08446500 --- #
   
   '../4_data_release/cache/models/post/nwis_08446500_input.zip':
@@ -1912,6 +2512,12 @@ targets:
       key=I('nwis_08446500_fits'),
       '../4_data_release/cache/models/post/nwis_08446500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08446500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08446500_post_inputs
+      - nwis_08446500_post_fits
+
   # --- nwis_08447000 --- #
   
   '../4_data_release/cache/models/post/nwis_08447000_input.zip':
@@ -1929,6 +2535,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08447000_fits'),
       '../4_data_release/cache/models/post/nwis_08447000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08447000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08447000_post_inputs
+      - nwis_08447000_post_fits
 
   # --- nwis_09041400 --- #
   
@@ -1950,6 +2562,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_09041400_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_09041400_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_09041400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_09041400_post_inputs
+      - nwis_09041400_post_fits
+
   # --- nwis_10129900 --- #
   
   '../4_data_release/cache/models/post/nwis_10129900_input.zip':
@@ -1970,6 +2588,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_10129900_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_10129900_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_10129900.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_10129900_post_inputs
+      - nwis_10129900_post_fits
+
   # --- nwis_10133650 --- #
   
   '../4_data_release/cache/models/post/nwis_10133650_input.zip':
@@ -1987,6 +2611,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_10133650_fits'),
       '../4_data_release/cache/models/post/nwis_10133650_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_10133650.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_10133650_post_inputs
+      - nwis_10133650_post_fits
 
   # --- nwis_10133800 --- #
   
@@ -2008,6 +2638,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_10133800_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_10133800_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_10133800.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_10133800_post_inputs
+      - nwis_10133800_post_fits
+
   # --- nwis_10133980 --- #
   
   '../4_data_release/cache/models/post/nwis_10133980_input.zip':
@@ -2027,6 +2663,12 @@ targets:
       key=I('nwis_10133980_fits'),
       '../4_data_release/cache/models/post/nwis_10133980_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_10133980_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_10133980.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_10133980_post_inputs
+      - nwis_10133980_post_fits
 
   # --- nwis_11044000 --- #
   
@@ -2048,6 +2690,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_11044000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_11044000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11044000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11044000_post_inputs
+      - nwis_11044000_post_fits
+
   # --- nwis_11126000 --- #
   
   '../4_data_release/cache/models/post/nwis_11126000_input.zip':
@@ -2065,6 +2713,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_11126000_fits'),
       '../4_data_release/cache/models/post/nwis_11126000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_11126000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11126000_post_inputs
+      - nwis_11126000_post_fits
 
   # --- nwis_11447650 --- #
   
@@ -2084,6 +2738,12 @@ targets:
       key=I('nwis_11447650_fits'),
       '../4_data_release/cache/models/post/nwis_11447650_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11447650.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11447650_post_inputs
+      - nwis_11447650_post_fits
+
   # --- nwis_11447830 --- #
   
   '../4_data_release/cache/models/post/nwis_11447830_input.zip':
@@ -2101,6 +2761,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_11447830_fits'),
       '../4_data_release/cache/models/post/nwis_11447830_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_11447830.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11447830_post_inputs
+      - nwis_11447830_post_fits
 
   # --- nwis_11447850 --- #
   
@@ -2120,6 +2786,12 @@ targets:
       key=I('nwis_11447850_fits'),
       '../4_data_release/cache/models/post/nwis_11447850_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11447850.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11447850_post_inputs
+      - nwis_11447850_post_fits
+
   # --- nwis_11447890 --- #
   
   '../4_data_release/cache/models/post/nwis_11447890_input.zip':
@@ -2138,6 +2810,12 @@ targets:
       key=I('nwis_11447890_fits'),
       '../4_data_release/cache/models/post/nwis_11447890_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11447890.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11447890_post_inputs
+      - nwis_11447890_post_fits
+
   # --- nwis_11455165 --- #
   
   '../4_data_release/cache/models/post/nwis_11455165_input.zip':
@@ -2155,6 +2833,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_11455165_fits'),
       '../4_data_release/cache/models/post/nwis_11455165_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_11455165.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11455165_post_inputs
+      - nwis_11455165_post_fits
 
   # --- nwis_13013650 --- #
   
@@ -2176,6 +2860,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_13013650_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_13013650_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_13013650.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_13013650_post_inputs
+      - nwis_13013650_post_fits
+
   # --- nwis_13173600 --- #
   
   '../4_data_release/cache/models/post/nwis_13173600_input.zip':
@@ -2193,6 +2883,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_13173600_fits'),
       '../4_data_release/cache/models/post/nwis_13173600_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_13173600.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_13173600_post_inputs
+      - nwis_13173600_post_fits
 
   # --- nwis_13213100 --- #
   
@@ -2212,6 +2908,12 @@ targets:
       key=I('nwis_13213100_fits'),
       '../4_data_release/cache/models/post/nwis_13213100_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_13213100.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_13213100_post_inputs
+      - nwis_13213100_post_fits
+
   # --- nwis_14162500 --- #
   
   '../4_data_release/cache/models/post/nwis_14162500_input.zip':
@@ -2229,6 +2931,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_14162500_fits'),
       '../4_data_release/cache/models/post/nwis_14162500_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_14162500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14162500_post_inputs
+      - nwis_14162500_post_fits
 
   # --- nwis_14182500 --- #
   
@@ -2250,6 +2958,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_14182500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_14182500_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_14182500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14182500_post_inputs
+      - nwis_14182500_post_fits
+
   # --- nwis_14202650 --- #
   
   '../4_data_release/cache/models/post/nwis_14202650_input.zip':
@@ -2267,6 +2981,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_14202650_fits'),
       '../4_data_release/cache/models/post/nwis_14202650_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_14202650.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14202650_post_inputs
+      - nwis_14202650_post_fits
 
   # --- nwis_14206950 --- #
   
@@ -2288,6 +3008,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_14206950_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_14206950_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_14206950.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14206950_post_inputs
+      - nwis_14206950_post_fits
+
   # --- nwis_14211720 --- #
   
   '../4_data_release/cache/models/post/nwis_14211720_input.zip':
@@ -2306,6 +3032,12 @@ targets:
       key=I('nwis_14211720_fits'),
       '../4_data_release/cache/models/post/nwis_14211720_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_14211720.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14211720_post_inputs
+      - nwis_14211720_post_fits
+
   # --- nwis_14301500 --- #
   
   '../4_data_release/cache/models/post/nwis_14301500_input.zip':
@@ -2323,6 +3055,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_14301500_fits'),
       '../4_data_release/cache/models/post/nwis_14301500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_14301500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14301500_post_inputs
+      - nwis_14301500_post_fits
 
   # --- nwis_14302480 --- #
   
@@ -2344,6 +3082,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_14302480_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_14302480_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_14302480.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14302480_post_inputs
+      - nwis_14302480_post_fits
+
   # --- nwis_15298040 --- #
   
   '../4_data_release/cache/models/post/nwis_15298040_input.zip':
@@ -2361,6 +3105,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_15298040_fits'),
       '../4_data_release/cache/models/post/nwis_15298040_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_15298040.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_15298040_post_inputs
+      - nwis_15298040_post_fits
 
   # --- nwis_411955088280601 --- #
   
@@ -2380,6 +3130,12 @@ targets:
       key=I('nwis_411955088280601_fits'),
       '../4_data_release/cache/models/post/nwis_411955088280601_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_411955088280601.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_411955088280601_post_inputs
+      - nwis_411955088280601_post_fits
+
   # --- nwis_01124000 --- #
   
   '../4_data_release/cache/models/post/nwis_01124000_input.zip':
@@ -2397,6 +3153,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01124000_fits'),
       '../4_data_release/cache/models/post/nwis_01124000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01124000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01124000_post_inputs
+      - nwis_01124000_post_fits
 
   # --- nwis_01125100 --- #
   
@@ -2416,6 +3178,12 @@ targets:
       key=I('nwis_01125100_fits'),
       '../4_data_release/cache/models/post/nwis_01125100_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01125100.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01125100_post_inputs
+      - nwis_01125100_post_fits
+
   # --- nwis_01196500 --- #
   
   '../4_data_release/cache/models/post/nwis_01196500_input.zip':
@@ -2433,6 +3201,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01196500_fits'),
       '../4_data_release/cache/models/post/nwis_01196500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01196500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01196500_post_inputs
+      - nwis_01196500_post_fits
 
   # --- nwis_01201487 --- #
   
@@ -2452,6 +3226,12 @@ targets:
       key=I('nwis_01201487_fits'),
       '../4_data_release/cache/models/post/nwis_01201487_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01201487.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01201487_post_inputs
+      - nwis_01201487_post_fits
+
   # --- nwis_01208500 --- #
   
   '../4_data_release/cache/models/post/nwis_01208500_input.zip':
@@ -2469,6 +3249,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01208500_fits'),
       '../4_data_release/cache/models/post/nwis_01208500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01208500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01208500_post_inputs
+      - nwis_01208500_post_fits
 
   # --- nwis_01208990 --- #
   
@@ -2488,6 +3274,12 @@ targets:
       key=I('nwis_01208990_fits'),
       '../4_data_release/cache/models/post/nwis_01208990_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01208990.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01208990_post_inputs
+      - nwis_01208990_post_fits
+
   # --- nwis_01382210 --- #
   
   '../4_data_release/cache/models/post/nwis_01382210_input.zip':
@@ -2505,6 +3297,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01382210_fits'),
       '../4_data_release/cache/models/post/nwis_01382210_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01382210.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01382210_post_inputs
+      - nwis_01382210_post_fits
 
   # --- nwis_01408500 --- #
   
@@ -2526,6 +3324,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01408500_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01408500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01408500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01408500_post_inputs
+      - nwis_01408500_post_fits
+
   # --- nwis_01433500 --- #
   
   '../4_data_release/cache/models/post/nwis_01433500_input.zip':
@@ -2544,6 +3348,12 @@ targets:
       key=I('nwis_01433500_fits'),
       '../4_data_release/cache/models/post/nwis_01433500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01433500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01433500_post_inputs
+      - nwis_01433500_post_fits
+
   # --- nwis_01463500 --- #
   
   '../4_data_release/cache/models/post/nwis_01463500_input.zip':
@@ -2561,6 +3371,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01463500_fits'),
       '../4_data_release/cache/models/post/nwis_01463500_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01463500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01463500_post_inputs
+      - nwis_01463500_post_fits
 
   # --- nwis_01480870 --- #
   
@@ -2582,6 +3398,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01480870_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01480870_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01480870.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01480870_post_inputs
+      - nwis_01480870_post_fits
+
   # --- nwis_01481000 --- #
   
   '../4_data_release/cache/models/post/nwis_01481000_input.zip':
@@ -2602,6 +3424,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01481000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01481000_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01481000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01481000_post_inputs
+      - nwis_01481000_post_fits
+
   # --- nwis_01481500 --- #
   
   '../4_data_release/cache/models/post/nwis_01481500_input.zip':
@@ -2619,6 +3447,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01481500_fits'),
       '../4_data_release/cache/models/post/nwis_01481500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01481500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01481500_post_inputs
+      - nwis_01481500_post_fits
 
   # --- nwis_01493112 --- #
   
@@ -2638,6 +3472,12 @@ targets:
       key=I('nwis_01493112_fits'),
       '../4_data_release/cache/models/post/nwis_01493112_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01493112.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01493112_post_inputs
+      - nwis_01493112_post_fits
+
   # --- nwis_01540500 --- #
   
   '../4_data_release/cache/models/post/nwis_01540500_input.zip':
@@ -2655,6 +3495,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01540500_fits'),
       '../4_data_release/cache/models/post/nwis_01540500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01540500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01540500_post_inputs
+      - nwis_01540500_post_fits
 
   # --- nwis_01542500 --- #
   
@@ -2674,6 +3520,12 @@ targets:
       key=I('nwis_01542500_fits'),
       '../4_data_release/cache/models/post/nwis_01542500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01542500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01542500_post_inputs
+      - nwis_01542500_post_fits
+
   # --- nwis_01544500 --- #
   
   '../4_data_release/cache/models/post/nwis_01544500_input.zip':
@@ -2691,6 +3543,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01544500_fits'),
       '../4_data_release/cache/models/post/nwis_01544500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01544500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01544500_post_inputs
+      - nwis_01544500_post_fits
 
   # --- nwis_01549700 --- #
   
@@ -2710,6 +3568,12 @@ targets:
       key=I('nwis_01549700_fits'),
       '../4_data_release/cache/models/post/nwis_01549700_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01549700.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01549700_post_inputs
+      - nwis_01549700_post_fits
+
   # --- nwis_01567000 --- #
   
   '../4_data_release/cache/models/post/nwis_01567000_input.zip':
@@ -2728,6 +3592,12 @@ targets:
       key=I('nwis_01567000_fits'),
       '../4_data_release/cache/models/post/nwis_01567000_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01567000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01567000_post_inputs
+      - nwis_01567000_post_fits
+
   # --- nwis_01608500 --- #
   
   '../4_data_release/cache/models/post/nwis_01608500_input.zip':
@@ -2745,6 +3615,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01608500_fits'),
       '../4_data_release/cache/models/post/nwis_01608500_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01608500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01608500_post_inputs
+      - nwis_01608500_post_fits
 
   # --- nwis_01611500 --- #
   
@@ -2766,6 +3642,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01611500_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01611500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01611500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01611500_post_inputs
+      - nwis_01611500_post_fits
+
   # --- nwis_01632900 --- #
   
   '../4_data_release/cache/models/post/nwis_01632900_input.zip':
@@ -2783,6 +3665,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01632900_fits'),
       '../4_data_release/cache/models/post/nwis_01632900_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01632900.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01632900_post_inputs
+      - nwis_01632900_post_fits
 
   # --- nwis_01645704 --- #
   
@@ -2802,6 +3690,12 @@ targets:
       key=I('nwis_01645704_fits'),
       '../4_data_release/cache/models/post/nwis_01645704_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01645704.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01645704_post_inputs
+      - nwis_01645704_post_fits
+
   # --- nwis_01645762 --- #
   
   '../4_data_release/cache/models/post/nwis_01645762_input.zip':
@@ -2819,6 +3713,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01645762_fits'),
       '../4_data_release/cache/models/post/nwis_01645762_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01645762.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01645762_post_inputs
+      - nwis_01645762_post_fits
 
   # --- nwis_01646000 --- #
   
@@ -2838,6 +3738,12 @@ targets:
       key=I('nwis_01646000_fits'),
       '../4_data_release/cache/models/post/nwis_01646000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01646000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01646000_post_inputs
+      - nwis_01646000_post_fits
+
   # --- nwis_01646305 --- #
   
   '../4_data_release/cache/models/post/nwis_01646305_input.zip':
@@ -2855,6 +3761,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01646305_fits'),
       '../4_data_release/cache/models/post/nwis_01646305_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01646305.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01646305_post_inputs
+      - nwis_01646305_post_fits
 
   # --- nwis_01648010 --- #
   
@@ -2876,6 +3788,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01648010_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01648010_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01648010.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01648010_post_inputs
+      - nwis_01648010_post_fits
+
   # --- nwis_01649190 --- #
   
   '../4_data_release/cache/models/post/nwis_01649190_input.zip':
@@ -2895,6 +3813,12 @@ targets:
       key=I('nwis_01649190_fits'),
       '../4_data_release/cache/models/post/nwis_01649190_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01649190_5min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01649190.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01649190_post_inputs
+      - nwis_01649190_post_fits
 
   # --- nwis_01649500 --- #
   
@@ -2916,6 +3840,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_01649500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_01649500_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01649500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01649500_post_inputs
+      - nwis_01649500_post_fits
+
   # --- nwis_01650800 --- #
   
   '../4_data_release/cache/models/post/nwis_01650800_input.zip':
@@ -2933,6 +3863,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01650800_fits'),
       '../4_data_release/cache/models/post/nwis_01650800_5min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01650800.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01650800_post_inputs
+      - nwis_01650800_post_fits
 
   # --- nwis_0165389205 --- #
   
@@ -2952,6 +3888,12 @@ targets:
       key=I('nwis_0165389205_fits'),
       '../4_data_release/cache/models/post/nwis_0165389205_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_0165389205.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_0165389205_post_inputs
+      - nwis_0165389205_post_fits
+
   # --- nwis_01654000 --- #
   
   '../4_data_release/cache/models/post/nwis_01654000_input.zip':
@@ -2969,6 +3911,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01654000_fits'),
       '../4_data_release/cache/models/post/nwis_01654000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01654000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01654000_post_inputs
+      - nwis_01654000_post_fits
 
   # --- nwis_01654500 --- #
   
@@ -2988,6 +3936,12 @@ targets:
       key=I('nwis_01654500_fits'),
       '../4_data_release/cache/models/post/nwis_01654500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01654500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01654500_post_inputs
+      - nwis_01654500_post_fits
+
   # --- nwis_01656903 --- #
   
   '../4_data_release/cache/models/post/nwis_01656903_input.zip':
@@ -3005,6 +3959,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01656903_fits'),
       '../4_data_release/cache/models/post/nwis_01656903_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01656903.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01656903_post_inputs
+      - nwis_01656903_post_fits
 
   # --- nwis_01658000 --- #
   
@@ -3024,6 +3984,12 @@ targets:
       key=I('nwis_01658000_fits'),
       '../4_data_release/cache/models/post/nwis_01658000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_01658000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01658000_post_inputs
+      - nwis_01658000_post_fits
+
   # --- nwis_0166818623 --- #
   
   '../4_data_release/cache/models/post/nwis_0166818623_input.zip':
@@ -3041,6 +4007,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_0166818623_fits'),
       '../4_data_release/cache/models/post/nwis_0166818623_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_0166818623.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_0166818623_post_inputs
+      - nwis_0166818623_post_fits
 
   # --- nwis_0166818985 --- #
   
@@ -3060,6 +4032,12 @@ targets:
       key=I('nwis_0166818985_fits'),
       '../4_data_release/cache/models/post/nwis_0166818985_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_0166818985.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_0166818985_post_inputs
+      - nwis_0166818985_post_fits
+
   # --- nwis_01673000 --- #
   
   '../4_data_release/cache/models/post/nwis_01673000_input.zip':
@@ -3077,6 +4055,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_01673000_fits'),
       '../4_data_release/cache/models/post/nwis_01673000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_01673000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_01673000_post_inputs
+      - nwis_01673000_post_fits
 
   # --- nwis_02035000 --- #
   
@@ -3096,6 +4080,12 @@ targets:
       key=I('nwis_02035000_fits'),
       '../4_data_release/cache/models/post/nwis_02035000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02035000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02035000_post_inputs
+      - nwis_02035000_post_fits
+
   # --- nwis_02101726 --- #
   
   '../4_data_release/cache/models/post/nwis_02101726_input.zip':
@@ -3113,6 +4103,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02101726_fits'),
       '../4_data_release/cache/models/post/nwis_02101726_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02101726.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02101726_post_inputs
+      - nwis_02101726_post_fits
 
   # --- nwis_02110400 --- #
   
@@ -3132,6 +4128,12 @@ targets:
       key=I('nwis_02110400_fits'),
       '../4_data_release/cache/models/post/nwis_02110400_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02110400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02110400_post_inputs
+      - nwis_02110400_post_fits
+
   # --- nwis_02110500 --- #
   
   '../4_data_release/cache/models/post/nwis_02110500_input.zip':
@@ -3150,6 +4152,12 @@ targets:
       key=I('nwis_02110500_fits'),
       '../4_data_release/cache/models/post/nwis_02110500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02110500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02110500_post_inputs
+      - nwis_02110500_post_fits
+
   # --- nwis_02110701 --- #
   
   '../4_data_release/cache/models/post/nwis_02110701_input.zip':
@@ -3167,6 +4175,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02110701_fits'),
       '../4_data_release/cache/models/post/nwis_02110701_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02110701.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02110701_post_inputs
+      - nwis_02110701_post_fits
 
   # --- nwis_0212378405 --- #
   
@@ -3188,6 +4202,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_0212378405_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_0212378405_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_0212378405.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_0212378405_post_inputs
+      - nwis_0212378405_post_fits
+
   # --- nwis_02135000 --- #
   
   '../4_data_release/cache/models/post/nwis_02135000_input.zip':
@@ -3205,6 +4225,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02135000_fits'),
       '../4_data_release/cache/models/post/nwis_02135000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02135000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02135000_post_inputs
+      - nwis_02135000_post_fits
 
   # --- nwis_02148315 --- #
   
@@ -3224,6 +4250,12 @@ targets:
       key=I('nwis_02148315_fits'),
       '../4_data_release/cache/models/post/nwis_02148315_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02148315.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02148315_post_inputs
+      - nwis_02148315_post_fits
+
   # --- nwis_02156500 --- #
   
   '../4_data_release/cache/models/post/nwis_02156500_input.zip':
@@ -3242,6 +4274,12 @@ targets:
       key=I('nwis_02156500_fits'),
       '../4_data_release/cache/models/post/nwis_02156500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02156500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02156500_post_inputs
+      - nwis_02156500_post_fits
+
   # --- nwis_02160700 --- #
   
   '../4_data_release/cache/models/post/nwis_02160700_input.zip':
@@ -3259,6 +4297,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02160700_fits'),
       '../4_data_release/cache/models/post/nwis_02160700_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02160700.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02160700_post_inputs
+      - nwis_02160700_post_fits
 
   # --- nwis_02171645 --- #
   
@@ -3280,6 +4324,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02171645_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02171645_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02171645.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02171645_post_inputs
+      - nwis_02171645_post_fits
+
   # --- nwis_02203655 --- #
   
   '../4_data_release/cache/models/post/nwis_02203655_input.zip':
@@ -3297,6 +4347,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02203655_fits'),
       '../4_data_release/cache/models/post/nwis_02203655_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02203655.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02203655_post_inputs
+      - nwis_02203655_post_fits
 
   # --- nwis_02203863 --- #
   
@@ -3316,6 +4372,12 @@ targets:
       key=I('nwis_02203863_fits'),
       '../4_data_release/cache/models/post/nwis_02203863_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02203863.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02203863_post_inputs
+      - nwis_02203863_post_fits
+
   # --- nwis_02203900 --- #
   
   '../4_data_release/cache/models/post/nwis_02203900_input.zip':
@@ -3333,6 +4395,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02203900_fits'),
       '../4_data_release/cache/models/post/nwis_02203900_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02203900.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02203900_post_inputs
+      - nwis_02203900_post_fits
 
   # --- nwis_02203950 --- #
   
@@ -3352,6 +4420,12 @@ targets:
       key=I('nwis_02203950_fits'),
       '../4_data_release/cache/models/post/nwis_02203950_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02203950.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02203950_post_inputs
+      - nwis_02203950_post_fits
+
   # --- nwis_02203960 --- #
   
   '../4_data_release/cache/models/post/nwis_02203960_input.zip':
@@ -3369,6 +4443,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02203960_fits'),
       '../4_data_release/cache/models/post/nwis_02203960_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02203960.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02203960_post_inputs
+      - nwis_02203960_post_fits
 
   # --- nwis_02204037 --- #
   
@@ -3388,6 +4468,12 @@ targets:
       key=I('nwis_02204037_fits'),
       '../4_data_release/cache/models/post/nwis_02204037_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02204037.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02204037_post_inputs
+      - nwis_02204037_post_fits
+
   # --- nwis_02207135 --- #
   
   '../4_data_release/cache/models/post/nwis_02207135_input.zip':
@@ -3405,6 +4491,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02207135_fits'),
       '../4_data_release/cache/models/post/nwis_02207135_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02207135.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02207135_post_inputs
+      - nwis_02207135_post_fits
 
   # --- nwis_02207160 --- #
   
@@ -3424,6 +4516,12 @@ targets:
       key=I('nwis_02207160_fits'),
       '../4_data_release/cache/models/post/nwis_02207160_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02207160.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02207160_post_inputs
+      - nwis_02207160_post_fits
+
   # --- nwis_02208450 --- #
   
   '../4_data_release/cache/models/post/nwis_02208450_input.zip':
@@ -3441,6 +4539,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02208450_fits'),
       '../4_data_release/cache/models/post/nwis_02208450_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02208450.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02208450_post_inputs
+      - nwis_02208450_post_fits
 
   # --- nwis_02208493 --- #
   
@@ -3460,6 +4564,12 @@ targets:
       key=I('nwis_02208493_fits'),
       '../4_data_release/cache/models/post/nwis_02208493_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02208493.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02208493_post_inputs
+      - nwis_02208493_post_fits
+
   # --- nwis_02245260 --- #
   
   '../4_data_release/cache/models/post/nwis_02245260_input.zip':
@@ -3477,6 +4587,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02245260_fits'),
       '../4_data_release/cache/models/post/nwis_02245260_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02245260.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02245260_post_inputs
+      - nwis_02245260_post_fits
 
   # --- nwis_02264100 --- #
   
@@ -3498,6 +4614,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02264100_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02264100_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02264100.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02264100_post_inputs
+      - nwis_02264100_post_fits
+
   # --- nwis_02266300 --- #
   
   '../4_data_release/cache/models/post/nwis_02266300_input.zip':
@@ -3518,6 +4640,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02266300_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02266300_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02266300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02266300_post_inputs
+      - nwis_02266300_post_fits
+
   # --- nwis_02323502 --- #
   
   '../4_data_release/cache/models/post/nwis_02323502_input.zip':
@@ -3535,6 +4663,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02323502_fits'),
       '../4_data_release/cache/models/post/nwis_02323502_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02323502.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02323502_post_inputs
+      - nwis_02323502_post_fits
 
   # --- nwis_02323566 --- #
   
@@ -3554,6 +4688,12 @@ targets:
       key=I('nwis_02323566_fits'),
       '../4_data_release/cache/models/post/nwis_02323566_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02323566.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02323566_post_inputs
+      - nwis_02323566_post_fits
+
   # --- nwis_02336120 --- #
   
   '../4_data_release/cache/models/post/nwis_02336120_input.zip':
@@ -3571,6 +4711,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02336120_fits'),
       '../4_data_release/cache/models/post/nwis_02336120_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02336120.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336120_post_inputs
+      - nwis_02336120_post_fits
 
   # --- nwis_02336152 --- #
   
@@ -3590,6 +4736,12 @@ targets:
       key=I('nwis_02336152_fits'),
       '../4_data_release/cache/models/post/nwis_02336152_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02336152.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336152_post_inputs
+      - nwis_02336152_post_fits
+
   # --- nwis_023362095 --- #
   
   '../4_data_release/cache/models/post/nwis_023362095_input.zip':
@@ -3607,6 +4759,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_023362095_fits'),
       '../4_data_release/cache/models/post/nwis_023362095_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_023362095.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_023362095_post_inputs
+      - nwis_023362095_post_fits
 
   # --- nwis_02336240 --- #
   
@@ -3626,6 +4784,12 @@ targets:
       key=I('nwis_02336240_fits'),
       '../4_data_release/cache/models/post/nwis_02336240_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02336240.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336240_post_inputs
+      - nwis_02336240_post_fits
+
   # --- nwis_02336300 --- #
   
   '../4_data_release/cache/models/post/nwis_02336300_input.zip':
@@ -3643,6 +4807,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02336300_fits'),
       '../4_data_release/cache/models/post/nwis_02336300_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02336300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336300_post_inputs
+      - nwis_02336300_post_fits
 
   # --- nwis_02336313 --- #
   
@@ -3662,6 +4832,12 @@ targets:
       key=I('nwis_02336313_fits'),
       '../4_data_release/cache/models/post/nwis_02336313_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02336313.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336313_post_inputs
+      - nwis_02336313_post_fits
+
   # --- nwis_02336340 --- #
   
   '../4_data_release/cache/models/post/nwis_02336340_input.zip':
@@ -3679,6 +4855,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02336340_fits'),
       '../4_data_release/cache/models/post/nwis_02336340_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02336340.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336340_post_inputs
+      - nwis_02336340_post_fits
 
   # --- nwis_02336360 --- #
   
@@ -3698,6 +4880,12 @@ targets:
       key=I('nwis_02336360_fits'),
       '../4_data_release/cache/models/post/nwis_02336360_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02336360.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336360_post_inputs
+      - nwis_02336360_post_fits
+
   # --- nwis_02336410 --- #
   
   '../4_data_release/cache/models/post/nwis_02336410_input.zip':
@@ -3715,6 +4903,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02336410_fits'),
       '../4_data_release/cache/models/post/nwis_02336410_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02336410.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336410_post_inputs
+      - nwis_02336410_post_fits
 
   # --- nwis_02336526 --- #
   
@@ -3734,6 +4928,12 @@ targets:
       key=I('nwis_02336526_fits'),
       '../4_data_release/cache/models/post/nwis_02336526_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02336526.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336526_post_inputs
+      - nwis_02336526_post_fits
+
   # --- nwis_02336728 --- #
   
   '../4_data_release/cache/models/post/nwis_02336728_input.zip':
@@ -3751,6 +4951,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_02336728_fits'),
       '../4_data_release/cache/models/post/nwis_02336728_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_02336728.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02336728_post_inputs
+      - nwis_02336728_post_fits
 
   # --- nwis_02337170 --- #
   
@@ -3772,6 +4978,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_02337170_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_02337170_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02337170.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02337170_post_inputs
+      - nwis_02337170_post_fits
+
   # --- nwis_023432415 --- #
   
   '../4_data_release/cache/models/post/nwis_023432415_input.zip':
@@ -3789,6 +5001,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_023432415_fits'),
       '../4_data_release/cache/models/post/nwis_023432415_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_023432415.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_023432415_post_inputs
+      - nwis_023432415_post_fits
 
   # --- nwis_02344630 --- #
   
@@ -3808,6 +5026,12 @@ targets:
       key=I('nwis_02344630_fits'),
       '../4_data_release/cache/models/post/nwis_02344630_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_02344630.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_02344630_post_inputs
+      - nwis_02344630_post_fits
+
   # --- nwis_03007800 --- #
   
   '../4_data_release/cache/models/post/nwis_03007800_input.zip':
@@ -3826,6 +5050,12 @@ targets:
       key=I('nwis_03007800_fits'),
       '../4_data_release/cache/models/post/nwis_03007800_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03007800.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03007800_post_inputs
+      - nwis_03007800_post_fits
+
   # --- nwis_03034000 --- #
   
   '../4_data_release/cache/models/post/nwis_03034000_input.zip':
@@ -3843,6 +5073,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03034000_fits'),
       '../4_data_release/cache/models/post/nwis_03034000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03034000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03034000_post_inputs
+      - nwis_03034000_post_fits
 
   # --- nwis_03067510 --- #
   
@@ -3864,6 +5100,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03067510_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03067510_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03067510.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03067510_post_inputs
+      - nwis_03067510_post_fits
+
   # --- nwis_03073000 --- #
   
   '../4_data_release/cache/models/post/nwis_03073000_input.zip':
@@ -3881,6 +5123,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03073000_fits'),
       '../4_data_release/cache/models/post/nwis_03073000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03073000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03073000_post_inputs
+      - nwis_03073000_post_fits
 
   # --- nwis_03081000 --- #
   
@@ -3902,6 +5150,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03081000_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03081000_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03081000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03081000_post_inputs
+      - nwis_03081000_post_fits
+
   # --- nwis_03098600 --- #
   
   '../4_data_release/cache/models/post/nwis_03098600_input.zip':
@@ -3919,6 +5173,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03098600_fits'),
       '../4_data_release/cache/models/post/nwis_03098600_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03098600.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03098600_post_inputs
+      - nwis_03098600_post_fits
 
   # --- nwis_03105500 --- #
   
@@ -3938,6 +5198,12 @@ targets:
       key=I('nwis_03105500_fits'),
       '../4_data_release/cache/models/post/nwis_03105500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03105500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03105500_post_inputs
+      - nwis_03105500_post_fits
+
   # --- nwis_03106000 --- #
   
   '../4_data_release/cache/models/post/nwis_03106000_input.zip':
@@ -3955,6 +5221,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03106000_fits'),
       '../4_data_release/cache/models/post/nwis_03106000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03106000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03106000_post_inputs
+      - nwis_03106000_post_fits
 
   # --- nwis_03183500 --- #
   
@@ -3976,6 +5248,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03183500_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03183500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03183500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03183500_post_inputs
+      - nwis_03183500_post_fits
+
   # --- nwis_03219500 --- #
   
   '../4_data_release/cache/models/post/nwis_03219500_input.zip':
@@ -3996,6 +5274,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03219500_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03219500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03219500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03219500_post_inputs
+      - nwis_03219500_post_fits
+
   # --- nwis_03228300 --- #
   
   '../4_data_release/cache/models/post/nwis_03228300_input.zip':
@@ -4013,6 +5297,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03228300_fits'),
       '../4_data_release/cache/models/post/nwis_03228300_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03228300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03228300_post_inputs
+      - nwis_03228300_post_fits
 
   # --- nwis_03255349 --- #
   
@@ -4032,6 +5322,12 @@ targets:
       key=I('nwis_03255349_fits'),
       '../4_data_release/cache/models/post/nwis_03255349_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03255349.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03255349_post_inputs
+      - nwis_03255349_post_fits
+
   # --- nwis_03259757 --- #
   
   '../4_data_release/cache/models/post/nwis_03259757_input.zip':
@@ -4049,6 +5345,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03259757_fits'),
       '../4_data_release/cache/models/post/nwis_03259757_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03259757.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03259757_post_inputs
+      - nwis_03259757_post_fits
 
   # --- nwis_03259813 --- #
   
@@ -4068,6 +5370,12 @@ targets:
       key=I('nwis_03259813_fits'),
       '../4_data_release/cache/models/post/nwis_03259813_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03259813.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03259813_post_inputs
+      - nwis_03259813_post_fits
+
   # --- nwis_03289200 --- #
   
   '../4_data_release/cache/models/post/nwis_03289200_input.zip':
@@ -4085,6 +5393,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03289200_fits'),
       '../4_data_release/cache/models/post/nwis_03289200_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03289200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03289200_post_inputs
+      - nwis_03289200_post_fits
 
   # --- nwis_03292470 --- #
   
@@ -4104,6 +5418,12 @@ targets:
       key=I('nwis_03292470_fits'),
       '../4_data_release/cache/models/post/nwis_03292470_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03292470.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03292470_post_inputs
+      - nwis_03292470_post_fits
+
   # --- nwis_03292474 --- #
   
   '../4_data_release/cache/models/post/nwis_03292474_input.zip':
@@ -4121,6 +5441,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03292474_fits'),
       '../4_data_release/cache/models/post/nwis_03292474_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03292474.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03292474_post_inputs
+      - nwis_03292474_post_fits
 
   # --- nwis_03292475 --- #
   
@@ -4140,6 +5466,12 @@ targets:
       key=I('nwis_03292475_fits'),
       '../4_data_release/cache/models/post/nwis_03292475_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03292475.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03292475_post_inputs
+      - nwis_03292475_post_fits
+
   # --- nwis_03293500 --- #
   
   '../4_data_release/cache/models/post/nwis_03293500_input.zip':
@@ -4157,6 +5489,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03293500_fits'),
       '../4_data_release/cache/models/post/nwis_03293500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03293500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03293500_post_inputs
+      - nwis_03293500_post_fits
 
   # --- nwis_03293530 --- #
   
@@ -4176,6 +5514,12 @@ targets:
       key=I('nwis_03293530_fits'),
       '../4_data_release/cache/models/post/nwis_03293530_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03293530.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03293530_post_inputs
+      - nwis_03293530_post_fits
+
   # --- nwis_03294570 --- #
   
   '../4_data_release/cache/models/post/nwis_03294570_input.zip':
@@ -4193,6 +5537,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03294570_fits'),
       '../4_data_release/cache/models/post/nwis_03294570_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03294570.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03294570_post_inputs
+      - nwis_03294570_post_fits
 
   # --- nwis_03297900 --- #
   
@@ -4212,6 +5562,12 @@ targets:
       key=I('nwis_03297900_fits'),
       '../4_data_release/cache/models/post/nwis_03297900_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03297900.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03297900_post_inputs
+      - nwis_03297900_post_fits
+
   # --- nwis_03298000 --- #
   
   '../4_data_release/cache/models/post/nwis_03298000_input.zip':
@@ -4229,6 +5585,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03298000_fits'),
       '../4_data_release/cache/models/post/nwis_03298000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03298000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03298000_post_inputs
+      - nwis_03298000_post_fits
 
   # --- nwis_03298135 --- #
   
@@ -4248,6 +5610,12 @@ targets:
       key=I('nwis_03298135_fits'),
       '../4_data_release/cache/models/post/nwis_03298135_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03298135.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03298135_post_inputs
+      - nwis_03298135_post_fits
+
   # --- nwis_03298150 --- #
   
   '../4_data_release/cache/models/post/nwis_03298150_input.zip':
@@ -4265,6 +5633,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03298150_fits'),
       '../4_data_release/cache/models/post/nwis_03298150_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03298150.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03298150_post_inputs
+      - nwis_03298150_post_fits
 
   # --- nwis_03298250 --- #
   
@@ -4284,6 +5658,12 @@ targets:
       key=I('nwis_03298250_fits'),
       '../4_data_release/cache/models/post/nwis_03298250_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03298250.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03298250_post_inputs
+      - nwis_03298250_post_fits
+
   # --- nwis_03298300 --- #
   
   '../4_data_release/cache/models/post/nwis_03298300_input.zip':
@@ -4301,6 +5681,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03298300_fits'),
       '../4_data_release/cache/models/post/nwis_03298300_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03298300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03298300_post_inputs
+      - nwis_03298300_post_fits
 
   # --- nwis_03301900 --- #
   
@@ -4320,6 +5706,12 @@ targets:
       key=I('nwis_03301900_fits'),
       '../4_data_release/cache/models/post/nwis_03301900_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03301900.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03301900_post_inputs
+      - nwis_03301900_post_fits
+
   # --- nwis_03301940 --- #
   
   '../4_data_release/cache/models/post/nwis_03301940_input.zip':
@@ -4337,6 +5729,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03301940_fits'),
       '../4_data_release/cache/models/post/nwis_03301940_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03301940.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03301940_post_inputs
+      - nwis_03301940_post_fits
 
   # --- nwis_03302000 --- #
   
@@ -4356,6 +5754,12 @@ targets:
       key=I('nwis_03302000_fits'),
       '../4_data_release/cache/models/post/nwis_03302000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03302000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03302000_post_inputs
+      - nwis_03302000_post_fits
+
   # --- nwis_03302030 --- #
   
   '../4_data_release/cache/models/post/nwis_03302030_input.zip':
@@ -4373,6 +5777,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03302030_fits'),
       '../4_data_release/cache/models/post/nwis_03302030_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03302030.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03302030_post_inputs
+      - nwis_03302030_post_fits
 
   # --- nwis_03302050 --- #
   
@@ -4392,6 +5802,12 @@ targets:
       key=I('nwis_03302050_fits'),
       '../4_data_release/cache/models/post/nwis_03302050_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03302050.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03302050_post_inputs
+      - nwis_03302050_post_fits
+
   # --- nwis_03339000 --- #
   
   '../4_data_release/cache/models/post/nwis_03339000_input.zip':
@@ -4409,6 +5825,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03339000_fits'),
       '../4_data_release/cache/models/post/nwis_03339000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03339000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03339000_post_inputs
+      - nwis_03339000_post_fits
 
   # --- nwis_03353200 --- #
   
@@ -4428,6 +5850,12 @@ targets:
       key=I('nwis_03353200_fits'),
       '../4_data_release/cache/models/post/nwis_03353200_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03353200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03353200_post_inputs
+      - nwis_03353200_post_fits
+
   # --- nwis_03353420 --- #
   
   '../4_data_release/cache/models/post/nwis_03353420_input.zip':
@@ -4445,6 +5873,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03353420_fits'),
       '../4_data_release/cache/models/post/nwis_03353420_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03353420.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03353420_post_inputs
+      - nwis_03353420_post_fits
 
   # --- nwis_03408500 --- #
   
@@ -4464,6 +5898,12 @@ targets:
       key=I('nwis_03408500_fits'),
       '../4_data_release/cache/models/post/nwis_03408500_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03408500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03408500_post_inputs
+      - nwis_03408500_post_fits
+
   # --- nwis_03409500 --- #
   
   '../4_data_release/cache/models/post/nwis_03409500_input.zip':
@@ -4481,6 +5921,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03409500_fits'),
       '../4_data_release/cache/models/post/nwis_03409500_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03409500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03409500_post_inputs
+      - nwis_03409500_post_fits
 
   # --- nwis_03430200 --- #
   
@@ -4500,6 +5946,12 @@ targets:
       key=I('nwis_03430200_fits'),
       '../4_data_release/cache/models/post/nwis_03430200_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03430200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03430200_post_inputs
+      - nwis_03430200_post_fits
+
   # --- nwis_03460795 --- #
   
   '../4_data_release/cache/models/post/nwis_03460795_input.zip':
@@ -4517,6 +5969,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03460795_fits'),
       '../4_data_release/cache/models/post/nwis_03460795_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03460795.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03460795_post_inputs
+      - nwis_03460795_post_fits
 
   # --- nwis_03512000 --- #
   
@@ -4536,6 +5994,12 @@ targets:
       key=I('nwis_03512000_fits'),
       '../4_data_release/cache/models/post/nwis_03512000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03512000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03512000_post_inputs
+      - nwis_03512000_post_fits
+
   # --- nwis_03538830 --- #
   
   '../4_data_release/cache/models/post/nwis_03538830_input.zip':
@@ -4553,6 +6017,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_03538830_fits'),
       '../4_data_release/cache/models/post/nwis_03538830_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_03538830.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03538830_post_inputs
+      - nwis_03538830_post_fits
 
   # --- nwis_03539778 --- #
   
@@ -4574,6 +6044,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_03539778_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_03539778_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_03539778.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_03539778_post_inputs
+      - nwis_03539778_post_fits
+
   # --- nwis_04027000 --- #
   
   '../4_data_release/cache/models/post/nwis_04027000_input.zip':
@@ -4591,6 +6067,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04027000_fits'),
       '../4_data_release/cache/models/post/nwis_04027000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04027000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04027000_post_inputs
+      - nwis_04027000_post_fits
 
   # --- nwis_04040000 --- #
   
@@ -4610,6 +6092,12 @@ targets:
       key=I('nwis_04040000_fits'),
       '../4_data_release/cache/models/post/nwis_04040000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04040000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04040000_post_inputs
+      - nwis_04040000_post_fits
+
   # --- nwis_04059500 --- #
   
   '../4_data_release/cache/models/post/nwis_04059500_input.zip':
@@ -4627,6 +6115,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04059500_fits'),
       '../4_data_release/cache/models/post/nwis_04059500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04059500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04059500_post_inputs
+      - nwis_04059500_post_fits
 
   # --- nwis_04067500 --- #
   
@@ -4648,6 +6142,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04067500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04067500_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04067500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04067500_post_inputs
+      - nwis_04067500_post_fits
+
   # --- nwis_04085108 --- #
   
   '../4_data_release/cache/models/post/nwis_04085108_input.zip':
@@ -4668,6 +6168,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04085108_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04085108_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04085108.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04085108_post_inputs
+      - nwis_04085108_post_fits
+
   # --- nwis_04087050 --- #
   
   '../4_data_release/cache/models/post/nwis_04087050_input.zip':
@@ -4685,6 +6191,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04087050_fits'),
       '../4_data_release/cache/models/post/nwis_04087050_5min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04087050.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04087050_post_inputs
+      - nwis_04087050_post_fits
 
   # --- nwis_04087119 --- #
   
@@ -4706,6 +6218,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04087119_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04087119_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04087119.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04087119_post_inputs
+      - nwis_04087119_post_fits
+
   # --- nwis_04101500 --- #
   
   '../4_data_release/cache/models/post/nwis_04101500_input.zip':
@@ -4724,6 +6242,12 @@ targets:
       key=I('nwis_04101500_fits'),
       '../4_data_release/cache/models/post/nwis_04101500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04101500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04101500_post_inputs
+      - nwis_04101500_post_fits
+
   # --- nwis_04119400 --- #
   
   '../4_data_release/cache/models/post/nwis_04119400_input.zip':
@@ -4741,6 +6265,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04119400_fits'),
       '../4_data_release/cache/models/post/nwis_04119400_12min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04119400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04119400_post_inputs
+      - nwis_04119400_post_fits
 
   # --- nwis_04124200 --- #
   
@@ -4762,6 +6292,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04124200_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04124200_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04124200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04124200_post_inputs
+      - nwis_04124200_post_fits
+
   # --- nwis_04125460 --- #
   
   '../4_data_release/cache/models/post/nwis_04125460_input.zip':
@@ -4781,6 +6317,12 @@ targets:
       key=I('nwis_04125460_fits'),
       '../4_data_release/cache/models/post/nwis_04125460_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04125460_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04125460.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04125460_post_inputs
+      - nwis_04125460_post_fits
 
   # --- nwis_04125550 --- #
   
@@ -4802,6 +6344,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04125550_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04125550_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04125550.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04125550_post_inputs
+      - nwis_04125550_post_fits
+
   # --- nwis_04136500 --- #
   
   '../4_data_release/cache/models/post/nwis_04136500_input.zip':
@@ -4819,6 +6367,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04136500_fits'),
       '../4_data_release/cache/models/post/nwis_04136500_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04136500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04136500_post_inputs
+      - nwis_04136500_post_fits
 
   # --- nwis_04137500 --- #
   
@@ -4840,6 +6394,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_04137500_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_04137500_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04137500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04137500_post_inputs
+      - nwis_04137500_post_fits
+
   # --- nwis_04142000 --- #
   
   '../4_data_release/cache/models/post/nwis_04142000_input.zip':
@@ -4857,6 +6417,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04142000_fits'),
       '../4_data_release/cache/models/post/nwis_04142000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04142000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04142000_post_inputs
+      - nwis_04142000_post_fits
 
   # --- nwis_041482663 --- #
   
@@ -4878,6 +6444,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_041482663_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_041482663_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_041482663.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_041482663_post_inputs
+      - nwis_041482663_post_fits
+
   # --- nwis_04166500 --- #
   
   '../4_data_release/cache/models/post/nwis_04166500_input.zip':
@@ -4895,6 +6467,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04166500_fits'),
       '../4_data_release/cache/models/post/nwis_04166500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04166500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04166500_post_inputs
+      - nwis_04166500_post_fits
 
   # --- nwis_04167150 --- #
   
@@ -4914,6 +6492,12 @@ targets:
       key=I('nwis_04167150_fits'),
       '../4_data_release/cache/models/post/nwis_04167150_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04167150.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04167150_post_inputs
+      - nwis_04167150_post_fits
+
   # --- nwis_04168400 --- #
   
   '../4_data_release/cache/models/post/nwis_04168400_input.zip':
@@ -4931,6 +6515,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04168400_fits'),
       '../4_data_release/cache/models/post/nwis_04168400_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04168400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04168400_post_inputs
+      - nwis_04168400_post_fits
 
   # --- nwis_04174500 --- #
   
@@ -4950,6 +6540,12 @@ targets:
       key=I('nwis_04174500_fits'),
       '../4_data_release/cache/models/post/nwis_04174500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04174500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04174500_post_inputs
+      - nwis_04174500_post_fits
+
   # --- nwis_04176500 --- #
   
   '../4_data_release/cache/models/post/nwis_04176500_input.zip':
@@ -4967,6 +6563,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04176500_fits'),
       '../4_data_release/cache/models/post/nwis_04176500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04176500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04176500_post_inputs
+      - nwis_04176500_post_fits
 
   # --- nwis_04188496 --- #
   
@@ -4986,6 +6588,12 @@ targets:
       key=I('nwis_04188496_fits'),
       '../4_data_release/cache/models/post/nwis_04188496_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04188496.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04188496_post_inputs
+      - nwis_04188496_post_fits
+
   # --- nwis_04199500 --- #
   
   '../4_data_release/cache/models/post/nwis_04199500_input.zip':
@@ -5003,6 +6611,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04199500_fits'),
       '../4_data_release/cache/models/post/nwis_04199500_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04199500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04199500_post_inputs
+      - nwis_04199500_post_fits
 
   # --- nwis_04200500 --- #
   
@@ -5022,6 +6636,12 @@ targets:
       key=I('nwis_04200500_fits'),
       '../4_data_release/cache/models/post/nwis_04200500_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04200500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04200500_post_inputs
+      - nwis_04200500_post_fits
+
   # --- nwis_04208000 --- #
   
   '../4_data_release/cache/models/post/nwis_04208000_input.zip':
@@ -5039,6 +6659,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04208000_fits'),
       '../4_data_release/cache/models/post/nwis_04208000_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04208000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04208000_post_inputs
+      - nwis_04208000_post_fits
 
   # --- nwis_04213152 --- #
   
@@ -5058,6 +6684,12 @@ targets:
       key=I('nwis_04213152_fits'),
       '../4_data_release/cache/models/post/nwis_04213152_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_04213152.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04213152_post_inputs
+      - nwis_04213152_post_fits
+
   # --- nwis_04213500 --- #
   
   '../4_data_release/cache/models/post/nwis_04213500_input.zip':
@@ -5075,6 +6707,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_04213500_fits'),
       '../4_data_release/cache/models/post/nwis_04213500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_04213500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_04213500_post_inputs
+      - nwis_04213500_post_fits
 
   # --- nwis_05057000 --- #
   
@@ -5094,6 +6732,12 @@ targets:
       key=I('nwis_05057000_fits'),
       '../4_data_release/cache/models/post/nwis_05057000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05057000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05057000_post_inputs
+      - nwis_05057000_post_fits
+
   # --- nwis_05057200 --- #
   
   '../4_data_release/cache/models/post/nwis_05057200_input.zip':
@@ -5111,6 +6755,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05057200_fits'),
       '../4_data_release/cache/models/post/nwis_05057200_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05057200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05057200_post_inputs
+      - nwis_05057200_post_fits
 
   # --- nwis_05406457 --- #
   
@@ -5130,6 +6780,12 @@ targets:
       key=I('nwis_05406457_fits'),
       '../4_data_release/cache/models/post/nwis_05406457_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05406457.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05406457_post_inputs
+      - nwis_05406457_post_fits
+
   # --- nwis_05406469 --- #
   
   '../4_data_release/cache/models/post/nwis_05406469_input.zip':
@@ -5147,6 +6803,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05406469_fits'),
       '../4_data_release/cache/models/post/nwis_05406469_5min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05406469.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05406469_post_inputs
+      - nwis_05406469_post_fits
 
   # --- nwis_05406479 --- #
   
@@ -5166,6 +6828,12 @@ targets:
       key=I('nwis_05406479_fits'),
       '../4_data_release/cache/models/post/nwis_05406479_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05406479.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05406479_post_inputs
+      - nwis_05406479_post_fits
+
   # --- nwis_05406500 --- #
   
   '../4_data_release/cache/models/post/nwis_05406500_input.zip':
@@ -5183,6 +6851,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05406500_fits'),
       '../4_data_release/cache/models/post/nwis_05406500_5min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05406500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05406500_post_inputs
+      - nwis_05406500_post_fits
 
   # --- nwis_05435943 --- #
   
@@ -5202,6 +6876,12 @@ targets:
       key=I('nwis_05435943_fits'),
       '../4_data_release/cache/models/post/nwis_05435943_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05435943.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05435943_post_inputs
+      - nwis_05435943_post_fits
+
   # --- nwis_05435950 --- #
   
   '../4_data_release/cache/models/post/nwis_05435950_input.zip':
@@ -5219,6 +6899,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05435950_fits'),
       '../4_data_release/cache/models/post/nwis_05435950_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05435950.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05435950_post_inputs
+      - nwis_05435950_post_fits
 
   # --- nwis_05447500 --- #
   
@@ -5238,6 +6924,12 @@ targets:
       key=I('nwis_05447500_fits'),
       '../4_data_release/cache/models/post/nwis_05447500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05447500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05447500_post_inputs
+      - nwis_05447500_post_fits
+
   # --- nwis_05451080 --- #
   
   '../4_data_release/cache/models/post/nwis_05451080_input.zip':
@@ -5255,6 +6947,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05451080_fits'),
       '../4_data_release/cache/models/post/nwis_05451080_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05451080.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05451080_post_inputs
+      - nwis_05451080_post_fits
 
   # --- nwis_05451210 --- #
   
@@ -5276,6 +6974,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_05451210_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_05451210_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05451210.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05451210_post_inputs
+      - nwis_05451210_post_fits
+
   # --- nwis_05524500 --- #
   
   '../4_data_release/cache/models/post/nwis_05524500_input.zip':
@@ -5293,6 +6997,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_05524500_fits'),
       '../4_data_release/cache/models/post/nwis_05524500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_05524500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05524500_post_inputs
+      - nwis_05524500_post_fits
 
   # --- nwis_05579630 --- #
   
@@ -5314,6 +7024,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_05579630_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_05579630_5min_fit.zip')
 
+  '../4_data_release/log/models/nwis_05579630.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_05579630_post_inputs
+      - nwis_05579630_post_fits
+
   # --- nwis_06336000 --- #
   
   '../4_data_release/cache/models/post/nwis_06336000_input.zip':
@@ -5331,6 +7047,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06336000_fits'),
       '../4_data_release/cache/models/post/nwis_06336000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06336000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06336000_post_inputs
+      - nwis_06336000_post_fits
 
   # --- nwis_06436760 --- #
   
@@ -5350,6 +7072,12 @@ targets:
       key=I('nwis_06436760_fits'),
       '../4_data_release/cache/models/post/nwis_06436760_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06436760.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06436760_post_inputs
+      - nwis_06436760_post_fits
+
   # --- nwis_06478522 --- #
   
   '../4_data_release/cache/models/post/nwis_06478522_input.zip':
@@ -5368,6 +7096,12 @@ targets:
       key=I('nwis_06478522_fits'),
       '../4_data_release/cache/models/post/nwis_06478522_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06478522.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06478522_post_inputs
+      - nwis_06478522_post_fits
+
   # --- nwis_06670500 --- #
   
   '../4_data_release/cache/models/post/nwis_06670500_input.zip':
@@ -5385,6 +7119,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06670500_fits'),
       '../4_data_release/cache/models/post/nwis_06670500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06670500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06670500_post_inputs
+      - nwis_06670500_post_fits
 
   # --- nwis_06711565 --- #
   
@@ -5406,6 +7146,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_06711565_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_06711565_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06711565.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06711565_post_inputs
+      - nwis_06711565_post_fits
+
   # --- nwis_06795500 --- #
   
   '../4_data_release/cache/models/post/nwis_06795500_input.zip':
@@ -5423,6 +7169,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06795500_fits'),
       '../4_data_release/cache/models/post/nwis_06795500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06795500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06795500_post_inputs
+      - nwis_06795500_post_fits
 
   # --- nwis_06818000 --- #
   
@@ -5442,6 +7194,12 @@ targets:
       key=I('nwis_06818000_fits'),
       '../4_data_release/cache/models/post/nwis_06818000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06818000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06818000_post_inputs
+      - nwis_06818000_post_fits
+
   # --- nwis_06892513 --- #
   
   '../4_data_release/cache/models/post/nwis_06892513_input.zip':
@@ -5459,6 +7217,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06892513_fits'),
       '../4_data_release/cache/models/post/nwis_06892513_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06892513.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06892513_post_inputs
+      - nwis_06892513_post_fits
 
   # --- nwis_06893300 --- #
   
@@ -5478,6 +7242,12 @@ targets:
       key=I('nwis_06893300_fits'),
       '../4_data_release/cache/models/post/nwis_06893300_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06893300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06893300_post_inputs
+      - nwis_06893300_post_fits
+
   # --- nwis_06893350 --- #
   
   '../4_data_release/cache/models/post/nwis_06893350_input.zip':
@@ -5495,6 +7265,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06893350_fits'),
       '../4_data_release/cache/models/post/nwis_06893350_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06893350.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06893350_post_inputs
+      - nwis_06893350_post_fits
 
   # --- nwis_06893620 --- #
   
@@ -5514,6 +7290,12 @@ targets:
       key=I('nwis_06893620_fits'),
       '../4_data_release/cache/models/post/nwis_06893620_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06893620.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06893620_post_inputs
+      - nwis_06893620_post_fits
+
   # --- nwis_06893820 --- #
   
   '../4_data_release/cache/models/post/nwis_06893820_input.zip':
@@ -5531,6 +7313,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06893820_fits'),
       '../4_data_release/cache/models/post/nwis_06893820_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06893820.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06893820_post_inputs
+      - nwis_06893820_post_fits
 
   # --- nwis_06893890 --- #
   
@@ -5550,6 +7338,12 @@ targets:
       key=I('nwis_06893890_fits'),
       '../4_data_release/cache/models/post/nwis_06893890_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06893890.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06893890_post_inputs
+      - nwis_06893890_post_fits
+
   # --- nwis_06893970 --- #
   
   '../4_data_release/cache/models/post/nwis_06893970_input.zip':
@@ -5567,6 +7361,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_06893970_fits'),
       '../4_data_release/cache/models/post/nwis_06893970_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_06893970.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06893970_post_inputs
+      - nwis_06893970_post_fits
 
   # --- nwis_06894000 --- #
   
@@ -5586,6 +7386,12 @@ targets:
       key=I('nwis_06894000_fits'),
       '../4_data_release/cache/models/post/nwis_06894000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_06894000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_06894000_post_inputs
+      - nwis_06894000_post_fits
+
   # --- nwis_07048600 --- #
   
   '../4_data_release/cache/models/post/nwis_07048600_input.zip':
@@ -5603,6 +7409,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07048600_fits'),
       '../4_data_release/cache/models/post/nwis_07048600_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07048600.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07048600_post_inputs
+      - nwis_07048600_post_fits
 
   # --- nwis_07061270 --- #
   
@@ -5622,6 +7434,12 @@ targets:
       key=I('nwis_07061270_fits'),
       '../4_data_release/cache/models/post/nwis_07061270_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07061270.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07061270_post_inputs
+      - nwis_07061270_post_fits
+
   # --- nwis_07061290 --- #
   
   '../4_data_release/cache/models/post/nwis_07061290_input.zip':
@@ -5639,6 +7457,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07061290_fits'),
       '../4_data_release/cache/models/post/nwis_07061290_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07061290.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07061290_post_inputs
+      - nwis_07061290_post_fits
 
   # --- nwis_07075250 --- #
   
@@ -5658,6 +7482,12 @@ targets:
       key=I('nwis_07075250_fits'),
       '../4_data_release/cache/models/post/nwis_07075250_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07075250.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07075250_post_inputs
+      - nwis_07075250_post_fits
+
   # --- nwis_07075270 --- #
   
   '../4_data_release/cache/models/post/nwis_07075270_input.zip':
@@ -5676,6 +7506,12 @@ targets:
       key=I('nwis_07075270_fits'),
       '../4_data_release/cache/models/post/nwis_07075270_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07075270.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07075270_post_inputs
+      - nwis_07075270_post_fits
+
   # --- nwis_07143672 --- #
   
   '../4_data_release/cache/models/post/nwis_07143672_input.zip':
@@ -5693,6 +7529,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07143672_fits'),
       '../4_data_release/cache/models/post/nwis_07143672_60min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07143672.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07143672_post_inputs
+      - nwis_07143672_post_fits
 
   # --- nwis_07144100 --- #
   
@@ -5714,6 +7556,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_07144100_30min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_07144100_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07144100.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07144100_post_inputs
+      - nwis_07144100_post_fits
+
   # --- nwis_07177500 --- #
   
   '../4_data_release/cache/models/post/nwis_07177500_input.zip':
@@ -5731,6 +7579,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07177500_fits'),
       '../4_data_release/cache/models/post/nwis_07177500_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07177500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07177500_post_inputs
+      - nwis_07177500_post_fits
 
   # --- nwis_07178200 --- #
   
@@ -5750,6 +7604,12 @@ targets:
       key=I('nwis_07178200_fits'),
       '../4_data_release/cache/models/post/nwis_07178200_60min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07178200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07178200_post_inputs
+      - nwis_07178200_post_fits
+
   # --- nwis_071912213 --- #
   
   '../4_data_release/cache/models/post/nwis_071912213_input.zip':
@@ -5767,6 +7627,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_071912213_fits'),
       '../4_data_release/cache/models/post/nwis_071912213_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_071912213.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_071912213_post_inputs
+      - nwis_071912213_post_fits
 
   # --- nwis_07239450 --- #
   
@@ -5786,6 +7652,12 @@ targets:
       key=I('nwis_07239450_fits'),
       '../4_data_release/cache/models/post/nwis_07239450_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07239450.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07239450_post_inputs
+      - nwis_07239450_post_fits
+
   # --- nwis_07241000 --- #
   
   '../4_data_release/cache/models/post/nwis_07241000_input.zip':
@@ -5803,6 +7675,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07241000_fits'),
       '../4_data_release/cache/models/post/nwis_07241000_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07241000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07241000_post_inputs
+      - nwis_07241000_post_fits
 
   # --- nwis_07263296 --- #
   
@@ -5822,6 +7700,12 @@ targets:
       key=I('nwis_07263296_fits'),
       '../4_data_release/cache/models/post/nwis_07263296_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07263296.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07263296_post_inputs
+      - nwis_07263296_post_fits
+
   # --- nwis_07332620 --- #
   
   '../4_data_release/cache/models/post/nwis_07332620_input.zip':
@@ -5839,6 +7723,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_07332620_fits'),
       '../4_data_release/cache/models/post/nwis_07332620_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_07332620.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07332620_post_inputs
+      - nwis_07332620_post_fits
 
   # --- nwis_07332622 --- #
   
@@ -5858,6 +7748,12 @@ targets:
       key=I('nwis_07332622_fits'),
       '../4_data_release/cache/models/post/nwis_07332622_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_07332622.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_07332622_post_inputs
+      - nwis_07332622_post_fits
+
   # --- nwis_08049500 --- #
   
   '../4_data_release/cache/models/post/nwis_08049500_input.zip':
@@ -5875,6 +7771,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08049500_fits'),
       '../4_data_release/cache/models/post/nwis_08049500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08049500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08049500_post_inputs
+      - nwis_08049500_post_fits
 
   # --- nwis_08052700 --- #
   
@@ -5894,6 +7796,12 @@ targets:
       key=I('nwis_08052700_fits'),
       '../4_data_release/cache/models/post/nwis_08052700_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08052700.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08052700_post_inputs
+      - nwis_08052700_post_fits
+
   # --- nwis_08057410 --- #
   
   '../4_data_release/cache/models/post/nwis_08057410_input.zip':
@@ -5911,6 +7819,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08057410_fits'),
       '../4_data_release/cache/models/post/nwis_08057410_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08057410.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08057410_post_inputs
+      - nwis_08057410_post_fits
 
   # --- nwis_08062500 --- #
   
@@ -5930,6 +7844,12 @@ targets:
       key=I('nwis_08062500_fits'),
       '../4_data_release/cache/models/post/nwis_08062500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08062500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08062500_post_inputs
+      - nwis_08062500_post_fits
+
   # --- nwis_08065350 --- #
   
   '../4_data_release/cache/models/post/nwis_08065350_input.zip':
@@ -5947,6 +7867,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08065350_fits'),
       '../4_data_release/cache/models/post/nwis_08065350_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08065350.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08065350_post_inputs
+      - nwis_08065350_post_fits
 
   # --- nwis_08068000 --- #
   
@@ -5966,6 +7892,12 @@ targets:
       key=I('nwis_08068000_fits'),
       '../4_data_release/cache/models/post/nwis_08068000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08068000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08068000_post_inputs
+      - nwis_08068000_post_fits
+
   # --- nwis_08068500 --- #
   
   '../4_data_release/cache/models/post/nwis_08068500_input.zip':
@@ -5983,6 +7915,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08068500_fits'),
       '../4_data_release/cache/models/post/nwis_08068500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08068500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08068500_post_inputs
+      - nwis_08068500_post_fits
 
   # --- nwis_08171290 --- #
   
@@ -6002,6 +7940,12 @@ targets:
       key=I('nwis_08171290_fits'),
       '../4_data_release/cache/models/post/nwis_08171290_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08171290.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08171290_post_inputs
+      - nwis_08171290_post_fits
+
   # --- nwis_08180700 --- #
   
   '../4_data_release/cache/models/post/nwis_08180700_input.zip':
@@ -6019,6 +7963,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08180700_fits'),
       '../4_data_release/cache/models/post/nwis_08180700_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08180700.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08180700_post_inputs
+      - nwis_08180700_post_fits
 
   # --- nwis_08181500 --- #
   
@@ -6038,6 +7988,12 @@ targets:
       key=I('nwis_08181500_fits'),
       '../4_data_release/cache/models/post/nwis_08181500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08181500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08181500_post_inputs
+      - nwis_08181500_post_fits
+
   # --- nwis_08181800 --- #
   
   '../4_data_release/cache/models/post/nwis_08181800_input.zip':
@@ -6055,6 +8011,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08181800_fits'),
       '../4_data_release/cache/models/post/nwis_08181800_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08181800.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08181800_post_inputs
+      - nwis_08181800_post_fits
 
   # --- nwis_08188060 --- #
   
@@ -6074,6 +8036,12 @@ targets:
       key=I('nwis_08188060_fits'),
       '../4_data_release/cache/models/post/nwis_08188060_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08188060.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08188060_post_inputs
+      - nwis_08188060_post_fits
+
   # --- nwis_08211200 --- #
   
   '../4_data_release/cache/models/post/nwis_08211200_input.zip':
@@ -6091,6 +8059,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08211200_fits'),
       '../4_data_release/cache/models/post/nwis_08211200_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08211200.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08211200_post_inputs
+      - nwis_08211200_post_fits
 
   # --- nwis_08374550 --- #
   
@@ -6110,6 +8084,12 @@ targets:
       key=I('nwis_08374550_fits'),
       '../4_data_release/cache/models/post/nwis_08374550_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08374550.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08374550_post_inputs
+      - nwis_08374550_post_fits
+
   # --- nwis_08412500 --- #
   
   '../4_data_release/cache/models/post/nwis_08412500_input.zip':
@@ -6127,6 +8107,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_08412500_fits'),
       '../4_data_release/cache/models/post/nwis_08412500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_08412500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08412500_post_inputs
+      - nwis_08412500_post_fits
 
   # --- nwis_08447300 --- #
   
@@ -6146,6 +8132,12 @@ targets:
       key=I('nwis_08447300_fits'),
       '../4_data_release/cache/models/post/nwis_08447300_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_08447300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_08447300_post_inputs
+      - nwis_08447300_post_fits
+
   # --- nwis_09326500 --- #
   
   '../4_data_release/cache/models/post/nwis_09326500_input.zip':
@@ -6163,6 +8155,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_09326500_fits'),
       '../4_data_release/cache/models/post/nwis_09326500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_09326500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_09326500_post_inputs
+      - nwis_09326500_post_fits
 
   # --- nwis_09327000 --- #
   
@@ -6182,6 +8180,12 @@ targets:
       key=I('nwis_09327000_fits'),
       '../4_data_release/cache/models/post/nwis_09327000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_09327000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_09327000_post_inputs
+      - nwis_09327000_post_fits
+
   # --- nwis_09406000 --- #
   
   '../4_data_release/cache/models/post/nwis_09406000_input.zip':
@@ -6199,6 +8203,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_09406000_fits'),
       '../4_data_release/cache/models/post/nwis_09406000_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_09406000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_09406000_post_inputs
+      - nwis_09406000_post_fits
 
   # --- nwis_11128500 --- #
   
@@ -6218,6 +8228,12 @@ targets:
       key=I('nwis_11128500_fits'),
       '../4_data_release/cache/models/post/nwis_11128500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11128500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11128500_post_inputs
+      - nwis_11128500_post_fits
+
   # --- nwis_11273400 --- #
   
   '../4_data_release/cache/models/post/nwis_11273400_input.zip':
@@ -6235,6 +8251,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_11273400_fits'),
       '../4_data_release/cache/models/post/nwis_11273400_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_11273400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11273400_post_inputs
+      - nwis_11273400_post_fits
 
   # --- nwis_11285500 --- #
   
@@ -6254,6 +8276,12 @@ targets:
       key=I('nwis_11285500_fits'),
       '../4_data_release/cache/models/post/nwis_11285500_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11285500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11285500_post_inputs
+      - nwis_11285500_post_fits
+
   # --- nwis_11462500 --- #
   
   '../4_data_release/cache/models/post/nwis_11462500_input.zip':
@@ -6271,6 +8299,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_11462500_fits'),
       '../4_data_release/cache/models/post/nwis_11462500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_11462500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11462500_post_inputs
+      - nwis_11462500_post_fits
 
   # --- nwis_11463000 --- #
   
@@ -6290,6 +8324,12 @@ targets:
       key=I('nwis_11463000_fits'),
       '../4_data_release/cache/models/post/nwis_11463000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11463000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11463000_post_inputs
+      - nwis_11463000_post_fits
+
   # --- nwis_11463682 --- #
   
   '../4_data_release/cache/models/post/nwis_11463682_input.zip':
@@ -6307,6 +8347,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_11463682_fits'),
       '../4_data_release/cache/models/post/nwis_11463682_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_11463682.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11463682_post_inputs
+      - nwis_11463682_post_fits
 
   # --- nwis_11463980 --- #
   
@@ -6326,6 +8372,12 @@ targets:
       key=I('nwis_11463980_fits'),
       '../4_data_release/cache/models/post/nwis_11463980_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11463980.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11463980_post_inputs
+      - nwis_11463980_post_fits
+
   # --- nwis_11465240 --- #
   
   '../4_data_release/cache/models/post/nwis_11465240_input.zip':
@@ -6343,6 +8395,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_11465240_fits'),
       '../4_data_release/cache/models/post/nwis_11465240_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_11465240.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11465240_post_inputs
+      - nwis_11465240_post_fits
 
   # --- nwis_11467000 --- #
   
@@ -6362,6 +8420,12 @@ targets:
       key=I('nwis_11467000_fits'),
       '../4_data_release/cache/models/post/nwis_11467000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_11467000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_11467000_post_inputs
+      - nwis_11467000_post_fits
+
   # --- nwis_12100490 --- #
   
   '../4_data_release/cache/models/post/nwis_12100490_input.zip':
@@ -6379,6 +8443,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_12100490_fits'),
       '../4_data_release/cache/models/post/nwis_12100490_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_12100490.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_12100490_post_inputs
+      - nwis_12100490_post_fits
 
   # --- nwis_12101100 --- #
   
@@ -6398,6 +8468,12 @@ targets:
       key=I('nwis_12101100_fits'),
       '../4_data_release/cache/models/post/nwis_12101100_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_12101100.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_12101100_post_inputs
+      - nwis_12101100_post_fits
+
   # --- nwis_12102075 --- #
   
   '../4_data_release/cache/models/post/nwis_12102075_input.zip':
@@ -6415,6 +8491,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_12102075_fits'),
       '../4_data_release/cache/models/post/nwis_12102075_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_12102075.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_12102075_post_inputs
+      - nwis_12102075_post_fits
 
   # --- nwis_13206400 --- #
   
@@ -6434,6 +8516,12 @@ targets:
       key=I('nwis_13206400_fits'),
       '../4_data_release/cache/models/post/nwis_13206400_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_13206400.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_13206400_post_inputs
+      - nwis_13206400_post_fits
+
   # --- nwis_13207500 --- #
   
   '../4_data_release/cache/models/post/nwis_13207500_input.zip':
@@ -6451,6 +8539,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_13207500_fits'),
       '../4_data_release/cache/models/post/nwis_13207500_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_13207500.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_13207500_post_inputs
+      - nwis_13207500_post_fits
 
   # --- nwis_13213000 --- #
   
@@ -6470,6 +8564,12 @@ targets:
       key=I('nwis_13213000_fits'),
       '../4_data_release/cache/models/post/nwis_13213000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_13213000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_13213000_post_inputs
+      - nwis_13213000_post_fits
+
   # --- nwis_14151000 --- #
   
   '../4_data_release/cache/models/post/nwis_14151000_input.zip':
@@ -6488,6 +8588,12 @@ targets:
       key=I('nwis_14151000_fits'),
       '../4_data_release/cache/models/post/nwis_14151000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_14151000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14151000_post_inputs
+      - nwis_14151000_post_fits
+
   # --- nwis_14210000 --- #
   
   '../4_data_release/cache/models/post/nwis_14210000_input.zip':
@@ -6505,6 +8611,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_14210000_fits'),
       '../4_data_release/cache/models/post/nwis_14210000_30min_fit.zip')
+
+  '../4_data_release/log/models/nwis_14210000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14210000_post_inputs
+      - nwis_14210000_post_fits
 
   # --- nwis_14211010 --- #
   
@@ -6526,6 +8638,12 @@ targets:
       '../4_data_release/cache/models/post/nwis_14211010_15min_fit.zip', 
       '../4_data_release/cache/models/post/nwis_14211010_30min_fit.zip')
 
+  '../4_data_release/log/models/nwis_14211010.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_14211010_post_inputs
+      - nwis_14211010_post_fits
+
   # --- nwis_385446094430700 --- #
   
   '../4_data_release/cache/models/post/nwis_385446094430700_input.zip':
@@ -6543,6 +8661,12 @@ targets:
       parent.id=pc1_model_fits,
       key=I('nwis_385446094430700_fits'),
       '../4_data_release/cache/models/post/nwis_385446094430700_15min_fit.zip')
+
+  '../4_data_release/log/models/nwis_385446094430700.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_385446094430700_post_inputs
+      - nwis_385446094430700_post_fits
 
   # --- nwis_385520094420000 --- #
   
@@ -6562,6 +8686,12 @@ targets:
       key=I('nwis_385520094420000_fits'),
       '../4_data_release/cache/models/post/nwis_385520094420000_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_385520094420000.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_385520094420000_post_inputs
+      - nwis_385520094420000_post_fits
+
   # --- nwis_385608094380300 --- #
   
   '../4_data_release/cache/models/post/nwis_385608094380300_input.zip':
@@ -6580,720 +8710,370 @@ targets:
       key=I('nwis_385608094380300_fits'),
       '../4_data_release/cache/models/post/nwis_385608094380300_15min_fit.zip')
 
+  '../4_data_release/log/models/nwis_385608094380300.ind':
+    command: write_timestamp(target_name)
+    depends:
+      - nwis_385608094380300_post_inputs
+      - nwis_385608094380300_post_fits
+
   # --- Overall job --- #
 
   4_tasks_model_sites:
     command: write_timestamp(I('../4_data_release/log/4_tasks_model_sites.ind'))
     depends: 
-      - nwis_01548303_post_inputs
-      - nwis_01548303_post_fits
-      - nwis_02168504_post_inputs
-      - nwis_02168504_post_fits
-      - nwis_03292480_post_inputs
-      - nwis_03292480_post_fits
-      - nwis_03293000_post_inputs
-      - nwis_03293000_post_fits
-      - nwis_03298200_post_inputs
-      - nwis_03298200_post_fits
-      - nwis_05418400_post_inputs
-      - nwis_05418400_post_fits
-      - nwis_05420500_post_inputs
-      - nwis_05420500_post_fits
-      - nwis_07191222_post_inputs
-      - nwis_07191222_post_fits
-      - nwis_07241550_post_inputs
-      - nwis_07241550_post_fits
-      - nwis_08070200_post_inputs
-      - nwis_08070200_post_fits
-      - nwis_08155500_post_inputs
-      - nwis_08155500_post_fits
-      - nwis_01104430_post_inputs
-      - nwis_01104430_post_fits
-      - nwis_01184000_post_inputs
-      - nwis_01184000_post_fits
-      - nwis_01193050_post_inputs
-      - nwis_01193050_post_fits
-      - nwis_01388000_post_inputs
-      - nwis_01388000_post_fits
-      - nwis_01400500_post_inputs
-      - nwis_01400500_post_fits
-      - nwis_01454700_post_inputs
-      - nwis_01454700_post_fits
-      - nwis_01473500_post_inputs
-      - nwis_01473500_post_fits
-      - nwis_01474500_post_inputs
-      - nwis_01474500_post_fits
-      - nwis_01480617_post_inputs
-      - nwis_01480617_post_fits
-      - nwis_01484525_post_inputs
-      - nwis_01484525_post_fits
-      - nwis_01487150_post_inputs
-      - nwis_01487150_post_fits
-      - nwis_01570500_post_inputs
-      - nwis_01570500_post_fits
-      - nwis_01646500_post_inputs
-      - nwis_01646500_post_fits
-      - nwis_02110550_post_inputs
-      - nwis_02110550_post_fits
-      - nwis_02110704_post_inputs
-      - nwis_02110704_post_fits
-      - nwis_02160105_post_inputs
-      - nwis_02160105_post_fits
-      - nwis_02162035_post_inputs
-      - nwis_02162035_post_fits
-      - nwis_02169000_post_inputs
-      - nwis_02169000_post_fits
-      - nwis_02203700_post_inputs
-      - nwis_02203700_post_fits
-      - nwis_02217643_post_inputs
-      - nwis_02217643_post_fits
-      - nwis_02234000_post_inputs
-      - nwis_02234000_post_fits
-      - nwis_02234500_post_inputs
-      - nwis_02234500_post_fits
-      - nwis_02235500_post_inputs
-      - nwis_02235500_post_fits
-      - nwis_02236000_post_inputs
-      - nwis_02236000_post_fits
-      - nwis_02236125_post_inputs
-      - nwis_02236125_post_fits
-      - nwis_02244040_post_inputs
-      - nwis_02244040_post_fits
-      - nwis_02264000_post_inputs
-      - nwis_02264000_post_fits
-      - nwis_02266200_post_inputs
-      - nwis_02266200_post_fits
-      - nwis_02319302_post_inputs
-      - nwis_02319302_post_fits
-      - nwis_02320250_post_inputs
-      - nwis_02320250_post_fits
-      - nwis_02322688_post_inputs
-      - nwis_02322688_post_fits
-      - nwis_02397530_post_inputs
-      - nwis_02397530_post_fits
-      - nwis_02492620_post_inputs
-      - nwis_02492620_post_fits
-      - nwis_03025500_post_inputs
-      - nwis_03025500_post_fits
-      - nwis_03027500_post_inputs
-      - nwis_03027500_post_fits
-      - nwis_03036000_post_inputs
-      - nwis_03036000_post_fits
-      - nwis_03058000_post_inputs
-      - nwis_03058000_post_fits
-      - nwis_03061000_post_inputs
-      - nwis_03061000_post_fits
-      - nwis_03072655_post_inputs
-      - nwis_03072655_post_fits
-      - nwis_03075070_post_inputs
-      - nwis_03075070_post_fits
-      - nwis_03083500_post_inputs
-      - nwis_03083500_post_fits
-      - nwis_03121850_post_inputs
-      - nwis_03121850_post_fits
-      - nwis_03321500_post_inputs
-      - nwis_03321500_post_fits
-      - nwis_03346500_post_inputs
-      - nwis_03346500_post_fits
-      - nwis_03374100_post_inputs
-      - nwis_03374100_post_fits
-      - nwis_03539600_post_inputs
-      - nwis_03539600_post_fits
-      - nwis_03597860_post_inputs
-      - nwis_03597860_post_fits
-      - nwis_04024000_post_inputs
-      - nwis_04024000_post_fits
-      - nwis_040851385_post_inputs
-      - nwis_040851385_post_fits
-      - nwis_040871488_post_inputs
-      - nwis_040871488_post_fits
-      - nwis_04095090_post_inputs
-      - nwis_04095090_post_fits
-      - nwis_04108660_post_inputs
-      - nwis_04108660_post_fits
-      - nwis_04121944_post_inputs
-      - nwis_04121944_post_fits
-      - nwis_04121970_post_inputs
-      - nwis_04121970_post_fits
-      - nwis_04124000_post_inputs
-      - nwis_04124000_post_fits
-      - nwis_04136000_post_inputs
-      - nwis_04136000_post_fits
-      - nwis_04136900_post_inputs
-      - nwis_04136900_post_fits
-      - nwis_04137005_post_inputs
-      - nwis_04137005_post_fits
-      - nwis_04157005_post_inputs
-      - nwis_04157005_post_fits
-      - nwis_04165500_post_inputs
-      - nwis_04165500_post_fits
-      - nwis_04195500_post_inputs
-      - nwis_04195500_post_fits
-      - nwis_04231600_post_inputs
-      - nwis_04231600_post_fits
-      - nwis_04249000_post_inputs
-      - nwis_04249000_post_fits
-      - nwis_05054000_post_inputs
-      - nwis_05054000_post_fits
-      - nwis_05082500_post_inputs
-      - nwis_05082500_post_fits
-      - nwis_05446500_post_inputs
-      - nwis_05446500_post_fits
-      - nwis_05515500_post_inputs
-      - nwis_05515500_post_fits
-      - nwis_05518000_post_inputs
-      - nwis_05518000_post_fits
-      - nwis_05595000_post_inputs
-      - nwis_05595000_post_fits
-      - nwis_05599490_post_inputs
-      - nwis_05599490_post_fits
-      - nwis_06461500_post_inputs
-      - nwis_06461500_post_fits
-      - nwis_06465500_post_inputs
-      - nwis_06465500_post_fits
-      - nwis_06800500_post_inputs
-      - nwis_06800500_post_fits
-      - nwis_06805500_post_inputs
-      - nwis_06805500_post_fits
-      - nwis_06934500_post_inputs
-      - nwis_06934500_post_fits
-      - nwis_07106000_post_inputs
-      - nwis_07106000_post_fits
-      - nwis_07109500_post_inputs
-      - nwis_07109500_post_fits
-      - nwis_07164500_post_inputs
-      - nwis_07164500_post_fits
-      - nwis_07198000_post_inputs
-      - nwis_07198000_post_fits
-      - nwis_07241520_post_inputs
-      - nwis_07241520_post_fits
-      - nwis_072632966_post_inputs
-      - nwis_072632966_post_fits
-      - nwis_07374000_post_inputs
-      - nwis_07374000_post_fits
-      - nwis_07381600_post_inputs
-      - nwis_07381600_post_fits
-      - nwis_08048000_post_inputs
-      - nwis_08048000_post_fits
-      - nwis_08052745_post_inputs
-      - nwis_08052745_post_fits
-      - nwis_08057000_post_inputs
-      - nwis_08057000_post_fits
-      - nwis_08317400_post_inputs
-      - nwis_08317400_post_fits
-      - nwis_08375300_post_inputs
-      - nwis_08375300_post_fits
-      - nwis_08437710_post_inputs
-      - nwis_08437710_post_fits
-      - nwis_08446500_post_inputs
-      - nwis_08446500_post_fits
-      - nwis_08447000_post_inputs
-      - nwis_08447000_post_fits
-      - nwis_09041400_post_inputs
-      - nwis_09041400_post_fits
-      - nwis_10129900_post_inputs
-      - nwis_10129900_post_fits
-      - nwis_10133650_post_inputs
-      - nwis_10133650_post_fits
-      - nwis_10133800_post_inputs
-      - nwis_10133800_post_fits
-      - nwis_10133980_post_inputs
-      - nwis_10133980_post_fits
-      - nwis_11044000_post_inputs
-      - nwis_11044000_post_fits
-      - nwis_11126000_post_inputs
-      - nwis_11126000_post_fits
-      - nwis_11447650_post_inputs
-      - nwis_11447650_post_fits
-      - nwis_11447830_post_inputs
-      - nwis_11447830_post_fits
-      - nwis_11447850_post_inputs
-      - nwis_11447850_post_fits
-      - nwis_11447890_post_inputs
-      - nwis_11447890_post_fits
-      - nwis_11455165_post_inputs
-      - nwis_11455165_post_fits
-      - nwis_13013650_post_inputs
-      - nwis_13013650_post_fits
-      - nwis_13173600_post_inputs
-      - nwis_13173600_post_fits
-      - nwis_13213100_post_inputs
-      - nwis_13213100_post_fits
-      - nwis_14162500_post_inputs
-      - nwis_14162500_post_fits
-      - nwis_14182500_post_inputs
-      - nwis_14182500_post_fits
-      - nwis_14202650_post_inputs
-      - nwis_14202650_post_fits
-      - nwis_14206950_post_inputs
-      - nwis_14206950_post_fits
-      - nwis_14211720_post_inputs
-      - nwis_14211720_post_fits
-      - nwis_14301500_post_inputs
-      - nwis_14301500_post_fits
-      - nwis_14302480_post_inputs
-      - nwis_14302480_post_fits
-      - nwis_15298040_post_inputs
-      - nwis_15298040_post_fits
-      - nwis_411955088280601_post_inputs
-      - nwis_411955088280601_post_fits
-      - nwis_01124000_post_inputs
-      - nwis_01124000_post_fits
-      - nwis_01125100_post_inputs
-      - nwis_01125100_post_fits
-      - nwis_01196500_post_inputs
-      - nwis_01196500_post_fits
-      - nwis_01201487_post_inputs
-      - nwis_01201487_post_fits
-      - nwis_01208500_post_inputs
-      - nwis_01208500_post_fits
-      - nwis_01208990_post_inputs
-      - nwis_01208990_post_fits
-      - nwis_01382210_post_inputs
-      - nwis_01382210_post_fits
-      - nwis_01408500_post_inputs
-      - nwis_01408500_post_fits
-      - nwis_01433500_post_inputs
-      - nwis_01433500_post_fits
-      - nwis_01463500_post_inputs
-      - nwis_01463500_post_fits
-      - nwis_01480870_post_inputs
-      - nwis_01480870_post_fits
-      - nwis_01481000_post_inputs
-      - nwis_01481000_post_fits
-      - nwis_01481500_post_inputs
-      - nwis_01481500_post_fits
-      - nwis_01493112_post_inputs
-      - nwis_01493112_post_fits
-      - nwis_01540500_post_inputs
-      - nwis_01540500_post_fits
-      - nwis_01542500_post_inputs
-      - nwis_01542500_post_fits
-      - nwis_01544500_post_inputs
-      - nwis_01544500_post_fits
-      - nwis_01549700_post_inputs
-      - nwis_01549700_post_fits
-      - nwis_01567000_post_inputs
-      - nwis_01567000_post_fits
-      - nwis_01608500_post_inputs
-      - nwis_01608500_post_fits
-      - nwis_01611500_post_inputs
-      - nwis_01611500_post_fits
-      - nwis_01632900_post_inputs
-      - nwis_01632900_post_fits
-      - nwis_01645704_post_inputs
-      - nwis_01645704_post_fits
-      - nwis_01645762_post_inputs
-      - nwis_01645762_post_fits
-      - nwis_01646000_post_inputs
-      - nwis_01646000_post_fits
-      - nwis_01646305_post_inputs
-      - nwis_01646305_post_fits
-      - nwis_01648010_post_inputs
-      - nwis_01648010_post_fits
-      - nwis_01649190_post_inputs
-      - nwis_01649190_post_fits
-      - nwis_01649500_post_inputs
-      - nwis_01649500_post_fits
-      - nwis_01650800_post_inputs
-      - nwis_01650800_post_fits
-      - nwis_0165389205_post_inputs
-      - nwis_0165389205_post_fits
-      - nwis_01654000_post_inputs
-      - nwis_01654000_post_fits
-      - nwis_01654500_post_inputs
-      - nwis_01654500_post_fits
-      - nwis_01656903_post_inputs
-      - nwis_01656903_post_fits
-      - nwis_01658000_post_inputs
-      - nwis_01658000_post_fits
-      - nwis_0166818623_post_inputs
-      - nwis_0166818623_post_fits
-      - nwis_0166818985_post_inputs
-      - nwis_0166818985_post_fits
-      - nwis_01673000_post_inputs
-      - nwis_01673000_post_fits
-      - nwis_02035000_post_inputs
-      - nwis_02035000_post_fits
-      - nwis_02101726_post_inputs
-      - nwis_02101726_post_fits
-      - nwis_02110400_post_inputs
-      - nwis_02110400_post_fits
-      - nwis_02110500_post_inputs
-      - nwis_02110500_post_fits
-      - nwis_02110701_post_inputs
-      - nwis_02110701_post_fits
-      - nwis_0212378405_post_inputs
-      - nwis_0212378405_post_fits
-      - nwis_02135000_post_inputs
-      - nwis_02135000_post_fits
-      - nwis_02148315_post_inputs
-      - nwis_02148315_post_fits
-      - nwis_02156500_post_inputs
-      - nwis_02156500_post_fits
-      - nwis_02160700_post_inputs
-      - nwis_02160700_post_fits
-      - nwis_02171645_post_inputs
-      - nwis_02171645_post_fits
-      - nwis_02203655_post_inputs
-      - nwis_02203655_post_fits
-      - nwis_02203863_post_inputs
-      - nwis_02203863_post_fits
-      - nwis_02203900_post_inputs
-      - nwis_02203900_post_fits
-      - nwis_02203950_post_inputs
-      - nwis_02203950_post_fits
-      - nwis_02203960_post_inputs
-      - nwis_02203960_post_fits
-      - nwis_02204037_post_inputs
-      - nwis_02204037_post_fits
-      - nwis_02207135_post_inputs
-      - nwis_02207135_post_fits
-      - nwis_02207160_post_inputs
-      - nwis_02207160_post_fits
-      - nwis_02208450_post_inputs
-      - nwis_02208450_post_fits
-      - nwis_02208493_post_inputs
-      - nwis_02208493_post_fits
-      - nwis_02245260_post_inputs
-      - nwis_02245260_post_fits
-      - nwis_02264100_post_inputs
-      - nwis_02264100_post_fits
-      - nwis_02266300_post_inputs
-      - nwis_02266300_post_fits
-      - nwis_02323502_post_inputs
-      - nwis_02323502_post_fits
-      - nwis_02323566_post_inputs
-      - nwis_02323566_post_fits
-      - nwis_02336120_post_inputs
-      - nwis_02336120_post_fits
-      - nwis_02336152_post_inputs
-      - nwis_02336152_post_fits
-      - nwis_023362095_post_inputs
-      - nwis_023362095_post_fits
-      - nwis_02336240_post_inputs
-      - nwis_02336240_post_fits
-      - nwis_02336300_post_inputs
-      - nwis_02336300_post_fits
-      - nwis_02336313_post_inputs
-      - nwis_02336313_post_fits
-      - nwis_02336340_post_inputs
-      - nwis_02336340_post_fits
-      - nwis_02336360_post_inputs
-      - nwis_02336360_post_fits
-      - nwis_02336410_post_inputs
-      - nwis_02336410_post_fits
-      - nwis_02336526_post_inputs
-      - nwis_02336526_post_fits
-      - nwis_02336728_post_inputs
-      - nwis_02336728_post_fits
-      - nwis_02337170_post_inputs
-      - nwis_02337170_post_fits
-      - nwis_023432415_post_inputs
-      - nwis_023432415_post_fits
-      - nwis_02344630_post_inputs
-      - nwis_02344630_post_fits
-      - nwis_03007800_post_inputs
-      - nwis_03007800_post_fits
-      - nwis_03034000_post_inputs
-      - nwis_03034000_post_fits
-      - nwis_03067510_post_inputs
-      - nwis_03067510_post_fits
-      - nwis_03073000_post_inputs
-      - nwis_03073000_post_fits
-      - nwis_03081000_post_inputs
-      - nwis_03081000_post_fits
-      - nwis_03098600_post_inputs
-      - nwis_03098600_post_fits
-      - nwis_03105500_post_inputs
-      - nwis_03105500_post_fits
-      - nwis_03106000_post_inputs
-      - nwis_03106000_post_fits
-      - nwis_03183500_post_inputs
-      - nwis_03183500_post_fits
-      - nwis_03219500_post_inputs
-      - nwis_03219500_post_fits
-      - nwis_03228300_post_inputs
-      - nwis_03228300_post_fits
-      - nwis_03255349_post_inputs
-      - nwis_03255349_post_fits
-      - nwis_03259757_post_inputs
-      - nwis_03259757_post_fits
-      - nwis_03259813_post_inputs
-      - nwis_03259813_post_fits
-      - nwis_03289200_post_inputs
-      - nwis_03289200_post_fits
-      - nwis_03292470_post_inputs
-      - nwis_03292470_post_fits
-      - nwis_03292474_post_inputs
-      - nwis_03292474_post_fits
-      - nwis_03292475_post_inputs
-      - nwis_03292475_post_fits
-      - nwis_03293500_post_inputs
-      - nwis_03293500_post_fits
-      - nwis_03293530_post_inputs
-      - nwis_03293530_post_fits
-      - nwis_03294570_post_inputs
-      - nwis_03294570_post_fits
-      - nwis_03297900_post_inputs
-      - nwis_03297900_post_fits
-      - nwis_03298000_post_inputs
-      - nwis_03298000_post_fits
-      - nwis_03298135_post_inputs
-      - nwis_03298135_post_fits
-      - nwis_03298150_post_inputs
-      - nwis_03298150_post_fits
-      - nwis_03298250_post_inputs
-      - nwis_03298250_post_fits
-      - nwis_03298300_post_inputs
-      - nwis_03298300_post_fits
-      - nwis_03301900_post_inputs
-      - nwis_03301900_post_fits
-      - nwis_03301940_post_inputs
-      - nwis_03301940_post_fits
-      - nwis_03302000_post_inputs
-      - nwis_03302000_post_fits
-      - nwis_03302030_post_inputs
-      - nwis_03302030_post_fits
-      - nwis_03302050_post_inputs
-      - nwis_03302050_post_fits
-      - nwis_03339000_post_inputs
-      - nwis_03339000_post_fits
-      - nwis_03353200_post_inputs
-      - nwis_03353200_post_fits
-      - nwis_03353420_post_inputs
-      - nwis_03353420_post_fits
-      - nwis_03408500_post_inputs
-      - nwis_03408500_post_fits
-      - nwis_03409500_post_inputs
-      - nwis_03409500_post_fits
-      - nwis_03430200_post_inputs
-      - nwis_03430200_post_fits
-      - nwis_03460795_post_inputs
-      - nwis_03460795_post_fits
-      - nwis_03512000_post_inputs
-      - nwis_03512000_post_fits
-      - nwis_03538830_post_inputs
-      - nwis_03538830_post_fits
-      - nwis_03539778_post_inputs
-      - nwis_03539778_post_fits
-      - nwis_04027000_post_inputs
-      - nwis_04027000_post_fits
-      - nwis_04040000_post_inputs
-      - nwis_04040000_post_fits
-      - nwis_04059500_post_inputs
-      - nwis_04059500_post_fits
-      - nwis_04067500_post_inputs
-      - nwis_04067500_post_fits
-      - nwis_04085108_post_inputs
-      - nwis_04085108_post_fits
-      - nwis_04087050_post_inputs
-      - nwis_04087050_post_fits
-      - nwis_04087119_post_inputs
-      - nwis_04087119_post_fits
-      - nwis_04101500_post_inputs
-      - nwis_04101500_post_fits
-      - nwis_04119400_post_inputs
-      - nwis_04119400_post_fits
-      - nwis_04124200_post_inputs
-      - nwis_04124200_post_fits
-      - nwis_04125460_post_inputs
-      - nwis_04125460_post_fits
-      - nwis_04125550_post_inputs
-      - nwis_04125550_post_fits
-      - nwis_04136500_post_inputs
-      - nwis_04136500_post_fits
-      - nwis_04137500_post_inputs
-      - nwis_04137500_post_fits
-      - nwis_04142000_post_inputs
-      - nwis_04142000_post_fits
-      - nwis_041482663_post_inputs
-      - nwis_041482663_post_fits
-      - nwis_04166500_post_inputs
-      - nwis_04166500_post_fits
-      - nwis_04167150_post_inputs
-      - nwis_04167150_post_fits
-      - nwis_04168400_post_inputs
-      - nwis_04168400_post_fits
-      - nwis_04174500_post_inputs
-      - nwis_04174500_post_fits
-      - nwis_04176500_post_inputs
-      - nwis_04176500_post_fits
-      - nwis_04188496_post_inputs
-      - nwis_04188496_post_fits
-      - nwis_04199500_post_inputs
-      - nwis_04199500_post_fits
-      - nwis_04200500_post_inputs
-      - nwis_04200500_post_fits
-      - nwis_04208000_post_inputs
-      - nwis_04208000_post_fits
-      - nwis_04213152_post_inputs
-      - nwis_04213152_post_fits
-      - nwis_04213500_post_inputs
-      - nwis_04213500_post_fits
-      - nwis_05057000_post_inputs
-      - nwis_05057000_post_fits
-      - nwis_05057200_post_inputs
-      - nwis_05057200_post_fits
-      - nwis_05406457_post_inputs
-      - nwis_05406457_post_fits
-      - nwis_05406469_post_inputs
-      - nwis_05406469_post_fits
-      - nwis_05406479_post_inputs
-      - nwis_05406479_post_fits
-      - nwis_05406500_post_inputs
-      - nwis_05406500_post_fits
-      - nwis_05435943_post_inputs
-      - nwis_05435943_post_fits
-      - nwis_05435950_post_inputs
-      - nwis_05435950_post_fits
-      - nwis_05447500_post_inputs
-      - nwis_05447500_post_fits
-      - nwis_05451080_post_inputs
-      - nwis_05451080_post_fits
-      - nwis_05451210_post_inputs
-      - nwis_05451210_post_fits
-      - nwis_05524500_post_inputs
-      - nwis_05524500_post_fits
-      - nwis_05579630_post_inputs
-      - nwis_05579630_post_fits
-      - nwis_06336000_post_inputs
-      - nwis_06336000_post_fits
-      - nwis_06436760_post_inputs
-      - nwis_06436760_post_fits
-      - nwis_06478522_post_inputs
-      - nwis_06478522_post_fits
-      - nwis_06670500_post_inputs
-      - nwis_06670500_post_fits
-      - nwis_06711565_post_inputs
-      - nwis_06711565_post_fits
-      - nwis_06795500_post_inputs
-      - nwis_06795500_post_fits
-      - nwis_06818000_post_inputs
-      - nwis_06818000_post_fits
-      - nwis_06892513_post_inputs
-      - nwis_06892513_post_fits
-      - nwis_06893300_post_inputs
-      - nwis_06893300_post_fits
-      - nwis_06893350_post_inputs
-      - nwis_06893350_post_fits
-      - nwis_06893620_post_inputs
-      - nwis_06893620_post_fits
-      - nwis_06893820_post_inputs
-      - nwis_06893820_post_fits
-      - nwis_06893890_post_inputs
-      - nwis_06893890_post_fits
-      - nwis_06893970_post_inputs
-      - nwis_06893970_post_fits
-      - nwis_06894000_post_inputs
-      - nwis_06894000_post_fits
-      - nwis_07048600_post_inputs
-      - nwis_07048600_post_fits
-      - nwis_07061270_post_inputs
-      - nwis_07061270_post_fits
-      - nwis_07061290_post_inputs
-      - nwis_07061290_post_fits
-      - nwis_07075250_post_inputs
-      - nwis_07075250_post_fits
-      - nwis_07075270_post_inputs
-      - nwis_07075270_post_fits
-      - nwis_07143672_post_inputs
-      - nwis_07143672_post_fits
-      - nwis_07144100_post_inputs
-      - nwis_07144100_post_fits
-      - nwis_07177500_post_inputs
-      - nwis_07177500_post_fits
-      - nwis_07178200_post_inputs
-      - nwis_07178200_post_fits
-      - nwis_071912213_post_inputs
-      - nwis_071912213_post_fits
-      - nwis_07239450_post_inputs
-      - nwis_07239450_post_fits
-      - nwis_07241000_post_inputs
-      - nwis_07241000_post_fits
-      - nwis_07263296_post_inputs
-      - nwis_07263296_post_fits
-      - nwis_07332620_post_inputs
-      - nwis_07332620_post_fits
-      - nwis_07332622_post_inputs
-      - nwis_07332622_post_fits
-      - nwis_08049500_post_inputs
-      - nwis_08049500_post_fits
-      - nwis_08052700_post_inputs
-      - nwis_08052700_post_fits
-      - nwis_08057410_post_inputs
-      - nwis_08057410_post_fits
-      - nwis_08062500_post_inputs
-      - nwis_08062500_post_fits
-      - nwis_08065350_post_inputs
-      - nwis_08065350_post_fits
-      - nwis_08068000_post_inputs
-      - nwis_08068000_post_fits
-      - nwis_08068500_post_inputs
-      - nwis_08068500_post_fits
-      - nwis_08171290_post_inputs
-      - nwis_08171290_post_fits
-      - nwis_08180700_post_inputs
-      - nwis_08180700_post_fits
-      - nwis_08181500_post_inputs
-      - nwis_08181500_post_fits
-      - nwis_08181800_post_inputs
-      - nwis_08181800_post_fits
-      - nwis_08188060_post_inputs
-      - nwis_08188060_post_fits
-      - nwis_08211200_post_inputs
-      - nwis_08211200_post_fits
-      - nwis_08374550_post_inputs
-      - nwis_08374550_post_fits
-      - nwis_08412500_post_inputs
-      - nwis_08412500_post_fits
-      - nwis_08447300_post_inputs
-      - nwis_08447300_post_fits
-      - nwis_09326500_post_inputs
-      - nwis_09326500_post_fits
-      - nwis_09327000_post_inputs
-      - nwis_09327000_post_fits
-      - nwis_09406000_post_inputs
-      - nwis_09406000_post_fits
-      - nwis_11128500_post_inputs
-      - nwis_11128500_post_fits
-      - nwis_11273400_post_inputs
-      - nwis_11273400_post_fits
-      - nwis_11285500_post_inputs
-      - nwis_11285500_post_fits
-      - nwis_11462500_post_inputs
-      - nwis_11462500_post_fits
-      - nwis_11463000_post_inputs
-      - nwis_11463000_post_fits
-      - nwis_11463682_post_inputs
-      - nwis_11463682_post_fits
-      - nwis_11463980_post_inputs
-      - nwis_11463980_post_fits
-      - nwis_11465240_post_inputs
-      - nwis_11465240_post_fits
-      - nwis_11467000_post_inputs
-      - nwis_11467000_post_fits
-      - nwis_12100490_post_inputs
-      - nwis_12100490_post_fits
-      - nwis_12101100_post_inputs
-      - nwis_12101100_post_fits
-      - nwis_12102075_post_inputs
-      - nwis_12102075_post_fits
-      - nwis_13206400_post_inputs
-      - nwis_13206400_post_fits
-      - nwis_13207500_post_inputs
-      - nwis_13207500_post_fits
-      - nwis_13213000_post_inputs
-      - nwis_13213000_post_fits
-      - nwis_14151000_post_inputs
-      - nwis_14151000_post_fits
-      - nwis_14210000_post_inputs
-      - nwis_14210000_post_fits
-      - nwis_14211010_post_inputs
-      - nwis_14211010_post_fits
-      - nwis_385446094430700_post_inputs
-      - nwis_385446094430700_post_fits
-      - nwis_385520094420000_post_inputs
-      - nwis_385520094420000_post_fits
-      - nwis_385608094380300_post_inputs
-      - nwis_385608094380300_post_fits
+      - '../4_data_release/log/models/nwis_01548303.ind'
+      - '../4_data_release/log/models/nwis_02168504.ind'
+      - '../4_data_release/log/models/nwis_03292480.ind'
+      - '../4_data_release/log/models/nwis_03293000.ind'
+      - '../4_data_release/log/models/nwis_03298200.ind'
+      - '../4_data_release/log/models/nwis_05418400.ind'
+      - '../4_data_release/log/models/nwis_05420500.ind'
+      - '../4_data_release/log/models/nwis_07191222.ind'
+      - '../4_data_release/log/models/nwis_07241550.ind'
+      - '../4_data_release/log/models/nwis_08070200.ind'
+      - '../4_data_release/log/models/nwis_08155500.ind'
+      - '../4_data_release/log/models/nwis_01104430.ind'
+      - '../4_data_release/log/models/nwis_01184000.ind'
+      - '../4_data_release/log/models/nwis_01193050.ind'
+      - '../4_data_release/log/models/nwis_01388000.ind'
+      - '../4_data_release/log/models/nwis_01400500.ind'
+      - '../4_data_release/log/models/nwis_01454700.ind'
+      - '../4_data_release/log/models/nwis_01473500.ind'
+      - '../4_data_release/log/models/nwis_01474500.ind'
+      - '../4_data_release/log/models/nwis_01480617.ind'
+      - '../4_data_release/log/models/nwis_01484525.ind'
+      - '../4_data_release/log/models/nwis_01487150.ind'
+      - '../4_data_release/log/models/nwis_01570500.ind'
+      - '../4_data_release/log/models/nwis_01646500.ind'
+      - '../4_data_release/log/models/nwis_02110550.ind'
+      - '../4_data_release/log/models/nwis_02110704.ind'
+      - '../4_data_release/log/models/nwis_02160105.ind'
+      - '../4_data_release/log/models/nwis_02162035.ind'
+      - '../4_data_release/log/models/nwis_02169000.ind'
+      - '../4_data_release/log/models/nwis_02203700.ind'
+      - '../4_data_release/log/models/nwis_02217643.ind'
+      - '../4_data_release/log/models/nwis_02234000.ind'
+      - '../4_data_release/log/models/nwis_02234500.ind'
+      - '../4_data_release/log/models/nwis_02235500.ind'
+      - '../4_data_release/log/models/nwis_02236000.ind'
+      - '../4_data_release/log/models/nwis_02236125.ind'
+      - '../4_data_release/log/models/nwis_02244040.ind'
+      - '../4_data_release/log/models/nwis_02264000.ind'
+      - '../4_data_release/log/models/nwis_02266200.ind'
+      - '../4_data_release/log/models/nwis_02319302.ind'
+      - '../4_data_release/log/models/nwis_02320250.ind'
+      - '../4_data_release/log/models/nwis_02322688.ind'
+      - '../4_data_release/log/models/nwis_02397530.ind'
+      - '../4_data_release/log/models/nwis_02492620.ind'
+      - '../4_data_release/log/models/nwis_03025500.ind'
+      - '../4_data_release/log/models/nwis_03027500.ind'
+      - '../4_data_release/log/models/nwis_03036000.ind'
+      - '../4_data_release/log/models/nwis_03058000.ind'
+      - '../4_data_release/log/models/nwis_03061000.ind'
+      - '../4_data_release/log/models/nwis_03072655.ind'
+      - '../4_data_release/log/models/nwis_03075070.ind'
+      - '../4_data_release/log/models/nwis_03083500.ind'
+      - '../4_data_release/log/models/nwis_03121850.ind'
+      - '../4_data_release/log/models/nwis_03321500.ind'
+      - '../4_data_release/log/models/nwis_03346500.ind'
+      - '../4_data_release/log/models/nwis_03374100.ind'
+      - '../4_data_release/log/models/nwis_03539600.ind'
+      - '../4_data_release/log/models/nwis_03597860.ind'
+      - '../4_data_release/log/models/nwis_04024000.ind'
+      - '../4_data_release/log/models/nwis_040851385.ind'
+      - '../4_data_release/log/models/nwis_040871488.ind'
+      - '../4_data_release/log/models/nwis_04095090.ind'
+      - '../4_data_release/log/models/nwis_04108660.ind'
+      - '../4_data_release/log/models/nwis_04121944.ind'
+      - '../4_data_release/log/models/nwis_04121970.ind'
+      - '../4_data_release/log/models/nwis_04124000.ind'
+      - '../4_data_release/log/models/nwis_04136000.ind'
+      - '../4_data_release/log/models/nwis_04136900.ind'
+      - '../4_data_release/log/models/nwis_04137005.ind'
+      - '../4_data_release/log/models/nwis_04157005.ind'
+      - '../4_data_release/log/models/nwis_04165500.ind'
+      - '../4_data_release/log/models/nwis_04195500.ind'
+      - '../4_data_release/log/models/nwis_04231600.ind'
+      - '../4_data_release/log/models/nwis_04249000.ind'
+      - '../4_data_release/log/models/nwis_05054000.ind'
+      - '../4_data_release/log/models/nwis_05082500.ind'
+      - '../4_data_release/log/models/nwis_05446500.ind'
+      - '../4_data_release/log/models/nwis_05515500.ind'
+      - '../4_data_release/log/models/nwis_05518000.ind'
+      - '../4_data_release/log/models/nwis_05595000.ind'
+      - '../4_data_release/log/models/nwis_05599490.ind'
+      - '../4_data_release/log/models/nwis_06461500.ind'
+      - '../4_data_release/log/models/nwis_06465500.ind'
+      - '../4_data_release/log/models/nwis_06800500.ind'
+      - '../4_data_release/log/models/nwis_06805500.ind'
+      - '../4_data_release/log/models/nwis_06934500.ind'
+      - '../4_data_release/log/models/nwis_07106000.ind'
+      - '../4_data_release/log/models/nwis_07109500.ind'
+      - '../4_data_release/log/models/nwis_07164500.ind'
+      - '../4_data_release/log/models/nwis_07198000.ind'
+      - '../4_data_release/log/models/nwis_07241520.ind'
+      - '../4_data_release/log/models/nwis_072632966.ind'
+      - '../4_data_release/log/models/nwis_07374000.ind'
+      - '../4_data_release/log/models/nwis_07381600.ind'
+      - '../4_data_release/log/models/nwis_08048000.ind'
+      - '../4_data_release/log/models/nwis_08052745.ind'
+      - '../4_data_release/log/models/nwis_08057000.ind'
+      - '../4_data_release/log/models/nwis_08317400.ind'
+      - '../4_data_release/log/models/nwis_08375300.ind'
+      - '../4_data_release/log/models/nwis_08437710.ind'
+      - '../4_data_release/log/models/nwis_08446500.ind'
+      - '../4_data_release/log/models/nwis_08447000.ind'
+      - '../4_data_release/log/models/nwis_09041400.ind'
+      - '../4_data_release/log/models/nwis_10129900.ind'
+      - '../4_data_release/log/models/nwis_10133650.ind'
+      - '../4_data_release/log/models/nwis_10133800.ind'
+      - '../4_data_release/log/models/nwis_10133980.ind'
+      - '../4_data_release/log/models/nwis_11044000.ind'
+      - '../4_data_release/log/models/nwis_11126000.ind'
+      - '../4_data_release/log/models/nwis_11447650.ind'
+      - '../4_data_release/log/models/nwis_11447830.ind'
+      - '../4_data_release/log/models/nwis_11447850.ind'
+      - '../4_data_release/log/models/nwis_11447890.ind'
+      - '../4_data_release/log/models/nwis_11455165.ind'
+      - '../4_data_release/log/models/nwis_13013650.ind'
+      - '../4_data_release/log/models/nwis_13173600.ind'
+      - '../4_data_release/log/models/nwis_13213100.ind'
+      - '../4_data_release/log/models/nwis_14162500.ind'
+      - '../4_data_release/log/models/nwis_14182500.ind'
+      - '../4_data_release/log/models/nwis_14202650.ind'
+      - '../4_data_release/log/models/nwis_14206950.ind'
+      - '../4_data_release/log/models/nwis_14211720.ind'
+      - '../4_data_release/log/models/nwis_14301500.ind'
+      - '../4_data_release/log/models/nwis_14302480.ind'
+      - '../4_data_release/log/models/nwis_15298040.ind'
+      - '../4_data_release/log/models/nwis_411955088280601.ind'
+      - '../4_data_release/log/models/nwis_01124000.ind'
+      - '../4_data_release/log/models/nwis_01125100.ind'
+      - '../4_data_release/log/models/nwis_01196500.ind'
+      - '../4_data_release/log/models/nwis_01201487.ind'
+      - '../4_data_release/log/models/nwis_01208500.ind'
+      - '../4_data_release/log/models/nwis_01208990.ind'
+      - '../4_data_release/log/models/nwis_01382210.ind'
+      - '../4_data_release/log/models/nwis_01408500.ind'
+      - '../4_data_release/log/models/nwis_01433500.ind'
+      - '../4_data_release/log/models/nwis_01463500.ind'
+      - '../4_data_release/log/models/nwis_01480870.ind'
+      - '../4_data_release/log/models/nwis_01481000.ind'
+      - '../4_data_release/log/models/nwis_01481500.ind'
+      - '../4_data_release/log/models/nwis_01493112.ind'
+      - '../4_data_release/log/models/nwis_01540500.ind'
+      - '../4_data_release/log/models/nwis_01542500.ind'
+      - '../4_data_release/log/models/nwis_01544500.ind'
+      - '../4_data_release/log/models/nwis_01549700.ind'
+      - '../4_data_release/log/models/nwis_01567000.ind'
+      - '../4_data_release/log/models/nwis_01608500.ind'
+      - '../4_data_release/log/models/nwis_01611500.ind'
+      - '../4_data_release/log/models/nwis_01632900.ind'
+      - '../4_data_release/log/models/nwis_01645704.ind'
+      - '../4_data_release/log/models/nwis_01645762.ind'
+      - '../4_data_release/log/models/nwis_01646000.ind'
+      - '../4_data_release/log/models/nwis_01646305.ind'
+      - '../4_data_release/log/models/nwis_01648010.ind'
+      - '../4_data_release/log/models/nwis_01649190.ind'
+      - '../4_data_release/log/models/nwis_01649500.ind'
+      - '../4_data_release/log/models/nwis_01650800.ind'
+      - '../4_data_release/log/models/nwis_0165389205.ind'
+      - '../4_data_release/log/models/nwis_01654000.ind'
+      - '../4_data_release/log/models/nwis_01654500.ind'
+      - '../4_data_release/log/models/nwis_01656903.ind'
+      - '../4_data_release/log/models/nwis_01658000.ind'
+      - '../4_data_release/log/models/nwis_0166818623.ind'
+      - '../4_data_release/log/models/nwis_0166818985.ind'
+      - '../4_data_release/log/models/nwis_01673000.ind'
+      - '../4_data_release/log/models/nwis_02035000.ind'
+      - '../4_data_release/log/models/nwis_02101726.ind'
+      - '../4_data_release/log/models/nwis_02110400.ind'
+      - '../4_data_release/log/models/nwis_02110500.ind'
+      - '../4_data_release/log/models/nwis_02110701.ind'
+      - '../4_data_release/log/models/nwis_0212378405.ind'
+      - '../4_data_release/log/models/nwis_02135000.ind'
+      - '../4_data_release/log/models/nwis_02148315.ind'
+      - '../4_data_release/log/models/nwis_02156500.ind'
+      - '../4_data_release/log/models/nwis_02160700.ind'
+      - '../4_data_release/log/models/nwis_02171645.ind'
+      - '../4_data_release/log/models/nwis_02203655.ind'
+      - '../4_data_release/log/models/nwis_02203863.ind'
+      - '../4_data_release/log/models/nwis_02203900.ind'
+      - '../4_data_release/log/models/nwis_02203950.ind'
+      - '../4_data_release/log/models/nwis_02203960.ind'
+      - '../4_data_release/log/models/nwis_02204037.ind'
+      - '../4_data_release/log/models/nwis_02207135.ind'
+      - '../4_data_release/log/models/nwis_02207160.ind'
+      - '../4_data_release/log/models/nwis_02208450.ind'
+      - '../4_data_release/log/models/nwis_02208493.ind'
+      - '../4_data_release/log/models/nwis_02245260.ind'
+      - '../4_data_release/log/models/nwis_02264100.ind'
+      - '../4_data_release/log/models/nwis_02266300.ind'
+      - '../4_data_release/log/models/nwis_02323502.ind'
+      - '../4_data_release/log/models/nwis_02323566.ind'
+      - '../4_data_release/log/models/nwis_02336120.ind'
+      - '../4_data_release/log/models/nwis_02336152.ind'
+      - '../4_data_release/log/models/nwis_023362095.ind'
+      - '../4_data_release/log/models/nwis_02336240.ind'
+      - '../4_data_release/log/models/nwis_02336300.ind'
+      - '../4_data_release/log/models/nwis_02336313.ind'
+      - '../4_data_release/log/models/nwis_02336340.ind'
+      - '../4_data_release/log/models/nwis_02336360.ind'
+      - '../4_data_release/log/models/nwis_02336410.ind'
+      - '../4_data_release/log/models/nwis_02336526.ind'
+      - '../4_data_release/log/models/nwis_02336728.ind'
+      - '../4_data_release/log/models/nwis_02337170.ind'
+      - '../4_data_release/log/models/nwis_023432415.ind'
+      - '../4_data_release/log/models/nwis_02344630.ind'
+      - '../4_data_release/log/models/nwis_03007800.ind'
+      - '../4_data_release/log/models/nwis_03034000.ind'
+      - '../4_data_release/log/models/nwis_03067510.ind'
+      - '../4_data_release/log/models/nwis_03073000.ind'
+      - '../4_data_release/log/models/nwis_03081000.ind'
+      - '../4_data_release/log/models/nwis_03098600.ind'
+      - '../4_data_release/log/models/nwis_03105500.ind'
+      - '../4_data_release/log/models/nwis_03106000.ind'
+      - '../4_data_release/log/models/nwis_03183500.ind'
+      - '../4_data_release/log/models/nwis_03219500.ind'
+      - '../4_data_release/log/models/nwis_03228300.ind'
+      - '../4_data_release/log/models/nwis_03255349.ind'
+      - '../4_data_release/log/models/nwis_03259757.ind'
+      - '../4_data_release/log/models/nwis_03259813.ind'
+      - '../4_data_release/log/models/nwis_03289200.ind'
+      - '../4_data_release/log/models/nwis_03292470.ind'
+      - '../4_data_release/log/models/nwis_03292474.ind'
+      - '../4_data_release/log/models/nwis_03292475.ind'
+      - '../4_data_release/log/models/nwis_03293500.ind'
+      - '../4_data_release/log/models/nwis_03293530.ind'
+      - '../4_data_release/log/models/nwis_03294570.ind'
+      - '../4_data_release/log/models/nwis_03297900.ind'
+      - '../4_data_release/log/models/nwis_03298000.ind'
+      - '../4_data_release/log/models/nwis_03298135.ind'
+      - '../4_data_release/log/models/nwis_03298150.ind'
+      - '../4_data_release/log/models/nwis_03298250.ind'
+      - '../4_data_release/log/models/nwis_03298300.ind'
+      - '../4_data_release/log/models/nwis_03301900.ind'
+      - '../4_data_release/log/models/nwis_03301940.ind'
+      - '../4_data_release/log/models/nwis_03302000.ind'
+      - '../4_data_release/log/models/nwis_03302030.ind'
+      - '../4_data_release/log/models/nwis_03302050.ind'
+      - '../4_data_release/log/models/nwis_03339000.ind'
+      - '../4_data_release/log/models/nwis_03353200.ind'
+      - '../4_data_release/log/models/nwis_03353420.ind'
+      - '../4_data_release/log/models/nwis_03408500.ind'
+      - '../4_data_release/log/models/nwis_03409500.ind'
+      - '../4_data_release/log/models/nwis_03430200.ind'
+      - '../4_data_release/log/models/nwis_03460795.ind'
+      - '../4_data_release/log/models/nwis_03512000.ind'
+      - '../4_data_release/log/models/nwis_03538830.ind'
+      - '../4_data_release/log/models/nwis_03539778.ind'
+      - '../4_data_release/log/models/nwis_04027000.ind'
+      - '../4_data_release/log/models/nwis_04040000.ind'
+      - '../4_data_release/log/models/nwis_04059500.ind'
+      - '../4_data_release/log/models/nwis_04067500.ind'
+      - '../4_data_release/log/models/nwis_04085108.ind'
+      - '../4_data_release/log/models/nwis_04087050.ind'
+      - '../4_data_release/log/models/nwis_04087119.ind'
+      - '../4_data_release/log/models/nwis_04101500.ind'
+      - '../4_data_release/log/models/nwis_04119400.ind'
+      - '../4_data_release/log/models/nwis_04124200.ind'
+      - '../4_data_release/log/models/nwis_04125460.ind'
+      - '../4_data_release/log/models/nwis_04125550.ind'
+      - '../4_data_release/log/models/nwis_04136500.ind'
+      - '../4_data_release/log/models/nwis_04137500.ind'
+      - '../4_data_release/log/models/nwis_04142000.ind'
+      - '../4_data_release/log/models/nwis_041482663.ind'
+      - '../4_data_release/log/models/nwis_04166500.ind'
+      - '../4_data_release/log/models/nwis_04167150.ind'
+      - '../4_data_release/log/models/nwis_04168400.ind'
+      - '../4_data_release/log/models/nwis_04174500.ind'
+      - '../4_data_release/log/models/nwis_04176500.ind'
+      - '../4_data_release/log/models/nwis_04188496.ind'
+      - '../4_data_release/log/models/nwis_04199500.ind'
+      - '../4_data_release/log/models/nwis_04200500.ind'
+      - '../4_data_release/log/models/nwis_04208000.ind'
+      - '../4_data_release/log/models/nwis_04213152.ind'
+      - '../4_data_release/log/models/nwis_04213500.ind'
+      - '../4_data_release/log/models/nwis_05057000.ind'
+      - '../4_data_release/log/models/nwis_05057200.ind'
+      - '../4_data_release/log/models/nwis_05406457.ind'
+      - '../4_data_release/log/models/nwis_05406469.ind'
+      - '../4_data_release/log/models/nwis_05406479.ind'
+      - '../4_data_release/log/models/nwis_05406500.ind'
+      - '../4_data_release/log/models/nwis_05435943.ind'
+      - '../4_data_release/log/models/nwis_05435950.ind'
+      - '../4_data_release/log/models/nwis_05447500.ind'
+      - '../4_data_release/log/models/nwis_05451080.ind'
+      - '../4_data_release/log/models/nwis_05451210.ind'
+      - '../4_data_release/log/models/nwis_05524500.ind'
+      - '../4_data_release/log/models/nwis_05579630.ind'
+      - '../4_data_release/log/models/nwis_06336000.ind'
+      - '../4_data_release/log/models/nwis_06436760.ind'
+      - '../4_data_release/log/models/nwis_06478522.ind'
+      - '../4_data_release/log/models/nwis_06670500.ind'
+      - '../4_data_release/log/models/nwis_06711565.ind'
+      - '../4_data_release/log/models/nwis_06795500.ind'
+      - '../4_data_release/log/models/nwis_06818000.ind'
+      - '../4_data_release/log/models/nwis_06892513.ind'
+      - '../4_data_release/log/models/nwis_06893300.ind'
+      - '../4_data_release/log/models/nwis_06893350.ind'
+      - '../4_data_release/log/models/nwis_06893620.ind'
+      - '../4_data_release/log/models/nwis_06893820.ind'
+      - '../4_data_release/log/models/nwis_06893890.ind'
+      - '../4_data_release/log/models/nwis_06893970.ind'
+      - '../4_data_release/log/models/nwis_06894000.ind'
+      - '../4_data_release/log/models/nwis_07048600.ind'
+      - '../4_data_release/log/models/nwis_07061270.ind'
+      - '../4_data_release/log/models/nwis_07061290.ind'
+      - '../4_data_release/log/models/nwis_07075250.ind'
+      - '../4_data_release/log/models/nwis_07075270.ind'
+      - '../4_data_release/log/models/nwis_07143672.ind'
+      - '../4_data_release/log/models/nwis_07144100.ind'
+      - '../4_data_release/log/models/nwis_07177500.ind'
+      - '../4_data_release/log/models/nwis_07178200.ind'
+      - '../4_data_release/log/models/nwis_071912213.ind'
+      - '../4_data_release/log/models/nwis_07239450.ind'
+      - '../4_data_release/log/models/nwis_07241000.ind'
+      - '../4_data_release/log/models/nwis_07263296.ind'
+      - '../4_data_release/log/models/nwis_07332620.ind'
+      - '../4_data_release/log/models/nwis_07332622.ind'
+      - '../4_data_release/log/models/nwis_08049500.ind'
+      - '../4_data_release/log/models/nwis_08052700.ind'
+      - '../4_data_release/log/models/nwis_08057410.ind'
+      - '../4_data_release/log/models/nwis_08062500.ind'
+      - '../4_data_release/log/models/nwis_08065350.ind'
+      - '../4_data_release/log/models/nwis_08068000.ind'
+      - '../4_data_release/log/models/nwis_08068500.ind'
+      - '../4_data_release/log/models/nwis_08171290.ind'
+      - '../4_data_release/log/models/nwis_08180700.ind'
+      - '../4_data_release/log/models/nwis_08181500.ind'
+      - '../4_data_release/log/models/nwis_08181800.ind'
+      - '../4_data_release/log/models/nwis_08188060.ind'
+      - '../4_data_release/log/models/nwis_08211200.ind'
+      - '../4_data_release/log/models/nwis_08374550.ind'
+      - '../4_data_release/log/models/nwis_08412500.ind'
+      - '../4_data_release/log/models/nwis_08447300.ind'
+      - '../4_data_release/log/models/nwis_09326500.ind'
+      - '../4_data_release/log/models/nwis_09327000.ind'
+      - '../4_data_release/log/models/nwis_09406000.ind'
+      - '../4_data_release/log/models/nwis_11128500.ind'
+      - '../4_data_release/log/models/nwis_11273400.ind'
+      - '../4_data_release/log/models/nwis_11285500.ind'
+      - '../4_data_release/log/models/nwis_11462500.ind'
+      - '../4_data_release/log/models/nwis_11463000.ind'
+      - '../4_data_release/log/models/nwis_11463682.ind'
+      - '../4_data_release/log/models/nwis_11463980.ind'
+      - '../4_data_release/log/models/nwis_11465240.ind'
+      - '../4_data_release/log/models/nwis_11467000.ind'
+      - '../4_data_release/log/models/nwis_12100490.ind'
+      - '../4_data_release/log/models/nwis_12101100.ind'
+      - '../4_data_release/log/models/nwis_12102075.ind'
+      - '../4_data_release/log/models/nwis_13206400.ind'
+      - '../4_data_release/log/models/nwis_13207500.ind'
+      - '../4_data_release/log/models/nwis_13213000.ind'
+      - '../4_data_release/log/models/nwis_14151000.ind'
+      - '../4_data_release/log/models/nwis_14210000.ind'
+      - '../4_data_release/log/models/nwis_14211010.ind'
+      - '../4_data_release/log/models/nwis_385446094430700.ind'
+      - '../4_data_release/log/models/nwis_385520094420000.ind'
+      - '../4_data_release/log/models/nwis_385608094380300.ind'
