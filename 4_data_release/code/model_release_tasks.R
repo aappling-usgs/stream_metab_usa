@@ -380,7 +380,7 @@ create_model_sites_task_plan <- function(metab.config, folders, inputs_item, fit
   # define the task plan
   task_plan <- create_task_plan(
     sites, list(inputs, post_inputs, post_fits),
-    final_steps=c('post_inputs','post_fits'), add_complete=FALSE, indicator_dir=folders$log)
+    final_steps=c('post_inputs','post_fits'), add_complete=TRUE, indicator_dir=folders$log)
 }
 
 create_model_sites_makefile <- function(makefile, task_plan, template_file='../lib/task_makefile.mustache') {
