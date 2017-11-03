@@ -26,4 +26,8 @@ targets:
   ../4_manuscript/out/figure_01.png:
     command: plot_national_site_map(target_name, sp_sites)
     plot: true
+    
+  ../4_manuscript/out/fig_site_description.png:
+    command: plot_site_description(target_name, 
+      dailies='../4_data_release/cache/models/post/daily_predictions.zip')
 
