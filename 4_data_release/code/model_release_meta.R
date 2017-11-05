@@ -20,6 +20,10 @@ attributes_metab_inputs <- function(
   zip.dir='../4_data_release/cache/models/post',
   attr.file='../4_data_release/in/attr_metab_inputs.csv') {
   
+  # sketch out and read in the attribute table
+  attribute_skeleton(unzipped, attr.file)
+  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
+  
   unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'inputs'))
   
   # input_files <- dir(dirname(object.zip), pattern='_input.zip$', full.names=TRUE)
@@ -53,21 +57,38 @@ attributes_metab_inputs <- function(
   # obj_df <- readr::read_tsv(object)
   # attr_df <- readr::read_csv(attr.file)
   
+  # write the final attribute table
+  readr::write_csv(attr_df, path=attr.file)
+  
 }
 
 attributes_metab_fits <- function(
   zip.file='../4_data_release/cache/models/post/nwis_01124000_15min_fit.zip', # example file
   attr.file='../4_data_release/in/attr_metab_fits.csv') {
-    
+  
   unzippeds <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'fits'))
+  attr.file.base <- attr.file
   for(unzipped in unzippeds) {
     
+    # sketch out and read in the attribute table
+    attr.file <- gsub('fits\\.csv', paste0('fits_',tools::file_path_sans_ext(basename(unzipped)),'.csv'), attr.file.base)
+    attribute_skeleton(unzipped, attr.file)
+    attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
+    
+  
+    # write the final attribute table
+    readr::write_csv(attr_df, path=attr.file.1fit)  
   }
+  
 }
 
 attributes_metab_diagnostics <- function(
   zip.file='../4_data_release/cache/models/post/diagnostics.zip',
   attr.file='../4_data_release/in/attr_metab_diagnostics.csv') {
+  
+  # sketch out and read in the attribute table
+  attribute_skeleton(unzipped, attr.file)
+  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
   
   unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'diagnostics'))
 }
@@ -76,5 +97,53 @@ attributes_daily_preds <- function(
   zip.file='../4_data_release/cache/models/post/daily_predictions.zip',
   attr.file='../4_data_release/in/attr_metab_daily_preds.csv') {
   
+  # sketch out and read in the attribute table
+  attribute_skeleton(unzipped, attr.file)
+  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
+  
   unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'preds'))
+  dailies <- readr::read_tsv(unzipped)
+  
+  vsunits <- function(variable) {
+    unique(get_var_src_codes(metab_var==variable, out='metab_units'))
+  }
+  defs_df <- tibble::tribble(
+    ~`attr-label`, ~`attr-def`, ~`data-units`,
+    'site_name', 'Site identifier, consisting of prefix "nwis_" and the NWIS site ID.', NA,
+    'resolution', 'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.', 'minutes',
+    'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
+    'GPP', 'Model estimate of mean gross primary productivity (GPP) for this date. Value is the median of the MCMC distribution.', vsunits('GPP.daily'),
+    'GPP.lower', 'Lower bound on the 95% credible interval around the daily GPP estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('GPP.daily'),
+    'GPP.upper', 'Upper bound on the 95% credible interval around the daily GPP estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('GPP.daily'),
+    'GPP.n_eff', 'Effective sample size of the MCMC sampling for GPP.', 'samples',
+    'GPP.Rhat', 'R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.', NA,
+    'ER', 'Model estimate of mean ecosystem respiration (ER) for this date. Value is the median of the MCMC distribution.', vsunits('ER.daily'),
+    'ER.lower', 'Lower bound (most negative or least positive) on the 95% credible interval around the daily ER estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
+    'ER.upper', 'Upper bound (least negative or most positive) on the 95% credible interval around the daily ER estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
+    'ER.n_eff', 'Effective sample size of the MCMC sampling for ER.', 'samples',
+    'ER.Rhat', 'R-hat statistic of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.', NA,
+    'K600', 'Model estimate of mean reaeration rate coefficient for this date. Value is the median of the MCMC distribution.', vsunits('K600.daily'),
+    'K600.lower', 'Lower bound on the 95% credible interval around the daily K600 estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('K600.daily'),
+    'K600.upper', 'Upper bound on the 95% credible interval around the daily K600 estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('K600.daily'),
+    'K600.n_eff', 'Effective sample size of the MCMC sampling for K600.', 'samples',
+    'K600.Rhat', 'R-hat statistic of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.', vsunits('K600.daily'),
+    'DO.obs', 'Mean dissolved oxygen concentration for the date (4am to 3:59am).', vsunits('DO.obs'),
+    'DO.sat', 'Mean theoretical saturation concentration for the date (4am to 3:59am).',vsunits('DO.sat'),
+    'DO.amp', 'Amplitude (difference between minimum and maximum observed values) of the dissolved oxygen concentrations for the date (4am to 3:59am).', vsunits('DO.obs'),
+    'DO.psat', 'Mean percent dissolved oxygen saturation for the date (4am to 3:59am).', vsunits('DO.psat'),
+    'depth', 'Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).', vsunits('depth'),
+    'temp.water', 'Mean water temperature for the date (4am to 3:59pm).', vsunits('temp.water'),
+    'day.length', 'Time elapsed between first and last observations of light > 0 for the date (4am to 3:59pm).', 'hours',
+    'light', 'Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).', vsunits('light'),
+    'discharge', 'Mean discharge for the date (4am to 3:59pm).', vsunits('discharge'),
+    'velocity', 'Mean water velocity for the date (4am to 3:59pm).', vsunits('velocity')
+  )
+  
+  attr_df_combined <- left_join(
+    select(attr_df, setdiff(names(attr_df), names(defs_df[-1]))),
+    defs_df, by='attr-label') %>%
+    select(names(attr_df))
+  
+  # write the final attribute table
+  readr::write_csv(attr_df_combined, path=attr.file)
 }
