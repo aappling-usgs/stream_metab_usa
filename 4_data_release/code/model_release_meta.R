@@ -97,19 +97,31 @@ attributes_daily_preds <- function(
   zip.file='../4_data_release/cache/models/post/daily_predictions.zip',
   attr.file='../4_data_release/in/attr_metab_daily_preds.csv') {
   
-  # sketch out and read in the attribute table
-  attribute_skeleton(unzipped, attr.file)
-  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
-  
+  # read in the data file
   unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'preds'))
   dailies <- readr::read_tsv(unzipped)
   
+  # sketch out the skeleton attribute table
+  attr.temp <- tempfile(fileext='.csv')
+  attribute_skeleton(dailies, attr.temp)
+  attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
+
+  # compute data-min and data-max (plus other diagnostics for intermediate use)
+  ranges_df <- bind_rows(
+    summarise_all(dailies, .funs=funs(format_bound(min(., na.rm=TRUE)))) %>% mutate(stat='data-min'),
+    summarise_all(dailies, .funs=funs(format_bound(max(., na.rm=TRUE)))) %>% mutate(stat='data-max'),
+    summarise_all(dailies, .funs=funs(format_bound(length(which(is.na(.)))))) %>% mutate(stat='num-NA')
+  ) %>%
+    gather(`attr-label`, value, -stat) %>%
+    spread(stat, value)
+  
+  # write in / look up definitions & units
   vsunits <- function(variable) {
     unique(get_var_src_codes(metab_var==variable, out='metab_units'))
   }
   defs_df <- tibble::tribble(
     ~`attr-label`, ~`attr-def`, ~`data-units`,
-    'site_name', 'Site identifier, consisting of prefix "nwis_" and the NWIS site ID.', NA,
+    'site_name', 'Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.', NA,
     'resolution', 'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.', 'minutes',
     'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
     'GPP', 'Model estimate of mean gross primary productivity (GPP) for this date. Value is the median of the MCMC distribution.', vsunits('GPP.daily'),
@@ -117,7 +129,7 @@ attributes_daily_preds <- function(
     'GPP.upper', 'Upper bound on the 95% credible interval around the daily GPP estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('GPP.daily'),
     'GPP.n_eff', 'Effective sample size of the MCMC sampling for GPP.', 'samples',
     'GPP.Rhat', 'R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.', NA,
-    'ER', 'Model estimate of mean ecosystem respiration (ER) for this date. Value is the median of the MCMC distribution.', vsunits('ER.daily'),
+    'ER', 'Model estimate of mean ecosystem respiration (ER) for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.', vsunits('ER.daily'),
     'ER.lower', 'Lower bound (most negative or least positive) on the 95% credible interval around the daily ER estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
     'ER.upper', 'Upper bound (least negative or most positive) on the 95% credible interval around the daily ER estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
     'ER.n_eff', 'Effective sample size of the MCMC sampling for ER.', 'samples',
@@ -137,13 +149,41 @@ attributes_daily_preds <- function(
     'light', 'Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).', vsunits('light'),
     'discharge', 'Mean discharge for the date (4am to 3:59pm).', vsunits('discharge'),
     'velocity', 'Mean water velocity for the date (4am to 3:59pm).', vsunits('velocity')
+  ) %>% mutate(
+    'attr-defs'=sapply(`attr-label`, function(attr_label) {
+      switch(
+        attr_label,
+        site_name = 'National Water Information System, U.S. Geological Survey',
+        resolution=,DO.obs=,DO.sat=,DO.amp=,DO.psat=,depth=,temp.water=,day.length=,light=,discharge=,velocity='This data release',
+        'streamMetabolizer R package')
+    })
   )
   
-  attr_df_combined <- left_join(
-    select(attr_df, setdiff(names(attr_df), names(defs_df[-1]))),
-    defs_df, by='attr-label') %>%
+  # combine the skeleton, ranges, and definitions
+  attr_df_combined <- attr_df %>%
+    select(`attr-label`) %>%
+    left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+    left_join(defs_df, by='attr-label') %>%
     select(names(attr_df))
   
   # write the final attribute table
   readr::write_csv(attr_df_combined, path=attr.file)
+}
+
+metadata_daily_preds <- function(out_file, preds_yaml, points_list, attrs_csv, parent_list) {
+  preds_list <- yaml::yaml.load_file(preds_yaml)
+  attr_list <- as.attr_list(attrs_csv)
+  render(filename=out_file, data=preds_list, points_list, attr_list, parent_list)
+}
+
+format_bound <- function(bound) {
+  if(is(bound, 'Date')) {
+    format(bound, format='%Y-%m-%d')
+  } else if(is(bound, 'POSIX')) {
+    fomrmat(bound, format='%Y-%m-%d %H:%M:%S %z')
+  } else if(is(bound, 'character')) {
+    bound
+  } else if(is(bound, 'numeric')) {
+    format(bound, digits=4, scientific=FALSE)
+  }
 }

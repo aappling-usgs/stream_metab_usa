@@ -122,7 +122,7 @@ targets:
       sb.id=pc1_metabolism,
       files='../4_data_release/cache/models/post/daily_predictions.zip')
 
-  # -- create metadata attribute tables with partial info to complete manually --
+  # -- create metadata attribute tables --
   
   ../4_data_release/in/attr_metab_config.csv:
     command: attributes_metab_config('../4_data_release/cache/models/post/config.zip', target_name)
@@ -141,15 +141,15 @@ targets:
   ../4_data_release/in/attr_metab_daily_preds.csv:
     command: attributes_daily_preds('../4_data_release/cache/models/post/daily_predictions.zip', target_name)
 
-  # -- read manual entry and extracted metadata -- 
-  
-  #site_data_attr:
-  #  command: as.attr_list('../4_data_release/in/site_data_attr.csv')
-  
   # -- create final metadata files --
   
-  #../4_data_release/out/site_data.xml:
-  #  command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata)
+  ../4_data_release/out/metab_daily_preds.xml:
+    command: metadata_daily_preds(
+      out_file=target_name, 
+      preds_yaml="../4_data_release/in/metadata_metab_daily_preds.yaml",
+      points_list=points_meta,
+      attrs_csv="../4_data_release/in/attr_metab_daily_preds.csv",
+      parent_list=parent_metadata)
 
   # -- final targets: post data and metadata to SB --
   

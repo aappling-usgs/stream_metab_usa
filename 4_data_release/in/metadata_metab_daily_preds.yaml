@@ -1,0 +1,21 @@
+meddle-version: "0.0.3"
+document-created: "20171105"
+document-creator: "Alison P Appling"
+
+# ----data release----
+title: >-
+  Daily metabolism estimates and predictors: A national database for river metabolism (2007-present)
+
+# ----dataset details----
+process-description: Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018)
+process-date: SCRIPT 20170502
+data-name: River metabolism input data
+data-description: Daily estimates of metabolism
+build-environment: stuff on mac things on pc, R versions etc
+file-format: 
+metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
+
+# ----spatial data----
+indirect-spatial: U.S.A.
+latitude-res: unknown
+longitude-res: unknown
