@@ -1,42 +1,63 @@
-meddle-version: "0.0.3"
-document-created: "20161024"
-document-creator: "Jordan S Read"
+meddle-version: "0.0.4"
 
 # ----data release----
-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
-pubdate: 2017
-update: update planned for year 2020
+authors: ["Alison P. Appling","Jordan S. Read","Luke A. Winslow", "Maite Arroita", "Emily S. Bernhardt", "Natalie A. Griffiths", "Robert O. Hall, Jr.", "Judson W. Harvey", "James B. Heffernan", "Emily H. Stanley", "Edward G. Stets", "Charles B. Yackulic"]
+pubdate: 2018
+update: update planned for year 2023
 themekeywords: ["water","streams","rivers","metabolism","primary productivity","carbon","respiration"]
-usage-rules: >-
-  These data are subject to change and are not citable until reviewed and approved for official publication by the USGS
+usage-rules: None, but see Distribution Liability below. Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.
 doi: http://dx.doi.org/10.5066/REPLACE.w.REAL
 abstract: >-
-  Abstract text from paper
-contact-person: Alison P. Appling
-contact-phone: 608 821-3927
-contact-email: aappling@usgs.gov
+  Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients
+  for 356 streams and rivers across the continental United States.
 funding-credits: >-
-  This work has been funded by Powell Center and X and Y and Z...
+  This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry").
+  Additional financial support came from the USGS NAWQA program and Office of Water Information.
+  NSF grants DEB-1146283 and EF1442501 partially supported ROH.
+  The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.
 purpose: To bring metabolism data to the world!
 start-date: SCRIPT 20070101
 end-date: SCRIPT 2016XXXX
-  
-# ----dataset details----
-metadata-person: Jordan S Read
-metadata-phone: 608 821-3922
-metadata-email: jread@usgs.gov
-distro-person: Jordan S Read
-liability-statement: >-
-  Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected.
-  Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS),
-  no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall
-  the act of distribution constitute any such warranty.
 
 # ----associated publication----
 cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
-cite-date: FAKE date of paper release
+cite-date: TODO date of paper release
 cite-title: >-
   Powstreams: A national database for river metabolism (2007-present)
 paper: paper
-publisher: Nature?
+publisher: TODO Nature
 journal: Nature Scientific Data
+
+# ----contacts----
+contact-person: Alison P. Appling
+contact-phone: 520-670-6671 x271
+contact-email: aappling@usgs.gov
+contact-position: Ecologist, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey
+contact-address: 520 N Park Ave, Ste 221
+contact-city: Tucson
+contact-state: AZ
+contact-zip: 85719
+
+metadata-person: Jordan S. Read
+metadata-position: Chief, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey
+metadata-phone: 608-821-3922
+metadata-fax: 608-821-3817
+metadata-email: jread@usgs.gov
+metadata-address: "8551 Research Way #120"
+metadata-city: Middleton
+metadata-state: WI
+metadata-zip: 53562
+
+# ----distribtution----
+
+# statement for "Preliminary (provisional) data, information, or software" (https://www2.usgs.gov/fsp/fsp_disclaimers.asp):
+liability-statement: >-
+  This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science.
+  The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the
+  USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information.
+# statement for "Approved data released to the public" (https://www2.usgs.gov/fsp/fsp_disclaimers.asp):
+#liability-statement: >-
+#  Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected.
+#  Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS),
+#  no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall
+#  the act of distribution constitute any such warranty.

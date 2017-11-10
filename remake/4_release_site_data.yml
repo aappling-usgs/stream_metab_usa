@@ -24,7 +24,8 @@ sources:
 targets:
   4_release_site_data:
     depends: 
-      - release_site_data
+      - post_site_data
+      - post_site_data_meta
   
   # -- munge & write data for release --
       
@@ -47,14 +48,22 @@ targets:
   # -- create final metadata files --
   
   ../4_data_release/out/site_data.xml:
-    command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata)
+    command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata,
+      template='../4_data_release/in/fgdc_template.xml')
 
-  # -- SB posting: create the items to host data and metadata --
+  # -- SB posting: create the item to host data and metadata --
 
   pc1_site_metadata:
     command: create_release_child(stream_metab_powell_release, target_name)
   
   # -- final targets: post data and metadata to SB --
   
-  release_site_data:
-    command: create_release_item(pc1_site_metadata, target_name, '../4_data_release/cache/site_data.tsv', '../4_data_release/out/site_data.xml')
+  post_site_data:
+    command: append_release_files(
+      sb.id = pc1_site_metadata,
+      files = '../4_data_release/cache/site_data.tsv')
+  
+  post_site_data_meta:
+    command: append_release_files(
+      sb.id = pc1_site_metadata,
+      files = '../4_data_release/out/site_data.xml')
