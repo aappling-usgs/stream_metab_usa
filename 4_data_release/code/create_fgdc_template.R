@@ -52,10 +52,10 @@ create_fgdc_template <- function(file.out){
   
   k %>% 
     xml_add_child('theme', "
-                  <themekt>none</themekt>
-                  {{#themekeywords}}
-                  <themekey>{{.}}</themekey>
-                  {{/themekeywords}}")
+        <themekt>none</themekt>
+        {{#themekeywords}}
+        <themekey>{{.}}</themekey>
+        {{/themekeywords}}")
   
   k %>% 
     xml_add_child('theme') %>% 
@@ -235,12 +235,13 @@ create_fgdc_template <- function(file.out){
   write_xml(d, file = tempxml)
   
   #### Section templates ####
-  place.template = "
-  <place>\n\t\t\t<placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-  {{#states}}<placekey>{{state-name}}</placekey>
-  <placekey>{{state-abbr}}</placekey>
-  {{/states}}
-  </place>"
+  place.template = "<place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
+          {{#states}}
+          <placekey>{{state-name}}</placekey>
+          <placekey>{{state-abbr}}</placekey>
+          {{/states}}
+      </place>"
   
   abscontent.template = "{{#attributes}}{{attr-label}}, {{/attributes}}"
   
@@ -248,42 +249,42 @@ create_fgdc_template <- function(file.out){
   <origin>{{.}}</origin>
   {{/authors}}"
   attr.template = "{{#attributes}}<attr>
-  <attrlabl>{{attr-label}}</attrlabl>
-  <attrdef>{{attr-def}}</attrdef>
-  <attrdefs>{{attr-defs}}</attrdefs>
-  <attrdomv>
-  <rdom>
-  <rdommin>{{data-min}}</rdommin>
-  <rdommax>{{data-max}}</rdommax>
-  <attrunit>{{data-units}}</attrunit>
-  </rdom>
-  </attrdomv>
-  </attr>\n{{/attributes}}"
+        <attrlabl>{{attr-label}}</attrlabl>
+        <attrdef>{{attr-def}}</attrdef>
+        <attrdefs>{{attr-defs}}</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>{{data-min}}</rdommin>
+            <rdommax>{{data-max}}</rdommax>
+            <attrunit>{{data-units}}</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>\n{{/attributes}}"
   
   lworkcit.template = "{{#larger-cites}}<lworkcit>
-  <citeinfo>
-  {{#authors}}
-  <origin>{{.}}</origin>
-  {{/authors}} 
-  <pubdate>{{pubdate}}</pubdate>
-  <title>{{title}}</title>
-  {{#link}}
-  <onlink>{{.}}</onlink>
-  {{/link}} 
-  </citeinfo>
+    <citeinfo>
+      {{#authors}}
+      <origin>{{.}}</origin>
+      {{/authors}} 
+      <pubdate>{{pubdate}}</pubdate>
+      <title>{{title}}</title>
+      {{#link}}
+      <onlink>{{.}}</onlink>
+      {{/link}} 
+    </citeinfo>
   </lworkcit>\n{{/larger-cites}}"
   
   crossref.template = "{{#cross-cites}}<crossref>
-  <citeinfo>
-  {{#authors}}
-  <origin>{{.}}</origin>
-  {{/authors}} 
-  <pubdate>{{pubdate}}</pubdate>
-  <title>{{title}}</title>
-  {{#link}}
-  <onlink>{{.}}</onlink>
-  {{/link}} 
-  </citeinfo>
+    <citeinfo>
+      {{#authors}}
+      <origin>{{.}}</origin>
+      {{/authors}} 
+      <pubdate>{{pubdate}}</pubdate>
+      <title>{{title}}</title>
+      {{#link}}
+      <onlink>{{.}}</onlink>
+      {{/link}} 
+    </citeinfo>
   </crossref>\n{{/cross-cites}}"
   
   suppressWarnings(readLines(tempxml)) %>% 

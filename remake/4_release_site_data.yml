@@ -48,7 +48,8 @@ targets:
   # -- create final metadata files --
   
   ../4_data_release/out/site_data.xml:
-    command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata, template='../4_data_release/in/fgdc_template.xml')
+    command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata,
+      template='../4_data_release/in/fgdc_template.xml')
 
   # -- SB posting: create the item to host data and metadata --
 
