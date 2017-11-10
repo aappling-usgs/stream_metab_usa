@@ -25,8 +25,10 @@ targets:
   4_release_spatial:
     depends: 
       - ../4_data_release/cache/points_metadata.yml
-      - release_site_points
-      - release_site_catchments
+      - post_site_catchments
+      - post_site_catchments_meta
+      - post_site_points
+      - post_site_points_meta
   
   # -- munge & write data for release --
       
@@ -65,23 +67,45 @@ targets:
   
   # -- create final metadata files --
   
-  ../4_data_release/out/site_catchment_shapefile.shp.xml:
-    command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name, catchment_metadata, catchment_attr, parent_metadata)
+  ../4_data_release/out/site_catchment_shapefile.xml:
+    command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name, catchment_metadata, catchment_attr, parent_metadata,
+      template='../4_data_release/in/fgdc_template.xml')
   
-  ../4_data_release/out/site_points_shapefile.shp.xml:
-    command: render("../4_data_release/in/metadata_site_points.yaml", target_name, points_metadata, points_attr, parent_metadata)
+  ../4_data_release/out/site_points_shapefile.xml:
+    command: render("../4_data_release/in/metadata_site_points.yaml", target_name, points_metadata, points_attr, parent_metadata,
+      template='../4_data_release/in/fgdc_template.xml')
   
   # -- SB posting: create the items to host data and metadata --
 
   pc1_spatial:
     command: create_release_child(stream_metab_powell_release, target_name)
     
+  pc1_spatial_catchments:
+    command: create_release_child(pc1_spatial, target_name)
+  
+  pc1_spatial_points:
+    command: create_release_child(pc1_spatial, target_name)
+    
   # -- final targets: post data and metadata to SB --
   
-  release_site_catchments:
-    command: create_release_item(pc1_spatial, target_name, catchment_shapefile, '../4_data_release/out/site_catchment_shapefile.shp.xml')
+  post_site_catchments:
+    command: append_release_files(
+      sb.id = pc1_spatial_catchments,
+      files = catchment_shapefile)
     depends: spatial.catchments
-
-  release_site_points:
-    command: create_release_item(pc1_spatial, target_name, points_shapefile, '../4_data_release/out/site_points_shapefile.shp.xml')
+    
+  post_site_catchments_meta:  
+    command: append_release_files(
+      sb.id = pc1_spatial_catchments,
+      files = '../4_data_release/out/site_catchment_shapefile.xml')
+    
+  post_site_points:
+    command: append_release_files(
+      sb.id = pc1_spatial_points,
+      files = points_shapefile)
     depends: spatial.points
+    
+  post_site_points_meta:  
+    command: append_release_files(
+      sb.id = pc1_spatial_points,
+      files = '../4_data_release/out/site_points_shapefile.xml')
