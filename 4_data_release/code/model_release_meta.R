@@ -170,11 +170,13 @@ attributes_daily_preds <- function(
   readr::write_csv(attr_df_combined, path=attr.file)
 }
 
-metadata_daily_preds <- function(out_file, preds_yaml, points_list, attrs_csv, parent_list) {
+metadata_daily_preds <- function(out_file, preds_yaml, points_list, attrs_csv, parent_list, template) {
   preds_list <- yaml::yaml.load_file(preds_yaml)
   attr_list <- as.attr_list(attrs_csv)
-  render(filename=out_file, data=preds_list, points_list, attr_list, parent_list)
+  render(filename=out_file, data=preds_list, points_list, attr_list, parent_list, template=fgdc_template)
 }
+
+#### helpers ####
 
 format_bound <- function(bound) {
   if(is(bound, 'Date')) {
