@@ -143,16 +143,31 @@ targets:
 
   # -- create final metadata files --
   
-  ../4_data_release/out/daily_predictions.xml:
-    command: metadata_daily_preds(
+  ../4_data_release/out/config.xml:
+    command: render_metab_metadata(
       out_file=target_name, 
-      preds_yaml="../4_data_release/in/metadata_metab_daily_preds.yaml",
+      child_yaml="../4_data_release/in/metadata_metab_config.yaml",
+      points_list=points_meta,
+      attrs_csv="../4_data_release/in/attr_metab_config.csv",
+      parent_list=parent_metadata,
+      template="../4_data_release/in/fgdc_template.xml")
+  
+  ../4_data_release/out/daily_predictions.xml:
+    command: render_metab_metadata(
+      out_file=target_name, 
+      child_yaml="../4_data_release/in/metadata_metab_daily_preds.yaml",
       points_list=points_meta,
       attrs_csv="../4_data_release/in/attr_metab_daily_preds.csv",
-      parent_list=parent_metadata)
+      parent_list=parent_metadata,
+      template="../4_data_release/in/fgdc_template.xml")
 
   # -- add metadata to SB --
   
+  post_config_meta:
+    command: append_release_files(
+      sb.id=pc1_model_config,
+      files='../4_data_release/out/config.xml')
+    
   post_metabolism_meta:
     command: append_release_files(
       sb.id=pc1_metabolism,

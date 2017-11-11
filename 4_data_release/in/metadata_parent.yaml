@@ -19,6 +19,17 @@ purpose: To bring metabolism data to the world!
 start-date: SCRIPT 20070101
 end-date: SCRIPT 2016XXXX
 
+# ----cross references----
+cross-references:
+  - 
+    shortref: Raymond et al. 2012
+    cited-in: attributes_metab_config
+    citation: "Raymond, Peter A., Christopher J. Zappa, David Butman, Thomas L. Bott, Jody Potter, Patrick Mulholland, Andrew E. Laursen, William H. McDowell, and Denis Newbold. Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology & Oceanography: Fluids & Environments 2 (2012): 41-53."
+  - 
+    shortref: Garcia and Gordon 1992 
+    cited-in: Garcia-Benson for attributes_metab_config
+    citation: "Garcia, H., and L. Gordon (1992), Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6)."
+
 # ----associated publication----
 cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
 cite-date: TODO date of paper release

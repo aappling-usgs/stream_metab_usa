@@ -1,18 +1,107 @@
 attributes_metab_config <- function(
-  unzipped='../2_metab_models/run3/out/config.tsv',
+  zip.file='../4_data_release/cache/models/post/config.zip',
   attr.file='../4_data_release/in/attr_metab_config.csv') {
   
-  # sketch out and read in the attribute table
-  attribute_skeleton(unzipped, attr.file)
-  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
-  
-  # learn about the data
+  # read in the data file
+  unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
   data_df <- readr::read_tsv(unzipped)
   
+  # sketch out the skeleton attribute table
+  attr.temp <- tempfile(fileext='.csv')
+  attribute_skeleton(data_df, attr.temp)
+  attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
+  
+  # compute data-min and data-max (plus other diagnostics for intermediate use)
+  ranges_df <- compute_ranges(data_df)
+  
   # fill out the attribute table
+  defs_df <- tibble::tribble(
+    ~`attr-label`, ~`attr-def`, ~`data-units`,
+    'site', 'Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.', NA,
+    'resolution', paste(
+      'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.',
+      'Expressed as XXmin, where XX is the number of minutes between observations and "min" indicates the units.',
+      'This configuration file can be cross-referenced to the model fit zip files in this data release by concatenating',
+      '"site" and "resolution" with an underscore and appending "_fit.zip", e.g., "nwis_01473500_30min_fit.zip".'), 'minutes',
+    'required_timestep', paste(
+      'Duration of the expected timestep in days. This argument is passed to streamMetabolizer along with the complete input dataset;',
+      'streamMetabolizer subsets the input data to only those observations that conform to the specified temporal resolution.',
+      'Some sites have inconsistent temporal resolution over their periods of record, so dates with differing resolution were modeled separately',
+      'and two or more models are possible for a single site.'), 'days',
+    'model_name', paste(
+      'The coded model name used to identify a unique model structure in the streamMetabolizer R package.',
+      'Every model used b_Kb_oipi_tr_plrckm.stan, a Bayesian (b) state-space model (oipi) with hierarchical partial pooling of gas exchange (Kb),',
+      'trapezoid-rule numerical integration (tr), a linear relationship between productivity and light on each day (pl),',
+      'constant respiration over each 24-hour period (rc), and gas exchange at each timestep computed from the modeled oxygen at the previous timestep (km).'), NA,
+    'K600_lnQ_nodes_centers', paste(
+      'R code to generate a sequence of values that span the range of natural logs of discharge at the site, at intervals of 0.2 natural log units.',
+      'For "seq(a,b,by=0.2)", the generated sequence runs from a minimum of "a" to a maximum of "b".',
+      'The piecewise linear hierarchical relationship between the natural logs of K600 (gas exchange rate coefficient) and Q (discharge)',
+      'used these values as the x-axis endpoints of the line segments. The corresponding y values for K600 were fitted by the models.'), 'natural log of discharge where discharge is m^3 s^-1',
+    'K600_lnQ_nodediffs_sdlog', paste(
+      'Prior expectation of the standard deviation of the differences in estimated natural-log-K600 between adjacent line segment endpoints,',
+      'where the means of those differences are always zero.'), NA,
+    'K600_daily_sigma_sigma', paste(
+      'Hyperparameter describing the expected deviation of daily K600 estimates (K600_daily)',
+      'from the value predicted by the piecewise linear relationship for that day (K600_daily_piecewise).',
+      'The parameter described by this hyperparameter is K600_daily_sigma, which is used as K600_daily ~ normal(mu=K600_daily_piecewise, sigma=K600_daily_sigma).',
+      'This hyperparameter is the scale (= sigma) parameter of a half-normal prior distribution of K600_daily_sigma',
+      'such that K600_daily_sigma ~ halfnormal(mu=0, sigma=K600_daily_sigma_sigma). The value of K600_daily_sigma_sigma for each model was selected',
+      'based on a round of preliminary maximum-likelihood estimates of K600 at each site and is equal to 2 percent of the median of those estimates.'), NA,
+    'burnin_steps', 'The number of steps (iterations) per MCMC chain that were executed and ignored before starting to track the values at each iteration. 4 chains were used per model.', 'MCMC iterations',
+    'saved_steps', 'The number of MCMC steps (iterations) per chain that were tracked following the burn-in phase. 4 chains were used per model.', 'MCMC iterations',
+    'solar.time.src', paste(
+      'The computation method used to translate observation timestamps from clock time to solar mean time for passing to the metabolism estimation function.',
+      'The "calcLon" algorithm (used for all models) corresponds to the "calc_solar_time" function in streamMetabolizer.'), NA,
+    'DO.obs.src', paste(
+      'The data source for the dissolved oxygen concentration observations used to model metabolism.',
+      '"nwis" (used for all models) indicates that data were acquired from the USGS National Water Information System, https://waterdata.usgs.gov/nwis.'), NA,
+    'DO.sat.src', paste(
+      'The data sources and computation method used to estimate the theoretical saturation concentration of dissolved oxygen. The data sources were always',
+      'the water temperature from the USGS National Water Information System, https://waterdata.usgs.gov/nwis, and the barometric pressure',
+      'from the NASA National Land Data Assimilation System, https://ldas.gsfc.nasa.gov/nldas.',
+      '"calcGGbts" (used for all models) indicates that these data sources were combined using the streamMetabolizer "calc_DO_sat" function,',
+      'which applies the Garcia-Benson equation (Garcia and Gordon 1992).'), NA,
+    'depth.src', paste(
+      'The data sources and computation method used to estimate water depth for use in modeling metabolism.',
+      'Depth estimates always began with discharge data from USGS National Water Information System, https://waterdata.usgs.gov/nwis.',
+      'One of two calculation methods was used for each model. If regionalized hydraulic geometry coefficients were available for the site',
+      '(see the "Site identifiers and details" table in this data release), then the "calcDischHarvey" algorithm applied those coefficients to the discharge data',
+      'using the formula z=cQ^f where z is depth (m), c (m) and f (unitless) are the supplied coefficients, and Q is discharge (m^3 s^-1).',
+      'If regionalized coefficients were unavailable for the site,',
+      'then the "calcDischRaymond" algorithm was applied via the "calc_depth" streamMetabolizer function, which fixes the coefficients in the above equation',
+      'at c=0.409 and f=0.294 according to a global regression by Raymond et al. 2012.'), NA,
+    'temp.water.src', paste(
+      'The data source for the water temperature observations used in modeling metabolism.',
+      '"nwis" (used for all models) indicates that data were acquired from the USGS National Water Information System, https://waterdata.usgs.gov/nwis.'), NA,
+    'light.src', paste(
+      'The data sources and computation method used to estimate photosynthetically active radiation for use in modeling metabolism.',
+      'The "calcLatSw" algorithm (used for all models) corresponds to the "calc_light_merged" function in streamMetabolizer, which was used to merge',
+      'theoretical light curves (computed by streamMetabolizer\'s "calc_light" function) with estimates of shortwave radiation from the',
+      'NASA National Land Data Assimilation System, https://ldas.gsfc.nasa.gov/nldas.'), NA,
+    'discharge.src', paste(
+      'The data source for the river discharge observations used in modeling metabolism.',
+      '"nwis" (used for all models) indicates that data were acquired from the USGS National Water Information System, https://waterdata.usgs.gov/nwis'), NA
+  ) %>% mutate(
+    'attr-defs'=sapply(`attr-label`, function(attr_label) {
+      switch(
+        attr_label,
+        site = 'National Water Information System, U.S. Geological Survey',
+        resolution=,solar.time.src=,DO.obs.src=,DO.sat.src=,depth.src=,temp.water.src=,light.src=,discharge.src='This data release',
+        required_timestep=,model_name=,K600_lnQ_nodes_centers=,K600_lnQ_nodediffs_sdlog=,K600_daily_sigma_sigma=,burnin_steps=,saved_steps='streamMetabolizer R package',
+        NA)
+    })
+  )
+  
+  # combine the skeleton, ranges, and definitions
+  attr_df_combined <- attr_df %>%
+    select(`attr-label`) %>%
+    left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+    left_join(defs_df, by='attr-label') %>%
+    select(names(attr_df))
   
   # write the final attribute table
-  readr::write_csv(attr_df, path=attr.file)
+  readr::write_csv(attr_df_combined, path=attr.file)
 }
   
 
@@ -107,13 +196,7 @@ attributes_daily_preds <- function(
   attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
 
   # compute data-min and data-max (plus other diagnostics for intermediate use)
-  ranges_df <- bind_rows(
-    summarise_all(dailies, .funs=funs(format_bound(min(., na.rm=TRUE)))) %>% mutate(stat='data-min'),
-    summarise_all(dailies, .funs=funs(format_bound(max(., na.rm=TRUE)))) %>% mutate(stat='data-max'),
-    summarise_all(dailies, .funs=funs(format_bound(length(which(is.na(.)))))) %>% mutate(stat='num-NA')
-  ) %>%
-    gather(`attr-label`, value, -stat) %>%
-    spread(stat, value)
+  ranges_df <- compute_ranges(dailies)
   
   # write in / look up definitions & units
   vsunits <- function(variable) {
@@ -170,22 +253,40 @@ attributes_daily_preds <- function(
   readr::write_csv(attr_df_combined, path=attr.file)
 }
 
-metadata_daily_preds <- function(out_file, preds_yaml, points_list, attrs_csv, parent_list, template) {
-  preds_list <- yaml::yaml.load_file(preds_yaml)
+#### renderer ####
+
+render_metab_metadata <- function(out_file, child_yaml, points_list, attrs_csv, parent_list, template) {
+  child_list <- yaml::yaml.load_file(child_yaml)
   attr_list <- as.attr_list(attrs_csv)
-  render(filename=out_file, data=preds_list, points_list, attr_list, parent_list, template=template)
+  render(filename=out_file, data=child_list, points_list, attr_list, parent_list, template=template)
 }
 
 #### helpers ####
 
+# compute data-min and data-max (plus other diagnostics for intermediate use)
+compute_ranges <- function(data_df) {
+  ranges_df <- bind_rows(
+    summarise_all(data_df, .funs=funs(format_bound(min(., na.rm=TRUE)))) %>% mutate(stat='data-min'),
+    summarise_all(data_df, .funs=funs(format_bound(max(., na.rm=TRUE)))) %>% mutate(stat='data-max'),
+    summarise_all(data_df, .funs=funs(format_bound(length(which(is.na(.)))))) %>% mutate(stat='num-NA')
+  ) %>%
+    gather(`attr-label`, value, -stat) %>%
+    spread(stat, value)
+  return(ranges_df)
+}
+
 format_bound <- function(bound) {
   if(is(bound, 'Date')) {
     format(bound, format='%Y-%m-%d')
-  } else if(is(bound, 'POSIX')) {
-    fomrmat(bound, format='%Y-%m-%d %H:%M:%S %z')
+  } else if(is(bound, 'POSIXt')) {
+    format(bound, format='%Y-%m-%d %H:%M:%S %z')
+  } else if(is(bound, 'Date')) {
+    format(bound, format='%Y-%m-%d')
   } else if(is(bound, 'character')) {
     bound
   } else if(is(bound, 'numeric')) {
     format(bound, digits=4, scientific=FALSE)
+  } else {
+    stop(paste('unrecognized class:', paste(class(bound), collapse=', ')))
   }
 }
