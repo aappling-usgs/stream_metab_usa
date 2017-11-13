@@ -146,11 +146,11 @@ simplify_model_config <- function(out.zip, config.tsv) {
   # select the interesting columns and rename the variables to match
   # streamMetabolizer variable names
   config <- config %>%
+    mutate(resolution=substring(strategy, 7)) %>%
     bind_cols(specs_args) %>%
-    select(tag, strategy, date, model, site, 
-           model_name, required_timestep, K600_lnQ_nodes_centers, K600_lnQ_nodediffs_sdlog, K600_daily_sigma_sigma, burnin_steps, saved_steps,
-           solar.time.src=sitetime.src, DO.obs.src=doobs.src, DO.sat.src=dosat.src, depth.src, temp.water.src=wtr.src, light.src=par.src, discharge.src=disch.src, 
-           config.row)
+    select(site, resolution, required_timestep, model_name,
+           K600_lnQ_nodes_centers, K600_lnQ_nodediffs_sdlog, K600_daily_sigma_sigma, burnin_steps, saved_steps,
+           solar.time.src=sitetime.src, DO.obs.src=doobs.src, DO.sat.src=dosat.src, depth.src, temp.water.src=wtr.src, light.src=par.src, discharge.src=disch.src)
   
   # write and zip the assessment table
   tsv_path <- gsub('\\.zip$', '.tsv', basename(out.zip))

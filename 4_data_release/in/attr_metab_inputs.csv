@@ -1,8 +1,8 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
-solar.time,NA,NA,NA,NA,NA
-DO.obs,NA,NA,NA,NA,NA
-DO.sat,NA,NA,NA,NA,NA
-depth,NA,NA,NA,NA,NA
-temp.water,NA,NA,NA,NA,NA
-light,NA,NA,NA,NA,NA
-discharge,NA,NA,NA,NA,NA
+solar.time,"Mean solar time, which puts the solar zenith at almost exactly noon but also preserves equal timesteps within and across days. Timezone is nominally UTC but is meaningless.",streamMetabolizer R package,2007-09-30 22:17:23 +0000,2016-12-31 19:00:41 +0000,NA
+DO.obs,Dissolved oxygen concentration.,streamMetabolizer R package,-1.2,29.4,mgO2 L^-1
+DO.sat,Hypothetical dissolved oxygen concentration at saturation.,streamMetabolizer R package,6.004,15.26,mgO2 L^-1
+depth,"River depth, treated as the average over the full length and width of the upstream reach that affects dissolved oxygen concentrations.",streamMetabolizer R package,0,23.7,m
+temp.water,Water temperature.,streamMetabolizer R package,-999999,39.7,degC
+light,Photosynthetically active radiation (photon flux density).,streamMetabolizer R package,0,2766,umol m^-2 s^-1
+discharge,River discharge.,streamMetabolizer R package,-2098,37888,m^3 s^-1

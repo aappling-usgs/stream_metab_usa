@@ -1,0 +1,22 @@
+meddle-version: "0.0.4"
+document-created: "20171110"
+document-creator: "Alison P Appling"
+
+# ----data release----
+title: Model configurations for estimating metabolism
+
+# ----dataset details----
+process-description: >-
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan".
+  This configuration file was generated 2017-04-06 15:04:23 +0000 and was originally labeled with tag 1.0.2.
+process-date: 2017-04-06 15:04:23 +0000
+data-name: config.zip
+data-description: Model configurations for estimating metabolism. Configuration parameters can be 
+build-environment: stuff on mac things on pc, R versions etc
+file-format: tab-separated values, compressed from text to .zip format
+metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
+
+# ----spatial data----
+indirect-spatial: U.S.A.
+latitude-res: Not applicable
+longitude-res: Not applicable
