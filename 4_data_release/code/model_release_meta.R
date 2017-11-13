@@ -109,46 +109,89 @@ attributes_metab_inputs <- function(
   zip.dir='../4_data_release/cache/models/post',
   attr.file='../4_data_release/in/attr_metab_inputs.csv') {
   
-  # sketch out and read in the attribute table
-  attribute_skeleton(unzipped, attr.file)
-  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
+  # read in the data file
+  unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
+  data_df <- readr::read_tsv(unzipped)
   
-  unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'inputs'))
+  input_files <- dir(zip.dir, pattern='_input.zip$', full.names=TRUE)
+  # read and summarize each file
+  ranges_dfs <- bind_rows(lapply(seq_along(input_files), function(i) {
+    zip.file <- input_files[i]
+    message(paste0(i, '\t', zip.file))
+    unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'inputs'))
+    data_df <- readr::read_tsv(unzipped, col_types = 'Tdddddd')
+    unlink(unzipped)
+    
+    ranges_1df <- summarise_all(data_df, .funs=funs(
+      min(., na.rm=TRUE),
+      max(., na.rm=TRUE),
+      numNA = length(which(is.na(.))),
+      numTot = length(.))) %>% 
+      mutate(file = basename(zip.file))
+    return(ranges_1df)
+  }))
+  # reduce the df of 1 row per site to 1 row for all sites (min, max, etc. in different columns)
+  ranges_df_wide <- as.data.frame(lapply(setNames(nm=setdiff(names(ranges_dfs), 'file')), function(colname) {
+    range_col <- ranges_dfs[[colname]]
+    type <- strsplit(colname, '_')[[1]] %>% .[length(.)]
+    switch(
+      type,
+      min=format_bound(min(range_col, na.rm=TRUE)),
+      max=format_bound(max(range_col, na.rm=TRUE)),
+      numNA=format_bound(sum(range_col)),
+      numTot=format_bound(sum(range_col))
+    )
+  }), stringsAsFactors=FALSE)
+  # merge min, max into their own columns, 1 row per variable
+  ranges_df <- full_join(
+    full_join(transmute(gather(ranges_df_wide, var_stat, `data-min`, ends_with('_min')), `attr-label`=gsub('_min', '', var_stat), `data-min`=`data-min`),
+              transmute(gather(ranges_df_wide, var_stat, `data-max`, ends_with('_max')), `attr-label`=gsub('_max', '', var_stat), `data-max`=`data-max`),
+              by='attr-label'),
+    full_join(transmute(gather(ranges_df_wide, var_stat, `num-NA`, ends_with('_numNA')), `attr-label`=gsub('_numNA', '', var_stat), `num-NA`=`num-NA`),
+              transmute(gather(ranges_df_wide, var_stat, `num-tot`, ends_with('_numTot')), `attr-label`=gsub('_numTot', '', var_stat), `num-tot`=`num-tot`),
+              by='attr-label'),
+    by='attr-label')
   
-  # input_files <- dir(dirname(object.zip), pattern='_input.zip$', full.names=TRUE)
-  # # read and summarize each file
-  # summaries <- bind_rows(lapply(input_files, function(zip.file) {
-  #   message(zip.file)
-  #   unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'inputs'))
-  #   input_df <- readr::read_tsv(unzipped, col_types = 'Tdddddd')
-  #   unlink(unzipped)
-  #   as_data_frame(lapply(input_df, range, na.rm=TRUE)) %>%
-  #     mutate(
-  #       site=gsub('_input\\.zip', '', basename(zip.file)),
-  #       variable=c('min','max'))
-  # }))
   # # do some data checks. some sites have some bad data, mostly not too bad  
-  # filter(summaries, DO.obs < 0) # 5 sites with negative DO.obs, though seldom hugely negative
-  # filter(summaries, DO.sat < 0) # 0 sites go negative
-  # filter(summaries, depth < 0) # 0 sites go negative
-  # filter(summaries, temp.water < -1) # nwis_01646500 has at least one -999999
-  # filter(summaries, light < 0) # 0 sites go negative
-  # filter(summaries, discharge < 0) # 32 sites go negative
-  # 
-  # # compute the overall range
-  # ranges <- bind_rows(
-  #   summarize_all(filter(summaries, variable=='min'), min),
-  #   summarize_all(filter(summaries, variable=='max'), max)) %>%
-  #   select(-site)
-  # 
-  # unzipped1 <- unzip(zipfile=input_files[1], exdir=file.path(tempdir(), 'input1'))
-  # attribute_skeleton(object, attr.file, ...)
-  # obj_df <- readr::read_tsv(object)
-  # attr_df <- readr::read_csv(attr.file)
+  # nrow(filter(ranges_dfs, DO.obs_min < 0)) # 5 sites with negative DO.obs, though seldom hugely negative
+  # nrow(filter(ranges_dfs, DO.sat_min < 0)) # 0 sites go negative
+  # nrow(filter(ranges_dfs, depth_min < 0)) # 0 sites go negative
+  # nrow(filter(ranges_dfs, temp.water_min < -1)) # nwis_01646500 has at least one -999999
+  # nrow(filter(ranges_dfs, light_min < 0)) # 0 sites go negative
+  # nrow(filter(ranges_dfs, discharge_min < 0)) # 32 sites go negative
+  
+  # sketch out the skeleton attribute table
+  attr.temp <- tempfile(fileext='.csv')
+  attribute_skeleton(data_df, attr.temp)
+  attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
+  
+  # fill out the attribute table
+  vsunits <- function(variable) {
+    unique(mda.streams::get_var_src_codes(metab_var==variable, out='metab_units'))
+  }
+  defs_df <- tibble::tribble(
+    ~`attr-label`, ~`attr-def`,
+    'solar.time', 'Mean solar time, which puts the solar zenith at almost exactly noon but also preserves equal timesteps within and across days. Timezone is nominally UTC but is meaningless.',
+    'DO.obs', 'Dissolved oxygen concentration.',
+    'DO.sat', 'Hypothetical dissolved oxygen concentration at saturation.',
+    'depth', 'River depth, treated as the average over the full length and width of the upstream reach that affects dissolved oxygen concentrations.',
+    'temp.water', 'Water temperature.',
+    'light', 'Photosynthetically active radiation (photon flux density).',
+    'discharge', 'River discharge.'
+  ) %>%
+    mutate(
+      'data-units'=sapply(`attr-label`, vsunits) %>% ifelse(.=='', NA, .),
+      'attr-defs'='streamMetabolizer R package')
+  
+  # combine the skeleton, ranges, and definitions
+  attr_df_combined <- attr_df %>%
+    select(`attr-label`) %>%
+    left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+    left_join(defs_df, by='attr-label') %>%
+    select(names(attr_df))
   
   # write the final attribute table
-  readr::write_csv(attr_df, path=attr.file)
-  
+  readr::write_csv(attr_df_combined, path=attr.file)
 }
 
 attributes_metab_fits <- function(

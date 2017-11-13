@@ -7,6 +7,7 @@ packages:
   - yaml
   - whisker
   - dplyr
+  - tidyr
   - meddle
   - mda.streams
   
@@ -152,6 +153,15 @@ targets:
       parent_list=parent_metadata,
       template="../4_data_release/in/fgdc_template.xml")
   
+  ../4_data_release/out/inputs.xml:
+    command: render_metab_metadata(
+      out_file=target_name, 
+      child_yaml="../4_data_release/in/metadata_metab_inputs.yaml",
+      points_list=points_meta,
+      attrs_csv="../4_data_release/in/attr_metab_inputs.csv",
+      parent_list=parent_metadata,
+      template="../4_data_release/in/fgdc_template.xml")
+  
   ../4_data_release/out/daily_predictions.xml:
     command: render_metab_metadata(
       out_file=target_name, 
@@ -167,6 +177,11 @@ targets:
     command: append_release_files(
       sb.id=pc1_model_config,
       files='../4_data_release/out/config.xml')
+    
+  post_inputs_meta:
+    command: append_release_files(
+      sb.id=pc1_inputs,
+      files='../4_data_release/out/inputs.xml')
     
   post_metabolism_meta:
     command: append_release_files(
