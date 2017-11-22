@@ -109,48 +109,17 @@ attributes_metab_inputs <- function(
   zip.dir='../4_data_release/cache/models/post',
   attr.file='../4_data_release/in/attr_metab_inputs.csv') {
   
-  # read in the data file
-  unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
-  data_df <- readr::read_tsv(unzipped)
-  
+  # get a list of all relevant data files
   input_files <- dir(zip.dir, pattern='_input.zip$', full.names=TRUE)
-  # read and summarize each file
-  ranges_dfs <- bind_rows(lapply(seq_along(input_files), function(i) {
-    zip.file <- input_files[i]
-    message(paste0(i, '\t', zip.file))
-    unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'inputs'))
-    data_df <- readr::read_tsv(unzipped, col_types = 'Tdddddd')
-    unlink(unzipped)
-    
-    ranges_1df <- summarise_all(data_df, .funs=funs(
-      min(., na.rm=TRUE),
-      max(., na.rm=TRUE),
-      numNA = length(which(is.na(.))),
-      numTot = length(.))) %>% 
-      mutate(file = basename(zip.file))
-    return(ranges_1df)
-  }))
-  # reduce the df of 1 row per site to 1 row for all sites (min, max, etc. in different columns)
-  ranges_df_wide <- as.data.frame(lapply(setNames(nm=setdiff(names(ranges_dfs), 'file')), function(colname) {
-    range_col <- ranges_dfs[[colname]]
-    type <- strsplit(colname, '_')[[1]] %>% .[length(.)]
-    switch(
-      type,
-      min=format_bound(min(range_col, na.rm=TRUE)),
-      max=format_bound(max(range_col, na.rm=TRUE)),
-      numNA=format_bound(sum(range_col)),
-      numTot=format_bound(sum(range_col))
-    )
-  }), stringsAsFactors=FALSE)
-  # merge min, max into their own columns, 1 row per variable
-  ranges_df <- full_join(
-    full_join(transmute(gather(ranges_df_wide, var_stat, `data-min`, ends_with('_min')), `attr-label`=gsub('_min', '', var_stat), `data-min`=`data-min`),
-              transmute(gather(ranges_df_wide, var_stat, `data-max`, ends_with('_max')), `attr-label`=gsub('_max', '', var_stat), `data-max`=`data-max`),
-              by='attr-label'),
-    full_join(transmute(gather(ranges_df_wide, var_stat, `num-NA`, ends_with('_numNA')), `attr-label`=gsub('_numNA', '', var_stat), `num-NA`=`num-NA`),
-              transmute(gather(ranges_df_wide, var_stat, `num-tot`, ends_with('_numTot')), `attr-label`=gsub('_numTot', '', var_stat), `num-tot`=`num-tot`),
-              by='attr-label'),
-    by='attr-label')
+  
+  # read in a single example data file for structure
+  zip.file <- input_files[1]
+  unzipped1 <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
+  data_df <- readr::read_tsv(unzipped1, col_types = 'Tdddddd')
+  
+  # unzip them all, then compute collective ranges
+  unzipped <- unlist(lapply(input_files, unzip, exdir=file.path(tempdir(), 'inputs')))
+  ranges_df <- multifile_ranges(unzipped, coltypes='Tdddddd')
   
   # # do some data checks. some sites have some bad data, mostly not too bad  
   # nrow(filter(ranges_dfs, DO.obs_min < 0)) # 5 sites with negative DO.obs, though seldom hugely negative
@@ -195,23 +164,61 @@ attributes_metab_inputs <- function(
 }
 
 attributes_metab_fits <- function(
-  zip.file='../4_data_release/cache/models/post/nwis_01124000_15min_fit.zip', # example file
-  attr.file='../4_data_release/in/attr_metab_fits.csv') {
+  zip.dir='../4_data_release/cache/models/post',
+  attr.file.base='../4_data_release/in/attr_metab_fits.csv') {
   
-  unzippeds <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'fits'))
-  attr.file.base <- attr.file
-  for(unzipped in unzippeds) {
-    
-    # sketch out and read in the attribute table
-    attr.file <- gsub('fits\\.csv', paste0('fits_',tools::file_path_sans_ext(basename(unzipped)),'.csv'), attr.file.base)
-    attribute_skeleton(unzipped, attr.file)
-    attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
-    
+  # get a list of all relevant data files
+  zip_files <- dir(zip.dir, pattern='_[[:digit:]]+min_fit.zip$', full.names=TRUE)
   
+  # read in a single example data file of each type for structure
+  zip.file <- zip_files[1]
+  unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
+  data_dfs <- lapply(setNames(unzipped, basename(unzipped)), function(unzfile) {
+    if(basename(unzfile) != 'warnings.txt') {
+      readr::read_tsv(unzfile)
+    } else {
+      readLines(unzfile)
+    }})
+   
+  unzipped_all <- unlist(lapply(zip_files, function(zf) {
+    unzip(zipfile=zf, exdir=file.path(tempdir(), 'fits', tools::file_path_sans_ext(basename(zf))), overwrite=FALSE)
+  }))
+  ranges_dfs <- lapply(setNames(nm=names(data_dfs)), function(ftype) {
+    filesoftype <- grep(paste0("/", ftype, "$"), unzipped_all, value=TRUE)
+    ranges_df <- if(ftype != 'warnings.txt') {
+      coltypes <- paste(unname(c(character='c', integer='i', numeric='d', Date='D', logical='l')[sapply(data_dfs[[ftype]], class)]), collapse='')
+      multifile_ranges(filesoftype, coltypes=coltypes)
+    } else {
+      unique(unlist(lapply(filesoftype, readLines)))
+    }
+  })
+
+  all_attr_dfs <- bind_rows(lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
+    one.attr.file <- gsub('fits', paste0('fits_', tools::file_path_sans_ext(ftype)), attr.file.base)
+    ranges_df <- ranges_dfs[[ftype]]
+    if(ftype != 'warnings.txt') {
+      # sketch out and read in the attribute table
+      attribute_skeleton(data_dfs[[ftype]], one.attr.file)
+      attr_df <- readr::read_csv(one.attr.file, col_types = 'cccnnc')
+      
+      # need to write descriptions
+      # need to merge in range info
+      
+    } else {
+      attr_df <- tibble::tribble(
+        ~`attr-label`, ~`attr-def`,
+        NA, NA) %>%
+        mutate('attr-defs'=NA, 'data-min'=NA, 'data-max'=NA, 'data-units'=NA)
+      
+      # need to write descriptions
+      # need to merge in range info
+    }
     # write the final attribute table
-    readr::write_csv(attr_df, path=attr.file.1fit)  
-  }
+    readr::write_csv(attr_df, path=one.attr.file)
+    return(attr_df)
+  }))
   
+  readr::write_csv(all_attr_dfs, path=attr.file.base)
 }
 
 attributes_metab_diagnostics <- function(
@@ -318,6 +325,43 @@ compute_ranges <- function(data_df) {
   return(ranges_df)
 }
 
+multifile_ranges <- function(files, coltypes='Tdddddd') {
+  ranges_dfs <- bind_rows(lapply(seq_along(files), function(i) {
+    unz.file <- files[i]
+    message(paste0(i, '\t', unz.file))
+    data_df <- readr::read_tsv(unz.file, col_types = coltypes)
+    
+    ranges_1df <- summarise_all(data_df, .funs=funs(
+      min=if(any(!is.na(.))) min(., na.rm=TRUE) else NA,
+      max=if(any(!is.na(.))) max(., na.rm=TRUE) else NA,
+      numNA = length(which(is.na(.))),
+      numTot = length(.))) %>% 
+      mutate(file = basename(unz.file))
+    return(ranges_1df)
+  }))
+  # reduce the df of 1 row per site to 1 row for all sites (min, max, etc. in different columns)
+  ranges_df_wide <- as.data.frame(lapply(setNames(nm=setdiff(names(ranges_dfs), 'file')), function(colname) {
+    range_col <- ranges_dfs[[colname]]
+    type <- strsplit(colname, '_')[[1]] %>% .[length(.)]
+    switch(
+      type,
+      min=format_bound(if(any(!is.na(range_col))) min(range_col, na.rm=TRUE) else NA),
+      max=format_bound(if(any(!is.na(range_col))) max(range_col, na.rm=TRUE) else NA),
+      numNA=format_bound(sum(range_col)),
+      numTot=format_bound(sum(range_col))
+    )
+  }), stringsAsFactors=FALSE)
+  # merge min, max into their own columns, 1 row per variable
+  ranges_df <- full_join(
+    full_join(transmute(gather(ranges_df_wide, var_stat, `data-min`, ends_with('_min')), `attr-label`=gsub('_min', '', var_stat), `data-min`=`data-min`),
+              transmute(gather(ranges_df_wide, var_stat, `data-max`, ends_with('_max')), `attr-label`=gsub('_max', '', var_stat), `data-max`=`data-max`),
+              by='attr-label'),
+    full_join(transmute(gather(ranges_df_wide, var_stat, `num-NA`, ends_with('_numNA')), `attr-label`=gsub('_numNA', '', var_stat), `num-NA`=`num-NA`),
+              transmute(gather(ranges_df_wide, var_stat, `num-tot`, ends_with('_numTot')), `attr-label`=gsub('_numTot', '', var_stat), `num-tot`=`num-tot`),
+              by='attr-label'),
+    by='attr-label')
+}
+
 format_bound <- function(bound) {
   if(is(bound, 'Date')) {
     format(bound, format='%Y-%m-%d')
@@ -329,6 +373,8 @@ format_bound <- function(bound) {
     bound
   } else if(is(bound, 'numeric')) {
     format(bound, digits=4, scientific=FALSE)
+  } else if(is(bound, 'logical')) {
+    as.character(bound)
   } else {
     stop(paste('unrecognized class:', paste(class(bound), collapse=', ')))
   }
