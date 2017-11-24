@@ -135,9 +135,6 @@ attributes_metab_inputs <- function(
   attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
   
   # fill out the attribute table
-  vsunits <- function(variable) {
-    unique(mda.streams::get_var_src_codes(metab_var==variable, out='metab_units'))
-  }
   defs_df <- tibble::tribble(
     ~`attr-label`, ~`attr-def`,
     'solar.time', 'Mean solar time, which puts the solar zenith at almost exactly noon but also preserves equal timesteps within and across days. Timezone is nominally UTC but is meaningless.',
@@ -149,7 +146,7 @@ attributes_metab_inputs <- function(
     'discharge', 'River discharge.'
   ) %>%
     mutate(
-      'data-units'=sapply(`attr-label`, vsunits) %>% ifelse(.=='', NA, .),
+      'data-units'=sapply(`attr-label`, var_src_units) %>% ifelse(.=='', NA, .),
       'attr-defs'='streamMetabolizer R package')
   
   # combine the skeleton, ranges, and definitions
@@ -249,39 +246,43 @@ attributes_daily_preds <- function(
   ranges_df <- compute_ranges(dailies)
   
   # write in / look up definitions & units
-  vsunits <- function(variable) {
-    unique(get_var_src_codes(metab_var==variable, out='metab_units'))
-  }
+  est <- 'Model estimate of %s. Value is the median of the MCMC distribution.'
+  CI <- '%s bound %son the 95%% credible interval around the daily %s estimate. Value is the %sth quantile of the post-warmup MCMC distribution.'
+  n_eff <- 'Estimated effective sample size of the MCMC sampling for %s.'
+  Rhat <- 'R-hat statistic of the MCMC sampling for %s. Values near or below 1.05 indicate convergence of the MCMC chains.'
+  gpp <- 'GPP, the mean rate of gross primary productivity for this date'
+  er <- 'ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration'
+  K600 <- 'K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date'
   defs_df <- tibble::tribble(
     ~`attr-label`, ~`attr-def`, ~`data-units`,
     'site_name', 'Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.', NA,
     'resolution', 'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.', 'minutes',
     'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
-    'GPP', 'Model estimate of mean gross primary productivity (GPP) for this date. Value is the median of the MCMC distribution.', vsunits('GPP.daily'),
-    'GPP.lower', 'Lower bound on the 95% credible interval around the daily GPP estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('GPP.daily'),
-    'GPP.upper', 'Upper bound on the 95% credible interval around the daily GPP estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('GPP.daily'),
-    'GPP.n_eff', 'Effective sample size of the MCMC sampling for GPP.', 'samples',
-    'GPP.Rhat', 'R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.', NA,
-    'ER', 'Model estimate of mean ecosystem respiration (ER) for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.', vsunits('ER.daily'),
-    'ER.lower', 'Lower bound (most negative or least positive) on the 95% credible interval around the daily ER estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
-    'ER.upper', 'Upper bound (least negative or most positive) on the 95% credible interval around the daily ER estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
-    'ER.n_eff', 'Effective sample size of the MCMC sampling for ER.', 'samples',
-    'ER.Rhat', 'R-hat statistic of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.', NA,
-    'K600', 'Model estimate of mean reaeration rate coefficient for this date. Value is the median of the MCMC distribution.', vsunits('K600.daily'),
-    'K600.lower', 'Lower bound on the 95% credible interval around the daily K600 estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('K600.daily'),
-    'K600.upper', 'Upper bound on the 95% credible interval around the daily K600 estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('K600.daily'),
-    'K600.n_eff', 'Effective sample size of the MCMC sampling for K600.', 'samples',
-    'K600.Rhat', 'R-hat statistic of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.', vsunits('K600.daily'),
-    'DO.obs', 'Mean dissolved oxygen concentration for the date (4am to 3:59am).', vsunits('DO.obs'),
-    'DO.sat', 'Mean theoretical saturation concentration for the date (4am to 3:59am).',vsunits('DO.sat'),
-    'DO.amp', 'Amplitude (difference between minimum and maximum observed values) of the dissolved oxygen concentrations for the date (4am to 3:59am).', vsunits('DO.obs'),
-    'DO.psat', 'Mean percent dissolved oxygen saturation for the date (4am to 3:59am).', vsunits('DO.psat'),
-    'depth', 'Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).', vsunits('depth'),
-    'temp.water', 'Mean water temperature for the date (4am to 3:59pm).', vsunits('temp.water'),
+    'GPP', sprintf(est, gpp), var_src_units('GPP.daily'),
+    'GPP.lower', sprintf(CI, 'Lower', '', 'GPP', '2.5'), var_src_units('GPP.daily'),
+    'GPP.upper', sprintf(CI, 'Upper', '', 'GPP', '97.5'), var_src_units('GPP.daily'),
+    'GPP.n_eff', sprintf(n_eff, 'GPP'), 'samples',
+    'GPP.Rhat', sprintf(Rhat, 'GPP'), NA,
+    'ER', sprintf(est, er), var_src_units('ER.daily'),
+    'ER.lower', sprintf(CI, 'Lower', '(most negative or least positive) ', 'ER', '2.5'), var_src_units('ER.daily'),
+    'ER.upper', sprintf(CI, 'Upper', '(least negative or most positive) ', 'ER', '97.5'), var_src_units('ER.daily'),
+    'ER.n_eff', sprintf(n_eff, 'ER'), 'samples',
+    'ER.Rhat', sprintf(Rhat, 'ER'), NA,
+    'K600', sprintf(est, K600), var_src_units('K600.daily'),
+    'K600.lower', sprintf(CI, 'Lower', '', 'K600', '2.5'), var_src_units('K600.daily'),
+    'K600.upper', sprintf(CI, 'Upper', '', 'K600', '97.5'), var_src_units('K600.daily'),
+    'K600.n_eff', sprintf(n_eff, 'K600'), 'samples',
+    'K600.Rhat', sprintf(Rhat, 'K600'), NA,
+    'DO.obs', 'Mean dissolved oxygen concentration for the date (4am to 3:59am).', var_src_units('DO.obs'),
+    'DO.sat', 'Mean theoretical saturation concentration for the date (4am to 3:59am).',var_src_units('DO.sat'),
+    'DO.amp', 'Amplitude (difference between minimum and maximum observed values) of the dissolved oxygen concentrations for the date (4am to 3:59am).', var_src_units('DO.obs'),
+    'DO.psat', 'Mean percent dissolved oxygen saturation for the date (4am to 3:59am).', var_src_units('DO.psat'),
+    'depth', 'Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).', var_src_units('depth'),
+    'temp.water', 'Mean water temperature for the date (4am to 3:59pm).', var_src_units('temp.water'),
     'day.length', 'Time elapsed between first and last observations of light > 0 for the date (4am to 3:59pm).', 'hours',
-    'light', 'Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).', vsunits('light'),
-    'discharge', 'Mean discharge for the date (4am to 3:59pm).', vsunits('discharge'),
-    'velocity', 'Mean water velocity for the date (4am to 3:59pm).', vsunits('velocity')
+    'light', 'Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).', var_src_units('light'),
+    'discharge', 'Mean discharge for the date (4am to 3:59pm).', var_src_units('discharge'),
+    'velocity', 'Mean water velocity for the date (4am to 3:59pm).', var_src_units('velocity')
   ) %>% mutate(
     'attr-defs'=sapply(`attr-label`, function(attr_label) {
       switch(
@@ -312,6 +313,11 @@ render_metab_metadata <- function(out_file, child_yaml, points_list, attrs_csv, 
 }
 
 #### helpers ####
+
+# look up a metab units from the mda.streams var_src_codes
+var_src_units <- function(variable) {
+  unique(mda.streams::get_var_src_codes(metab_var==variable, out='metab_units'))
+}
 
 # compute data-min and data-max (plus other diagnostics for intermediate use)
 compute_ranges <- function(data_df) {
