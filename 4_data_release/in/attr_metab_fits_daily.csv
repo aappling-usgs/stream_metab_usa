@@ -41,5 +41,5 @@ K600_daily_predlog_97.5pct,"The 97.5th quantile of the post-warmup MCMC distribu
 K600_daily_predlog_n_eff,"Estimated effective sample size of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.",streamMetabolizer R package,2.001,8000,samples
 K600_daily_predlog_Rhat,"R-hat statistic of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space. Values near or below 1.05 indicate convergence of the MCMC chains.",streamMetabolizer R package,0.9981,427.7,NA
 valid_day,"TRUE if the input data for this date were considered valid and included in the model, FALSE otherwise",streamMetabolizer R package,0,1,NA
-warnings,date-specific warnings about input data,streamMetabolizer R package,NA,NA,NA
-errors,date-specific problems with input data that prevented model fitting on that date and drove the setting of valid_day to FALSE,streamMetabolizer R package,data don't end when expected,uneven timesteps; timestep != 0.04166667 d; NAs in DO.sat; NAs in temp.water,NA
+warnings,Date-specific warnings about input data,streamMetabolizer R package,NA,NA,NA
+errors,Date-specific problems with input data that prevented model fitting on that date and drove the setting of valid_day to FALSE,streamMetabolizer R package,data don't end when expected,uneven timesteps; timestep != 0.04166667 d; NAs in DO.sat; NAs in temp.water,NA

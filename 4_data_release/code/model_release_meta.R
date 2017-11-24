@@ -161,6 +161,7 @@ attributes_metab_inputs <- function(
 }
 
 attributes_metab_fits <- function(
+  ent.file='../4_data_release/in/attr_metab_fits.rds',
   zip.dir='../4_data_release/cache/models/post',
   attr.file.base='../4_data_release/in/attr_metab_fits.csv') {
   
@@ -200,7 +201,7 @@ attributes_metab_fits <- function(
   timeind <- 'Integer index of a time within a date, e.g., observations 15-minute resolution are given time_index values of 1 (4am) through 96 (3:45am nearly 24 hours later).'
   
   # create one attr file per entity type
-  all_attr_dfs <- bind_rows(lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
+  all_attr_dfs <- lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
     one.attr.file <- gsub('fits', paste0('fits_', tools::file_path_sans_ext(ftype)), attr.file.base)
     ranges_df <- if(ftype != 'warnings.txt') {
       ranges_dfs[[ftype]]
@@ -270,8 +271,8 @@ attributes_metab_fits <- function(
           'K600_daily_predlog_n_eff', sprintf('%s %s.', n_eff, K600pl), 'samples',
           'K600_daily_predlog_Rhat', sprintf('%s %s. %s', Rhat[1], K600pl, Rhat[2]), NA,
           'valid_day', 'TRUE if the input data for this date were considered valid and included in the model, FALSE otherwise', NA,
-          'warnings', 'date-specific warnings about input data', NA,
-          'errors', 'date-specific problems with input data that prevented model fitting on that date and drove the setting of valid_day to FALSE', NA
+          'warnings', 'Date-specific warnings about input data', NA,
+          'errors', 'Date-specific problems with input data that prevented model fitting on that date and drove the setting of valid_day to FALSE', NA
         ) %>% mutate(
           'attr-defs'='streamMetabolizer R package'
         )
@@ -393,11 +394,36 @@ attributes_metab_fits <- function(
     # write the final attribute table
     readr::write_csv(attr_df_combined, path=one.attr.file)
     return(attr_df_combined)
-  }))
+  })
   
-  # write a combined attribute table for all 5 entity types...mostly to satisfy
-  # remake's requirement that this function produce the attr.file.base file
-  readr::write_csv(all_attr_dfs, path=attr.file.base)
+  # write as RDS a list containing separate entity information for each entity type
+  ent_list <- list(entities=lapply(names(all_attr_dfs), function(ent_name) {
+    attr_df <- all_attr_dfs[[ent_name]]
+    c(list(
+      'data-name'=ent_name,
+      'data-description'=paste(switch(
+        ent_name, 
+        'daily.tsv'=c(
+          'MCMC distribution statistics for daily model estimates of mean gross primary production (GPP), ecosystem respiration (ER), and the gas exchange rate coefficient (K600).'),
+        'KQ_overall.tsv'=c(
+          'MCMC distribution statistics for K600_daily_sigma, a parameter relating specific daily estimates of the gas exchange rate coefficient (K600)',
+          'to predictions from the piecewise linear relationship between K600 and discharge (Q) fitted for each monitoring site.'),
+        'overall.tsv'=c(
+          'MCMC distribution statistics for the fitted standard deviations of observation errors and process errors and',
+          'the overall log posterior probability of all parameter values in each MCMC iteration.'
+        ),
+        'KQ_binned.tsv'=c(
+          'MCMC distribution statistics for parameters describing the ln(K600) values of the endpoints and breakpoints of the piecewise linear relationship',
+          'between K600 and Q fitted for each monitoring site.'
+        ),
+        'warnings.txt'=c(
+          'Warnings given by the Stan software for each MCMC model run.'
+        )
+      ), collapse=' ')),
+      as.attr_list(attr_df)
+    )
+  }))
+  saveRDS(ent_list, ent.file)
 }
 
 attributes_metab_diagnostics <- function(
@@ -492,6 +518,12 @@ render_metab_metadata <- function(out_file, child_yaml, points_list, attrs_csv, 
   child_list <- yaml::yaml.load_file(child_yaml)
   attr_list <- as.attr_list(attrs_csv)
   render(filename=out_file, data=child_list, points_list, attr_list, parent_list, template=template)
+}
+
+render_metab_fit_metadata <- function(out_file, child_yaml, points_list, ent_rds, parent_list, template) {
+  child_list <- yaml::yaml.load_file(child_yaml)
+  ent_list <- readRDS(ent_rds)
+  render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
 }
 
 #### helpers ####
