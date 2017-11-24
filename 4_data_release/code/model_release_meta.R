@@ -174,9 +174,11 @@ attributes_metab_fits <- function(
     if(basename(unzfile) != 'warnings.txt') {
       readr::read_tsv(unzfile)
     } else {
-      readLines(unzfile)
+      data_frame(text=readLines(unzfile))
     }})
-   
+  
+  # unzip all the files and compute ranges for each column of the many files of
+  # each entity type (ftype)
   unzipped_all <- unlist(lapply(zip_files, function(zf) {
     unzip(zipfile=zf, exdir=file.path(tempdir(), 'fits', tools::file_path_sans_ext(basename(zf))), overwrite=FALSE)
   }))
@@ -190,31 +192,104 @@ attributes_metab_fits <- function(
     }
   })
 
+  # create one attr file per entity type
   all_attr_dfs <- bind_rows(lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
     one.attr.file <- gsub('fits', paste0('fits_', tools::file_path_sans_ext(ftype)), attr.file.base)
     ranges_df <- ranges_dfs[[ftype]]
-    if(ftype != 'warnings.txt') {
-      # sketch out and read in the attribute table
-      attribute_skeleton(data_dfs[[ftype]], one.attr.file)
-      attr_df <- readr::read_csv(one.attr.file, col_types = 'cccnnc')
+    
+    # prepare the basic attr_df skeleton as a data_frame
+    attribute_skeleton(data_dfs[[ftype]], one.attr.file)
+    attr_df <- readr::read_csv(one.attr.file, col_types = 'cccnnc')
+    
+    # write definitions for each column
+    defs_df <- switch(
+      ftype,
+      'daily.tsv'={
+        distrib <- 'of the post-warmup MCMC distribution of'
+        n_eff <- 'Estimated effective sample size of the MCMC sampling for'
+        Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
+        gpp <- 'the GPP_daily parameter, where GPP_daily is the mean gross primary productivity (GPP) for this date'
+        er <- 'the ER_daily parameter, where ER_daily is the mean ecosystem respiration (ER) for this date, and more negative values indicate more respiration'
+        K600 <- 'the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date'
+        defs_df <- tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
+          'GPP_daily_mean', sprintf('Mean %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_se_mean', sprintf('Standard error of the mean %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_sd', sprintf('Standard deviation %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_25pct', sprintf('The 25th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_50pct', sprintf('The 50th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_75pct', sprintf('The 75th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_n_eff', sprintf('%s %s.', n_eff, gpp), 'samples',
+          'GPP_daily_Rhat', sprintf('%s %s. %s', Rhat[1], gpp, Rhat[2]), NA,
+          'ER_daily_mean', sprintf('Mean %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_se_mean', sprintf('Standard error of the mean %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_sd', sprintf('Standard deviation %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_25pct', sprintf('The 25th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_50pct', sprintf('The 50th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_75pct', sprintf('The 75th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_n_eff', sprintf('%s %s.', n_eff, er), 'samples',
+          'ER_daily_Rhat', sprintf('%s %s. %s', Rhat[1], er, Rhat[2]), NA,
+          'K600_daily_mean', sprintf('Mean %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_sd', sprintf('Standard deviation %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_25pct', sprintf('The 25th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_50pct', sprintf('The 50th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_75pct', sprintf('The 75th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_n_eff', sprintf('%s %s.', n_eff, K600), 'samples',
+          'K600_daily_Rhat', sprintf('%s %s. %s', Rhat[1], K600, Rhat[2]), NA,
+          'K600_daily_predlog_mean', sprintf('Mean %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_sd', sprintf('Standard deviation %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_25pct', sprintf('The 25th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_50pct', sprintf('The 50th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_75pct', sprintf('The 75th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_predlog_n_eff', sprintf('%s %s.', n_eff, K600), 'samples',
+          'K600_daily_predlog_Rhat', sprintf('%s %s. %s', Rhat[1], K600, Rhat[2]), NA,
+          'valid_day', 'TRUE if the input data for this date were considered valid and included in the model, FALSE otherwise', NA,
+          'warnings', 'date-specific warnings about input data', NA,
+          'errors', 'date-specific problems with input data that prevented model fitting on that date and drove the setting of valid_day to FALSE', NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer R package'
+        )
+        
+      },
+      'KQ_overall.tsv'={
+        
+      },
+      'overall.tsv'={
       
-      # need to write descriptions
-      # need to merge in range info
-      
-    } else {
-      attr_df <- tibble::tribble(
-        ~`attr-label`, ~`attr-def`,
-        NA, NA) %>%
-        mutate('attr-defs'=NA, 'data-min'=NA, 'data-max'=NA, 'data-units'=NA)
-      
-      # need to write descriptions
-      # need to merge in range info
-    }
+      },
+      'KQ_binned.tsv'={
+        
+      },
+      'warnings.txt'={
+        
+      }
+    )
+    
+    # combine the skeleton, ranges, and definitions
+    attr_df_combined <- attr_df %>%
+      select(`attr-label`) %>%
+      left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+      left_join(defs_df, by='attr-label') %>%
+      select(names(attr_df))
+    
     # write the final attribute table
-    readr::write_csv(attr_df, path=one.attr.file)
+    readr::write_csv(attr_df_combined, path=one.attr.file)
     return(attr_df)
   }))
   
+  # write a combined attribute table for all 5 entity types...mostly to satisfy
+  # remake's requirement that this function produce the attr.file.base file
   readr::write_csv(all_attr_dfs, path=attr.file.base)
 }
 
