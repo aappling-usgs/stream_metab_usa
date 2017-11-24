@@ -192,12 +192,28 @@ attributes_metab_fits <- function(
     }
   })
 
+  # define variables for definitions text that will be used more than once
+  distrib <- 'of the post-warmup MCMC distribution of'
+  n_eff <- 'Estimated effective sample size of the MCMC sampling for'
+  Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
+  dateind <- 'Integer index of a 24-hour period from 4am to the following 3:59am, modeled as a single date.'
+  timeind <- 'Integer index of a time within a date, e.g., observations 15-minute resolution are given time_index values of 1 (4am) through 96 (3:45am nearly 24 hours later).'
+  
   # create one attr file per entity type
   all_attr_dfs <- bind_rows(lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
     one.attr.file <- gsub('fits', paste0('fits_', tools::file_path_sans_ext(ftype)), attr.file.base)
-    ranges_df <- ranges_dfs[[ftype]]
+    ranges_df <- if(ftype != 'warnings.txt') {
+      ranges_dfs[[ftype]]
+    } else {
+      data_frame(
+        `attr-label`='text',
+        `data-min`=NA,
+        `data-max`=NA
+      )
+    }
     
     # prepare the basic attr_df skeleton as a data_frame
+    if(file.exists(one.attr.file)) file.remove(one.attr.file)
     attribute_skeleton(data_dfs[[ftype]], one.attr.file)
     attr_df <- readr::read_csv(one.attr.file, col_types = 'cccnnc')
     
@@ -205,13 +221,12 @@ attributes_metab_fits <- function(
     defs_df <- switch(
       ftype,
       'daily.tsv'={
-        distrib <- 'of the post-warmup MCMC distribution of'
-        n_eff <- 'Estimated effective sample size of the MCMC sampling for'
-        Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
         gpp <- 'the GPP_daily parameter, where GPP_daily is the mean gross primary productivity (GPP) for this date'
         er <- 'the ER_daily parameter, where ER_daily is the mean ecosystem respiration (ER) for this date, and more negative values indicate more respiration'
         K600 <- 'the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date'
-        defs_df <- tibble::tribble(
+        K600pl <- 'the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date\'s mean daily discharge, in natural log space'
+        units_K600pl <- sprintf('ln(%s)', var_src_units('K600.daily'))
+        tibble::tribble(
           ~`attr-label`, ~`attr-def`, ~`data-units`,
           'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
           'GPP_daily_mean', sprintf('Mean %s %s.', distrib, gpp), var_src_units('GPP.daily'),
@@ -244,16 +259,16 @@ attributes_metab_fits <- function(
           'K600_daily_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
           'K600_daily_n_eff', sprintf('%s %s.', n_eff, K600), 'samples',
           'K600_daily_Rhat', sprintf('%s %s. %s', Rhat[1], K600, Rhat[2]), NA,
-          'K600_daily_predlog_mean', sprintf('Mean %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_sd', sprintf('Standard deviation %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_25pct', sprintf('The 25th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_50pct', sprintf('The 50th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_75pct', sprintf('The 75th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
-          'K600_daily_predlog_n_eff', sprintf('%s %s.', n_eff, K600), 'samples',
-          'K600_daily_predlog_Rhat', sprintf('%s %s. %s', Rhat[1], K600, Rhat[2]), NA,
+          'K600_daily_predlog_mean', sprintf('Mean %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_sd', sprintf('Standard deviation %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_25pct', sprintf('The 25th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_50pct', sprintf('The 50th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_75pct', sprintf('The 75th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_n_eff', sprintf('%s %s.', n_eff, K600pl), 'samples',
+          'K600_daily_predlog_Rhat', sprintf('%s %s. %s', Rhat[1], K600pl, Rhat[2]), NA,
           'valid_day', 'TRUE if the input data for this date were considered valid and included in the model, FALSE otherwise', NA,
           'warnings', 'date-specific warnings about input data', NA,
           'errors', 'date-specific problems with input data that prevented model fitting on that date and drove the setting of valid_day to FALSE', NA
@@ -263,15 +278,107 @@ attributes_metab_fits <- function(
         
       },
       'KQ_overall.tsv'={
+        K600sig <- 'the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates'
+        tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date_index', sprintf('Always NA in KQ_overall.tsv. %s', dateind), NA,
+          'time_index', sprintf('Always NA in KQ_overall.tsv. %s', timeind), NA,
+          'index', 'Always 1 in KQ_overall.tsv. Integer index of the parameters described in later columns.', NA,
+          'K600_daily_sigma_mean', sprintf('Mean %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_sd', sprintf('Standard deviation %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_25pct', sprintf('The 25th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_50pct', sprintf('The 50th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_75pct', sprintf('The 75th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_n_eff', sprintf('%s %s.', n_eff, K600sig), 'samples',
+          'K600_daily_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], K600sig, Rhat[2]), NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer R package'
+        )
         
       },
       'overall.tsv'={
-      
+        OIsig <- 'the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations)'
+        units_OIsig <- var_src_units('DO.obs')
+        PIsig <- 'the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model)'
+        units_PIsig <- var_src_units('GPP.daily')
+        lp <- 'log posterior density for each MCMC iteration'
+        units_lp <- NA
+        tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date_index', sprintf('Always NA in overall.tsv. %s', dateind), NA,
+          'time_index', sprintf('Always NA in overall.tsv. %s', timeind), NA,
+          'index', 'Always 1 in overall.tsv. Integer index of the parameters described in later columns.', NA,
+          'err_obs_iid_sigma_mean', sprintf('Mean %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_se_mean', sprintf('Standard error of the mean %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_sd', sprintf('Standard deviation %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_25pct', sprintf('The 25th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_50pct', sprintf('The 50th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_75pct', sprintf('The 75th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_n_eff', sprintf('%s %s.', n_eff, OIsig), 'samples',
+          'err_obs_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], OIsig, Rhat[2]), NA,
+          'err_proc_iid_sigma_mean', sprintf('Mean %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_se_mean', sprintf('Standard error of the mean %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_sd', sprintf('Standard deviation %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_25pct', sprintf('The 25th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_50pct', sprintf('The 50th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_75pct', sprintf('The 75th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_n_eff', sprintf('%s %s.', n_eff, PIsig), 'samples',
+          'err_proc_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], PIsig, Rhat[2]), NA,
+          'lp___mean', sprintf('Mean %s %s.', distrib, lp), units_lp,
+          'lp___se_mean', sprintf('Standard error of the mean %s %s.', distrib, lp), units_lp,
+          'lp___sd', sprintf('Standard deviation %s %s.', distrib, lp), units_lp,
+          'lp___2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, lp), units_lp,
+          'lp___25pct', sprintf('The 25th quantile %s %s.', distrib, lp), units_lp,
+          'lp___50pct', sprintf('The 50th quantile %s %s.', distrib, lp), units_lp,
+          'lp___75pct', sprintf('The 75th quantile %s %s.', distrib, lp), units_lp,
+          'lp___97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, lp), units_lp,
+          'lp___n_eff', sprintf('%s %s.', n_eff, lp), 'samples',
+          'lp___Rhat', sprintf('%s %s. %s', Rhat[1], lp, Rhat[2]), NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer and Stan R packages'
+        )
+        
       },
       'KQ_binned.tsv'={
+        kqn <- paste(
+          'one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q).',
+          'Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q).',
+          'The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.')
+        units_kqn <- sprintf('ln(%s)', var_src_units('K600.daily'))
+        tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date_index', sprintf('Always NA in KQ_binned.tsv. %s', dateind), NA,
+          'time_index', sprintf('Always NA in KQ_binned.tsv. %s', timeind), NA,
+          'index', 'Integer index of the lnK600_lnQ_nodes parameter described in later columns, where each indexed value of lnK600_lnQ_nodes gives a junction point of the fitted piecewise linear relationship between K600 and discharge (Q).', NA,
+          'lnK600_lnQ_nodes_mean', sprintf('Mean %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_se_mean', sprintf('Standard error of the mean %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_sd', sprintf('Standard deviation %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_25pct', sprintf('The 25th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_50pct', sprintf('The 50th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_75pct', sprintf('The 75th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_n_eff', sprintf('%s %s.', n_eff, kqn), 'samples',
+          'lnK600_lnQ_nodes_Rhat', sprintf('%s %s. %s', Rhat[1], kqn, Rhat[2]), NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer R package'
+        )
         
       },
       'warnings.txt'={
+        data_frame(
+          `attr-label`='text',
+          `attr-def`='Warnings produced for this model run (all dates) by the Stan MCMC software.',
+          `attr-defs`='streamMetabolizer and Stan R packages',
+          `data-units`=NA
+        )
         
       }
     )
@@ -285,7 +392,7 @@ attributes_metab_fits <- function(
     
     # write the final attribute table
     readr::write_csv(attr_df_combined, path=one.attr.file)
-    return(attr_df)
+    return(attr_df_combined)
   }))
   
   # write a combined attribute table for all 5 entity types...mostly to satisfy

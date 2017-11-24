@@ -1,0 +1,2 @@
+attr-label,attr-def,attr-defs,data-min,data-max,data-units
+text,Warnings produced for this model run (all dates) by the Stan MCMC software.,streamMetabolizer and Stan R packages,NA,NA,NA
