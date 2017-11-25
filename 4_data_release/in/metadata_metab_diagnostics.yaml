@@ -1,0 +1,22 @@
+meddle-version: "0.0.4"
+document-created: "20171110"
+document-creator: "Alison P Appling"
+
+# ----data release----
+title: Key diagnostics and overall assessments of metabolism model performance
+
+# ----dataset details----
+process-description: >-
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018), and these key diagnostics and assessments were derived from the model outputs.
+  Raw outputs and additional diagnostics are available in the "fit" output files included in this data release.
+process-date: 2017-04-06 15:04:23 +0000
+data-name: diagnostics.zip.
+data-description: Key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.
+build-environment: PC
+file-format: tab-separated values, compressed from text to .zip format
+metadata-date: !expr format(Sys.time(),'%Y%m%d')
+
+# ----spatial data----
+indirect-spatial: U.S.A.
+latitude-res: Not applicable
+longitude-res: Not applicable

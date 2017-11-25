@@ -430,11 +430,52 @@ attributes_metab_diagnostics <- function(
   zip.file='../4_data_release/cache/models/post/diagnostics.zip',
   attr.file='../4_data_release/in/attr_metab_diagnostics.csv') {
   
-  # sketch out and read in the attribute table
-  attribute_skeleton(unzipped, attr.file)
-  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
-  
+  # read in the data file
   unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'diagnostics'))
+  data_df <- readr::read_tsv(unzipped)
+  
+  # sketch out the skeleton attribute table
+  attr.temp <- tempfile(fileext='.csv')
+  attribute_skeleton(data_df, attr.temp)
+  attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
+  
+  # compute data-min and data-max (plus other diagnostics for intermediate use)
+  ranges_df <- compute_ranges(data_df)
+  
+  # fill out the attribute table
+  Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
+  K600sig <- 'the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates'
+  OIsig <- 'the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations)'
+  PIsig <- 'the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model)'
+  K600 <- 'the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600'
+  
+  defs_df <- tibble::tribble(
+    ~`attr-label`, ~`attr-def`, ~`data-units`,
+    'site', 'Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.', NA,
+    'resolution', 'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.', 'minutes',
+    'K600_daily_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], K600sig, Rhat[2]), NA,
+    'err_obs_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], OIsig, Rhat[2]), NA,
+    'err_proc_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], PIsig, Rhat[2]), NA,
+    'K_median', sprintf('Median of the daily estimates of %s.', K600), var_src_units('K600.daily'),
+    'K_range', sprintf('Difference between the 90th and 10th quantiles of the daily estimates of %s.', K600), var_src_units('K600.daily'),
+    'neg_GPP', 'Percent of daily estimates of gross primary productive (GPP) that are negative (unrealistic).', 'percent',
+    'pos_ER', 'Percent of daily estimates of ecosystem respiration (ER) that are positive (unrealistic).', 'percent',
+    'model_confidence', 'Assessment of overall confidence in the model based on other diagnostics in this table, scored as "L" (low confidence), "M" (medium), or "H" (high).', NA,
+    'site_min_confidence', 'Least-confident assessment rating of all models for this site, scored as "L" (low confidence), "M" (medium), or "H" (high).', NA,
+    'site_confidence', 'All unique assessment ratings of models for this site, scored as "L" (low confidence), "M" (medium), or "H" (high), and comma-separated when multiple unique ratings exist.', NA
+  ) %>%
+    mutate(
+      'attr-defs'='streamMetabolizer R package')
+  
+  # combine the skeleton, ranges, and definitions
+  attr_df_combined <- attr_df %>%
+    select(`attr-label`) %>%
+    left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+    left_join(defs_df, by='attr-label') %>%
+    select(names(attr_df))
+  
+  # write the final attribute table
+  readr::write_csv(attr_df_combined, path=attr.file)
 }
 
 attributes_daily_preds <- function(
