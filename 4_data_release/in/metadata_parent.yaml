@@ -16,8 +16,8 @@ funding-credits: >-
   NSF grants DEB-1146283 and EF1442501 partially supported ROH.
   The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.
 purpose: To bring metabolism data to the world!
-start-date: SCRIPT 20070101
-end-date: SCRIPT 2016XXXX
+start-date: !expr format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[1]], '%Y-%m-%d'), '%Y%m%d')
+end-date: !expr format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[2]], '%Y-%m-%d'), '%Y%m%d')
 
 # ----cross references----
 cross-references:

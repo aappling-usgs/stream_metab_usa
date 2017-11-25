@@ -27,7 +27,12 @@ targets:
       - ../4_data_release/log/4_tasks_model_sites.ind
       - post_diagnostics
       - post_metabolism
-  
+      - post_config_meta
+      - post_inputs_meta
+      - post_fits_meta
+      - post_diagnostics_meta
+      - post_metabolism_meta
+
   # -- SB posting: create the items to host data and metadata --
 
   pc1_model_config:
@@ -132,9 +137,9 @@ targets:
     depends: ../4_data_release/log/4_tasks_model_sites.ind # we'll summarize all files like nwis_01124000_input.zip from this dir
     command: attributes_metab_inputs('../4_data_release/cache/models/post', target_name)
 
-  ../4_data_release/in/attr_metab_fits.csv:
+  ../4_data_release/in/attr_metab_fits.rds:
     depends: ../4_data_release/log/4_tasks_model_sites.ind # we'll summarize all files like nwis_01124000_15min_fit.zip from this dir
-    command: attributes_metab_fits('../4_data_release/cache/models/post', target_name)
+    command: attributes_metab_fits(target_name, '../4_data_release/cache/models/post', I('../4_data_release/in/attr_metab_fits.csv'))
 
   ../4_data_release/in/attr_metab_diagnostics.csv:
     command: attributes_metab_diagnostics('../4_data_release/cache/models/post/diagnostics.zip', target_name)
@@ -162,6 +167,24 @@ targets:
       parent_list=parent_metadata,
       template="../4_data_release/in/fgdc_template.xml")
   
+  ../4_data_release/out/fits.xml:
+    command: render_metab_fit_metadata(
+      out_file=target_name, 
+      child_yaml="../4_data_release/in/metadata_metab_fits.yaml",
+      points_list=points_meta,
+      ent_rds="../4_data_release/in/attr_metab_fits.rds",
+      parent_list=parent_metadata,
+      template="../4_data_release/in/fgdc_template_ents.xml")
+  
+  ../4_data_release/out/diagnostics.xml:
+    command: render_metab_metadata(
+      out_file=target_name, 
+      child_yaml="../4_data_release/in/metadata_metab_diagnostics.yaml",
+      points_list=points_meta,
+      attrs_csv="../4_data_release/in/attr_metab_diagnostics.csv",
+      parent_list=parent_metadata,
+      template="../4_data_release/in/fgdc_template.xml")
+  
   ../4_data_release/out/daily_predictions.xml:
     command: render_metab_metadata(
       out_file=target_name, 
@@ -183,6 +206,16 @@ targets:
       sb.id=pc1_inputs,
       files='../4_data_release/out/inputs.xml')
     
+  post_fits_meta:
+    command: append_release_files(
+      sb.id=pc1_model_fits,
+      files='../4_data_release/out/fits.xml')
+    
+  post_diagnostics_meta:
+    command: append_release_files(
+      sb.id=pc1_model_fits,
+      files='../4_data_release/out/diagnostics.xml')
+  
   post_metabolism_meta:
     command: append_release_files(
       sb.id=pc1_metabolism,

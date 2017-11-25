@@ -2,7 +2,7 @@ library(magrittr)
 library(xml2)
 
 #' @param file.out the file to write the template to
-create_fgdc_template <- function(file.out){
+create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   tempxml <- tempfile(fileext = '.xml')
   
   d <- xml_new_document()
@@ -156,15 +156,20 @@ create_fgdc_template <- function(file.out){
     xml_add_sibling('denflat','298.257')
   
   #### 5 Entity and Attribute Information ####
-  dt <- xml_add_child(mt, 'eainfo') %>% 
-    xml_add_child('detailed')
-  dt %>% 
-    xml_add_child('enttyp') %>% 
-    xml_add_child('enttypl','{{data-name}}') %>% 
-    xml_add_sibling('enttypd','{{data-description}}') %>% 
-    xml_add_sibling('enttypds','Producer Defined')
-  
-  dt %>% xml_add_child('attr-template')
+  if(multiple_entities) {
+    xml_add_child(mt, 'eainfo') %>% 
+      xml_add_child('ent-template')
+  } else {
+    dt <- xml_add_child(mt, 'eainfo') %>% 
+      xml_add_child('detailed')
+    dt %>% 
+      xml_add_child('enttyp') %>% 
+      xml_add_child('enttypl','{{data-name}}') %>% 
+      xml_add_sibling('enttypd','{{data-description}}') %>% 
+      xml_add_sibling('enttypds','Producer Defined')
+    
+    dt %>% xml_add_child('attr-template')
+  }
   
   #### 6 Distribution ####
   ds <- xml_add_child(mt, 'distinfo')
@@ -248,6 +253,16 @@ create_fgdc_template <- function(file.out){
   origin.template = "{{#authors}}
   <origin>{{.}}</origin>
   {{/authors}}"
+  
+  ent.template = "{{#entities}}<detailed>
+      <enttyp>
+        <enttypl>{{data-name}}</enttypl>
+        <enttypd>{{data-description}}</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr-template/>
+    </detailed>\n{{/entities}}"
+  
   attr.template = "{{#attributes}}<attr>
         <attrlabl>{{attr-label}}</attrlabl>
         <attrdef>{{attr-def}}</attrdef>
@@ -291,7 +306,8 @@ create_fgdc_template <- function(file.out){
     gsub(pattern = '&gt;',replacement = '>',.) %>% 
     gsub(pattern = '&lt;',replacement = '<',.) %>% 
     gsub(pattern = '<place-template/>', replacement = place.template) %>% 
-    sub(pattern = '<origin-template/>', replacement = origin.template) %>% 
+    gsub(pattern = '<origin-template/>', replacement = origin.template) %>% 
+    gsub(pattern = '<ent-template/>', replacement = ent.template) %>%
     gsub(pattern = '<attr-template/>', replacement = attr.template) %>% 
     gsub(pattern = '<lworkcit-template/>', replacement = lworkcit.template) %>% 
     gsub(pattern = '<crossref-template/>', replacement = crossref.template) %>% 

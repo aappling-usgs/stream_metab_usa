@@ -109,48 +109,17 @@ attributes_metab_inputs <- function(
   zip.dir='../4_data_release/cache/models/post',
   attr.file='../4_data_release/in/attr_metab_inputs.csv') {
   
-  # read in the data file
-  unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
-  data_df <- readr::read_tsv(unzipped)
-  
+  # get a list of all relevant data files
   input_files <- dir(zip.dir, pattern='_input.zip$', full.names=TRUE)
-  # read and summarize each file
-  ranges_dfs <- bind_rows(lapply(seq_along(input_files), function(i) {
-    zip.file <- input_files[i]
-    message(paste0(i, '\t', zip.file))
-    unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'inputs'))
-    data_df <- readr::read_tsv(unzipped, col_types = 'Tdddddd')
-    unlink(unzipped)
-    
-    ranges_1df <- summarise_all(data_df, .funs=funs(
-      min(., na.rm=TRUE),
-      max(., na.rm=TRUE),
-      numNA = length(which(is.na(.))),
-      numTot = length(.))) %>% 
-      mutate(file = basename(zip.file))
-    return(ranges_1df)
-  }))
-  # reduce the df of 1 row per site to 1 row for all sites (min, max, etc. in different columns)
-  ranges_df_wide <- as.data.frame(lapply(setNames(nm=setdiff(names(ranges_dfs), 'file')), function(colname) {
-    range_col <- ranges_dfs[[colname]]
-    type <- strsplit(colname, '_')[[1]] %>% .[length(.)]
-    switch(
-      type,
-      min=format_bound(min(range_col, na.rm=TRUE)),
-      max=format_bound(max(range_col, na.rm=TRUE)),
-      numNA=format_bound(sum(range_col)),
-      numTot=format_bound(sum(range_col))
-    )
-  }), stringsAsFactors=FALSE)
-  # merge min, max into their own columns, 1 row per variable
-  ranges_df <- full_join(
-    full_join(transmute(gather(ranges_df_wide, var_stat, `data-min`, ends_with('_min')), `attr-label`=gsub('_min', '', var_stat), `data-min`=`data-min`),
-              transmute(gather(ranges_df_wide, var_stat, `data-max`, ends_with('_max')), `attr-label`=gsub('_max', '', var_stat), `data-max`=`data-max`),
-              by='attr-label'),
-    full_join(transmute(gather(ranges_df_wide, var_stat, `num-NA`, ends_with('_numNA')), `attr-label`=gsub('_numNA', '', var_stat), `num-NA`=`num-NA`),
-              transmute(gather(ranges_df_wide, var_stat, `num-tot`, ends_with('_numTot')), `attr-label`=gsub('_numTot', '', var_stat), `num-tot`=`num-tot`),
-              by='attr-label'),
-    by='attr-label')
+  
+  # read in a single example data file for structure
+  zip.file <- input_files[1]
+  unzipped1 <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
+  data_df <- readr::read_tsv(unzipped1, col_types = 'Tdddddd')
+  
+  # unzip them all, then compute collective ranges
+  unzipped <- unlist(lapply(input_files, unzip, exdir=file.path(tempdir(), 'inputs')))
+  ranges_df <- multifile_ranges(unzipped, coltypes='Tdddddd')
   
   # # do some data checks. some sites have some bad data, mostly not too bad  
   # nrow(filter(ranges_dfs, DO.obs_min < 0)) # 5 sites with negative DO.obs, though seldom hugely negative
@@ -166,9 +135,6 @@ attributes_metab_inputs <- function(
   attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
   
   # fill out the attribute table
-  vsunits <- function(variable) {
-    unique(mda.streams::get_var_src_codes(metab_var==variable, out='metab_units'))
-  }
   defs_df <- tibble::tribble(
     ~`attr-label`, ~`attr-def`,
     'solar.time', 'Mean solar time, which puts the solar zenith at almost exactly noon but also preserves equal timesteps within and across days. Timezone is nominally UTC but is meaningless.',
@@ -180,7 +146,7 @@ attributes_metab_inputs <- function(
     'discharge', 'River discharge.'
   ) %>%
     mutate(
-      'data-units'=sapply(`attr-label`, vsunits) %>% ifelse(.=='', NA, .),
+      'data-units'=sapply(`attr-label`, var_src_units) %>% ifelse(.=='', NA, .),
       'attr-defs'='streamMetabolizer R package')
   
   # combine the skeleton, ranges, and definitions
@@ -195,34 +161,321 @@ attributes_metab_inputs <- function(
 }
 
 attributes_metab_fits <- function(
-  zip.file='../4_data_release/cache/models/post/nwis_01124000_15min_fit.zip', # example file
-  attr.file='../4_data_release/in/attr_metab_fits.csv') {
+  ent.file='../4_data_release/in/attr_metab_fits.rds',
+  zip.dir='../4_data_release/cache/models/post',
+  attr.file.base='../4_data_release/in/attr_metab_fits.csv') {
   
-  unzippeds <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'fits'))
-  attr.file.base <- attr.file
-  for(unzipped in unzippeds) {
-    
-    # sketch out and read in the attribute table
-    attr.file <- gsub('fits\\.csv', paste0('fits_',tools::file_path_sans_ext(basename(unzipped)),'.csv'), attr.file.base)
-    attribute_skeleton(unzipped, attr.file)
-    attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
-    
+  # get a list of all relevant data files
+  zip_files <- dir(zip.dir, pattern='_[[:digit:]]+min_fit.zip$', full.names=TRUE)
   
+  # read in a single example data file of each type for structure
+  zip.file <- zip_files[1]
+  unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'config'))
+  data_dfs <- lapply(setNames(unzipped, basename(unzipped)), function(unzfile) {
+    if(basename(unzfile) != 'warnings.txt') {
+      readr::read_tsv(unzfile)
+    } else {
+      data_frame(text=readLines(unzfile))
+    }})
+  
+  # unzip all the files and compute ranges for each column of the many files of
+  # each entity type (ftype)
+  unzipped_all <- unlist(lapply(zip_files, function(zf) {
+    unzip(zipfile=zf, exdir=file.path(tempdir(), 'fits', tools::file_path_sans_ext(basename(zf))), overwrite=FALSE)
+  }))
+  ranges_dfs <- lapply(setNames(nm=names(data_dfs)), function(ftype) {
+    filesoftype <- grep(paste0("/", ftype, "$"), unzipped_all, value=TRUE)
+    ranges_df <- if(ftype != 'warnings.txt') {
+      coltypes <- paste(unname(c(character='c', integer='i', numeric='d', Date='D', logical='l')[sapply(data_dfs[[ftype]], class)]), collapse='')
+      multifile_ranges(filesoftype, coltypes=coltypes)
+    } else {
+      unique(unlist(lapply(filesoftype, readLines)))
+    }
+  })
+
+  # define variables for definitions text that will be used more than once
+  distrib <- 'of the post-warmup MCMC distribution of'
+  n_eff <- 'Estimated effective sample size of the MCMC sampling for'
+  Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
+  dateind <- 'Integer index of a 24-hour period from 4am to the following 3:59am, modeled as a single date.'
+  timeind <- 'Integer index of a time within a date, e.g., observations 15-minute resolution are given time_index values of 1 (4am) through 96 (3:45am nearly 24 hours later).'
+  
+  # create one attr file per entity type
+  all_attr_dfs <- lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
+    one.attr.file <- gsub('fits', paste0('fits_', tools::file_path_sans_ext(ftype)), attr.file.base)
+    ranges_df <- if(ftype != 'warnings.txt') {
+      ranges_dfs[[ftype]]
+    } else {
+      data_frame(
+        `attr-label`='text',
+        `data-min`=NA,
+        `data-max`=NA
+      )
+    }
+    
+    # prepare the basic attr_df skeleton as a data_frame
+    if(file.exists(one.attr.file)) file.remove(one.attr.file)
+    attribute_skeleton(data_dfs[[ftype]], one.attr.file)
+    attr_df <- readr::read_csv(one.attr.file, col_types = 'cccnnc')
+    
+    # write definitions for each column
+    defs_df <- switch(
+      ftype,
+      'daily.tsv'={
+        gpp <- 'the GPP_daily parameter, where GPP_daily is the mean gross primary productivity (GPP) for this date'
+        er <- 'the ER_daily parameter, where ER_daily is the mean ecosystem respiration (ER) for this date, and more negative values indicate more respiration'
+        K600 <- 'the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date'
+        K600pl <- 'the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date\'s mean daily discharge, in natural log space'
+        units_K600pl <- sprintf('ln(%s)', var_src_units('K600.daily'))
+        tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
+          'GPP_daily_mean', sprintf('Mean %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_se_mean', sprintf('Standard error of the mean %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_sd', sprintf('Standard deviation %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_25pct', sprintf('The 25th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_50pct', sprintf('The 50th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_75pct', sprintf('The 75th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, gpp), var_src_units('GPP.daily'),
+          'GPP_daily_n_eff', sprintf('%s %s.', n_eff, gpp), 'samples',
+          'GPP_daily_Rhat', sprintf('%s %s. %s', Rhat[1], gpp, Rhat[2]), NA,
+          'ER_daily_mean', sprintf('Mean %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_se_mean', sprintf('Standard error of the mean %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_sd', sprintf('Standard deviation %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_25pct', sprintf('The 25th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_50pct', sprintf('The 50th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_75pct', sprintf('The 75th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, er), var_src_units('ER.daily'),
+          'ER_daily_n_eff', sprintf('%s %s.', n_eff, er), 'samples',
+          'ER_daily_Rhat', sprintf('%s %s. %s', Rhat[1], er, Rhat[2]), NA,
+          'K600_daily_mean', sprintf('Mean %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_sd', sprintf('Standard deviation %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_25pct', sprintf('The 25th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_50pct', sprintf('The 50th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_75pct', sprintf('The 75th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600), var_src_units('K600.daily'),
+          'K600_daily_n_eff', sprintf('%s %s.', n_eff, K600), 'samples',
+          'K600_daily_Rhat', sprintf('%s %s. %s', Rhat[1], K600, Rhat[2]), NA,
+          'K600_daily_predlog_mean', sprintf('Mean %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_sd', sprintf('Standard deviation %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_25pct', sprintf('The 25th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_50pct', sprintf('The 50th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_75pct', sprintf('The 75th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600pl), units_K600pl,
+          'K600_daily_predlog_n_eff', sprintf('%s %s.', n_eff, K600pl), 'samples',
+          'K600_daily_predlog_Rhat', sprintf('%s %s. %s', Rhat[1], K600pl, Rhat[2]), NA,
+          'valid_day', 'TRUE if the input data for this date were considered valid and included in the model, FALSE otherwise', NA,
+          'warnings', 'Date-specific warnings about input data', NA,
+          'errors', 'Date-specific problems with input data that prevented model fitting on that date and drove the setting of valid_day to FALSE', NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer R package'
+        )
+        
+      },
+      'KQ_overall.tsv'={
+        K600sig <- 'the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates'
+        tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date_index', sprintf('Always NA in KQ_overall.tsv. %s', dateind), NA,
+          'time_index', sprintf('Always NA in KQ_overall.tsv. %s', timeind), NA,
+          'index', 'Always 1 in KQ_overall.tsv. Integer index of the parameters described in later columns.', NA,
+          'K600_daily_sigma_mean', sprintf('Mean %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_se_mean', sprintf('Standard error of the mean %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_sd', sprintf('Standard deviation %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_25pct', sprintf('The 25th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_50pct', sprintf('The 50th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_75pct', sprintf('The 75th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, K600sig), var_src_units('K600.daily'),
+          'K600_daily_sigma_n_eff', sprintf('%s %s.', n_eff, K600sig), 'samples',
+          'K600_daily_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], K600sig, Rhat[2]), NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer R package'
+        )
+        
+      },
+      'overall.tsv'={
+        OIsig <- 'the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations)'
+        units_OIsig <- var_src_units('DO.obs')
+        PIsig <- 'the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model)'
+        units_PIsig <- var_src_units('GPP.daily')
+        lp <- 'log posterior density for each MCMC iteration'
+        units_lp <- NA
+        tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date_index', sprintf('Always NA in overall.tsv. %s', dateind), NA,
+          'time_index', sprintf('Always NA in overall.tsv. %s', timeind), NA,
+          'index', 'Always 1 in overall.tsv. Integer index of the parameters described in later columns.', NA,
+          'err_obs_iid_sigma_mean', sprintf('Mean %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_se_mean', sprintf('Standard error of the mean %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_sd', sprintf('Standard deviation %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_25pct', sprintf('The 25th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_50pct', sprintf('The 50th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_75pct', sprintf('The 75th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, OIsig), units_OIsig,
+          'err_obs_iid_sigma_n_eff', sprintf('%s %s.', n_eff, OIsig), 'samples',
+          'err_obs_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], OIsig, Rhat[2]), NA,
+          'err_proc_iid_sigma_mean', sprintf('Mean %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_se_mean', sprintf('Standard error of the mean %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_sd', sprintf('Standard deviation %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_25pct', sprintf('The 25th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_50pct', sprintf('The 50th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_75pct', sprintf('The 75th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, PIsig), units_PIsig,
+          'err_proc_iid_sigma_n_eff', sprintf('%s %s.', n_eff, PIsig), 'samples',
+          'err_proc_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], PIsig, Rhat[2]), NA,
+          'lp___mean', sprintf('Mean %s %s.', distrib, lp), units_lp,
+          'lp___se_mean', sprintf('Standard error of the mean %s %s.', distrib, lp), units_lp,
+          'lp___sd', sprintf('Standard deviation %s %s.', distrib, lp), units_lp,
+          'lp___2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, lp), units_lp,
+          'lp___25pct', sprintf('The 25th quantile %s %s.', distrib, lp), units_lp,
+          'lp___50pct', sprintf('The 50th quantile %s %s.', distrib, lp), units_lp,
+          'lp___75pct', sprintf('The 75th quantile %s %s.', distrib, lp), units_lp,
+          'lp___97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, lp), units_lp,
+          'lp___n_eff', sprintf('%s %s.', n_eff, lp), 'samples',
+          'lp___Rhat', sprintf('%s %s. %s', Rhat[1], lp, Rhat[2]), NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer and Stan R packages'
+        )
+        
+      },
+      'KQ_binned.tsv'={
+        kqn <- paste(
+          'one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q).',
+          'Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q).',
+          'The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.')
+        units_kqn <- sprintf('ln(%s)', var_src_units('K600.daily'))
+        tibble::tribble(
+          ~`attr-label`, ~`attr-def`, ~`data-units`,
+          'date_index', sprintf('Always NA in KQ_binned.tsv. %s', dateind), NA,
+          'time_index', sprintf('Always NA in KQ_binned.tsv. %s', timeind), NA,
+          'index', 'Integer index of the lnK600_lnQ_nodes parameter described in later columns, where each indexed value of lnK600_lnQ_nodes gives a junction point of the fitted piecewise linear relationship between K600 and discharge (Q).', NA,
+          'lnK600_lnQ_nodes_mean', sprintf('Mean %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_se_mean', sprintf('Standard error of the mean %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_sd', sprintf('Standard deviation %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_2.5pct', sprintf('The 2.5th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_25pct', sprintf('The 25th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_50pct', sprintf('The 50th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_75pct', sprintf('The 75th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_97.5pct', sprintf('The 97.5th quantile %s %s.', distrib, kqn), units_kqn,
+          'lnK600_lnQ_nodes_n_eff', sprintf('%s %s.', n_eff, kqn), 'samples',
+          'lnK600_lnQ_nodes_Rhat', sprintf('%s %s. %s', Rhat[1], kqn, Rhat[2]), NA
+        ) %>% mutate(
+          'attr-defs'='streamMetabolizer R package'
+        )
+        
+      },
+      'warnings.txt'={
+        data_frame(
+          `attr-label`='text',
+          `attr-def`='Warnings produced for this model run (all dates) by the Stan MCMC software.',
+          `attr-defs`='streamMetabolizer and Stan R packages',
+          `data-units`=NA
+        )
+        
+      }
+    )
+    
+    # combine the skeleton, ranges, and definitions
+    attr_df_combined <- attr_df %>%
+      select(`attr-label`) %>%
+      left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+      left_join(defs_df, by='attr-label') %>%
+      select(names(attr_df))
+    
     # write the final attribute table
-    readr::write_csv(attr_df, path=attr.file.1fit)  
-  }
+    readr::write_csv(attr_df_combined, path=one.attr.file)
+    return(attr_df_combined)
+  })
   
+  # write as RDS a list containing separate entity information for each entity type
+  ent_list <- list(entities=lapply(names(all_attr_dfs), function(ent_name) {
+    attr_df <- all_attr_dfs[[ent_name]]
+    c(list(
+      'data-name'=ent_name,
+      'data-description'=paste(switch(
+        ent_name, 
+        'daily.tsv'=c(
+          'MCMC distribution statistics for daily model estimates of mean gross primary production (GPP), ecosystem respiration (ER), and the gas exchange rate coefficient (K600).'),
+        'KQ_overall.tsv'=c(
+          'MCMC distribution statistics for K600_daily_sigma, a parameter relating specific daily estimates of the gas exchange rate coefficient (K600)',
+          'to predictions from the piecewise linear relationship between K600 and discharge (Q) fitted for each monitoring site.'),
+        'overall.tsv'=c(
+          'MCMC distribution statistics for the fitted standard deviations of observation errors and process errors and',
+          'the overall log posterior probability of all parameter values in each MCMC iteration.'
+        ),
+        'KQ_binned.tsv'=c(
+          'MCMC distribution statistics for parameters describing the ln(K600) values of the endpoints and breakpoints of the piecewise linear relationship',
+          'between K600 and Q fitted for each monitoring site.'
+        ),
+        'warnings.txt'=c(
+          'Warnings given by the Stan software for each MCMC model run.'
+        )
+      ), collapse=' ')),
+      as.attr_list(attr_df)
+    )
+  }))
+  saveRDS(ent_list, ent.file)
 }
 
 attributes_metab_diagnostics <- function(
   zip.file='../4_data_release/cache/models/post/diagnostics.zip',
   attr.file='../4_data_release/in/attr_metab_diagnostics.csv') {
   
-  # sketch out and read in the attribute table
-  attribute_skeleton(unzipped, attr.file)
-  attr_df <- readr::read_csv(attr.file, col_types = 'cccnnc')
-  
+  # read in the data file
   unzipped <- unzip(zipfile=zip.file, exdir=file.path(tempdir(), 'diagnostics'))
+  data_df <- readr::read_tsv(unzipped)
+  
+  # sketch out the skeleton attribute table
+  attr.temp <- tempfile(fileext='.csv')
+  attribute_skeleton(data_df, attr.temp)
+  attr_df <- readr::read_csv(attr.temp, col_types = 'cccnnc')
+  
+  # compute data-min and data-max (plus other diagnostics for intermediate use)
+  ranges_df <- compute_ranges(data_df)
+  
+  # fill out the attribute table
+  Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
+  K600sig <- 'the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates'
+  OIsig <- 'the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations)'
+  PIsig <- 'the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model)'
+  K600 <- 'the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600'
+  
+  defs_df <- tibble::tribble(
+    ~`attr-label`, ~`attr-def`, ~`data-units`,
+    'site', 'Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.', NA,
+    'resolution', 'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.', 'minutes',
+    'K600_daily_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], K600sig, Rhat[2]), NA,
+    'err_obs_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], OIsig, Rhat[2]), NA,
+    'err_proc_iid_sigma_Rhat', sprintf('%s %s. %s', Rhat[1], PIsig, Rhat[2]), NA,
+    'K_median', sprintf('Median of the daily estimates of %s.', K600), var_src_units('K600.daily'),
+    'K_range', sprintf('Difference between the 90th and 10th quantiles of the daily estimates of %s.', K600), var_src_units('K600.daily'),
+    'neg_GPP', 'Percent of daily estimates of gross primary productive (GPP) that are negative (unrealistic).', 'percent',
+    'pos_ER', 'Percent of daily estimates of ecosystem respiration (ER) that are positive (unrealistic).', 'percent',
+    'model_confidence', 'Assessment of overall confidence in the model based on other diagnostics in this table, scored as "L" (low confidence), "M" (medium), or "H" (high).', NA,
+    'site_min_confidence', 'Least-confident assessment rating of all models for this site, scored as "L" (low confidence), "M" (medium), or "H" (high).', NA,
+    'site_confidence', 'All unique assessment ratings of models for this site, scored as "L" (low confidence), "M" (medium), or "H" (high), and comma-separated when multiple unique ratings exist.', NA
+  ) %>%
+    mutate(
+      'attr-defs'='streamMetabolizer R package')
+  
+  # combine the skeleton, ranges, and definitions
+  attr_df_combined <- attr_df %>%
+    select(`attr-label`) %>%
+    left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+    left_join(defs_df, by='attr-label') %>%
+    select(names(attr_df))
+  
+  # write the final attribute table
+  readr::write_csv(attr_df_combined, path=attr.file)
 }
 
 attributes_daily_preds <- function(
@@ -242,39 +495,43 @@ attributes_daily_preds <- function(
   ranges_df <- compute_ranges(dailies)
   
   # write in / look up definitions & units
-  vsunits <- function(variable) {
-    unique(get_var_src_codes(metab_var==variable, out='metab_units'))
-  }
+  est <- 'Model estimate of %s. Value is the median of the MCMC distribution.'
+  CI <- '%s bound %son the 95%% credible interval around the daily %s estimate. Value is the %sth quantile of the post-warmup MCMC distribution.'
+  n_eff <- 'Estimated effective sample size of the MCMC sampling for %s.'
+  Rhat <- 'R-hat statistic of the MCMC sampling for %s. Values near or below 1.05 indicate convergence of the MCMC chains.'
+  gpp <- 'GPP, the mean rate of gross primary productivity for this date'
+  er <- 'ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration'
+  K600 <- 'K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date'
   defs_df <- tibble::tribble(
     ~`attr-label`, ~`attr-def`, ~`data-units`,
     'site_name', 'Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.', NA,
     'resolution', 'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.', 'minutes',
     'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
-    'GPP', 'Model estimate of mean gross primary productivity (GPP) for this date. Value is the median of the MCMC distribution.', vsunits('GPP.daily'),
-    'GPP.lower', 'Lower bound on the 95% credible interval around the daily GPP estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('GPP.daily'),
-    'GPP.upper', 'Upper bound on the 95% credible interval around the daily GPP estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('GPP.daily'),
-    'GPP.n_eff', 'Effective sample size of the MCMC sampling for GPP.', 'samples',
-    'GPP.Rhat', 'R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.', NA,
-    'ER', 'Model estimate of mean ecosystem respiration (ER) for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.', vsunits('ER.daily'),
-    'ER.lower', 'Lower bound (most negative or least positive) on the 95% credible interval around the daily ER estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
-    'ER.upper', 'Upper bound (least negative or most positive) on the 95% credible interval around the daily ER estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('ER.daily'),
-    'ER.n_eff', 'Effective sample size of the MCMC sampling for ER.', 'samples',
-    'ER.Rhat', 'R-hat statistic of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.', NA,
-    'K600', 'Model estimate of mean reaeration rate coefficient for this date. Value is the median of the MCMC distribution.', vsunits('K600.daily'),
-    'K600.lower', 'Lower bound on the 95% credible interval around the daily K600 estimate. Value is the 2.5th quantile of the MCMC distribution.', vsunits('K600.daily'),
-    'K600.upper', 'Upper bound on the 95% credible interval around the daily K600 estimate. Value is the 97.5th quantile of the MCMC distribution.', vsunits('K600.daily'),
-    'K600.n_eff', 'Effective sample size of the MCMC sampling for K600.', 'samples',
-    'K600.Rhat', 'R-hat statistic of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.', vsunits('K600.daily'),
-    'DO.obs', 'Mean dissolved oxygen concentration for the date (4am to 3:59am).', vsunits('DO.obs'),
-    'DO.sat', 'Mean theoretical saturation concentration for the date (4am to 3:59am).',vsunits('DO.sat'),
-    'DO.amp', 'Amplitude (difference between minimum and maximum observed values) of the dissolved oxygen concentrations for the date (4am to 3:59am).', vsunits('DO.obs'),
-    'DO.psat', 'Mean percent dissolved oxygen saturation for the date (4am to 3:59am).', vsunits('DO.psat'),
-    'depth', 'Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).', vsunits('depth'),
-    'temp.water', 'Mean water temperature for the date (4am to 3:59pm).', vsunits('temp.water'),
+    'GPP', sprintf(est, gpp), var_src_units('GPP.daily'),
+    'GPP.lower', sprintf(CI, 'Lower', '', 'GPP', '2.5'), var_src_units('GPP.daily'),
+    'GPP.upper', sprintf(CI, 'Upper', '', 'GPP', '97.5'), var_src_units('GPP.daily'),
+    'GPP.n_eff', sprintf(n_eff, 'GPP'), 'samples',
+    'GPP.Rhat', sprintf(Rhat, 'GPP'), NA,
+    'ER', sprintf(est, er), var_src_units('ER.daily'),
+    'ER.lower', sprintf(CI, 'Lower', '(most negative or least positive) ', 'ER', '2.5'), var_src_units('ER.daily'),
+    'ER.upper', sprintf(CI, 'Upper', '(least negative or most positive) ', 'ER', '97.5'), var_src_units('ER.daily'),
+    'ER.n_eff', sprintf(n_eff, 'ER'), 'samples',
+    'ER.Rhat', sprintf(Rhat, 'ER'), NA,
+    'K600', sprintf(est, K600), var_src_units('K600.daily'),
+    'K600.lower', sprintf(CI, 'Lower', '', 'K600', '2.5'), var_src_units('K600.daily'),
+    'K600.upper', sprintf(CI, 'Upper', '', 'K600', '97.5'), var_src_units('K600.daily'),
+    'K600.n_eff', sprintf(n_eff, 'K600'), 'samples',
+    'K600.Rhat', sprintf(Rhat, 'K600'), NA,
+    'DO.obs', 'Mean dissolved oxygen concentration for the date (4am to 3:59am).', var_src_units('DO.obs'),
+    'DO.sat', 'Mean theoretical saturation concentration for the date (4am to 3:59am).',var_src_units('DO.sat'),
+    'DO.amp', 'Amplitude (difference between minimum and maximum observed values) of the dissolved oxygen concentrations for the date (4am to 3:59am).', var_src_units('DO.obs'),
+    'DO.psat', 'Mean percent dissolved oxygen saturation for the date (4am to 3:59am).', var_src_units('DO.psat'),
+    'depth', 'Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).', var_src_units('depth'),
+    'temp.water', 'Mean water temperature for the date (4am to 3:59pm).', var_src_units('temp.water'),
     'day.length', 'Time elapsed between first and last observations of light > 0 for the date (4am to 3:59pm).', 'hours',
-    'light', 'Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).', vsunits('light'),
-    'discharge', 'Mean discharge for the date (4am to 3:59pm).', vsunits('discharge'),
-    'velocity', 'Mean water velocity for the date (4am to 3:59pm).', vsunits('velocity')
+    'light', 'Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).', var_src_units('light'),
+    'discharge', 'Mean discharge for the date (4am to 3:59pm).', var_src_units('discharge'),
+    'velocity', 'Mean water velocity for the date (4am to 3:59pm).', var_src_units('velocity')
   ) %>% mutate(
     'attr-defs'=sapply(`attr-label`, function(attr_label) {
       switch(
@@ -304,7 +561,18 @@ render_metab_metadata <- function(out_file, child_yaml, points_list, attrs_csv, 
   render(filename=out_file, data=child_list, points_list, attr_list, parent_list, template=template)
 }
 
+render_metab_fit_metadata <- function(out_file, child_yaml, points_list, ent_rds, parent_list, template) {
+  child_list <- yaml::yaml.load_file(child_yaml)
+  ent_list <- readRDS(ent_rds)
+  render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
+}
+
 #### helpers ####
+
+# look up a metab units from the mda.streams var_src_codes
+var_src_units <- function(variable) {
+  unique(mda.streams::get_var_src_codes(metab_var==variable, out='metab_units'))
+}
 
 # compute data-min and data-max (plus other diagnostics for intermediate use)
 compute_ranges <- function(data_df) {
@@ -318,6 +586,43 @@ compute_ranges <- function(data_df) {
   return(ranges_df)
 }
 
+multifile_ranges <- function(files, coltypes='Tdddddd') {
+  ranges_dfs <- bind_rows(lapply(seq_along(files), function(i) {
+    unz.file <- files[i]
+    message(paste0(i, '\t', unz.file))
+    data_df <- readr::read_tsv(unz.file, col_types = coltypes)
+    
+    ranges_1df <- summarise_all(data_df, .funs=funs(
+      min=if(any(!is.na(.))) min(., na.rm=TRUE) else NA,
+      max=if(any(!is.na(.))) max(., na.rm=TRUE) else NA,
+      numNA = length(which(is.na(.))),
+      numTot = length(.))) %>% 
+      mutate(file = basename(unz.file))
+    return(ranges_1df)
+  }))
+  # reduce the df of 1 row per site to 1 row for all sites (min, max, etc. in different columns)
+  ranges_df_wide <- as.data.frame(lapply(setNames(nm=setdiff(names(ranges_dfs), 'file')), function(colname) {
+    range_col <- ranges_dfs[[colname]]
+    type <- strsplit(colname, '_')[[1]] %>% .[length(.)]
+    switch(
+      type,
+      min=format_bound(if(any(!is.na(range_col))) min(range_col, na.rm=TRUE) else NA),
+      max=format_bound(if(any(!is.na(range_col))) max(range_col, na.rm=TRUE) else NA),
+      numNA=format_bound(sum(range_col)),
+      numTot=format_bound(sum(range_col))
+    )
+  }), stringsAsFactors=FALSE)
+  # merge min, max into their own columns, 1 row per variable
+  ranges_df <- full_join(
+    full_join(transmute(gather(ranges_df_wide, var_stat, `data-min`, ends_with('_min')), `attr-label`=gsub('_min', '', var_stat), `data-min`=`data-min`),
+              transmute(gather(ranges_df_wide, var_stat, `data-max`, ends_with('_max')), `attr-label`=gsub('_max', '', var_stat), `data-max`=`data-max`),
+              by='attr-label'),
+    full_join(transmute(gather(ranges_df_wide, var_stat, `num-NA`, ends_with('_numNA')), `attr-label`=gsub('_numNA', '', var_stat), `num-NA`=`num-NA`),
+              transmute(gather(ranges_df_wide, var_stat, `num-tot`, ends_with('_numTot')), `attr-label`=gsub('_numTot', '', var_stat), `num-tot`=`num-tot`),
+              by='attr-label'),
+    by='attr-label')
+}
+
 format_bound <- function(bound) {
   if(is(bound, 'Date')) {
     format(bound, format='%Y-%m-%d')
@@ -329,6 +634,8 @@ format_bound <- function(bound) {
     bound
   } else if(is(bound, 'numeric')) {
     format(bound, digits=4, scientific=FALSE)
+  } else if(is(bound, 'logical')) {
+    as.character(bound)
   } else {
     stop(paste('unrecognized class:', paste(class(bound), collapse=', ')))
   }

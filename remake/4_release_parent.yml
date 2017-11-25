@@ -27,6 +27,8 @@ targets:
   
   ../4_data_release/in/fgdc_template.xml:
     command: create_fgdc_template(target_name)
+  ../4_data_release/in/fgdc_template_ents.xml:
+    command: create_fgdc_template(target_name, multiple_entities=TRUE)
   
   # points_metadata.yml is built in 4_release_spatial.yml, but we can't include
   # 4_release_spatial.yml in the present remake .yml because it would create
