@@ -126,7 +126,7 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
   }
   updated.data <- catchment.data %>% 
     mutate(site_name = make_site_name(site_no), data_source = feature.name) %>% 
-    select(site_name, ogc_fid)
+    select(site_name, data_source)
   raw.catchments@data <- updated.data
   catchments <- spTransform(raw.catchments, CRS(crs.string))
   return(catchments)
@@ -158,18 +158,21 @@ as.nwis_catchment <- function(shp.path, source.table){
   shp.dir <- dirname(shp.path)
   nwis.id <- strsplit(basename(shp.path), '[.]')[[1]][1]
   poly <- readOGR(dsn = shp.dir, layer = nwis.id, verbose = FALSE)
+  site.name <- mda.streams::make_site_name(nwis.id, 'nwis')
+  
   if (length(poly) > 1){
     poly <- poly[2, ] # is always the second feature when this happens
-    message(nwis.id, ' is goofy, subsetting to single polygon')
+    message(site.name , ' is goofy, subsetting to single polygon')
   } 
-  site.name <- mda.streams::make_site_name(nwis.id, 'nwis')
-  poly.source <- filter(source.table, site.name == tedlist) %>% .$Citation
+  
+  poly.source <- filter(source.table, site.name == tedlist) %>% .$Citation %>% as.character()
   if (length(poly.source) > 1){
-    browser()
-    stop('something wrong with ', site.name, ' in source table')
+    message(site.name, ' has multiple sources, using the first')
+    poly.source <- poly.source[1L]
   } else if (length(poly.source) == 0 | poly.source == "Working on it"){
     poly.source = "unknown"
+    message(site.name, ' source is unknown')
   }
-  poly@data <- data.frame(site_name = site.name, ogc_fid = 'NA', data_source = poly.source)
+  poly@data <- data.frame(site_name = site.name, data_source = poly.source)
   return(poly)
 }
