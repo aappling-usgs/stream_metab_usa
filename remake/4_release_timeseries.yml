@@ -44,6 +44,7 @@ targets:
     command: loop_model_tasks(I('4_tasks_timeseries'), tasks_timeseries_plan,
       '4_tasks_timeseries.yml', sleep_on_error=120)
     
+  # the daily predictors will get packaged with model predictions in 4_release_models.yml
   ../4_data_release/cache/models/daily_predictors.rds:
     depends: ../4_data_release/log/4_tasks_timeseries.ind
     command: combine_daily_predictors(target_name, metab.config)

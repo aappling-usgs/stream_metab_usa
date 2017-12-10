@@ -116,7 +116,7 @@ targets:
 
   # daily metabolism: combine model info and timeseries info into single
   # highly useful data.frame of many predictions & predictors, all sites.
-  # post it.
+  # post it. predictors come from 4_release_timeseries.yml
   
   ../4_data_release/cache/models/post/daily_predictions.zip:
     depends: ../4_data_release/log/4_tasks_model_info.ind
