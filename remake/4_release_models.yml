@@ -14,6 +14,7 @@ packages:
 sources:
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/model_release_tasks.R
+  - ../4_data_release/code/meta_attr_helpers.R
   - ../4_data_release/code/model_release_meta.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
