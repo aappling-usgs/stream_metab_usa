@@ -125,7 +125,7 @@ get_catchments <- function(sites, feature.name = c('epa_basins','gagesii_basins'
     catchment.data <- rename(catchment.data, site_no=gage_id)
   }
   updated.data <- catchment.data %>% 
-    mutate(site_name = make_site_name(site_no)) %>% 
+    mutate(site_name = make_site_name(site_no), data_source = feature.name) %>% 
     select(site_name, ogc_fid)
   raw.catchments@data <- updated.data
   catchments <- spTransform(raw.catchments, CRS(crs.string))
@@ -154,7 +154,7 @@ write_shapefile <- function(obj, layer){
 #' 
 #' @param shp.path the file path to a shapefile file relative to the \code{remake} directory
 #' @return an sp object for the catchment
-as.nwis_catchment <- function(shp.path){
+as.nwis_catchment <- function(shp.path, source.table){
   shp.dir <- dirname(shp.path)
   nwis.id <- strsplit(basename(shp.path), '[.]')[[1]][1]
   poly <- readOGR(dsn = shp.dir, layer = nwis.id, verbose = FALSE)
@@ -162,6 +162,14 @@ as.nwis_catchment <- function(shp.path){
     poly <- poly[2, ] # is always the second feature when this happens
     message(nwis.id, ' is goofy, subsetting to single polygon')
   } 
-  poly@data <- data.frame(site_name = mda.streams::make_site_name(nwis.id, 'nwis'), ogc_fid = 'NA')
+  site.name <- mda.streams::make_site_name(nwis.id, 'nwis')
+  poly.source <- filter(source.table, site.name == tedlist) %>% .$Citation
+  if (length(poly.source) > 1){
+    browser()
+    stop('something wrong with ', site.name, ' in source table')
+  } else if (length(poly.source) == 0 | poly.source == "Working on it"){
+    poly.source = "unknown"
+  }
+  poly@data <- data.frame(site_name = site.name, ogc_fid = 'NA', data_source = poly.source)
   return(poly)
 }

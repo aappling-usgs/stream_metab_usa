@@ -18,10 +18,13 @@ targets:
   1_user_catchments:
     depends: 
       - user.spatial.catchments
+      
+  source.table:
+    command: read.csv('../1_spatial/in/watershedSources04112017.csv')
 
 {{#sites}}
   sp.{{id}}:
-    command: as.nwis_catchment('{{dbf}}')
+    command: as.nwis_catchment('{{dbf}}', source.table)
     depends:
 {{#depends}}
       - '{{.}}'
