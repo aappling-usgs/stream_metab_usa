@@ -1,8 +1,6 @@
 target_default: 1_user_catchments
 
-# rendered with ....instructions here....
-include:
-  - 1_site_data.yml
+# rendered with ....template_spatial_remake.R using 1_user_catchments.yml.mustache
 
 packages:
   - dplyr
@@ -19,12 +17,12 @@ targets:
     depends: 
       - user.spatial.catchments
       
-  source.table:
+  watershed.sources:
     command: read.csv('../1_spatial/in/watershedSources.csv')
 
 {{#sites}}
   sp.{{id}}:
-    command: as.nwis_catchment('{{dbf}}', source.table)
+    command: as.nwis_catchment('{{dbf}}', watershed.sources)
     depends:
 {{#depends}}
       - '{{.}}'
