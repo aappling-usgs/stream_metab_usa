@@ -1,6 +1,6 @@
 target_default: 1_user_catchments
 
-# rendered with ....instructions here....
+# rendered with ....template_spatial_remake.R using 1_user_catchments.yml.mustache
 
 packages:
   - dplyr
@@ -16,9 +16,23 @@ targets:
   1_user_catchments:
     depends: 
       - user.spatial.catchments
+      
+  watershed.sources:
+    command: read.csv('../1_spatial/in/watershedSources.csv')
 
+  sp.01104430:
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01104430.dbf', watershed.sources)
+    depends:
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.cpg'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.prj'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.sbn'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.sbx'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.shp'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.shp.xml'
+      - '../1_spatial/cache/POWSTREAMS_NAD83/01104430.shx'
+    
   sp.01124000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01124000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01124000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.prj'
@@ -29,7 +43,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01124000.shx'
     
   sp.01125100:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01125100.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01125100.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.prj'
@@ -40,7 +54,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01125100.shx'
     
   sp.01184000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01184000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01184000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.prj'
@@ -51,7 +65,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01184000.shx'
     
   sp.01193050:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01193050.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01193050.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.prj'
@@ -62,7 +76,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01193050.shx'
     
   sp.01196500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01196500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01196500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.prj'
@@ -73,7 +87,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01196500.shx'
     
   sp.01201487:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01201487.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01201487.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.prj'
@@ -84,7 +98,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01201487.shx'
     
   sp.01208500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01208500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01208500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.prj'
@@ -95,7 +109,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01208500.shx'
     
   sp.01208990:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01208990.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01208990.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.prj'
@@ -106,7 +120,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01208990.shx'
     
   sp.01382210:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01382210.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01382210.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.prj'
@@ -117,7 +131,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01382210.shx'
     
   sp.01388000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01388000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01388000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.prj'
@@ -128,7 +142,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01388000.shx'
     
   sp.01400500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01400500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01400500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.prj'
@@ -139,7 +153,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01400500.shx'
     
   sp.01408500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01408500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01408500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.prj'
@@ -150,7 +164,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01408500.shx'
     
   sp.01433500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01433500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01433500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.prj'
@@ -161,7 +175,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01433500.shx'
     
   sp.01454700:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01454700.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01454700.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.prj'
@@ -172,7 +186,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01454700.shx'
     
   sp.01463500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01463500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01463500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.prj'
@@ -183,7 +197,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01463500.shx'
     
   sp.01473500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01473500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01473500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.prj'
@@ -194,7 +208,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01473500.shx'
     
   sp.01474500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01474500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01474500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.prj'
@@ -205,7 +219,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01474500.shx'
     
   sp.01480617:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01480617.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01480617.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.prj'
@@ -216,7 +230,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01480617.shx'
     
   sp.01480870:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01480870.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01480870.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.prj'
@@ -227,7 +241,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01480870.shx'
     
   sp.01481000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01481000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01481000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.prj'
@@ -238,7 +252,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01481000.shx'
     
   sp.01481500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01481500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01481500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.prj'
@@ -249,7 +263,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01481500.shx'
     
   sp.01484085:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01484085.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01484085.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.prj'
@@ -260,7 +274,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01484085.shx'
     
   sp.01484525:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01484525.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01484525.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.prj'
@@ -271,7 +285,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01484525.shx'
     
   sp.01487150:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01487150.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01487150.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.prj'
@@ -282,7 +296,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01487150.shx'
     
   sp.01493112:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01493112.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01493112.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.prj'
@@ -293,7 +307,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01493112.shx'
     
   sp.01540500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01540500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01540500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.prj'
@@ -304,7 +318,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01540500.shx'
     
   sp.01542500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01542500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01542500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.prj'
@@ -315,7 +329,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01542500.shx'
     
   sp.01544500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01544500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01544500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.prj'
@@ -326,7 +340,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01544500.shx'
     
   sp.01548303:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01548303.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01548303.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.prj'
@@ -337,7 +351,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01548303.shx'
     
   sp.01549700:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01549700.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01549700.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.prj'
@@ -348,7 +362,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01549700.shx'
     
   sp.01567000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01567000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01567000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.prj'
@@ -359,7 +373,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01567000.shx'
     
   sp.01570500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01570500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01570500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.prj'
@@ -370,7 +384,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01570500.shx'
     
   sp.01608500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01608500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01608500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.prj'
@@ -381,7 +395,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01608500.shx'
     
   sp.01611500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01611500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01611500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.prj'
@@ -392,7 +406,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01611500.shx'
     
   sp.01632900:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01632900.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01632900.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.prj'
@@ -403,7 +417,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01632900.shx'
     
   sp.01645704:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01645704.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01645704.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.prj'
@@ -414,7 +428,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01645704.shx'
     
   sp.01645762:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01645762.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01645762.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.prj'
@@ -425,7 +439,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01645762.shx'
     
   sp.01646000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.prj'
@@ -436,7 +450,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646000.shx'
     
   sp.01646305:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646305.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646305.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.prj'
@@ -447,7 +461,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646305.shx'
     
   sp.01646500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01646500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.prj'
@@ -458,7 +472,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01646500.shx'
     
   sp.01648010:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01648010.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01648010.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.prj'
@@ -469,7 +483,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01648010.shx'
     
   sp.01649190:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01649190.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01649190.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.prj'
@@ -480,7 +494,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01649190.shx'
     
   sp.01649500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01649500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01649500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.prj'
@@ -491,7 +505,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01649500.shx'
     
   sp.01650800:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01650800.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01650800.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.prj'
@@ -502,7 +516,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01650800.shx'
     
   sp.01654000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01654000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01654000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.prj'
@@ -513,7 +527,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01654000.shx'
     
   sp.01654500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01654500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01654500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.prj'
@@ -524,7 +538,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01654500.shx'
     
   sp.01656903:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01656903.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01656903.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.prj'
@@ -535,7 +549,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01656903.shx'
     
   sp.01658000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01658000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01658000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.prj'
@@ -546,7 +560,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01658000.shx'
     
   sp.01673000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01673000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01673000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.prj'
@@ -557,7 +571,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/01673000.shx'
     
   sp.02035000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02035000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02035000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.prj'
@@ -568,7 +582,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02035000.shx'
     
   sp.02042222:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02042222.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02042222.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.prj'
@@ -579,7 +593,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02042222.shx'
     
   sp.0209303205:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/0209303205.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/0209303205.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.prj'
@@ -590,7 +604,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/0209303205.shx'
     
   sp.02101726:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02101726.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02101726.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.prj'
@@ -601,7 +615,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02101726.shx'
     
   sp.02110400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.prj'
@@ -612,7 +626,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110400.shx'
     
   sp.02110500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.prj'
@@ -623,7 +637,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110500.shx'
     
   sp.02110550:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110550.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110550.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.prj'
@@ -634,7 +648,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110550.shx'
     
   sp.02110701:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110701.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110701.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.prj'
@@ -645,7 +659,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110701.shx'
     
   sp.02110704:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110704.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02110704.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.prj'
@@ -656,7 +670,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02110704.shx'
     
   sp.0212378405:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/0212378405.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/0212378405.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.prj'
@@ -667,7 +681,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/0212378405.shx'
     
   sp.02135000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02135000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02135000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.prj'
@@ -678,7 +692,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02135000.shx'
     
   sp.02148315:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02148315.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02148315.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.prj'
@@ -689,7 +703,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02148315.shx'
     
   sp.02156500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02156500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02156500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.prj'
@@ -700,7 +714,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02156500.shx'
     
   sp.02160105:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02160105.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02160105.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.prj'
@@ -711,7 +725,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02160105.shx'
     
   sp.02160700:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02160700.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02160700.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.prj'
@@ -722,7 +736,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02160700.shx'
     
   sp.02162035:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02162035.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02162035.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.prj'
@@ -733,7 +747,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02162035.shx'
     
   sp.02168504:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02168504.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02168504.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.prj'
@@ -744,7 +758,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02168504.shx'
     
   sp.02169000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02169000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02169000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.prj'
@@ -755,7 +769,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02169000.shx'
     
   sp.02171645:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02171645.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02171645.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.prj'
@@ -766,7 +780,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02171645.shx'
     
   sp.02198920:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02198920.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02198920.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.prj'
@@ -777,7 +791,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02198920.shx'
     
   sp.02198950:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02198950.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02198950.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.prj'
@@ -788,7 +802,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02198950.shx'
     
   sp.021989773:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/021989773.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/021989773.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.prj'
@@ -799,7 +813,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/021989773.shx'
     
   sp.021989792:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/021989792.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/021989792.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.prj'
@@ -810,7 +824,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/021989792.shx'
     
   sp.02203655:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203655.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203655.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.prj'
@@ -821,7 +835,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203655.shx'
     
   sp.02203700:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203700.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203700.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.prj'
@@ -832,7 +846,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203700.shx'
     
   sp.02203863:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203863.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203863.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.prj'
@@ -843,7 +857,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203863.shx'
     
   sp.02203900:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203900.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203900.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.prj'
@@ -854,7 +868,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203900.shx'
     
   sp.02203950:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203950.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203950.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.prj'
@@ -865,7 +879,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203950.shx'
     
   sp.02203960:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203960.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02203960.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.prj'
@@ -876,7 +890,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02203960.shx'
     
   sp.02204037:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02204037.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02204037.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.prj'
@@ -887,7 +901,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02204037.shx'
     
   sp.02207135:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02207135.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02207135.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.prj'
@@ -898,7 +912,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02207135.shx'
     
   sp.02207160:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02207160.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02207160.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.prj'
@@ -909,7 +923,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02207160.shx'
     
   sp.02208450:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02208450.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02208450.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.prj'
@@ -920,7 +934,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02208450.shx'
     
   sp.02208493:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02208493.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02208493.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.prj'
@@ -931,7 +945,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02208493.shx'
     
   sp.02217643:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02217643.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02217643.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.prj'
@@ -942,7 +956,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02217643.shx'
     
   sp.02231254:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02231254.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02231254.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.prj'
@@ -953,7 +967,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02231254.shx'
     
   sp.02234000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02234000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02234000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.prj'
@@ -964,7 +978,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02234000.shx'
     
   sp.02234500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02234500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02234500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.prj'
@@ -975,7 +989,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02234500.shx'
     
   sp.02236000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02236000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02236000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.prj'
@@ -986,7 +1000,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02236000.shx'
     
   sp.02236125:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02236125.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02236125.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.prj'
@@ -997,7 +1011,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02236125.shx'
     
   sp.02244040:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02244040.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02244040.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.prj'
@@ -1008,7 +1022,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02244040.shx'
     
   sp.02245260:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02245260.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02245260.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.prj'
@@ -1019,7 +1033,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02245260.shx'
     
   sp.02264000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02264000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02264000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.prj'
@@ -1030,7 +1044,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02264000.shx'
     
   sp.02264100:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02264100.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02264100.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.prj'
@@ -1041,7 +1055,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02264100.shx'
     
   sp.02266200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02266200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02266200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.prj'
@@ -1052,7 +1066,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02266200.shx'
     
   sp.02266300:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02266300.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02266300.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.prj'
@@ -1063,7 +1077,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02266300.shx'
     
   sp.02336120:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336120.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336120.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.prj'
@@ -1074,7 +1088,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336120.shx'
     
   sp.02336152:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336152.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336152.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.prj'
@@ -1085,7 +1099,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336152.shx'
     
   sp.023362095:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/023362095.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/023362095.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.prj'
@@ -1096,7 +1110,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/023362095.shx'
     
   sp.02336240:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336240.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336240.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.prj'
@@ -1107,7 +1121,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336240.shx'
     
   sp.02336300:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336300.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336300.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.prj'
@@ -1118,7 +1132,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336300.shx'
     
   sp.02336313:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336313.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336313.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.prj'
@@ -1129,7 +1143,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336313.shx'
     
   sp.02336340:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336340.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336340.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.prj'
@@ -1140,7 +1154,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336340.shx'
     
   sp.02336360:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336360.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336360.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.prj'
@@ -1151,7 +1165,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336360.shx'
     
   sp.02336410:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336410.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336410.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.prj'
@@ -1162,7 +1176,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336410.shx'
     
   sp.02336526:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336526.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336526.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.prj'
@@ -1173,7 +1187,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336526.shx'
     
   sp.02336728:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336728.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02336728.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.prj'
@@ -1184,7 +1198,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02336728.shx'
     
   sp.02337170:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02337170.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02337170.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.prj'
@@ -1195,7 +1209,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02337170.shx'
     
   sp.02344630:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02344630.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02344630.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.prj'
@@ -1206,7 +1220,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02344630.shx'
     
   sp.02397530:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02397530.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/02397530.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.prj'
@@ -1217,7 +1231,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/02397530.shx'
     
   sp.03007800:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03007800.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03007800.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.prj'
@@ -1228,7 +1242,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03007800.shx'
     
   sp.03025500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03025500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03025500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.prj'
@@ -1239,7 +1253,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03025500.shx'
     
   sp.03027500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03027500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03027500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.prj'
@@ -1250,7 +1264,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03027500.shx'
     
   sp.03034000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03034000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03034000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.prj'
@@ -1261,7 +1275,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03034000.shx'
     
   sp.03036000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03036000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03036000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.prj'
@@ -1272,7 +1286,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03036000.shx'
     
   sp.03058000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03058000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03058000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.prj'
@@ -1283,7 +1297,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03058000.shx'
     
   sp.03061000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03061000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03061000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.prj'
@@ -1294,7 +1308,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03061000.shx'
     
   sp.03067510:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03067510.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03067510.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.prj'
@@ -1305,7 +1319,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03067510.shx'
     
   sp.03072655:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03072655.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03072655.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.prj'
@@ -1316,7 +1330,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03072655.shx'
     
   sp.03073000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03073000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03073000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.prj'
@@ -1327,7 +1341,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03073000.shx'
     
   sp.03075070:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03075070.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03075070.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.prj'
@@ -1338,7 +1352,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03075070.shx'
     
   sp.03081000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03081000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03081000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.prj'
@@ -1349,7 +1363,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03081000.shx'
     
   sp.03083500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03083500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03083500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.prj'
@@ -1360,7 +1374,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03083500.shx'
     
   sp.03098600:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03098600.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03098600.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.prj'
@@ -1371,7 +1385,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03098600.shx'
     
   sp.03105500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03105500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03105500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.prj'
@@ -1382,7 +1396,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03105500.shx'
     
   sp.03106000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03106000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03106000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.prj'
@@ -1393,7 +1407,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03106000.shx'
     
   sp.03121850:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03121850.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03121850.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.prj'
@@ -1404,7 +1418,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03121850.shx'
     
   sp.03183500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03183500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03183500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.prj'
@@ -1415,7 +1429,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03183500.shx'
     
   sp.03219500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03219500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03219500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.prj'
@@ -1426,7 +1440,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03219500.shx'
     
   sp.03228300:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03228300.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03228300.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.prj'
@@ -1437,7 +1451,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03228300.shx'
     
   sp.03255349:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03255349.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03255349.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.prj'
@@ -1448,7 +1462,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03255349.shx'
     
   sp.03259757:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03259757.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03259757.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.prj'
@@ -1459,7 +1473,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03259757.shx'
     
   sp.03259813:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03259813.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03259813.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.prj'
@@ -1470,7 +1484,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03259813.shx'
     
   sp.03289200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03289200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03289200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.prj'
@@ -1481,7 +1495,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03289200.shx'
     
   sp.03292470:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292470.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292470.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.prj'
@@ -1492,7 +1506,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292470.shx'
     
   sp.03292474:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292474.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292474.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.prj'
@@ -1503,7 +1517,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292474.shx'
     
   sp.03292475:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292475.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292475.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.prj'
@@ -1514,7 +1528,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292475.shx'
     
   sp.03292480:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292480.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03292480.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.prj'
@@ -1525,7 +1539,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03292480.shx'
     
   sp.03293000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.prj'
@@ -1536,7 +1550,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293000.shx'
     
   sp.03293500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.prj'
@@ -1547,7 +1561,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293500.shx'
     
   sp.03293530:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293530.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03293530.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.prj'
@@ -1558,7 +1572,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03293530.shx'
     
   sp.03294570:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03294570.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03294570.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.prj'
@@ -1569,7 +1583,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03294570.shx'
     
   sp.03297900:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03297900.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03297900.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.prj'
@@ -1580,7 +1594,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03297900.shx'
     
   sp.03298000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.prj'
@@ -1591,7 +1605,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298000.shx'
     
   sp.03298135:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298135.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298135.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.prj'
@@ -1602,7 +1616,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298135.shx'
     
   sp.03298150:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298150.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298150.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.prj'
@@ -1613,7 +1627,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298150.shx'
     
   sp.03298200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.prj'
@@ -1624,7 +1638,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298200.shx'
     
   sp.03298250:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298250.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298250.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.prj'
@@ -1635,7 +1649,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298250.shx'
     
   sp.03298300:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298300.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03298300.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.prj'
@@ -1646,7 +1660,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03298300.shx'
     
   sp.03301900:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03301900.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03301900.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.prj'
@@ -1657,7 +1671,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03301900.shx'
     
   sp.03301940:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03301940.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03301940.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.prj'
@@ -1668,7 +1682,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03301940.shx'
     
   sp.03302000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.prj'
@@ -1679,7 +1693,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302000.shx'
     
   sp.03302030:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302030.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302030.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.prj'
@@ -1690,7 +1704,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302030.shx'
     
   sp.03302050:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302050.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03302050.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.prj'
@@ -1701,7 +1715,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03302050.shx'
     
   sp.03321500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03321500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03321500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.prj'
@@ -1712,7 +1726,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03321500.shx'
     
   sp.03339000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03339000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03339000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.prj'
@@ -1723,7 +1737,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03339000.shx'
     
   sp.03346500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03346500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03346500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.prj'
@@ -1734,7 +1748,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03346500.shx'
     
   sp.03353200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03353200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03353200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.prj'
@@ -1745,7 +1759,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03353200.shx'
     
   sp.03353420:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03353420.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03353420.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.prj'
@@ -1756,7 +1770,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03353420.shx'
     
   sp.03374100:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03374100.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03374100.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.prj'
@@ -1767,7 +1781,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03374100.shx'
     
   sp.03408500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03408500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03408500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.prj'
@@ -1778,7 +1792,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03408500.shx'
     
   sp.03409500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03409500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03409500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.prj'
@@ -1789,7 +1803,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03409500.shx'
     
   sp.03460795:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03460795.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03460795.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.prj'
@@ -1800,7 +1814,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03460795.shx'
     
   sp.03512000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03512000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03512000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.prj'
@@ -1811,7 +1825,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03512000.shx'
     
   sp.03539600:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03539600.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03539600.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.prj'
@@ -1822,7 +1836,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03539600.shx'
     
   sp.03539778:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03539778.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03539778.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.prj'
@@ -1833,7 +1847,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03539778.shx'
     
   sp.03597860:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03597860.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/03597860.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.prj'
@@ -1844,7 +1858,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/03597860.shx'
     
   sp.04024000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04024000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04024000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.prj'
@@ -1855,7 +1869,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04024000.shx'
     
   sp.04027000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04027000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04027000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.prj'
@@ -1866,7 +1880,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04027000.shx'
     
   sp.04040000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04040000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04040000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.prj'
@@ -1877,7 +1891,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04040000.shx'
     
   sp.04059500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04059500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04059500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.prj'
@@ -1888,7 +1902,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04059500.shx'
     
   sp.04067500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04067500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04067500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.prj'
@@ -1899,7 +1913,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04067500.shx'
     
   sp.04085108:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04085108.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04085108.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.prj'
@@ -1910,7 +1924,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04085108.shx'
     
   sp.040851385:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/040851385.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/040851385.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.prj'
@@ -1921,7 +1935,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/040851385.shx'
     
   sp.04085427:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04085427.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04085427.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.prj'
@@ -1932,7 +1946,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04085427.shx'
     
   sp.04087050:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087050.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087050.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.prj'
@@ -1943,7 +1957,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087050.shx'
     
   sp.04087119:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087119.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087119.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.prj'
@@ -1954,7 +1968,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087119.shx'
     
   sp.040871488:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/040871488.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/040871488.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.prj'
@@ -1965,7 +1979,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/040871488.shx'
     
   sp.04087170:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087170.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04087170.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.prj'
@@ -1976,7 +1990,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04087170.shx'
     
   sp.04092750:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04092750.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04092750.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.prj'
@@ -1987,7 +2001,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04092750.shx'
     
   sp.04095090:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04095090.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04095090.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.prj'
@@ -1998,7 +2012,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04095090.shx'
     
   sp.04101500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04101500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04101500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.prj'
@@ -2009,7 +2023,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04101500.shx'
     
   sp.04108660:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04108660.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04108660.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.prj'
@@ -2020,7 +2034,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04108660.shx'
     
   sp.04119400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04119400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04119400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.prj'
@@ -2031,7 +2045,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04119400.shx'
     
   sp.04121944:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04121944.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04121944.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.prj'
@@ -2042,7 +2056,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04121944.shx'
     
   sp.04121970:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04121970.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04121970.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.prj'
@@ -2053,7 +2067,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04121970.shx'
     
   sp.04124000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04124000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04124000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.prj'
@@ -2064,7 +2078,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04124000.shx'
     
   sp.04124200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04124200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04124200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.prj'
@@ -2075,7 +2089,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04124200.shx'
     
   sp.04125460:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04125460.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04125460.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.prj'
@@ -2086,7 +2100,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04125460.shx'
     
   sp.04125550:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04125550.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04125550.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.prj'
@@ -2097,7 +2111,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04125550.shx'
     
   sp.04136000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.prj'
@@ -2108,7 +2122,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136000.shx'
     
   sp.04136500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.prj'
@@ -2119,7 +2133,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136500.shx'
     
   sp.04136900:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136900.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04136900.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.prj'
@@ -2130,7 +2144,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04136900.shx'
     
   sp.04137005:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04137005.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04137005.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.prj'
@@ -2141,7 +2155,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04137005.shx'
     
   sp.04137500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04137500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04137500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.prj'
@@ -2152,7 +2166,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04137500.shx'
     
   sp.04142000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04142000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04142000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.prj'
@@ -2163,7 +2177,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04142000.shx'
     
   sp.041482663:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/041482663.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/041482663.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.prj'
@@ -2174,7 +2188,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/041482663.shx'
     
   sp.04157005:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04157005.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04157005.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.prj'
@@ -2185,7 +2199,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04157005.shx'
     
   sp.04165500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04165500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04165500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.prj'
@@ -2196,7 +2210,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04165500.shx'
     
   sp.04166500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04166500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04166500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.prj'
@@ -2207,7 +2221,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04166500.shx'
     
   sp.04167150:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04167150.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04167150.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.prj'
@@ -2218,7 +2232,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04167150.shx'
     
   sp.04168400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04168400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04168400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.prj'
@@ -2229,7 +2243,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04168400.shx'
     
   sp.04174500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04174500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04174500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.prj'
@@ -2240,7 +2254,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04174500.shx'
     
   sp.04176500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04176500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04176500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.prj'
@@ -2251,7 +2265,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04176500.shx'
     
   sp.04188496:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04188496.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04188496.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.prj'
@@ -2262,7 +2276,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04188496.shx'
     
   sp.04195500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04195500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04195500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.prj'
@@ -2273,7 +2287,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04195500.shx'
     
   sp.04199500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04199500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04199500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.prj'
@@ -2284,7 +2298,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04199500.shx'
     
   sp.04200500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04200500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04200500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.prj'
@@ -2295,7 +2309,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04200500.shx'
     
   sp.04208000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04208000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04208000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.prj'
@@ -2306,7 +2320,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04208000.shx'
     
   sp.04213152:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04213152.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04213152.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.prj'
@@ -2317,7 +2331,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04213152.shx'
     
   sp.04213500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04213500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04213500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.prj'
@@ -2328,7 +2342,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04213500.shx'
     
   sp.04231600:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04231600.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04231600.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.prj'
@@ -2339,7 +2353,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04231600.shx'
     
   sp.04249000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04249000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/04249000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.prj'
@@ -2350,7 +2364,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/04249000.shx'
     
   sp.05054000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05054000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05054000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.prj'
@@ -2361,7 +2375,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05054000.shx'
     
   sp.05057000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05057000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05057000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.prj'
@@ -2372,7 +2386,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05057000.shx'
     
   sp.05057200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05057200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05057200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.prj'
@@ -2383,7 +2397,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05057200.shx'
     
   sp.05082500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05082500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05082500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.prj'
@@ -2394,7 +2408,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05082500.shx'
     
   sp.05406457:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406457.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406457.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.prj'
@@ -2405,7 +2419,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406457.shx'
     
   sp.05406469:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406469.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406469.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.prj'
@@ -2416,7 +2430,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406469.shx'
     
   sp.05406479:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406479.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406479.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.prj'
@@ -2427,7 +2441,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406479.shx'
     
   sp.05406500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05406500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.prj'
@@ -2438,7 +2452,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05406500.shx'
     
   sp.05418400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05418400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05418400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.prj'
@@ -2449,7 +2463,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05418400.shx'
     
   sp.05420500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05420500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05420500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.prj'
@@ -2460,7 +2474,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05420500.shx'
     
   sp.05435943:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05435943.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05435943.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.prj'
@@ -2471,7 +2485,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05435943.shx'
     
   sp.05435950:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05435950.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05435950.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.prj'
@@ -2482,7 +2496,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05435950.shx'
     
   sp.05446500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05446500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05446500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.prj'
@@ -2493,7 +2507,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05446500.shx'
     
   sp.05447500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05447500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05447500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.prj'
@@ -2504,7 +2518,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05447500.shx'
     
   sp.05451080:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05451080.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05451080.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.prj'
@@ -2515,7 +2529,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05451080.shx'
     
   sp.05451210:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05451210.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05451210.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.prj'
@@ -2526,7 +2540,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05451210.shx'
     
   sp.05515500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05515500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05515500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.prj'
@@ -2537,7 +2551,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05515500.shx'
     
   sp.05518000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05518000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05518000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.prj'
@@ -2548,7 +2562,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05518000.shx'
     
   sp.05524500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05524500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05524500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.prj'
@@ -2559,7 +2573,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05524500.shx'
     
   sp.05579630:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05579630.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05579630.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.prj'
@@ -2570,7 +2584,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05579630.shx'
     
   sp.05595000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05595000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05595000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.prj'
@@ -2581,7 +2595,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05595000.shx'
     
   sp.05599490:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05599490.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/05599490.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.prj'
@@ -2592,7 +2606,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/05599490.shx'
     
   sp.06336000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06336000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06336000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.prj'
@@ -2603,7 +2617,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06336000.shx'
     
   sp.06436760:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06436760.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06436760.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.prj'
@@ -2614,7 +2628,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06436760.shx'
     
   sp.06461500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06461500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06461500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.prj'
@@ -2625,7 +2639,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06461500.shx'
     
   sp.06465500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06465500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06465500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.prj'
@@ -2636,7 +2650,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06465500.shx'
     
   sp.06670500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06670500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06670500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.prj'
@@ -2647,7 +2661,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06670500.shx'
     
   sp.06711565:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06711565.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06711565.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.prj'
@@ -2658,7 +2672,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06711565.shx'
     
   sp.06795500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06795500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06795500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.prj'
@@ -2669,7 +2683,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06795500.shx'
     
   sp.06800500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06800500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06800500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.prj'
@@ -2680,7 +2694,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06800500.shx'
     
   sp.06805500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06805500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06805500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.prj'
@@ -2691,7 +2705,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06805500.shx'
     
   sp.06818000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06818000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06818000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.prj'
@@ -2702,7 +2716,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06818000.shx'
     
   sp.06892513:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06892513.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06892513.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.prj'
@@ -2713,7 +2727,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06892513.shx'
     
   sp.06893300:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893300.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893300.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.prj'
@@ -2724,7 +2738,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893300.shx'
     
   sp.06893350:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893350.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893350.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.prj'
@@ -2735,7 +2749,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893350.shx'
     
   sp.06893620:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893620.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893620.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.prj'
@@ -2746,7 +2760,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893620.shx'
     
   sp.06893820:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893820.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893820.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.prj'
@@ -2757,7 +2771,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893820.shx'
     
   sp.06893890:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893890.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893890.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.prj'
@@ -2768,7 +2782,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893890.shx'
     
   sp.06893970:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893970.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06893970.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.prj'
@@ -2779,7 +2793,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06893970.shx'
     
   sp.06894000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06894000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06894000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.prj'
@@ -2790,7 +2804,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06894000.shx'
     
   sp.06934500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06934500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/06934500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.prj'
@@ -2801,7 +2815,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/06934500.shx'
     
   sp.07048600:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07048600.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07048600.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.prj'
@@ -2812,7 +2826,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07048600.shx'
     
   sp.07061270:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07061270.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07061270.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.prj'
@@ -2823,7 +2837,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07061270.shx'
     
   sp.07061290:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07061290.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07061290.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.prj'
@@ -2834,7 +2848,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07061290.shx'
     
   sp.07075250:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07075250.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07075250.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.prj'
@@ -2845,7 +2859,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07075250.shx'
     
   sp.07106000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07106000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07106000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.prj'
@@ -2856,7 +2870,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07106000.shx'
     
   sp.07109500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07109500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07109500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.prj'
@@ -2867,7 +2881,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07109500.shx'
     
   sp.07143672:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07143672.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07143672.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.prj'
@@ -2878,7 +2892,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07143672.shx'
     
   sp.07144100:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07144100.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07144100.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.prj'
@@ -2889,7 +2903,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07144100.shx'
     
   sp.07164500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07164500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07164500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.prj'
@@ -2900,7 +2914,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07164500.shx'
     
   sp.07177500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07177500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07177500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.prj'
@@ -2911,7 +2925,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07177500.shx'
     
   sp.07178200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07178200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07178200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.prj'
@@ -2922,7 +2936,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07178200.shx'
     
   sp.071912213:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/071912213.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/071912213.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.prj'
@@ -2933,7 +2947,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/071912213.shx'
     
   sp.07191222:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07191222.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07191222.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.prj'
@@ -2944,7 +2958,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07191222.shx'
     
   sp.07198000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07198000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07198000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.prj'
@@ -2955,7 +2969,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07198000.shx'
     
   sp.07239450:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07239450.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07239450.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.prj'
@@ -2966,7 +2980,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07239450.shx'
     
   sp.07241000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.prj'
@@ -2977,7 +2991,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241000.shx'
     
   sp.07241520:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241520.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241520.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.prj'
@@ -2988,7 +3002,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241520.shx'
     
   sp.07241550:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241550.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07241550.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.prj'
@@ -2999,7 +3013,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07241550.shx'
     
   sp.07263296:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07263296.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07263296.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.prj'
@@ -3010,7 +3024,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07263296.shx'
     
   sp.072632966:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/072632966.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/072632966.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.prj'
@@ -3021,7 +3035,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/072632966.shx'
     
   sp.07332620:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07332620.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07332620.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.prj'
@@ -3032,7 +3046,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07332620.shx'
     
   sp.07332622:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07332622.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07332622.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.prj'
@@ -3043,7 +3057,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07332622.shx'
     
   sp.07374000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07374000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07374000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.prj'
@@ -3054,7 +3068,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07374000.shx'
     
   sp.07381600:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07381600.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/07381600.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.prj'
@@ -3065,7 +3079,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/07381600.shx'
     
   sp.08048000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08048000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08048000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.prj'
@@ -3076,7 +3090,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08048000.shx'
     
   sp.08049500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08049500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08049500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.prj'
@@ -3087,7 +3101,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08049500.shx'
     
   sp.08052700:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08052700.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08052700.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.prj'
@@ -3098,7 +3112,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08052700.shx'
     
   sp.08052745:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08052745.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08052745.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.prj'
@@ -3109,7 +3123,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08052745.shx'
     
   sp.08057000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08057000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08057000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.prj'
@@ -3120,7 +3134,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08057000.shx'
     
   sp.08057410:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08057410.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08057410.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.prj'
@@ -3131,7 +3145,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08057410.shx'
     
   sp.08062500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08062500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08062500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.prj'
@@ -3142,7 +3156,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08062500.shx'
     
   sp.08065350:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08065350.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08065350.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.prj'
@@ -3153,7 +3167,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08065350.shx'
     
   sp.08068000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08068000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08068000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.prj'
@@ -3164,7 +3178,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08068000.shx'
     
   sp.08068500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08068500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08068500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.prj'
@@ -3175,7 +3189,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08068500.shx'
     
   sp.08070200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08070200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08070200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.prj'
@@ -3186,7 +3200,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08070200.shx'
     
   sp.08171290:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08171290.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08171290.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.prj'
@@ -3197,7 +3211,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08171290.shx'
     
   sp.08180700:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08180700.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08180700.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.prj'
@@ -3208,7 +3222,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08180700.shx'
     
   sp.08181500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08181500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08181500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.prj'
@@ -3219,7 +3233,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08181500.shx'
     
   sp.08181800:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08181800.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08181800.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.prj'
@@ -3230,7 +3244,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08181800.shx'
     
   sp.08188060:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08188060.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08188060.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.prj'
@@ -3241,7 +3255,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08188060.shx'
     
   sp.08211200:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08211200.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08211200.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.prj'
@@ -3252,7 +3266,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08211200.shx'
     
   sp.08317400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08317400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08317400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.prj'
@@ -3263,7 +3277,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08317400.shx'
     
   sp.08412500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08412500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08412500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.prj'
@@ -3274,7 +3288,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08412500.shx'
     
   sp.08437710:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08437710.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08437710.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.prj'
@@ -3285,7 +3299,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08437710.shx'
     
   sp.08446500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08446500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08446500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.prj'
@@ -3296,7 +3310,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08446500.shx'
     
   sp.08447000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08447000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08447000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.prj'
@@ -3307,7 +3321,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08447000.shx'
     
   sp.08447300:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08447300.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/08447300.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.prj'
@@ -3318,7 +3332,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/08447300.shx'
     
   sp.09041400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09041400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09041400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.prj'
@@ -3329,7 +3343,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09041400.shx'
     
   sp.09326500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09326500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09326500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.prj'
@@ -3340,7 +3354,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09326500.shx'
     
   sp.09327000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09327000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09327000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.prj'
@@ -3351,7 +3365,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09327000.shx'
     
   sp.09406000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09406000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/09406000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.prj'
@@ -3362,7 +3376,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/09406000.shx'
     
   sp.10129900:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10129900.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10129900.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.prj'
@@ -3373,7 +3387,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10129900.shx'
     
   sp.10133650:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133650.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133650.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.prj'
@@ -3384,7 +3398,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133650.shx'
     
   sp.10133800:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133800.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133800.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.prj'
@@ -3395,7 +3409,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133800.shx'
     
   sp.10133980:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133980.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/10133980.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.prj'
@@ -3406,7 +3420,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/10133980.shx'
     
   sp.11044000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11044000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11044000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.prj'
@@ -3417,7 +3431,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11044000.shx'
     
   sp.11126000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11126000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11126000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.prj'
@@ -3428,7 +3442,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11126000.shx'
     
   sp.11128500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11128500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11128500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.prj'
@@ -3439,7 +3453,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11128500.shx'
     
   sp.11273400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11273400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11273400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.prj'
@@ -3450,7 +3464,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11273400.shx'
     
   sp.11285500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11285500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11285500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.prj'
@@ -3461,7 +3475,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11285500.shx'
     
   sp.11313433:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11313433.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11313433.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.prj'
@@ -3472,7 +3486,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11313433.shx'
     
   sp.11447650:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447650.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447650.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.prj'
@@ -3483,7 +3497,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447650.shx'
     
   sp.11447830:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447830.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447830.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.prj'
@@ -3494,7 +3508,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447830.shx'
     
   sp.11447850:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447850.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11447850.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.prj'
@@ -3505,7 +3519,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11447850.shx'
     
   sp.11455165:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455165.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455165.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.prj'
@@ -3516,7 +3530,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455165.shx'
     
   sp.11455315:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455315.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455315.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.prj'
@@ -3527,7 +3541,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455315.shx'
     
   sp.11455350:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455350.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11455350.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.prj'
@@ -3538,7 +3552,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11455350.shx'
     
   sp.11462500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11462500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11462500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.prj'
@@ -3549,7 +3563,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11462500.shx'
     
   sp.11463000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.prj'
@@ -3560,7 +3574,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463000.shx'
     
   sp.11463682:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463682.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463682.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.prj'
@@ -3571,7 +3585,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463682.shx'
     
   sp.11463980:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463980.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11463980.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.prj'
@@ -3582,7 +3596,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11463980.shx'
     
   sp.11465240:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11465240.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11465240.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.prj'
@@ -3593,7 +3607,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11465240.shx'
     
   sp.11467000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11467000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/11467000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.prj'
@@ -3604,7 +3618,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/11467000.shx'
     
   sp.12100490:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12100490.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12100490.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.prj'
@@ -3615,7 +3629,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/12100490.shx'
     
   sp.12101100:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12101100.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12101100.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.prj'
@@ -3626,7 +3640,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/12101100.shx'
     
   sp.12102075:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12102075.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/12102075.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.prj'
@@ -3637,7 +3651,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/12102075.shx'
     
   sp.13013650:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13013650.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13013650.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.prj'
@@ -3648,7 +3662,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13013650.shx'
     
   sp.13173600:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13173600.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13173600.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.prj'
@@ -3659,7 +3673,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13173600.shx'
     
   sp.13206400:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13206400.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13206400.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.prj'
@@ -3670,7 +3684,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13206400.shx'
     
   sp.13207500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13207500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13207500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.prj'
@@ -3681,7 +3695,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13207500.shx'
     
   sp.13213000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13213000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13213000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.prj'
@@ -3692,7 +3706,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13213000.shx'
     
   sp.13213100:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13213100.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/13213100.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.prj'
@@ -3703,7 +3717,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/13213100.shx'
     
   sp.14151000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14151000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14151000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.prj'
@@ -3714,7 +3728,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14151000.shx'
     
   sp.14162500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14162500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14162500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.prj'
@@ -3725,7 +3739,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14162500.shx'
     
   sp.14182500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14182500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14182500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.prj'
@@ -3736,7 +3750,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14182500.shx'
     
   sp.14202650:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14202650.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14202650.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.prj'
@@ -3747,7 +3761,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14202650.shx'
     
   sp.14206950:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14206950.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14206950.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.prj'
@@ -3758,7 +3772,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14206950.shx'
     
   sp.14210000:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14210000.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14210000.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.prj'
@@ -3769,7 +3783,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14210000.shx'
     
   sp.14211010:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14211010.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14211010.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.prj'
@@ -3780,7 +3794,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14211010.shx'
     
   sp.14211720:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14211720.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14211720.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.prj'
@@ -3791,7 +3805,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14211720.shx'
     
   sp.14301500:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14301500.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14301500.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.prj'
@@ -3802,7 +3816,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14301500.shx'
     
   sp.14302480:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14302480.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/14302480.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.prj'
@@ -3813,7 +3827,7 @@ targets:
       - '../1_spatial/cache/POWSTREAMS_NAD83/14302480.shx'
     
   sp.411955088280601:
-    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.dbf')
+    command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.dbf', watershed.sources)
     depends:
       - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.cpg'
       - '../1_spatial/cache/POWSTREAMS_NAD83/411955088280601.prj'
@@ -3825,6 +3839,7 @@ targets:
     
   user.spatial.catchments:
     command: combine_spatial(
+        sp.01104430,
         sp.01124000,
         sp.01125100,
         sp.01184000,
