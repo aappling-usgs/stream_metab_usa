@@ -20,7 +20,7 @@ targets:
       - user.spatial.catchments
       
   source.table:
-    command: read.csv('../1_spatial/in/watershedSources04112017.csv')
+    command: read.csv('../1_spatial/in/watershedSources.csv')
 
   sp.01104430:
     command: as.nwis_catchment('../1_spatial/cache/POWSTREAMS_NAD83/01104430.dbf', source.table)
