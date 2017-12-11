@@ -14,6 +14,7 @@ packages:
 sources:
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/model_release_tasks.R
+  - ../4_data_release/code/meta_attr_helpers.R
   - ../4_data_release/code/model_release_meta.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
@@ -213,7 +214,7 @@ targets:
     
   post_diagnostics_meta:
     command: append_release_files(
-      sb.id=pc1_model_fits,
+      sb.id=pc1_diagnostics,
       files='../4_data_release/out/diagnostics.xml')
   
   post_metabolism_meta:
