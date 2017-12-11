@@ -57,3 +57,120 @@ post_release_tses <- function(target.name, parent.id, file.paths){
   # zip those dogs and post
   unlink(c(zipfile, tsv.files))
 }
+
+#### timeseries metadata ####
+
+attributes_timeseries <- function(
+  ent.file='../4_data_release/in/attr_timeseries.rds',
+  zip.dir='../1_timeseries/cache',
+  attr.file.base='../4_data_release/in/attr_timeseries.csv') {
+  
+  # get a list of all relevant data files
+  rds_files <- dir(zip.dir, pattern='nwis_[[:digit:]]+-ts_[[:alpha:]]+_[[:alpha:]]+.rds$', full.names=TRUE)
+  rds_info <- mda.streams::parse_ts_path(rds_files) %>% mutate(file_path=rds_files)
+  
+  # read in a single example data file of each type for structure
+  examples <- rds_info %>% group_by(var_src) %>% summarize(file_path=file_path[1])
+  data_dfs <- lapply(setNames(examples$file_path, examples$var_src), function(example) {
+    unitted::v(readr::read_rds(example))
+  })
+  
+  # compute ranges for each column of the many files of each entity type (ftype)
+  ranges_dfs <- lapply(setNames(nm=unique(rds_info$var_src)), function(ftype) {
+    filesoftype <- rds_info %>% filter(var_src==ftype) %>% pull(file_path)
+    ranges_df <- multifile_ranges(filesoftype, coltypes=NA)
+  })
+  
+  # define variables for definitions text that may be used more than once
+  var_defs <- tibble::tribble(
+    ~`var_src`, ~`attr-def`, ~`attr-defs`,
+    
+    # datetime
+    'DateTime', 'Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary', 'This release',
+    
+    # GLDAS
+    'baro_gldas', 'Surface pressure (psurf_f_inst) from GLDAS database', 'NASA GLDAS NOAH model output, https://hydro1.gesdisc.eosdis.nasa.gov/dods/GLDAS_NOAH025_3H.2.0.info',
+    'sw_gldas', 'Downward shortwave radiation flux, surface (SWdown_f_tavg) from GLDAS database', 'NASA GLDAS NOAH model output, https://hydro1.gesdisc.eosdis.nasa.gov/dods/GLDAS_NOAH025_3H.2.0.info',
+    
+    # NLDAS
+    'baro_nldas', 'Surface pressure (pressfc) from NLDAS database', 'NASA NLDAS forcing data, https://hydro1.gesdisc.eosdis.nasa.gov/dods/NLDAS_FORA0125_H.002.info',
+    'sw_nldas', 'Downwards shortwave radiation flux, surface (dswrfsfc) from NLDAS database', 'NASA NLDAS forcing data, https://hydro1.gesdisc.eosdis.nasa.gov/dods/NLDAS_FORA0125_H.002.info',
+    
+    # NWIS
+    'disch_nwis', 'Discharge (parameter 00060) from NWIS database', 'USGS NWIS, https://waterdata.usgs.gov/nwis',
+    'doobs_nwis', 'Dissolved oxygen concentration (parameter 00300) from NWIS database', 'USGS NWIS, https://waterdata.usgs.gov/nwis',
+    'wtr_nwis', 'Water temperature (parameter 00010) from NWIS database', 'USGS NWIS, https://waterdata.usgs.gov/nwis',
+    
+    # calculated, inst
+    'sitedate_calcLon', 'Date expressed as solar noon at the site. Calculated with streamMetabolizer convert_UTC_to_solartime function', 'This release',
+    'sitetime_calcLon', 'Mean solar time. Calculated from DateTime and site longitude with streamMetabolizer convert_UTC_to_solartime function', 'This release',
+    'suntime_calcLon', 'Apparent solar time. Calculated from DateTime and site coordinates with streamMetabolizer convert_UTC_to_solartime function', 'This release',
+    'dopsat_calcObsSat', 'Percent dissolved oxygen saturation. Calculated from doobs_nwis and dosat_calcGGbts as 100*doobs/dosat', 'This release',
+    'dosat_calcGGbconst', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_calcElev with streamMetabolizer calc_DO_sat function', 'This release',
+    'dosat_calcGGbts', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_nldas (or baro_gldas when baro_nldas unavailable) with streamMetabolizer calc_DO_sat function', 'This release',
+    'par_calcLat', 'Photosynthetically active radiation. Calculated from site latitude and suntime with streamMetabolizer calc_light function', 'This release',
+    'par_calcSw', 'Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_PAR_to_SW function', 'This release',
+    'par_calcLatSw', 'Photosynthetically active radiation. Merger of par_calcLat and par_calcSw using streamMetabolizer calc_light_merged function', 'This release',
+    'baro_calcElev', 'Surface pressure. Calculated from site elevation using streamMetabolizer calc_air_pressure function', 'This release',
+    'depth_calcDischHarvey', 'Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where depth=cQ^f', 'This release',
+    'depth_calcDischRaymond', 'Spatially averaged stream depth. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where depth=cQ^f', 'This release',
+    'veloc_calcDischHarvey', 'Stream velocity. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where velocity=kQ^m', 'This release',
+    'veloc_calcDischRaymond', 'Stream velocity. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where velocity=kQ^m', 'This release',
+    
+    # calculated, daily
+    'doamp_calcDAmp', 'Daily (4am to 3:59am) amplitude in dissolved oxygen percent saturation. Calculated from dopsat_calcObsSat', 'This release',
+    'dischdaily_calcDMean', 'Daily (4am to 3:59am) average of disch_nwis', 'This release',
+    'velocdaily_calcDMean', 'Daily (4am to 3:59am) average of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)', 'This release'
+  ) %>% 
+    left_join(select(vsc, var_src, `attr-label`=var, `data-units`=units), by='var_src') %>%
+    mutate(`attr-label` = ifelse(var_src == 'DateTime', 'DateTime', `attr-label`))
+  
+  # create one attr file per entity type
+  all_attr_dfs <- lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
+    one.attr.file <- gsub('timeseries', paste0('timeseries_', ftype), attr.file.base)
+    ranges_df <- ranges_dfs[[ftype]]
+
+    # prepare the basic attr_df skeleton as a data_frame
+    if(file.exists(one.attr.file)) file.remove(one.attr.file)
+    attribute_skeleton(data_dfs[[ftype]], one.attr.file)
+    attr_df <- readr::read_csv(one.attr.file, col_types = 'cccnnc')
+    
+    # write definitions for each column
+    defs_df <- var_defs %>%
+      filter(var_src %in% c('DateTime', ftype)) %>%
+      select(-var_src)
+    
+    # combine the skeleton, ranges, and definitions
+    attr_df_combined <- attr_df %>%
+      select(`attr-label`) %>%
+      left_join(select(ranges_df, `attr-label`, `data-min`, `data-max`), by='attr-label') %>%
+      left_join(defs_df, by='attr-label') %>%
+      select(names(attr_df))
+    
+    # write the final attribute table
+    readr::write_csv(attr_df_combined, path=one.attr.file)
+    return(attr_df_combined)
+  })
+  
+  # write as RDS a list containing separate entity information for each entity type
+  ent_list <- list(entities=lapply(names(all_attr_dfs), function(ent_name) {
+    attr_df <- all_attr_dfs[[ent_name]]
+    c(list(
+      'data-name'=sprintf('nwis_XXXX-ts_%s.tsv', ent_name),
+      'data-description'=sprintf(
+        paste('Tab-separated 2-column data table containing date-time stamps (first column) and values for the variable code-named %s;',
+              'see attribute definition for 2nd column for variable and data source details.'),
+        ent_name)),
+      as.attr_list(attr_df)
+    )
+  }))
+  saveRDS(ent_list, ent.file)
+}
+
+#### renderer ####
+
+render_timeseries_metadata <- function(out_file, child_yaml, points_list, ent_rds, parent_list, template) {
+  child_list <- yaml::yaml.load_file(child_yaml)
+  ent_list <- readRDS(ent_rds)
+  render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
+}

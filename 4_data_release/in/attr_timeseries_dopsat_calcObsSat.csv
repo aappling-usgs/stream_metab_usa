@@ -1,0 +1,3 @@
+attr-label,attr-def,attr-defs,data-min,data-max,data-units
+DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,2007-10-01 04:00:00 +0000,2016-12-31 23:59:00 +0000,NA
+dopsat,Percent dissolved oxygen saturation. Calculated from doobs_nwis and dosat_calcGGbts as 100*doobs/dosat,This release,-9086001,13652,%

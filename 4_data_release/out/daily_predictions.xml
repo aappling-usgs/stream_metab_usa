@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Alison P. Appling</origin>
+        <origin>Jordan S. Read</origin>
+        <origin>Luke A. Winslow</origin>
+        <origin>Maite Arroita</origin>
+        <origin>Emily S. Bernhardt</origin>
+        <origin>Natalie A. Griffiths</origin>
+        <origin>Robert O. Hall, Jr.</origin>
+        <origin>Judson W. Harvey</origin>
+        <origin>James B. Heffernan</origin>
+        <origin>Emily H. Stanley</origin>
+        <origin>Edward G. Stets</origin>
+        <origin>Charles B. Yackulic</origin>
+        <pubdate>2018</pubdate>
+        <title>Daily metabolism estimates and predictors</title>
+        <geoform>text files</geoform>
+        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the continental United States. This data set contains the following parameters (defined below): site_name, resolution, date, GPP, GPP.lower, GPP.upper, GPP.n_eff, GPP.Rhat, ER, ER.lower, ER.upper, ER.n_eff, ER.Rhat, K600, K600.lower, K600.upper, K600.n_eff, K600.Rhat, DO.obs, DO.sat, DO.amp, DO.psat, depth, temp.water, day.length, light, discharge, velocity, .</abstract>
+      <purpose>To bring metabolism data to the world!</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20061001</begdate>
+          <enddate>20170101</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>model estimates</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>update planned for year 2023</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-154.7044349</westbc>
+        <eastbc>-71.2733903</eastbc>
+        <northbc>26.4642778</northbc>
+        <southbc>60.2036591</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>none</themekt>
+        <themekey>water</themekey>
+        <themekey>streams</themekey>
+        <themekey>rivers</themekey>
+        <themekey>metabolism</themekey>
+        <themekey>primary productivity</themekey>
+        <themekey>carbon</themekey>
+        <themekey>respiration</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>environment</themekey>
+        <themekey>inlandWaters</themekey>
+        <themekey>007</themekey>
+        <themekey>012</themekey>
+      </theme>
+      <place>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
+                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
+                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekey>United States</placekey>
+        <placekey>US</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
+        <placekey>Alabama</placekey>
+        <placekey>AL</placekey>
+        <placekey>Alaska</placekey>
+        <placekey>AK</placekey>
+        <placekey>Arkansas</placekey>
+        <placekey>AR</placekey>
+        <placekey>California</placekey>
+        <placekey>CA</placekey>
+        <placekey>Colorado</placekey>
+        <placekey>CO</placekey>
+        <placekey>Connecticut</placekey>
+        <placekey>CT</placekey>
+        <placekey>Delaware</placekey>
+        <placekey>DE</placekey>
+        <placekey>District Of Columbia</placekey>
+        <placekey>DC</placekey>
+        <placekey>Florida</placekey>
+        <placekey>FL</placekey>
+        <placekey>Georgia</placekey>
+        <placekey>GA</placekey>
+        <placekey>Idaho</placekey>
+        <placekey>ID</placekey>
+        <placekey>Illinois</placekey>
+        <placekey>IL</placekey>
+        <placekey>Indiana</placekey>
+        <placekey>IN</placekey>
+        <placekey>Iowa</placekey>
+        <placekey>IA</placekey>
+        <placekey>Kansas</placekey>
+        <placekey>KS</placekey>
+        <placekey>Kentucky</placekey>
+        <placekey>KY</placekey>
+        <placekey>Louisiana</placekey>
+        <placekey>LA</placekey>
+        <placekey>Maryland</placekey>
+        <placekey>MD</placekey>
+        <placekey>Massachusetts</placekey>
+        <placekey>MA</placekey>
+        <placekey>Michigan</placekey>
+        <placekey>MI</placekey>
+        <placekey>Minnesota</placekey>
+        <placekey>MN</placekey>
+        <placekey>Missouri</placekey>
+        <placekey>MO</placekey>
+        <placekey>Nebraska</placekey>
+        <placekey>NE</placekey>
+        <placekey>New Jersey</placekey>
+        <placekey>NJ</placekey>
+        <placekey>New Mexico</placekey>
+        <placekey>NM</placekey>
+        <placekey>New York</placekey>
+        <placekey>NY</placekey>
+        <placekey>North Carolina</placekey>
+        <placekey>NC</placekey>
+        <placekey>North Dakota</placekey>
+        <placekey>ND</placekey>
+        <placekey>Ohio</placekey>
+        <placekey>OH</placekey>
+        <placekey>Oklahoma</placekey>
+        <placekey>OK</placekey>
+        <placekey>Oregon</placekey>
+        <placekey>OR</placekey>
+        <placekey>Pennsylvania</placekey>
+        <placekey>PA</placekey>
+        <placekey>South Carolina</placekey>
+        <placekey>SC</placekey>
+        <placekey>South Dakota</placekey>
+        <placekey>SD</placekey>
+        <placekey>Tennessee</placekey>
+        <placekey>TN</placekey>
+        <placekey>Texas</placekey>
+        <placekey>TX</placekey>
+        <placekey>Utah</placekey>
+        <placekey>UT</placekey>
+        <placekey>Virginia</placekey>
+        <placekey>VA</placekey>
+        <placekey>Washington</placekey>
+        <placekey>WA</placekey>
+        <placekey>West Virginia</placekey>
+        <placekey>WV</placekey>
+        <placekey>Wisconsin</placekey>
+        <placekey>WI</placekey>
+        <placekey>Wyoming</placekey>
+        <placekey>WY</placekey>
+      </place>
+    </keywords>
+    <accconst>none</accconst>
+    <useconst>None, but see Distribution Liability below. Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Alison P. Appling</cntper>
+          <cntorg>U.S. Geological Survey<cntpos>Ecologist, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos></cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>520 N Park Ave, Ste 221</address>
+          <city>Tucson</city>
+          <state>AZ</state>
+          <postal>85719</postal>
+          <country>U.S.A.</country>
+        </cntaddr>
+        <cntvoice>520-670-6671 x271</cntvoice>
+        <cntemail>aappling@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
+    <native>stuff on mac things on pc, R versions etc</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>No formal attribute accuracy tests were conducted.</attraccr>
+    </attracc>
+    <logic>Not applicable</logic>
+    <complete>Not applicable</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>A formal accuracy assessment of the horizontal positional information in the dataset was not conducted.</horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>A formal accuracy assessment of the vertical positional information in the dataset was not conducted.</vertaccr>
+      </vertacc>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018).</procdesc>
+        <procdate>20170502</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <indspref>U.S.A.</indspref>
+    <direct>Point</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Point</sdtstype>
+        <ptvctcnt>392</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>Not applicable</latres>
+        <longres>Not applicable</longres>
+        <geogunit>Decimal degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>North American Datum of 1983</horizdn>
+        <ellips>Geodetic Reference System 80</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Daily estimates of river metabolism and gas exchange</enttypl>
+        <enttypd>Daily estimates of metabolism</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>site_name</attrlabl>
+        <attrdef>Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.</attrdef>
+        <attrdefs>National Water Information System, U.S. Geological Survey</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>nwis_01104430</rdommin>
+            <rdommax>nwis_411955088280601</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>resolution</attrlabl>
+        <attrdef>The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>5</rdommin>
+            <rdommax>60</rdommax>
+            <attrunit>minutes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>date</attrlabl>
+        <attrdef>Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2007-10-01</rdommin>
+            <rdommax>2016-12-30</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GPP</attrlabl>
+        <attrdef>Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-34.54</rdommin>
+            <rdommax>107.3</rdommax>
+            <attrunit>gO2 m^-2 d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GPP.lower</attrlabl>
+        <attrdef>Lower bound on the 95% credible interval around the daily GPP estimate. Value is the 2.5th quantile of the post-warmup MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-40.86</rdommin>
+            <rdommax>102.6</rdommax>
+            <attrunit>gO2 m^-2 d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GPP.upper</attrlabl>
+        <attrdef>Upper bound on the 95% credible interval around the daily GPP estimate. Value is the 97.5th quantile of the post-warmup MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-30.64</rdommin>
+            <rdommax>112</rdommax>
+            <attrunit>gO2 m^-2 d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GPP.n_eff</attrlabl>
+        <attrdef>Estimated effective sample size of the MCMC sampling for GPP.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2.006</rdommin>
+            <rdommax>8000</rdommax>
+            <attrunit>samples</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>GPP.Rhat</attrlabl>
+        <attrdef>R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.998</rdommin>
+            <rdommax>18.06</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ER</attrlabl>
+        <attrdef>Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-118.3</rdommin>
+            <rdommax>45.52</rdommax>
+            <attrunit>gO2 m^-2 d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ER.lower</attrlabl>
+        <attrdef>Lower bound (most negative or least positive) on the 95% credible interval around the daily ER estimate. Value is the 2.5th quantile of the post-warmup MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-126</rdommin>
+            <rdommax>37.19</rdommax>
+            <attrunit>gO2 m^-2 d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ER.upper</attrlabl>
+        <attrdef>Upper bound (least negative or most positive) on the 95% credible interval around the daily ER estimate. Value is the 97.5th quantile of the post-warmup MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-110.9</rdommin>
+            <rdommax>53.68</rdommax>
+            <attrunit>gO2 m^-2 d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ER.n_eff</attrlabl>
+        <attrdef>Estimated effective sample size of the MCMC sampling for ER.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2.004</rdommin>
+            <rdommax>8000</rdommax>
+            <attrunit>samples</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ER.Rhat</attrlabl>
+        <attrdef>R-hat statistic of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.998</rdommin>
+            <rdommax>22.19</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>K600</attrlabl>
+        <attrdef>Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0003724</rdommin>
+            <rdommax>694.9</rdommax>
+            <attrunit>d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>K600.lower</attrlabl>
+        <attrdef>Lower bound on the 95% credible interval around the daily K600 estimate. Value is the 2.5th quantile of the post-warmup MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0000104</rdommin>
+            <rdommax>396.3</rdommax>
+            <attrunit>d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>K600.upper</attrlabl>
+        <attrdef>Upper bound on the 95% credible interval around the daily K600 estimate. Value is the 97.5th quantile of the post-warmup MCMC distribution.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.001994</rdommin>
+            <rdommax>999.7</rdommax>
+            <attrunit>d^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>K600.n_eff</attrlabl>
+        <attrdef>Estimated effective sample size of the MCMC sampling for K600.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2.001</rdommin>
+            <rdommax>8000</rdommax>
+            <attrunit>samples</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>K600.Rhat</attrlabl>
+        <attrdef>R-hat statistic of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.998</rdommin>
+            <rdommax>284.3</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DO.obs</attrlabl>
+        <attrdef>Mean dissolved oxygen concentration for the date (4am to 3:59am).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-0.1</rdommin>
+            <rdommax>21.11</rdommax>
+            <attrunit>mgO2 L^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DO.sat</attrlabl>
+        <attrdef>Mean theoretical saturation concentration for the date (4am to 3:59am).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>6.529</rdommin>
+            <rdommax>14.96</rdommax>
+            <attrunit>mgO2 L^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DO.amp</attrlabl>
+        <attrdef>Amplitude (difference between minimum and maximum observed values) of the dissolved oxygen concentrations for the date (4am to 3:59am).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>318.3</rdommax>
+            <attrunit>mgO2 L^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DO.psat</attrlabl>
+        <attrdef>Mean percent dissolved oxygen saturation for the date (4am to 3:59am).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-1.298</rdommin>
+            <rdommax>279.3</rdommax>
+            <attrunit>%</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>depth</attrlabl>
+        <attrdef>Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.005129</rdommin>
+            <rdommax>23.7</rdommax>
+            <attrunit>m</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>temp.water</attrlabl>
+        <attrdef>Mean water temperature for the date (4am to 3:59pm).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-0.6187</rdommin>
+            <rdommax>34.17</rdommax>
+            <attrunit>degC</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>day.length</attrlabl>
+        <attrdef>Time elapsed between first and last observations of light &gt; 0 for the date (4am to 3:59pm).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>7</rdommin>
+            <rdommax>23.92</rdommax>
+            <attrunit>hours</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>light</attrlabl>
+        <attrdef>Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>32.27</rdommin>
+            <rdommax>934.4</rdommax>
+            <attrunit>umol m^-2 s^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>discharge</attrlabl>
+        <attrdef>Mean discharge for the date (4am to 3:59pm).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0002832</rdommin>
+            <rdommax>37758</rdommax>
+            <attrunit>m^3 s^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>velocity</attrlabl>
+        <attrdef>Mean water velocity for the date (4am to 3:59pm).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.0003694</rdommin>
+            <rdommax>7.428</rdommax>
+            <attrunit>m s^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>Denver Federal Center, Building 810, Mail Stop 302</address>
+          <city>Denver</city>
+          <state>CO</state>
+          <postal>80255</postal>
+          <country>U.S.A.</country>
+        </cntaddr>
+        <cntvoice>1-888-275-8747</cntvoice>
+        <cntemail>sciencebase@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>tab-separated values, compressed from text to .zip format</formname>
+          <formvern>none</formvern>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20171124</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Jordan S. Read</cntper>
+          <cntorg>U.S. Geological Survey</cntorg>
+        </cntperp>
+        <cntpos>Chief, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>8551 Research Way #120</address>
+          <city>Middleton</city>
+          <state>WI</state>
+          <postal>53562</postal>
+          <country>U.S.A.</country>
+        </cntaddr>
+        <cntvoice>608-821-3922</cntvoice>
+        <cntfax>608-821-3817</cntfax>
+        <cntemail>jread@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+  </metainfo>
+</metadata>
