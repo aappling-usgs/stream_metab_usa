@@ -1,0 +1,3 @@
+attr-label,attr-def,attr-defs,data-min,data-max,data-units
+DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,NA,NA,NA
+baro,Surface pressure. Calculated from site elevation using streamMetabolizer calc_air_pressure function,This release,77606,101378,Pa

@@ -16,6 +16,8 @@ sources:
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/timeseries_release_makefile.R
   - ../4_data_release/code/combine_daily_predictors.R
+  - ../4_data_release/code/meta_attr_helpers.R
+  - ../4_data_release/code/timeseries_download_release.R
   - ../lib/load_profile.R
   - ../lib/create_task_makefile.R
   - ../lib/check_frozen.R
@@ -49,23 +51,27 @@ targets:
     depends: ../4_data_release/log/4_tasks_timeseries.ind
     command: combine_daily_predictors(target_name, metab.config)
   
-  # -- create tables with partial info to complete manually --
+  # -- create metadata attribute tables --
   
-  #../4_data_release/in/metab_config_attr.csv:
-  #  command: attribute_skeleton(meta_all_df, target_name)
-    
-  # -- read manual entry and extracted metadata -- 
-  
-  #site_data_attr:
-  #  command: as.attr_list('../4_data_release/in/site_data_attr.csv')
-  
-  # -- create final metadata files --
-  
-  #../4_data_release/out/site_data.xml:
-  #  command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata,
-  #    template='../4_data_release/in/fgdc_template.xml')
+  ../4_data_release/in/attr_timeseries.rds:
+    depends: ../4_data_release/log/4_tasks_timeseries.ind
+    command: attributes_timeseries(target_name, '../1_timeseries/cache', I('../4_data_release/in/attr_timeseries.csv'))
 
+  # -- create final metadata files --
+    
+  ../4_data_release/out/timeseries.xml:
+      command: render_timeseries_metadata(
+        out_file=target_name, 
+        child_yaml="../4_data_release/in/metadata_timeseries.yaml",
+        points_list=points_meta,
+        ent_rds="../4_data_release/in/attr_timeseries.rds",
+        parent_list=parent_metadata,
+        template="../4_data_release/in/fgdc_template_ents.xml")
+    
   # -- final targets: post metadata to SB --
   
-  #release_site_data:
-  #  command: create_release_item(pc1_site_metadata, target_name, '../4_data_release/cache/site_data.tsv', '../4_data_release/out/site_data.xml')
+  post_timeseries_meta:
+    command: append_release_files(
+      sb.id=pc1_timeseries,
+      files='../4_data_release/out/timeseries.xml')
+

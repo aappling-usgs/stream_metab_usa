@@ -22,9 +22,9 @@ multifile_ranges <- function(files, coltypes='Tdddddd') {
     unz.file <- files[i]
     message(paste0(i, '\t', unz.file))
     data_df <- switch(
-      tools::file_path_sans_ext(unz.file),
+      tools::file_ext(unz.file),
       'tsv' = readr::read_tsv(unz.file, col_types = coltypes),
-      'rds' = readr::read_rds(unz.file),
+      'rds' = unitted::v(readr::read_rds(unz.file)),
       stop(paste('unrecognized file type:', tools::file_path_sans_ext(unz.file)))
     )
     
