@@ -214,7 +214,7 @@ targets:
     
   post_diagnostics_meta:
     command: append_release_files(
-      sb.id=pc1_model_fits,
+      sb.id=pc1_diagnostics,
       files='../4_data_release/out/diagnostics.xml')
   
   post_metabolism_meta:
