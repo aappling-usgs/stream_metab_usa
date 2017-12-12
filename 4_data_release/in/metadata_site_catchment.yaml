@@ -12,7 +12,7 @@ process-description: >-
   Existing polygons were combined from various sources (see attributes and descriptions). Spatial tools in the R programming language were used to perform the operations of merging 
   and modifying attributes. 
 process-date: "`r format(Sys.time(),'%Y%m%d')`"
-data-name: River metabolism input data
+data-name: Spatial data for catchment delineation
 data-description: >- 
   Catchment polygons from various sources collated into a single shapefile Catchments approximately represent the contributing area for gaging stations. 
   Not all stations had catchments delineated, so those included here are a subset of the total. 

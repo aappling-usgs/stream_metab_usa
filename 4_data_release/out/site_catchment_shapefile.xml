@@ -16,20 +16,20 @@
         <origin>Edward G. Stets</origin>
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
-        <title>Spatial catchments data release: A national database for river metabolism (2007-present)</title>
+        <title>Spatial catchments data release: A national database for river metabolism (2007-2017)</title>
         <geoform>text files</geoform>
         <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the continental United States. This data set contains the following parameters (defined below): site_name, ogc_fid, .</abstract>
+      <abstract>Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the continental United States. This data set contains the following parameters: site_name, data_source, which are defined below.</abstract>
       <purpose>To bring metabolism data to the world!</purpose>
     </descript>
     <timeperd>
       <timeinfo>
         <rngdates>
-          <begdate>SCRIPT 20070101</begdate>
-          <enddate>SCRIPT 2016XXXX</enddate>
+          <begdate>20061001</begdate>
+          <enddate>20170101</enddate>
         </rngdates>
       </timeinfo>
       <current>model estimates</current>
@@ -75,92 +75,397 @@
         <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Alabama</placekey>
         <placekey>AL</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Arkansas</placekey>
         <placekey>AR</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Colorado</placekey>
         <placekey>CO</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Connecticut</placekey>
         <placekey>CT</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Delaware</placekey>
         <placekey>DE</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>District Of Columbia</placekey>
         <placekey>DC</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Florida</placekey>
         <placekey>FL</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Georgia</placekey>
         <placekey>GA</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Idaho</placekey>
         <placekey>ID</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Illinois</placekey>
         <placekey>IL</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Indiana</placekey>
         <placekey>IN</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Iowa</placekey>
         <placekey>IA</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Kansas</placekey>
         <placekey>KS</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Kentucky</placekey>
         <placekey>KY</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Louisiana</placekey>
         <placekey>LA</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Maryland</placekey>
         <placekey>MD</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Massachusetts</placekey>
         <placekey>MA</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Michigan</placekey>
         <placekey>MI</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Minnesota</placekey>
         <placekey>MN</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Mississippi</placekey>
         <placekey>MS</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Missouri</placekey>
         <placekey>MO</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Montana</placekey>
         <placekey>MT</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Nebraska</placekey>
         <placekey>NE</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Nevada</placekey>
         <placekey>NV</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>New Hampshire</placekey>
         <placekey>NH</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>New Jersey</placekey>
         <placekey>NJ</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>New Mexico</placekey>
         <placekey>NM</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>New York</placekey>
         <placekey>NY</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>North Carolina</placekey>
         <placekey>NC</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>North Dakota</placekey>
         <placekey>ND</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Ohio</placekey>
         <placekey>OH</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Oklahoma</placekey>
         <placekey>OK</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Oregon</placekey>
         <placekey>OR</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Pennsylvania</placekey>
         <placekey>PA</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>South Carolina</placekey>
         <placekey>SC</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>South Dakota</placekey>
         <placekey>SD</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Tennessee</placekey>
         <placekey>TN</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Texas</placekey>
         <placekey>TX</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Utah</placekey>
         <placekey>UT</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Vermont</placekey>
         <placekey>VT</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Virginia</placekey>
         <placekey>VA</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>West Virginia</placekey>
         <placekey>WV</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Wisconsin</placekey>
         <placekey>WI</placekey>
+      </place>
+      <place>
+        <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Wyoming</placekey>
         <placekey>WY</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Alabama</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Arkansas</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Colorado</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Connecticut</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Delaware</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>District Of Columbia</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Florida</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Georgia</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Idaho</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Illinois</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Indiana</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Iowa</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Kansas</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Kentucky</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Louisiana</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Maryland</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Massachusetts</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Michigan</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Minnesota</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Mississippi</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Missouri</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Montana</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Nebraska</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Nevada</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>New Hampshire</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>New Jersey</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>New Mexico</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>New York</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>North Carolina</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>North Dakota</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Ohio</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Oklahoma</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Oregon</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Pennsylvania</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>South Carolina</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>South Dakota</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Tennessee</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Texas</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Utah</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Vermont</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Virginia</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>West Virginia</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Wisconsin</placekey>
+      </place>
+      <place>
+        <placekt>none</placekt>
+        <placekey>Wyoming</placekey>
       </place>
     </keywords>
     <accconst>none</accconst>
@@ -169,14 +474,14 @@
       <cntinfo>
         <cntperp>
           <cntper>Alison P. Appling</cntper>
-          <cntorg>U.S. Geological Survey<cntpos>Ecologist, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos></cntorg>
+          <cntorg>U.S. Geological Survey</cntorg>
         </cntperp>
         <cntaddr>
           <addrtype>Mailing and Physical</addrtype>
-          <address>520 N Park Ave, Ste 221</address>
-          <city>Tucson</city>
-          <state>AZ</state>
-          <postal>85719</postal>
+          <address>8551 Research Way</address>
+          <city>Middleton</city>
+          <state>WI</state>
+          <postal>53562</postal>
           <country>U.S.A.</country>
         </cntaddr>
         <cntvoice>520-670-6671 x271</cntvoice>
@@ -184,26 +489,87 @@
       </cntinfo>
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
-    <native>stuff on mac things on pc, R versions etc</native>
+    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
+  The computing platform for generating data and metadata was x86_64-apple-darwin15.6.0. 
+  R packages loaded into this environment: maptools, version: 0.9-2; mda.streams, version: 0.9.24; meddle, version: 0.0.4; maps, version: 3.2.0; dataRetrieval, version: 2.7.3; rgeos, version: 0.3-26; dplyr, version: 0.7.4; sbtools, version: 1.1.6; httr, version: 1.3.1; rgdal, version: 1.2-15; sp, version: 1.2-5; whisker, version: 0.3-2; yaml, version: 2.1.14; xml2, version: 1.1.1; magrittr, version: 1.5.</native>
+    <crossref>
+      <citeinfo>
+        <origin>James A. Falcone</origin>
+        <pubdate>2011</pubdate>
+        <title>GAGES-II:  Geospatial Attributes of Gages for Evaluating Streamflow</title>
+        <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>James A. Falcone</origin>
+        <origin>Nancy T. Baker</origin>
+        <origin>Curtis V. Price</origin>
+        <pubdate>2017</pubdate>
+        <title>Watershed boundaries for study sites of the U.S. Geological Survey Surface Water Trends project</title>
+        <onlink>http://dx.doi.org/10.5066/F78S4N29</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Alison P. Appling</origin>
+        <origin>Jordan S. Read</origin>
+        <origin>Luke A. Winslow</origin>
+        <origin>Maite Arroita</origin>
+        <origin>Emily S. Bernhardt</origin>
+        <origin>Natalie A. Griffiths</origin>
+        <origin>Robert O. Hall, Jr.</origin>
+        <origin>Judson W. Harvey</origin>
+        <origin>James B. Heffernan</origin>
+        <origin>Emily H. Stanley</origin>
+        <origin>Edward G. Stets</origin>
+        <origin>Charles B. Yackulic</origin>
+        <pubdate>2017</pubdate>
+        <title>StreamStats website; accessed 03/01/2017</title>
+        <onlink>https://water.usgs.gov/osw/streamstats/</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Naomi Nakagaki</origin>
+        <origin>Sharon L. Qi</origin>
+        <origin>Jeffrey W. Frey</origin>
+        <origin>Daniel T. Button</origin>
+        <origin>Nancy T. Baker</origin>
+        <origin>Thomas E. Burley</origin>
+        <origin>Peter C. Van Metre</origin>
+        <pubdate>2016</pubdate>
+        <title>Geospatial database of the study boundary, sampled sites, watersheds, and riparian zones developed for the U.S. Geological Survey Midwest Stream Quality Assessment</title>
+        <onlink>http://dx.doi.org/10.5066/F7CN7202</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Michael E. Wieczorek</origin>
+        <pubdate>08302012</pubdate>
+        <title>USGS Streamgage NHDPlus Version 1 Basins 2011</title>
+        <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/streamgagebasins.xml</onlink>
+      </citeinfo>
+    </crossref>
   </idinfo>
   <dataqual>
     <attracc>
       <attraccr>No formal attribute accuracy tests were conducted.</attraccr>
     </attracc>
-    <logic>Not applicable</logic>
-    <complete>Not applicable</complete>
+    <logic>not applicable</logic>
+    <complete>not applicable</complete>
     <posacc>
       <horizpa>
-        <horizpar>A formal accuracy assessment of the horizontal positional information in the dataset was not conducted.</horizpar>
+        <horizpar>A formal accuracy assessment of the horizontal positional information in the data set has not been conducted.</horizpar>
       </horizpa>
       <vertacc>
-        <vertaccr>A formal accuracy assessment of the vertical positional information in the dataset was not conducted.</vertaccr>
+        <vertaccr>A formal accuracy assessment of the vertical positional information in the data set has either not been conducted, or is not applicable.</vertaccr>
       </vertacc>
     </posacc>
     <lineage>
       <procstep>
-        <procdesc>data were pulled or synthesized from existing etc...</procdesc>
-        <procdate>SCRIPT 20161104</procdate>
+        <procdesc>Existing polygons were combined from various sources (see attributes and descriptions). Spatial tools in the R programming language were used to perform the operations of merging  and modifying attributes. </procdesc>
+        <procdate>20171212</procdate>
       </procstep>
     </lineage>
   </dataqual>
@@ -236,7 +602,7 @@
     <detailed>
       <enttyp>
         <enttypl>River metabolism input data</enttypl>
-        <enttypd>Timeseries observations of environmental conditions made by sensors, subsetted gridded timeseries data, and derived data from both of these sources.</enttypd>
+        <enttypd>Catchment polygons from various sources collated into a single shapefile Catchments approximately represent the contributing area for gaging stations.  Not all stations had catchments delineated, so those included here are a subset of the total. </enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -252,9 +618,9 @@
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl>ogc_fid</attrlabl>
-        <attrdef>The Open Geospatial Consortium identifier</attrdef>
-        <attrdefs>http://www.opengeospatial.org/</attrdefs>
+        <attrlabl>data_source</attrlabl>
+        <attrdef>The provider of the dataset</attrdef>
+        <attrdefs>shortname reference for dataset provider;see cross-cites for full refernce information</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>NA</rdommin>
@@ -269,6 +635,7 @@
     <distrib>
       <cntinfo>
         <cntperp>
+          <cntper/>
           <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
         </cntperp>
         <cntaddr>
@@ -304,24 +671,24 @@
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20171110</metd>
+    <metd>20171212</metd>
     <metc>
       <cntinfo>
         <cntperp>
           <cntper>Jordan S. Read</cntper>
           <cntorg>U.S. Geological Survey</cntorg>
         </cntperp>
-        <cntpos>Chief, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos>
+        <cntpos>Data Chief</cntpos>
         <cntaddr>
           <addrtype>Mailing and Physical</addrtype>
-          <address>8551 Research Way #120</address>
+          <address>8505 Research Way</address>
           <city>Middleton</city>
           <state>WI</state>
           <postal>53562</postal>
           <country>U.S.A.</country>
         </cntaddr>
         <cntvoice>608-821-3922</cntvoice>
-        <cntfax>608-821-3817</cntfax>
+        <cntfax>608 821-3817</cntfax>
         <cntemail>jread@usgs.gov</cntemail>
       </cntinfo>
     </metc>
