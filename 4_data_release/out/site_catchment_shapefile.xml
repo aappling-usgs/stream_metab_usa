@@ -601,7 +601,7 @@
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>River metabolism input data</enttypl>
+        <enttypl>Spatial data for catchment delineation</enttypl>
         <enttypd>Catchment polygons from various sources collated into a single shapefile Catchments approximately represent the contributing area for gaging stations.  Not all stations had catchments delineated, so those included here are a subset of the total. </enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
