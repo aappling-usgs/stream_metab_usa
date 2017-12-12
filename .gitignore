@@ -30,6 +30,5 @@ README.html
 .remake
 **.DS_Store
 .Rprofile
-**.xml
 **.zip
 **stream_metab.yaml

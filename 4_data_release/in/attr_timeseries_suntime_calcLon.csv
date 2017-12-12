@@ -1,0 +1,3 @@
+attr-label,attr-def,attr-defs,data-min,data-max,data-units
+DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,2007-10-01 04:00:00 +0000,2016-12-31 23:59:00 +0000,NA
+suntime,Apparent solar time. Calculated from DateTime and site coordinates with streamMetabolizer convert_UTC_to_solartime function,This release,2007-09-30 22:28:12 +0000,2016-12-31 19:20:19 +0000,
