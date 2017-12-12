@@ -1,5 +1,5 @@
-meddle-version: "0.0.3"
-document-created: "20161024"
+meddle-version: "`r packageVersion('meddle')`"
+document-created: "`r format(Sys.time(),'%Y%m%d')`"
 document-creator: "Jordan S Read"
 
 # ----data release----
@@ -9,10 +9,10 @@ title: >-
 
 # ----dataset details----
 process-description: data were pulled or synthesized from existing etc...
-process-date: SCRIPT 20161104
+process-date: "`r format(Sys.time(),'%Y%m%d')`"
 data-name: River metabolism input data
 data-description: Timeseries observations of environmental conditions made by sensors, subsetted gridded timeseries data, and derived data from both of these sources.
-build-environment: stuff on mac things on pc, R versions etc
+build-environment: "`r environment_metadata()`"
 file-format: Shapefiles
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
 
