@@ -1,2 +1,3 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
 site_name,The National Water Information System site name for the site,http://dx.doi.org/10.5066/F7P55KJN,NA,NA,NA
+data_source,The provider of the dataset,U.S. Geological Survey NWIS,NA,NA,NA

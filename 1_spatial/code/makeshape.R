@@ -32,7 +32,7 @@ create_site_points <- function(sites, crs.string = "+init=epsg:4326"){
     use.i <- sites$coord_datum == datum
     coords <- cbind(sites$lon[use.i], sites$lat[use.i])
     raw.points.sp <- sp::SpatialPointsDataFrame(coords, 
-                                                data = data.frame("site_name" = sites$site_name[use.i]), 
+                                                data = data.frame("site_name" = sites$site_name[use.i], "data_source" = "USGS-NWIS"), 
                                                 proj4string = sp::CRS(crs.strings[[datum]]))
     transformed.points.sp <- spTransform(x = raw.points.sp, sp::CRS(crs.string))
     if (exists('points.sp')){

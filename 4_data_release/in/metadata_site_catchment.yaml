@@ -1,20 +1,67 @@
-meddle-version: "0.0.3"
-document-created: "20161024"
+meddle-version: "0.0.4"
+document-created: "2017-12-12"
 document-creator: "Jordan S Read"
 
 # ----data release----
 title: >-
-  Spatial catchments data release: A national database for river metabolism (2007-present)
+  Spatial catchments data release: A national database for river metabolism (2007-2017)
 
 
 # ----dataset details----
-process-description: data were pulled or synthesized from existing etc...
-process-date: SCRIPT 20161104
-data-name: River metabolism input data
-data-description: Timeseries observations of environmental conditions made by sensors, subsetted gridded timeseries data, and derived data from both of these sources.
-build-environment: stuff on mac things on pc, R versions etc
+process-description: >- 
+  Existing polygons were combined from various sources (see attributes and descriptions). Spatial tools in the R programming language were used to perform the operations of merging 
+  and modifying attributes. 
+process-date: "`r format(Sys.time(),'%Y%m%d')`"
+data-name: Spatial data for catchment delineation
+data-description: >- 
+  Catchment polygons from various sources collated into a single shapefile Catchments approximately represent the contributing area for gaging stations. 
+  Not all stations had catchments delineated, so those included here are a subset of the total. 
+build-environment: "`r environment_metadata()`"
 file-format: Shapefiles
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
+usage-rules:  >- 
+  The USGS shall not be held liable for improper or incorrect use of these data, based on the description of 
+  appropriate/inappropriate uses described in this metadata document. It is strongly recommended that these 
+  data be directly acquired from the distributor and not indirectly through other sources that may have changed 
+  the data in some way. These data should not be used at scales greater than 1:24,000 for the purpose of 
+  identifying hydrographic watershed boundary feature locations. The USGS makes no claims for the data's 
+  suitability for other purposes. The USGS should be acknowledged as the data source in products derived 
+  from these data. The dataset is public information and may be interpreted by all organizations, agencies, 
+  units of government, or others based on needs; however, they are responsible for the appropriate application 
+  of the data.
+
+
+cross-cites: 
+  - 
+    authors: ['James A. Falcone']
+    title: >-
+      GAGES-II:  Geospatial Attributes of Gages for Evaluating Streamflow
+    pubdate: 2011
+    link: http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml
+  -
+    authors: ['James A. Falcone', 'Nancy T. Baker', 'Curtis V. Price']
+    title: >-
+      Watershed boundaries for study sites of the U.S. Geological Survey Surface Water Trends project
+    pubdate: 2017
+    link: http://dx.doi.org/10.5066/F78S4N29
+  -
+    title: >- 
+      StreamStats website; accessed 03/01/2017
+    pubdate: 2017
+    link: https://water.usgs.gov/osw/streamstats/
+  -
+    authors: ['Naomi Nakagaki', 'Sharon L. Qi', 'Jeffrey W. Frey', 'Daniel T. Button', 'Nancy T. Baker', 'Thomas E. Burley', 'Peter C. Van Metre']
+    title: >- 
+      Geospatial database of the study boundary, sampled sites, watersheds, and riparian zones developed for the U.S. Geological Survey Midwest Stream Quality Assessment
+    pubdate: 2016
+    link: http://dx.doi.org/10.5066/F7CN7202
+  -
+    authors: ['Michael E. Wieczorek']
+    title: >- 
+      USGS Streamgage NHDPlus Version 1 Basins 2011
+    pubdate: 08302012
+    link: http://water.usgs.gov/GIS/metadata/usgswrd/XML/streamgagebasins.xml
+  
 
 
 # ----spatial data----

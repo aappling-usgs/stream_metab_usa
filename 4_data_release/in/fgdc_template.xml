@@ -8,7 +8,7 @@
   {{/authors}}
         <pubdate>{{pubdate}}</pubdate>
         <title>{{title}}</title>
-        <geoform>text files</geoform>
+        <geoform>{{file-format}}</geoform>
         <onlink>{{doi}}</onlink>
         {{#larger-cites}}<lworkcit>
     <citeinfo>
