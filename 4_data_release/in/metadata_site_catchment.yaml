@@ -3,21 +3,22 @@ document-created: "2017-12-12"
 document-creator: "Jordan S Read"
 
 # ----data release----
-title: >-
-  Spatial catchments data release: A national database for river metabolism (2007-2017)
+title: Spatial catchments
 
 
 # ----dataset details----
 process-description: >- 
-  Existing polygons were combined from various sources (see attributes and descriptions). Spatial tools in the R programming language were used to perform the operations of merging 
+  Existing polygons were combined from various sources (see data_source attribute and Source Information).
+  Spatial tools in the R programming language were used to perform the operations of merging 
   and modifying attributes. 
 process-date: "`r format(Sys.time(),'%Y%m%d')`"
 data-name: Spatial data for catchment delineation
 data-description: >- 
-  Catchment polygons from various sources collated into a single shapefile Catchments approximately represent the contributing area for gaging stations. 
+  Catchment polygons from various sources collated into a single shapefile.
+  Catchments approximately represent the contributing area for gaging stations. 
   Not all stations had catchments delineated, so those included here are a subset of the total. 
 build-environment: "`r environment_metadata()`"
-file-format: Shapefiles
+file-format: Shapefile
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
 usage-rules:  >- 
   The USGS shall not be held liable for improper or incorrect use of these data, based on the description of 
@@ -31,37 +32,83 @@ usage-rules:  >-
   of the data.
 
 
-cross-cites: 
+source-cites: 
+  -
+    authors: ['US EPA', 'National Exposure Research Laboratory, RTP']
+    title: >-
+      BASINS 4.1 (Better Assessment Science Integrating point & Non-point Sources) Modeling Framework
+    pubdate: 2015
+    link: http://www.epa.gov/exposure-assessment-models/basins
+    sngdate:
+      caldate: 2017
+    srccurr: access date
+    srccitea: epa_basins
   - 
     authors: ['James A. Falcone']
     title: >-
       GAGES-II:  Geospatial Attributes of Gages for Evaluating Streamflow
     pubdate: 2011
+    file-format: shapefiles
     link: http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml
+    sngdate:
+      caldate: 2011
+    srccurr: publication date
+    srccitea: Falcone 2011, gagesii_basins
   -
     authors: ['James A. Falcone', 'Nancy T. Baker', 'Curtis V. Price']
     title: >-
       Watershed boundaries for study sites of the U.S. Geological Survey Surface Water Trends project
     pubdate: 2017
+    file-format: shapefiles
     link: http://dx.doi.org/10.5066/F78S4N29
+    sngdate:
+      caldate: 2017
+    srccurr: publication date
+    srccitea: Falcone et al. 2017
+  -
+    authors: ['U.S. Geological Survey']
+    title: >-
+      National Hydrography Geodatabase: The National Map Viewer
+    pubdate: 2013
+    file-format: shapefiles
+    link: https://viewer.nationalmap.gov/viewer/index.html?p=nhd
+    sngdate:
+      caldate: 2013
+    srccurr: publication date
+    srccitea: U.S. Geological Survey 2013
   -
     title: >- 
       StreamStats website; accessed 03/01/2017
     pubdate: 2017
+    file-format: shapefiles
     link: https://water.usgs.gov/osw/streamstats/
+    sngdate:
+      caldate: 2017
+    srccurr: access date
+    srccitea: StreamStats
   -
     authors: ['Naomi Nakagaki', 'Sharon L. Qi', 'Jeffrey W. Frey', 'Daniel T. Button', 'Nancy T. Baker', 'Thomas E. Burley', 'Peter C. Van Metre']
     title: >- 
       Geospatial database of the study boundary, sampled sites, watersheds, and riparian zones developed for the U.S. Geological Survey Midwest Stream Quality Assessment
     pubdate: 2016
+    file-format: shapefiles
     link: http://dx.doi.org/10.5066/F7CN7202
+    sngdate:
+      caldate: 2016
+    srccurr: publication date
+    srccitea: Nakagaki et al. 2016
   -
     authors: ['Michael E. Wieczorek']
     title: >- 
       USGS Streamgage NHDPlus Version 1 Basins 2011
-    pubdate: 08302012
+    pubdate: 20120830
+    file-format: shapefiles
     link: http://water.usgs.gov/GIS/metadata/usgswrd/XML/streamgagebasins.xml
-  
+    sngdate:
+      caldate: 2012
+    srccurr: publication date
+    srccitea: Wieczorek 2012
+
 
 
 # ----spatial data----
