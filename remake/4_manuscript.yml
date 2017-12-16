@@ -1,7 +1,7 @@
 target_default: 4_manuscript
 
 include:
-  - 4_data_release.yml
+  - 4_release_spatial.yml
   
 packages:
   - maps
@@ -12,13 +12,21 @@ packages:
   - mda.streams
   
 sources:
-  - ../lib/load_profile.R
   - ../4_manuscript/code/spatial_plotting.R
+  - ../4_manuscript/code/tbl_catchment_sources.R
  
 targets:
   4_manuscript:
     depends: 
-      - "../4_manuscript/out/figure_01.png"
+      - ../4_manuscript/tbl/catchment_sources.csv
+
+  # - ../4_manuscript/out/figure_01.png
+  
+  #### tables ####
+  ../4_manuscript/tbl/catchment_sources.csv:
+    command: tbl_catchment_sources(outfile=target_name, catchments=catchments_as_written, metafile='../4_data_release/out/site_catchment_shapefile.xml')
+  
+  #### figures ####
   
   sp_sites:
     command: append_hucs(spatial.points)
