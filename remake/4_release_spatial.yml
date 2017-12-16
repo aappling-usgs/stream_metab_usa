@@ -40,11 +40,17 @@ targets:
     
   # -- create tables with partial info to complete manually --
   
+  catchments_as_written:
+    command: read_shapefile(catchment_shapefile)
+    
+  points_as_written:
+    command: read_shapefile(points_shapefile)
+  
   ../4_data_release/in/catchment_attr.csv:
-    command: attribute_skeleton(spatial.catchments, target_name)
+    command: attribute_skeleton(catchments_as_written, target_name)
   
   ../4_data_release/in/points_attr.csv:
-    command: attribute_skeleton(spatial.points, target_name)
+    command: attribute_skeleton(points_as_written, target_name)
   
   # -- read manual entry and extracted metadata -- 
   
