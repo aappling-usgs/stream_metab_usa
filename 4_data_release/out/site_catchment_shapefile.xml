@@ -224,7 +224,7 @@
           <srccurr>access date</srccurr>
         </srctime>
         <srccitea>epa_basins</srccitea>
-        <srccontr/>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <srcinfo>
         <srccite>
@@ -246,7 +246,7 @@
           <srccurr>publication date</srccurr>
         </srctime>
         <srccitea>Falcone 2011, gagesii_basins</srccitea>
-        <srccontr/>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <srcinfo>
         <srccite>
@@ -270,7 +270,7 @@
           <srccurr>publication date</srccurr>
         </srctime>
         <srccitea>Falcone et al. 2017</srccitea>
-        <srccontr/>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <srcinfo>
         <srccite>
@@ -292,40 +292,29 @@
           <srccurr>publication date</srccurr>
         </srctime>
         <srccitea>U.S. Geological Survey 2013</srccitea>
-        <srccontr/>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <srcinfo>
         <srccite>
           <citeinfo>
-            <origin>Alison P. Appling</origin>
-            <origin>Jordan S. Read</origin>
-            <origin>Luke A. Winslow</origin>
-            <origin>Maite Arroita</origin>
-            <origin>Emily S. Bernhardt</origin>
-            <origin>Natalie A. Griffiths</origin>
-            <origin>Robert O. Hall, Jr.</origin>
-            <origin>Judson W. Harvey</origin>
-            <origin>James B. Heffernan</origin>
-            <origin>Emily H. Stanley</origin>
-            <origin>Edward G. Stets</origin>
-            <origin>Charles B. Yackulic</origin>
+            <origin>U.S. Geological Survey</origin>
             <pubdate>2017</pubdate>
-            <title>StreamStats website; accessed 03/01/2017</title>
+            <title>StreamStats</title>
             <geoform>shapefiles</geoform>
-            <onlink>https://water.usgs.gov/osw/streamstats/</onlink>
+            <onlink>https://water.usgs.gov/osw/streamstats</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
         <srctime>
           <timeinfo>
             <sngdate>
-              <caldate>2017</caldate>
+              <caldate>20170301</caldate>
             </sngdate>
           </timeinfo>
           <srccurr>access date</srccurr>
         </srctime>
         <srccitea>StreamStats</srccitea>
-        <srccontr/>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <srcinfo>
         <srccite>
@@ -353,7 +342,7 @@
           <srccurr>publication date</srccurr>
         </srctime>
         <srccitea>Nakagaki et al. 2016</srccitea>
-        <srccontr/>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <srcinfo>
         <srccite>
@@ -375,7 +364,7 @@
           <srccurr>publication date</srccurr>
         </srctime>
         <srccitea>Wieczorek 2012</srccitea>
-        <srccontr/>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <procstep>
         <procdesc>Existing polygons were combined from various sources (see data_source attribute and Source Information). Spatial tools in the R programming language were used to perform the operations of merging  and modifying attributes. </procdesc>
