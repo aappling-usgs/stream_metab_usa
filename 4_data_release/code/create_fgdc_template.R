@@ -15,13 +15,13 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
     xml_add_child("origin-template") %>%
     xml_add_sibling('pubdate', "{{pubdate}}") %>%
     xml_add_sibling('title', "{{title}}") %>%
-    xml_add_sibling('geoform', "text files") %>%
+    xml_add_sibling('geoform', "{{file-format}}") %>%
     xml_add_sibling('onlink', "{{doi}}") %>% 
     xml_add_sibling('lworkcit-template')
   
   m %>%
     xml_add_child('descript') %>%
-    xml_add_child("abstract",'{{abstract}} This data set contains the following parameters (defined below): <abscontent-template/>.') %>%
+    xml_add_child("abstract",'{{abstract}} This data set contains the following parameters (defined below): <abscontent-template/>') %>%
     xml_add_sibling("purpose", '{{purpose}}')
   
   ti <- m %>%
@@ -126,8 +126,9 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
     xml_add_child('vertaccr','A formal accuracy assessment of the vertical positional information in the dataset was not conducted.')
   
   #### 2.5 Lineage & Process Steps ####
-  q %>% xml_add_child('lineage') %>% 
-    xml_add_child('procstep') %>% 
+  l <- xml_add_child(q, 'lineage')
+  l %>% xml_add_child('srcinfo-template')
+  l %>% xml_add_child('procstep') %>% 
     xml_add_child('procdesc','{{process-description}}') %>% 
     xml_add_sibling('procdate','{{process-date}}')
   
@@ -248,7 +249,11 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
           {{/states}}
       </place>"
   
-  abscontent.template = "{{#attributes}}{{attr-label}}, {{/attributes}}"
+  abscontent.template = if(multiple_entities) {
+    "{{#entities}}In {{data-name}}: {{#attributes}}{{attr-label}}, {{/attributes}}. {{/entities}}"
+  } else {
+    "{{#attributes}}{{attr-label}}, {{/attributes}}."
+  }
   
   origin.template = "{{#authors}}
   <origin>{{.}}</origin>
@@ -302,6 +307,44 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
     </citeinfo>
   </crossref>\n{{/cross-cites}}"
   
+  srcinfo.template = paste(c(
+    "{{#source-cites}}<srcinfo>",
+    paste0("        ", c(
+      "<srccite>",
+      "  <citeinfo>",
+      "    {{#authors}}",
+      "    <origin>{{.}}</origin>",
+      "    {{/authors}}",
+      "    <pubdate>{{pubdate}}</pubdate>",
+      "    <title>{{title}}</title>",
+      "    <geoform>{{file-format}}</geoform>",
+      # "    <pubinfo>",
+      # "      <pubplace>{{pubplace}}</pubplace>",
+      # "      <publish>{{publish}}</publish>",
+      # "    </pubinfo>",
+      "    {{#link}}",
+      "    <onlink>{{.}}</onlink>",
+      "    {{/link}}",
+      "  </citeinfo>",
+      "</srccite>",
+      "<typesrc>online</typesrc>",
+      "<srctime>",
+      "  <timeinfo>",
+      "    {{#sngdate}}<sngdate>",
+      "      <caldate>{{caldate}}</caldate>",
+      "    </sngdate>{{/sngdate}}",
+      "    {{#rngdates}}<rngdates>",
+      "      <begdate>{{begdate}}</begdate>",
+      "      <enddate>{{enddate}}</enddate>",
+      "    </rngdates>{{/rngdates}}",
+      "  </timeinfo>",
+      "  <srccurr>{{srccurr}}</srccurr>",
+      "</srctime>",
+      "<srccitea>{{srccitea}}</srccitea>",
+      "<srccontr>{{srccontr}}</srccontr>"), collapse="\n"),
+    "      </srcinfo>",
+    "{{/source-cites}}"), collapse="\n")
+    
   suppressWarnings(readLines(tempxml)) %>% 
     gsub(pattern = '&gt;',replacement = '>',.) %>% 
     gsub(pattern = '&lt;',replacement = '<',.) %>% 
@@ -312,6 +355,7 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
     gsub(pattern = '<lworkcit-template/>', replacement = lworkcit.template) %>% 
     gsub(pattern = '<crossref-template/>', replacement = crossref.template) %>% 
     gsub(pattern = '<abscontent-template/>', replacement = abscontent.template) %>% 
+    gsub(pattern = '<srcinfo-template/>', replacement = srcinfo.template) %>% 
     cat(file = file.out, sep = '\n')
   
   return(file.out)

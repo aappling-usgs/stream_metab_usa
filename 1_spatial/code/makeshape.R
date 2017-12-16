@@ -146,6 +146,17 @@ write_shapefile <- function(obj, layer){
   return(files)
 }
 
+#' read back in the shapefiles, because writeOGR changes their column names so
+#' we need to see what they were changed to
+#' 
+#' @param files a vector of all filenames that make up the shapefile
+read_shapefile <- function(files) {
+  layer <- basename(tools::file_path_sans_ext(files[1]))
+  shpfile <- grep('\\.shp', files, value=TRUE)
+  out <- readOGR(shpfile, layer=layer)
+  out
+}
+
 
 #' create a catchment polygon formatted for NWIS
 #' 

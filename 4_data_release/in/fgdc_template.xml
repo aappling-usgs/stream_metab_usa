@@ -129,6 +129,37 @@
       </vertacc>
     </posacc>
     <lineage>
+      {{#source-cites}}<srcinfo>
+        <srccite>
+          <citeinfo>
+            {{#authors}}
+            <origin>{{.}}</origin>
+            {{/authors}}
+            <pubdate>{{pubdate}}</pubdate>
+            <title>{{title}}</title>
+            <geoform>{{file-format}}</geoform>
+            {{#link}}
+            <onlink>{{.}}</onlink>
+            {{/link}}
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            {{#sngdate}}<sngdate>
+              <caldate>{{caldate}}</caldate>
+            </sngdate>{{/sngdate}}
+            {{#rngdates}}<rngdates>
+              <begdate>{{begdate}}</begdate>
+              <enddate>{{enddate}}</enddate>
+            </rngdates>{{/rngdates}}
+          </timeinfo>
+          <srccurr>{{srccurr}}</srccurr>
+        </srctime>
+        <srccitea>{{srccitea}}</srccitea>
+        <srccontr>{{srccontr}}</srccontr>
+      </srcinfo>
+{{/source-cites}}
       <procstep>
         <procdesc>{{process-description}}</procdesc>
         <procdate>{{process-date}}</procdate>
