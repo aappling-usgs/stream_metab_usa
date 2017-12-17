@@ -5,12 +5,12 @@
 #   histograms of land use classes: urban vs ag vs everything else
 #   Temporal coverage - density plot of record lengths
 
-plot_site_description(outfile, dailies='../4_data_release/cache/models/post/daily_predictions.zip') {
-  unzipped <- unzip(zipfile=dailies, exdir=file.path(tempdir(), 'site_description'))
-  dailies <- readr::read_tsv(unzipped)
+panel_temporal_coverage <- function(dailies) {
   
-  # simplify (for plotting, anyway) to start & end dates of contiguous runs of estimates
-  runs <- dailies %>%
+  # identify start & end dates of contiguous runs of estimates so that obs can
+  # be plotted as lines rather than points (lots faster)
+  # find the multi-day runs of consecutive estimates
+  longruns <- dailies %>%
     group_by(site_name) %>%
     arrange(date) %>%
     do(., {
@@ -22,11 +22,25 @@ plot_site_description(outfile, dailies='../4_data_release/cache/models/post/dail
           start_pos = c(1, end_pos[-n()]),
           start_date = thesedates[start_pos],
           end_date = thesedates[end_pos]
-        ) %>%
-        filter(values==1) %>%
-        select(start_date, end_date)
-    }) %>%
+        )
+      }) %>%
+    filter(values==1) %>%
+    select(site_name, start_date, end_date)
+  # find the single days with multi-day gaps on either side
+  solodays <- dailies %>%
+    group_by(site_name) %>%
+    arrange(date) %>%
+    do(., {
+      thesedates <- .$date
+      diffs <- as.numeric(diff(thesedates), units="days")
+      solodates <- thesedates[which(diffs > 1 & lag(diffs) > 1)]
+      data_frame(start_date=solodates, end_date=solodates+0.5)
+    })
+  # combine
+  runlines <- bind_rows(longruns, solodays) %>%
+    arrange(site_name, start_date) %>%
     ungroup()
+    
   # group and rank sites by record length and density
   counts <- dailies %>%
     group_by(site_name) %>%
@@ -50,9 +64,11 @@ plot_site_description(outfile, dailies='../4_data_release/cache/models/post/dail
     ungroup() %>%
     arrange(start) %>%
     mutate(site_rank_all = 1:n())
-  ranked_runs <- left_join(runs, counts, by='site_name')
   
-  # FIGURE: Duration, seasonality, and frequency of daily metabolism observations
+  # combine runlines and site rankings
+  ranked_runs <- left_join(runlines, counts, by='site_name')
+  
+  # Plot: Duration and frequency of daily metabolism observations
   ggplot(ranked_runs) +
     geom_segment(aes(x=start_date, xend=end_date, y=site_rank_all, yend=site_rank_all, color=peryear_bin)) +
     scale_colour_manual('Days per Year', values=c('#e66101','#fdb863','#b2abd2','#5e3c99')) + #http://colorbrewer2.org/#type=diverging&scheme=PuOr&n=4
@@ -60,8 +76,16 @@ plot_site_description(outfile, dailies='../4_data_release/cache/models/post/dail
     xlab('Date') +
     theme_classic() +
     theme(legend.position=c(0.2,0.75))
-    
-  counts <- dailies %>% group_by(site_name) %>% count()
+}
+
+fig_site_description(outfile, daily_zip='../4_data_release/cache/models/post/daily_predictions.zip') {
+  
+  # load the file
+  unzipped <- unzip(zipfile=daily_zip, exdir=file.path(tempdir(), 'site_description'))
+  dailies <- readr::read_tsv(unzipped)
+  
+  # create panel for temporal coverage
+  panel_coverage <- panel_temporal_coverage(dailies)
   
   ggplot(dailies, aes(x=date, y=site_name)) + geom_point()
   
