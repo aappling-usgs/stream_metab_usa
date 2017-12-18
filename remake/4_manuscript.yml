@@ -23,19 +23,16 @@ targets:
   # - ../4_manuscript/out/figure_01.png
   
   #### tables ####
+  
   ../4_manuscript/tbl/catchment_sources.csv:
     command: tbl_catchment_sources(outfile=target_name, catchments=catchments_as_written, metafile='../4_data_release/out/site_catchment_shapefile.xml')
   
   #### figures ####
   
-  sp_sites:
-    command: append_hucs(spatial.points)
-
-  ../4_manuscript/out/figure_01.png:
-    command: plot_national_site_map(target_name, sp_sites)
-    plot: true
-    
-  ../4_manuscript/out/fig_site_description.png:
-    command: plot_site_description(target_name, 
-      dailies='../4_data_release/cache/models/post/daily_predictions.zip')
+  ../4_manuscript/fig/sites.pdf:
+    command: fig_site_description(
+      outfile=target_name, 
+      daily_zip='../4_data_release/cache/models/post/daily_predictions.zip',
+      points_shp='../1_spatial/cache/points_shapefile/points_shapefile.shp',
+      site_tsv='../4_data_release/cache/site_data.tsv')
 
