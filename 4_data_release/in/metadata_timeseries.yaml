@@ -23,3 +23,31 @@ metadata-date: !expr format(Sys.time(),'%Y%m%d')
 indirect-spatial: U.S.A.
 latitude-res: Not applicable
 longitude-res: Not applicable
+
+source-cites: 
+  -
+    authors: ['Peter A. Raymond', 'Christopher J. Zappa', 'David Butman', 'Thomas L. Bott', 'Jody Potter', 'Patrick Mulholland', 'Andrew E. Laursen', 'William H. McDowell', 'Denis Newbold']
+    title: >-
+      Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology & Oceanography: Fluids & Environments 2 (2012): 41-53.
+    pubdate: 2016
+    link: ['https://waterdata.usgs.gov/nwis', 'http://dx.doi.org/10.5066/F7P55KJN']
+    sngdate:
+      caldate: 2012
+    srccurr: publication date
+    srccitea: Raymond et al. 2012
+    srccontr: >-
+      This source provided hydraulic geometry coefficients used in the computation of the stream depth estimates
+      with Entity Type Label nwis_XXXX-ts_depth_calcDischRaymond.tsv.
+  -
+    authors: ['Herncin E. Garcia', 'Louis I. Gordon']
+    title: >-
+      Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6).
+    pubdate: 1992
+    link: ['http://onlinelibrary.wiley.com/doi/10.4319/lo.1992.37.6.1307/abstract']
+    sngdate:
+      caldate: 1992
+    srccurr: publication date
+    srccitea: Garcia and Gordon 1992 
+    srccontr: >-
+      This source provided the equation and coefficients for estimating oxygen saturation concentrations
+      (Entity Type Labels nwis_XXXX-ts_dosat_calcGGbconst.tsv and nwis_XXXX-ts_dosat_calcGGbts.tsv).

@@ -26,6 +26,7 @@ targets:
   4_release_timeseries:
     depends: 
       - ../4_data_release/log/4_tasks_timeseries.ind
+      - post_timeseries_meta
   
   # -- SB posting: create the items to host data and metadata --
 
