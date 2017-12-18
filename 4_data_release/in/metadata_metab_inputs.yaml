@@ -13,7 +13,7 @@ data-name: nwis_SITENUM_input.zip for 365 values of SITENUM
 data-description: Model input data for estimating metabolism.
 build-environment: PC
 file-format: tab-separated values, compressed from text to .zip format
-metadata-date: !expr format(Sys.time(),'%Y%m%d')
+metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
 # ----spatial data----
 indirect-spatial: U.S.A.

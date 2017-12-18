@@ -14,7 +14,7 @@ data-name: diagnostics.zip.
 data-description: Key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.
 build-environment: PC
 file-format: tab-separated values, compressed from text to .zip format
-metadata-date: !expr format(Sys.time(),'%Y%m%d')
+metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
 # ----spatial data----
 indirect-spatial: U.S.A.
