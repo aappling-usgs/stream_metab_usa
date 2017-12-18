@@ -36,7 +36,7 @@ targets:
   # -- munge & write data for release --
   
   tasks_timeseries_plan:
-    command: create_timeseries_release_plan()
+    command: create_timeseries_release_plan(release_sites)
   
   4_tasks_timeseries.yml:
     command: create_timeseries_release_makefile(makefile=target_name,

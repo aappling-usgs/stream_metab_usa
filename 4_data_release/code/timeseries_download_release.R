@@ -6,7 +6,7 @@ ts_files_for_download <- function(target_name, ts.dir){
   
   library(dplyr)
   match.id <- paste0(paste(strsplit(target_name, '[_]')[[1]][1:2], collapse = '_'), '-')
-  ts.files <- dir(ts.dir, full.names=TRUE) %>% {.[!grepl('all_ts_files|Thumbs.db', .)]}
+  ts.files <- dir(ts.dir, pattern='files_ts_', full.names=TRUE)
   file.list <- c()
   for (file in ts.files){
     file.meta <- readr::read_tsv(file) %>%  filter(grepl(filepath, pattern = match.id))
