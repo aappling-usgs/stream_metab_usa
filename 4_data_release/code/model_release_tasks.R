@@ -474,27 +474,28 @@ combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {
       summarize(
         DO.obs=mean(DO.obs),
         DO.sat=mean(DO.sat),
-        DO.amp=diff(range(DO.psat)),
+        DO.amp=diff(range(DO.psat)), # i've confirmed that DO.amp == doamp_calcDAmp from daily predictors below
         DO.psat=mean(DO.psat),
         depth=mean(depth),
         temp.water=mean(temp.water),
         day.length=if(any(light > 0)) as.numeric(diff(range(solar.time[light>0])), units='hours') else NA,
-        light=mean(light),
-        discharge=mean(discharge)) %>%
+        discharge=mean(discharge) # i've confirmed that mean(discharge) == dischdaily from daily predictors below
+      ) %>%
       mutate(site_name=site)
     return(input)
   }))
   
   # read in daily average discharge, and velocity
   daily_predictors <- readRDS(daily_preds_file) %>%
-    select(site_name=site, date=sitedate, velocity=velocdaily)
+    select(site_name=site, date=sitedate, shortwave=swdaily, velocity=velocdaily)
   
   # combine the daily predictions, daily mean inputs, and daily predictors into
   # a single df. I've done some checking: daylength predicts mean light,
   # DO.psat=doamp, discharge=dischdaily, GPP~DO.amp, GPP~daylength, etc.
   all_dailies <- daily_preds %>%
     left_join(daily_means, by=c('site_name', 'date')) %>%
-    left_join(daily_predictors, by=c('site_name', 'date'))
+    left_join(daily_predictors, by=c('site_name', 'date')) %>%
+    
   
   # write the combined daily predictions to a file with the same name (other
   # than extension) as the zip file that will contain it. write the zip, too
