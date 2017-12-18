@@ -528,8 +528,8 @@ attributes_daily_preds <- function(
     'DO.psat', 'Mean percent dissolved oxygen saturation for the date (4am to 3:59am).', var_src_units('DO.psat'),
     'depth', 'Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).', var_src_units('depth'),
     'temp.water', 'Mean water temperature for the date (4am to 3:59pm).', var_src_units('temp.water'),
-    'day.length', 'Time elapsed between first and last observations of light > 0 for the date (4am to 3:59pm).', 'hours',
-    'light', 'Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).', var_src_units('light'),
+    'day.length', 'Time elapsed between first and last estimates of light > 0 for the date (4am to 3:59pm).', 'hours',
+    'shortwave', 'Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).', var_src_units('sw'),
     'discharge', 'Mean discharge for the date (4am to 3:59pm).', var_src_units('discharge'),
     'velocity', 'Mean water velocity for the date (4am to 3:59pm).', var_src_units('velocity')
   ) %>% mutate(
@@ -537,7 +537,7 @@ attributes_daily_preds <- function(
       switch(
         attr_label,
         site_name = 'National Water Information System, U.S. Geological Survey',
-        resolution=,DO.obs=,DO.sat=,DO.amp=,DO.psat=,depth=,temp.water=,day.length=,light=,discharge=,velocity='This data release',
+        resolution=,DO.obs=,DO.sat=,DO.amp=,DO.psat=,depth=,temp.water=,day.length=,shortwave=,discharge=,velocity='This data release',
         'streamMetabolizer R package')
     })
   )
