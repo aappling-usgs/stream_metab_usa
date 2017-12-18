@@ -2,7 +2,8 @@
 #' be run once, after timeseries have all been pulled locally
 combine_daily_predictors <- function(out_file, metab_config) {
   daily_preds <- dplyr::bind_rows(lapply(unique(metab_config$site), function(site) {
-    ts_files <- paste0('../1_timeseries/cache/', site, '-ts_', c('sitedate_calcLon','doamp_calcDAmp','dischdaily_calcDMean','velocdaily_calcDMean'), '.rds')
+    ts_files <- paste0('../1_timeseries/cache/', site, '-ts_', 
+                       c('sitedate_calcLon','doamp_calcDAmp','swdaily_calcDMean','dischdaily_calcDMean','velocdaily_calcDMean'), '.rds')
     if(any(!file.exists(ts_files))) {
       stop(paste("ts files must be downloaded locally to combine_daily_predictors:", paste(ts_files[!file.exists(ts_files)], collapse=', ')))
     }

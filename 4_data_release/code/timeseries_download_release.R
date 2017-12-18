@@ -6,7 +6,7 @@ ts_files_for_download <- function(target_name, ts.dir){
   
   library(dplyr)
   match.id <- paste0(paste(strsplit(target_name, '[_]')[[1]][1:2], collapse = '_'), '-')
-  ts.files <- dir(ts.dir, full.names=TRUE) %>% {.[!grepl('all_ts_files|Thumbs.db', .)]}
+  ts.files <- dir(ts.dir, pattern='files_ts_', full.names=TRUE)
   file.list <- c()
   for (file in ts.files){
     file.meta <- readr::read_tsv(file) %>%  filter(grepl(filepath, pattern = match.id))
@@ -119,6 +119,7 @@ attributes_timeseries <- function(
     
     # calculated, daily
     'doamp_calcDAmp', 'Daily (4am to 3:59am) amplitude in dissolved oxygen percent saturation. Calculated from dopsat_calcObsSat', 'This release',
+    'swdaily_calcDMean', 'Daily (4am to 3:59am) average of sw_nldas (or sw_gldas when sw_nldas unavailable)', 'This release',
     'dischdaily_calcDMean', 'Daily (4am to 3:59am) average of disch_nwis', 'This release',
     'velocdaily_calcDMean', 'Daily (4am to 3:59am) average of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)', 'This release'
   ) %>% 
