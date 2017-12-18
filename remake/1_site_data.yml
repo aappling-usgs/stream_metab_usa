@@ -35,6 +35,11 @@ targets:
   # Post sites and ensure they're posted; break at end unless they're fully posted
   sb_sites:
     command: sb_post_sites('../1_site_data/out/site_list.tsv', sites.config)
+    
+  # Create vector of sites that should be included in the data release
+  # (because they were reporting DO data in NWIS at the time of the data download)
+  release_sites:
+    command: identify_release_sites('../1_site_data/out/site_list.tsv')
 
   
   ## Metadata ##

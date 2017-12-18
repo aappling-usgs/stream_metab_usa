@@ -41,3 +41,11 @@ create_site_table <- function(config, outfile) {
   
   return()
 }
+
+#' Identify just those sites that were fresh at the time of the data pull (when
+#' create_site_table was run) for use in preparing files for the data release
+identify_release_sites <- function(site_table='../1_site_data/out/site_list.tsv') {
+  read_status_table(site_table) %>%
+    filter(!no.data) %>%
+    pull(site_name)
+}
