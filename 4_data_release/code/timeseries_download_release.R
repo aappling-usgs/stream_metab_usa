@@ -119,6 +119,7 @@ attributes_timeseries <- function(
     
     # calculated, daily
     'doamp_calcDAmp', 'Daily (4am to 3:59am) amplitude in dissolved oxygen percent saturation. Calculated from dopsat_calcObsSat', 'This release',
+    'swdaily_calcDMean', 'Daily (4am to 3:59am) average of sw_nldas (or sw_gldas when sw_nldas unavailable)', 'This release',
     'dischdaily_calcDMean', 'Daily (4am to 3:59am) average of disch_nwis', 'This release',
     'velocdaily_calcDMean', 'Daily (4am to 3:59am) average of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)', 'This release'
   ) %>% 
