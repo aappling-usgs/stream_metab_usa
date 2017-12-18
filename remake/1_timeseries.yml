@@ -48,6 +48,7 @@ targets:
       - sb_par_calcLatSw
       - sb_sitedate_calcLon
       - sb_doamp_calcDAmp
+      - sb_swdaily_calcDMean
       - sb_dischdaily_calcDMean
       - sb_velocdaily_calcDMean
       - ../1_timeseries/out/all_ts_files.tsv
@@ -80,6 +81,7 @@ targets:
       - ../1_timeseries/out/files_ts_par_calcLatSw.tsv
       - ../1_timeseries/out/files_ts_sitedate_calcLon.tsv
       - ../1_timeseries/out/files_ts_doamp_calcDAmp.tsv
+      - ../1_timeseries/out/files_ts_swdaily_calcDMean.tsv
       - ../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv
       - ../1_timeseries/out/files_ts_velocdaily_calcDMean.tsv
 
@@ -144,6 +146,9 @@ targets:
   ../1_timeseries/out/files_ts_doamp_calcDAmp.tsv:
     depends: [sb_sitedate_calcLon, sb_dopsat_calcObsSat]
     command: create_ts_table(sb_sites, ts.config, target_name)
+  ../1_timeseries/out/files_ts_swdaily_calcDMean.tsv:
+    depends: [sb_sitedate_calcLon, sb_sw_nldas, sb_sw_gldas]
+    command: create_ts_table(sb_sites, ts.config, target_name)
   ../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv:
     depends: [sb_sitedate_calcLon, sb_disch_nwis]
     command: create_ts_table(sb_sites, ts.config, target_name)
@@ -177,6 +182,7 @@ targets:
       - par_calcLatSw
       - sitedate_calcLon
       - doamp_calcDAmp
+      - swdaily_calcDMean
       - dischdaily_calcDMean
       - velocdaily_calcDMean
 
@@ -231,6 +237,8 @@ targets:
     command: stage_ts('../1_timeseries/out/files_ts_sitedate_calcLon.tsv')
   doamp_calcDAmp:
     command: stage_ts('../1_timeseries/out/files_ts_doamp_calcDAmp.tsv')
+  swdaily_calcDMean:
+    command: stage_ts('../1_timeseries/out/files_ts_swdaily_calcDMean.tsv')
   dischdaily_calcDMean:
     command: stage_ts('../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv')
   velocdaily_calcDMean:
@@ -305,6 +313,9 @@ targets:
   sb_doamp_calcDAmp:
     command: sb_post_ts('../1_timeseries/out/files_ts_doamp_calcDAmp.tsv', ts.config)
     depends: doamp_calcDAmp
+  sb_swdaily_calcDMean:
+    command: sb_post_ts('../1_timeseries/out/files_ts_swdaily_calcDMean.tsv', ts.config)
+    depends: swdaily_calcDMean
   sb_dischdaily_calcDMean:
     command: sb_post_ts('../1_timeseries/out/files_ts_dischdaily_calcDMean.tsv', ts.config)
     depends: dischdaily_calcDMean
@@ -337,5 +348,6 @@ targets:
       - sb_par_calcLatSw
       - sb_sitedate_calcLon
       - sb_doamp_calcDAmp
+      - sb_swdaily_calcDMean
       - sb_dischdaily_calcDMean
       - sb_velocdaily_calcDMean
