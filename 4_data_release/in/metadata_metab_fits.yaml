@@ -3,7 +3,7 @@ document-created: "20171110"
 document-creator: "Alison P Appling"
 
 # ----data release----
-title: Input data used for estimating metabolism
+title: Complete fits from metabolism estimation models
 
 # ----dataset details----
 process-description: >-
@@ -13,7 +13,7 @@ data-name: nwis_SITENUM_RES_fit.zip for 433 combinations of SITENUM (NWIS site I
 data-description: Model results from estimating metabolism.
 build-environment: PC
 file-format: tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.
-metadata-date: !expr format(Sys.time(),'%Y%m%d')
+metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
 # ----spatial data----
 indirect-spatial: U.S.A.

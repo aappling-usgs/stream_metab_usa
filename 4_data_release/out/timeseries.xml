@@ -17,13 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism</title>
-        <geoform>text files</geoform>
+        <geoform>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
         <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the continental United States. This data set contains the following parameters (defined below): .</abstract>
-      <purpose>To bring metabolism data to the world!</purpose>
+      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
+      <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
       <timeinfo>
@@ -36,7 +36,7 @@
     </timeperd>
     <status>
       <progress>Complete</progress>
-      <update>update planned for year 2023</update>
+      <update>Update planned for year 2023</update>
     </status>
     <spdom>
       <bounding>
@@ -160,7 +160,7 @@
       </place>
     </keywords>
     <accconst>none</accconst>
-    <useconst>None, but see Distribution Liability below. Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.</useconst>
+    <useconst>None, but see Distribution Liability below.  Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.</useconst>
     <ptcontac>
       <cntinfo>
         <cntperp>
@@ -197,6 +197,60 @@
       </vertacc>
     </posacc>
     <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Peter A. Raymond</origin>
+            <origin>Christopher J. Zappa</origin>
+            <origin>David Butman</origin>
+            <origin>Thomas L. Bott</origin>
+            <origin>Jody Potter</origin>
+            <origin>Patrick Mulholland</origin>
+            <origin>Andrew E. Laursen</origin>
+            <origin>William H. McDowell</origin>
+            <origin>Denis Newbold</origin>
+            <pubdate>2016</pubdate>
+            <title>Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology &amp; Oceanography: Fluids &amp; Environments 2 (2012): 41-53.</title>
+            <geoform>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
+            <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2012</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Raymond et al. 2012</srccitea>
+        <srccontr>This source provided hydraulic geometry coefficients used in the computation of the stream depth estimates with Entity Type Label nwis_XXXX-ts_depth_calcDischRaymond.tsv.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Herncin E. Garcia</origin>
+            <origin>Louis I. Gordon</origin>
+            <pubdate>1992</pubdate>
+            <title>Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6).</title>
+            <geoform>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
+            <onlink>http://onlinelibrary.wiley.com/doi/10.4319/lo.1992.37.6.1307/abstract</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>1992</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Garcia and Gordon 1992</srccitea>
+        <srccontr>This source provided the equation and coefficients for estimating oxygen saturation concentrations (Entity Type Labels nwis_XXXX-ts_dosat_calcGGbconst.tsv and nwis_XXXX-ts_dosat_calcGGbts.tsv).</srccontr>
+      </srcinfo>
       <procstep>
         <procdesc>Raw timeseries data were downloaded from two data sources: USGS NWIS and NASA LDAS. Additional variables were calculated from these raw sources using data-preparation functions from the streamMetabolizer R package.</procdesc>
         <procdate>2017-01-01</procdate>
@@ -1013,7 +1067,7 @@
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20171210</metd>
+    <metd>20171218</metd>
     <metc>
       <cntinfo>
         <cntperp>
