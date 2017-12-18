@@ -3,32 +3,36 @@ meddle-version: "0.0.4"
 # ----data release----
 authors: ["Alison P. Appling","Jordan S. Read","Luke A. Winslow", "Maite Arroita", "Emily S. Bernhardt", "Natalie A. Griffiths", "Robert O. Hall, Jr.", "Judson W. Harvey", "James B. Heffernan", "Emily H. Stanley", "Edward G. Stets", "Charles B. Yackulic"]
 pubdate: 2018
-update: update planned for year 2023
+update: Update planned for year 2023
 themekeywords: ["water","streams","rivers","metabolism","primary productivity","carbon","respiration"]
-usage-rules: None, but see Distribution Liability below. Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.
+usage-rules: >-
+  None, but see Distribution Liability below. 
+  Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.
 doi: http://dx.doi.org/10.5066/REPLACE.w.REAL
 abstract: >-
-  Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients
-  for 356 streams and rivers across the continental United States.
+  This data release provides modeled estimates of 
+  gross primary productivity, ecosystem respiration, and gas exchange coefficients
+  for 356 streams and rivers across the United States.
+  The release also includes the model input data and alternative input data,
+  model fit and diagnostic information,
+  spatial data for the modeled sites (catchment boundaries and site point locations), and
+  potential predictors of metabolism such as discharge and light availability.
 funding-credits: >-
-  This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry").
+  This work was funded by the USGS Powell Center
+  (Working Group title: "Continental-scale overview of stream primary productivity,
+  its links to water quality, and consequences for aquatic carbon biogeochemistry").
   Additional financial support came from the USGS NAWQA program and Office of Water Information.
   NSF grants DEB-1146283 and EF1442501 partially supported ROH.
   The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.
-purpose: To bring metabolism data to the world!
+purpose: >-
+  A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of
+  links between aquatic energy cycling and ecosystem services,
+  the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity.
+  This data release provides multi-day time series estimates of energy flow as
+  metabolism (gross primary productivity and ecosystem respiration)
+  for 356 streams and rivers across the United States.
 start-date: !expr format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[1]], '%Y-%m-%d'), '%Y%m%d')
 end-date: !expr format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[2]], '%Y-%m-%d'), '%Y%m%d')
-
-# ----cross references----
-cross-references:
-  - 
-    shortref: Raymond et al. 2012
-    cited-in: attributes_metab_config
-    citation: "Raymond, Peter A., Christopher J. Zappa, David Butman, Thomas L. Bott, Jody Potter, Patrick Mulholland, Andrew E. Laursen, William H. McDowell, and Denis Newbold. Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology & Oceanography: Fluids & Environments 2 (2012): 41-53."
-  - 
-    shortref: Garcia and Gordon 1992 
-    cited-in: Garcia-Benson for attributes_metab_config
-    citation: "Garcia, H., and L. Gordon (1992), Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6)."
 
 # ----associated publication----
 cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
