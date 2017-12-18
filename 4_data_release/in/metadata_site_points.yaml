@@ -3,19 +3,17 @@ document-created: "2017-12-12"
 document-creator: "Jordan S Read"
 
 # ----data release----
-title: >-
-  Spatial site locations data release: A national database for river metabolism (2007-2017)
+title: Spatial site locations
 
 
 # ----dataset details----
 process-description: >- 
-  A points shapefile was created using locations of USGS gaging stations included in this data release. 
+  A points shapefile was created containing locations of the USGS gaging stations included in this data release. 
   Spatial tools in the R programming language were used to perform the operations of creating the spatial datasets and modifying attributes. 
 process-date: "`r format(Sys.time(),'%Y%m%d')`"
 data-name: Spatial data for site locations
 data-description: >- 
-  A points shapefile was created using locations of USGS gaging stations included in this data release. 
-  Spatial tools in the R programming language were used to perform the operations of creating the spatial datasets and modifying attributes. 
+  A points shapefile containing locations of the USGS gaging stations included in this data release. 
 build-environment: "`r environment_metadata()`"
 file-format: Shapefiles
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"

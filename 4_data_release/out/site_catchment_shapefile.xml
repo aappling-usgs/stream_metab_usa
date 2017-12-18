@@ -16,13 +16,13 @@
         <origin>Edward G. Stets</origin>
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
-        <title>Spatial catchments data release: A national database for river metabolism (2007-2017)</title>
-        <geoform>Shapefiles</geoform>
+        <title>Spatial catchments</title>
+        <geoform>Shapefile</geoform>
         <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the continental United States. This data set contains the following parameters (defined below): site_name, data_source, .</abstract>
+      <abstract>Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the continental United States. This data set contains the following parameters (defined below): site_nm, dat_src, .</abstract>
       <purpose>To bring metabolism data to the world!</purpose>
     </descript>
     <timeperd>
@@ -184,68 +184,9 @@
       </cntinfo>
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
-    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
-  The computing platform for generating data and metadata was x86_64-apple-darwin15.6.0. 
-  R packages loaded into this environment: maptools, version: 0.9-2; mda.streams, version: 0.9.24; meddle, version: 0.0.4; maps, version: 3.2.0; dataRetrieval, version: 2.7.3; rgeos, version: 0.3-26; dplyr, version: 0.7.4; sbtools, version: 1.1.6; httr, version: 1.3.1; rgdal, version: 1.2-15; whisker, version: 0.3-2; yaml, version: 2.1.14; xml2, version: 1.1.1; magrittr, version: 1.5; sp, version: 1.2-5.</native>
-    <crossref>
-      <citeinfo>
-        <origin>James A. Falcone</origin>
-        <pubdate>2011</pubdate>
-        <title>GAGES-II:  Geospatial Attributes of Gages for Evaluating Streamflow</title>
-        <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml</onlink>
-      </citeinfo>
-    </crossref>
-    <crossref>
-      <citeinfo>
-        <origin>James A. Falcone</origin>
-        <origin>Nancy T. Baker</origin>
-        <origin>Curtis V. Price</origin>
-        <pubdate>2017</pubdate>
-        <title>Watershed boundaries for study sites of the U.S. Geological Survey Surface Water Trends project</title>
-        <onlink>http://dx.doi.org/10.5066/F78S4N29</onlink>
-      </citeinfo>
-    </crossref>
-    <crossref>
-      <citeinfo>
-        <origin>Alison P. Appling</origin>
-        <origin>Jordan S. Read</origin>
-        <origin>Luke A. Winslow</origin>
-        <origin>Maite Arroita</origin>
-        <origin>Emily S. Bernhardt</origin>
-        <origin>Natalie A. Griffiths</origin>
-        <origin>Robert O. Hall, Jr.</origin>
-        <origin>Judson W. Harvey</origin>
-        <origin>James B. Heffernan</origin>
-        <origin>Emily H. Stanley</origin>
-        <origin>Edward G. Stets</origin>
-        <origin>Charles B. Yackulic</origin>
-        <pubdate>2017</pubdate>
-        <title>StreamStats website; accessed 03/01/2017</title>
-        <onlink>https://water.usgs.gov/osw/streamstats/</onlink>
-      </citeinfo>
-    </crossref>
-    <crossref>
-      <citeinfo>
-        <origin>Naomi Nakagaki</origin>
-        <origin>Sharon L. Qi</origin>
-        <origin>Jeffrey W. Frey</origin>
-        <origin>Daniel T. Button</origin>
-        <origin>Nancy T. Baker</origin>
-        <origin>Thomas E. Burley</origin>
-        <origin>Peter C. Van Metre</origin>
-        <pubdate>2016</pubdate>
-        <title>Geospatial database of the study boundary, sampled sites, watersheds, and riparian zones developed for the U.S. Geological Survey Midwest Stream Quality Assessment</title>
-        <onlink>http://dx.doi.org/10.5066/F7CN7202</onlink>
-      </citeinfo>
-    </crossref>
-    <crossref>
-      <citeinfo>
-        <origin>Michael E. Wieczorek</origin>
-        <pubdate>08302012</pubdate>
-        <title>USGS Streamgage NHDPlus Version 1 Basins 2011</title>
-        <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/streamgagebasins.xml</onlink>
-      </citeinfo>
-    </crossref>
+    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  The computing platform for generating data and metadata was x86_64-w64-mingw32. 
+  R packages loaded into this environment: bindrcpp, version: 0.2; maptools, version: 0.9-2; mda.streams, version: 0.10.4; meddle, version: 0.0.4; maps, version: 3.2.0; dataRetrieval, version: 2.7.3; rgeos, version: 0.3-26; dplyr, version: 0.7.4; sbtools, version: 1.1.6; httr, version: 1.3.1; rgdal, version: 1.2-16; sp, version: 1.2-5; whisker, version: 0.3-2; yaml, version: 2.1.16; xml2, version: 1.1.1; magrittr, version: 1.5.</native>
   </idinfo>
   <dataqual>
     <attracc>
@@ -262,9 +203,172 @@
       </vertacc>
     </posacc>
     <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>US EPA</origin>
+            <origin>National Exposure Research Laboratory, RTP</origin>
+            <pubdate>2015</pubdate>
+            <title>BASINS 4.1 (Better Assessment Science Integrating point &amp; Non-point Sources) Modeling Framework</title>
+            <geoform>Shapefile</geoform>
+            <onlink>http://www.epa.gov/exposure-assessment-models/basins</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2017</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>epa_basins</srccitea>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>James A. Falcone</origin>
+            <pubdate>2011</pubdate>
+            <title>GAGES-II:  Geospatial Attributes of Gages for Evaluating Streamflow</title>
+            <geoform>shapefiles</geoform>
+            <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2011</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Falcone 2011, gagesii_basins</srccitea>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>James A. Falcone</origin>
+            <origin>Nancy T. Baker</origin>
+            <origin>Curtis V. Price</origin>
+            <pubdate>2017</pubdate>
+            <title>Watershed boundaries for study sites of the U.S. Geological Survey Surface Water Trends project</title>
+            <geoform>shapefiles</geoform>
+            <onlink>http://dx.doi.org/10.5066/F78S4N29</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2017</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Falcone et al. 2017</srccitea>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2013</pubdate>
+            <title>National Hydrography Geodatabase: The National Map Viewer</title>
+            <geoform>shapefiles</geoform>
+            <onlink>https://viewer.nationalmap.gov/viewer/index.html?p=nhd</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2013</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>U.S. Geological Survey 2013</srccitea>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2017</pubdate>
+            <title>StreamStats</title>
+            <geoform>shapefiles</geoform>
+            <onlink>https://water.usgs.gov/osw/streamstats</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>20170301</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>StreamStats</srccitea>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Naomi Nakagaki</origin>
+            <origin>Sharon L. Qi</origin>
+            <origin>Jeffrey W. Frey</origin>
+            <origin>Daniel T. Button</origin>
+            <origin>Nancy T. Baker</origin>
+            <origin>Thomas E. Burley</origin>
+            <origin>Peter C. Van Metre</origin>
+            <pubdate>2016</pubdate>
+            <title>Geospatial database of the study boundary, sampled sites, watersheds, and riparian zones developed for the U.S. Geological Survey Midwest Stream Quality Assessment</title>
+            <geoform>shapefiles</geoform>
+            <onlink>http://dx.doi.org/10.5066/F7CN7202</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2016</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Nakagaki et al. 2016</srccitea>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Michael E. Wieczorek</origin>
+            <pubdate>20120830</pubdate>
+            <title>USGS Streamgage NHDPlus Version 1 Basins 2011</title>
+            <geoform>shapefiles</geoform>
+            <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/streamgagebasins.xml</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2012</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Wieczorek 2012</srccitea>
+        <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
+      </srcinfo>
       <procstep>
-        <procdesc>Existing polygons were combined from various sources (see attributes and descriptions). Spatial tools in the R programming language were used to perform the operations of merging  and modifying attributes. </procdesc>
-        <procdate>20171212</procdate>
+        <procdesc>Existing polygons were combined from various sources (see data_source attribute and Source Information). Spatial tools in the R programming language were used to perform the operations of merging  and modifying attributes. </procdesc>
+        <procdate>20171216</procdate>
       </procstep>
     </lineage>
   </dataqual>
@@ -297,12 +401,12 @@
     <detailed>
       <enttyp>
         <enttypl>Spatial data for catchment delineation</enttypl>
-        <enttypd>Catchment polygons from various sources collated into a single shapefile Catchments approximately represent the contributing area for gaging stations.  Not all stations had catchments delineated, so those included here are a subset of the total. </enttypd>
+        <enttypd>Catchment polygons from various sources collated into a single shapefile. Catchments approximately represent the contributing area for gaging stations.  Not all stations had catchments delineated, so those included here are a subset of the total. </enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
-        <attrlabl>site_name</attrlabl>
-        <attrdef>The National Water Information System site name for the catchment of reference</attrdef>
+        <attrlabl>site_nm</attrlabl>
+        <attrdef>Site identifier for the catchment, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.</attrdef>
         <attrdefs>http://dx.doi.org/10.5066/F7P55KJN</attrdefs>
         <attrdomv>
           <rdom>
@@ -313,9 +417,9 @@
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl>data_source</attrlabl>
-        <attrdef>The provider of the dataset</attrdef>
-        <attrdefs>shortname reference for dataset provider;see cross-cites for full refernce information</attrdefs>
+        <attrlabl>dat_src</attrlabl>
+        <attrdef>The provider of the catchment polygon</attrdef>
+        <attrdefs>Shortname reference for dataset provider; see Source Information for full reference information</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>NA</rdommin>
@@ -348,7 +452,7 @@
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>Shapefiles</formname>
+          <formname>Shapefile</formname>
           <formvern>none</formvern>
         </digtinfo>
         <digtopt>
@@ -365,7 +469,7 @@
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20171212</metd>
+    <metd>20171216</metd>
     <metc>
       <cntinfo>
         <cntperp>
