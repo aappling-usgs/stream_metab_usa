@@ -17,26 +17,26 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Site identifiers and details</title>
-        <geoform>text files</geoform>
+        <geoform>Tab-delimited file</geoform>
         <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>Estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the continental United States. This data set contains the following parameters (defined below): site_name, nwis_id, nhdplus_id, long_name, lat, lon, coord_datum, alt, alt_datum, site_type, dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m, struct.canal_flag, struct.dam_flag, struct.npdes_flag, .</abstract>
-      <purpose>To bring metabolism data to the world!</purpose>
+      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, nwis_id, nhdplus_id, long_name, lat, lon, coord_datum, alt, alt_datum, site_type, dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m, struct.canal_flag, struct.dam_flag, struct.npdes_flag, .</abstract>
+      <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
       <timeinfo>
         <rngdates>
-          <begdate>SCRIPT 20070101</begdate>
-          <enddate>SCRIPT 2016XXXX</enddate>
+          <begdate>20061001</begdate>
+          <enddate>20170101</enddate>
         </rngdates>
       </timeinfo>
       <current>model estimates</current>
     </timeperd>
     <status>
       <progress>Complete</progress>
-      <update>update planned for year 2023</update>
+      <update>Update planned for year 2023</update>
     </status>
     <spdom>
       <bounding>
@@ -160,7 +160,7 @@
       </place>
     </keywords>
     <accconst>none</accconst>
-    <useconst>None, but see Distribution Liability below. Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.</useconst>
+    <useconst>None, but see Distribution Liability below.  Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.</useconst>
     <ptcontac>
       <cntinfo>
         <cntperp>
@@ -180,7 +180,9 @@
       </cntinfo>
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
-    <native>stuff on mac things on pc, R versions etc</native>
+    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  The computing platform for generating data and metadata was x86_64-w64-mingw32. 
+  R packages loaded into this environment: miniCRAN, version: 0.2.10; streamMetabolizer, version: 0.10.8; mda.streams, version: 0.10.4; ggplot2, version: 2.2.1.9000; tidyr, version: 0.7.2; meddle, version: 0.0.4; maps, version: 3.2.0; dataRetrieval, version: 2.7.3; rgeos, version: 0.3-26; dplyr, version: 0.7.4; sbtools, version: 1.1.6; httr, version: 1.3.1; rgdal, version: 1.2-16; sp, version: 1.2-5; whisker, version: 0.3-2; yaml, version: 2.1.16; xml2, version: 1.1.1; magrittr, version: 1.5.</native>
   </idinfo>
   <dataqual>
     <attracc>
@@ -197,6 +199,121 @@
       </vertacc>
     </posacc>
     <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2016</pubdate>
+            <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
+            <geoform>Tab-delimited file</geoform>
+            <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>January 2017</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>USGS NWIS</srccitea>
+        <srccontr>This source provided site NWIS identifiers, long names, coordinates, and altitudes.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Army Corps of Engineers</origin>
+            <pubdate>2010</pubdate>
+            <title>National Inventory of Dams</title>
+            <geoform>Tab-delimited file</geoform>
+            <onlink>http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>August 2010</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>USACE 2010</srccitea>
+        <srccontr>This source provided locations of major dams.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Environmental Protection Agency</origin>
+            <pubdate>2006</pubdate>
+            <title>National Pollutant Discharge Elimination System (NPDES)</title>
+            <geoform>Tab-delimited file</geoform>
+            <onlink>http://cfpub.epa.gov/npdes</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>June 2006</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>USEPA 2006</srccitea>
+        <srccontr>This source provided locations of major pollutant discharge points.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Environmental Protection Agency</origin>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2012</pubdate>
+            <title>National Hydrography Dataset, Version 2</title>
+            <geoform>Tab-delimited file</geoform>
+            <onlink>http://www.horizon-systems.com/nhdplus</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>November 16, 2015</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>NHDPlusV2</srccitea>
+        <srccontr>This source provided locations of canals and ditches.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>J.D. Gomez-Velez</origin>
+            <origin>J.W. Harvey</origin>
+            <origin>M.B. Cardenas</origin>
+            <origin>B. Kiel</origin>
+            <pubdate>2015</pubdate>
+            <title>Denitrification in the Mississippi river network controlled by flow through river bedforms</title>
+            <geoform>Text file, personal communication from authors</geoform>
+            <onlink>https://doi.org/10.1038/ngeo2567</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2015</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication date</srccurr>
+        </srctime>
+        <srccitea>Gomez-Velez et a.l 2015</srccitea>
+        <srccontr>This source provided regionalized hydraulic geometry coefficients for each site.</srccontr>
+      </srcinfo>
       <procstep>
         <procdesc>data were pulled or synthesized from existing etc...</procdesc>
         <procdate>NA</procdate>
@@ -504,7 +621,7 @@
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20171110</metd>
+    <metd>20171218</metd>
     <metc>
       <cntinfo>
         <cntperp>

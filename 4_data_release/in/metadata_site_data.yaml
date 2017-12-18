@@ -1,6 +1,6 @@
 meddle-version: "0.0.3"
-document-created: "20161024"
-document-creator: "Jordan S Read"
+document-created: "20171218"
+document-creator: "Alison P Appling"
 
 # ----data release----
 title: Site identifiers and details
@@ -10,7 +10,7 @@ process-description: data were pulled or synthesized from existing etc...
 process-date: "`r format(file.mtime('../4_data_release/cache/site_data.tsv'),'%Y%m%d')`"
 data-name: Site information for river metabolism estimates
 data-description: Information about sites at which water quality was monitored and metabolism was estimated.
-build-environment: stuff on mac things on pc, R versions etc
+build-environment: "`r environment_metadata()`"
 file-format: Tab-delimited file
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
 
@@ -18,3 +18,61 @@ metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
 indirect-spatial: U.S.A.
 latitude-res: unknown
 longitude-res: unknown
+
+source-cites: 
+  -
+    authors: ['U.S. Geological Survey']
+    title: >-
+      National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
+    pubdate: 2016
+    link: ['https://waterdata.usgs.gov/nwis', 'http://dx.doi.org/10.5066/F7P55KJN']
+    sngdate:
+      caldate: January 2017
+    srccurr: access date
+    srccitea: USGS NWIS
+    srccontr: This source provided site NWIS identifiers, long names, coordinates, and altitudes.
+  -
+    authors: ['U.S. Army Corps of Engineers']
+    title: >-
+      National Inventory of Dams
+    pubdate: 2010
+    link: http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm
+    sngdate:
+      caldate: August 2010
+    srccurr: access date
+    srccitea: USACE 2010
+    srccontr: This source provided locations of major dams.
+  -
+    authors: ['U.S. Environmental Protection Agency']
+    title: >-
+      National Pollutant Discharge Elimination System (NPDES)
+    pubdate: 2006
+    link: http://cfpub.epa.gov/npdes
+    sngdate:
+      caldate: June 2006
+    srccurr: access date
+    srccitea: USEPA 2006
+    srccontr: This source provided locations of major pollutant discharge points.
+  -
+    authors: ['U.S. Environmental Protection Agency','U.S. Geological Survey']
+    title: >-
+      National Hydrography Dataset, Version 2
+    pubdate: 2012
+    link: http://www.horizon-systems.com/nhdplus
+    sngdate:
+      caldate: November 16, 2015
+    srccurr: access date
+    srccitea: NHDPlusV2
+    srccontr: This source provided locations of canals and ditches.
+  - 
+    authors: ['J.D. Gomez-Velez', 'J.W. Harvey', 'M.B. Cardenas', 'B. Kiel']
+    title: >-
+      Denitrification in the Mississippi river network controlled by flow through river bedforms
+    pubdate: 2015
+    file-format: Text file, personal communication from authors
+    link: https://doi.org/10.1038/ngeo2567
+    sngdate:
+      caldate: 2015
+    srccurr: publication date
+    srccitea: Gomez-Velez et a.l 2015
+    srccontr: This source provided regionalized hydraulic geometry coefficients for each site.
