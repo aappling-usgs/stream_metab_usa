@@ -32,7 +32,7 @@ summarize_ts_tables <- function(progress.tsv, progress.md = '../1_timeseries/out
       'dosat_calcGGbts', 'baro_calcElev', 'dosat_calcGGbconst', 'dopsat_calcObsSat', 
       'depth_calcDischRaymond', 'veloc_calcDischRaymond', 'depth_calcDischHarvey', 'veloc_calcDischHarvey', 
       'sitetime_calcLon', 'suntime_calcLon', 'par_calcLat', 'par_calcSw', 'par_calcLatSw', 
-      'sitedate_calcLon', 'doamp_calcDAmp', 'dischdaily_calcDMean', 'velocdaily_calcDMean')
+      'sitedate_calcLon', 'doamp_calcDAmp', 'swdaily_calcDMean', 'dischdaily_calcDMean', 'velocdaily_calcDMean')
     progress_bars <- bind_rows(lapply(tbls, function(tbl) {
       summarize(
         tbl, 

@@ -63,11 +63,13 @@ post_release_tses <- function(target.name, parent.id, file.paths){
 attributes_timeseries <- function(
   ent.file='../4_data_release/in/attr_timeseries.rds',
   zip.dir='../1_timeseries/cache',
-  attr.file.base='../4_data_release/in/attr_timeseries.csv') {
+  attr.file.base='../4_data_release/in/attr_timeseries.csv',
+  release_sites) {
   
   # get a list of all relevant data files
   rds_files <- dir(zip.dir, pattern='nwis_[[:digit:]]+-ts_[[:alpha:]]+_[[:alpha:]]+.rds$', full.names=TRUE)
-  rds_info <- mda.streams::parse_ts_path(rds_files) %>% mutate(file_path=rds_files)
+  rds_info <- mda.streams::parse_ts_path(rds_files) %>% mutate(file_path=rds_files) %>%
+    filter(site_name %in% release_sites)
   
   # read in a single example data file of each type for structure
   examples <- rds_info %>% group_by(var_src) %>% summarize(file_path=file_path[1])
@@ -82,6 +84,7 @@ attributes_timeseries <- function(
   })
   
   # define variables for definitions text that may be used more than once
+  vsc <- mda.streams::get_var_src_codes()
   var_defs <- tibble::tribble(
     ~`var_src`, ~`attr-def`, ~`attr-defs`,
     

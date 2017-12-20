@@ -22,14 +22,14 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
+      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_swdaily_calcDMean.tsv: DateTime, swdaily, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
       <timeinfo>
         <rngdates>
-          <begdate>20061001</begdate>
-          <enddate>20170101</enddate>
+          <begdate>20071001</begdate>
+          <enddate>`r format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[2]], '%Y-%m-%d'), '%Y%m%d')</enddate>
         </rngdates>
       </timeinfo>
       <current>model estimates</current>
@@ -401,7 +401,7 @@
         <attrdomv>
           <rdom>
             <rdommin>-999999</rdommin>
-            <rdommax>1510</rdommax>
+            <rdommax>53.2</rdommax>
             <attrunit>mgO2 L^-1</attrunit>
           </rdom>
         </attrdomv>
@@ -432,7 +432,7 @@
         <attrdomv>
           <rdom>
             <rdommin>-9086001</rdommin>
-            <rdommax>13652</rdommax>
+            <rdommax>716.3</rdommax>
             <attrunit>%</attrunit>
           </rdom>
         </attrdomv>
@@ -618,7 +618,7 @@
         <attrdomv>
           <rdom>
             <rdommin>2007-09-30 22:17:23 +0000</rdommin>
-            <rdommax>2016-12-31 19:23:56 +0000</rdommax>
+            <rdommax>2016-12-31 19:21:15 +0000</rdommax>
             <attrunit/>
           </rdom>
         </attrdomv>
@@ -649,7 +649,7 @@
         <attrdomv>
           <rdom>
             <rdommin>2007-09-30 22:28:12 +0000</rdommin>
-            <rdommax>2016-12-31 19:20:19 +0000</rdommax>
+            <rdommax>2016-12-31 19:17:38 +0000</rdommax>
             <attrunit/>
           </rdom>
         </attrdomv>
@@ -719,6 +719,37 @@
     </detailed>
     <detailed>
       <enttyp>
+        <enttypl>nwis_XXXX-ts_swdaily_calcDMean.tsv</enttypl>
+        <enttypd>Tab-separated 2-column data table containing date-time stamps (first column) and values for the variable code-named swdaily_calcDMean; see attribute definition for 2nd column for variable and data source details.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>DateTime</attrlabl>
+        <attrdef>Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary</attrdef>
+        <attrdefs>This release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2007-09-30 16:34:01 +0000</rdommin>
+            <rdommax>2016-12-31 20:11:26 +0000</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>swdaily</attrlabl>
+        <attrdef>Daily (4am to 3:59am) average of sw_nldas (or sw_gldas when sw_nldas unavailable)</attrdef>
+        <attrdefs>This release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>15.11</rdommin>
+            <rdommax>456.7</rdommax>
+            <attrunit>W m^-2</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
         <enttypl>nwis_XXXX-ts_wtr_nwis.tsv</enttypl>
         <enttypd>Tab-separated 2-column data table containing date-time stamps (first column) and values for the variable code-named wtr_nwis; see attribute definition for 2nd column for variable and data source details.</enttypd>
         <enttypds>Producer Defined</enttypds>
@@ -742,7 +773,7 @@
         <attrdomv>
           <rdom>
             <rdommin>-999999</rdommin>
-            <rdommax>1490</rdommax>
+            <rdommax>40.7</rdommax>
             <attrunit>degC</attrunit>
           </rdom>
         </attrdomv>
@@ -804,7 +835,7 @@
         <attrdomv>
           <rdom>
             <rdommin>5.882</rdommin>
-            <rdommax>15.4</rdommax>
+            <rdommax>15.22</rdommax>
             <attrunit>mgO2 L^-1</attrunit>
           </rdom>
         </attrdomv>
@@ -896,7 +927,7 @@
         <attrdefs>USGS NWIS, https://waterdata.usgs.gov/nwis</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin>-179000</rdommin>
+            <rdommin>-169000</rdommin>
             <rdommax>1436000</rdommax>
             <attrunit>ft^3 s^-1</attrunit>
           </rdom>
@@ -959,7 +990,7 @@
         <attrdomv>
           <rdom>
             <rdommin>0</rdommin>
-            <rdommax>13.29</rdommax>
+            <rdommax>12.25</rdommax>
             <attrunit>m s^-1</attrunit>
           </rdom>
         </attrdomv>
@@ -1067,7 +1098,7 @@
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20171218</metd>
+    <metd>`r format(Sys.time(),'%Y%m%d')</metd>
     <metc>
       <cntinfo>
         <cntperp>

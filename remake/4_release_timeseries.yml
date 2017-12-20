@@ -56,7 +56,7 @@ targets:
   
   ../4_data_release/in/attr_timeseries.rds:
     depends: ../4_data_release/log/4_tasks_timeseries.ind
-    command: attributes_timeseries(target_name, '../1_timeseries/cache', I('../4_data_release/in/attr_timeseries.csv'))
+    command: attributes_timeseries(target_name, '../1_timeseries/cache', I('../4_data_release/in/attr_timeseries.csv'), release_sites)
 
   # -- create final metadata files --
     
