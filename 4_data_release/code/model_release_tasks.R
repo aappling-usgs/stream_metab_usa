@@ -494,8 +494,7 @@ combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {
   # DO.psat=doamp, discharge=dischdaily, GPP~DO.amp, GPP~daylength, etc.
   all_dailies <- daily_preds %>%
     left_join(daily_means, by=c('site_name', 'date')) %>%
-    left_join(daily_predictors, by=c('site_name', 'date')) %>%
-    
+    left_join(daily_predictors, by=c('site_name', 'date'))
   
   # write the combined daily predictions to a file with the same name (other
   # than extension) as the zip file that will contain it. write the zip, too

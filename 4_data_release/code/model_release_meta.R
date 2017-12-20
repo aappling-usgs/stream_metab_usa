@@ -529,7 +529,7 @@ attributes_daily_preds <- function(
     'depth', 'Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).', var_src_units('depth'),
     'temp.water', 'Mean water temperature for the date (4am to 3:59pm).', var_src_units('temp.water'),
     'day.length', 'Time elapsed between first and last estimates of light > 0 for the date (4am to 3:59pm).', 'hours',
-    'shortwave', 'Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).', var_src_units('sw'),
+    'shortwave', 'Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).', unique(mda.streams::get_var_src_codes(var=='sw', out='metab_units')),
     'discharge', 'Mean discharge for the date (4am to 3:59pm).', var_src_units('discharge'),
     'velocity', 'Mean water velocity for the date (4am to 3:59pm).', var_src_units('velocity')
   ) %>% mutate(
