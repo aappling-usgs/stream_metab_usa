@@ -23,7 +23,7 @@ DO.amp,Amplitude (difference between minimum and maximum observed values) of the
 DO.psat,Mean percent dissolved oxygen saturation for the date (4am to 3:59am).,This data release,-1.298,279.3,%
 depth,"Mean depth, averaged over the reach length and width, for the date (4am to 3:59pm).",This data release,0.005129,23.7,m
 temp.water,Mean water temperature for the date (4am to 3:59pm).,This data release,-0.6187,34.17,degC
-day.length,Time elapsed between first and last observations of light > 0 for the date (4am to 3:59pm).,This data release,7,23.92,hours
-light,Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).,This data release,32.27,934.4,umol m^-2 s^-1
+day.length,Time elapsed between first and last estimates of light > 0 for the date (4am to 3:59pm).,This data release,7,23.92,hours
 discharge,Mean discharge for the date (4am to 3:59pm).,This data release,0.0002832,37758,m^3 s^-1
+shortwave,"Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).",This data release,15.28,443,W m^-2
 velocity,Mean water velocity for the date (4am to 3:59pm).,This data release,0.0003694,7.428,m s^-1

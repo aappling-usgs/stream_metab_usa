@@ -22,7 +22,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, resolution, date, GPP, GPP.lower, GPP.upper, GPP.n_eff, GPP.Rhat, ER, ER.lower, ER.upper, ER.n_eff, ER.Rhat, K600, K600.lower, K600.upper, K600.n_eff, K600.Rhat, DO.obs, DO.sat, DO.amp, DO.psat, depth, temp.water, day.length, light, discharge, velocity, .</abstract>
+      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, resolution, date, GPP, GPP.lower, GPP.upper, GPP.n_eff, GPP.Rhat, ER, ER.lower, ER.upper, ER.n_eff, ER.Rhat, K600, K600.lower, K600.upper, K600.n_eff, K600.Rhat, DO.obs, DO.sat, DO.amp, DO.psat, depth, temp.water, day.length, discharge, shortwave, velocity, .</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -525,25 +525,13 @@
       </attr>
       <attr>
         <attrlabl>day.length</attrlabl>
-        <attrdef>Time elapsed between first and last observations of light &gt; 0 for the date (4am to 3:59pm).</attrdef>
+        <attrdef>Time elapsed between first and last estimates of light &gt; 0 for the date (4am to 3:59pm).</attrdef>
         <attrdefs>This data release</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>7</rdommin>
             <rdommax>23.92</rdommax>
             <attrunit>hours</attrunit>
-          </rdom>
-        </attrdomv>
-      </attr>
-      <attr>
-        <attrlabl>light</attrlabl>
-        <attrdef>Mean photosynthetic photon flux density (PPFD) for the date (4am to 3:59pm).</attrdef>
-        <attrdefs>This data release</attrdefs>
-        <attrdomv>
-          <rdom>
-            <rdommin>32.27</rdommin>
-            <rdommax>934.4</rdommax>
-            <attrunit>umol m^-2 s^-1</attrunit>
           </rdom>
         </attrdomv>
       </attr>
@@ -556,6 +544,18 @@
             <rdommin>0.0002832</rdommin>
             <rdommax>37758</rdommax>
             <attrunit>m^3 s^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>shortwave</attrlabl>
+        <attrdef>Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).</attrdef>
+        <attrdefs>This data release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>15.28</rdommin>
+            <rdommax>443</rdommax>
+            <attrunit>W m^-2</attrunit>
           </rdom>
         </attrdomv>
       </attr>
