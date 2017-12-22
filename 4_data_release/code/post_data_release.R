@@ -69,7 +69,7 @@ create_release_item <- function(parent.id, key, ...){
   }
   item_update_identifier(sb.id, scheme = scheme, type = type, key = key)
   
-  Sys.sleep(1)
+  Sys.sleep(10)
   
   # check that it is indeed tagged
   if (!item_exists(scheme = scheme, type = type, key = key)){
