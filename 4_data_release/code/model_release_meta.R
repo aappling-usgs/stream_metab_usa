@@ -462,7 +462,8 @@ attributes_metab_diagnostics <- function(
     'pos_ER', 'Percent of daily estimates of ecosystem respiration (ER) that are positive (unrealistic).', 'percent',
     'model_confidence', 'Assessment of overall confidence in the model based on other diagnostics in this table, scored as "L" (low confidence), "M" (medium), or "H" (high).', NA,
     'site_min_confidence', 'Least-confident assessment rating of all models for this site, scored as "L" (low confidence), "M" (medium), or "H" (high).', NA,
-    'site_confidence', 'All unique assessment ratings of models for this site, scored as "L" (low confidence), "M" (medium), or "H" (high), and comma-separated when multiple unique ratings exist.', NA
+    'site_confidence', 'All unique assessment ratings of models for this site, scored as "L" (low confidence), "M" (medium), or "H" (high), and comma-separated when multiple unique ratings exist.', NA,
+    'run_hrs', 'Model runtime in hours. This number is the time for the modeling job as run with four cores in parallel (not the sum of the times on each core).', 'hours'
   ) %>%
     mutate(
       'attr-defs'='streamMetabolizer R package')

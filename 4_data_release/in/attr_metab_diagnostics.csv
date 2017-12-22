@@ -8,6 +8,7 @@ K_median,"Median of the daily estimates of the K600_daily parameter, where K600_
 K_range,"Difference between the 90th and 10th quantiles of the daily estimates of the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600.",streamMetabolizer R package,0.01061,380.7,d^-1
 neg_GPP,Percent of daily estimates of gross primary productive (GPP) that are negative (unrealistic).,streamMetabolizer R package,0,63.85,percent
 pos_ER,Percent of daily estimates of ecosystem respiration (ER) that are positive (unrealistic).,streamMetabolizer R package,0,100,percent
+run_hrs,Model runtime in hours. This number is the time for the modeling job as run with four cores in parallel (not the sum of the times on each core).,streamMetabolizer R package,0.2721,303.6,hours
 model_confidence,"Assessment of overall confidence in the model based on other diagnostics in this table, scored as ""L"" (low confidence), ""M"" (medium), or ""H"" (high).",streamMetabolizer R package,H,M,NA
 site_min_confidence,"Least-confident assessment rating of all models for this site, scored as ""L"" (low confidence), ""M"" (medium), or ""H"" (high).",streamMetabolizer R package,H,M,NA
 site_confidence,"All unique assessment ratings of models for this site, scored as ""L"" (low confidence), ""M"" (medium), or ""H"" (high), and comma-separated when multiple unique ratings exist.",streamMetabolizer R package,H,"M,H",NA
