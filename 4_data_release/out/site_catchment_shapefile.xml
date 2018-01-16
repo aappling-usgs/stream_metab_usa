@@ -188,7 +188,7 @@
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
   The computing platform for generating data and metadata was x86_64-apple-darwin15.6.0. 
-  R packages loaded into this environment: meddle, version: 0.0.4; maps, version: 3.2.0; rgeos, version: 0.3-26; whisker, version: 0.3-2; xml2, version: 1.1.1; magrittr, version: 1.5; bindrcpp, version: 0.2; dataRetrieval, version: 2.7.3; maptools, version: 0.9-2; httr, version: 1.3.1; sbtools, version: 1.1.6; mda.streams, version: 0.9.24; rgdal, version: 1.2-15; sp, version: 1.2-5; dplyr, version: 0.7.4; yaml, version: 2.1.14.</native>
+  R packages loaded into this environment: maptools, version: 0.9-2; mda.streams, version: 0.9.24; meddle, version: 0.0.4; maps, version: 3.2.0; dataRetrieval, version: 2.7.4; rgeos, version: 0.3-26; dplyr, version: 0.7.4; sbtools, version: 1.1.6; httr, version: 1.3.1; rgdal, version: 1.2-16; whisker, version: 0.3-2; yaml, version: 2.1.16; xml2, version: 1.1.1; magrittr, version: 1.5; sp, version: 1.2-6.</native>
   </idinfo>
   <dataqual>
     <attracc>
@@ -408,11 +408,11 @@
       </enttyp>
       <attr>
         <attrlabl>site_nm</attrlabl>
-        <attrdef>Site identifier for the catchment</attrdef>
-        <attrdefs> consisting of prefix nwis_ and the USGS National Water Information System (NWIS) site ID.</attrdefs>
+        <attrdef>Site identifier for the catchment consisting of prefix nwis_ and the USGS National Water Information System (NWIS) site ID.</attrdef>
+        <attrdefs>http://dx.doi.org/10.5066/F7P55KJN</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin>http://dx.doi.org/10.5066/F7P55KJN</rdommin>
+            <rdommin>NA</rdommin>
             <rdommax>NA</rdommax>
             <attrunit>NA</attrunit>
           </rdom>
