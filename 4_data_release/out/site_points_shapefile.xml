@@ -29,7 +29,7 @@
       <timeinfo>
         <rngdates>
           <begdate>20071001</begdate>
-          <enddate>`r format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[2]], '%Y-%m-%d'), '%Y%m%d')</enddate>
+          <enddate>20170101</enddate>
         </rngdates>
       </timeinfo>
       <current>model estimates</current>
