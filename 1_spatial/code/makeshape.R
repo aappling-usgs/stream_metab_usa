@@ -1,21 +1,3 @@
-#' filter_sites sets up the rules for which sites ultimately end up in 
-#' the shapefile(s)
-#' 
-#' @param metadata.file the path to a local version of the basic site metadata
-#' @return a data.frame with site ids and lat/lon values
-spatial_filter_sites <- function(metadata.file){
-  metadata <- read_meta(metadata.file)
-  has.coord <- !is.na(metadata$lat) & !is.na(metadata$lon)
-  
-  # also, filter to NWIS source only!
-  is.nwis <- mda.streams::parse_site_name(metadata[, c("site_name")], out = 'database') == "nwis"
-  # also, filter for sites w/ GPP!
-  has.gpp <- metadata$site_name %in% mda.streams::list_sites('gpp_estBest')
-  
-  sites <- unitted::v(metadata[has.coord & is.nwis & has.gpp, c("site_name", "lat", "lon", "coord_datum")])
-  message(nrow(sites),' sites included')
-  return(sites)
-}
 
 #' create an sp::SpatialPointsDataFrame for each site in the \code{sites} data.frame
 #' 
