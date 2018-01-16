@@ -1,3 +1,18 @@
+#' filter_sites sets up the rules for which sites ultimately end up in 
+#' the shapefile(s)
+#' 
+#' @param metadata.file the path to a local version of the basic site metadata
+#' @param release_sites a character vector of site_ids that will be part of the release
+#' @return a data.frame with site ids and lat/lon values
+spatial_filter_sites <- function(metadata.file, release_sites){
+  metadata <- read_meta(metadata.file)
+  sites <- metadata %>% 
+    unitted::v() %>% 
+    filter(site_name %in% release_sites) %>% 
+    select_("site_name", "lat", "lon", "coord_datum")
+  message(nrow(sites),' sites included')
+  return(sites)
+}
 
 #' create an sp::SpatialPointsDataFrame for each site in the \code{sites} data.frame
 #' 

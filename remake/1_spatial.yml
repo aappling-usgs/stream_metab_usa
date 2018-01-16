@@ -25,7 +25,7 @@ targets:
 
     
   spatial.sites: 
-    command: spatial_filter_sites(meta_basic)
+    command: spatial_filter_sites(meta_basic, release_sites)
     
   spatial.points:
     command: create_site_points(spatial.sites)
