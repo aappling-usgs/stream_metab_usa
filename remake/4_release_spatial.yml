@@ -83,14 +83,14 @@ targets:
   
   # -- SB posting: create the items to host data and metadata --
 
-  pc1_spatial:
+  Spatial_data:
     command: create_release_child(stream_metab_powell_release, target_name)
     
   pc1_spatial_catchments:
-    command: create_release_child(pc1_spatial, target_name)
+    command: create_release_child(Spatial_data, target_name)
   
   pc1_spatial_points:
-    command: create_release_child(pc1_spatial, target_name)
+    command: create_release_child(Spatial_data, target_name)
     
   # -- final targets: post data and metadata to SB --
   
