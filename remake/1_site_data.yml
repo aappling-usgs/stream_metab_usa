@@ -22,6 +22,7 @@ targets:
       - sb_meta_basic
       - sb_meta_dvqcoefs
       - sb_meta_struct
+      - release_sites
   
   ## Site List ##
   

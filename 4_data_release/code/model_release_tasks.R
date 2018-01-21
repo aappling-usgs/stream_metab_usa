@@ -316,7 +316,12 @@ extract_model_diagnostics <- function(mm_path, out_file) {
       length(which(!is.na(fit$daily$GPP_daily_50pct))),
     pos_ER = 100 *
       length(which(fit$daily$ER_daily_50pct > 0.5)) /
-      length(which(!is.na(fit$daily$ER_daily_50pct))))
+      length(which(!is.na(fit$daily$ER_daily_50pct))),
+    
+    # additional statistics for the manuscript:
+    burnin_steps = get_specs(mm)$burnin_steps,
+    saved_steps = get_specs(mm)$saved_steps,
+    elapsed = get_fitting_time(mm)[['elapsed']])
   
   # write the output to rds
   saveRDS(diagnostics, file=out_file)
@@ -528,6 +533,8 @@ combine_model_diagnostics <- function(out_file, task_plan) {
   
   # assess models based on these diagnostics
   all_diagnostics <- all_diagnostics %>%
+    mutate(run_hrs = elapsed/(60*60)) %>%
+    select(-burnin_steps, -saved_steps, -elapsed) %>%
     mutate(
       model_confidence = ifelse(
         K600_daily_sigma_Rhat > 1.2, "L", ifelse(

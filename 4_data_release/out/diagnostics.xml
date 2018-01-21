@@ -22,7 +22,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site, resolution, K600_daily_sigma_Rhat, err_obs_iid_sigma_Rhat, err_proc_iid_sigma_Rhat, K_median, K_range, neg_GPP, pos_ER, model_confidence, site_min_confidence, site_confidence, .</abstract>
+      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site, resolution, K600_daily_sigma_Rhat, err_obs_iid_sigma_Rhat, err_proc_iid_sigma_Rhat, K_median, K_range, neg_GPP, pos_ER, run_hrs, model_confidence, site_min_confidence, site_confidence, .</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -340,6 +340,18 @@
             <rdommin>0</rdommin>
             <rdommax>100</rdommax>
             <attrunit>percent</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>run_hrs</attrlabl>
+        <attrdef>Model runtime in hours. This number is the time for the modeling job as run with four cores in parallel (not the sum of the times on each core).</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.2721</rdommin>
+            <rdommax>303.6</rdommax>
+            <attrunit>hours</attrunit>
           </rdom>
         </attrdomv>
       </attr>
