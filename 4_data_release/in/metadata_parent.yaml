@@ -47,14 +47,14 @@ journal: Nature Scientific Data
 contact-person: Alison P. Appling
 contact-phone: 520-670-6671 x271
 contact-email: aappling@usgs.gov
-contact-position: Ecologist, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey
+contact-position: Ecologist
 contact-address: 520 N Park Ave, Ste 221
 contact-city: Tucson
 contact-state: AZ
 contact-zip: 85719
 
 metadata-person: Jordan S. Read
-metadata-position: Chief, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey
+metadata-position: Research Civil Engineer
 metadata-phone: 608-821-3922
 metadata-fax: 608-821-3817
 metadata-email: jread@usgs.gov
@@ -63,7 +63,7 @@ metadata-city: Middleton
 metadata-state: WI
 metadata-zip: 53562
 
-# ----distribtution----
+# ----distribution----
 
 # statement for "Preliminary (provisional) data, information, or software" (https://www2.usgs.gov/fsp/fsp_disclaimers.asp):
 liability-statement: >-
