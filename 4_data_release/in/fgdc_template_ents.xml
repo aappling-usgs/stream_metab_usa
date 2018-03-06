@@ -84,8 +84,9 @@
       <cntinfo>
         <cntperp>
           <cntper>{{contact-person}}</cntper>
-          <cntorg>U.S. Geological Survey<cntpos>{{contact-position}}</cntpos></cntorg>
+          <cntorg>U.S. Geological Survey</cntorg>
         </cntperp>
+        <cntpos>{{contact-position}}</cntpos>
         <cntaddr>
           <addrtype>Mailing and Physical</addrtype>
           <address>{{contact-address}}</address>

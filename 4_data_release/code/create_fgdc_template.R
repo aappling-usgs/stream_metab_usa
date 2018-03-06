@@ -87,10 +87,11 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   ci <- pt %>% 
     xml_add_child('cntinfo') %>% 
     xml_add_child('cntperp') 
+  
   ci %>% 
     xml_add_child('cntper','{{contact-person}}') %>% 
-    xml_add_sibling('cntorg','U.S. Geological Survey') %>%
-    xml_add_child('cntpos','{{contact-position}}')
+    xml_add_sibling('cntorg','U.S. Geological Survey')
+  
   
   adr <- ci %>% xml_add_sibling('cntaddr') 
   adr %>%
@@ -100,7 +101,8 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
     xml_add_sibling('state','{{contact-state}}') %>% 
     xml_add_sibling('postal','{{contact-zip}}') %>% 
     xml_add_sibling('country','U.S.A.')
-  
+  ci %>% 
+    xml_add_sibling('cntpos','{{contact-position}}')
   adr %>% xml_add_sibling('cntvoice','{{contact-phone}}') %>% 
     xml_add_sibling('cntemail','{{contact-email}}')
   
