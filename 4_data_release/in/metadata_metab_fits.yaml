@@ -19,3 +19,34 @@ metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 indirect-spatial: U.S.A.
 latitude-res: Not applicable
 longitude-res: Not applicable
+
+# ----processing citations----
+source-cites: 
+  -
+    authors: ['Alison P. Appling', 'Robert O. Hall Jr.', 'Charles B. Yackulic', 'Maite Arroita']
+    title: >-
+      Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation
+    pubdate: 2018
+    link: https://dx.doi.org/10.1002/2017JG004140
+    sngdate:
+      caldate: 2018
+    srccurr: publication date
+    srccitea: appling_et_al_2018
+    srccontr: >-
+      This methods manuscript justifies the metabolism model implementation used to generate metabolism estimates
+      for this project.
+  -
+    authors: ['Alison P. Appling', 'Robert O. Hall Jr.', 'Maite Arroita', 'Charles B. Yackulic']
+    title: >-
+      streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
+    pubdate: 2017
+    link: https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1
+    sngdate:
+      caldate: 2017
+    srccurr: access date
+    srccitea: appling_et_al_2017
+    srccontr: >-
+      This software source provided the metabolism model implementation used to generate metabolism estimates
+      for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code
+      exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access
+      current versions of the software from the U.S. Geological Survey archive.
