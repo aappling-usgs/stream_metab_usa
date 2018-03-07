@@ -35,13 +35,13 @@ start-date: 20071001
 end-date: !expr format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[2]], '%Y-%m-%d'), '%Y%m%d')
 
 # ----associated publication----
-#cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
-#cite-date: TODO date of paper release
-#cite-title: >-
-#  A national database for river metabolism, 2007-2017
-#paper: paper
-#publisher: TODO Nature
-#journal: Nature Scientific Data
+cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
+cite-date: 2018
+cite-title: >-
+  The metabolic regimes of 356 U.S. rivers (2007-2017)
+paper: paper
+publisher: Nature
+journal: Scientific Data
 
 # ----contacts----
 contact-person: Alison P. Appling
