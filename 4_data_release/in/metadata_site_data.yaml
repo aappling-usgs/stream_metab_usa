@@ -6,7 +6,14 @@ document-creator: "Alison P Appling"
 title: Site identifiers and details
 
 # ----dataset details----
-process-description: data were pulled or synthesized from existing etc...
+process-description: >- 
+  data were pulled or synthesized from existing etc...??????INCOMPLETE??????
+  site_name, nwis_id, long_name, lat, lon, coord_datum, alt, alt_datum, site_type are site-specific metadata 
+  extracted from the USGS National Water Information System's site service https://waterservices.usgs.gov/rest/Site-Service.html 
+  and correspond to the fields from that service of: station_nm, site_no (prefixed here with "nwis_"), 
+  ????long_name, dec_lat_va, dec_long_va, dec_coord_datum_cd, alt_va, and alt_datum_cd. The nhdplus_id field here 
+  is the ???? from a combination of automated and manual processes to match gage locations to locations on NHDPlusV2. 
+  Fields prefixed with "dvqcoefs" were processed by ???? and ???. Fields prefixed with "struct" were...???
 process-date: "`r format(file.mtime('../4_data_release/cache/site_data.tsv'),'%Y%m%d')`"
 data-name: Site information for river metabolism estimates
 data-description: Information about sites at which water quality was monitored and metabolism was estimated.
