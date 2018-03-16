@@ -7,7 +7,7 @@ title: Daily metabolism estimates and predictors
 
 # ----dataset details----
 process-description: >-
-  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) version 0.10.1 using the Bayesian model
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018) version 0.10.1 using the Bayesian model
   with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan", and using the site-specific configuration parameters
   and data sources specified in "Model configurations for estimating metabolism". Daily estimates were extracted
   from the models using the get_fit() function from streamMetabolizer and selecting the "daily" element from the
@@ -23,7 +23,12 @@ process-description: >-
 process-date: 20170502
 data-name: Daily estimates of river metabolism and gas exchange
 data-description: Daily estimates of metabolism
-build-environment: stuff on mac things on pc, R versions etc
+build-environment: >-
+  This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  
+  The computing platform for generating data and metadata was x86_64-w64-mingw32.
+  
+  R packages loaded into this environment: streamMetabolizer, version: 0.10.1; dplyr, version: 0.7.4.
 file-format: tab-separated values, compressed from text to .zip format
 metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
