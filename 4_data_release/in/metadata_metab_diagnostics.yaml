@@ -7,12 +7,28 @@ title: Key diagnostics and overall assessments of metabolism model performance
 
 # ----dataset details----
 process-description: >-
-  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018), and these key diagnostics and assessments were derived from the model outputs.
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018), 
+  then key diagnostics and assessments were derived from the model outputs.
   Raw outputs and additional diagnostics are available in the "fit" output files included in this data release.
+  
+  A final automated model assessment of High (H), Medium (M), or Low (L) overall confidence in each model
+  was computed from these key diagnostics using a decision tree:
+  Models were assigned Low confidence if K600_daily_sigma_Rhat > 1.2, err_proc_iid_sigma_Rhat > 1.2, K_range > 50, neg_GPP > 50, and/or pos_ER > 50.
+  Models were assigned Medium confidence if they were not assigned Low confidence, and K_range > 15, neg_GPP, and/or pos_ER > 25.
+  Models were assigned High confidence if they were not assigned Low or Medium confidence.
+  
+  This overall assessment is based only on readily computable information and is intended only
+  as guidance, such that an expert familiar with the oxygen data
+  and site characteristics could reasonably override the assessment given here.
 process-date: 2017-04-06 15:04:23 +0000
 data-name: diagnostics.zip.
 data-description: Key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.
-build-environment: PC
+build-environment: >-
+  This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  
+  The computing platform for generating data and metadata was x86_64-w64-mingw32.
+  
+  R packages loaded into this environment: streamMetabolizer, version: 0.10.1; dplyr, version: 0.7.4.
 file-format: tab-separated values, compressed from text to .zip format
 metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
