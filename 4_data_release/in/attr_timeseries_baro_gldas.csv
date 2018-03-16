@@ -1,3 +1,3 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
 DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,2006-10-01 00:00:00 +0000,2016-12-31 21:00:00 +0000,NA
-baro,Surface pressure (psurf_f_inst) from GLDAS database,"NASA GLDAS NOAH model output, https://hydro1.gesdisc.eosdis.nasa.gov/dods/GLDAS_NOAH025_3H.2.0.info",71280,104793,Pa
+baro,Surface pressure (psurf_f_inst) from GLDAS database,GLDAS_NOAH025_3H_V2.0 (see Source Information),71280,104793,Pa

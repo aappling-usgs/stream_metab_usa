@@ -29,7 +29,7 @@
       <timeinfo>
         <rngdates>
           <begdate>20071001</begdate>
-          <enddate>`r format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[2]], '%Y-%m-%d'), '%Y%m%d')</enddate>
+          <enddate>20170101</enddate>
         </rngdates>
       </timeinfo>
       <current>model estimates</current>
@@ -165,8 +165,9 @@
       <cntinfo>
         <cntperp>
           <cntper>Alison P. Appling</cntper>
-          <cntorg>U.S. Geological Survey<cntpos>Ecologist, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos></cntorg>
+          <cntorg>U.S. Geological Survey</cntorg>
         </cntperp>
+        <cntpos>Ecologist</cntpos>
         <cntaddr>
           <addrtype>Mailing and Physical</addrtype>
           <address>520 N Park Ave, Ste 221</address>
@@ -200,6 +201,81 @@
       <srcinfo>
         <srccite>
           <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2016</pubdate>
+            <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
+            <geoform>WaterML1.1</geoform>
+            <onlink>http://waterdata.usgs.gov/nwis/iv</onlink>
+            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2007</begdate>
+              <enddate>2017</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>USGS_NWIS</srccitea>
+        <srccontr>This source, accessed January 2017, provided subhourly to hourly data on dissolved oxygen concentrations, water temperature, and discharge for all sites included in this metabolism data release.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Xia, Y., et al.</origin>
+            <origin>NCEP/EMC</origin>
+            <pubdate>2009</pubdate>
+            <title>NLDAS Primary Forcing Data L4 Hourly 0.125 x 0.125 degree V002</title>
+            <geoform>NetCDF 4 files (nc4), one per date</geoform>
+            <onlink>https://disc.sci.gsfc.nasa.gov/datasets/NLDAS_FORA0125_H_V002/summary</onlink>
+            <onlink>https://dx.doi.org/10.5067/6J5LHHOHZHN4</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1979</begdate>
+              <enddate>2017</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>NLDAS_FORA0125_H.002</srccitea>
+        <srccontr>This source, accessed January 2017, provided hourly data on surface air pressure and downward shortwave radiation flux for sites located anywhere within the continental U.S. (latitude/longitude bounding box of -125.0, 25.0, -67.0, 53.0).</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Matthew Rodell</origin>
+            <origin>Hiroko Kato Beaudoing</origin>
+            <origin>NASA/GSFC/HSL</origin>
+            <pubdate>2015</pubdate>
+            <title>GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.0</title>
+            <geoform>NetCDF 4 files (nc4), one per date</geoform>
+            <onlink>https://disc.sci.gsfc.nasa.gov/datasets/GLDAS_NOAH025_3H_V2.0/summary</onlink>
+            <onlink>https://dx.doi.org/10.5067/342OHQM9AK6Q</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1948</begdate>
+              <enddate>2017</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>GLDAS_NOAH025_3H_V2.0</srccitea>
+        <srccontr>This source, accessed January 2017, provided 3-hourly data on surface air pressure and downward shortwave radiation flux for sites located anywhere globally.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
             <origin>Peter A. Raymond</origin>
             <origin>Christopher J. Zappa</origin>
             <origin>David Butman</origin>
@@ -209,11 +285,11 @@
             <origin>Andrew E. Laursen</origin>
             <origin>William H. McDowell</origin>
             <origin>Denis Newbold</origin>
-            <pubdate>2016</pubdate>
+            <pubdate>2012</pubdate>
             <title>Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology &amp; Oceanography: Fluids &amp; Environments 2 (2012): 41-53.</title>
-            <geoform>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
-            <onlink>https://waterdata.usgs.gov/nwis</onlink>
-            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+            <geoform>manuscript</geoform>
+            <onlink>http://onlinelibrary.wiley.com/doi/10.1215/21573689-1597669/abstract</onlink>
+            <onlink>http://dx.doi.org/10.1215/21573689-1597669</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -235,7 +311,7 @@
             <origin>Louis I. Gordon</origin>
             <pubdate>1992</pubdate>
             <title>Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6).</title>
-            <geoform>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
+            <geoform>manuscript</geoform>
             <onlink>http://onlinelibrary.wiley.com/doi/10.4319/lo.1992.37.6.1307/abstract</onlink>
           </citeinfo>
         </srccite>
@@ -251,9 +327,38 @@
         <srccitea>Garcia and Gordon 1992</srccitea>
         <srccontr>This source provided the equation and coefficients for estimating oxygen saturation concentrations (Entity Type Labels nwis_XXXX-ts_dosat_calcGGbconst.tsv and nwis_XXXX-ts_dosat_calcGGbts.tsv).</srccontr>
       </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Alison P. Appling</origin>
+            <origin>Robert O. Hall Jr.</origin>
+            <origin>Maite Arroita</origin>
+            <origin>Charles B. Yackulic</origin>
+            <pubdate>2017</pubdate>
+            <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
+            <geoform>software package for the R statistical programming language</geoform>
+            <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
+            <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2017</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>Appling et al. 2017</srccitea>
+        <srccontr>This software source provided the metabolism model implementation used to generate metabolism estimates for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access current versions of the software from the U.S. Geological Survey archive.</srccontr>
+      </srcinfo>
       <procstep>
-        <procdesc>Raw timeseries data were downloaded from two data sources: USGS NWIS and NASA LDAS. Additional variables were calculated from these raw sources using data-preparation functions from the streamMetabolizer R package.</procdesc>
-        <procdate>2017-01-01</procdate>
+        <procdesc>Raw timeseries data were downloaded from two data sources: 
+Data on dissolved oxygen concentrations, water temperature, and discharge were downloaded from  the U.S. Geological Survey (USGS) National Water Information System database (NWIS; see Source Citation for USGS_NWIS).
+Data on shortwave radiation and air pressure were downloaded from the North American Land Data Assimilation System (NLDAS; see Source Citation for NLDAS_FORA0125_H.002) and the Global Land Data Assimilation System (GLDAS; see Source Citation for GLDAS_NOAH025_3H_V2.0).
+Additional variables were calculated from these raw sources using data-preparation functions from the streamMetabolizer R package (see Source Citations for Appling et al. 2017, Garcia and Gordon 1992, and Raymond et al. 2012).</procdesc>
+        <procdate>20170101</procdate>
       </procstep>
     </lineage>
   </dataqual>
@@ -304,7 +409,7 @@
       <attr>
         <attrlabl>baro</attrlabl>
         <attrdef>Surface pressure (psurf_f_inst) from GLDAS database</attrdef>
-        <attrdefs>NASA GLDAS NOAH model output, https://hydro1.gesdisc.eosdis.nasa.gov/dods/GLDAS_NOAH025_3H.2.0.info</attrdefs>
+        <attrdefs>GLDAS_NOAH025_3H_V2.0 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>71280</rdommin>
@@ -335,7 +440,7 @@
       <attr>
         <attrlabl>baro</attrlabl>
         <attrdef>Surface pressure (pressfc) from NLDAS database</attrdef>
-        <attrdefs>NASA NLDAS forcing data, https://hydro1.gesdisc.eosdis.nasa.gov/dods/NLDAS_FORA0125_H.002.info</attrdefs>
+        <attrdefs>NLDAS_FORA0125_H.002 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>72824</rdommin>
@@ -397,7 +502,7 @@
       <attr>
         <attrlabl>doobs</attrlabl>
         <attrdef>Dissolved oxygen concentration (parameter 00300) from NWIS database</attrdef>
-        <attrdefs>USGS NWIS, https://waterdata.usgs.gov/nwis</attrdefs>
+        <attrdefs>USGS_NWIS (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>-999999</rdommin>
@@ -458,7 +563,7 @@
       </attr>
       <attr>
         <attrlabl>dosat</attrlabl>
-        <attrdef>Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_nldas (or baro_gldas when baro_nldas unavailable) with streamMetabolizer calc_DO_sat function</attrdef>
+        <attrdef>Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_nldas (or baro_gldas when baro_nldas unavailable) with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -676,7 +781,7 @@
       <attr>
         <attrlabl>sw</attrlabl>
         <attrdef>Downward shortwave radiation flux, surface (SWdown_f_tavg) from GLDAS database</attrdef>
-        <attrdefs>NASA GLDAS NOAH model output, https://hydro1.gesdisc.eosdis.nasa.gov/dods/GLDAS_NOAH025_3H.2.0.info</attrdefs>
+        <attrdefs>GLDAS_NOAH025_3H_V2.0 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>0</rdommin>
@@ -707,7 +812,7 @@
       <attr>
         <attrlabl>sw</attrlabl>
         <attrdef>Downwards shortwave radiation flux, surface (dswrfsfc) from NLDAS database</attrdef>
-        <attrdefs>NASA NLDAS forcing data, https://hydro1.gesdisc.eosdis.nasa.gov/dods/NLDAS_FORA0125_H.002.info</attrdefs>
+        <attrdefs>NLDAS_FORA0125_H.002 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>0</rdommin>
@@ -769,7 +874,7 @@
       <attr>
         <attrlabl>wtr</attrlabl>
         <attrdef>Water temperature (parameter 00010) from NWIS database</attrdef>
-        <attrdefs>USGS NWIS, https://waterdata.usgs.gov/nwis</attrdefs>
+        <attrdefs>USGS_NWIS (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>-999999</rdommin>
@@ -830,7 +935,7 @@
       </attr>
       <attr>
         <attrlabl>dosat</attrlabl>
-        <attrdef>Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_calcElev with streamMetabolizer calc_DO_sat function</attrdef>
+        <attrdef>Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_calcElev with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -924,7 +1029,7 @@
       <attr>
         <attrlabl>disch</attrlabl>
         <attrdef>Discharge (parameter 00060) from NWIS database</attrdef>
-        <attrdefs>USGS NWIS, https://waterdata.usgs.gov/nwis</attrdefs>
+        <attrdefs>USGS_NWIS (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>-169000</rdommin>
@@ -1105,7 +1210,7 @@
           <cntper>Jordan S. Read</cntper>
           <cntorg>U.S. Geological Survey</cntorg>
         </cntperp>
-        <cntpos>Chief, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos>
+        <cntpos>Research Civil Engineer</cntpos>
         <cntaddr>
           <addrtype>Mailing and Physical</addrtype>
           <address>8551 Research Way #120</address>
