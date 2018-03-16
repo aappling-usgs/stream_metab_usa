@@ -17,7 +17,7 @@ process-description: >-
 process-date: "`r format(file.mtime('../4_data_release/cache/site_data.tsv'),'%Y%m%d')`"
 data-name: Site information for river metabolism estimates
 data-description: Information about sites at which water quality was monitored and metabolism was estimated.
-build-environment: "`r environment_metadata()`"
+build-environment: PC
 file-format: Tab-delimited file
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
 
