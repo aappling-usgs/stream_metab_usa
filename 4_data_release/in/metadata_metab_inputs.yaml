@@ -8,7 +8,9 @@ title: Input data used for estimating metabolism
 # ----dataset details----
 process-description: >-
   Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using these input files
-  in combination with the configuration parameters given elsewhere in this release.
+  in combination with the configuration parameters given elsewhere in this release. See the section 
+  "High-frequency measurements of metabolism variables" in the accompanying manuscript for details on the 
+  source of each variable and descriptions of processing steps.
 process-date: 2017-04-06 15:04:23 +0000
 data-name: nwis_SITENUM_input.zip for 365 values of SITENUM
 data-description: Model input data for estimating metabolism.
