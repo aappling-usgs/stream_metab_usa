@@ -40,7 +40,7 @@ source-cites:
     sngdate:
       caldate: 2018
     srccurr: publication date
-    srccitea: appling_et_al_2018
+    srccitea: Appling et al. 2018
     srccontr: >-
       This methods manuscript justifies the metabolism model implementation used to generate metabolism estimates
       for this project.
@@ -49,11 +49,11 @@ source-cites:
     title: >-
       streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
     pubdate: 2017
-    link: https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1
+    link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
     sngdate:
       caldate: 2017
     srccurr: access date
-    srccitea: appling_et_al_2017
+    srccitea: Appling et al. 2017
     srccontr: >-
       This software source provided the metabolism model implementation used to generate metabolism estimates
       for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code
