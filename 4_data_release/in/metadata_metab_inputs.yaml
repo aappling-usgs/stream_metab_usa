@@ -7,14 +7,36 @@ title: Input data used for estimating metabolism
 
 # ----dataset details----
 process-description: >-
-  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using these input files
-  in combination with the configuration parameters given elsewhere in this release. See the section 
-  "High-frequency measurements of metabolism variables" in the accompanying manuscript for details on the 
-  source of each variable and descriptions of processing steps.
-process-date: 2017-04-06 15:04:23 +0000
+  These input files were used to estimate metabolism, in combination with the configuration
+  parameters given in the "Model configurations for estimating metabolism" table in this data release.
+  These input files are properly formatted for use with the streamMetabolizer modeling package (Appling et al. 2018).
+  
+  The streamMetabolizer package requires as input a single table with the following variables in columns: the solar
+  mean time (solar.time), dissolved oxygen concentration (DO.obs), hypothetical dissolved oxygen concentration at saturation (DO.sat),
+  stream depth averaged over the full length and width of the upstream reach that affects dissolved oxygen concentrations (depth), 
+  water temperature (temp.water), photosynthetically active radiation as photon flux density (light), and river discharge (discharge).
+  To generate this table, we selected and merged the best available timeseries data for each site,
+  where the possible sources for each variable were those timeseries variables provided in
+  "Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism" in this data release.
+  "Best available" always meant sitetime_calcLon for solar.time, doobs_nwis for DO.obs, dosat_calcGGbts for DO.sat, 
+  wtr_nwis for temp.water, par_calcLatSw for light, and disch_nwis for discharge.
+  "Best available" meant depth_calcDischHarvey for 423 models and depth_calcDischRaymond for the remaining 10 models
+  (for which depth_calcDischHarvey was unavailable).
+
+  To merge the data, we began with the DO.obs observations and associated solar.time values. 
+  We then matched the other variables to those solar.time values, linearly interpolating among observations for variables
+  that had not-quite-matching timestamps. We limited linear interpolation to mismatches or data gaps of no more than 3 hours;
+  entire data rows were excluded for any time points during which one or more variables had a data gap greater than 3 hours.
+process-date: 20170406
 data-name: nwis_SITENUM_input.zip for 365 values of SITENUM
 data-description: Model input data for estimating metabolism.
-build-environment: PC
+build-environment: >-
+  This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  
+  Mac (x86_64-apple-darwin15.6.0) and Windows (x86_64-w64-mingw32) computers were used to generate the data and metadata.
+  
+  R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; dplyr version 0.7.4; magrittr version 1.5;
+  meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: tab-separated values, compressed from text to .zip format
 metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
