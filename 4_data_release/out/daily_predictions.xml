@@ -181,7 +181,9 @@
       </cntinfo>
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
-    <native>stuff on mac things on pc, R versions etc</native>
+    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+The computing platform for generating data and metadata was x86_64-w64-mingw32.
+R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
   </idinfo>
   <dataqual>
     <attracc>
@@ -220,7 +222,7 @@
           </timeinfo>
           <srccurr>publication date</srccurr>
         </srctime>
-        <srccitea>appling_et_al_2018</srccitea>
+        <srccitea>Appling et al. 2018</srccitea>
         <srccontr>This methods manuscript justifies the metabolism model implementation used to generate metabolism estimates for this project.</srccontr>
       </srcinfo>
       <srcinfo>
@@ -234,6 +236,7 @@
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
             <geoform>tab-separated values, compressed from text to .zip format</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
+            <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -245,11 +248,13 @@
           </timeinfo>
           <srccurr>access date</srccurr>
         </srctime>
-        <srccitea>appling_et_al_2017</srccitea>
+        <srccitea>Appling et al. 2017</srccitea>
         <srccontr>This software source provided the metabolism model implementation used to generate metabolism estimates for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access current versions of the software from the U.S. Geological Survey archive.</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018).</procdesc>
+        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018) version 0.10.1 using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan", and using the site-specific configuration parameters and data sources specified in "Model configurations for estimating metabolism". Daily estimates were extracted from the models using the get_fit() function from streamMetabolizer and selecting the "daily" element from the resulting list. The variables site_name and resolution, which are constant within each model run, were appended to each table before concatenating the tables for all model runs.
+Several additional daily values were compiled from "Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism". These values were DO.amp, light, discharge, and velocity; see "Entity and Attribute Information" in this file for details.
+The remaining daily values were computed from the sub-daily input data. These include DO.obs, DO.sat, DO.psat, depth, temp.water, and day.length; see "Entity and Attribute Information" in this file for details.</procdesc>
         <procdate>20170502</procdate>
       </procstep>
     </lineage>

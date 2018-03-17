@@ -9,10 +9,16 @@ title: Model configurations for estimating metabolism
 process-description: >-
   Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan".
   This configuration file was generated 2017-04-06 15:04:23 +0000 and was originally labeled with tag 1.0.2.
-process-date: 2017-04-06 15:04:23 +0000
+process-date: 20170406
 data-name: config.zip
 data-description: Model configurations for estimating metabolism. Configuration parameters can be 
-build-environment: stuff on mac things on pc, R versions etc
+build-environment: >-
+  This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  
+  Mac (x86_64-apple-darwin15.6.0) and Windows (x86_64-w64-mingw32) computers were used to generate the data and metadata.
+  
+  R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; dplyr version 0.7.4; magrittr version 1.5;
+  meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: tab-separated values, compressed from text to .zip format
 metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
@@ -32,7 +38,7 @@ source-cites:
     sngdate:
       caldate: 2018
     srccurr: publication date
-    srccitea: appling_et_al_2018
+    srccitea: Appling et al. 2018
     srccontr: >-
       This methods manuscript justifies the metabolism model implementation used to generate metabolism estimates
       for this project.
@@ -41,11 +47,11 @@ source-cites:
     title: >-
       streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
     pubdate: 2017
-    link: https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1
+    link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
     sngdate:
       caldate: 2017
     srccurr: access date
-    srccitea: appling_et_al_2017
+    srccitea: Appling et al. 2017
     srccontr: >-
       This software source provided the metabolism model implementation used to generate metabolism estimates
       for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code

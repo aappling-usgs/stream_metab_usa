@@ -28,7 +28,7 @@
     <timeperd>
       <timeinfo>
         <rngdates>
-          <begdate>20061001</begdate>
+          <begdate>20071001</begdate>
           <enddate>20170101</enddate>
         </rngdates>
       </timeinfo>
@@ -165,8 +165,9 @@
       <cntinfo>
         <cntperp>
           <cntper>Alison P. Appling</cntper>
-          <cntorg>U.S. Geological Survey<cntpos>Ecologist, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos></cntorg>
+          <cntorg>U.S. Geological Survey</cntorg>
         </cntperp>
+        <cntpos>Ecologist</cntpos>
         <cntaddr>
           <addrtype>Mailing and Physical</addrtype>
           <address>520 N Park Ave, Ste 221</address>
@@ -180,9 +181,7 @@
       </cntinfo>
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
-    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
-  The computing platform for generating data and metadata was x86_64-w64-mingw32. 
-  R packages loaded into this environment: miniCRAN, version: 0.2.10; streamMetabolizer, version: 0.10.8; mda.streams, version: 0.10.4; ggplot2, version: 2.2.1.9000; tidyr, version: 0.7.2; meddle, version: 0.0.4; maps, version: 3.2.0; dataRetrieval, version: 2.7.3; rgeos, version: 0.3-26; dplyr, version: 0.7.4; sbtools, version: 1.1.6; httr, version: 1.3.1; rgdal, version: 1.2-16; sp, version: 1.2-5; whisker, version: 0.3-2; yaml, version: 2.1.16; xml2, version: 1.1.1; magrittr, version: 1.5.</native>
+    <native>PC</native>
   </idinfo>
   <dataqual>
     <attracc>
@@ -315,8 +314,8 @@
         <srccontr>This source provided regionalized hydraulic geometry coefficients for each site.</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>data were pulled or synthesized from existing etc...</procdesc>
-        <procdate>NA</procdate>
+        <procdesc>data were pulled or synthesized from existing etc...??????INCOMPLETE?????? site_name, nwis_id, long_name, lat, lon, coord_datum, alt, alt_datum, site_type are site-specific metadata  extracted from the USGS National Water Information System's site service https://waterservices.usgs.gov/rest/Site-Service.html  and correspond to the fields from that service of: station_nm, site_no (prefixed here with "nwis_"),  ????long_name, dec_lat_va, dec_long_va, dec_coord_datum_cd, alt_va, and alt_datum_cd. The nhdplus_id field here  is the ???? from a combination of automated and manual processes to match gage locations to locations on NHDPlusV2.  Fields prefixed with "dvqcoefs" were processed by ???? and ???. Fields prefixed with "struct" were...???</procdesc>
+        <procdate>20171110</procdate>
       </procstep>
     </lineage>
   </dataqual>
@@ -621,14 +620,14 @@
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20171218</metd>
+    <metd>20180316</metd>
     <metc>
       <cntinfo>
         <cntperp>
           <cntper>Jordan S. Read</cntper>
           <cntorg>U.S. Geological Survey</cntorg>
         </cntperp>
-        <cntpos>Chief, Data Science Branch, Integrated Information Dissemination Division, U.S. Geological Survey</cntpos>
+        <cntpos>Research Civil Engineer</cntpos>
         <cntaddr>
           <addrtype>Mailing and Physical</addrtype>
           <address>8551 Research Way #120</address>

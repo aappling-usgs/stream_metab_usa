@@ -538,7 +538,7 @@ combine_model_diagnostics <- function(out_file, task_plan) {
     mutate(
       model_confidence = ifelse(
         K600_daily_sigma_Rhat > 1.2, "L", ifelse(
-          err_obs_iid_sigma_Rhat > 1.2, "L", ifelse(
+          # err_obs_iid_sigma_Rhat > 1.2, "L", ifelse(
             err_proc_iid_sigma_Rhat > 1.2, "L", ifelse(
               K_range > 50, "L", ifelse( # tried K_range > pmax(50, K_median), but in practice has no effect on model_confidence
                 neg_GPP > 50, "L", ifelse(
@@ -546,7 +546,7 @@ combine_model_diagnostics <- function(out_file, task_plan) {
                     K_range > 15, "M", ifelse( # tried K_range > pmax(15, 0.3*K_median), but in practice has no effect on model_confidence
                       neg_GPP > 25, "M", ifelse(
                         pos_ER > 25, "M", "H"
-                      ))))))))))
+                      ))))))))) #)
   
   # determine a site-level assessment (possibly combining several models)
   all_diagnostics <- all_diagnostics %>%

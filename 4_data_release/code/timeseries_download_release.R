@@ -92,25 +92,25 @@ attributes_timeseries <- function(
     'DateTime', 'Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary', 'This release',
     
     # GLDAS
-    'baro_gldas', 'Surface pressure (psurf_f_inst) from GLDAS database', 'NASA GLDAS NOAH model output, https://hydro1.gesdisc.eosdis.nasa.gov/dods/GLDAS_NOAH025_3H.2.0.info',
-    'sw_gldas', 'Downward shortwave radiation flux, surface (SWdown_f_tavg) from GLDAS database', 'NASA GLDAS NOAH model output, https://hydro1.gesdisc.eosdis.nasa.gov/dods/GLDAS_NOAH025_3H.2.0.info',
+    'baro_gldas', 'Surface pressure (psurf_f_inst) from GLDAS database', 'GLDAS_NOAH025_3H_V2.0 (see Source Information)',
+    'sw_gldas', 'Downward shortwave radiation flux, surface (SWdown_f_tavg) from GLDAS database', 'GLDAS_NOAH025_3H_V2.0 (see Source Information)',
     
     # NLDAS
-    'baro_nldas', 'Surface pressure (pressfc) from NLDAS database', 'NASA NLDAS forcing data, https://hydro1.gesdisc.eosdis.nasa.gov/dods/NLDAS_FORA0125_H.002.info',
-    'sw_nldas', 'Downwards shortwave radiation flux, surface (dswrfsfc) from NLDAS database', 'NASA NLDAS forcing data, https://hydro1.gesdisc.eosdis.nasa.gov/dods/NLDAS_FORA0125_H.002.info',
+    'baro_nldas', 'Surface pressure (pressfc) from NLDAS database', 'NLDAS_FORA0125_H.002 (see Source Information)',
+    'sw_nldas', 'Downwards shortwave radiation flux, surface (dswrfsfc) from NLDAS database', 'NLDAS_FORA0125_H.002 (see Source Information)',
     
     # NWIS
-    'disch_nwis', 'Discharge (parameter 00060) from NWIS database', 'USGS NWIS, https://waterdata.usgs.gov/nwis',
-    'doobs_nwis', 'Dissolved oxygen concentration (parameter 00300) from NWIS database', 'USGS NWIS, https://waterdata.usgs.gov/nwis',
-    'wtr_nwis', 'Water temperature (parameter 00010) from NWIS database', 'USGS NWIS, https://waterdata.usgs.gov/nwis',
+    'disch_nwis', 'Discharge (parameter 00060) from NWIS database', 'USGS_NWIS (see Source Information)',
+    'doobs_nwis', 'Dissolved oxygen concentration (parameter 00300) from NWIS database', 'USGS_NWIS (see Source Information)',
+    'wtr_nwis', 'Water temperature (parameter 00010) from NWIS database', 'USGS_NWIS (see Source Information)',
     
     # calculated, inst
     'sitedate_calcLon', 'Date expressed as solar noon at the site. Calculated with streamMetabolizer convert_UTC_to_solartime function', 'This release',
     'sitetime_calcLon', 'Mean solar time. Calculated from DateTime and site longitude with streamMetabolizer convert_UTC_to_solartime function', 'This release',
     'suntime_calcLon', 'Apparent solar time. Calculated from DateTime and site coordinates with streamMetabolizer convert_UTC_to_solartime function', 'This release',
     'dopsat_calcObsSat', 'Percent dissolved oxygen saturation. Calculated from doobs_nwis and dosat_calcGGbts as 100*doobs/dosat', 'This release',
-    'dosat_calcGGbconst', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_calcElev with streamMetabolizer calc_DO_sat function', 'This release',
-    'dosat_calcGGbts', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_nldas (or baro_gldas when baro_nldas unavailable) with streamMetabolizer calc_DO_sat function', 'This release',
+    'dosat_calcGGbconst', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_calcElev with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992', 'This release',
+    'dosat_calcGGbts', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_nldas (or baro_gldas when baro_nldas unavailable) with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992', 'This release',
     'par_calcLat', 'Photosynthetically active radiation. Calculated from site latitude and suntime with streamMetabolizer calc_light function', 'This release',
     'par_calcSw', 'Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_PAR_to_SW function', 'This release',
     'par_calcLatSw', 'Photosynthetically active radiation. Merger of par_calcLat and par_calcSw using streamMetabolizer calc_light_merged function', 'This release',
