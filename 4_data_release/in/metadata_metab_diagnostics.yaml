@@ -20,7 +20,7 @@ process-description: >-
   This overall assessment is based only on readily computable information and is intended only
   as guidance, such that an expert familiar with the oxygen data
   and site characteristics could reasonably override the assessment given here.
-process-date: 2017-04-06 15:04:23 +0000
+process-date: 20170406
 data-name: diagnostics.zip.
 data-description: Key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.
 build-environment: >-

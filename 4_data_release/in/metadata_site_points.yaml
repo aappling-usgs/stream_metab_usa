@@ -11,7 +11,7 @@ process-description: >-
   A points shapefile was created containing locations of the USGS gaging stations included in this data release. 
   Spatial tools in the R programming language were used to perform the operations of creating the spatial datasets and modifying attributes. 
   Station locations were accessed from the USGS National Water Information System's "site service": https://waterservices.usgs.gov/rest/Site-Service.html
-process-date: "`r format(Sys.time(),'%Y%m%d')`"
+process-date: 20180116
 data-name: Spatial data for site locations
 data-description: >- 
   A points shapefile containing locations of the USGS gaging stations included in this data release. 

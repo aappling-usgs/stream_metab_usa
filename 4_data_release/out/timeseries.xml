@@ -181,7 +181,9 @@
       </cntinfo>
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
-    <native>Combination of Windows and Mac personal computers, collected by scripts in the R programming language.</native>
+    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+Mac (x86_64-apple-darwin15.6.0) and Windows (x86_64-w64-mingw32) computers were used to generate the data and metadata.
+R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; sbtools version 1.1.6; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
   </idinfo>
   <dataqual>
     <attracc>

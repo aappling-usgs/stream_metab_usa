@@ -11,7 +11,7 @@ process-description: >-
   Existing polygons were combined from various sources (see data_source attribute and Source Information).
   Spatial tools in the R programming language were used to perform the operations of merging 
   and modifying attributes. 
-process-date: "`r format(Sys.time(),'%Y%m%d')`"
+process-date: 20180116
 data-name: Spatial data for catchment delineation
 data-description: >- 
   Catchment polygons from various sources collated into a single shapefile.
