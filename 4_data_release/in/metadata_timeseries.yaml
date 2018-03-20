@@ -7,15 +7,30 @@ title: Timeseries data collected or computed from outside sources, for estimatin
 
 # ----dataset details----
 process-description: >-
-  Raw timeseries data were downloaded from two data sources: USGS NWIS and NASA LDAS.
-  Additional variables were calculated from these raw sources using data-preparation functions from the streamMetabolizer R package.
-process-date: 2017-01-01
+  Raw timeseries data were downloaded from two data sources: 
+  
+  Data on dissolved oxygen concentrations, water temperature, and discharge were downloaded from 
+  the U.S. Geological Survey (USGS) National Water Information System database (NWIS; see Source Citation for USGS_NWIS).
+  
+  Data on shortwave radiation and air pressure were downloaded from
+  the North American Land Data Assimilation System (NLDAS; see Source Citation for NLDAS_FORA0125_H.002) and
+  the Global Land Data Assimilation System (GLDAS; see Source Citation for GLDAS_NOAH025_3H_V2.0).
+  
+  Additional variables were calculated from these raw sources using data-preparation functions from the streamMetabolizer R package
+  (see Source Citations for Appling et al. 2017, Garcia and Gordon 1992, and Raymond et al. 2012).
+process-date: 20170101
 data-name: nwis_SITENUM_timeseries.zip for 753 SITENUMs (NWIS site IDs)
 data-description: >-
   Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism.
-  Sites were included if they met the initial criteria of having at least 100 NWIS dissolved oxygen observations
+  Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations
   and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
-build-environment: Combination of Windows and Mac personal computers, collected by scripts in the R programming language.
+build-environment: >-
+  This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  
+  Mac (x86_64-apple-darwin15.6.0) and Windows (x86_64-w64-mingw32) computers were used to generate the data and metadata.
+  
+  R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; sbtools version 1.1.6;
+  dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.
 metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
@@ -25,12 +40,61 @@ latitude-res: Not applicable
 longitude-res: Not applicable
 
 source-cites: 
+  - 
+    # citation from https://help.waterdata.usgs.gov/faq/miscellaneous/how-to-cite-usgs-water-data-for-the-nation-waterdata.usgs.gov-in-a-publication
+    # U.S. Geological Survey, 2016, National Water Information System data available on the World Wide Web (USGS Water Data for the Nation), accessed [June 10, 2012], at URL [http://waterdata.usgs.gov/nwis/].
+    authors: ['U.S. Geological Survey']
+    title: National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
+    pubdate: 2016
+    file-format: WaterML1.1
+    link: ['http://waterdata.usgs.gov/nwis/iv', 'http://dx.doi.org/10.5066/F7P55KJN']
+    rngdates:
+      begdate: 2007
+      enddate: 2017
+    srccurr: access date
+    srccitea: USGS_NWIS
+    srccontr: >-
+      This source, accessed January 2017, provided subhourly to hourly data on dissolved oxygen concentrations, water temperature, and discharge
+      for all sites included in this metabolism data release.
+  - 
+    # citation from https://disc.sci.gsfc.nasa.gov/datasets/NLDAS_FORA0125_H_V002/summary
+    # Xia, Y., et al., NCEP/EMC(2009), NLDAS Primary Forcing Data L4 Hourly 0.125 x 0.125 degree V002, Greenbelt, Maryland, USA, Goddard Earth Sciences Data and Information Services Center (GES DISC), Accessed [Data Access Date] 10.5067/6J5LHHOHZHN4
+    authors: ['Xia, Y., et al.', 'NCEP/EMC']
+    title: NLDAS Primary Forcing Data L4 Hourly 0.125 x 0.125 degree V002
+    pubdate: 2009
+    file-format: NetCDF 4 files (nc4), one per date
+    link: ['https://disc.sci.gsfc.nasa.gov/datasets/NLDAS_FORA0125_H_V002/summary', 'https://dx.doi.org/10.5067/6J5LHHOHZHN4']
+    rngdates:
+      begdate: 1979
+      enddate: 2017
+    srccurr: access date
+    srccitea: NLDAS_FORA0125_H.002
+    srccontr: >-
+      This source, accessed January 2017, provided hourly data on surface air pressure and downward shortwave radiation flux
+      for sites located anywhere within the continental U.S. (latitude/longitude bounding box of -125.0, 25.0, -67.0, 53.0).
+  - 
+    # citation from https://disc.sci.gsfc.nasa.gov/datasets/GLDAS_NOAH025_3H_V2.0/summary:
+    # Matthew Rodell and Hiroko Kato Beaudoing, NASA/GSFC/HSL(2015), GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.0, Greenbelt, Maryland, USA, Goddard Earth Sciences Data and Information Services Center (GES DISC), Accessed [Data Access Date] 10.5067/342OHQM9AK6Q
+    authors: ['Matthew Rodell', 'Hiroko Kato Beaudoing', 'NASA/GSFC/HSL']
+    title: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.0
+    pubdate: 2015
+    file-format: NetCDF 4 files (nc4), one per date
+    link: ['https://disc.sci.gsfc.nasa.gov/datasets/GLDAS_NOAH025_3H_V2.0/summary', 'https://dx.doi.org/10.5067/342OHQM9AK6Q']
+    rngdates:
+      begdate: 1948
+      enddate: 2017
+    srccurr: access date
+    srccitea: GLDAS_NOAH025_3H_V2.0
+    srccontr: >-
+      This source, accessed January 2017, provided 3-hourly data on surface air pressure and downward shortwave radiation flux
+      for sites located anywhere globally.
   -
     authors: ['Peter A. Raymond', 'Christopher J. Zappa', 'David Butman', 'Thomas L. Bott', 'Jody Potter', 'Patrick Mulholland', 'Andrew E. Laursen', 'William H. McDowell', 'Denis Newbold']
     title: >-
       Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology & Oceanography: Fluids & Environments 2 (2012): 41-53.
-    pubdate: 2016
-    link: ['https://waterdata.usgs.gov/nwis', 'http://dx.doi.org/10.5066/F7P55KJN']
+    pubdate: 2012
+    file-format: manuscript
+    link: ['http://onlinelibrary.wiley.com/doi/10.1215/21573689-1597669/abstract', 'http://dx.doi.org/10.1215/21573689-1597669']
     sngdate:
       caldate: 2012
     srccurr: publication date
@@ -43,11 +107,29 @@ source-cites:
     title: >-
       Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6).
     pubdate: 1992
+    file-format: manuscript
     link: ['http://onlinelibrary.wiley.com/doi/10.4319/lo.1992.37.6.1307/abstract']
     sngdate:
       caldate: 1992
     srccurr: publication date
-    srccitea: Garcia and Gordon 1992 
+    srccitea: Garcia and Gordon 1992
     srccontr: >-
       This source provided the equation and coefficients for estimating oxygen saturation concentrations
       (Entity Type Labels nwis_XXXX-ts_dosat_calcGGbconst.tsv and nwis_XXXX-ts_dosat_calcGGbts.tsv).
+  -
+    authors: ['Alison P. Appling', 'Robert O. Hall Jr.', 'Maite Arroita', 'Charles B. Yackulic']
+    title: >-
+      streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
+    pubdate: 2017
+    file-format: software package for the R statistical programming language
+    link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
+    sngdate:
+      caldate: 2017
+    srccurr: access date
+    srccitea: Appling et al. 2017
+    srccontr: >-
+      This software source provided the metabolism model implementation used to generate metabolism estimates
+      for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code
+      exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access
+      current versions of the software from the U.S. Geological Survey archive.
+

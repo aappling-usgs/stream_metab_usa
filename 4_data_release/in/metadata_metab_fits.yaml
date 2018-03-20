@@ -7,11 +7,21 @@ title: Complete fits from metabolism estimation models
 
 # ----dataset details----
 process-description: >-
-  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) to produce these output tables.
-process-date: 2017-04-06 15:04:23 +0000
-data-name: nwis_SITENUM_RES_fit.zip for 433 combinations of SITENUM (NWIS site IDs) and RES (temporal resolution of input data, minutes).
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018) version 0.10.1 using the Bayesian model
+  with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan", and using the site-specific configuration parameters
+  and data sources specified in "Model configurations for estimating metabolism". Parameter estimates and diagnostics
+  were extracted from the models using the get_fit() function from streamMetabolizer. Each element of the resulting list
+  was written to a separate tab-separated text file, then the set of files for each model was compressed into a zip file for release.
+process-date: 20170406
+data-name: nwis_SITENUM_RES_fit.zip for 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).
 data-description: Model results from estimating metabolism.
-build-environment: PC
+build-environment: >-
+  This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+  
+  The computing platform for generating data and metadata was x86_64-w64-mingw32.
+  
+  R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5;
+  meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.
 metadata-date: "`r format(Sys.time(),'%Y%m%d')"
 
@@ -31,7 +41,7 @@ source-cites:
     sngdate:
       caldate: 2018
     srccurr: publication date
-    srccitea: appling_et_al_2018
+    srccitea: Appling et al. 2018
     srccontr: >-
       This methods manuscript justifies the metabolism model implementation used to generate metabolism estimates
       for this project.
@@ -40,11 +50,11 @@ source-cites:
     title: >-
       streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
     pubdate: 2017
-    link: https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1
+    link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
     sngdate:
       caldate: 2017
     srccurr: access date
-    srccitea: appling_et_al_2017
+    srccitea: Appling et al. 2017
     srccontr: >-
       This software source provided the metabolism model implementation used to generate metabolism estimates
       for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code

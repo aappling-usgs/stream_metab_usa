@@ -14,10 +14,10 @@ process-description: >-
   ????long_name, dec_lat_va, dec_long_va, dec_coord_datum_cd, alt_va, and alt_datum_cd. The nhdplus_id field here 
   is the ???? from a combination of automated and manual processes to match gage locations to locations on NHDPlusV2. 
   Fields prefixed with "dvqcoefs" were processed by ???? and ???. Fields prefixed with "struct" were...???
-process-date: "`r format(file.mtime('../4_data_release/cache/site_data.tsv'),'%Y%m%d')`"
+process-date: 20171110
 data-name: Site information for river metabolism estimates
 data-description: Information about sites at which water quality was monitored and metabolism was estimated.
-build-environment: "`r environment_metadata()`"
+build-environment: PC
 file-format: Tab-delimited file
 metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
 
