@@ -18,7 +18,7 @@
         <pubdate>2018</pubdate>
         <title>Spatial site locations</title>
         <geoform>Shapefiles</geoform>
-        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+        <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
@@ -207,7 +207,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     </posacc>
     <lineage>
       <procstep>
-        <procdesc>A points shapefile was created containing locations of the USGS gaging stations included in this data release.  Spatial tools in the R programming language were used to perform the operations of creating the spatial datasets and modifying attributes.  Station locations were accessed from the USGS National Water Information System's "site service": https://waterservices.usgs.gov/rest/Site-Service.html</procdesc>
+        <procdesc>A points shapefile was created containing locations of the USGS gaging stations included in this data release.  Spatial tools in the R programming language were used to perform the operations of creating the spatial datasets and modifying attributes.  Station locations were accessed from the USGS National Water Information System's "site service":  https://waterservices.usgs.gov/rest/Site-Service.html. The R dataRetrieval package was used to access site service metadata  (function readNWISsite). Sites had one of two datums, NAD83 (epsg code 4269)  or WGS84 (epsg code 4326) and were transformed to a single datum (epsg code 4326) using the rgdal package. The locations of each site  were combined into a single output shapefile. Details for package versions used are fount in the build environment details in &lt;native&gt;. </procdesc>
         <procdate>20180116</procdate>
       </procstep>
     </lineage>
@@ -299,7 +299,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
           <onlinopt>
             <computer>
               <networka>
-                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+                <networkr>https://doi.org/10.5066/F70864KX</networkr>
               </networka>
             </computer>
           </onlinopt>
@@ -309,7 +309,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180316</metd>
+    <metd>20180319</metd>
     <metc>
       <cntinfo>
         <cntperp>

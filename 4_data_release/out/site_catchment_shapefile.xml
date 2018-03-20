@@ -18,7 +18,7 @@
         <pubdate>2018</pubdate>
         <title>Spatial catchments</title>
         <geoform>Shapefile</geoform>
-        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+        <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
@@ -462,7 +462,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
           <onlinopt>
             <computer>
               <networka>
-                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+                <networkr>https://doi.org/10.5066/F70864KX</networkr>
               </networka>
             </computer>
           </onlinopt>
@@ -472,7 +472,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180316</metd>
+    <metd>20180319</metd>
     <metc>
       <cntinfo>
         <cntperp>
