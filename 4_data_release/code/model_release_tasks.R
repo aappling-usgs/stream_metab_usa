@@ -492,7 +492,7 @@ combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {
   
   # read in daily average discharge, and velocity
   daily_predictors <- readRDS(daily_preds_file) %>%
-    select(site_name=site, date=sitedate, shortwave=swdaily, velocity=velocdaily)
+    select(site_name=site, date=sitedate, shortwave=swdaily, velocity=velocdaily, DO.tdist95=mfootdaily)
   
   # combine the daily predictions, daily mean inputs, and daily predictors into
   # a single df. I've done some checking: daylength predicts mean light,
@@ -505,9 +505,6 @@ combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {
   # than extension) as the zip file that will contain it. write the zip, too
   tsv_path <- gsub('\\.zip$', '.tsv', basename(out_file))
   write_zipfile(setNames(list(all_dailies), tsv_path), zipfile=out_file)
-  
-  # post
-  # append_release_files(parent.id, out_file)
 }
 
 combine_model_diagnostics <- function(out_file, task_plan) {

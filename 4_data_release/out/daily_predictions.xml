@@ -22,7 +22,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, resolution, date, GPP, GPP.lower, GPP.upper, GPP.n_eff, GPP.Rhat, ER, ER.lower, ER.upper, ER.n_eff, ER.Rhat, K600, K600.lower, K600.upper, K600.n_eff, K600.Rhat, DO.obs, DO.sat, DO.amp, DO.psat, depth, temp.water, day.length, discharge, shortwave, velocity, .</abstract>
+      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, resolution, date, GPP, GPP.lower, GPP.upper, GPP.n_eff, GPP.Rhat, ER, ER.lower, ER.upper, ER.n_eff, ER.Rhat, K600, K600.lower, K600.upper, K600.n_eff, K600.Rhat, DO.obs, DO.sat, DO.amp, DO.psat, depth, temp.water, day.length, discharge, shortwave, velocity, DO.tdist95, .</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -624,6 +624,18 @@ The remaining daily values were computed from the sub-daily input data. These in
             <rdommin>0.0003694</rdommin>
             <rdommax>7.428</rdommax>
             <attrunit>m s^-1</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DO.tdist95</attrlabl>
+        <attrdef>Mean 95% turnover distance for dissolved oxygen for the date (4am to 3:59pm)</attrdef>
+        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>9.315</rdommin>
+            <rdommax>682474639</rdommax>
+            <attrunit>m</attrunit>
           </rdom>
         </attrdomv>
       </attr>

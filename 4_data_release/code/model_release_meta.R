@@ -532,7 +532,8 @@ attributes_daily_preds <- function(
     'day.length', 'Time elapsed between first and last estimates of light > 0 for the date (4am to 3:59pm).', 'hours',
     'shortwave', 'Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).', unique(mda.streams::get_var_src_codes(var=='sw', out='metab_units')),
     'discharge', 'Mean discharge for the date (4am to 3:59pm).', var_src_units('discharge'),
-    'velocity', 'Mean water velocity for the date (4am to 3:59pm).', var_src_units('velocity')
+    'velocity', 'Mean water velocity for the date (4am to 3:59pm).', var_src_units('velocity'),
+    'DO.tdist95', 'Mean 95% turnover distance for dissolved oxygen for the date (4am to 3:59pm)', unique(mda.streams::get_var_src_codes(var=='mfootdaily', out='metab_units'))
   ) %>% mutate(
     'attr-defs'=sapply(`attr-label`, function(attr_label) {
       switch(
