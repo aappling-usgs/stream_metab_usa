@@ -690,7 +690,6 @@ The remaining daily values were computed from the sub-daily input data. These in
       <digform>
         <digtinfo>
           <formname>tab-separated values, compressed from text to .zip format</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>

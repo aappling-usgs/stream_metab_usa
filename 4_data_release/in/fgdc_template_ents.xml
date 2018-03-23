@@ -240,7 +240,6 @@
       <digform>
         <digtinfo>
           <formname>{{file-format}}</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>

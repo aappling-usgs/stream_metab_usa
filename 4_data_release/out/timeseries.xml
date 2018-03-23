@@ -17,7 +17,7 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism</title>
-        <geoform>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
+        <geoform>Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -290,7 +290,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; s
             <origin>Denis Newbold</origin>
             <pubdate>2012</pubdate>
             <title>Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology &amp; Oceanography: Fluids &amp; Environments 2 (2012): 41-53.</title>
-            <geoform>manuscript</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>http://onlinelibrary.wiley.com/doi/10.1215/21573689-1597669/abstract</onlink>
             <onlink>http://dx.doi.org/10.1215/21573689-1597669</onlink>
           </citeinfo>
@@ -314,7 +314,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; s
             <origin>Louis I. Gordon</origin>
             <pubdate>1992</pubdate>
             <title>Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6).</title>
-            <geoform>manuscript</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>http://onlinelibrary.wiley.com/doi/10.4319/lo.1992.37.6.1307/abstract</onlink>
           </citeinfo>
         </srccite>
@@ -339,7 +339,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; s
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>software package for the R statistical programming language</geoform>
+            <geoform>Software package for the R statistical programming language</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -1190,8 +1190,7 @@ Additional variables were calculated from these raw sources using data-preparati
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</formname>
-          <formvern>none</formvern>
+          <formname>Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>

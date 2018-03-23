@@ -17,7 +17,7 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Spatial site locations</title>
-        <geoform>Shapefiles</geoform>
+        <geoform>Shapefile</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -294,8 +294,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>Shapefiles</formname>
-          <formvern>none</formvern>
+          <formname>Shapefile</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>

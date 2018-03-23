@@ -214,7 +214,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
             <origin>National Exposure Research Laboratory, RTP</origin>
             <pubdate>2015</pubdate>
             <title>BASINS 4.1 (Better Assessment Science Integrating point &amp; Non-point Sources) Modeling Framework</title>
-            <geoform>Shapefile</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>http://www.epa.gov/exposure-assessment-models/basins</onlink>
           </citeinfo>
         </srccite>
@@ -236,7 +236,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
             <origin>James A. Falcone</origin>
             <pubdate>2011</pubdate>
             <title>GAGES-II:  Geospatial Attributes of Gages for Evaluating Streamflow</title>
-            <geoform>shapefiles</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml</onlink>
           </citeinfo>
         </srccite>
@@ -260,7 +260,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
             <origin>Curtis V. Price</origin>
             <pubdate>2017</pubdate>
             <title>Watershed boundaries for study sites of the U.S. Geological Survey Surface Water Trends project</title>
-            <geoform>shapefiles</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>http://dx.doi.org/10.5066/F78S4N29</onlink>
           </citeinfo>
         </srccite>
@@ -282,7 +282,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
             <origin>U.S. Geological Survey</origin>
             <pubdate>2013</pubdate>
             <title>National Hydrography Geodatabase: The National Map Viewer</title>
-            <geoform>shapefiles</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>https://viewer.nationalmap.gov/viewer/index.html?p=nhd</onlink>
           </citeinfo>
         </srccite>
@@ -304,7 +304,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
             <origin>U.S. Geological Survey</origin>
             <pubdate>2017</pubdate>
             <title>StreamStats</title>
-            <geoform>shapefiles</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>https://water.usgs.gov/osw/streamstats</onlink>
           </citeinfo>
         </srccite>
@@ -332,7 +332,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
             <origin>Peter C. Van Metre</origin>
             <pubdate>2016</pubdate>
             <title>Geospatial database of the study boundary, sampled sites, watersheds, and riparian zones developed for the U.S. Geological Survey Midwest Stream Quality Assessment</title>
-            <geoform>shapefiles</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>http://dx.doi.org/10.5066/F7CN7202</onlink>
           </citeinfo>
         </srccite>
@@ -354,7 +354,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
             <origin>Michael E. Wieczorek</origin>
             <pubdate>20120830</pubdate>
             <title>USGS Streamgage NHDPlus Version 1 Basins 2011</title>
-            <geoform>shapefiles</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>http://water.usgs.gov/GIS/metadata/usgswrd/XML/streamgagebasins.xml</onlink>
           </citeinfo>
         </srccite>
@@ -458,7 +458,6 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
       <digform>
         <digtinfo>
           <formname>Shapefile</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>

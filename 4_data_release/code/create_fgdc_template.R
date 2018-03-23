@@ -202,8 +202,7 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   df <-  xml_add_child(so, 'digform')
   df %>% 
     xml_add_child('digtinfo') %>% 
-    xml_add_child('formname','{{file-format}}') %>% 
-    xml_add_sibling('formvern','none')
+    xml_add_child('formname','{{file-format}}')
   
   df %>% 
     xml_add_child('digtopt') %>% 

@@ -1592,7 +1592,6 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       <digform>
         <digtinfo>
           <formname>tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>

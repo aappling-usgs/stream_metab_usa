@@ -508,7 +508,6 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
       <digform>
         <digtinfo>
           <formname>tab-separated values, compressed from text to .zip format</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>

@@ -46,6 +46,7 @@ source-cites:
     title: >-
       BASINS 4.1 (Better Assessment Science Integrating point & Non-point Sources) Modeling Framework
     pubdate: 2015
+    file-format: Shapefiles
     link: http://www.epa.gov/exposure-assessment-models/basins
     sngdate:
       caldate: 2017
@@ -57,7 +58,7 @@ source-cites:
     title: >-
       GAGES-II:  Geospatial Attributes of Gages for Evaluating Streamflow
     pubdate: 2011
-    file-format: shapefiles
+    file-format: Shapefiles
     link: http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml
     sngdate:
       caldate: 2011
@@ -69,7 +70,7 @@ source-cites:
     title: >-
       Watershed boundaries for study sites of the U.S. Geological Survey Surface Water Trends project
     pubdate: 2017
-    file-format: shapefiles
+    file-format: Shapefiles
     link: http://dx.doi.org/10.5066/F78S4N29
     sngdate:
       caldate: 2017
@@ -81,7 +82,7 @@ source-cites:
     title: >-
       National Hydrography Geodatabase: The National Map Viewer
     pubdate: 2013
-    file-format: shapefiles
+    file-format: Shapefiles
     link: https://viewer.nationalmap.gov/viewer/index.html?p=nhd
     sngdate:
       caldate: 2013
@@ -93,7 +94,7 @@ source-cites:
     title: >- 
       StreamStats
     pubdate: 2017
-    file-format: shapefiles
+    file-format: Shapefiles
     link: https://water.usgs.gov/osw/streamstats
     sngdate:
       caldate: 20170301
@@ -105,7 +106,7 @@ source-cites:
     title: >- 
       Geospatial database of the study boundary, sampled sites, watersheds, and riparian zones developed for the U.S. Geological Survey Midwest Stream Quality Assessment
     pubdate: 2016
-    file-format: shapefiles
+    file-format: Shapefiles
     link: http://dx.doi.org/10.5066/F7CN7202
     sngdate:
       caldate: 2016
@@ -117,7 +118,7 @@ source-cites:
     title: >- 
       USGS Streamgage NHDPlus Version 1 Basins 2011
     pubdate: 20120830
-    file-format: shapefiles
+    file-format: Shapefiles
     link: http://water.usgs.gov/GIS/metadata/usgswrd/XML/streamgagebasins.xml
     sngdate:
       caldate: 2012
