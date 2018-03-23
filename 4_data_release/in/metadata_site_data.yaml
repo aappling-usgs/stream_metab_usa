@@ -8,7 +8,7 @@ title: Site identifiers and details
 # ----dataset details----
 # process-description is as in mda.streams::stage_meta_basic, stage_meta_dvqcoefs
 process-description: >- 
-  The fields site_name, nwis_id, long_name, lat, lon, coord_datum, alt, alt_datum, and site_type 
+  1. The fields site_name, nwis_id, long_name, lat, lon, coord_datum, alt, alt_datum, and site_type 
   are site-specific metadata extracted from the U.S. Geological Survey's (USGS)
   National Water Information System's (NWIS; see Source Citation for USGS_NWIS) 
   site service https://waterservices.usgs.gov/rest/Site-Service.html
@@ -19,33 +19,37 @@ process-description: >-
   in which case we parsed coordinate information from NWIS fields lat_va, long_va, and coord_datum_cd into the
   decimal coordinate format of other sites.
   
-  The field nhdplus_id links USGS sites to corresponding reach codes (ComID's) in the
+  2. The field nhdplus_id links USGS sites to corresponding reach codes (ComID's) in the
   National Hydrography Dataset, Version 2 (see Source Citation for NHDPlusV2). 
   The nhdplus_id is the ComID of the NHDPlusV2 reach for which the centerpoint
   latitude and longitude most closely match the latitude and longitude of each USGS site;
   locations were matched using a combination of automated and visual inspection of maps and flowlines.
   
-  The fields dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m are hydraulic geometry
-  coefficients describing the relationships among river discharge, velocity, width, and depth.
-  These were obtained from an analysis by Gomez-Velez et al. 2015 (see Source Citation). 
-  The data used in that analysis were measurements of instantaneous low-flow and bankfull depths and widths
-  made at several thousand sites in the conterminous US
+  3. The fields dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m are hydraulic geometry
+  coefficients describing the at-a-station relationships among river discharge, velocity, width, and depth.
+  These were obtained from an analysis by Gomez-Velez et al. 2015 (see Source Citation) and
+  are regionalized at the HUC2 (USGS Hydrologic Unit Code 2) level based on several thousand
+  measurements of instantaneous low-flow and bankful depths and widths in the conterminous United States.
   
+  4. The fields struct.canal_flag, struct.dam_flag, struct.npdes_flag are flags for likely site suitability
+  for metabolism modeling, based on site proximity to infrastructure that could affect metabolism estimates.
   
+  4a. The flagging focused on three feature types: 
+  permitted National Pollution Discharge Elimination System point sources (see USEPA_NPDES in Source Citations),
+  dams identified in the National Inventory of Dams (USACE_NID),
+  and canals and ditches identified in the National Hydrography Database (NHDPlusV2).
+  National data layers for these features of interest were clipped to watersheds upstream of the sites in our dataset.
+  The geodetic distance between each stream monitoring site and the nearest upstream feature of each type was calculated using
+  the function GenerateNearTable in the arcpy library in Python 3.6.
   
-  \cite{u.s.environmentalprotectionagency_thewadeable_2006,u.s.environmentalprotectionagency_national_2013a}.
-  \citep{gomez-velez_denitrification_2015} correlated depths and widths with the
-  cumulative drainage area reported in NHDPlusV2
-  to create standard power law relationships describing downstream changes in hydraulic geometry.
-  The relationships were regionalized at the HUC2 (USGS Hydrologic Unit Code 2) level.
-  Downstream hydraulic geometry equations were then developed for two flow frequencies,
-  baseflow and bankfull conditions, which permitted at-a-station hydraulic geometry relationships
-  to be developed by fitting power laws to depth and width as functions of discharge for which the
-  fitted power law could be used to compute depth and width for any discharge value in the timeseries
-  at the NWIS sites where metabolism was estimated.
+  4b. The mean 80% oxygen turnover distance on each day was computed from the mean 95% oxygen turnover distance
+  (DO.tdist95 in "Daily metabolism estimates and predictors") by multiplying by -ln(0.2)/-ln(0.05).
+  The 50th, 80th, and 95th percentiles of the daily 80% turnover distances were then computed for each site.
   
-  struct.canal_flag, struct.dam_flag, struct.npdes_flag
-  
+  4c. Distances between the site and upstream features were compared with the percentiles of 80% O2 turnover distance.
+  Site flags are numeric to indicate whether the nearest feature of each type was farther than the 95th, 80th, 50th, or 0th percentile;
+  those four cases are represented by site flag values of 95, 80, 50, or 0, respectively,
+  such that a value of 95 indicates the least probable interference from a structure of a given type.
   
 process-date: 20171110
 data-name: Site information for river metabolism estimates
@@ -116,30 +120,3 @@ source-cites:
     srccurr: publication date
     srccitea: Gomez-Velez et al. 2015
     srccontr: This source provided regionalized hydraulic geometry coefficients for each site.
-  # U.S. Environmental Protection Agency. The Wadeable Streams Assessment: A Collaborative Survey of the Nation’s Streams. Tech. Rep. (2006).
-  -
-    authors: ['U.S. Environmental Protection Agency']
-    title: >-
-      The Wadeable Streams Assessment: A Collaborative Survey of the Nation’s Streams.
-    pubdate: 2006
-    file-format: ??
-    link: ??
-    sngdate:
-      caldate: 2006
-    srccurr: publication date
-    srccitea: USEPA_WSA
-    srccontr: This source provided data for deriving regionalized hydraulic geometry coefficients for each site.
-  # U.S. Environmental Protection Agency. National Rivers and Streams Assessment (2008-2009). Tech. Rep. (2013).
-  -
-      authors: ['U.S. Environmental Protection Agency']
-    title: >-
-      National Rivers and Streams Assessment
-    pubdate: 2013
-    file-format: ??
-    link: ??
-    rngdate:
-      begdate: 2008
-      enddate: 2009
-    srccurr: date range
-    srccitea: USEPA_WSA
-    srccontr: This source provided data for deriving regionalized hydraulic geometry coefficients for each site.
