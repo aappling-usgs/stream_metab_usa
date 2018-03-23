@@ -127,7 +127,8 @@ attributes_timeseries <- function(
     'velocdaily_calcDMean', 'Daily (4am to 3:59am) average of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)', 'This release'
   ) %>% 
     left_join(select(vsc, var_src, `attr-label`=var, `data-units`=units), by='var_src') %>%
-    mutate(`attr-label` = ifelse(var_src == 'DateTime', 'DateTime', `attr-label`))
+    mutate(`attr-label` = ifelse(var_src == 'DateTime', 'DateTime', `attr-label`),
+           `data-units` = ifelse(`data-units` == '', NA, `data-units`))
   
   # create one attr file per entity type
   all_attr_dfs <- lapply(setNames(nm=names(ranges_dfs)), function(ftype) {
