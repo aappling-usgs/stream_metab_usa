@@ -18,7 +18,7 @@
         <pubdate>2018</pubdate>
         <title>Site identifiers and details</title>
         <geoform>Tab-delimited file</geoform>
-        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+        <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
@@ -181,7 +181,9 @@
       </cntinfo>
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
-    <native>PC</native>
+    <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
+The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
+R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
   </idinfo>
   <dataqual>
     <attracc>
@@ -319,7 +321,7 @@
 3. The fields dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m are hydraulic geometry coefficients describing the at-a-station relationships among river discharge, velocity, width, and depth. These were obtained from an analysis by Gomez-Velez et al. 2015 (see Source Citation) and are regionalized at the HUC2 (USGS Hydrologic Unit Code 2) level based on several thousand measurements of instantaneous low-flow and bankful depths and widths in the conterminous United States.
 4. The fields struct.canal_flag, struct.dam_flag, struct.npdes_flag are flags for likely site suitability for metabolism modeling, based on site proximity to infrastructure that could affect metabolism estimates.
 4a. The flagging focused on three feature types:  permitted National Pollution Discharge Elimination System point sources (see USEPA_NPDES in Source Citations), dams identified in the National Inventory of Dams (USACE_NID), and canals and ditches identified in the National Hydrography Database (NHDPlusV2). National data layers for these features of interest were clipped to watersheds upstream of the sites in our dataset. The geodetic distance between each stream monitoring site and the nearest upstream feature of each type was calculated using the function GenerateNearTable in the arcpy library in Python 3.6.
-4b. The mean 80% oxygen turnover distance on each day was computed from the mean 95% oxygen turnover distance (turnover.dist.95 in "Daily metabolism estimates and predictors") by multiplying by -ln(0.2)/-ln(0.05). The 50th, 80th, and 95th percentiles of the daily 80% turnover distances were then computed for each site.
+4b. The mean 80% oxygen turnover distance on each day was computed from the mean 95% oxygen turnover distance (DO.tdist95 in "Daily metabolism estimates and predictors") by multiplying by -ln(0.2)/-ln(0.05). The 50th, 80th, and 95th percentiles of the daily 80% turnover distances were then computed for each site.
 4c. Distances between the site and upstream features were compared with the percentiles of 80% O2 turnover distance. Site flags are numeric to indicate whether the nearest feature of each type was farther than the 95th, 80th, 50th, or 0th percentile; those four cases are represented by site flag values of 95, 80, 50, or 0, respectively, such that a value of 95 indicates the least probable interference from a structure of a given type.</procdesc>
         <procdate>20171110</procdate>
       </procstep>
@@ -616,7 +618,7 @@
           <onlinopt>
             <computer>
               <networka>
-                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+                <networkr>https://doi.org/10.5066/F70864KX</networkr>
               </networka>
             </computer>
           </onlinopt>

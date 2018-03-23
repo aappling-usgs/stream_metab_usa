@@ -1,5 +1,5 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
-site_name,"Site identifier, consisting of prefix ""nwis_"" and the USGS National Water Information System (NWIS) site ID.","National Water Information System, U.S. Geological Survey",nwis_01104430,nwis_411955088280601,NA
+site_name,"Site identifier, consisting of prefix ""nwis_"" and the USGS National Water Information System (NWIS) site ID.","National Water Information System, U.S. Geological Survey (USGS_NWIS)",nwis_01104430,nwis_411955088280601,NA
 resolution,The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.,This data release,5,60,minutes
 date,"Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.",streamMetabolizer R package,2007-10-01,2016-12-30,NA
 GPP,"Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the MCMC distribution.",streamMetabolizer R package,-34.54,107.3,gO2 m^-2 d^-1
@@ -27,4 +27,4 @@ day.length,Time elapsed between first and last estimates of light > 0 for the da
 discharge,Mean discharge for the date (4am to 3:59pm).,This data release,0.0002832,37758,m^3 s^-1
 shortwave,"Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).",This data release,15.28,443,W m^-2
 velocity,Mean water velocity for the date (4am to 3:59pm).,This data release,0.0003694,7.428,m s^-1
-DO.tdist95,Mean 95% turnover distance for dissolved oxygen for the date (4am to 3:59pm),streamMetabolizer R package,9.315,682474639,m
+DO.tdist95,Mean 95% turnover distance for dissolved oxygen for the date (4am to 3:59pm),This data release,9.315,682474639,m

@@ -18,7 +18,7 @@
         <pubdate>2018</pubdate>
         <title>Daily metabolism estimates and predictors</title>
         <geoform>tab-separated values, compressed from text to .zip format</geoform>
-        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+        <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
@@ -182,7 +182,7 @@
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
-The computing platform for generating data and metadata was x86_64-w64-mingw32.
+The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
 R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
   </idinfo>
   <dataqual>
@@ -251,6 +251,30 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <srccitea>Appling et al. 2017</srccitea>
         <srccontr>This software source provided the metabolism model implementation used to generate metabolism estimates for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access current versions of the software from the U.S. Geological Survey archive.</srccontr>
       </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey</origin>
+            <pubdate>2016</pubdate>
+            <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
+            <geoform>WaterML1.1</geoform>
+            <onlink>http://waterdata.usgs.gov/nwis/iv</onlink>
+            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2007</begdate>
+              <enddate>2017</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>access date</srccurr>
+        </srctime>
+        <srccitea>USGS_NWIS</srccitea>
+        <srccontr>This source, accessed January 2017, defines the site numbers used in this metabolism data release.</srccontr>
+      </srcinfo>
       <procstep>
         <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018) version 0.10.1 using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan", and using the site-specific configuration parameters and data sources specified in "Model configurations for estimating metabolism". Daily estimates were extracted from the models using the get_fit() function from streamMetabolizer and selecting the "daily" element from the resulting list. The variables site_name and resolution, which are constant within each model run, were appended to each table before concatenating the tables for all model runs.
 Several additional daily values were compiled from "Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism". These values were DO.amp, light, discharge, and velocity; see "Entity and Attribute Information" in this file for details.
@@ -294,7 +318,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       <attr>
         <attrlabl>site_name</attrlabl>
         <attrdef>Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.</attrdef>
-        <attrdefs>National Water Information System, U.S. Geological Survey</attrdefs>
+        <attrdefs>National Water Information System, U.S. Geological Survey (USGS_NWIS)</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>nwis_01104430</rdommin>
@@ -630,7 +654,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       <attr>
         <attrlabl>DO.tdist95</attrlabl>
         <attrdef>Mean 95% turnover distance for dissolved oxygen for the date (4am to 3:59pm)</attrdef>
-        <attrdefs>streamMetabolizer R package</attrdefs>
+        <attrdefs>This data release</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>9.315</rdommin>
@@ -670,7 +694,7 @@ The remaining daily values were computed from the sub-daily input data. These in
           <onlinopt>
             <computer>
               <networka>
-                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+                <networkr>https://doi.org/10.5066/F70864KX</networkr>
               </networka>
             </computer>
           </onlinopt>

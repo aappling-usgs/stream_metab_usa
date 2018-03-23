@@ -18,7 +18,7 @@
         <pubdate>2018</pubdate>
         <title>Key diagnostics and overall assessments of metabolism model performance</title>
         <geoform>tab-separated values, compressed from text to .zip format</geoform>
-        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+        <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
@@ -182,7 +182,7 @@
     </ptcontac>
     <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
-The computing platform for generating data and metadata was x86_64-w64-mingw32.
+The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
 R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
   </idinfo>
   <dataqual>
@@ -478,7 +478,7 @@ This overall assessment is based only on readily computable information and is i
           <onlinopt>
             <computer>
               <networka>
-                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+                <networkr>https://doi.org/10.5066/F70864KX</networkr>
               </networka>
             </computer>
           </onlinopt>

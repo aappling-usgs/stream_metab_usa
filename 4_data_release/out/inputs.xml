@@ -18,7 +18,7 @@
         <pubdate>2018</pubdate>
         <title>Input data used for estimating metabolism</title>
         <geoform>tab-separated values, compressed from text to .zip format</geoform>
-        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+        <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
@@ -287,7 +287,7 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>nwis_SITENUM_input.zip for 365 values of SITENUM</enttypl>
+        <enttypl>nwis_SITENUM_input.zip for 356 values of SITENUM</enttypl>
         <enttypd>Model input data for estimating metabolism.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
@@ -406,7 +406,7 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
           <onlinopt>
             <computer>
               <networka>
-                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+                <networkr>https://doi.org/10.5066/F70864KX</networkr>
               </networka>
             </computer>
           </onlinopt>
