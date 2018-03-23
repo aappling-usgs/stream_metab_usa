@@ -538,8 +538,8 @@ attributes_daily_preds <- function(
     'attr-defs'=sapply(`attr-label`, function(attr_label) {
       switch(
         attr_label,
-        site_name = 'National Water Information System, U.S. Geological Survey',
-        resolution=,DO.obs=,DO.sat=,DO.amp=,DO.psat=,depth=,temp.water=,day.length=,shortwave=,discharge=,velocity='This data release',
+        site_name = 'National Water Information System, U.S. Geological Survey (USGS_NWIS)',
+        resolution=,DO.obs=,DO.sat=,DO.amp=,DO.psat=,depth=,temp.water=,day.length=,shortwave=,discharge=,velocity=,DO.tdist95='This data release',
         'streamMetabolizer R package')
     })
   )
