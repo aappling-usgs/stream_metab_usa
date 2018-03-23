@@ -18,7 +18,7 @@
         <pubdate>2018</pubdate>
         <title>Model configurations for estimating metabolism</title>
         <geoform>tab-separated values, compressed from text to .zip format</geoform>
-        <onlink>http://dx.doi.org/10.5066/REPLACE.w.REAL</onlink>
+        <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
@@ -512,7 +512,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
           <onlinopt>
             <computer>
               <networka>
-                <networkr>http://dx.doi.org/10.5066/REPLACE.w.REAL</networkr>
+                <networkr>https://doi.org/10.5066/F70864KX</networkr>
               </networka>
             </computer>
           </onlinopt>

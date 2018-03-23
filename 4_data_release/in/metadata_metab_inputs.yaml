@@ -28,7 +28,7 @@ process-description: >-
   that had not-quite-matching timestamps. We limited linear interpolation to mismatches or data gaps of no more than 3 hours;
   entire data rows were excluded for any time points during which one or more variables had a data gap greater than 3 hours.
 process-date: 20170406
-data-name: nwis_SITENUM_input.zip for 365 values of SITENUM
+data-name: nwis_SITENUM_input.zip for 356 values of SITENUM
 data-description: Model input data for estimating metabolism.
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).

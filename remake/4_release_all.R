@@ -1,0 +1,5 @@
+remake_smu('4_release_parent','4_release_parent.yml')
+remake_smu('4_release_spatial','4_release_spatial.yml')
+remake_smu('4_release_site_data','4_release_site_data.yml')
+remake_smu('4_release_timeseries','4_release_timeseries.yml')
+remake_smu('4_release_models','4_release_models.yml')

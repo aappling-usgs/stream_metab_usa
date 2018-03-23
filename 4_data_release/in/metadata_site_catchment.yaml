@@ -20,7 +20,7 @@ data-description: >-
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
   
-  The computing platform for generating data and metadata was x86_64-apple-darwin15.6.0. 
+  Mac (x86_64-apple-darwin15.6.0) and Windows (x86_64-w64-mingw32) computers were used to generate the data and metadata.
   
   R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle version 0.0.4;
   maps version 3.2.0; dataRetrieval version 2.7.4; rgeos version 0.3-26; dplyr version 0.7.4; 
