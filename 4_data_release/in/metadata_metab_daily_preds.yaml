@@ -26,7 +26,7 @@ data-description: Daily estimates of metabolism
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
-  The computing platform for generating data and metadata was x86_64-w64-mingw32.
+  The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
   
   R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5;
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
@@ -68,3 +68,18 @@ source-cites:
       for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code
       exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access
       current versions of the software from the U.S. Geological Survey archive.
+  - 
+    # citation from https://help.waterdata.usgs.gov/faq/miscellaneous/how-to-cite-usgs-water-data-for-the-nation-waterdata.usgs.gov-in-a-publication
+    # U.S. Geological Survey, 2016, National Water Information System data available on the World Wide Web (USGS Water Data for the Nation), accessed [June 10, 2012], at URL [http://waterdata.usgs.gov/nwis/].
+    authors: ['U.S. Geological Survey']
+    title: National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
+    pubdate: 2016
+    file-format: WaterML1.1
+    link: ['http://waterdata.usgs.gov/nwis/iv', 'http://dx.doi.org/10.5066/F7P55KJN']
+    rngdates:
+      begdate: 2007
+      enddate: 2017
+    srccurr: access date
+    srccitea: USGS_NWIS
+    srccontr: >-
+      This source, accessed January 2017, defines the site numbers used in this metabolism data release.

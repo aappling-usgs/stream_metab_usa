@@ -18,7 +18,7 @@ data-description: Model results from estimating metabolism.
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
-  The computing platform for generating data and metadata was x86_64-w64-mingw32.
+  The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
   
   R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5;
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
