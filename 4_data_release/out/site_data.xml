@@ -22,7 +22,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, nwis_id, nhdplus_id, long_name, lat, lon, coord_datum, alt, alt_datum, site_type, dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m, struct.canal_flag, struct.dam_flag, struct.npdes_flag, .</abstract>
+      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, nwis_id, nhdplus_id, long_name, lat, lon, coord_datum, alt, alt_datum, site_type, dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m, struct.canal_flag, struct.dam_flag, struct.npdes_flag, .</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -39,6 +39,7 @@
       <update>Update planned for year 2023</update>
     </status>
     <spdom>
+      <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
         <eastbc>-71.2733903</eastbc>
@@ -176,7 +177,7 @@
           <postal>85719</postal>
           <country>U.S.A.</country>
         </cntaddr>
-        <cntvoice>520-670-6671 x271</cntvoice>
+        <cntvoice>520-670-5575</cntvoice>
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
@@ -215,7 +216,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <srctime>
           <timeinfo>
             <sngdate>
-              <caldate>January 2017</caldate>
+              <caldate>20170101</caldate>
             </sngdate>
           </timeinfo>
           <srccurr>access date</srccurr>
@@ -237,7 +238,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <srctime>
           <timeinfo>
             <sngdate>
-              <caldate>August 2010</caldate>
+              <caldate>20100801</caldate>
             </sngdate>
           </timeinfo>
           <srccurr>access date</srccurr>
@@ -259,7 +260,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <srctime>
           <timeinfo>
             <sngdate>
-              <caldate>June 2006</caldate>
+              <caldate>20060601</caldate>
             </sngdate>
           </timeinfo>
           <srccurr>access date</srccurr>
@@ -282,7 +283,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <srctime>
           <timeinfo>
             <sngdate>
-              <caldate>November 16, 2015</caldate>
+              <caldate>20151116</caldate>
             </sngdate>
           </timeinfo>
           <srccurr>access date</srccurr>
@@ -340,8 +341,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
   <spref>
     <horizsys>
       <geograph>
-        <latres>unknown</latres>
-        <longres>unknown</longres>
+        <latres>0.002</latres>
+        <longres>0.002</longres>
         <geogunit>Decimal degrees</geogunit>
       </geograph>
       <geodetic>
@@ -592,16 +593,17 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
   <distinfo>
     <distrib>
       <cntinfo>
-        <cntperp>
-          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
-        </cntperp>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey</cntorg>
+          <cntper>GS ScienceBase</cntper>
+        </cntorgp>
         <cntaddr>
-          <addrtype>Mailing and Physical</addrtype>
+          <addrtype>mailing address</addrtype>
           <address>Denver Federal Center, Building 810, Mail Stop 302</address>
           <city>Denver</city>
           <state>CO</state>
           <postal>80255</postal>
-          <country>U.S.A.</country>
+          <country>United States</country>
         </cntaddr>
         <cntvoice>1-888-275-8747</cntvoice>
         <cntemail>sciencebase@usgs.gov</cntemail>
@@ -612,7 +614,6 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       <digform>
         <digtinfo>
           <formname>Tab-delimited file</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>

@@ -43,6 +43,7 @@
       <update>{{update}}</update>
     </status>
     <spdom>
+      <descgeog>{{descgeog}}</descgeog>
       <bounding>
         <westbc>{{wbbox}}</westbc>
         <eastbc>{{ebbox}}</eastbc>
@@ -217,16 +218,17 @@
   <distinfo>
     <distrib>
       <cntinfo>
-        <cntperp>
-          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
-        </cntperp>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey</cntorg>
+          <cntper>GS ScienceBase</cntper>
+        </cntorgp>
         <cntaddr>
-          <addrtype>Mailing and Physical</addrtype>
+          <addrtype>mailing address</addrtype>
           <address>Denver Federal Center, Building 810, Mail Stop 302</address>
           <city>Denver</city>
           <state>CO</state>
           <postal>80255</postal>
-          <country>U.S.A.</country>
+          <country>United States</country>
         </cntaddr>
         <cntvoice>1-888-275-8747</cntvoice>
         <cntemail>sciencebase@usgs.gov</cntemail>
@@ -237,7 +239,6 @@
       <digform>
         <digtinfo>
           <formname>{{file-format}}</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>

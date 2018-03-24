@@ -41,7 +41,8 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   #### 1.5 Spatial Domain ####
   m %>% 
     xml_add_child('spdom') %>% 
-    xml_add_child('bounding') %>% 
+    xml_add_child('descgeog', '{{descgeog}}') %>% 
+    xml_add_sibling('bounding') %>% 
     xml_add_child('westbc', "{{wbbox}}") %>% 
     xml_add_sibling('eastbc', "{{ebbox}}") %>% 
     xml_add_sibling('northbc', "{{nbbox}}") %>% 
@@ -179,17 +180,18 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   db <- xml_add_child(ds, 'distrib')
   ci <-  xml_add_child(db, 'cntinfo')
   ci %>% 
-    xml_add_child('cntperp') %>% 
-    xml_add_child('cntorg','U.S. Geological Survey - ScienceBase')
+    xml_add_child('cntorgp') %>% 
+    xml_add_child('cntorg','U.S. Geological Survey') %>%
+    xml_add_sibling('cntper','GS ScienceBase')
   
   ci %>% 
     xml_add_child('cntaddr') %>% 
-    xml_add_child('addrtype','Mailing and Physical') %>% 
+    xml_add_child('addrtype','mailing address') %>% 
     xml_add_sibling('address','Denver Federal Center, Building 810, Mail Stop 302') %>% 
     xml_add_sibling('city','Denver') %>% 
     xml_add_sibling('state','CO') %>% 
     xml_add_sibling('postal','80255') %>% 
-    xml_add_sibling('country','U.S.A.')
+    xml_add_sibling('country','United States')
   ci %>% xml_add_child('cntvoice','1-888-275-8747') %>% 
     xml_add_sibling('cntemail','sciencebase@usgs.gov')
   
@@ -200,8 +202,7 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   df <-  xml_add_child(so, 'digform')
   df %>% 
     xml_add_child('digtinfo') %>% 
-    xml_add_child('formname','{{file-format}}') %>% 
-    xml_add_sibling('formvern','none')
+    xml_add_child('formname','{{file-format}}')
   
   df %>% 
     xml_add_child('digtopt') %>% 

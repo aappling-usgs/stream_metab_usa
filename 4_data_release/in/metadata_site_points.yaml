@@ -28,8 +28,8 @@ build-environment: >-
   maps version 3.2.0; dataRetrieval version 2.7.4; rgeos version 0.3-26; dplyr version 0.7.4; 
   sbtools version 1.1.6; httr version 1.3.1; rgdal version 1.2-16; sp version 1.2-6; 
   whisker version 0.3-2; yaml version 2.1.17; xml2 version 1.2.0; magrittr version 1.5.
-file-format: Shapefiles
-metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
+file-format: Shapefile
+metadata-date: !expr format(Sys.time(),'%Y%m%d')
 usage-rules:  >- 
   The USGS shall not be held liable for improper or incorrect use of these data, based on the description of 
   appropriate/inappropriate uses described in this metadata document. It is strongly recommended that these 

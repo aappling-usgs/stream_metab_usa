@@ -31,8 +31,8 @@ build-environment: >-
   
   R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; sbtools version 1.1.6;
   dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
-file-format: tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.
-metadata-date: "`r format(Sys.time(),'%Y%m%d')"
+file-format: Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.
+metadata-date: !expr format(Sys.time(),'%Y%m%d')
 
 # ----spatial data----
 indirect-spatial: U.S.A.
@@ -93,7 +93,7 @@ source-cites:
     title: >-
       Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology & Oceanography: Fluids & Environments 2 (2012): 41-53.
     pubdate: 2012
-    file-format: manuscript
+    file-format: Manuscript
     link: ['http://onlinelibrary.wiley.com/doi/10.1215/21573689-1597669/abstract', 'http://dx.doi.org/10.1215/21573689-1597669']
     sngdate:
       caldate: 2012
@@ -107,7 +107,7 @@ source-cites:
     title: >-
       Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6).
     pubdate: 1992
-    file-format: manuscript
+    file-format: Manuscript
     link: ['http://onlinelibrary.wiley.com/doi/10.4319/lo.1992.37.6.1307/abstract']
     sngdate:
       caldate: 1992
@@ -121,7 +121,7 @@ source-cites:
     title: >-
       streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
     pubdate: 2017
-    file-format: software package for the R statistical programming language
+    file-format: Software package for the R statistical programming language
     link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
     sngdate:
       caldate: 2017

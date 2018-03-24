@@ -61,7 +61,7 @@ build-environment: >-
   R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5;
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: Tab-delimited file
-metadata-date: "`r format(Sys.time(),'%Y%m%d')`"
+metadata-date: !expr format(Sys.time(),'%Y%m%d')
 
 # ----spatial data----
 indirect-spatial: U.S.A.
@@ -76,7 +76,7 @@ source-cites:
     pubdate: 2016
     link: ['https://waterdata.usgs.gov/nwis', 'http://dx.doi.org/10.5066/F7P55KJN']
     sngdate:
-      caldate: January 2017
+      caldate: 20170101
     srccurr: access date
     srccitea: USGS_NWIS
     srccontr: This source provided site NWIS identifiers, long names, coordinates, and altitudes.
@@ -87,7 +87,7 @@ source-cites:
     pubdate: 2010
     link: http://crunch.tec.army.mil/nidpublic/webpages/nid.cfm
     sngdate:
-      caldate: August 2010
+      caldate: 20100801
     srccurr: access date
     srccitea: USACE_NID
     srccontr: This source provided locations of major dams.
@@ -98,7 +98,7 @@ source-cites:
     pubdate: 2006
     link: http://cfpub.epa.gov/npdes
     sngdate:
-      caldate: June 2006
+      caldate: 20060601
     srccurr: access date
     srccitea: USEPA_NPDES
     srccontr: This source provided locations of major pollutant discharge points.
@@ -109,7 +109,7 @@ source-cites:
     pubdate: 2012
     link: http://www.horizon-systems.com/nhdplus
     sngdate:
-      caldate: November 16, 2015
+      caldate: 20151116
     srccurr: access date
     srccitea: NHDPlusV2
     srccontr: This source provided locations of canals and ditches.

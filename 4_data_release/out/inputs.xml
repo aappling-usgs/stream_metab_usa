@@ -22,7 +22,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): solar.time, DO.obs, DO.sat, depth, temp.water, light, discharge, .</abstract>
+      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): solar.time, DO.obs, DO.sat, depth, temp.water, light, discharge, .</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -39,6 +39,7 @@
       <update>Update planned for year 2023</update>
     </status>
     <spdom>
+      <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
         <eastbc>-71.2733903</eastbc>
@@ -176,7 +177,7 @@
           <postal>85719</postal>
           <country>U.S.A.</country>
         </cntaddr>
-        <cntvoice>520-670-6671 x271</cntvoice>
+        <cntvoice>520-670-5575</cntvoice>
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
@@ -272,8 +273,8 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
   <spref>
     <horizsys>
       <geograph>
-        <latres>Not applicable</latres>
-        <longres>Not applicable</longres>
+        <latres>0.002</latres>
+        <longres>0.002</longres>
         <geogunit>Decimal degrees</geogunit>
       </geograph>
       <geodetic>
@@ -380,16 +381,17 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
   <distinfo>
     <distrib>
       <cntinfo>
-        <cntperp>
-          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
-        </cntperp>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey</cntorg>
+          <cntper>GS ScienceBase</cntper>
+        </cntorgp>
         <cntaddr>
-          <addrtype>Mailing and Physical</addrtype>
+          <addrtype>mailing address</addrtype>
           <address>Denver Federal Center, Building 810, Mail Stop 302</address>
           <city>Denver</city>
           <state>CO</state>
           <postal>80255</postal>
-          <country>U.S.A.</country>
+          <country>United States</country>
         </cntaddr>
         <cntvoice>1-888-275-8747</cntvoice>
         <cntemail>sciencebase@usgs.gov</cntemail>
@@ -400,7 +402,6 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
       <digform>
         <digtinfo>
           <formname>tab-separated values, compressed from text to .zip format</formname>
-          <formvern>none</formvern>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -416,7 +417,7 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>`r format(Sys.time(),'%Y%m%d')</metd>
+    <metd>20180323</metd>
     <metc>
       <cntinfo>
         <cntperp>

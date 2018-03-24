@@ -17,12 +17,12 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism</title>
-        <geoform>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
+        <geoform>Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of  gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_swdaily_calcDMean.tsv: DateTime, swdaily, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
+      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_swdaily_calcDMean.tsv: DateTime, swdaily, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -39,6 +39,7 @@
       <update>Update planned for year 2023</update>
     </status>
     <spdom>
+      <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
         <eastbc>-71.2733903</eastbc>
@@ -176,7 +177,7 @@
           <postal>85719</postal>
           <country>U.S.A.</country>
         </cntaddr>
-        <cntvoice>520-670-6671 x271</cntvoice>
+        <cntvoice>520-670-5575</cntvoice>
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
@@ -289,7 +290,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; s
             <origin>Denis Newbold</origin>
             <pubdate>2012</pubdate>
             <title>Scaling the gas transfer velocity and hydraulic geometry in streams and small rivers. Limnology &amp; Oceanography: Fluids &amp; Environments 2 (2012): 41-53.</title>
-            <geoform>manuscript</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>http://onlinelibrary.wiley.com/doi/10.1215/21573689-1597669/abstract</onlink>
             <onlink>http://dx.doi.org/10.1215/21573689-1597669</onlink>
           </citeinfo>
@@ -313,7 +314,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; s
             <origin>Louis I. Gordon</origin>
             <pubdate>1992</pubdate>
             <title>Oxygen solubility in seawater: Better fitting equations. Limnology and Oceanography, 37(6).</title>
-            <geoform>manuscript</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>http://onlinelibrary.wiley.com/doi/10.4319/lo.1992.37.6.1307/abstract</onlink>
           </citeinfo>
         </srccite>
@@ -338,7 +339,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; s
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>software package for the R statistical programming language</geoform>
+            <geoform>Software package for the R statistical programming language</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -377,8 +378,8 @@ Additional variables were calculated from these raw sources using data-preparati
   <spref>
     <horizsys>
       <geograph>
-        <latres>Not applicable</latres>
-        <longres>Not applicable</longres>
+        <latres>0.002</latres>
+        <longres>0.002</longres>
         <geogunit>Decimal degrees</geogunit>
       </geograph>
       <geodetic>
@@ -695,7 +696,7 @@ Additional variables were calculated from these raw sources using data-preparati
           <rdom>
             <rdommin>2007-09-30</rdommin>
             <rdommax>2016-12-31</rdommax>
-            <attrunit/>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
@@ -726,7 +727,7 @@ Additional variables were calculated from these raw sources using data-preparati
           <rdom>
             <rdommin>2007-09-30 22:17:23 +0000</rdommin>
             <rdommax>2016-12-31 19:21:15 +0000</rdommax>
-            <attrunit/>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
@@ -757,7 +758,7 @@ Additional variables were calculated from these raw sources using data-preparati
           <rdom>
             <rdommin>2007-09-30 22:28:12 +0000</rdommin>
             <rdommax>2016-12-31 19:17:38 +0000</rdommax>
-            <attrunit/>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
@@ -1169,16 +1170,17 @@ Additional variables were calculated from these raw sources using data-preparati
   <distinfo>
     <distrib>
       <cntinfo>
-        <cntperp>
-          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
-        </cntperp>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey</cntorg>
+          <cntper>GS ScienceBase</cntper>
+        </cntorgp>
         <cntaddr>
-          <addrtype>Mailing and Physical</addrtype>
+          <addrtype>mailing address</addrtype>
           <address>Denver Federal Center, Building 810, Mail Stop 302</address>
           <city>Denver</city>
           <state>CO</state>
           <postal>80255</postal>
-          <country>U.S.A.</country>
+          <country>United States</country>
         </cntaddr>
         <cntvoice>1-888-275-8747</cntvoice>
         <cntemail>sciencebase@usgs.gov</cntemail>
@@ -1188,8 +1190,7 @@ Additional variables were calculated from these raw sources using data-preparati
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</formname>
-          <formvern>none</formvern>
+          <formname>Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -1205,7 +1206,7 @@ Additional variables were calculated from these raw sources using data-preparati
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>`r format(Sys.time(),'%Y%m%d')</metd>
+    <metd>20180323</metd>
     <metc>
       <cntinfo>
         <cntperp>

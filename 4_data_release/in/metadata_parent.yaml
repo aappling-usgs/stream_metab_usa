@@ -10,7 +10,7 @@ usage-rules: >-
   Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.
 doi: https://doi.org/10.5066/F70864KX
 abstract: >-
-  This data release provides modeled estimates of 
+  This data release provides modeled estimates of
   gross primary productivity, ecosystem respiration, and gas exchange coefficients
   for 356 streams and rivers across the United States.
   The release also includes the model input data and alternative input data,
@@ -33,6 +33,10 @@ purpose: >-
   for 356 streams and rivers across the United States.
 start-date: 20071001
 end-date: !expr format(as.Date(yaml::yaml.load_file('../1_timeseries/in/ts_config.yml')$times[[2]], '%Y-%m-%d'), '%Y%m%d')
+descgeog: "Stream and river monitoring sites in the U.S. Geological Survey's observation network"
+# precision taken from https://water.usgs.gov/GIS/metadata/usgswrd/XML/nwis_surface_water.xml:
+latitude-res: 0.002
+longitude-res: 0.002 
 
 # ----associated publication----
 cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
@@ -45,7 +49,7 @@ journal: Scientific Data
 
 # ----contacts----
 contact-person: Alison P. Appling
-contact-phone: 520-670-6671 x271
+contact-phone: 520-670-5575
 contact-email: aappling@usgs.gov
 contact-position: Ecologist
 contact-address: 520 N Park Ave, Ste 221
