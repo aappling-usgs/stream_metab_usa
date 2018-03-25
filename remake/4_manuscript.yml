@@ -10,6 +10,8 @@ packages:
   - dplyr
   - dataRetrieval
   - mda.streams
+  - rgdal
+  - viridisLite
   
 sources:
   - ../4_manuscript/code/spatial_plotting.R
