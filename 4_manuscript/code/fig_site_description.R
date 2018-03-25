@@ -70,7 +70,7 @@ panel_spatial_points <- function(points_prepped) {
     cex=points_w_aes@data$size,
     pch=19
   )
-  par(new=TRUE, fig=c(0.7, 1, 0.3, 0.7), oma=c(0,0,0,0))
+  par(new=TRUE, fig=c(0.7, 1, 0.3, 0.84), oma=c(0,0,0,0))
   plot.new()
   legend(title='Number of metabolism\nestimates in years', x=0.05, y=0.95,
          legend=points_legend$label, 
@@ -94,7 +94,7 @@ fig_site_description <- function(
   points_prepped <- prep_spatial_points(points, dailies, diagnostics)
   
   # start the plot file
-  pdf(file = outfile, width = 7, height = 4)
+  pdf(file = outfile, width = 7, height = 3)
   par(mar=c(0,0,0,0), omi=c(0.2,0,0,0))
   plot.new()
   
