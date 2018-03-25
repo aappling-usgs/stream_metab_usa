@@ -26,6 +26,7 @@ starter_files/*.RData
 4_data_release/log/models
 4_data_release/in/attr_metab_fits.rds
 4_data_release/out/*.docx
+4_manuscript/fig/*
 NEWS.html
 README.html
 .remake

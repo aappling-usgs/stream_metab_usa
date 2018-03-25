@@ -10,9 +10,12 @@ packages:
   - dplyr
   - dataRetrieval
   - mda.streams
+  - rgdal
+  - viridisLite
   
 sources:
   - ../4_manuscript/code/spatial_plotting.R
+  - ../4_manuscript/code/fig_site_description.R
   - ../4_manuscript/code/tbl_catchment_sources.R
  
 targets:

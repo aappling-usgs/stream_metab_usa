@@ -8,14 +8,14 @@
 proj.string <- "+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"
 
 #### main function ####
-plot_national_site_map <- function(sites, state_col='#b8bfac', sites_col='#2c5258', sites_cex=0.25){
+plot_national_site_map <- function(sites, state_col='#b8bfac', state_border='white', ...){
   # prepare states & points sp objects
   states <- state_map()
   sites.shifted <- site_map(sites)
   
   # create the plot
-  plot(states, col=state_col, border='white', lwd=0.5, bg=NA)
-  plot(sites.shifted, add=TRUE, col=sites_col, pch=20, cex=sites_cex)
+  plot(states, col=state_col, border=state_border, lwd=0.5, bg=NA)
+  plot(sites.shifted, add=TRUE, ...)
 }
 
 #### helpers ####
