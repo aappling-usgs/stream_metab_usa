@@ -319,6 +319,7 @@ extract_model_diagnostics <- function(mm_path, out_file) {
       length(which(!is.na(fit$daily$ER_daily_50pct))),
     
     # additional statistics for the manuscript:
+    n_dates = nrow(fit$daily),
     burnin_steps = get_specs(mm)$burnin_steps,
     saved_steps = get_specs(mm)$saved_steps,
     elapsed = get_fitting_time(mm)[['elapsed']])
@@ -531,7 +532,6 @@ combine_model_diagnostics <- function(out_file, task_plan) {
   # assess models based on these diagnostics
   all_diagnostics <- all_diagnostics %>%
     mutate(run_hrs = elapsed/(60*60)) %>%
-    select(-burnin_steps, -saved_steps, -elapsed) %>%
     mutate(
       model_confidence = ifelse(
         K600_daily_sigma_Rhat > 1.2, "L", ifelse(
@@ -544,6 +544,14 @@ combine_model_diagnostics <- function(out_file, task_plan) {
                       neg_GPP > 25, "M", ifelse(
                         pos_ER > 25, "M", "H"
                       ))))))))) #)
+  
+  # save the dataset with all columns for internal use. not captured in remake
+  rds_path <- file.path(dirname(dirname(out_file)), gsub('\\.zip$', '.rds', basename(out_file)))
+  saveRDS(all_diagnostics, file=rds_path)
+  
+  # remove some columns from the final dataset to be released
+  all_diagnostics <- all_diagnostics %>%
+    select(-n_dates, -burnin_steps, -saved_steps, -elapsed)
   
   # determine a site-level assessment (possibly combining several models)
   all_diagnostics <- all_diagnostics %>%
