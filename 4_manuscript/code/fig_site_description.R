@@ -4,83 +4,19 @@
 #   distribution of stream discharge or watershed size
 #   histograms of land use classes: urban vs ag vs everything else
 #   Temporal coverage - density plot of record lengths
+# but maybe we'll go a lot simpler
 
 prep_spatial_points <- function(points, dailies, diagnostics) {
   site_nos <- mda.streams::parse_site_name(union(points$site_nm, unique(dailies$site_name)), out='sitenum')
 
-  # # use dataRetrieval to request annual statistics
-  # site_no_df <- data_frame(site_no=site_nos, chunk=rep(1:ceiling(length(site_no)/10), each=10)[seq_along(site_no)])
-  # mean_annual_disch <- purrr::map_df(unique(site_no_df$chunk), function(ch) {
-  #   chunk_nos <- filter(site_no_df, chunk==ch) %>% pull(site_no)
-  #   chunk_msg <- sprintf('chunk %d: %s', ch, paste(chunk_nos, collapse=', '))
-  #   message(chunk_msg)
-  #   tryCatch({
-  #     suppressMessages(dataRetrieval::readNWISstat(
-  #       chunk_nos, parameterCd='00060', startDate='2007', statReportType='annual', statType='mean'))
-  #   }, error=function(e) {
-  #     e$message <- paste0(sprintf('In chunk %d: ', ch), e$message)
-  #     warning(e)
-  #     NULL
-  #   })
-  # })
-  # # combine annual stats into multi-year stats. results in only 329 measures;
-  # # other sites must lack sufficient data
-  # mean_disch <- mean_annual_disch %>%
-  #   group_by(site_no) %>%
-  #   summarize(madisch=mean(mean_va)*0.0283168) %>% # convert cfs to cms
-  #   mutate(site_name=mda.streams::make_site_name(site_no, 'nwis')) %>%
-  #   select(site_name, madisch) %>%
-  #   ungroup()
-
-  # use dataRetrieval to pull drainage areas (drain_area_va). many of these are
-  # also NA
+  # use dataRetrieval to pull drainage areas (drain_area_va). many are NA
   site_info <- dataRetrieval::readNWISsite(site_nos) %>%
     filter(agency_cd == 'USGS') %>%
     mutate(site_name=mda.streams::make_site_name(site_no, 'nwis')) %>%
     left_join(dataRetrieval::stateCd, by=c('state_cd'='STATE')) %>%
     select(site_name, drain_area_va, contrib_drain_area_va, state=STUSAB, huc=huc_cd)
 
-  # # use the daily predictions/predictors table as yet another way to assess size
-  # # as mean of daily discharges on the days for which metabolism was estimated
-  # mean_metab_disch <- dailies %>%
-  #   group_by(site_name) %>%
-  #   summarize(
-  #     mmdisch=mean(discharge)) %>%
-  #   ungroup()
-  # 
-  # # combine the 3 above data sources into 1 table with several size measures
-  # combo_dat <- mean_metab_disch %>%
-  #   full_join(mean_disch, by='site_name') %>%
-  #   full_join(site_info, by='site_name')
-  # 
-  # # count non-NA values
-  # # combo_dat %>%
-  # #   summarize(
-  # #     n_mmdisch=length(which(!is.na(mmdisch))),
-  # #     n_madisch=length(which(!is.na(madisch))),
-  # #     n_drain_area=length(which(!is.na(drain_area_va))),
-  # #     n_contrib_drain_area=length(which(!is.na(contrib_drain_area_va)))
-  # #   )
-  # # A tibble: 1 x 4
-  # # n_mmdisch n_madisch n_drain_area n_contrib_drain_area
-  # #     <int>     <int>        <int>                <int>
-  # #       356       329          337                   78
-  # 
-  # # confirm that mmdisch and madisch are pretty similar, not too-too different from drain_area_va
-  # # cor(log(combo_dat$mmdisch), log(combo_dat$madisch), use='complete.obs') # 0.984
-  # # cor(log(combo_dat$drain_area_va), log(combo_dat$madisch), use='complete.obs') # 0.857
-  # # cor(log(combo_dat$drain_area_va), log(combo_dat$contrib_drain_area_va), use='complete.obs') # 0.997
-  # 
-  # # because only mmdisch is available for every site, and madisch is similar and
-  # # higher quality, use madisch when available but gap fill with mmdisch
-  # plot_dat <- combo_dat %>%
-  #   mutate(
-  #     disch = ifelse(!is.na(madisch), madisch, mmdisch),
-  #     logdisch=log(disch)) %>%
-  #   select(site_nm=site_name, huc, logdisch)
-  
-  # add in counts of total number of metabolism estimates and average number per
-  # year. i might actually only use these in the final figure
+  # add in counts of total number of metabolism estimates and average per year
   metab_counts <- dailies %>%
     group_by(site_name) %>%
     summarize(
@@ -96,8 +32,6 @@ prep_spatial_points <- function(points, dailies, diagnostics) {
       peryear = days / span_years
     )
   plot_dat <- left_join(site_info, metab_counts, by='site_name')
-  # plot_dat <- plot_dat %>%
-  #   left_join(metab_counts, by=c('site_nm'='site_name'))
   
   # add the size info into the points st object
   points_prepped <- points
@@ -107,6 +41,72 @@ prep_spatial_points <- function(points, dailies, diagnostics) {
   
   return(points_prepped)
 }
+
+
+panel_spatial_points <- function(points_prepped) {
+  # prepare aesthetic info (color, legend)
+  points_w_aes <- points_prepped
+  year_breaks <- c(min(points_w_aes@data$years, na.rm=TRUE), 1,3,5,7, max(points_w_aes@data$years, na.rm=TRUE))
+  year_colors <- viridisLite::viridis(length(year_breaks)-1, alpha=1, begin=0, end=1, direction=-1)
+  points_w_aes@data <- points_w_aes@data %>%
+    mutate(
+      size = 0.6,
+      year_bin = cut(years, breaks=year_breaks),
+      year_bin_num = as.numeric(year_bin),
+      color = year_colors[year_bin_num]
+    )
+  points_legend <- list(
+    color = year_colors,
+    label = data_frame(lo=year_breaks[-length(year_breaks)], hi=year_breaks[-1]) %>%
+      mutate(rng=sprintf('%s to %s', signif(lo, digits=2), signif(hi, digits=3))) %>%
+      pull(rng))
+  # project and plot - uses functions & globals from spatial_plotting.R
+  par(new=TRUE, fig=c(0, 0.7, 0, 1))
+  plot_national_site_map(
+    sites=points_w_aes,
+    state_col='grey79', state_border='grey88',
+    col=points_w_aes@data$color,
+    bg='transparent',
+    cex=points_w_aes@data$size,
+    pch=19
+  )
+  par(new=TRUE, fig=c(0.7, 1, 0.3, 0.7), oma=c(0,0,0,0))
+  plot.new()
+  legend(title='Number of metabolism\nestimates in years', x=0.05, y=0.95,
+         legend=points_legend$label, 
+         pch=19, col=points_legend$color, bg=points_legend$color,#'transparent',
+         bty='n', y.intersp=1, pt.cex=0.6, cex=0.8)
+}
+
+fig_site_description <- function(
+  outfile='../4_manuscript/fig/sites.pdf',
+  daily_zip='../4_data_release/cache/models/post/daily_predictions.zip',
+  points_shp='../1_spatial/cache/points_shapefile/points_shapefile.shp',
+  site_tsv='../4_data_release/cache/site_data.tsv') {
+  
+  # load the files
+  unzipped <- unzip(zipfile=daily_zip, exdir=file.path(tempdir(), 'site_description'))
+  dailies <- readr::read_tsv(unzipped)
+  points <- rgdal::readOGR(points_shp, layer='points_shapefile')
+  site_info <- readr::read_tsv(site_tsv)
+  
+  # prepare the plotting data
+  points_prepped <- prep_spatial_points(points, dailies, diagnostics)
+  
+  # start the plot file
+  pdf(file = outfile, width = 7, height = 4)
+  par(mar=c(0,0,0,0), omi=c(0.2,0,0,0))
+  plot.new()
+  
+  # add subfigures
+  panel_spatial_points(points_prepped)
+  
+  # close the plot file
+  dev.off()
+}
+
+
+#### not used ####
 
 prep_temporal_coverage <- function(dailies) {
   
@@ -174,59 +174,6 @@ prep_temporal_coverage <- function(dailies) {
   return(ranked_runs)
 }
 
-panel_spatial_points <- function(points_prepped) {
-  # prepare aesthetic info (color, legend)
-  points_w_aes <- points_prepped
-  year_breaks <- c(min(points_w_aes@data$years, na.rm=TRUE), 1,3,5,7, max(points_w_aes@data$years, na.rm=TRUE))
-  # year_colors <- colorRampPalette(
-  #   c(rgb(t(col2rgb('#fee391')), alpha=1.0*255, maxColorValue=255), 
-  #     # rgb(t(col2rgb('#41ab5d')), alpha=0.9*255, maxColorValue=255), 
-  #     rgb(t(col2rgb('#2166ac')), alpha=0.8*255, maxColorValue=255)),
-  #   alpha = TRUE)(length(year_breaks)-1)
-  year_colors <- viridisLite::viridis(length(year_breaks)-1, alpha=1, begin=0, end=1, direction=-1)
-  # peryear_breaks <- c(17,50,100,150,200,250,300,366)
-  # peryear_colors <- rgb(t(col2rgb(c(RColorBrewer::brewer.pal(length(peryear_breaks)-2, 'RdYlBu')))), max=255, alpha=0.8*255)
-  points_w_aes@data <- points_w_aes@data %>%
-    mutate(
-      # peryear = ifelse(is.na(peryear), 0, peryear),
-      # peryear_bin = cut(peryear, breaks=peryear_breaks),
-      # peryear_bin_num = as.numeric(peryear_bin),
-      # color = peryear_colors[peryear_bin_num],
-      # size = 0.8*sqrt(years),
-      # color = rgb(t(col2rgb("#4575B419")), max=255, alpha=0.8*255),
-      size = 0.6,
-      year_bin = cut(years, breaks=year_breaks),
-      year_bin_num = as.numeric(year_bin),
-      color = year_colors[year_bin_num]
-    )
-  points_legend <- list(
-    # color = peryear_colors,
-    # label = data_frame(lo=peryear_breaks[-length(peryear_breaks)], hi=peryear_breaks[-1]) %>%
-    #   mutate(rng=sprintf('%s to %s', signif(lo, digits=2), signif(hi, digits=2))) %>%
-    #   mutate(lab=ifelse(substring(rng, 1, 3) == '-1 ', 'NA', rng)) %>%
-    #   pull(lab))
-    color = year_colors,
-    label = data_frame(lo=year_breaks[-length(year_breaks)], hi=year_breaks[-1]) %>%
-      mutate(rng=sprintf('%s to %s', signif(lo, digits=2), signif(hi, digits=3))) %>%
-      pull(rng))
-  # project and plot - uses functions & globals from spatial_plotting.R
-  par(new=TRUE, fig=c(0, 0.7, 0, 1))
-  plot_national_site_map(
-    sites=points_w_aes,
-    state_col='grey79', state_border='grey88',
-    col=points_w_aes@data$color,
-    bg='transparent',
-    cex=points_w_aes@data$size,
-    pch=19
-  )
-  par(new=TRUE, fig=c(0.7, 1, 0.3, 0.7), oma=c(0,0,0,0))
-  plot.new()
-  legend(title='Number of metabolism\nestimates in years', x=0.05, y=0.95,
-         legend=points_legend$label, 
-         pch=19, col=points_legend$color, bg=points_legend$color,#'transparent',
-         bty='n', y.intersp=1, pt.cex=0.6, cex=0.8)
-}
-
 panel_temporal_coverage <- function(dailies_prepped) { 
   # prepare data and dummy data for generating plot in base R
   lims_df <- data.frame(
@@ -261,34 +208,6 @@ panel_temporal_coverage <- function(dailies_prepped) {
   #   xlab('Date') +
   #   theme_classic() +
   #   theme(legend.position=c(0.2,0.75))
-}
-
-fig_site_description <- function(
-  outfile='../4_manuscript/fig/sites.pdf',
-  daily_zip='../4_data_release/cache/models/post/daily_predictions.zip',
-  points_shp='../1_spatial/cache/points_shapefile/points_shapefile.shp',
-  site_tsv='../4_data_release/cache/site_data.tsv') {
-  
-  # load the files
-  unzipped <- unzip(zipfile=daily_zip, exdir=file.path(tempdir(), 'site_description'))
-  dailies <- readr::read_tsv(unzipped)
-  points <- rgdal::readOGR(points_shp, layer='points_shapefile')
-  site_info <- readr::read_tsv(site_tsv)
-  
-  # prepare the plotting data
-  points_prepped <- prep_spatial_points(points, dailies, diagnostics)
-  
-  # start the plot file
-  pdf(file = outfile, width = 7, height = 4)
-  par(mar=c(0,0,0,0), omi=c(0.2,0,0,0))
-  plot.new()
-  
-  # add subfigures
-  panel_spatial_points(points_prepped)
-  
-  # close the plot file
-  dev.off()
-  
 }
 
 # points_w_aes@data %>% ggplot(aes(y=years*365.25, x=span_years)) +
