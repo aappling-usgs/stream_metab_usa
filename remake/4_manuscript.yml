@@ -28,7 +28,7 @@ targets:
   
   #### tables ####
   
-  ../4_manuscript/tbl/catchment_sources.csv:
+  ../4_manuscript/tbl/catchment_sources.tex:
     command: tbl_catchment_sources(outfile=target_name, catchments=catchments_as_written, metafile='../4_data_release/out/site_catchment_shapefile.xml')
   
   #### figures ####
