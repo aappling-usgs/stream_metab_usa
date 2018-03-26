@@ -319,7 +319,7 @@ extract_model_diagnostics <- function(mm_path, out_file) {
       length(which(!is.na(fit$daily$ER_daily_50pct))),
     
     # additional statistics for the manuscript:
-    n_dates = nrow(fit$daily),
+    n_dates = nrow(fit$daily %>% filter(valid_day)),
     burnin_steps = get_specs(mm)$burnin_steps,
     saved_steps = get_specs(mm)$saved_steps,
     elapsed = get_fitting_time(mm)[['elapsed']])
