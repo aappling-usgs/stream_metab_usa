@@ -6,7 +6,7 @@ output:
 editor_options:
   chunk_output_type: inline
 ---
-
+ 
 ```{r, message=FALSE}
 library(dplyr)
 library(ggplot2)
@@ -80,4 +80,17 @@ diagnostics %>%
     hrs_per_year_q95=quantile(hrs_per_year_bymodel, probs=0.95),
     hrs_per_year=365.25*run_hrs/n_dates
   )
+```
+
+Determine which data sources were used for each timeseries as inputs to the models
+```{r}
+config <- read_tsv('../../4_data_release/cache/models/config.tsv')
+src_cols <- grep('.src', names(config), fixed=TRUE, value=TRUE)
+src_counts <- bind_rows(lapply(setNames(nm=src_cols), function(metab_var_src) {
+  counts <- table(config[[metab_var_src]])
+  metab__var <- gsub('.src', '', metab_var_src, fixed=TRUE)
+  data_frame(variable=metab__var, var=mda.streams::get_var_src_codes(metab_var==metab__var)$var[1],
+             src=names(counts), var_src=paste(var, src, sep='_'), count=unname(counts))
+}))
+src_counts
 ```

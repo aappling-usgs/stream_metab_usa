@@ -15,6 +15,7 @@ packages:
   - rmarkdown
   
 sources:
+  - ../4_manuscript/code/rmarkdown_render.R
   - ../4_manuscript/code/spatial_plotting.R
   - ../4_manuscript/code/fig_site_description.R
   - ../4_manuscript/code/tbl_catchment_sources.R
@@ -41,5 +42,4 @@ targets:
       site_tsv='../4_data_release/cache/site_data.tsv')
       
   ../4_manuscript/stats/stats.html:
-    command: render('../4_manuscript/code/stats.Rmd', output_file=I('../../4_manuscript/stats/stats.html'))
-
+    command: rmarkdown_render('../4_manuscript/code/stats.Rmd', output_file=I('../../4_manuscript/stats/stats.html'))
