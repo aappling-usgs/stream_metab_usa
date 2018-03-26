@@ -1,0 +1,1 @@
+rmarkdown_render <- rmarkdown::render
