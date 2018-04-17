@@ -19,6 +19,7 @@ sources:
   - ../4_manuscript/code/spatial_plotting.R
   - ../4_manuscript/code/fig_site_description.R
   - ../4_manuscript/code/tbl_catchment_sources.R
+  - ../4_manuscript/code/tbl_timeseries_sources.R
  
 targets:
   4_manuscript:
@@ -31,6 +32,9 @@ targets:
   
   ../4_manuscript/tbl/catchment_sources.tex:
     command: tbl_catchment_sources(outfile=target_name, catchments=catchments_as_written, metafile='../4_data_release/out/site_catchment_shapefile.xml')
+  
+  ../4_manuscript/tbl/timeseries_sources.tex:
+    command: tbl_timeseries_sources(outfile=target_name, metafile='../4_data_release/out/timeseries.xml')
   
   #### figures ####
   

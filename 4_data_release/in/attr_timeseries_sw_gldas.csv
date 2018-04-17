@@ -1,3 +1,3 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
 DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,2006-10-01 00:00:00 +0000,2016-12-31 21:00:00 +0000,NA
-sw,"Downward shortwave radiation flux, surface (SWdown_f_tavg) from GLDAS database",GLDAS_NOAH025_3H_V2.0 (see Source Information),0,1365,W m^-2
+sw,"Downward shortwave radiation flux, surface. Downloaded parameter SWdown_f_tavg from GLDAS database",GLDAS_NOAH025_3H_V2.0 (see Source Information),0,1365,W m^-2

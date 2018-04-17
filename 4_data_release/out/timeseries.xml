@@ -411,7 +411,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>baro</attrlabl>
-        <attrdef>Surface pressure (psurf_f_inst) from GLDAS database</attrdef>
+        <attrdef>Surface air pressure. Downloaded parameter psurf_f_inst from GLDAS database</attrdef>
         <attrdefs>GLDAS_NOAH025_3H_V2.0 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
@@ -442,7 +442,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>baro</attrlabl>
-        <attrdef>Surface pressure (pressfc) from NLDAS database</attrdef>
+        <attrdef>Surface pressure. Downloaded parameter pressfc from NLDAS database</attrdef>
         <attrdefs>NLDAS_FORA0125_H.002 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
@@ -473,7 +473,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>doamp</attrlabl>
-        <attrdef>Daily (4am to 3:59am) amplitude in dissolved oxygen percent saturation. Calculated from dopsat_calcObsSat</attrdef>
+        <attrdef>Daily amplitude in dissolved oxygen percent saturation. Daily (4am to 3:59am) mean of from dopsat_calcObsSat</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -504,7 +504,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>doobs</attrlabl>
-        <attrdef>Dissolved oxygen concentration (parameter 00300) from NWIS database</attrdef>
+        <attrdef>Dissolved oxygen concentration. Downloaded parameter 00300 from NWIS database</attrdef>
         <attrdefs>USGS_NWIS (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
@@ -535,7 +535,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>dopsat</attrlabl>
-        <attrdef>Percent dissolved oxygen saturation. Calculated from doobs_nwis and dosat_calcGGbts as 100*doobs/dosat</attrdef>
+        <attrdef>Percent dissolved oxygen saturation. Calculated as 100*doobs_nwis/dosat_calcGGbts</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -597,7 +597,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>par</attrlabl>
-        <attrdef>Photosynthetically active radiation. Calculated from site latitude and suntime with streamMetabolizer calc_light function</attrdef>
+        <attrdef>Photosynthetically active radiation. Calculated from site latitude and suntime_calcLon with streamMetabolizer calc_light function</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -783,7 +783,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>sw</attrlabl>
-        <attrdef>Downward shortwave radiation flux, surface (SWdown_f_tavg) from GLDAS database</attrdef>
+        <attrdef>Downward shortwave radiation flux, surface. Downloaded parameter SWdown_f_tavg from GLDAS database</attrdef>
         <attrdefs>GLDAS_NOAH025_3H_V2.0 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
@@ -814,7 +814,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>sw</attrlabl>
-        <attrdef>Downwards shortwave radiation flux, surface (dswrfsfc) from NLDAS database</attrdef>
+        <attrdef>Downwards shortwave radiation flux, surface. Downloaded parameter dswrfsfc from NLDAS database</attrdef>
         <attrdefs>NLDAS_FORA0125_H.002 (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
@@ -845,7 +845,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>swdaily</attrlabl>
-        <attrdef>Daily (4am to 3:59am) average of sw_nldas (or sw_gldas when sw_nldas unavailable)</attrdef>
+        <attrdef>Daily average downwards shortwave radiation flux. Daily (4am to 3:59am) mean of sw_nldas (or sw_gldas when sw_nldas unavailable)</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -876,7 +876,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>wtr</attrlabl>
-        <attrdef>Water temperature (parameter 00010) from NWIS database</attrdef>
+        <attrdef>Water temperature. Downloaded parameter 00010 from NWIS database</attrdef>
         <attrdefs>USGS_NWIS (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
@@ -969,7 +969,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>depth</attrlabl>
-        <attrdef>Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where depth=cQ^f</attrdef>
+        <attrdef>Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients, where depth=cQ^f</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1031,7 +1031,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>disch</attrlabl>
-        <attrdef>Discharge (parameter 00060) from NWIS database</attrdef>
+        <attrdef>Discharge. Downloaded parameter 00060 from NWIS database</attrdef>
         <attrdefs>USGS_NWIS (see Source Information)</attrdefs>
         <attrdomv>
           <rdom>
@@ -1062,7 +1062,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>dischdaily</attrlabl>
-        <attrdef>Daily (4am to 3:59am) average of disch_nwis</attrdef>
+        <attrdef>Daily average discharge. Daily (4am to 3:59am) mean of disch_nwis</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1155,7 +1155,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>velocdaily</attrlabl>
-        <attrdef>Daily (4am to 3:59am) average of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)</attrdef>
+        <attrdef>Daily average velocity. Daily (4am to 3:59am) mean of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1206,7 +1206,7 @@ Additional variables were calculated from these raw sources using data-preparati
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180323</metd>
+    <metd>20180416</metd>
     <metc>
       <cntinfo>
         <cntperp>

@@ -1,3 +1,3 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
 DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,2007-10-01 04:00:00 +0000,2016-12-31 23:59:00 +0000,NA
-doobs,Dissolved oxygen concentration (parameter 00300) from NWIS database,USGS_NWIS (see Source Information),-999999,53.2,mgO2 L^-1
+doobs,Dissolved oxygen concentration. Downloaded parameter 00300 from NWIS database,USGS_NWIS (see Source Information),-999999,53.2,mgO2 L^-1

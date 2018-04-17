@@ -1,3 +1,3 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
 DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,2007-09-30 16:34:01 +0000,2016-12-31 20:11:26 +0000,NA
-swdaily,Daily (4am to 3:59am) average of sw_nldas (or sw_gldas when sw_nldas unavailable),This release,15.11,456.7,W m^-2
+swdaily,Daily average downwards shortwave radiation flux. Daily (4am to 3:59am) mean of sw_nldas (or sw_gldas when sw_nldas unavailable),This release,15.11,456.7,W m^-2

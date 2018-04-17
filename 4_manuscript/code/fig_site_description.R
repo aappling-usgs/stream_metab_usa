@@ -46,19 +46,24 @@ prep_spatial_points <- function(points, dailies, diagnostics) {
 panel_spatial_points <- function(points_prepped) {
   # prepare aesthetic info (color, legend)
   points_w_aes <- points_prepped
-  year_breaks <- c(min(points_w_aes@data$years, na.rm=TRUE), 1,3,5,7, max(points_w_aes@data$years, na.rm=TRUE))
-  year_colors <- viridisLite::viridis(length(year_breaks)-1, alpha=1, begin=0, end=1, direction=-1)
+  year_breaks <- c(-0.00000000001, min(points_w_aes@data$years, na.rm=TRUE), 1,3,5,7, max(points_w_aes@data$years, na.rm=TRUE))
+  year_colors <- c('grey60', viridisLite::viridis(length(year_breaks)-2, alpha=1, begin=0, end=1, direction=-1))
   points_w_aes@data <- points_w_aes@data %>%
     mutate(
-      size = 0.6,
+      years = ifelse(is.na(years), 0, years),
       year_bin = cut(years, breaks=year_breaks),
       year_bin_num = as.numeric(year_bin),
-      color = year_colors[year_bin_num]
+      color = year_colors[year_bin_num],
+      shape = ifelse(year_bin_num == 1, 24, 19),
+      size = ifelse(year_bin_num == 1, 0.4, 0.6)
     )
   points_legend <- list(
     color = year_colors,
+    shape = c(24, rep(19, length(year_colors)-1)),
+    size = c(0.4, rep(0.6, length(year_colors)-1)),
     label = data_frame(lo=year_breaks[-length(year_breaks)], hi=year_breaks[-1]) %>%
-      mutate(rng=sprintf('%s to %s', signif(lo, digits=2), signif(hi, digits=3))) %>%
+      mutate(rng=sprintf('%s to %s', signif(lo, digits=2), signif(hi, digits=3)),
+             rng=c('0', rng[-1])) %>%
       pull(rng))
   # project and plot - uses functions & globals from spatial_plotting.R
   par(new=TRUE, fig=c(0, 0.7, 0, 1))
@@ -68,14 +73,15 @@ panel_spatial_points <- function(points_prepped) {
     col=points_w_aes@data$color,
     bg='transparent',
     cex=points_w_aes@data$size,
-    pch=19
+    pch=points_w_aes@data$shape
   )
-  par(new=TRUE, fig=c(0.7, 1, 0.3, 0.84), oma=c(0,0,0,0))
+  par(new=TRUE, fig=c(0.7, 1, 0.24, 0.88), oma=c(0,0,0,0))
   plot.new()
   legend(title='Number of metabolism\nestimates in years', x=0.05, y=0.95,
          legend=points_legend$label, 
-         pch=19, col=points_legend$color, bg=points_legend$color,#'transparent',
-         bty='n', y.intersp=1, pt.cex=0.6, cex=0.8)
+         pch=points_legend$shape, pt.cex=points_legend$size*4/3,
+         col=points_legend$color, bg=points_legend$color,
+         bty='n', y.intersp=1, cex=0.8)
 }
 
 fig_site_description <- function(

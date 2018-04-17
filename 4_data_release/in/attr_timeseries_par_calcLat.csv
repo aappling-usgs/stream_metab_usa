@@ -1,3 +1,3 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
 DateTime,Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary,This release,2007-10-01 04:00:00 +0000,2016-12-31 23:59:00 +0000,NA
-par,Photosynthetically active radiation. Calculated from site latitude and suntime with streamMetabolizer calc_light function,This release,0,2326,umol m^-2 s^-1
+par,Photosynthetically active radiation. Calculated from site latitude and suntime_calcLon with streamMetabolizer calc_light function,This release,0,2326,umol m^-2 s^-1
