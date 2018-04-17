@@ -92,39 +92,39 @@ attributes_timeseries <- function(
     'DateTime', 'Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary', 'This release',
     
     # GLDAS
-    'baro_gldas', 'Surface pressure (psurf_f_inst) from GLDAS database', 'GLDAS_NOAH025_3H_V2.0 (see Source Information)',
-    'sw_gldas', 'Downward shortwave radiation flux, surface (SWdown_f_tavg) from GLDAS database', 'GLDAS_NOAH025_3H_V2.0 (see Source Information)',
+    'baro_gldas', 'Surface air pressure. Downloaded parameter psurf_f_inst from GLDAS database', 'GLDAS_NOAH025_3H_V2.0 (see Source Information)',
+    'sw_gldas', 'Downward shortwave radiation flux, surface. Downloaded parameter SWdown_f_tavg from GLDAS database', 'GLDAS_NOAH025_3H_V2.0 (see Source Information)',
     
     # NLDAS
-    'baro_nldas', 'Surface pressure (pressfc) from NLDAS database', 'NLDAS_FORA0125_H.002 (see Source Information)',
-    'sw_nldas', 'Downwards shortwave radiation flux, surface (dswrfsfc) from NLDAS database', 'NLDAS_FORA0125_H.002 (see Source Information)',
+    'baro_nldas', 'Surface pressure. Downloaded parameter pressfc from NLDAS database', 'NLDAS_FORA0125_H.002 (see Source Information)',
+    'sw_nldas', 'Downwards shortwave radiation flux, surface. Downloaded parameter dswrfsfc from NLDAS database', 'NLDAS_FORA0125_H.002 (see Source Information)',
     
     # NWIS
-    'disch_nwis', 'Discharge (parameter 00060) from NWIS database', 'USGS_NWIS (see Source Information)',
-    'doobs_nwis', 'Dissolved oxygen concentration (parameter 00300) from NWIS database', 'USGS_NWIS (see Source Information)',
-    'wtr_nwis', 'Water temperature (parameter 00010) from NWIS database', 'USGS_NWIS (see Source Information)',
+    'disch_nwis', 'Discharge. Downloaded parameter 00060 from NWIS database', 'USGS_NWIS (see Source Information)',
+    'doobs_nwis', 'Dissolved oxygen concentration. Downloaded parameter 00300 from NWIS database', 'USGS_NWIS (see Source Information)',
+    'wtr_nwis', 'Water temperature. Downloaded parameter 00010 from NWIS database', 'USGS_NWIS (see Source Information)',
     
     # calculated, inst
     'sitedate_calcLon', 'Date expressed as solar noon at the site. Calculated with streamMetabolizer convert_UTC_to_solartime function', 'This release',
     'sitetime_calcLon', 'Mean solar time. Calculated from DateTime and site longitude with streamMetabolizer convert_UTC_to_solartime function', 'This release',
     'suntime_calcLon', 'Apparent solar time. Calculated from DateTime and site coordinates with streamMetabolizer convert_UTC_to_solartime function', 'This release',
-    'dopsat_calcObsSat', 'Percent dissolved oxygen saturation. Calculated from doobs_nwis and dosat_calcGGbts as 100*doobs/dosat', 'This release',
+    'dopsat_calcObsSat', 'Percent dissolved oxygen saturation. Calculated as 100*doobs_nwis/dosat_calcGGbts', 'This release',
     'dosat_calcGGbconst', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_calcElev with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992', 'This release',
     'dosat_calcGGbts', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_nldas (or baro_gldas when baro_nldas unavailable) with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992', 'This release',
-    'par_calcLat', 'Photosynthetically active radiation. Calculated from site latitude and suntime with streamMetabolizer calc_light function', 'This release',
+    'par_calcLat', 'Photosynthetically active radiation. Calculated from site latitude and suntime_calcLon with streamMetabolizer calc_light function', 'This release',
     'par_calcSw', 'Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_PAR_to_SW function', 'This release',
     'par_calcLatSw', 'Photosynthetically active radiation. Merger of par_calcLat and par_calcSw using streamMetabolizer calc_light_merged function', 'This release',
     'baro_calcElev', 'Surface pressure. Calculated from site elevation using streamMetabolizer calc_air_pressure function', 'This release',
-    'depth_calcDischHarvey', 'Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where depth=cQ^f', 'This release',
+    'depth_calcDischHarvey', 'Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients, where depth=cQ^f', 'This release',
     'depth_calcDischRaymond', 'Spatially averaged stream depth. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where depth=cQ^f', 'This release',
     'veloc_calcDischHarvey', 'Stream velocity. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where velocity=kQ^m', 'This release',
     'veloc_calcDischRaymond', 'Stream velocity. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where velocity=kQ^m', 'This release',
     
     # calculated, daily
-    'doamp_calcDAmp', 'Daily (4am to 3:59am) amplitude in dissolved oxygen percent saturation. Calculated from dopsat_calcObsSat', 'This release',
-    'swdaily_calcDMean', 'Daily (4am to 3:59am) average of sw_nldas (or sw_gldas when sw_nldas unavailable)', 'This release',
-    'dischdaily_calcDMean', 'Daily (4am to 3:59am) average of disch_nwis', 'This release',
-    'velocdaily_calcDMean', 'Daily (4am to 3:59am) average of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)', 'This release'
+    'doamp_calcDAmp', 'Daily amplitude in dissolved oxygen percent saturation. Daily (4am to 3:59am) mean of from dopsat_calcObsSat', 'This release',
+    'swdaily_calcDMean', 'Daily average downwards shortwave radiation flux. Daily (4am to 3:59am) mean of sw_nldas (or sw_gldas when sw_nldas unavailable)', 'This release',
+    'dischdaily_calcDMean', 'Daily average discharge. Daily (4am to 3:59am) mean of disch_nwis', 'This release',
+    'velocdaily_calcDMean', 'Daily average velocity. Daily (4am to 3:59am) mean of veloc_calcDischHarvey (or veloc_calcDischRaymond when veloc_calcDischHarvey unavailable)', 'This release'
   ) %>% 
     left_join(select(vsc, var_src, `attr-label`=var, `data-units`=units), by='var_src') %>%
     mutate(`attr-label` = ifelse(var_src == 'DateTime', 'DateTime', `attr-label`),
