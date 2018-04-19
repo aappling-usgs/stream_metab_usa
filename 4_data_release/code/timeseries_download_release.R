@@ -112,7 +112,7 @@ attributes_timeseries <- function(
     'dosat_calcGGbconst', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_calcElev with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992', 'This release',
     'dosat_calcGGbts', 'Hypothetical dissolved oxygen concentration at saturation. Calculated from baro_nldas (or baro_gldas when baro_nldas unavailable) with streamMetabolizer calc_DO_sat function, using coefficients from Garcia and Gordon 1992', 'This release',
     'par_calcLat', 'Photosynthetically active radiation. Calculated from site latitude and suntime_calcLon with streamMetabolizer calc_light function', 'This release',
-    'par_calcSw', 'Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_PAR_to_SW function', 'This release',
+    'par_calcSw', 'Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_SW_to_PAR function', 'This release',
     'par_calcLatSw', 'Photosynthetically active radiation. Merger of par_calcLat and par_calcSw using streamMetabolizer calc_light_merged function', 'This release',
     'baro_calcElev', 'Surface pressure. Calculated from site elevation using streamMetabolizer calc_air_pressure function', 'This release',
     'depth_calcDischHarvey', 'Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients, where depth=cQ^f', 'This release',
