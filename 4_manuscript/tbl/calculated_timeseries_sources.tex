@@ -1,10 +1,3 @@
-baro\_gldas & Surface air pressure (Pa) & Downloaded parameter psurf\_f\_inst from \cite{rodell_global_2004} \\
-baro\_nldas & Surface pressure (Pa) & Downloaded parameter pressfc from \cite{mitchell_multiinstitution_2004, xia_continentalscale_2012} \\
-disch\_nwis & Discharge (ft$^3$ s$^{-1}$) & Downloaded parameter 00060 from \cite{u.s.geologicalsurvey_national_2017} \\
-doobs\_nwis & Dissolved oxygen concentration (mgO2 L$^{-1}$) & Downloaded parameter 00300 from \cite{u.s.geologicalsurvey_national_2017} \\
-sw\_gldas & Downward shortwave radiation flux, surface (W m$^{-2}$) & Downloaded parameter SWdown\_f\_tavg from \cite{rodell_global_2004} \\
-sw\_nldas & Downwards shortwave radiation flux, surface (W m$^{-2}$) & Downloaded parameter dswrfsfc from \cite{mitchell_multiinstitution_2004, xia_continentalscale_2012} \\
-wtr\_nwis & Water temperature (degC) & Downloaded parameter 00010 from \cite{u.s.geologicalsurvey_national_2017} \\
 baro\_calcElev & Surface pressure (Pa) & Calculated from site elevation using streamMetabolizer calc\_air\_pressure function \\
 depth\_calcDischHarvey & Spatially averaged stream depth (m) & Calculated from discharge and the site-specific hydraulic geometry coefficients, where depth=$cQ^f$ \\
 depth\_calcDischRaymond & Spatially averaged stream depth (m) & Calculated from discharge and global hydraulic geometry coefficients from \cite{raymond_scaling_2012}, where depth=$cQ^f$ \\
@@ -15,7 +8,7 @@ dosat\_calcGGbconst & Hypothetical dissolved oxygen concentration at saturation 
 dosat\_calcGGbts & Hypothetical dissolved oxygen concentration at saturation (mgO2 L$^{-1}$) & Calculated from baro\_nldas (or baro\_gldas when baro\_nldas unavailable) with streamMetabolizer calc\_DO\_sat function, using coefficients from \cite{garcia_oxygen_1992} \\
 par\_calcLat & Photosynthetically active radiation ($\mu$ mol m$^{-2}$ s$^{-1}$) & Calculated from site latitude and suntime\_calcLon with streamMetabolizer calc\_light function \\
 par\_calcLatSw & Photosynthetically active radiation ($\mu$ mol m$^{-2}$ s$^{-1}$) & Merger of par\_calcLat and par\_calcSw using streamMetabolizer calc\_light\_merged function \\
-par\_calcSw & Photosynthetically active radiation ($\mu$ mol m$^{-2}$ s$^{-1}$) & Calculated from sw\_nldas (or sw\_gldas when sw\_nldas unavailable) with streamMetabolizer convert\_PAR\_to\_SW function \\
+par\_calcSw & Photosynthetically active radiation ($\mu$ mol m$^{-2}$ s$^{-1}$) & Calculated from sw\_nldas (or sw\_gldas when sw\_nldas unavailable) with streamMetabolizer convert\_SW\_to\_PAR function \\
 sitedate\_calcLon & Date expressed as solar noon at the site (unitless) & Calculated with streamMetabolizer convert\_UTC\_to\_solartime function \\
 sitetime\_calcLon & Mean solar time (unitless) & Calculated from DateTime and site longitude with streamMetabolizer convert\_UTC\_to\_solartime function \\
 suntime\_calcLon & Apparent solar time (unitless) & Calculated from DateTime and site coordinates with streamMetabolizer convert\_UTC\_to\_solartime function \\
