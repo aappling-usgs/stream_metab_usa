@@ -94,3 +94,16 @@ src_counts <- bind_rows(lapply(setNames(nm=src_cols), function(metab_var_src) {
 }))
 src_counts
 ```
+How many sites (as opposed to models) went with depth_calcDischRaymond?
+```{r}
+config %>% filter(depth.src == 'calcDischHarvey') %>% pull(site) %>% table() %>% length()
+config %>% filter(depth.src == 'calcDischRaymond') %>% pull(site) %>% table() %>% length()
+```
+
+Determine how many K ~ Q nodes there were per model.
+```{r}
+config <- read_tsv('../../4_data_release/cache/models/config.tsv')
+range(sapply(config$K600_lnQ_nodes_centers, function(expr) length(eval(parse(text=expr)))))
+median(sapply(config$K600_lnQ_nodes_centers, function(expr) length(eval(parse(text=expr)))))
+hist(sapply(config$K600_lnQ_nodes_centers, function(expr) length(eval(parse(text=expr)))))
+```
