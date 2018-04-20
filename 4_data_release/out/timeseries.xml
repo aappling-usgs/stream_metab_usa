@@ -659,7 +659,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>par</attrlabl>
-        <attrdef>Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_PAR_to_SW function</attrdef>
+        <attrdef>Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_SW_to_PAR function</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1206,7 +1206,7 @@ Additional variables were calculated from these raw sources using data-preparati
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180416</metd>
+    <metd>20180419</metd>
     <metc>
       <cntinfo>
         <cntperp>

@@ -24,7 +24,9 @@ sources:
 targets:
   4_manuscript:
     depends: 
-      - ../4_manuscript/tbl/catchment_sources.csv
+      - ../4_manuscript/tbl/catchment_sources.tex
+      - ../4_manuscript/tbl/pulled_timeseries_sources.tex
+      - ../4_manuscript/tbl/calculated_timeseries_sources.tex
 
   # - ../4_manuscript/out/figure_01.png
   
@@ -33,8 +35,11 @@ targets:
   ../4_manuscript/tbl/catchment_sources.tex:
     command: tbl_catchment_sources(outfile=target_name, catchments=catchments_as_written, metafile='../4_data_release/out/site_catchment_shapefile.xml')
   
-  ../4_manuscript/tbl/timeseries_sources.tex:
-    command: tbl_timeseries_sources(outfile=target_name, metafile='../4_data_release/out/timeseries.xml')
+  ../4_manuscript/tbl/pulled_timeseries_sources.tex:
+    command: tbl_timeseries_sources(outfile=target_name, method=I('Downloaded'), metafile='../4_data_release/out/timeseries.xml')
+    
+  ../4_manuscript/tbl/calculated_timeseries_sources.tex:
+    command: tbl_timeseries_sources(outfile=target_name, method=I('Calculated'), metafile='../4_data_release/out/timeseries.xml')
   
   #### figures ####
   

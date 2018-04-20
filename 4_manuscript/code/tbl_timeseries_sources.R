@@ -4,8 +4,10 @@ library(readr)
 #' Create a table of timeseries data sources
 tbl_timeseries_sources <- function(
   metafile='../4_data_release/out/timeseries.xml',
-  outfile='../4_manuscript/tbl/timeseries_sources.tex'
+  outfile='../4_manuscript/tbl/timeseries_sources.tex',
+  method=c('Calculated','Downloaded')
 ) {
+  method <- match.arg(method)
   metaxml <- xml2::as_list(xml2::read_xml(metafile))
   
   source_df <- bind_rows(lapply(metaxml$metadata$eainfo, function(details) {
@@ -24,7 +26,7 @@ tbl_timeseries_sources <- function(
       gsub('cQ^f', '$cQ^f$', ., fixed=TRUE) %>%
       gsub('kQ^m', '$kQ^m$', ., fixed=TRUE)
     descrip_prov <- strsplit(definition, split='. ', fixed=TRUE)[[1]]
-    method <- ifelse(details[[3]]$attrdefs[[1]] == 'This release', 'Calculated', 'Downloaded')
+    type <- ifelse(details[[3]]$attrdefs[[1]] == 'This release', 'Calculated', 'Downloaded')
     units <- details[[3]]$attrdomv$rdom$attrunit[[1]] %>%
       gsub('NA', 'unitless', ., fixed=TRUE) %>%
       gsub('%', '\\%', ., fixed=TRUE) %>%
@@ -32,14 +34,23 @@ tbl_timeseries_sources <- function(
       gsub('^-1', '$^{-1}$', ., fixed=TRUE) %>%
       gsub('^-2', '$^{-2}$', ., fixed=TRUE) %>%
       gsub('umol', '$\\mu$ mol', ., fixed=TRUE)
-    data_frame(`Variable Name`=var_src, Definition=sprintf("%s (%s)", descrip_prov[1], units), Provenance=descrip_prov[2], Method=method)
+    data_frame(`Variable Name`=var_src, Definition=sprintf("%s (%s)", descrip_prov[1], units), Provenance=descrip_prov[2], Method=type)
   })) %>%
     arrange(desc(Method), `Variable Name`)
   
-  src_tex <- source_df %>%
-    mutate(tex=sprintf('%s & %s & %s \\\\', `Variable Name`, Definition, Provenance)) %>%
-    pull(tex)
+  # write the table for either downloaded or calculated variables
+  method_df <- filter(source_df, Method==method)
+  if(method == 'Downloaded') {
+    tex <- method_df %>%
+      mutate(tex=sprintf('%s & %s & %s \\\\', `Variable Name`, Definition, Provenance)) %>%
+      pull(tex)
+  } else if(method=='Calculated') {
+    tex <- method_df %>%
+      mutate(tex=sprintf('%s & %s & %s \\\\', `Variable Name`, Definition, Provenance)) %>%
+      pull(tex)
+  }
   
-  writeLines(src_tex, outfile)
+  # write the text output to file
+  writeLines(tex, outfile)
 }
 
