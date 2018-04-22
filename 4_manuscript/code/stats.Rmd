@@ -107,3 +107,23 @@ range(sapply(config$K600_lnQ_nodes_centers, function(expr) length(eval(parse(tex
 median(sapply(config$K600_lnQ_nodes_centers, function(expr) length(eval(parse(text=expr)))))
 hist(sapply(config$K600_lnQ_nodes_centers, function(expr) length(eval(parse(text=expr)))))
 ```
+
+Count sites with and without catchments.
+```{r}
+# only 132 of 365 modeled sites have struct flags ?!
+sites <- readr::read_tsv('../../4_data_release/cache/site_data.tsv')
+dim(sites)
+sites %>% filter(!is.na(struct.canal_flag) & !is.na(struct.dam_flag) & !is.na(struct.npdes_flag)) %>% nrow
+sites %>% filter(is.na(struct.canal_flag) | is.na(struct.dam_flag) | is.na(struct.npdes_flag)) %>% nrow
+
+# 333 modeled sites have associated catchments
+catchments <- readOGR('../../1_spatial/cache/catchment_shapefile/catchment_shapefile.shp', stringsAsFactors = FALSE)
+length(which(catchments@data$site_nm %in% sites$site_name))
+
+# dailies <- readr::read_tsv('../../4_data_release/cache/models/post/daily_predictions.zip') # no way - read_tsv can read a zip?? brilliant!
+# msites <- sort(unique(dailies$site_name))
+# sites %>% filter(site_name %in% msites) %>% nrow
+# sites %>% filter(site_name %in% msites) %>% filter(!is.na(struct.canal_flag)) %>% nrow
+# sites %>% filter(site_name %in% msites) %>% filter(!is.na(struct.dam_flag)) %>% nrow
+# sites %>% filter(site_name %in% msites) %>% filter(!is.na(struct.npdes_flag)) %>% nrow
+```
