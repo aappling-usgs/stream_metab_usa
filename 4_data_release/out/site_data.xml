@@ -554,7 +554,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>struct.canal_flag</attrlabl>
-        <attrdef> Flag for presence of NHDPlusV2-identified canal or ditch upstream of probe location. 95: nearest canal or ditch is beyond the 95th quantile of daily average distances to 95% oxygen turnover. 80: nearest canal or ditch is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest canal or ditch is beyond the 50th quantile of daily average distances to 50% oxygen turnover (and closer than the distance represented by 80). 0: nearest canal or ditch is closer than the distance represented by 50.</attrdef>
+        <attrdef> Flag for presence of NHDPlusV2-identified canal or ditch upstream of probe location. 95: nearest canal or ditch is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest canal or ditch is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest canal or ditch is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest canal or ditch is closer than the distance represented by 50.</attrdef>
         <attrdefs> Producer defined</attrdefs>
         <attrdomv>
           <rdom>
@@ -566,7 +566,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>struct.dam_flag</attrlabl>
-        <attrdef> Flag for presence of dam upstream of probe location.  95: nearest dam is beyond the 95th quantile of daily average distances to 95% oxygen turnover. 80: nearest dam is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest dam is beyond the 50th quantile of daily average distances to 50% oxygen turnover (and closer than the distance represented by 80). 0: nearest dam is closer than the distance represented by 50.</attrdef>
+        <attrdef> Flag for presence of dam upstream of probe location.  95: nearest dam is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest dam is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest dam is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest dam is closer than the distance represented by 50.</attrdef>
         <attrdefs> Producer defined</attrdefs>
         <attrdomv>
           <rdom>
@@ -578,7 +578,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>struct.npdes_flag</attrlabl>
-        <attrdef> Flag for presence of NPDES point discharge upstream of probe location. 95: nearest NPDES point is beyond the 95th quantile of daily average distances to 95% oxygen turnover. 80: nearest NPDES point is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest NPDES point is beyond the 50th quantile of daily average distances to 50% oxygen turnover (and closer than the distance represented by 80). 0: nearest NPDES point is closer than the distance represented by 50.</attrdef>
+        <attrdef> Flag for presence of NPDES point discharge upstream of probe location. 95: nearest NPDES point is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest NPDES point is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest NPDES point is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest NPDES point is closer than the distance represented by 50.</attrdef>
         <attrdefs> Producer defined</attrdefs>
         <attrdomv>
           <rdom>
@@ -629,7 +629,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180323</metd>
+    <metd>20180422</metd>
     <metc>
       <cntinfo>
         <cntperp>
