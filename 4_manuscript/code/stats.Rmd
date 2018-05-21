@@ -94,6 +94,17 @@ src_counts <- bind_rows(lapply(setNames(nm=src_cols), function(metab_var_src) {
 }))
 src_counts
 ```
+How many sites that were modeled had catchments, and how many sites with catchments were modeled?
+```r
+# numbers for manuscript
+diag <- readr::read_tsv('../4_data_release/cache/models/config.tsv')
+catchments <- remake_smu('catchments_as_written', '4_release_spatial.yml')
+catchdat <- catchments@data %>%
+  full_join(select(diag, site, tag), by=c(site_nm='site'))
+(no_model <- catchdat %>% filter(is.na(tag)) %>% nrow()) #38
+(mod_no_catch <- catchdat %>% filter(is.na(dat_src)) %>% nrow()) #23
+```
+
 How many sites (as opposed to models) went with depth_calcDischRaymond?
 ```{r}
 config %>% filter(depth.src == 'calcDischHarvey') %>% pull(site) %>% table() %>% length()

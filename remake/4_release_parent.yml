@@ -43,8 +43,8 @@ targets:
     command: yaml.load_file(I('../4_data_release/cache/points_metadata.yml'))
   
   # We also need decoupled access to points.spatial
-  spatial.sites:
-    command: make('spatial.sites', remake_file='1_spatial.yml')
+  spatial.site.points:
+    command: make(I('spatial.sites'), remake_file='1_spatial.yml')
   
   
   # -- read parent metadata --
