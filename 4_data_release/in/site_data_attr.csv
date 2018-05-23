@@ -7,7 +7,7 @@
 "lon"," Decimal longitude"," NA"," -180"," 180"," degrees E"
 "coord_datum"," Coordinate datum for lat and lon"," Coordinate Datum Codes (dec_coord_datum_cd or coord_datum_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/coord_datum_cd"," NA"," NA"," NA"
 "alt"," Altitude above mean sea level"," National Water Information System, United States Geological Survey, https://waterdata.usgs.gov/usa/nwis/current?submitted_form=introduction"," NA"," NA"," feet"
-"alt_datum"," Altitude datum"," Altitude Datum Codes (alt_datum_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/code/alt_datum_cd_query?fmt=html"," NA"," NA"," NA"
+"alt_datum"," Vertical datum"," Vertical Datum Codes (alt_datum_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/code/alt_datum_cd_query?fmt=html"," NA"," NA"," NA"
 "site_type"," Type of water body at monitoring site"," Site Type Codes (site_tp_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/site_tp_cd"," NA"," NA"," NA"
 "dvqcoefs.c"," Empirical coefficient, c, of depth estimation equation, where depth=cQ^f","NA"," NA"," NA"," NA"
 "dvqcoefs.f"," Empirical coefficient, f, of depth estimation equation, where depth=cQ^f","NA"," NA"," NA"," NA"

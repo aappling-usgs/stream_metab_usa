@@ -43,8 +43,8 @@
       <bounding>
         <westbc>-148.958999872016</westbc>
         <eastbc>-67.1533032611876</eastbc>
-        <northbc>26.0554827894828</northbc>
-        <southbc>60.4347509701639</southbc>
+        <northbc>60.4347509701639</northbc>
+        <southbc>26.0554827894828</southbc>
       </bounding>
     </spdom>
     <keywords>
@@ -76,8 +76,12 @@
         <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
         <placekey>Alabama</placekey>
         <placekey>AL</placekey>
+        <placekey>Alaska</placekey>
+        <placekey>AK</placekey>
         <placekey>Arkansas</placekey>
         <placekey>AR</placekey>
+        <placekey>California</placekey>
+        <placekey>CA</placekey>
         <placekey>Colorado</placekey>
         <placekey>CO</placekey>
         <placekey>Connecticut</placekey>
@@ -158,6 +162,8 @@
         <placekey>VT</placekey>
         <placekey>Virginia</placekey>
         <placekey>VA</placekey>
+        <placekey>Washington</placekey>
+        <placekey>WA</placekey>
         <placekey>West Virginia</placekey>
         <placekey>WV</placekey>
         <placekey>Wisconsin</placekey>
@@ -473,7 +479,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180323</metd>
+    <metd>20180522</metd>
     <metc>
       <cntinfo>
         <cntperp>

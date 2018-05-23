@@ -8,6 +8,7 @@ packages:
   - httr
   - sbtools
   - dplyr
+  - remake
   - rgeos
   - dataRetrieval
   - meddle
