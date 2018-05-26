@@ -22,6 +22,9 @@ sources:
 targets:
   4_release_parent:
     depends: 
+      - points_meta
+      - spatial.site.points
+      - parent_metadata
       - stream_metab_powell_release
   
   # -- load shared metadata details --
@@ -41,7 +44,7 @@ targets:
   # If you don't already have points_meta, build 4_release_spatial.yml before
   # building other data release items downstream of 4_release_parent.yml.
   points_meta:
-    command: yaml.load_file(I('../4_data_release/cache/points_metadata.yml'))
+    command: yaml.load_file('../4_data_release/cache/points_metadata.yml')
   
   # We also need decoupled access to points.spatial
   spatial.site.points:
