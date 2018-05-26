@@ -4,6 +4,16 @@ document-creator: "Alison P Appling"
 
 # ----data release----
 title: Key diagnostics and overall assessments of metabolism model performance
+abstract: >-
+  This dataset provides key diagnostics and overall assessments of metabolism model performance.
+  
+  This dataset is part of a larger data release that provides modeled estimates of
+  gross primary productivity, ecosystem respiration, and gas exchange coefficients
+  for 356 streams and rivers across the United States.
+  The release also includes the model input data and alternative input data,
+  model fit and diagnostic information,
+  spatial data for the modeled sites (catchment boundaries and site point locations), and
+  potential predictors of metabolism such as discharge and light availability.
 
 # ----dataset details----
 process-description: >-

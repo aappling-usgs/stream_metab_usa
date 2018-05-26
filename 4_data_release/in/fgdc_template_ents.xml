@@ -26,7 +26,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>{{abstract}} This data set contains the following parameters (defined below): {{#entities}}In {{data-name}}: {{#attributes}}{{attr-label}}, {{/attributes}}. {{/entities}}</abstract>
+      <abstract>{{abstract}}</abstract>
       <purpose>{{purpose}}</purpose>
     </descript>
     <timeperd>

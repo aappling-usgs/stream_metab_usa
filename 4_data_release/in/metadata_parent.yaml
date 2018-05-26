@@ -9,14 +9,6 @@ usage-rules: >-
   None, but see Distribution Liability below. 
   Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.
 doi: https://doi.org/10.5066/F70864KX
-abstract: >-
-  This data release provides modeled estimates of
-  gross primary productivity, ecosystem respiration, and gas exchange coefficients
-  for 356 streams and rivers across the United States.
-  The release also includes the model input data and alternative input data,
-  model fit and diagnostic information,
-  spatial data for the modeled sites (catchment boundaries and site point locations), and
-  potential predictors of metabolism such as discharge and light availability.
 funding-credits: >-
   This work was funded by the USGS Powell Center
   (Working Group title: "Continental-scale overview of stream primary productivity,
