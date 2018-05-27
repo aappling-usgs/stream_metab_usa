@@ -409,7 +409,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>GPP.Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -469,7 +469,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>ER.Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -529,7 +529,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>K600.Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>

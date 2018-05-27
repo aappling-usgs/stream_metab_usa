@@ -419,7 +419,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>GPP_daily_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the GPP_daily parameter, where GPP_daily is the mean gross primary productivity (GPP) for this date. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the GPP_daily parameter, where GPP_daily is the mean gross primary productivity (GPP) for this date. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -539,7 +539,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>ER_daily_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the ER_daily parameter, where ER_daily is the mean ecosystem respiration (ER) for this date, and more negative values indicate more respiration. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the ER_daily parameter, where ER_daily is the mean ecosystem respiration (ER) for this date, and more negative values indicate more respiration. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -659,7 +659,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -779,7 +779,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -978,7 +978,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_sigma_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1141,7 +1141,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>err_obs_iid_sigma_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer and Stan R packages</attrdefs>
         <attrdomv>
           <rdom>
@@ -1261,7 +1261,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>err_proc_iid_sigma_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer and Stan R packages</attrdefs>
         <attrdomv>
           <rdom>
@@ -1381,7 +1381,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lp___Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for log posterior density for each MCMC iteration. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for log posterior density for each MCMC iteration. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer and Stan R packages</attrdefs>
         <attrdomv>
           <rdom>
@@ -1544,7 +1544,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
