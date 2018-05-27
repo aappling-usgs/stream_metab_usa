@@ -88,8 +88,8 @@ source-cites:
     authors: ['U.S. Geological Survey']
     title: National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
     pubdate: 2016
-    link: ['https://waterdata.usgs.gov/nwis', 'http://dx.doi.org/10.5066/F7P55KJN']
     file-format: WaterML1.1 and browseable website
+    link: ['https://waterdata.usgs.gov/nwis', 'https://dx.doi.org/10.5066/F7P55KJN']
     sngdate:
       caldate: 20170101
     srccurr: access date
@@ -112,8 +112,8 @@ source-cites:
     title: >-
       National Pollutant Discharge Elimination System (NPDES)
     pubdate: 2006
-    link: https://www.epa.gov/npdes
     file-format: Comma-separated values and browseable website
+    link: ['https://www.epa.gov/npdes', 'https://echo.epa.gov/tools/data-downloads']
     sngdate:
       caldate: 20060601
     srccurr: access date

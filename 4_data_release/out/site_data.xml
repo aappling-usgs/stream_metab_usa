@@ -214,8 +214,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>U.S. Geological Survey</origin>
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
-            <onlink>https://waterdata.usgs.gov/nwis</onlink>
             <geoform>WaterML1.1 and browseable website</geoform>
+            <onlink>http://waterdata.usgs.gov/nwis</onlink>
             <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
@@ -261,6 +261,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <title>National Pollutant Discharge Elimination System (NPDES)</title>
             <geoform>Comma-separated values and browseable website</geoform>
             <onlink>https://www.epa.gov/npdes</onlink>
+            <onlink>https://echo.epa.gov/tools/data-downloads</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -636,7 +637,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180526</metd>
+    <metd>20180527</metd>
     <metc>
       <cntinfo>
         <cntperp>

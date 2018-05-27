@@ -90,7 +90,7 @@ source-cites:
     title: National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
     pubdate: 2016
     file-format: WaterML1.1
-    link: ['http://waterdata.usgs.gov/nwis', 'http://dx.doi.org/10.5066/F7P55KJN']
+    link: ['https://waterdata.usgs.gov/nwis', 'https://dx.doi.org/10.5066/F7P55KJN']
     rngdates:
       begdate: 2007
       enddate: 2017
