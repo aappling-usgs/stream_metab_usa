@@ -22,9 +22,9 @@ process-description: >-
   Spatial tools in the R programming language were used to perform the operations of creating the spatial datasets and modifying attributes. 
   Station locations were accessed from the USGS National Water Information System's "site service": 
   https://waterservices.usgs.gov/rest/Site-Service.html. The R dataRetrieval package was used to access site service metadata 
-  (function readNWISsite). Sites had one of two datums, NAD83 (epsg code 4269) 
-  or WGS84 (epsg code 4326) and were transformed to a single datum (epsg code 4326) using the rgdal package. The locations of each site 
-  were combined into a single output shapefile. Details for package versions used are fount in the build environment details in Native Data Set Environment. 
+  (function readNWISsite). Sites had one of two datums, NAD83 (EPSG code 4269) 
+  or WGS84 (EPSG code 4326), and were transformed to a single datum (EPSG code 4326) using the rgdal package. The locations of each site
+  were combined into a single output shapefile. Details for package versions used are found in the build environment details in Native Data Set Environment. 
 process-date: 20180116
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
