@@ -17,13 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Key diagnostics and overall assessments of metabolism model performance</title>
-        <geoform>tab-separated values, compressed from text to .zip format</geoform>
+        <geoform>Tab-separated values, compressed from text to .zip format</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This dataset provides key diagnostics and overall assessments of metabolism model performance.
-This dataset is part of a larger data release that provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability.</abstract>
+      <abstract>This dataset provides key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -217,7 +217,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Maite Arroita</origin>
             <pubdate>2018</pubdate>
             <title>Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>https://dx.doi.org/10.1002/2017JG004140</onlink>
           </citeinfo>
         </srccite>
@@ -242,7 +242,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>R source code</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -295,8 +295,8 @@ This overall assessment is based only on readily computable information and is i
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>diagnostics.zip.</enttypl>
-        <enttypd>Key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.</enttypd>
+        <enttypl>diagnostics.tsv, compressed into diagnostics.zip</enttypl>
+        <enttypd>Key diagnostics and overall assessments of metabolism model performance.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -480,7 +480,7 @@ This overall assessment is based only on readily computable information and is i
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, compressed from text to .zip format</formname>
+          <formname>Tab-separated values, compressed from text to .zip format</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -496,7 +496,7 @@ This overall assessment is based only on readily computable information and is i
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180526</metd>
+    <metd>20180527</metd>
     <metc>
       <cntinfo>
         <cntperp>

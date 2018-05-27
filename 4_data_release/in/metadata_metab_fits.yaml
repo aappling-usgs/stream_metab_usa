@@ -5,14 +5,20 @@ document-creator: "Alison P Appling"
 # ----data release----
 title: Complete fits from metabolism estimation models
 abstract: >-
-  This dataset provides complete fits from metabolism estimation models.
+  This dataset provides complete fits from metabolism estimation models, organized as 5 files per model:
+  (1) estimates of daily gross primary productivity (GPP), ecosystem respiration (ER), and the gas exchange coefficient (K600),
+  (2) parameters for the model overall,
+  (3) estimates of the nodes defining the piecewise line relating K600 to discharge,
+  (4) parameters for the overall relationship between K600 and discharge, and
+  (5) any warnings returned by the model.
   
-  This dataset is part of a larger data release that provides modeled estimates of
-  gross primary productivity, ecosystem respiration, and gas exchange coefficients
-  for 356 streams and rivers across the United States.
-  The release also includes the model input data and alternative input data,
-  model fit and diagnostic information,
-  spatial data for the modeled sites (catchment boundaries and site point locations), and
+  This dataset is part of a larger data release of metabolism model inputs and outputs
+  for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).
+  The complete release includes:
+  modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient;
+  model input data and alternative input data;
+  model fit and diagnostic information;
+  site catchment boundaries and site point locations; and
   potential predictors of metabolism such as discharge and light availability.
 
 # ----dataset details----
@@ -23,8 +29,6 @@ process-description: >-
   were extracted from the models using the get_fit() function from streamMetabolizer. Each element of the resulting list
   was written to a separate tab-separated text file, then the set of files for each model was compressed into a zip file for release.
 process-date: 20170406
-data-name: nwis_SITENUM_RES_fit.zip for 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).
-data-description: Model results from estimating metabolism.
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
@@ -32,7 +36,10 @@ build-environment: >-
   
   R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5;
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
-file-format: tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.
+file-format: >-
+  Tab-separated values and text files, 4 to 5 files per model.
+  The files for each model are packaged and compressed in .zip format. The zip files are named with the pattern
+  "nwis_SITENUM_RES_fit.zip" for the 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
 
 # ----spatial data----
@@ -47,6 +54,7 @@ source-cites:
     title: >-
       Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation
     pubdate: 2018
+    file-format: Manuscript
     link: https://dx.doi.org/10.1002/2017JG004140
     sngdate:
       caldate: 2018
@@ -60,6 +68,7 @@ source-cites:
     title: >-
       streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
     pubdate: 2017
+    file-format: R source code
     link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
     sngdate:
       caldate: 2017

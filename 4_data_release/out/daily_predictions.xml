@@ -17,13 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Daily metabolism estimates and predictors</title>
-        <geoform>tab-separated values, compressed from text to .zip format</geoform>
+        <geoform>Tab-separated values, compressed from text to .zip format</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
       <abstract>This dataset provides daily metabolism estimates and predictors.
-This dataset is part of a larger data release that provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability.</abstract>
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -217,7 +217,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Maite Arroita</origin>
             <pubdate>2018</pubdate>
             <title>Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>https://dx.doi.org/10.1002/2017JG004140</onlink>
           </citeinfo>
         </srccite>
@@ -242,7 +242,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>R source code</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -266,8 +266,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
             <geoform>WaterML1.1</geoform>
-            <onlink>http://waterdata.usgs.gov/nwis</onlink>
-            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+            <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <onlink>https://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -319,8 +319,8 @@ The remaining daily values were computed from the sub-daily input data. These in
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>Daily estimates of river metabolism and gas exchange</enttypl>
-        <enttypd>Daily estimates of metabolism</enttypd>
+        <enttypl>daily_predictions.tsv, compressed into daily_predictions.zip</enttypl>
+        <enttypd>Daily estimates of river metabolism and gas exchange.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -349,7 +349,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>date</attrlabl>
-        <attrdef>Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
+        <attrdef>Primary date to which the fitted values apply, YYYY-MM-DD format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -361,7 +361,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>GPP</attrlabl>
-        <attrdef>Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -421,7 +421,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>ER</attrlabl>
-        <attrdef>Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -481,7 +481,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>K600</attrlabl>
-        <attrdef>Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -696,7 +696,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, compressed from text to .zip format</formname>
+          <formname>Tab-separated values, compressed from text to .zip format</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>

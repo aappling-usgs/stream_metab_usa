@@ -17,13 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Input data used for estimating metabolism</title>
-        <geoform>tab-separated values, compressed from text to .zip format</geoform>
+        <geoform>Tab-separated values, compressed from text to .zip format</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
       <abstract>This dataset provides input data in the format used for estimating metabolism.
-This dataset is part of a larger data release that provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability.</abstract>
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -217,7 +217,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
             <origin>Maite Arroita</origin>
             <pubdate>2018</pubdate>
             <title>Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>https://dx.doi.org/10.1002/2017JG004140</onlink>
           </citeinfo>
         </srccite>
@@ -242,7 +242,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>R source code</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -295,8 +295,8 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>nwis_SITENUM_input.zip for 356 values of SITENUM</enttypl>
-        <enttypd>Model input data for estimating metabolism.</enttypd>
+        <enttypl>nwis_SITENUM_input.tsv, compressed into nwis_SITENUM_input.zip, for 356 values of SITENUM (the USGS site ID)</enttypl>
+        <enttypd>Model input data as combined and formatted for estimating metabolism.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -408,7 +408,7 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, compressed from text to .zip format</formname>
+          <formname>Tab-separated values, compressed from text to .zip format</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -424,7 +424,7 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180526</metd>
+    <metd>20180527</metd>
     <metc>
       <cntinfo>
         <cntperp>

@@ -17,13 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Complete fits from metabolism estimation models</title>
-        <geoform>tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.</geoform>
+        <geoform>Tab-separated values and text files, 4 to 5 files per model. The files for each model are packaged and compressed in .zip format. The zip files are named with the pattern "nwis_SITENUM_RES_fit.zip" for the 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This dataset provides complete fits from metabolism estimation models.
-This dataset is part of a larger data release that provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability.</abstract>
+      <abstract>This dataset provides complete fits from metabolism estimation models, organized as 5 files per model: (1) estimates of daily gross primary productivity (GPP), ecosystem respiration (ER), and the gas exchange coefficient (K600), (2) parameters for the model overall, (3) estimates of the nodes defining the piecewise line relating K600 to discharge, (4) parameters for the overall relationship between K600 and discharge, and (5) any warnings returned by the model.
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -217,7 +217,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Maite Arroita</origin>
             <pubdate>2018</pubdate>
             <title>Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation</title>
-            <geoform>tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>https://dx.doi.org/10.1002/2017JG004140</onlink>
           </citeinfo>
         </srccite>
@@ -242,7 +242,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.</geoform>
+            <geoform>R source code</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -299,7 +299,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </enttyp>
       <attr>
         <attrlabl>date</attrlabl>
-        <attrdef>Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
+        <attrdef>Primary date to which the fitted values apply, YYYY-MM-DD format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -671,7 +671,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_mean</attrlabl>
-        <attrdef>Mean of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>Mean of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -683,7 +683,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_se_mean</attrlabl>
-        <attrdef>Standard error of the mean of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>Standard error of the mean of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -695,7 +695,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_sd</attrlabl>
-        <attrdef>Standard deviation of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>Standard deviation of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -707,7 +707,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_2.5pct</attrlabl>
-        <attrdef>The 2.5th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>The 2.5th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -719,7 +719,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_25pct</attrlabl>
-        <attrdef>The 25th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>The 25th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -731,7 +731,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_50pct</attrlabl>
-        <attrdef>The 50th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>The 50th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -743,7 +743,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_75pct</attrlabl>
-        <attrdef>The 75th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>The 75th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -755,7 +755,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_97.5pct</attrlabl>
-        <attrdef>The 97.5th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>The 97.5th quantile of the post-warmup MCMC distribution of the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -767,7 +767,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_n_eff</attrlabl>
-        <attrdef>Estimated effective sample size of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space.</attrdef>
+        <attrdef>Estimated effective sample size of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -779,7 +779,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>K600_daily_predlog_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date's mean daily discharge, in natural log space. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>R-hat statistic of the MCMC sampling for the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -795,8 +795,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin>0</rdommin>
-            <rdommax>1</rdommax>
+            <rdommin>FALSE</rdommin>
+            <rdommax>TRUE</rdommax>
             <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
@@ -819,8 +819,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin>data don't end when expected</rdommin>
-            <rdommax>uneven timesteps; timestep != 0.04166667 d; NAs in DO.sat; NAs in temp.water</rdommax>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
             <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
@@ -1436,7 +1436,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_mean</attrlabl>
-        <attrdef>Mean of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>Mean of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1448,7 +1448,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_se_mean</attrlabl>
-        <attrdef>Standard error of the mean of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>Standard error of the mean of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1460,7 +1460,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_sd</attrlabl>
-        <attrdef>Standard deviation of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>Standard deviation of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1472,7 +1472,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_2.5pct</attrlabl>
-        <attrdef>The 2.5th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>The 2.5th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1484,7 +1484,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_25pct</attrlabl>
-        <attrdef>The 25th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>The 25th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1496,7 +1496,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_50pct</attrlabl>
-        <attrdef>The 50th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>The 50th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1508,7 +1508,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_75pct</attrlabl>
-        <attrdef>The 75th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>The 75th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1520,7 +1520,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_97.5pct</attrlabl>
-        <attrdef>The 97.5th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>The 97.5th quantile of the post-warmup MCMC distribution of one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1532,7 +1532,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_n_eff</attrlabl>
-        <attrdef>Estimated effective sample size of the MCMC sampling for one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip..</attrdef>
+        <attrdef>Estimated effective sample size of the MCMC sampling for one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1544,7 +1544,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </attr>
       <attr>
         <attrlabl>lnK600_lnQ_nodes_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>R-hat statistic of the MCMC sampling for one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q). Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q). The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -1598,7 +1598,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.</formname>
+          <formname>Tab-separated values and text files, 4 to 5 files per model. The files for each model are packaged and compressed in .zip format. The zip files are named with the pattern "nwis_SITENUM_RES_fit.zip" for the 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -1614,7 +1614,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180526</metd>
+    <metd>20180527</metd>
     <metc>
       <cntinfo>
         <cntperp>

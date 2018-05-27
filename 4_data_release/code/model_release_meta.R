@@ -192,7 +192,11 @@ attributes_metab_fits <- function(
       unique(unlist(lapply(filesoftype, readLines)))
     }
   })
-
+  ranges_dfs$daily.tsv <- ranges_dfs$daily.tsv %>%
+    mutate(
+      `data-min` = ifelse(`attr-label` %in% c('warnings','errors'), NA, ifelse(`attr-label` == 'valid_day', FALSE, `data-min`)),
+      `data-max` = ifelse(`attr-label` %in% c('warnings','errors'), NA, ifelse(`attr-label` == 'valid_day', TRUE, `data-max`)))
+    
   # define variables for definitions text that will be used more than once
   distrib <- 'of the post-warmup MCMC distribution of'
   n_eff <- 'Estimated effective sample size of the MCMC sampling for'
@@ -225,11 +229,11 @@ attributes_metab_fits <- function(
         gpp <- 'the GPP_daily parameter, where GPP_daily is the mean gross primary productivity (GPP) for this date'
         er <- 'the ER_daily parameter, where ER_daily is the mean ecosystem respiration (ER) for this date, and more negative values indicate more respiration'
         K600 <- 'the K600_daily parameter, where K600_daily is the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date'
-        K600pl <- 'the K600_daily_predlog parameter, giving the hierarchical estimate for any date with this date\'s mean daily discharge, in natural log space'
+        K600pl <- 'the K600_daily_predlog parameter, giving the hierarchical estimate of K600 as a function of the mean daily discharge, in natural log space'
         units_K600pl <- sprintf('ln(%s)', var_src_units('K600.daily'))
         tibble::tribble(
           ~`attr-label`, ~`attr-def`, ~`data-units`,
-          'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
+          'date', 'Primary date to which the fitted values apply, YYYY-MM-DD format, for the period from 4am on that date to 3:59am on the following date.', NA,
           'GPP_daily_mean', sprintf('Mean %s %s.', distrib, gpp), var_src_units('GPP.daily'),
           'GPP_daily_se_mean', sprintf('Standard error of the mean %s %s.', distrib, gpp), var_src_units('GPP.daily'),
           'GPP_daily_sd', sprintf('Standard deviation %s %s.', distrib, gpp), var_src_units('GPP.daily'),
@@ -351,7 +355,7 @@ attributes_metab_fits <- function(
         kqn <- paste(
           'one of the lnK600_lnQ_nodes parameters describing a site-specific, piecewise linear relationship between ln(K600) and ln(Q).',
           'Each indexed parameter is the fitted ln(K600) value corresponding to a fixed value of ln(Q).',
-          'The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip.')
+          'The values of ln(Q) for each model are defined in the K600_lnQ_nodes_centers column of config.zip')
         units_kqn <- sprintf('ln(%s)', var_src_units('K600.daily'))
         tibble::tribble(
           ~`attr-label`, ~`attr-def`, ~`data-units`,
@@ -496,7 +500,7 @@ attributes_daily_preds <- function(
   ranges_df <- compute_ranges(dailies)
   
   # write in / look up definitions & units
-  est <- 'Model estimate of %s. Value is the median of the MCMC distribution.'
+  est <- 'Model estimate of %s. Value is the median of the post-warmup MCMC distribution.'
   CI <- '%s bound %son the 95%% credible interval around the daily %s estimate. Value is the %sth quantile of the post-warmup MCMC distribution.'
   n_eff <- 'Estimated effective sample size of the MCMC sampling for %s.'
   Rhat <- 'R-hat statistic of the MCMC sampling for %s. Values near or below 1.05 indicate convergence of the MCMC chains.'
@@ -507,7 +511,7 @@ attributes_daily_preds <- function(
     ~`attr-label`, ~`attr-def`, ~`data-units`,
     'site_name', 'Site identifier, consisting of prefix "nwis_" and the USGS National Water Information System (NWIS) site ID.', NA,
     'resolution', 'The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.', 'minutes',
-    'date', 'Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.', NA,
+    'date', 'Primary date to which the fitted values apply, YYYY-MM-DD format, for the period from 4am on that date to 3:59am on the following date.', NA,
     'GPP', sprintf(est, gpp), var_src_units('GPP.daily'),
     'GPP.lower', sprintf(CI, 'Lower', '', 'GPP', '2.5'), var_src_units('GPP.daily'),
     'GPP.upper', sprintf(CI, 'Upper', '', 'GPP', '97.5'), var_src_units('GPP.daily'),
