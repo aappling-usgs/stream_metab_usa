@@ -17,7 +17,7 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Complete fits from metabolism estimation models</title>
-        <geoform>tab-separated values and text files, 5 files per SITENUM_RES combination, packaged and compressed in .zip format.</geoform>
+        <geoform>Tab-separated values and text files, 4 to 5 files per model. The files for each model are packaged and compressed in .zip format. The zip files are named with the pattern "nwis_SITENUM_RES_fit.zip" for the 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
