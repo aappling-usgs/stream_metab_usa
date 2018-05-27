@@ -70,7 +70,7 @@ build-environment: >-
   
   R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5;
   meddle version 0.0.6; mda.streams version 0.10.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
-file-format: Tab-delimited file
+file-format: Tab-separated values
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
 
 # ----spatial data----
@@ -80,11 +80,13 @@ longitude-res: unknown
 
 source-cites: 
   -
+    # citation from https://help.waterdata.usgs.gov/faq/miscellaneous/how-to-cite-usgs-water-data-for-the-nation-waterdata.usgs.gov-in-a-publication
+    # U.S. Geological Survey, 2016, National Water Information System data available on the World Wide Web (USGS Water Data for the Nation), accessed [June 10, 2012], at URL [http://waterdata.usgs.gov/nwis/].
     authors: ['U.S. Geological Survey']
-    title: >-
-      National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
+    title: National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
     pubdate: 2016
     link: ['https://waterdata.usgs.gov/nwis', 'http://dx.doi.org/10.5066/F7P55KJN']
+    file-format: WaterML1.1 and browseable website
     sngdate:
       caldate: 20170101
     srccurr: access date
@@ -95,6 +97,7 @@ source-cites:
     title: >-
       National Inventory of Dams
     pubdate: 2010
+    file-format: Shapefile and browseable website
     link: http://nid.usace.army.mil/
     sngdate:
       caldate: 20100801
@@ -107,6 +110,7 @@ source-cites:
       National Pollutant Discharge Elimination System (NPDES)
     pubdate: 2006
     link: https://www.epa.gov/npdes
+    file-format: Comma-separated values and browseable website
     sngdate:
       caldate: 20060601
     srccurr: access date
@@ -117,6 +121,7 @@ source-cites:
     title: >-
       National Hydrography Dataset, Version 2
     pubdate: 2012
+    file-format: Shapefiles
     link: http://www.horizon-systems.com/nhdplus
     sngdate:
       caldate: 20151116

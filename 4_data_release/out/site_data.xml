@@ -17,7 +17,7 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Site identifiers and details</title>
-        <geoform>Tab-delimited file</geoform>
+        <geoform>Tab-separated values</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -214,8 +214,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>U.S. Geological Survey</origin>
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
-            <geoform>Tab-delimited file</geoform>
             <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <geoform>WaterML1.1 and browseable website</geoform>
             <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
@@ -237,7 +237,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>U.S. Army Corps of Engineers</origin>
             <pubdate>2010</pubdate>
             <title>National Inventory of Dams</title>
-            <geoform>Tab-delimited file</geoform>
+            <geoform>Shapefile and browseable website</geoform>
             <onlink>http://nid.usace.army.mil/</onlink>
           </citeinfo>
         </srccite>
@@ -259,7 +259,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>U.S. Environmental Protection Agency</origin>
             <pubdate>2006</pubdate>
             <title>National Pollutant Discharge Elimination System (NPDES)</title>
-            <geoform>Tab-delimited file</geoform>
+            <geoform>Comma-separated values and browseable website</geoform>
             <onlink>https://www.epa.gov/npdes</onlink>
           </citeinfo>
         </srccite>
@@ -282,7 +282,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>U.S. Geological Survey</origin>
             <pubdate>2012</pubdate>
             <title>National Hydrography Dataset, Version 2</title>
-            <geoform>Tab-delimited file</geoform>
+            <geoform>Shapefiles</geoform>
             <onlink>http://www.horizon-systems.com/nhdplus</onlink>
           </citeinfo>
         </srccite>
@@ -620,7 +620,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>Tab-delimited file</formname>
+          <formname>Tab-separated values</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
