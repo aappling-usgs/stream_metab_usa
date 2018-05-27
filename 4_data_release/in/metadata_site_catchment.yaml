@@ -20,7 +20,7 @@ abstract: >-
 # ----dataset details----
 process-description: >- 
   Existing polygons were combined from various sources (see data_source attribute and Source Information).
-  Spatial tools in the R programming language were used to perform the operations of merging 
+  Spatial tools in the R programming language were used to perform the operations of merging
   and modifying attributes. 
 process-date: 20180116
 build-environment: >-
