@@ -22,7 +22,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
+      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_swdaily_calcDMean.tsv: DateTime, swdaily, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -66,9 +66,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
@@ -835,6 +833,37 @@ Additional variables were calculated from these raw sources using data-preparati
     </detailed>
     <detailed>
       <enttyp>
+        <enttypl>nwis_XXXX-ts_swdaily_calcDMean.tsv</enttypl>
+        <enttypd>Tab-separated 2-column data table containing date-time stamps (first column) and values for the variable code-named swdaily_calcDMean; see attribute definition for 2nd column for variable and data source details.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>DateTime</attrlabl>
+        <attrdef>Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary</attrdef>
+        <attrdefs>This release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2007-09-30 16:34:01 +0000</rdommin>
+            <rdommax>2016-12-31 20:11:26 +0000</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>swdaily</attrlabl>
+        <attrdef>Daily average downwards shortwave radiation flux. Daily (4am to 3:59am) mean of sw_nldas (or sw_gldas when sw_nldas unavailable)</attrdef>
+        <attrdefs>This release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>15.11</rdommin>
+            <rdommax>456.7</rdommax>
+            <attrunit>W m^-2</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
         <enttypl>nwis_XXXX-ts_wtr_nwis.tsv</enttypl>
         <enttypd>Tab-separated 2-column data table containing date-time stamps (first column) and values for the variable code-named wtr_nwis; see attribute definition for 2nd column for variable and data source details.</enttypd>
         <enttypds>Producer Defined</enttypds>
@@ -1183,7 +1212,7 @@ Additional variables were calculated from these raw sources using data-preparati
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180522</metd>
+    <metd>20180526</metd>
     <metc>
       <cntinfo>
         <cntperp>

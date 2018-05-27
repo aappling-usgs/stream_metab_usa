@@ -42,9 +42,9 @@
       <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
-        <eastbc>-71.2733903</eastbc>
-        <northbc>26.4642778</northbc>
-        <southbc>60.2036591</southbc>
+        <eastbc>-66.1160552</eastbc>
+        <northbc>60.3699586</northbc>
+        <southbc>18.4070314</southbc>
       </bounding>
     </spdom>
     <keywords>
@@ -66,9 +66,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
@@ -108,6 +106,8 @@
         <placekey>KY</placekey>
         <placekey>Louisiana</placekey>
         <placekey>LA</placekey>
+        <placekey>Maine</placekey>
+        <placekey>ME</placekey>
         <placekey>Maryland</placekey>
         <placekey>MD</placekey>
         <placekey>Massachusetts</placekey>
@@ -116,8 +116,12 @@
         <placekey>MI</placekey>
         <placekey>Minnesota</placekey>
         <placekey>MN</placekey>
+        <placekey>Mississippi</placekey>
+        <placekey>MS</placekey>
         <placekey>Missouri</placekey>
         <placekey>MO</placekey>
+        <placekey>Montana</placekey>
+        <placekey>MT</placekey>
         <placekey>Nebraska</placekey>
         <placekey>NE</placekey>
         <placekey>New Jersey</placekey>
@@ -138,6 +142,8 @@
         <placekey>OR</placekey>
         <placekey>Pennsylvania</placekey>
         <placekey>PA</placekey>
+        <placekey>Puerto Rico</placekey>
+        <placekey>PR</placekey>
         <placekey>South Carolina</placekey>
         <placekey>SC</placekey>
         <placekey>South Dakota</placekey>
@@ -290,7 +296,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     <ptvctinf>
       <sdtsterm>
         <sdtstype>Point</sdtstype>
-        <ptvctcnt>392</ptvctcnt>
+        <ptvctcnt>602</ptvctcnt>
       </sdtsterm>
     </ptvctinf>
   </spdoinfo>
@@ -705,7 +711,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180408</metd>
+    <metd>20180526</metd>
     <metc>
       <cntinfo>
         <cntperp>

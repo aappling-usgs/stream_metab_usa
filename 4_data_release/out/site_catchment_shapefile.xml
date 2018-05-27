@@ -66,9 +66,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
@@ -479,7 +477,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180522</metd>
+    <metd>20180526</metd>
     <metc>
       <cntinfo>
         <cntperp>
