@@ -560,11 +560,11 @@ attributes_daily_preds <- function(
 render_metab_metadata <- function(out_file, child_yaml, points_list, attrs_csv, parent_list, template) {
   child_list <- yaml::yaml.load_file(child_yaml)
   attr_list <- as.attr_list(attrs_csv)
-  render(filename=out_file, data=child_list, points_list, attr_list, parent_list, template=template)
+  meddle::render(filename=out_file, data=child_list, points_list, attr_list, parent_list, template=template)
 }
 
 render_metab_fit_metadata <- function(out_file, child_yaml, points_list, ent_rds, parent_list, template) {
   child_list <- yaml::yaml.load_file(child_yaml)
   ent_list <- readRDS(ent_rds)
-  render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
+  meddle::render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
 }
