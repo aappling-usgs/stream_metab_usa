@@ -19,6 +19,7 @@ packages:
 sources:
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/export_points_meta.R
+  - ../4_data_release/code/meddle_render.R
   - ../lib/load_profile.R
   
 targets:
@@ -74,11 +75,11 @@ targets:
   # -- create final metadata files --
   
   ../4_data_release/out/site_catchment_shapefile.xml:
-    command: render("../4_data_release/in/metadata_site_catchment.yaml", target_name, parent_metadata, catchment_metadata, catchment_attr, 
+    command: meddle_render("../4_data_release/in/metadata_site_catchment.yaml", target_name, parent_metadata, catchment_metadata, catchment_attr, 
       template='../4_data_release/in/fgdc_template.xml')
   
   ../4_data_release/out/site_points_shapefile.xml:
-    command: render("../4_data_release/in/metadata_site_points.yaml", target_name, parent_metadata, points_metadata, points_attr, 
+    command: meddle_render("../4_data_release/in/metadata_site_points.yaml", target_name, parent_metadata, points_metadata, points_attr, 
       template='../4_data_release/in/fgdc_template.xml')
   
   # -- SB posting: create the items to host data and metadata --

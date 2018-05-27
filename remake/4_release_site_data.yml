@@ -22,6 +22,7 @@ packages:
 sources:
   - ../4_data_release/code/prepare_site_data.R
   - ../4_data_release/code/post_data_release.R
+  - ../4_data_release/code/meddle_render.R
   - ../lib/load_profile.R
   
 targets:
@@ -51,7 +52,7 @@ targets:
   # -- create final metadata files --
   
   ../4_data_release/out/site_data.xml:
-    command: render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata,
+    command: meddle_render("../4_data_release/in/metadata_site_data.yaml", target_name, points_meta, site_data_attr, parent_metadata,
       template='../4_data_release/in/fgdc_template.xml')
 
   # -- SB posting: create the item to host data and metadata --

@@ -177,5 +177,5 @@ attributes_timeseries <- function(
 render_timeseries_metadata <- function(out_file, child_yaml, points_list, ent_rds, parent_list, template) {
   child_list <- yaml::yaml.load_file(child_yaml)
   ent_list <- readRDS(ent_rds)
-  render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
+  meddle::render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
 }
