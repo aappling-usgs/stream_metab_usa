@@ -200,7 +200,8 @@ attributes_metab_fits <- function(
   # define variables for definitions text that will be used more than once
   distrib <- 'of the post-warmup MCMC distribution of'
   n_eff <- 'Estimated effective sample size of the MCMC sampling for'
-  Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
+  Rhat <- c('Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for',
+            'Values near or below 1.05 indicate convergence of the MCMC chains.')
   dateind <- 'Integer index of a 24-hour period from 4am to the following 3:59am, modeled as a single date.'
   timeind <- 'Integer index of a time within a date, e.g., observations 15-minute resolution are given time_index values of 1 (4am) through 96 (3:45am nearly 24 hours later).'
   
@@ -447,7 +448,8 @@ attributes_metab_diagnostics <- function(
   ranges_df <- compute_ranges(data_df)
   
   # fill out the attribute table
-  Rhat <- c('R-hat statistic of the MCMC sampling for', 'Values near or below 1.05 indicate convergence of the MCMC chains.')
+  Rhat <- c('Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for',
+            'Values near or below 1.05 indicate convergence of the MCMC chains.')
   K600sig <- 'the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates'
   OIsig <- 'the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations)'
   PIsig <- 'the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model)'
@@ -503,7 +505,7 @@ attributes_daily_preds <- function(
   est <- 'Model estimate of %s. Value is the median of the post-warmup MCMC distribution.'
   CI <- '%s bound %son the 95%% credible interval around the daily %s estimate. Value is the %sth quantile of the post-warmup MCMC distribution.'
   n_eff <- 'Estimated effective sample size of the MCMC sampling for %s.'
-  Rhat <- 'R-hat statistic of the MCMC sampling for %s. Values near or below 1.05 indicate convergence of the MCMC chains.'
+  Rhat <- 'Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for %s. Values near or below 1.05 indicate convergence of the MCMC chains.'
   gpp <- 'GPP, the mean rate of gross primary productivity for this date'
   er <- 'ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration'
   K600 <- 'K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date'

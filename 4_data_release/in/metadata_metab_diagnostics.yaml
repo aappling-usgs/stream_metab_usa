@@ -19,7 +19,7 @@ abstract: >-
 
 # ----dataset details----
 process-description: >-
-  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018), 
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018),
   then key diagnostics and assessments were derived from the model outputs.
   Raw outputs and additional diagnostics are available in the "fit" output files included in this data release.
   
