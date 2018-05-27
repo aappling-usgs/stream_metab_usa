@@ -21,7 +21,7 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   
   m %>%
     xml_add_child('descript') %>%
-    xml_add_child("abstract",'{{abstract}} This data set contains the following parameters (defined below): <abscontent-template/>') %>%
+    xml_add_child("abstract",'{{abstract}}') %>%
     xml_add_sibling("purpose", '{{purpose}}')
   
   ti <- m %>%
