@@ -266,8 +266,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
             <geoform>WaterML1.1</geoform>
-            <onlink>http://waterdata.usgs.gov/nwis</onlink>
-            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+            <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <onlink>https://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -349,7 +349,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>date</attrlabl>
-        <attrdef>Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
+        <attrdef>Primary date to which the fitted values apply, YYYY-MM-DD format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -361,7 +361,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>GPP</attrlabl>
-        <attrdef>Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -421,7 +421,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>ER</attrlabl>
-        <attrdef>Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -481,7 +481,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>K600</attrlabl>
-        <attrdef>Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
