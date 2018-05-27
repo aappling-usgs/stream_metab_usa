@@ -376,7 +376,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
         <srccontr>This data source provided catchment boundaries for some sites.</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>Existing polygons were combined from various sources (see data_source attribute and Source Information). Spatial tools in the R programming language were used to perform the operations of merging  and modifying attributes. </procdesc>
+        <procdesc>Existing polygons were combined from various sources (see data_source attribute and Source Information). Spatial tools in the R programming language were used to perform the operations of merging and modifying attributes. </procdesc>
         <procdate>20180116</procdate>
       </procstep>
     </lineage>
