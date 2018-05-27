@@ -976,7 +976,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>depth</attrlabl>
-        <attrdef>Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients, where depth=cQ^f</attrdef>
+        <attrdef>Spatially averaged stream depth (m). Calculated from discharge (Q, m^3 s^-1) and the site-specific hydraulic geometry coefficients c and f, where depth=cQ^f</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1007,7 +1007,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>depth</attrlabl>
-        <attrdef>Spatially averaged stream depth. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where depth=cQ^f</attrdef>
+        <attrdef>Spatially averaged stream depth (m). Calculated from discharge (Q, m^3 s^-1) and global hydraulic geometry coefficients c and f from Raymond et al. 2012, where depth=cQ^f</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1100,7 +1100,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>veloc</attrlabl>
-        <attrdef>Stream velocity. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where velocity=kQ^m</attrdef>
+        <attrdef>Stream velocity (m s^-1). Calculated from discharge (Q, m^3 s^-1) and the site-specific hydraulic geometry coefficients k and m in site_data.tsv, where velocity=kQ^m</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1131,7 +1131,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>veloc</attrlabl>
-        <attrdef>Stream velocity. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where velocity=kQ^m</attrdef>
+        <attrdef>Stream velocity (m s^-1). Calculated from discharge (Q, m^3 s^-1) and global hydraulic geometry coefficients k and m from Raymond et al. 2012, where velocity=kQ^m</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
