@@ -266,7 +266,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
             <geoform>WaterML1.1</geoform>
-            <onlink>http://waterdata.usgs.gov/nwis/iv</onlink>
+            <onlink>http://waterdata.usgs.gov/nwis</onlink>
             <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
@@ -712,7 +712,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180526</metd>
+    <metd>20180527</metd>
     <metc>
       <cntinfo>
         <cntperp>
