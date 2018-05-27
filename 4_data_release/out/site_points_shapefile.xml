@@ -242,7 +242,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>Spatial data for site locations</enttypl>
+        <enttypl>points_shapefile.zip, containing shapefile files with suffixes .dbf, .prj, .shp, and .shx</enttypl>
         <enttypd>A points shapefile containing locations of the USGS gaging stations included in this data release. </enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>

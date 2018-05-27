@@ -32,8 +32,6 @@ process-description: >-
   The remaining daily values were computed from the sub-daily input data. These include DO.obs, DO.sat, DO.psat,
   depth, temp.water, and day.length; see "Entity and Attribute Information" in this file for details.
 process-date: 20170502
-data-name: Daily estimates of river metabolism and gas exchange
-data-description: Daily estimates of metabolism
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
@@ -43,6 +41,10 @@ build-environment: >-
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: Tab-separated values, compressed from text to .zip format
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
+
+# ----entity definition----
+data-name: daily_predictions.tsv, compressed into daily_predictions.zip
+data-description: Daily estimates of river metabolism and gas exchange.
 
 # ----spatial data----
 indirect-spatial: U.S.A.

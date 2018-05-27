@@ -26,9 +26,6 @@ process-description: >-
   or WGS84 (epsg code 4326) and were transformed to a single datum (epsg code 4326) using the rgdal package. The locations of each site 
   were combined into a single output shapefile. Details for package versions used are fount in the build environment details in Native Data Set Environment. 
 process-date: 20180116
-data-name: Spatial data for site locations
-data-description: >- 
-  A points shapefile containing locations of the USGS gaging stations included in this data release. 
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
   
@@ -51,6 +48,10 @@ usage-rules:  >-
   units of government, or others based on needs; however, they are responsible for the appropriate application 
   of the data.
 
+# ----entity definition----
+data-name: points_shapefile.zip, containing shapefile files with suffixes .dbf, .prj, .shp, and .shx
+data-description: >- 
+  A points shapefile containing locations of the USGS gaging stations included in this data release. 
 
 # ----spatial data----
 indirect-spatial: U.S.A.

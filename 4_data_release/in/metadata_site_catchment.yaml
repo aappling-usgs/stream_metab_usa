@@ -23,11 +23,6 @@ process-description: >-
   Spatial tools in the R programming language were used to perform the operations of merging 
   and modifying attributes. 
 process-date: 20180116
-data-name: Spatial data for catchment delineation
-data-description: >- 
-  Catchment polygons from various sources collated into a single shapefile.
-  Catchments approximately represent the contributing area for gaging stations. 
-  Not all stations had catchments delineated, so those included here are a subset of the total. 
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
   
@@ -50,6 +45,12 @@ usage-rules:  >-
   units of government, or others based on needs; however, they are responsible for the appropriate application 
   of the data.
 
+# ----entity definition----
+data-name: catchment_shapefile.zip, containing shapefile files with suffixes .dbf, .prj, .shp, and .shx
+data-description: >- 
+  Catchment polygons from various sources collated into a single shapefile.
+  Catchments approximately represent the contributing area for gaging stations. 
+  Not all stations had catchments delineated, so those included here are a subset of the total. 
 
 source-cites: 
   -

@@ -363,7 +363,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>Site information for river metabolism estimates</enttypl>
+        <enttypl>site_data.tsv</enttypl>
         <enttypd>Information about sites at which water quality was monitored and metabolism was estimated.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>

@@ -295,8 +295,8 @@ This overall assessment is based only on readily computable information and is i
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>diagnostics.zip.</enttypl>
-        <enttypd>Key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.</enttypd>
+        <enttypl>diagnostics.tsv, compressed into diagnostics.zip</enttypl>
+        <enttypd>Key diagnostics and overall assessments of metabolism model performance.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>

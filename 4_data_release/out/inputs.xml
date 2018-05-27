@@ -295,8 +295,8 @@ To merge the data, we began with the DO.obs observations and associated solar.ti
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>nwis_SITENUM_input.zip for 356 values of SITENUM</enttypl>
-        <enttypd>Model input data for estimating metabolism.</enttypd>
+        <enttypl>nwis_SITENUM_input.tsv, compressed into nwis_SITENUM_input.zip, for 356 values of SITENUM (the USGS site ID)</enttypl>
+        <enttypd>Model input data as combined and formatted for estimating metabolism.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>

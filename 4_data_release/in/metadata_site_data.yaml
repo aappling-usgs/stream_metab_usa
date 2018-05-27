@@ -62,8 +62,6 @@ process-description: >-
   those four cases are represented by site flag values of 95, 80, 50, or 0, respectively,
   such that a value of 95 indicates the least probable interference from a structure of a given type.
 process-date: 20171110
-data-name: Site information for river metabolism estimates
-data-description: Information about sites at which water quality was monitored and metabolism was estimated.
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
@@ -73,6 +71,10 @@ build-environment: >-
   meddle version 0.0.6; mda.streams version 0.10.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: Tab-separated values
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
+
+# ----entity definition----
+data-name: site_data.tsv
+data-description: Information about sites at which water quality was monitored and metabolism was estimated.
 
 # ----spatial data----
 indirect-spatial: U.S.A.

@@ -319,8 +319,8 @@ The remaining daily values were computed from the sub-daily input data. These in
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>Daily estimates of river metabolism and gas exchange</enttypl>
-        <enttypd>Daily estimates of metabolism</enttypd>
+        <enttypl>daily_predictions.tsv, compressed into daily_predictions.zip</enttypl>
+        <enttypd>Daily estimates of river metabolism and gas exchange.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>

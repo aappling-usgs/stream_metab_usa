@@ -293,8 +293,8 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>config.zip</enttypl>
-        <enttypd>Model configurations for estimating metabolism. Configuration parameters can be</enttypd>
+        <enttypl>config.tsv, compressed into config.zip</enttypl>
+        <enttypd>Model configurations for estimating metabolism.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>

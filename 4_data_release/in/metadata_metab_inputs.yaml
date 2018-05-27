@@ -39,8 +39,6 @@ process-description: >-
   that had not-quite-matching timestamps. We limited linear interpolation to mismatches or data gaps of no more than 3 hours;
   entire data rows were excluded for any time points during which one or more variables had a data gap greater than 3 hours.
 process-date: 20170406
-data-name: nwis_SITENUM_input.zip for 356 values of SITENUM
-data-description: Model input data for estimating metabolism.
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
@@ -50,6 +48,10 @@ build-environment: >-
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: Tab-separated values, compressed from text to .zip format
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
+
+# ----entity definition----
+data-name: nwis_SITENUM_input.tsv, compressed into nwis_SITENUM_input.zip, for 356 values of SITENUM (the USGS site ID)
+data-description: Model input data as combined and formatted for estimating metabolism.
 
 # ----spatial data----
 indirect-spatial: U.S.A.

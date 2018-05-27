@@ -33,11 +33,6 @@ process-description: >-
   Additional variables were calculated from these raw sources using data-preparation functions from the streamMetabolizer R package
   (see Source Citations for Appling et al. 2017, Garcia and Gordon 1992, and Raymond et al. 2012).
 process-date: 20170101
-data-name: nwis_SITENUM_timeseries.zip for 753 SITENUMs (NWIS site IDs)
-data-description: >-
-  Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism.
-  Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations
-  and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
