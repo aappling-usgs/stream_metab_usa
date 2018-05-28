@@ -25,7 +25,7 @@ process-description: >-
   site service https://waterservices.usgs.gov/rest/Site-Service.html
   and usually correspond to the fields from that service of: 
   site_no (prefixed here with "nwis_"), site_no (without prefix),
-  station_nm, dec_lat_va, dec_long_va, dec_coord_datum_cd, site_tp_cd (called "site_type" here), alt_va, and alt_datum_cd.
+  station_nm, dec_lat_va, dec_long_va, dec_coord_datum_cd, alt_va, alt_datum_cd, and site_tp_cd (called "site_type" here).
   The only exceptions are for sites for which dec_lat_va and dec_lon_va were unavailable in the NWIS database, 
   in which case we parsed coordinate information from NWIS fields lat_va, long_va, and coord_datum_cd into the
   decimal coordinate format of other sites.
@@ -101,7 +101,7 @@ source-cites:
       National Inventory of Dams
     pubdate: 2010
     file-format: Shapefile and browseable website
-    link: http://nid.usace.army.mil/
+    link: http://nid.usace.army.mil
     sngdate:
       caldate: 20100801
     srccurr: access date
