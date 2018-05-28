@@ -52,11 +52,20 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   k <- xml_add_child(m, 'keywords') 
   
   k %>% 
-    xml_add_child('theme', "
-        <themekt>none</themekt>
-        {{#themekeywords}}
-        <themekey>{{.}}</themekey>
-        {{/themekeywords}}")
+    xml_add_child('theme') %>% 
+    xml_add_child('themekt','USGS Biocomplexity Thesaurus') %>% 
+    xml_add_sibling('themekey','Water courses') %>% 
+    xml_add_sibling('themekey','Rivers') %>% 
+    xml_add_sibling('themekey','Streams') %>% 
+    xml_add_sibling('themekey','Energy metabolism') %>% 
+    xml_add_sibling('themekey','Primary production') %>% 
+    xml_add_sibling('themekey','Photosynthesis') %>% 
+    xml_add_sibling('themekey','Aerobic respiration') %>% 
+    xml_add_sibling('themekey','Gas exchange') %>% 
+    xml_add_sibling('themekey','Carbon') %>% 
+    xml_add_sibling('themekey','Carbon dioxide') %>% 
+    xml_add_sibling('themekey','Oxygen') %>% 
+    xml_add_sibling('themekey','Dissolved oxygen')
   
   k %>% 
     xml_add_child('theme') %>% 
