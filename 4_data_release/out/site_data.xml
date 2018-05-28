@@ -188,7 +188,7 @@ This dataset is part of a larger data release of metabolism model inputs and out
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
-    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
+    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS T.C. Chamberlin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
 The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
 R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.6; mda.streams version 0.10.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
@@ -215,8 +215,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
             <geoform>WaterML1.1 and browseable website</geoform>
-            <onlink>http://waterdata.usgs.gov/nwis</onlink>
-            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+            <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <onlink>https://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -370,229 +370,229 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
       </enttyp>
       <attr>
         <attrlabl>site_name</attrlabl>
-        <attrdef> Unique site identifiers for this dataset, formed by prefixing nwis_id (next attribute) with 'nwis_'</attrdef>
-        <attrdefs> Producer defined</attrdefs>
+        <attrdef>Unique site identifiers for this dataset, formed by prefixing nwis_id (next attribute) with 'nwis_'</attrdef>
+        <attrdefs>Producer defined</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>nwis_id</attrlabl>
-        <attrdef> Site number in National Water Information System</attrdef>
-        <attrdefs> National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/faq/sites/do-station-numbers-have-any-particular-meaning</attrdefs>
+        <attrdef>Site number in National Water Information System</attrdef>
+        <attrdefs>National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/faq/sites/do-station-numbers-have-any-particular-meaning</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>nhdplus_id</attrlabl>
-        <attrdef> Common identifier (ComID) of the stream reach containing the monitoring site</attrdef>
-        <attrdefs> National Hydrography Dataset Plus, Version 2 (NHDPlusV2), http://www.horizon-systems.com/NHDPlus/NHDPlusV2_home.php</attrdefs>
+        <attrdef>Common identifier (ComID) of the stream reach containing the monitoring site</attrdef>
+        <attrdefs>National Hydrography Dataset Plus, Version 2 (NHDPlusV2), http://www.horizon-systems.com/NHDPlus/NHDPlusV2_home.php</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>long_name</attrlabl>
-        <attrdef> Extended site name</attrdef>
-        <attrdefs> National Water Information System, United States Geological Survey</attrdefs>
+        <attrdef>Extended site name</attrdef>
+        <attrdefs>National Water Information System, United States Geological Survey</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>lat</attrlabl>
-        <attrdef> Decimal latitude</attrdef>
-        <attrdefs> NA</attrdefs>
+        <attrdef>Decimal latitude</attrdef>
+        <attrdefs>NA</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> -90</rdommin>
-            <rdommax> 90</rdommax>
-            <attrunit> degrees N</attrunit>
+            <rdommin>18.4</rdommin>
+            <rdommax>60.4</rdommax>
+            <attrunit>degrees N</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>lon</attrlabl>
-        <attrdef> Decimal longitude</attrdef>
-        <attrdefs> NA</attrdefs>
+        <attrdef>Decimal longitude</attrdef>
+        <attrdefs>NA</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> -180</rdommin>
-            <rdommax> 180</rdommax>
-            <attrunit> degrees E</attrunit>
+            <rdommin>-155</rdommin>
+            <rdommax>-66.1</rdommax>
+            <attrunit>degrees E</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>coord_datum</attrlabl>
-        <attrdef> Coordinate datum for lat and lon</attrdef>
-        <attrdefs> Coordinate Datum Codes (dec_coord_datum_cd or coord_datum_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/coord_datum_cd</attrdefs>
+        <attrdef>Coordinate datum for lat and lon</attrdef>
+        <attrdefs>Coordinate Datum Codes (dec_coord_datum_cd or coord_datum_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/coord_datum_cd</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>alt</attrlabl>
-        <attrdef> Altitude above mean sea level</attrdef>
-        <attrdefs> National Water Information System, United States Geological Survey, https://waterdata.usgs.gov/usa/nwis/current?submitted_form=introduction</attrdefs>
+        <attrdef>Altitude above mean sea level</attrdef>
+        <attrdefs>National Water Information System, United States Geological Survey, https://waterdata.usgs.gov/usa/nwis/current?submitted_form=introduction</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> feet</attrunit>
+            <rdommin>-14.4</rdommin>
+            <rdommax>7380</rdommax>
+            <attrunit>ft</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>alt_datum</attrlabl>
-        <attrdef> Vertical datum</attrdef>
-        <attrdefs> Vertical Datum Codes (alt_datum_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/code/alt_datum_cd_query?fmt=html</attrdefs>
+        <attrdef>Vertical datum</attrdef>
+        <attrdefs>Vertical Datum Codes (alt_datum_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/code/alt_datum_cd_query?fmt=html</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>site_type</attrlabl>
-        <attrdef> Type of water body at monitoring site</attrdef>
-        <attrdefs> Site Type Codes (site_tp_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/site_tp_cd</attrdefs>
+        <attrdef>Type of water body at monitoring site</attrdef>
+        <attrdefs>Site Type Codes (site_tp_cd), National Water Information System, United States Geological Survey, https://help.waterdata.usgs.gov/site_tp_cd</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>NA</rdommin>
+            <rdommax>NA</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>dvqcoefs.c</attrlabl>
-        <attrdef> Empirical coefficient, c, of depth estimation equation, where depth=cQ^f</attrdef>
-        <attrdefs>NA</attrdefs>
+        <attrdef>Empirical coefficient, c, of depth estimation equation, where depth=cQ^f, depth is in m, and Q is discharge in m^3 s^-1</attrdef>
+        <attrdefs>Gomez-Velez et al. 2015</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0.114</rdommin>
+            <rdommax>7.76</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>dvqcoefs.f</attrlabl>
-        <attrdef> Empirical coefficient, f, of depth estimation equation, where depth=cQ^f</attrdef>
-        <attrdefs>NA</attrdefs>
+        <attrdef>Empirical coefficient, f, of depth estimation equation, where depth=cQ^f, depth is in m, and Q is discharge in m^3 s^-1</attrdef>
+        <attrdefs>Gomez-Velez et al. 2015</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0.0932</rdommin>
+            <rdommax>0.655</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>dvqcoefs.a</attrlabl>
-        <attrdef> Empirical coefficient, a, of width estimation equation, where width=aQ^b</attrdef>
-        <attrdefs>NA</attrdefs>
+        <attrdef>Empirical coefficient, a, of width estimation equation, where width=aQ^b, width is in m, and Q is discharge in m^3 s^-1</attrdef>
+        <attrdefs>Gomez-Velez et al. 2015</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>2.2</rdommin>
+            <rdommax>469</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>dvqcoefs.b</attrlabl>
-        <attrdef> Empirical coefficient, b, of width estimation equation, where width=aQ^b</attrdef>
-        <attrdefs>NA</attrdefs>
+        <attrdef>Empirical coefficient, b, of width estimation equation, where width=aQ^b, width is in m, and Q is discharge in m^3 s^-1</attrdef>
+        <attrdefs>Gomez-Velez et al. 2015</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0.00756</rdommin>
+            <rdommax>0.437</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>dvqcoefs.k</attrlabl>
-        <attrdef> Empirical coefficient, k, of velocity estimation equation, where velocity=kQ^m</attrdef>
-        <attrdefs>NA</attrdefs>
+        <attrdef>Empirical coefficient, k, of velocity estimation equation, where velocity=kQ^m, velocity is in m s^-1, and Q is discharge in m^3 s^-1</attrdef>
+        <attrdefs>Gomez-Velez et al. 2015</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0.00308</rdommin>
+            <rdommax>1.62</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>dvqcoefs.m</attrlabl>
-        <attrdef> Empirical coefficient, m, of velocity estimation equation, where velocity=kQ^m</attrdef>
-        <attrdefs>NA</attrdefs>
+        <attrdef>Empirical coefficient, m, of velocity estimation equation, where velocity=kQ^m, velocity is in m s^-1, and Q is discharge in m^3 s^-1</attrdef>
+        <attrdefs>Gomez-Velez et al. 2015</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> NA</rdommin>
-            <rdommax> NA</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0.1</rdommin>
+            <rdommax>0.53</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>struct.canal_flag</attrlabl>
-        <attrdef> Flag for presence of NHDPlusV2-identified canal or ditch upstream of probe location. 95: nearest canal or ditch is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest canal or ditch is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest canal or ditch is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest canal or ditch is closer than the distance represented by 50.</attrdef>
-        <attrdefs> Producer defined</attrdefs>
+        <attrdef>Flag for presence of NHDPlusV2-identified canal or ditch upstream of probe location. 95: nearest canal or ditch is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest canal or ditch is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest canal or ditch is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest canal or ditch is closer than the distance represented by 50.</attrdef>
+        <attrdefs>Producer defined</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> 0</rdommin>
-            <rdommax> 95</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0</rdommin>
+            <rdommax>95</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>struct.dam_flag</attrlabl>
-        <attrdef> Flag for presence of dam upstream of probe location.  95: nearest dam is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest dam is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest dam is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest dam is closer than the distance represented by 50.</attrdef>
-        <attrdefs> Producer defined</attrdefs>
+        <attrdef>Flag for presence of dam upstream of probe location. 95: nearest dam is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest dam is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest dam is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest dam is closer than the distance represented by 50.</attrdef>
+        <attrdefs>Producer defined</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> 0</rdommin>
-            <rdommax> 95</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0</rdommin>
+            <rdommax>95</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>struct.npdes_flag</attrlabl>
-        <attrdef> Flag for presence of NPDES point discharge upstream of probe location. 95: nearest NPDES point is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest NPDES point is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest NPDES point is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest NPDES point is closer than the distance represented by 50.</attrdef>
-        <attrdefs> Producer defined</attrdefs>
+        <attrdef>Flag for presence of NPDES point discharge upstream of probe location. 95: nearest NPDES point is beyond the 95th quantile of daily average distances to 80% oxygen turnover. 80: nearest NPDES point is beyond the 80th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 95). 50: nearest NPDES point is beyond the 50th quantile of daily average distances to 80% oxygen turnover (and closer than the distance represented by 80). 0: nearest NPDES point is closer than the distance represented by 50.</attrdef>
+        <attrdefs>Producer defined</attrdefs>
         <attrdomv>
           <rdom>
-            <rdommin> 0</rdommin>
-            <rdommax> 95</rdommax>
-            <attrunit> NA</attrunit>
+            <rdommin>0</rdommin>
+            <rdommax>95</rdommax>
+            <attrunit>NA</attrunit>
           </rdom>
         </attrdomv>
       </attr>

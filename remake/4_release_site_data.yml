@@ -21,6 +21,7 @@ packages:
   
 sources:
   - ../4_data_release/code/prepare_site_data.R
+  - ../4_data_release/code/site_data_meta.R
   - ../4_data_release/code/post_data_release.R
   - ../4_data_release/code/meddle_render.R
   - ../lib/load_profile.R
@@ -42,7 +43,7 @@ targets:
   # -- create tables with partial info to complete manually --
   
   ../4_data_release/in/site_data_attr.csv:
-    command: attribute_skeleton(meta_all_df, target_name)
+    command: describe_site_data_attrs(meta_all_df, target_name)
     
   # -- read manual entry and extracted metadata -- 
   
