@@ -22,7 +22,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This dataset provides model configurations for estimating metabolism.
+      <abstract>This dataset provides model configurations for estimating metabolism. The format of the configuration file is arbitrary and specific to this analysis, and the format need not be replicated to use streamMetabolizer; however, this tabular format is useful because it allows for the reading by both humans and computers of (1) the combinations of sites and temporal resolutions for which models were run, (2) the timeseries data that were selected and combined to prepare the input to each model, and (3) the model specifications and parameters that were used in each model application.
 This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
@@ -50,14 +50,19 @@ This dataset is part of a larger data release of metabolism model inputs and out
     </spdom>
     <keywords>
       <theme>
-        <themekt>none</themekt>
-        <themekey>water</themekey>
-        <themekey>streams</themekey>
-        <themekey>rivers</themekey>
-        <themekey>metabolism</themekey>
-        <themekey>primary productivity</themekey>
-        <themekey>carbon</themekey>
-        <themekey>respiration</themekey>
+        <themekt>USGS Biocomplexity Thesaurus</themekt>
+        <themekey>Water courses</themekey>
+        <themekey>Rivers</themekey>
+        <themekey>Streams</themekey>
+        <themekey>Energy metabolism</themekey>
+        <themekey>Primary production</themekey>
+        <themekey>Photosynthesis</themekey>
+        <themekey>Aerobic respiration</themekey>
+        <themekey>Gas exchange</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Carbon dioxide</themekey>
+        <themekey>Oxygen</themekey>
+        <themekey>Dissolved oxygen</themekey>
       </theme>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
@@ -260,7 +265,8 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
         <srccontr>This software source provided the metabolism model implementation used to generate metabolism estimates for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access current versions of the software from the U.S. Geological Survey archive.</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan". This configuration file was generated 2017-04-06 15:04:23 +0000 and was originally labeled with tag 1.0.2.</procdesc>
+        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the input data and model specifications noted in this configuration file.
+The configuration file was generated on 2017-04-06 and includes all 433 combinations of sites and temporal resolutions for which there was at least one day of complete data available for modeling. Although generated programatically, this configuration file represents a collection of manual decisions about which input data sources to use, which model variant to run, and what numbers constitute reasonable a priori beliefs (Bayesian priors) about the parameters to be estimated. These decisions are thoroughly explained and justified in Appling et al. 2018.</procdesc>
         <procdate>20170406</procdate>
       </procstep>
     </lineage>
@@ -294,7 +300,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
     <detailed>
       <enttyp>
         <enttypl>config.tsv, compressed into config.zip</enttypl>
-        <enttypd>Model configurations for estimating metabolism.</enttypd>
+        <enttypd>Model configurations for estimating metabolism. Each row represents one model.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -530,7 +536,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180527</metd>
+    <metd>20180528</metd>
     <metc>
       <cntinfo>
         <cntperp>

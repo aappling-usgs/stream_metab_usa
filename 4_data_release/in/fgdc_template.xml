@@ -53,10 +53,20 @@
     </spdom>
     <keywords>
       <theme>
-        <themekt>none</themekt>
-        {{#themekeywords}}
-        <themekey>{{.}}</themekey>
-        {{/themekeywords}}</theme>
+        <themekt>USGS Biocomplexity Thesaurus</themekt>
+        <themekey>Water courses</themekey>
+        <themekey>Rivers</themekey>
+        <themekey>Streams</themekey>
+        <themekey>Energy metabolism</themekey>
+        <themekey>Primary production</themekey>
+        <themekey>Photosynthesis</themekey>
+        <themekey>Aerobic respiration</themekey>
+        <themekey>Gas exchange</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Carbon dioxide</themekey>
+        <themekey>Oxygen</themekey>
+        <themekey>Dissolved oxygen</themekey>
+      </theme>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
         <themekey>environment</themekey>

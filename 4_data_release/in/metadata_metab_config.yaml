@@ -6,6 +6,12 @@ document-creator: "Alison P Appling"
 title: Model configurations for estimating metabolism
 abstract: >-
   This dataset provides model configurations for estimating metabolism.
+  The format of the configuration file is arbitrary and specific to this analysis, and
+  the format need not be replicated to use streamMetabolizer; however, this tabular format
+  is useful because it allows for the reading by both humans and computers of
+  (1) the combinations of sites and temporal resolutions for which models were run,
+  (2) the timeseries data that were selected and combined to prepare the input to each model, and
+  (3) the model specifications and parameters that were used in each model application.
   
   This dataset is part of a larger data release of metabolism model inputs and outputs
   for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).
@@ -18,8 +24,15 @@ abstract: >-
 
 # ----dataset details----
 process-description: >-
-  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan".
-  This configuration file was generated 2017-04-06 15:04:23 +0000 and was originally labeled with tag 1.0.2.
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018)
+  using the input data and model specifications noted in this configuration file.
+  
+  The configuration file was generated on 2017-04-06 and includes all 433 combinations of sites and
+  temporal resolutions for which there was at least one day of complete data available for modeling.
+  Although generated programatically, this configuration file represents a collection of manual
+  decisions about which input data sources to use, which model variant to run, and what numbers
+  constitute reasonable a priori beliefs (Bayesian priors) about the parameters to be estimated.
+  These decisions are thoroughly explained and justified in Appling et al. 2018.
 process-date: 20170406
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
@@ -33,7 +46,7 @@ metadata-date: !expr format(Sys.time(),'%Y%m%d')
 
 # ----entity definition----
 data-name: config.tsv, compressed into config.zip
-data-description: Model configurations for estimating metabolism.
+data-description: Model configurations for estimating metabolism. Each row represents one model.
 
 # ----spatial data----
 indirect-spatial: U.S.A.
