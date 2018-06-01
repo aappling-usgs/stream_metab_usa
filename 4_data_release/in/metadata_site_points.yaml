@@ -40,7 +40,7 @@ usage-rules:  >-
   from these data. The dataset is public information and may be interpreted by all organizations, agencies, 
   units of government, or others based on needs; however, they are responsible for the appropriate application 
   of the data.
-
+accur-test: No formal attribute accuracy tests were conducted.
 
 # ----spatial data----
 indirect-spatial: U.S.A.

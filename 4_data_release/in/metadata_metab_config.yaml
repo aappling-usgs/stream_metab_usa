@@ -21,6 +21,7 @@ build-environment: >-
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: tab-separated values, compressed from text to .zip format
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
+accur-test: No formal attribute accuracy tests were conducted.
 
 # ----spatial data----
 indirect-spatial: U.S.A.
