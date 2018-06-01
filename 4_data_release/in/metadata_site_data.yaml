@@ -17,7 +17,9 @@ process-description: >-
   station_nm, dec_lat_va, dec_long_va, dec_coord_datum_cd, site_tp_cd (called "site_type" here), alt_va, and alt_datum_cd.
   The only exceptions are for sites for which dec_lat_va and dec_lon_va were unavailable in the NWIS database, 
   in which case we parsed coordinate information from NWIS fields lat_va, long_va, and coord_datum_cd into the
-  decimal coordinate format of other sites.
+  decimal coordinate format of other sites. Despite these values originating from the NWIS site service, we did manually 
+  evaluate accuracy of many fields, and found some "0" values in alt_va to be suspect. Caution is encouraged for using the 
+  alt_va field. 
   
   2. The field nhdplus_id links USGS sites to corresponding reach codes (ComID's) in the
   National Hydrography Dataset, Version 2 (see Source Citation for NHDPlusV2). 

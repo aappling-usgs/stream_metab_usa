@@ -325,7 +325,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <srccontr>This source provided regionalized hydraulic geometry coefficients for each site.</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>1. The fields site_name, nwis_id, long_name, lat, lon, coord_datum, alt, alt_datum, and site_type  are site-specific metadata extracted from the U.S. Geological Survey's (USGS) National Water Information System's (NWIS; see Source Citation for USGS_NWIS)  site service https://waterservices.usgs.gov/rest/Site-Service.html and usually correspond to the fields from that service of:  site_no (prefixed here with "nwis_"), site_no (without prefix), station_nm, dec_lat_va, dec_long_va, dec_coord_datum_cd, site_tp_cd (called "site_type" here), alt_va, and alt_datum_cd. The only exceptions are for sites for which dec_lat_va and dec_lon_va were unavailable in the NWIS database,  in which case we parsed coordinate information from NWIS fields lat_va, long_va, and coord_datum_cd into the decimal coordinate format of other sites.
+        <procdesc>1. The fields site_name, nwis_id, long_name, lat, lon, coord_datum, alt, alt_datum, and site_type  are site-specific metadata extracted from the U.S. Geological Survey's (USGS) National Water Information System's (NWIS; see Source Citation for USGS_NWIS)  site service https://waterservices.usgs.gov/rest/Site-Service.html and usually correspond to the fields from that service of:  site_no (prefixed here with "nwis_"), site_no (without prefix), station_nm, dec_lat_va, dec_long_va, dec_coord_datum_cd, site_tp_cd (called "site_type" here), alt_va, and alt_datum_cd. The only exceptions are for sites for which dec_lat_va and dec_lon_va were unavailable in the NWIS database,  in which case we parsed coordinate information from NWIS fields lat_va, long_va, and coord_datum_cd into the decimal coordinate format of other sites. Despite these values originating from the NWIS site service, we did manually  evaluate accuracy of many fields, and found some "0" values in alt_va to be suspect. Caution is encouraged for using the  alt_va field. 
 2. The field nhdplus_id links USGS sites to corresponding reach codes (ComID's) in the National Hydrography Dataset, Version 2 (see Source Citation for NHDPlusV2).  The nhdplus_id is the ComID of the NHDPlusV2 reach for which the centerpoint latitude and longitude most closely match the latitude and longitude of each USGS site; locations were matched using a combination of automated and visual inspection of maps and flowlines.
 3. The fields dvqcoefs.c, dvqcoefs.f, dvqcoefs.a, dvqcoefs.b, dvqcoefs.k, dvqcoefs.m are hydraulic geometry coefficients describing the at-a-station relationships among river discharge, velocity, width, and depth. These were obtained from an analysis by Gomez-Velez et al. 2015 (see Source Citation) and are regionalized at the HUC2 (USGS Hydrologic Unit Code 2) level based on several thousand measurements of instantaneous low-flow and bankful depths and widths in the conterminous United States.
 4. The fields struct.canal_flag, struct.dam_flag, struct.npdes_flag are flags for likely site suitability for metabolism modeling, based on site proximity to infrastructure that could affect metabolism estimates.
@@ -637,7 +637,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180522</metd>
+    <metd>20180601</metd>
     <metc>
       <cntinfo>
         <cntperp>
