@@ -17,12 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Key diagnostics and overall assessments of metabolism model performance</title>
-        <geoform>tab-separated values, compressed from text to .zip format</geoform>
+        <geoform>Tab-separated values, compressed from text to .zip format</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site, resolution, K600_daily_sigma_Rhat, err_obs_iid_sigma_Rhat, err_proc_iid_sigma_Rhat, K_median, K_range, neg_GPP, pos_ER, run_hrs, model_confidence, site_min_confidence, site_confidence, .</abstract>
+      <abstract>This dataset provides key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -42,21 +43,26 @@
       <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
-        <eastbc>-71.2733903</eastbc>
-        <northbc>26.4642778</northbc>
-        <southbc>60.2036591</southbc>
+        <eastbc>-66.1160552</eastbc>
+        <northbc>60.3699586</northbc>
+        <southbc>18.4070314</southbc>
       </bounding>
     </spdom>
     <keywords>
       <theme>
-        <themekt>none</themekt>
-        <themekey>water</themekey>
-        <themekey>streams</themekey>
-        <themekey>rivers</themekey>
-        <themekey>metabolism</themekey>
-        <themekey>primary productivity</themekey>
-        <themekey>carbon</themekey>
-        <themekey>respiration</themekey>
+        <themekt>USGS Biocomplexity Thesaurus</themekt>
+        <themekey>Water courses</themekey>
+        <themekey>Rivers</themekey>
+        <themekey>Streams</themekey>
+        <themekey>Energy metabolism</themekey>
+        <themekey>Primary production</themekey>
+        <themekey>Photosynthesis</themekey>
+        <themekey>Aerobic respiration</themekey>
+        <themekey>Gas exchange</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Carbon dioxide</themekey>
+        <themekey>Oxygen</themekey>
+        <themekey>Dissolved oxygen</themekey>
       </theme>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
@@ -66,9 +72,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
@@ -88,7 +92,7 @@
         <placekey>CT</placekey>
         <placekey>Delaware</placekey>
         <placekey>DE</placekey>
-        <placekey>District Of Columbia</placekey>
+        <placekey>District of Columbia</placekey>
         <placekey>DC</placekey>
         <placekey>Florida</placekey>
         <placekey>FL</placekey>
@@ -108,6 +112,8 @@
         <placekey>KY</placekey>
         <placekey>Louisiana</placekey>
         <placekey>LA</placekey>
+        <placekey>Maine</placekey>
+        <placekey>ME</placekey>
         <placekey>Maryland</placekey>
         <placekey>MD</placekey>
         <placekey>Massachusetts</placekey>
@@ -116,8 +122,12 @@
         <placekey>MI</placekey>
         <placekey>Minnesota</placekey>
         <placekey>MN</placekey>
+        <placekey>Mississippi</placekey>
+        <placekey>MS</placekey>
         <placekey>Missouri</placekey>
         <placekey>MO</placekey>
+        <placekey>Montana</placekey>
+        <placekey>MT</placekey>
         <placekey>Nebraska</placekey>
         <placekey>NE</placekey>
         <placekey>New Jersey</placekey>
@@ -138,6 +148,8 @@
         <placekey>OR</placekey>
         <placekey>Pennsylvania</placekey>
         <placekey>PA</placekey>
+        <placekey>Puerto Rico</placekey>
+        <placekey>PR</placekey>
         <placekey>South Carolina</placekey>
         <placekey>SC</placekey>
         <placekey>South Dakota</placekey>
@@ -181,7 +193,7 @@
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
-    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
+    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS T.C. Chamberlin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
 The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
 R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
@@ -210,7 +222,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Maite Arroita</origin>
             <pubdate>2018</pubdate>
             <title>Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>https://dx.doi.org/10.1002/2017JG004140</onlink>
           </citeinfo>
         </srccite>
@@ -235,7 +247,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>R source code</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -253,7 +265,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
         <srccontr>This software source provided the metabolism model implementation used to generate metabolism estimates for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access current versions of the software from the U.S. Geological Survey archive.</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018),  then key diagnostics and assessments were derived from the model outputs. Raw outputs and additional diagnostics are available in the "fit" output files included in this data release.
+        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2017, 2018), then key diagnostics and assessments were derived from the model outputs. Raw outputs and additional diagnostics are available in the "fit" output files included in this data release.
 A final automated model assessment of High (H), Medium (M), or Low (L) overall confidence in each model was computed from these key diagnostics using a decision tree: Models were assigned Low confidence if K600_daily_sigma_Rhat &gt; 1.2, err_proc_iid_sigma_Rhat &gt; 1.2, K_range &gt; 50, neg_GPP &gt; 50, and/or pos_ER &gt; 50. Models were assigned Medium confidence if they were not assigned Low confidence, and K_range &gt; 15, neg_GPP, and/or pos_ER &gt; 25. Models were assigned High confidence if they were not assigned Low or Medium confidence.
 This overall assessment is based only on readily computable information and is intended only as guidance, such that an expert familiar with the oxygen data and site characteristics could reasonably override the assessment given here.</procdesc>
         <procdate>20170406</procdate>
@@ -266,7 +278,7 @@ This overall assessment is based only on readily computable information and is i
     <ptvctinf>
       <sdtsterm>
         <sdtstype>Point</sdtstype>
-        <ptvctcnt>392</ptvctcnt>
+        <ptvctcnt>602</ptvctcnt>
       </sdtsterm>
     </ptvctinf>
   </spdoinfo>
@@ -288,8 +300,8 @@ This overall assessment is based only on readily computable information and is i
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>diagnostics.zip.</enttypl>
-        <enttypd>Key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.</enttypd>
+        <enttypl>diagnostics.tsv, compressed into diagnostics.zip</enttypl>
+        <enttypd>Key diagnostics and overall assessments of metabolism model performance.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -318,7 +330,7 @@ This overall assessment is based only on readily computable information and is i
       </attr>
       <attr>
         <attrlabl>K600_daily_sigma_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the K600_daily_sigma parameter, giving the fitted estimate of the standard deviation of K600_daily values relative to the exp(K600_daily_predlog) values on the same dates. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -330,7 +342,7 @@ This overall assessment is based only on readily computable information and is i
       </attr>
       <attr>
         <attrlabl>err_obs_iid_sigma_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the err_obs_iid_sigma parameter, giving the fitted standard deviation of observation errors (differences between observed and modeled oxygen concentrations). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -342,7 +354,7 @@ This overall assessment is based only on readily computable information and is i
       </attr>
       <attr>
         <attrlabl>err_proc_iid_sigma_Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for the err_proc_iid_sigma parameter, giving the fitted standard deviation of process errors (differences between rates of oxygen concentration change as modeled by the overall state-space model and the deterministic component of the model). Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -473,7 +485,7 @@ This overall assessment is based only on readily computable information and is i
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, compressed from text to .zip format</formname>
+          <formname>Tab-separated values, compressed from text to .zip format</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -489,7 +501,7 @@ This overall assessment is based only on readily computable information and is i
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180323</metd>
+    <metd>20180528</metd>
     <metc>
       <cntinfo>
         <cntperp>

@@ -4,6 +4,20 @@ document-creator: "Alison P Appling"
 
 # ----data release----
 title: Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism
+abstract: >-
+  This dataset provides timeseries data collected or computed from outside sources.
+  This compilation of data is intended for use in estimating or interpreting metabolism.
+  Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations
+  and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
+  
+  This dataset is part of a larger data release of metabolism model inputs and outputs
+  for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).
+  The complete release includes:
+  modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient;
+  model input data and alternative input data;
+  model fit and diagnostic information;
+  site catchment boundaries and site point locations; and
+  potential predictors of metabolism such as discharge and light availability.
 
 # ----dataset details----
 process-description: >-
@@ -19,11 +33,6 @@ process-description: >-
   Additional variables were calculated from these raw sources using data-preparation functions from the streamMetabolizer R package
   (see Source Citations for Appling et al. 2017, Garcia and Gordon 1992, and Raymond et al. 2012).
 process-date: 20170101
-data-name: nwis_SITENUM_timeseries.zip for 753 SITENUMs (NWIS site IDs)
-data-description: >-
-  Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism.
-  Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations
-  and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
@@ -31,7 +40,9 @@ build-environment: >-
   
   R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; sbtools version 1.1.6;
   dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
-file-format: Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.
+file-format: >-
+  Tab-separated values, one file per variable, up to 25 files per site, for 753 sites.
+  Files for each site are packaged and compressed in .zip format.
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
 
 # ----spatial data----
@@ -47,7 +58,7 @@ source-cites:
     title: National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)
     pubdate: 2016
     file-format: WaterML1.1
-    link: ['http://waterdata.usgs.gov/nwis/iv', 'http://dx.doi.org/10.5066/F7P55KJN']
+    link: ['https://waterdata.usgs.gov/nwis', 'https://dx.doi.org/10.5066/F7P55KJN']
     rngdates:
       begdate: 2007
       enddate: 2017

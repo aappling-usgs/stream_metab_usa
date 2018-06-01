@@ -115,10 +115,10 @@ attributes_timeseries <- function(
     'par_calcSw', 'Photosynthetically active radiation. Calculated from sw_nldas (or sw_gldas when sw_nldas unavailable) with streamMetabolizer convert_SW_to_PAR function', 'This release',
     'par_calcLatSw', 'Photosynthetically active radiation. Merger of par_calcLat and par_calcSw using streamMetabolizer calc_light_merged function', 'This release',
     'baro_calcElev', 'Surface pressure. Calculated from site elevation using streamMetabolizer calc_air_pressure function', 'This release',
-    'depth_calcDischHarvey', 'Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients, where depth=cQ^f', 'This release',
-    'depth_calcDischRaymond', 'Spatially averaged stream depth. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where depth=cQ^f', 'This release',
-    'veloc_calcDischHarvey', 'Stream velocity. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where velocity=kQ^m', 'This release',
-    'veloc_calcDischRaymond', 'Stream velocity. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where velocity=kQ^m', 'This release',
+    'depth_calcDischHarvey', 'Spatially averaged stream depth (m). Calculated from discharge (Q, m^3 s^-1) and the site-specific hydraulic geometry coefficients c and f, where depth=cQ^f', 'This release',
+    'depth_calcDischRaymond', 'Spatially averaged stream depth (m). Calculated from discharge (Q, m^3 s^-1) and global hydraulic geometry coefficients c and f from Raymond et al. 2012, where depth=cQ^f', 'This release',
+    'veloc_calcDischHarvey', 'Stream velocity (m s^-1). Calculated from discharge (Q, m^3 s^-1) and the site-specific hydraulic geometry coefficients k and m in site_data.tsv, where velocity=kQ^m', 'This release',
+    'veloc_calcDischRaymond', 'Stream velocity (m s^-1). Calculated from discharge (Q, m^3 s^-1) and global hydraulic geometry coefficients k and m from Raymond et al. 2012, where velocity=kQ^m', 'This release',
     
     # calculated, daily
     'doamp_calcDAmp', 'Daily amplitude in dissolved oxygen percent saturation. Daily (4am to 3:59am) mean of from dopsat_calcObsSat', 'This release',
@@ -177,5 +177,5 @@ attributes_timeseries <- function(
 render_timeseries_metadata <- function(out_file, child_yaml, points_list, ent_rds, parent_list, template) {
   child_list <- yaml::yaml.load_file(child_yaml)
   ent_list <- readRDS(ent_rds)
-  render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
+  meddle::render(filename=out_file, data=child_list, points_list, ent_list, parent_list, template=template)
 }

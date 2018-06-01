@@ -4,14 +4,36 @@ document-creator: "Alison P Appling"
 
 # ----data release----
 title: Model configurations for estimating metabolism
+abstract: >-
+  This dataset provides model configurations for estimating metabolism.
+  The format of the configuration file is arbitrary and specific to this analysis, and
+  the format need not be replicated to use streamMetabolizer; however, this tabular format
+  is useful because it allows for the reading by both humans and computers of
+  (1) the combinations of sites and temporal resolutions for which models were run,
+  (2) the timeseries data that were selected and combined to prepare the input to each model, and
+  (3) the model specifications and parameters that were used in each model application.
+  
+  This dataset is part of a larger data release of metabolism model inputs and outputs
+  for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).
+  The complete release includes:
+  modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient;
+  model input data and alternative input data;
+  model fit and diagnostic information;
+  site catchment boundaries and site point locations; and
+  potential predictors of metabolism such as discharge and light availability.
 
 # ----dataset details----
 process-description: >-
-  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan".
-  This configuration file was generated 2017-04-06 15:04:23 +0000 and was originally labeled with tag 1.0.2.
+  Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018)
+  using the input data and model specifications noted in this configuration file.
+  
+  The configuration file was generated on 2017-04-06 and includes all 433 combinations of sites and
+  temporal resolutions for which there was at least one day of complete data available for modeling.
+  Although generated programatically, this configuration file represents a collection of manual
+  decisions about which input data sources to use, which model variant to run, and what numbers
+  constitute reasonable a priori beliefs (Bayesian priors) about the parameters to be estimated.
+  These decisions are thoroughly explained and justified in Appling et al. 2018.
 process-date: 20170406
-data-name: config.zip
-data-description: Model configurations for estimating metabolism. Configuration parameters can be 
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
@@ -19,9 +41,13 @@ build-environment: >-
   
   R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; dplyr version 0.7.4; magrittr version 1.5;
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
-file-format: tab-separated values, compressed from text to .zip format
+file-format: Tab-separated values, compressed from text to .zip format
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
 accur-test: No formal attribute accuracy tests were conducted.
+
+# ----entity definition----
+data-name: config.tsv, compressed into config.zip
+data-description: Model configurations for estimating metabolism. Each row represents one model.
 
 # ----spatial data----
 indirect-spatial: U.S.A.
@@ -35,6 +61,7 @@ source-cites:
     title: >-
       Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation
     pubdate: 2018
+    file-format: Manuscript
     link: https://dx.doi.org/10.1002/2017JG004140
     sngdate:
       caldate: 2018
@@ -48,6 +75,7 @@ source-cites:
     title: >-
       streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
     pubdate: 2017
+    file-format: R source code
     link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
     sngdate:
       caldate: 2017

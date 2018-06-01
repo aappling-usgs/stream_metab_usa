@@ -17,12 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism</title>
-        <geoform>Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</geoform>
+        <geoform>Tab-separated values, one file per variable, up to 25 files per site, for 753 sites. Files for each site are packaged and compressed in .zip format.</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): In nwis_XXXX-ts_baro_gldas.tsv: DateTime, baro, . In nwis_XXXX-ts_baro_nldas.tsv: DateTime, baro, . In nwis_XXXX-ts_doamp_calcDAmp.tsv: DateTime, doamp, . In nwis_XXXX-ts_doobs_nwis.tsv: DateTime, doobs, . In nwis_XXXX-ts_dopsat_calcObsSat.tsv: DateTime, dopsat, . In nwis_XXXX-ts_dosat_calcGGbts.tsv: DateTime, dosat, . In nwis_XXXX-ts_par_calcLat.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcLatSw.tsv: DateTime, par, . In nwis_XXXX-ts_par_calcSw.tsv: DateTime, par, . In nwis_XXXX-ts_sitedate_calcLon.tsv: DateTime, sitedate, . In nwis_XXXX-ts_sitetime_calcLon.tsv: DateTime, sitetime, . In nwis_XXXX-ts_suntime_calcLon.tsv: DateTime, suntime, . In nwis_XXXX-ts_sw_gldas.tsv: DateTime, sw, . In nwis_XXXX-ts_sw_nldas.tsv: DateTime, sw, . In nwis_XXXX-ts_wtr_nwis.tsv: DateTime, wtr, . In nwis_XXXX-ts_baro_calcElev.tsv: DateTime, baro, . In nwis_XXXX-ts_dosat_calcGGbconst.tsv: DateTime, dosat, . In nwis_XXXX-ts_depth_calcDischHarvey.tsv: DateTime, depth, . In nwis_XXXX-ts_depth_calcDischRaymond.tsv: DateTime, depth, . In nwis_XXXX-ts_disch_nwis.tsv: DateTime, disch, . In nwis_XXXX-ts_dischdaily_calcDMean.tsv: DateTime, dischdaily, . In nwis_XXXX-ts_veloc_calcDischHarvey.tsv: DateTime, veloc, . In nwis_XXXX-ts_veloc_calcDischRaymond.tsv: DateTime, veloc, . In nwis_XXXX-ts_velocdaily_calcDMean.tsv: DateTime, velocdaily, . </abstract>
+      <abstract>This dataset provides timeseries data collected or computed from outside sources. This compilation of data is intended for use in estimating or interpreting metabolism. Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -49,14 +50,19 @@
     </spdom>
     <keywords>
       <theme>
-        <themekt>none</themekt>
-        <themekey>water</themekey>
-        <themekey>streams</themekey>
-        <themekey>rivers</themekey>
-        <themekey>metabolism</themekey>
-        <themekey>primary productivity</themekey>
-        <themekey>carbon</themekey>
-        <themekey>respiration</themekey>
+        <themekt>USGS Biocomplexity Thesaurus</themekt>
+        <themekey>Water courses</themekey>
+        <themekey>Rivers</themekey>
+        <themekey>Streams</themekey>
+        <themekey>Energy metabolism</themekey>
+        <themekey>Primary production</themekey>
+        <themekey>Photosynthesis</themekey>
+        <themekey>Aerobic respiration</themekey>
+        <themekey>Gas exchange</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Carbon dioxide</themekey>
+        <themekey>Oxygen</themekey>
+        <themekey>Dissolved oxygen</themekey>
       </theme>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
@@ -66,9 +72,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
@@ -88,7 +92,7 @@
         <placekey>CT</placekey>
         <placekey>Delaware</placekey>
         <placekey>DE</placekey>
-        <placekey>District Of Columbia</placekey>
+        <placekey>District of Columbia</placekey>
         <placekey>DC</placekey>
         <placekey>Florida</placekey>
         <placekey>FL</placekey>
@@ -189,7 +193,7 @@
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
-    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
+    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS T.C. Chamberlin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
 Mac (x86_64-apple-darwin15.6.0) and Windows (x86_64-w64-mingw32) computers were used to generate the data and metadata.
 R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; sbtools version 1.1.6; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
@@ -216,8 +220,8 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; s
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
             <geoform>WaterML1.1</geoform>
-            <onlink>http://waterdata.usgs.gov/nwis/iv</onlink>
-            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+            <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <onlink>https://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -835,6 +839,37 @@ Additional variables were calculated from these raw sources using data-preparati
     </detailed>
     <detailed>
       <enttyp>
+        <enttypl>nwis_XXXX-ts_swdaily_calcDMean.tsv</enttypl>
+        <enttypd>Tab-separated 2-column data table containing date-time stamps (first column) and values for the variable code-named swdaily_calcDMean; see attribute definition for 2nd column for variable and data source details.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>DateTime</attrlabl>
+        <attrdef>Date-time in UTC. Acquired from contributing dataset[s] and converted to UTC if necessary</attrdef>
+        <attrdefs>This release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>2007-09-30 16:34:01 +0000</rdommin>
+            <rdommax>2016-12-31 20:11:26 +0000</rdommax>
+            <attrunit>NA</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>swdaily</attrlabl>
+        <attrdef>Daily average downwards shortwave radiation flux. Daily (4am to 3:59am) mean of sw_nldas (or sw_gldas when sw_nldas unavailable)</attrdef>
+        <attrdefs>This release</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>15.11</rdommin>
+            <rdommax>456.7</rdommax>
+            <attrunit>W m^-2</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
         <enttypl>nwis_XXXX-ts_wtr_nwis.tsv</enttypl>
         <enttypd>Tab-separated 2-column data table containing date-time stamps (first column) and values for the variable code-named wtr_nwis; see attribute definition for 2nd column for variable and data source details.</enttypd>
         <enttypds>Producer Defined</enttypds>
@@ -946,7 +981,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>depth</attrlabl>
-        <attrdef>Spatially averaged stream depth. Calculated from discharge and the site-specific hydraulic geometry coefficients, where depth=cQ^f</attrdef>
+        <attrdef>Spatially averaged stream depth (m). Calculated from discharge (Q, m^3 s^-1) and the site-specific hydraulic geometry coefficients c and f, where depth=cQ^f</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -977,7 +1012,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>depth</attrlabl>
-        <attrdef>Spatially averaged stream depth. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where depth=cQ^f</attrdef>
+        <attrdef>Spatially averaged stream depth (m). Calculated from discharge (Q, m^3 s^-1) and global hydraulic geometry coefficients c and f from Raymond et al. 2012, where depth=cQ^f</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1070,7 +1105,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>veloc</attrlabl>
-        <attrdef>Stream velocity. Calculated from discharge and the site-specific hydraulic geometry coefficients in site_data.tsv, where velocity=kQ^m</attrdef>
+        <attrdef>Stream velocity (m s^-1). Calculated from discharge (Q, m^3 s^-1) and the site-specific hydraulic geometry coefficients k and m in site_data.tsv, where velocity=kQ^m</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1101,7 +1136,7 @@ Additional variables were calculated from these raw sources using data-preparati
       </attr>
       <attr>
         <attrlabl>veloc</attrlabl>
-        <attrdef>Stream velocity. Calculated from discharge and global hydraulic geometry coefficients from Raymond et al. 2012, where velocity=kQ^m</attrdef>
+        <attrdef>Stream velocity (m s^-1). Calculated from discharge (Q, m^3 s^-1) and global hydraulic geometry coefficients k and m from Raymond et al. 2012, where velocity=kQ^m</attrdef>
         <attrdefs>This release</attrdefs>
         <attrdomv>
           <rdom>
@@ -1167,7 +1202,7 @@ Additional variables were calculated from these raw sources using data-preparati
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>Tab-separated values, one file per variable, up to 24 files (variables) per site, packaged and compressed in .zip format.</formname>
+          <formname>Tab-separated values, one file per variable, up to 25 files per site, for 753 sites. Files for each site are packaged and compressed in .zip format.</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -1183,7 +1218,7 @@ Additional variables were calculated from these raw sources using data-preparati
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180522</metd>
+    <metd>20180528</metd>
     <metc>
       <cntinfo>
         <cntperp>

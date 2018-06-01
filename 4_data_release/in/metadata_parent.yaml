@@ -4,26 +4,17 @@ meddle-version: "0.0.4"
 authors: ["Alison P. Appling","Jordan S. Read","Luke A. Winslow", "Maite Arroita", "Emily S. Bernhardt", "Natalie A. Griffiths", "Robert O. Hall, Jr.", "Judson W. Harvey", "James B. Heffernan", "Emily H. Stanley", "Edward G. Stets", "Charles B. Yackulic"]
 pubdate: 2018
 update: Update planned for year 2023
-themekeywords: ["water","streams","rivers","metabolism","primary productivity","carbon","respiration"]
 usage-rules: >-
   None, but see Distribution Liability below. 
   Users are advised to read the associated publication thoroughly to understand appropriate use and data limitations.
 doi: https://doi.org/10.5066/F70864KX
-abstract: >-
-  This data release provides modeled estimates of
-  gross primary productivity, ecosystem respiration, and gas exchange coefficients
-  for 356 streams and rivers across the United States.
-  The release also includes the model input data and alternative input data,
-  model fit and diagnostic information,
-  spatial data for the modeled sites (catchment boundaries and site point locations), and
-  potential predictors of metabolism such as discharge and light availability.
 funding-credits: >-
   This work was funded by the USGS Powell Center
   (Working Group title: "Continental-scale overview of stream primary productivity,
   its links to water quality, and consequences for aquatic carbon biogeochemistry").
   Additional financial support came from the USGS NAWQA program and Office of Water Information.
   NSF grants DEB-1146283 and EF1442501 partially supported ROH.
-  The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.
+  The USGS T.C. Chamberlin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.
 purpose: >-
   A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of
   links between aquatic energy cycling and ecosystem services,

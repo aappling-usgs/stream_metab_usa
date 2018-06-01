@@ -21,8 +21,13 @@ sources:
   
 targets:
   4_release_parent:
-    depends: 
+    depends:
+      - spatial.site.points
+      - parent_metadata
       - stream_metab_powell_release
+  after_4_release_spatial:
+    depends:
+      - points_meta
   
   # -- load shared metadata details --
   
@@ -41,9 +46,9 @@ targets:
   # If you don't already have points_meta, build 4_release_spatial.yml before
   # building other data release items downstream of 4_release_parent.yml.
   points_meta:
-    command: yaml.load_file(I('../4_data_release/cache/points_metadata.yml'))
+    command: yaml.load_file('../4_data_release/cache/points_metadata.yml')
   
-  # We also need decoupled access to points.spatial
+  # It's also handy to have decoupled access to spatial.sites from 1_spatial.yml
   spatial.site.points:
     command: make(I('spatial.sites'), remake_file='1_spatial.yml')
   
@@ -54,6 +59,10 @@ targets:
     command: yaml.load_file('../4_data_release/in/metadata_parent.yaml')
     
   # -- SB posting: create the items to host data and metadata --
-
+  # Note that the release item has been moved from its original parent to a new parent.
+  # In future data releases, it's probably cleaner just to create this parent manually
+  # and associate it directly with the generated ID, e.g.,
+  # stream_metab_powell_release:
+  #   command: c(I('59bff507e4b091459a5e0982'))
   stream_metab_powell_release:
     command: create_release_parent(target_name, I('57adfa86e4b0fc09faad6d87'))

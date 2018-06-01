@@ -4,19 +4,25 @@ document-creator: "Jordan S Read"
 
 # ----data release----
 title: Spatial catchments
-
+abstract: >-
+  This dataset provides shapefile outlines of the catchments contributing to sites
+  where metabolism was or could have been estimated.
+  
+  This dataset is part of a larger data release of metabolism model inputs and outputs
+  for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).
+  The complete release includes:
+  modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient;
+  model input data and alternative input data;
+  model fit and diagnostic information;
+  site catchment boundaries and site point locations; and
+  potential predictors of metabolism such as discharge and light availability.
 
 # ----dataset details----
 process-description: >- 
   Existing polygons were combined from various sources (see data_source attribute and Source Information).
-  Spatial tools in the R programming language were used to perform the operations of merging 
+  Spatial tools in the R programming language were used to perform the operations of merging
   and modifying attributes. 
 process-date: 20180116
-data-name: Spatial data for catchment delineation
-data-description: >- 
-  Catchment polygons from various sources collated into a single shapefile.
-  Catchments approximately represent the contributing area for gaging stations. 
-  Not all stations had catchments delineated, so those included here are a subset of the total. 
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.1 (2017-06-30)).
   
@@ -39,6 +45,13 @@ usage-rules:  >-
   units of government, or others based on needs; however, they are responsible for the appropriate application 
   of the data.
 accur-test: No formal attribute accuracy tests were conducted.
+
+# ----entity definition----
+data-name: catchment_shapefile.zip, containing shapefile files with suffixes .dbf, .prj, .shp, and .shx
+data-description: >- 
+  Catchment polygons from various sources collated into a single shapefile.
+  Catchments approximately represent the contributing area for gaging stations. 
+  Not all stations had catchments delineated, so those included here are a subset of the total. 
 
 source-cites: 
   -

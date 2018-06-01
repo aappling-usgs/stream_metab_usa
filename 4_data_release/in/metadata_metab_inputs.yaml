@@ -4,6 +4,17 @@ document-creator: "Alison P Appling"
 
 # ----data release----
 title: Input data used for estimating metabolism
+abstract: >-
+  This dataset provides input data in the format used for estimating metabolism.
+  
+  This dataset is part of a larger data release of metabolism model inputs and outputs
+  for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).
+  The complete release includes:
+  modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient;
+  model input data and alternative input data;
+  model fit and diagnostic information;
+  site catchment boundaries and site point locations; and
+  potential predictors of metabolism such as discharge and light availability.
 
 # ----dataset details----
 process-description: >-
@@ -28,8 +39,6 @@ process-description: >-
   that had not-quite-matching timestamps. We limited linear interpolation to mismatches or data gaps of no more than 3 hours;
   entire data rows were excluded for any time points during which one or more variables had a data gap greater than 3 hours.
 process-date: 20170406
-data-name: nwis_SITENUM_input.zip for 356 values of SITENUM
-data-description: Model input data for estimating metabolism.
 build-environment: >-
   This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
   
@@ -37,9 +46,13 @@ build-environment: >-
   
   R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; dplyr version 0.7.4; magrittr version 1.5;
   meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
-file-format: tab-separated values, compressed from text to .zip format
+file-format: Tab-separated values, compressed from text to .zip format
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
 accur-test: No formal attribute accuracy tests were conducted.
+
+# ----entity definition----
+data-name: nwis_SITENUM_input.tsv, compressed into nwis_SITENUM_input.zip, for 356 values of SITENUM (the USGS site ID)
+data-description: Model input data as combined and formatted for estimating metabolism.
 
 # ----spatial data----
 indirect-spatial: U.S.A.
@@ -53,6 +66,7 @@ source-cites:
     title: >-
       Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation
     pubdate: 2018
+    file-format: Manuscript
     link: https://dx.doi.org/10.1002/2017JG004140
     sngdate:
       caldate: 2018
@@ -66,6 +80,7 @@ source-cites:
     title: >-
       streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1
     pubdate: 2017
+    file-format: R source code
     link: ['https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1', 'zenodo.org/record/838795#.Waw5zFWGOUk']
     sngdate:
       caldate: 2017

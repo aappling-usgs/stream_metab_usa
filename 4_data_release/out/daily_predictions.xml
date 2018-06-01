@@ -17,12 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Daily metabolism estimates and predictors</title>
-        <geoform>tab-separated values, compressed from text to .zip format</geoform>
+        <geoform>Tab-separated values, compressed from text to .zip format</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site_name, resolution, date, GPP, GPP.lower, GPP.upper, GPP.n_eff, GPP.Rhat, ER, ER.lower, ER.upper, ER.n_eff, ER.Rhat, K600, K600.lower, K600.upper, K600.n_eff, K600.Rhat, DO.obs, DO.sat, DO.amp, DO.psat, depth, temp.water, day.length, discharge, shortwave, velocity, DO.tdist95, .</abstract>
+      <abstract>This dataset provides daily metabolism estimates and predictors.
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -42,21 +43,26 @@
       <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
-        <eastbc>-71.2733903</eastbc>
-        <northbc>26.4642778</northbc>
-        <southbc>60.2036591</southbc>
+        <eastbc>-66.1160552</eastbc>
+        <northbc>60.3699586</northbc>
+        <southbc>18.4070314</southbc>
       </bounding>
     </spdom>
     <keywords>
       <theme>
-        <themekt>none</themekt>
-        <themekey>water</themekey>
-        <themekey>streams</themekey>
-        <themekey>rivers</themekey>
-        <themekey>metabolism</themekey>
-        <themekey>primary productivity</themekey>
-        <themekey>carbon</themekey>
-        <themekey>respiration</themekey>
+        <themekt>USGS Biocomplexity Thesaurus</themekt>
+        <themekey>Water courses</themekey>
+        <themekey>Rivers</themekey>
+        <themekey>Streams</themekey>
+        <themekey>Energy metabolism</themekey>
+        <themekey>Primary production</themekey>
+        <themekey>Photosynthesis</themekey>
+        <themekey>Aerobic respiration</themekey>
+        <themekey>Gas exchange</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Carbon dioxide</themekey>
+        <themekey>Oxygen</themekey>
+        <themekey>Dissolved oxygen</themekey>
       </theme>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
@@ -66,9 +72,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
@@ -88,7 +92,7 @@
         <placekey>CT</placekey>
         <placekey>Delaware</placekey>
         <placekey>DE</placekey>
-        <placekey>District Of Columbia</placekey>
+        <placekey>District of Columbia</placekey>
         <placekey>DC</placekey>
         <placekey>Florida</placekey>
         <placekey>FL</placekey>
@@ -108,6 +112,8 @@
         <placekey>KY</placekey>
         <placekey>Louisiana</placekey>
         <placekey>LA</placekey>
+        <placekey>Maine</placekey>
+        <placekey>ME</placekey>
         <placekey>Maryland</placekey>
         <placekey>MD</placekey>
         <placekey>Massachusetts</placekey>
@@ -116,8 +122,12 @@
         <placekey>MI</placekey>
         <placekey>Minnesota</placekey>
         <placekey>MN</placekey>
+        <placekey>Mississippi</placekey>
+        <placekey>MS</placekey>
         <placekey>Missouri</placekey>
         <placekey>MO</placekey>
+        <placekey>Montana</placekey>
+        <placekey>MT</placekey>
         <placekey>Nebraska</placekey>
         <placekey>NE</placekey>
         <placekey>New Jersey</placekey>
@@ -138,6 +148,8 @@
         <placekey>OR</placekey>
         <placekey>Pennsylvania</placekey>
         <placekey>PA</placekey>
+        <placekey>Puerto Rico</placekey>
+        <placekey>PR</placekey>
         <placekey>South Carolina</placekey>
         <placekey>SC</placekey>
         <placekey>South Dakota</placekey>
@@ -181,7 +193,7 @@
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
-    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
+    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS T.C. Chamberlin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
 The computing platform for generating data and metadata was Windows (x86_64-w64-mingw32).
 R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
@@ -210,7 +222,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Maite Arroita</origin>
             <pubdate>2018</pubdate>
             <title>Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>https://dx.doi.org/10.1002/2017JG004140</onlink>
           </citeinfo>
         </srccite>
@@ -235,7 +247,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>R source code</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -259,8 +271,8 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
             <pubdate>2016</pubdate>
             <title>National Water Information System data available on the World Wide Web (USGS Water Data for the Nation)</title>
             <geoform>WaterML1.1</geoform>
-            <onlink>http://waterdata.usgs.gov/nwis/iv</onlink>
-            <onlink>http://dx.doi.org/10.5066/F7P55KJN</onlink>
+            <onlink>https://waterdata.usgs.gov/nwis</onlink>
+            <onlink>https://dx.doi.org/10.5066/F7P55KJN</onlink>
           </citeinfo>
         </srccite>
         <typesrc>online</typesrc>
@@ -290,7 +302,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     <ptvctinf>
       <sdtsterm>
         <sdtstype>Point</sdtstype>
-        <ptvctcnt>392</ptvctcnt>
+        <ptvctcnt>602</ptvctcnt>
       </sdtsterm>
     </ptvctinf>
   </spdoinfo>
@@ -312,8 +324,8 @@ The remaining daily values were computed from the sub-daily input data. These in
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>Daily estimates of river metabolism and gas exchange</enttypl>
-        <enttypd>Daily estimates of metabolism</enttypd>
+        <enttypl>daily_predictions.tsv, compressed into daily_predictions.zip</enttypl>
+        <enttypd>Daily estimates of river metabolism and gas exchange.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -342,7 +354,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>date</attrlabl>
-        <attrdef>Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
+        <attrdef>Primary date to which the fitted values apply, YYYY-MM-DD format, for the period from 4am on that date to 3:59am on the following date.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -354,7 +366,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>GPP</attrlabl>
-        <attrdef>Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -402,7 +414,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>GPP.Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -414,7 +426,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>ER</attrlabl>
-        <attrdef>Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -462,7 +474,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>ER.Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -474,7 +486,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>K600</attrlabl>
-        <attrdef>Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the MCMC distribution.</attrdef>
+        <attrdef>Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the post-warmup MCMC distribution.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -522,7 +534,7 @@ The remaining daily values were computed from the sub-daily input data. These in
       </attr>
       <attr>
         <attrlabl>K600.Rhat</attrlabl>
-        <attrdef>R-hat statistic of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
+        <attrdef>Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.</attrdef>
         <attrdefs>streamMetabolizer R package</attrdefs>
         <attrdomv>
           <rdom>
@@ -689,7 +701,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, compressed from text to .zip format</formname>
+          <formname>Tab-separated values, compressed from text to .zip format</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -705,7 +717,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180408</metd>
+    <metd>20180528</metd>
     <metc>
       <cntinfo>
         <cntperp>

@@ -17,12 +17,13 @@
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
         <title>Model configurations for estimating metabolism</title>
-        <geoform>tab-separated values, compressed from text to .zip format</geoform>
+        <geoform>Tab-separated values, compressed from text to .zip format</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data release provides modeled estimates of gross primary productivity, ecosystem respiration, and gas exchange coefficients for 356 streams and rivers across the United States. The release also includes the model input data and alternative input data, model fit and diagnostic information, spatial data for the modeled sites (catchment boundaries and site point locations), and potential predictors of metabolism such as discharge and light availability. This data set contains the following parameters (defined below): site, resolution, required_timestep, model_name, K600_lnQ_nodes_centers, K600_lnQ_nodediffs_sdlog, K600_daily_sigma_sigma, burnin_steps, saved_steps, solar.time.src, DO.obs.src, DO.sat.src, depth.src, temp.water.src, light.src, discharge.src, .</abstract>
+      <abstract>This dataset provides model configurations for estimating metabolism. The format of the configuration file is arbitrary and specific to this analysis, and the format need not be replicated to use streamMetabolizer; however, this tabular format is useful because it allows for the reading by both humans and computers of (1) the combinations of sites and temporal resolutions for which models were run, (2) the timeseries data that were selected and combined to prepare the input to each model, and (3) the model specifications and parameters that were used in each model application.
+This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
     <timeperd>
@@ -42,21 +43,26 @@
       <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
-        <eastbc>-71.2733903</eastbc>
-        <northbc>26.4642778</northbc>
-        <southbc>60.2036591</southbc>
+        <eastbc>-66.1160552</eastbc>
+        <northbc>60.3699586</northbc>
+        <southbc>18.4070314</southbc>
       </bounding>
     </spdom>
     <keywords>
       <theme>
-        <themekt>none</themekt>
-        <themekey>water</themekey>
-        <themekey>streams</themekey>
-        <themekey>rivers</themekey>
-        <themekey>metabolism</themekey>
-        <themekey>primary productivity</themekey>
-        <themekey>carbon</themekey>
-        <themekey>respiration</themekey>
+        <themekt>USGS Biocomplexity Thesaurus</themekt>
+        <themekey>Water courses</themekey>
+        <themekey>Rivers</themekey>
+        <themekey>Streams</themekey>
+        <themekey>Energy metabolism</themekey>
+        <themekey>Primary production</themekey>
+        <themekey>Photosynthesis</themekey>
+        <themekey>Aerobic respiration</themekey>
+        <themekey>Gas exchange</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Carbon dioxide</themekey>
+        <themekey>Oxygen</themekey>
+        <themekey>Dissolved oxygen</themekey>
       </theme>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
@@ -66,9 +72,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
@@ -88,7 +92,7 @@
         <placekey>CT</placekey>
         <placekey>Delaware</placekey>
         <placekey>DE</placekey>
-        <placekey>District Of Columbia</placekey>
+        <placekey>District of Columbia</placekey>
         <placekey>DC</placekey>
         <placekey>Florida</placekey>
         <placekey>FL</placekey>
@@ -108,6 +112,8 @@
         <placekey>KY</placekey>
         <placekey>Louisiana</placekey>
         <placekey>LA</placekey>
+        <placekey>Maine</placekey>
+        <placekey>ME</placekey>
         <placekey>Maryland</placekey>
         <placekey>MD</placekey>
         <placekey>Massachusetts</placekey>
@@ -116,8 +122,12 @@
         <placekey>MI</placekey>
         <placekey>Minnesota</placekey>
         <placekey>MN</placekey>
+        <placekey>Mississippi</placekey>
+        <placekey>MS</placekey>
         <placekey>Missouri</placekey>
         <placekey>MO</placekey>
+        <placekey>Montana</placekey>
+        <placekey>MT</placekey>
         <placekey>Nebraska</placekey>
         <placekey>NE</placekey>
         <placekey>New Jersey</placekey>
@@ -138,6 +148,8 @@
         <placekey>OR</placekey>
         <placekey>Pennsylvania</placekey>
         <placekey>PA</placekey>
+        <placekey>Puerto Rico</placekey>
+        <placekey>PR</placekey>
         <placekey>South Carolina</placekey>
         <placekey>SC</placekey>
         <placekey>South Dakota</placekey>
@@ -181,7 +193,7 @@
         <cntemail>aappling@usgs.gov</cntemail>
       </cntinfo>
     </ptcontac>
-    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS Wisconsin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
+    <datacred>This work was funded by the USGS Powell Center (Working Group title: "Continental-scale overview of stream primary productivity, its links to water quality, and consequences for aquatic carbon biogeochemistry"). Additional financial support came from the USGS NAWQA program and Office of Water Information. NSF grants DEB-1146283 and EF1442501 partially supported ROH. The USGS T.C. Chamberlin Modeling Center provided access to the HTCondor cluster for generating metabolism estimates.</datacred>
     <native>This dataset was generated using open source tools available in the R programming language (R version 3.4.3 (2017-11-30)).
 Mac (x86_64-apple-darwin15.6.0) and Windows (x86_64-w64-mingw32) computers were used to generate the data and metadata.
 R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; dplyr version 0.7.4; magrittr version 1.5; meddle version 0.0.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.</native>
@@ -210,7 +222,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
             <origin>Maite Arroita</origin>
             <pubdate>2018</pubdate>
             <title>Overcoming Equifinality: Leveraging Long Time Series for Stream Metabolism Estimation</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>Manuscript</geoform>
             <onlink>https://dx.doi.org/10.1002/2017JG004140</onlink>
           </citeinfo>
         </srccite>
@@ -235,7 +247,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
             <origin>Charles B. Yackulic</origin>
             <pubdate>2017</pubdate>
             <title>streamMetabolizer: Models for Estimating Aquatic Photosynthesis and Respiration, version 0.10.1</title>
-            <geoform>tab-separated values, compressed from text to .zip format</geoform>
+            <geoform>R source code</geoform>
             <onlink>https://github.com/USGS-R/streamMetabolizer/releases/tag/v0.10.1</onlink>
             <onlink>zenodo.org/record/838795#.Waw5zFWGOUk</onlink>
           </citeinfo>
@@ -253,7 +265,8 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
         <srccontr>This software source provided the metabolism model implementation used to generate metabolism estimates for this project. See https://dx.doi.org/10.5281/zenodo.838795 for an archived copy of the source code exactly as used for this project. See https://owi.usgs.gov/R/gran.html for instructions on how to access current versions of the software from the U.S. Geological Survey archive.</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the Bayesian model with streamMetabolizer model name "b_Kb_oipi_tr_plrckm.stan". This configuration file was generated 2017-04-06 15:04:23 +0000 and was originally labeled with tag 1.0.2.</procdesc>
+        <procdesc>Metabolism was estimated using the streamMetabolizer package (Appling et al. 2018) using the input data and model specifications noted in this configuration file.
+The configuration file was generated on 2017-04-06 and includes all 433 combinations of sites and temporal resolutions for which there was at least one day of complete data available for modeling. Although generated programatically, this configuration file represents a collection of manual decisions about which input data sources to use, which model variant to run, and what numbers constitute reasonable a priori beliefs (Bayesian priors) about the parameters to be estimated. These decisions are thoroughly explained and justified in Appling et al. 2018.</procdesc>
         <procdate>20170406</procdate>
       </procstep>
     </lineage>
@@ -264,7 +277,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
     <ptvctinf>
       <sdtsterm>
         <sdtstype>Point</sdtstype>
-        <ptvctcnt>392</ptvctcnt>
+        <ptvctcnt>602</ptvctcnt>
       </sdtsterm>
     </ptvctinf>
   </spdoinfo>
@@ -286,8 +299,8 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>config.zip</enttypl>
-        <enttypd>Model configurations for estimating metabolism. Configuration parameters can be</enttypd>
+        <enttypl>config.tsv, compressed into config.zip</enttypl>
+        <enttypd>Model configurations for estimating metabolism. Each row represents one model.</enttypd>
         <enttypds>Producer Defined</enttypds>
       </enttyp>
       <attr>
@@ -507,7 +520,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
     <stdorder>
       <digform>
         <digtinfo>
-          <formname>tab-separated values, compressed from text to .zip format</formname>
+          <formname>Tab-separated values, compressed from text to .zip format</formname>
         </digtinfo>
         <digtopt>
           <onlinopt>
@@ -523,7 +536,7 @@ R packages used: streamMetabolizer version 0.10.1; mda.streams version 0.10.4; d
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180323</metd>
+    <metd>20180528</metd>
     <metc>
       <cntinfo>
         <cntperp>

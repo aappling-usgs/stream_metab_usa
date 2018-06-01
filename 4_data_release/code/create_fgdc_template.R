@@ -21,7 +21,7 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   
   m %>%
     xml_add_child('descript') %>%
-    xml_add_child("abstract",'{{abstract}} This data set contains the following parameters (defined below): <abscontent-template/>') %>%
+    xml_add_child("abstract",'{{abstract}}') %>%
     xml_add_sibling("purpose", '{{purpose}}')
   
   ti <- m %>%
@@ -52,11 +52,20 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   k <- xml_add_child(m, 'keywords') 
   
   k %>% 
-    xml_add_child('theme', "
-        <themekt>none</themekt>
-        {{#themekeywords}}
-        <themekey>{{.}}</themekey>
-        {{/themekeywords}}")
+    xml_add_child('theme') %>% 
+    xml_add_child('themekt','USGS Biocomplexity Thesaurus') %>% 
+    xml_add_sibling('themekey','Water courses') %>% 
+    xml_add_sibling('themekey','Rivers') %>% 
+    xml_add_sibling('themekey','Streams') %>% 
+    xml_add_sibling('themekey','Energy metabolism') %>% 
+    xml_add_sibling('themekey','Primary production') %>% 
+    xml_add_sibling('themekey','Photosynthesis') %>% 
+    xml_add_sibling('themekey','Aerobic respiration') %>% 
+    xml_add_sibling('themekey','Gas exchange') %>% 
+    xml_add_sibling('themekey','Carbon') %>% 
+    xml_add_sibling('themekey','Carbon dioxide') %>% 
+    xml_add_sibling('themekey','Oxygen') %>% 
+    xml_add_sibling('themekey','Dissolved oxygen')
   
   k %>% 
     xml_add_child('theme') %>% 
@@ -68,9 +77,10 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   
   k %>% 
     xml_add_child('place') %>% 
-    xml_add_child('placekt','Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology') %>% 
+    xml_add_child('placekt',paste0(
+      'Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and ',
+      'Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, ', 
+      'Washington, D.C., National Institute of Standards and Technology')) %>% 
     xml_add_sibling('placekey','United States') %>% 
     xml_add_sibling('placekey','US')
   k %>% 

@@ -1,22 +1,22 @@
 attr-label,attr-def,attr-defs,data-min,data-max,data-units
 site_name,"Site identifier, consisting of prefix ""nwis_"" and the USGS National Water Information System (NWIS) site ID.","National Water Information System, U.S. Geological Survey (USGS_NWIS)",nwis_01104430,nwis_411955088280601,NA
 resolution,The temporal resolution of the input data (time between successive observations) for those dates fitted by this model.,This data release,5,60,minutes
-date,"Primary date to which the fitted values apply, Y-M-D format, for the period from 4am on that date to 3:59am on the following date.",streamMetabolizer R package,2007-10-01,2016-12-30,NA
-GPP,"Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the MCMC distribution.",streamMetabolizer R package,-34.54,107.3,gO2 m^-2 d^-1
+date,"Primary date to which the fitted values apply, YYYY-MM-DD format, for the period from 4am on that date to 3:59am on the following date.",streamMetabolizer R package,2007-10-01,2016-12-30,NA
+GPP,"Model estimate of GPP, the mean rate of gross primary productivity for this date. Value is the median of the post-warmup MCMC distribution.",streamMetabolizer R package,-34.54,107.3,gO2 m^-2 d^-1
 GPP.lower,Lower bound on the 95% credible interval around the daily GPP estimate. Value is the 2.5th quantile of the post-warmup MCMC distribution.,streamMetabolizer R package,-40.86,102.6,gO2 m^-2 d^-1
 GPP.upper,Upper bound on the 95% credible interval around the daily GPP estimate. Value is the 97.5th quantile of the post-warmup MCMC distribution.,streamMetabolizer R package,-30.64,112,gO2 m^-2 d^-1
 GPP.n_eff,Estimated effective sample size of the MCMC sampling for GPP.,streamMetabolizer R package,2.006,8000,samples
-GPP.Rhat,R-hat statistic of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.,streamMetabolizer R package,0.998,18.06,NA
-ER,"Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the MCMC distribution.",streamMetabolizer R package,-118.3,45.52,gO2 m^-2 d^-1
+GPP.Rhat,Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for GPP. Values near or below 1.05 indicate convergence of the MCMC chains.,streamMetabolizer R package,0.998,18.06,NA
+ER,"Model estimate of ER, the mean rate of ecosystem respiration for this date, where more negative values indicate more respiration. Value is the median of the post-warmup MCMC distribution.",streamMetabolizer R package,-118.3,45.52,gO2 m^-2 d^-1
 ER.lower,Lower bound (most negative or least positive) on the 95% credible interval around the daily ER estimate. Value is the 2.5th quantile of the post-warmup MCMC distribution.,streamMetabolizer R package,-126,37.19,gO2 m^-2 d^-1
 ER.upper,Upper bound (least negative or most positive) on the 95% credible interval around the daily ER estimate. Value is the 97.5th quantile of the post-warmup MCMC distribution.,streamMetabolizer R package,-110.9,53.68,gO2 m^-2 d^-1
 ER.n_eff,Estimated effective sample size of the MCMC sampling for ER.,streamMetabolizer R package,2.004,8000,samples
-ER.Rhat,R-hat statistic of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.,streamMetabolizer R package,0.998,22.19,NA
-K600,"Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the MCMC distribution.",streamMetabolizer R package,0.0003724,694.9,d^-1
+ER.Rhat,Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for ER. Values near or below 1.05 indicate convergence of the MCMC chains.,streamMetabolizer R package,0.998,22.19,NA
+K600,"Model estimate of K600, the mean reaeration rate coefficient, scaled to a Schmidt number of 600, for this date. Value is the median of the post-warmup MCMC distribution.",streamMetabolizer R package,0.0003724,694.9,d^-1
 K600.lower,Lower bound on the 95% credible interval around the daily K600 estimate. Value is the 2.5th quantile of the post-warmup MCMC distribution.,streamMetabolizer R package,0.0000104,396.3,d^-1
 K600.upper,Upper bound on the 95% credible interval around the daily K600 estimate. Value is the 97.5th quantile of the post-warmup MCMC distribution.,streamMetabolizer R package,0.001994,999.7,d^-1
 K600.n_eff,Estimated effective sample size of the MCMC sampling for K600.,streamMetabolizer R package,2.001,8000,samples
-K600.Rhat,R-hat statistic of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.,streamMetabolizer R package,0.998,284.3,NA
+K600.Rhat,Gelman-Rubin convergence statistic (R-hat statistic) of the MCMC sampling for K600. Values near or below 1.05 indicate convergence of the MCMC chains.,streamMetabolizer R package,0.998,284.3,NA
 DO.obs,Mean dissolved oxygen concentration for the date (4am to 3:59am).,This data release,-0.1,21.11,mgO2 L^-1
 DO.sat,Mean theoretical saturation concentration for the date (4am to 3:59am).,This data release,6.529,14.96,mgO2 L^-1
 DO.amp,Amplitude (difference between minimum and maximum observed values) of the dissolved oxygen concentrations for the date (4am to 3:59am).,This data release,0,318.3,mgO2 L^-1

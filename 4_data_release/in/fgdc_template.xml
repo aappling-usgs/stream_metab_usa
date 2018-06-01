@@ -26,7 +26,7 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>{{abstract}} This data set contains the following parameters (defined below): {{#attributes}}{{attr-label}}, {{/attributes}}.</abstract>
+      <abstract>{{abstract}}</abstract>
       <purpose>{{purpose}}</purpose>
     </descript>
     <timeperd>
@@ -53,10 +53,20 @@
     </spdom>
     <keywords>
       <theme>
-        <themekt>none</themekt>
-        {{#themekeywords}}
-        <themekey>{{.}}</themekey>
-        {{/themekeywords}}</theme>
+        <themekt>USGS Biocomplexity Thesaurus</themekt>
+        <themekey>Water courses</themekey>
+        <themekey>Rivers</themekey>
+        <themekey>Streams</themekey>
+        <themekey>Energy metabolism</themekey>
+        <themekey>Primary production</themekey>
+        <themekey>Photosynthesis</themekey>
+        <themekey>Aerobic respiration</themekey>
+        <themekey>Gas exchange</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Carbon dioxide</themekey>
+        <themekey>Oxygen</themekey>
+        <themekey>Dissolved oxygen</themekey>
+      </theme>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
         <themekey>environment</themekey>
@@ -65,9 +75,7 @@
         <themekey>012</themekey>
       </theme>
       <place>
-        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and 
-                  Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, 
-                  Washington, D.C., National Institute of Standards and Technology</placekt>
+        <placekt>Department of Commerce, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions,  Federal Information Processing Standard (FIPS) 10-4, Washington, D.C., National Institute of Standards and Technology</placekt>
         <placekey>United States</placekey>
         <placekey>US</placekey>
       </place>
