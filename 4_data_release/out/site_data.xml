@@ -196,7 +196,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
   </idinfo>
   <dataqual>
     <attracc>
-      <attraccr>Despite these values originating from the NWIS site files, which are part of frequent internal data reviews, we did manually  evaluate accuracy of many fields, and found some "0" values in alt_va to be suspect. Caution is encouraged for using the  alt_va field. </attraccr>
+      <attraccr>No formal attribute accuracy tests were conducted since many of these values originated from the NWIS site files,  which are part of frequent internal data reviews. However, we did manually  evaluate accuracy of many fields, and found some "0" values in alt_va to be suspect.  Caution is encouraged for using the alt_va field. </attraccr>
     </attracc>
     <logic>Not applicable</logic>
     <complete>Not applicable</complete>
