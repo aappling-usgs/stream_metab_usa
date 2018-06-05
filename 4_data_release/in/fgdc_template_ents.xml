@@ -126,7 +126,7 @@
   </idinfo>
   <dataqual>
     <attracc>
-      <attraccr>No formal attribute accuracy tests were conducted.</attraccr>
+      <attraccr>{{accur-test}}</attraccr>
     </attracc>
     <logic>Not applicable</logic>
     <complete>Not applicable</complete>
