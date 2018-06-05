@@ -127,7 +127,7 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
   q <- xml_add_child(mt, 'dataqual')
   
   q %>% xml_add_child('attracc') %>% 
-    xml_add_child('attraccr','No formal attribute accuracy tests were conducted.')
+    xml_add_child('attraccr','{{accur-test}}')
   
   q %>% xml_add_child('logic','Not applicable') %>% 
     xml_add_sibling('complete','Not applicable')

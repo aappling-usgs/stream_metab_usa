@@ -44,6 +44,7 @@ usage-rules:  >-
   from these data. The dataset is public information and may be interpreted by all organizations, agencies, 
   units of government, or others based on needs; however, they are responsible for the appropriate application 
   of the data.
+accur-test: No formal attribute accuracy tests were conducted.
 
 # ----entity definition----
 data-name: catchment_shapefile.zip, containing shapefile files with suffixes .dbf, .prj, .shp, and .shx

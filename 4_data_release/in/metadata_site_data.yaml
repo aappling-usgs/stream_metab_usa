@@ -28,7 +28,7 @@ process-description: >-
   station_nm, dec_lat_va, dec_long_va, dec_coord_datum_cd, alt_va, alt_datum_cd, and site_tp_cd (called "site_type" here).
   The only exceptions are for sites for which dec_lat_va and dec_lon_va were unavailable in the NWIS database, 
   in which case we parsed coordinate information from NWIS fields lat_va, long_va, and coord_datum_cd into the
-  decimal coordinate format of other sites.
+  decimal coordinate format of other sites. 
   
   2. The field nhdplus_id links USGS sites to corresponding reach codes (ComID's) in the
   National Hydrography Dataset, Version 2 (see Source Citation for NHDPlusV2). 
@@ -71,6 +71,11 @@ build-environment: >-
   meddle version 0.0.6; mda.streams version 0.10.4; sbtools version 1.1.6; whisker version 0.3-2; yaml version 2.1.17.
 file-format: Tab-separated values
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
+accur-test: >-
+  No formal attribute accuracy tests were conducted since many of these values originated from the NWIS site files,
+  which are part of frequent internal data reviews. However, we did manually
+  evaluate accuracy of many fields, and found some "0" values in alt_va to be suspect.
+  Caution is encouraged for using the alt_va field.
 
 # ----entity definition----
 data-name: site_data.tsv

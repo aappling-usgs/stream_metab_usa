@@ -41,6 +41,7 @@ file-format: >-
   The files for each model are packaged and compressed in .zip format. The zip files are named with the pattern
   "nwis_SITENUM_RES_fit.zip" for the 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).
 metadata-date: !expr format(Sys.time(),'%Y%m%d')
+accur-test: No formal attribute accuracy tests were conducted.
 
 # ----spatial data----
 indirect-spatial: U.S.A.
