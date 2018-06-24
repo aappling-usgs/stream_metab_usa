@@ -22,7 +22,7 @@ sources:
 targets:
   4_release_parent:
     depends:
-      - spatial.site.points
+      - spatial.sites.copy
       - parent_metadata
       - stream_metab_powell_release
   after_4_release_spatial:
@@ -49,7 +49,7 @@ targets:
     command: yaml.load_file('../4_data_release/cache/points_metadata.yml')
   
   # It's also handy to have decoupled access to spatial.sites from 1_spatial.yml
-  spatial.site.points:
+  spatial.sites.copy:
     command: make(I('spatial.sites'), remake_file='1_spatial.yml')
   
   

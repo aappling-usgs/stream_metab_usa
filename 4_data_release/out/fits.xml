@@ -43,9 +43,9 @@ This dataset is part of a larger data release of metabolism model inputs and out
       <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
-        <eastbc>-66.1160552</eastbc>
-        <northbc>60.3699586</northbc>
-        <southbc>18.4070314</southbc>
+        <eastbc>-71.2733903</eastbc>
+        <northbc>60.2036591</northbc>
+        <southbc>27.93779594</southbc>
       </bounding>
     </spdom>
     <keywords>
@@ -78,8 +78,6 @@ This dataset is part of a larger data release of metabolism model inputs and out
       </place>
       <place>
         <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-        <placekey>Alabama</placekey>
-        <placekey>AL</placekey>
         <placekey>Alaska</placekey>
         <placekey>AK</placekey>
         <placekey>Arkansas</placekey>
@@ -112,8 +110,6 @@ This dataset is part of a larger data release of metabolism model inputs and out
         <placekey>KY</placekey>
         <placekey>Louisiana</placekey>
         <placekey>LA</placekey>
-        <placekey>Maine</placekey>
-        <placekey>ME</placekey>
         <placekey>Maryland</placekey>
         <placekey>MD</placekey>
         <placekey>Massachusetts</placekey>
@@ -122,12 +118,8 @@ This dataset is part of a larger data release of metabolism model inputs and out
         <placekey>MI</placekey>
         <placekey>Minnesota</placekey>
         <placekey>MN</placekey>
-        <placekey>Mississippi</placekey>
-        <placekey>MS</placekey>
         <placekey>Missouri</placekey>
         <placekey>MO</placekey>
-        <placekey>Montana</placekey>
-        <placekey>MT</placekey>
         <placekey>Nebraska</placekey>
         <placekey>NE</placekey>
         <placekey>New Jersey</placekey>
@@ -148,8 +140,6 @@ This dataset is part of a larger data release of metabolism model inputs and out
         <placekey>OR</placekey>
         <placekey>Pennsylvania</placekey>
         <placekey>PA</placekey>
-        <placekey>Puerto Rico</placekey>
-        <placekey>PR</placekey>
         <placekey>South Carolina</placekey>
         <placekey>SC</placekey>
         <placekey>South Dakota</placekey>
@@ -276,7 +266,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     <ptvctinf>
       <sdtsterm>
         <sdtstype>Point</sdtstype>
-        <ptvctcnt>602</ptvctcnt>
+        <ptvctcnt>356</ptvctcnt>
       </sdtsterm>
     </ptvctinf>
   </spdoinfo>
@@ -1619,7 +1609,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180604</metd>
+    <metd>20180624</metd>
     <metc>
       <cntinfo>
         <cntperp>
