@@ -13,6 +13,8 @@ packages:
   
 sources:
   - ../4_data_release/code/post_data_release.R
+  - ../4_data_release/code/prepare_model_points_metadata.R
+  - ../1_spatial/code/makeshape.R
   - ../4_data_release/code/model_release_tasks.R
   - ../4_data_release/code/meta_attr_helpers.R
   - ../4_data_release/code/model_release_meta.R
@@ -55,7 +57,14 @@ targets:
       prep=I('../4_data_release/cache/models/prep'),
       post=I('../4_data_release/cache/models/post'),
       log=I('../4_data_release/log/models'))
-      
+  
+  # prepare modeled site points spatial metadata for all of the model release files.
+  # model.points and model_points_metadata are comparable to spatial.points in 1_spatial.yml
+  # and points_metadata in 4_release_spatial.yml, respectively
+  
+  model_points_metadata:
+    command: prepare_model_points_metadata(spatial.sites.copy, model_config_tsv='../2_metab_models/run3/out/config.tsv')
+  
   # model_config: post the file
   
   ../4_data_release/cache/models/post/config.zip:
@@ -154,7 +163,7 @@ targets:
     command: render_metab_metadata(
       out_file=target_name, 
       child_yaml="../4_data_release/in/metadata_metab_config.yaml",
-      points_list=points_meta,
+      points_list=model_points_metadata,
       attrs_csv="../4_data_release/in/attr_metab_config.csv",
       parent_list=parent_metadata,
       template="../4_data_release/in/fgdc_template.xml")
@@ -163,7 +172,7 @@ targets:
     command: render_metab_metadata(
       out_file=target_name, 
       child_yaml="../4_data_release/in/metadata_metab_inputs.yaml",
-      points_list=points_meta,
+      points_list=model_points_metadata,
       attrs_csv="../4_data_release/in/attr_metab_inputs.csv",
       parent_list=parent_metadata,
       template="../4_data_release/in/fgdc_template.xml")
@@ -172,7 +181,7 @@ targets:
     command: render_metab_fit_metadata(
       out_file=target_name, 
       child_yaml="../4_data_release/in/metadata_metab_fits.yaml",
-      points_list=points_meta,
+      points_list=model_points_metadata,
       ent_rds="../4_data_release/in/attr_metab_fits.rds",
       parent_list=parent_metadata,
       template="../4_data_release/in/fgdc_template_ents.xml")
@@ -181,7 +190,7 @@ targets:
     command: render_metab_metadata(
       out_file=target_name, 
       child_yaml="../4_data_release/in/metadata_metab_diagnostics.yaml",
-      points_list=points_meta,
+      points_list=model_points_metadata,
       attrs_csv="../4_data_release/in/attr_metab_diagnostics.csv",
       parent_list=parent_metadata,
       template="../4_data_release/in/fgdc_template.xml")
@@ -190,7 +199,7 @@ targets:
     command: render_metab_metadata(
       out_file=target_name, 
       child_yaml="../4_data_release/in/metadata_metab_daily_preds.yaml",
-      points_list=points_meta,
+      points_list=model_points_metadata,
       attrs_csv="../4_data_release/in/attr_metab_daily_preds.csv",
       parent_list=parent_metadata,
       template="../4_data_release/in/fgdc_template.xml")
