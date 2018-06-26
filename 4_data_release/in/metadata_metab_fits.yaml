@@ -3,14 +3,16 @@ document-created: "20171110"
 document-creator: "Alison P Appling"
 
 # ----data release----
-title: Complete fits from metabolism estimation models
+title: "Metabolism estimates for 356 U.S. rivers (2007-2017): 6. Model outputs"
 abstract: >-
-  This dataset provides complete fits from metabolism estimation models, organized as 5 files per model:
+  This dataset provides complete fits from metabolism estimation models.
+  The format is 5 files per model (text and tab-delimited files, packaged as 1 zip file per model):
   (1) estimates of daily gross primary productivity (GPP), ecosystem respiration (ER), and the gas exchange coefficient (K600),
   (2) parameters for the model overall,
   (3) estimates of the nodes defining the piecewise line relating K600 to discharge,
   (4) parameters for the overall relationship between K600 and discharge, and
   (5) any warnings returned by the model.
+  
   
   This dataset is part of a larger data release of metabolism model inputs and outputs
   for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).

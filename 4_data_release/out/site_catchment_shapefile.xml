@@ -16,13 +16,14 @@
         <origin>Edward G. Stets</origin>
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
-        <title>Spatial catchments</title>
+        <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 2b. Site catchment boundaries</title>
         <geoform>Shapefile</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This dataset provides shapefile outlines of the catchments contributing to sites where metabolism was or could have been estimated.
+      <abstract>This dataset provides shapefile outlines of the catchments contributing to sites where metabolism was or could have been estimated. The format is a shapefile for all sites combined (.shp, .shx, .dbf, and .prj files).
+
 This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
@@ -483,7 +484,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180604</metd>
+    <metd>20180625</metd>
     <metc>
       <cntinfo>
         <cntperp>
