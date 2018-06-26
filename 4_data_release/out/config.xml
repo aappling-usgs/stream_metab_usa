@@ -16,13 +16,16 @@
         <origin>Edward G. Stets</origin>
         <origin>Charles B. Yackulic</origin>
         <pubdate>2018</pubdate>
-        <title>Model configurations for estimating metabolism</title>
+        <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 5. Model configurations</title>
         <geoform>Tab-separated values, compressed from text to .zip format</geoform>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This dataset provides model configurations for estimating metabolism. The format of the configuration file is arbitrary and specific to this analysis, and the format need not be replicated to use streamMetabolizer; however, this tabular format is useful because it allows for the reading by both humans and computers of (1) the combinations of sites and temporal resolutions for which models were run, (2) the timeseries data that were selected and combined to prepare the input to each model, and (3) the model specifications and parameters that were used in each model application.
+      <abstract>This dataset provides model specifications used to estimate metabolism. The format is a table with 1 row per model (1 tab-delimited file, compressed into zip file).
+
+The specific format of this configuration file is arbitrary and specific to this analysis, and the format need not be replicated to use streamMetabolizer; however, this tabular format is useful because it allows for the reading by both humans and computers of (1) the combinations of sites and temporal resolutions for which models were run, (2) the timeseries data that were selected and combined to prepare the input to each model, and (3) the model specifications and parameters that were used in each model application.
+
 This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
@@ -526,7 +529,7 @@ The configuration file was generated on 2017-04-06 and includes all 433 combinat
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180624</metd>
+    <metd>20180625</metd>
     <metc>
       <cntinfo>
         <cntperp>
