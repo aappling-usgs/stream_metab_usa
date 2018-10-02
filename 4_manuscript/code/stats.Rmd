@@ -40,9 +40,28 @@ Total number of dates
 nrow(dailies) # 490907
 ```
 
+Density of dates
+```{r}
+date_densities <- dailies %>% group_by(site_name) %>% 
+  summarize(
+    dates_per_site = n(),
+    years_per_site = dates_per_site/365.25,
+    date_range = as.numeric(diff(range(date)), units='days') + 1,
+    year_range = date_range / 365.25,
+    date_density = dates_per_site / year_range
+  )
+date_densities$dates_per_site %>% summary # 61 to 3296 dates
+date_densities$years_per_site %>% summary # 0.17 to 9.02 years
+date_densities$date_range %>% summary # 62 to 3379 days
+date_densities$year_range %>% summary # 0.1698 to 9.25 years
+date_densities$date_density %>% summary # 17.3 to 365.25 dates per year
+filter(date_densities, date_density < 90)
+```
+
 Dates by resolution
 ```{r}
 dates_by_resolution <- dailies %>% group_by(resolution) %>% count()
+dates_by_resolution
 ```
 
 Higher temporal resolution leads to longer runtime

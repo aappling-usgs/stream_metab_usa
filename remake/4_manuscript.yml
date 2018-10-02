@@ -4,6 +4,7 @@ include:
   - 4_release_spatial.yml
   
 packages:
+  - ggplot2
   - maps
   - sp
   - rgeos
@@ -13,6 +14,7 @@ packages:
   - rgdal
   - viridisLite
   - rmarkdown
+  - readr
   
 sources:
   - ../4_manuscript/code/rmarkdown_render.R
@@ -59,6 +61,11 @@ targets:
       daily_zip='../4_data_release/cache/models/post/daily_predictions.zip',
       points_shp='../1_spatial/cache/points_shapefile/points_shapefile.shp',
       site_tsv='../4_data_release/cache/site_data.tsv')
+
+  ../4_manuscript/fig/dates.pdf:
+    command: fig_temporal_coverage(
+      outfile=target_name, 
+      daily_zip='../4_data_release/cache/models/post/daily_predictions.zip')
       
   ../4_manuscript/stats/stats.html:
     command: rmarkdown_render('../4_manuscript/code/stats.Rmd', output_file=I('../../4_manuscript/stats/stats.html'))
