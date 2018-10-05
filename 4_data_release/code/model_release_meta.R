@@ -539,13 +539,13 @@ attributes_daily_preds <- function(
     'shortwave', 'Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).', unique(mda.streams::get_var_src_codes(var=='sw', out='metab_units')),
     'discharge', 'Mean discharge for the date (4am to 3:59pm).', var_src_units('discharge'),
     'velocity', 'Mean water velocity for the date (4am to 3:59pm).', var_src_units('velocity'),
-    'DO.tdist95', 'Mean 95% turnover distance for dissolved oxygen for the date (4am to 3:59pm)', unique(mda.streams::get_var_src_codes(var=='mfootdaily', out='metab_units'))
+    'DO.tdist80', 'Mean 80% turnover distance for dissolved oxygen for the date (4am to 3:59pm)', unique(mda.streams::get_var_src_codes(var=='mfootdaily', out='metab_units'))
   ) %>% mutate(
     'attr-defs'=sapply(`attr-label`, function(attr_label) {
       switch(
         attr_label,
         site_name = 'National Water Information System, U.S. Geological Survey (USGS_NWIS)',
-        resolution=,DO.obs=,DO.sat=,DO.amp=,DO.psat=,depth=,temp.water=,day.length=,shortwave=,discharge=,velocity=,DO.tdist95='This data release',
+        resolution=,DO.obs=,DO.sat=,DO.amp=,DO.psat=,depth=,temp.water=,day.length=,shortwave=,discharge=,velocity=,DO.tdist80='This data release',
         'streamMetabolizer R package')
     })
   )

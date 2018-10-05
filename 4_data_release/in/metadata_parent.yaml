@@ -1,8 +1,9 @@
 meddle-version: "0.0.4"
 
 # ----data release----
-authors: ["Alison P. Appling","Jordan S. Read","Luke A. Winslow", "Maite Arroita", "Emily S. Bernhardt", "Natalie A. Griffiths", "Robert O. Hall, Jr.", "Judson W. Harvey", "James B. Heffernan", "Emily H. Stanley", "Edward G. Stets", "Charles B. Yackulic"]
+authors: ["Appling, A.P.","Read, J.S.","Winslow, L.A.", "Arroita, M.", "Bernhardt, E.S.", "Griffiths, N.A.", "Hall, R.O. Jr.", "Harvey, J.W.", "Heffernan, J.B.", "Stanley, E.S.", "Stets, E.G.", "Yackulic, C.B."]
 pubdate: 2018
+data-publisher: U.S. Geological Survey data release
 update: Update planned for year 2023
 usage-rules: >-
   None, but see Distribution Liability below. 
@@ -30,10 +31,10 @@ latitude-res: 0.002
 longitude-res: 0.002 
 
 # ----associated publication----
-cite-authors: ["Alison P Appling","Jordan S Read","Luke A Winslow", "Maite Arroita", "Emily Bernhardt", "Natalie Griffiths", "Robert Hall", "Judson Harvey", "Jim Heffernan", "Emily Stanley", "Edward Stets", "Charles Yackulic"]
+cite-authors: ["Appling, A.P.","Read, J.S.","Winslow, L.A.", "Arroita, M.", "Bernhardt, E.S.", "Griffiths, N.A.", "Hall, R.O. Jr.", "Harvey, J.W.", "Heffernan, J.B.", "Stanley, E.S.", "Stets, E.G.", "Yackulic, C.B."]
 cite-date: 2018
 cite-title: >-
-  The metabolic regimes of 356 U.S. rivers (2007-2017)
+  The metabolic regimes of 356 rivers in the United States
 paper: paper
 publisher: Nature
 journal: Scientific Data
@@ -61,13 +62,13 @@ metadata-zip: 53562
 # ----distribution----
 
 # statement for "Preliminary (provisional) data, information, or software" (https://www2.usgs.gov/fsp/fsp_disclaimers.asp):
-liability-statement: >-
-  This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science.
-  The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the
-  USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information.
-# statement for "Approved data released to the public" (https://www2.usgs.gov/fsp/fsp_disclaimers.asp):
 #liability-statement: >-
-#  Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected.
-#  Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS),
-#  no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall
-#  the act of distribution constitute any such warranty.
+#  This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science.
+#  The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the
+#  USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information.
+# statement for "Approved data released to the public" (https://www2.usgs.gov/fsp/fsp_disclaimers.asp):
+liability-statement: >-
+  Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected.
+  Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS),
+  no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall
+  the act of distribution constitute any such warranty.
