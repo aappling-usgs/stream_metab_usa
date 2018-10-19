@@ -3,21 +3,25 @@
   <idinfo>
     <citation>
       <citeinfo>
-        <origin>Alison P. Appling</origin>
-        <origin>Jordan S. Read</origin>
-        <origin>Luke A. Winslow</origin>
-        <origin>Maite Arroita</origin>
-        <origin>Emily S. Bernhardt</origin>
-        <origin>Natalie A. Griffiths</origin>
-        <origin>Robert O. Hall, Jr.</origin>
-        <origin>Judson W. Harvey</origin>
-        <origin>James B. Heffernan</origin>
-        <origin>Emily H. Stanley</origin>
-        <origin>Edward G. Stets</origin>
-        <origin>Charles B. Yackulic</origin>
+        <origin>Appling, A.P.</origin>
+        <origin>Read, J.S.</origin>
+        <origin>Winslow, L.A.</origin>
+        <origin>Arroita, M.</origin>
+        <origin>Bernhardt, E.S.</origin>
+        <origin>Griffiths, N.A.</origin>
+        <origin>Hall, R.O. Jr.</origin>
+        <origin>Harvey, J.W.</origin>
+        <origin>Heffernan, J.B.</origin>
+        <origin>Stanley, E.S.</origin>
+        <origin>Stets, E.G.</origin>
+        <origin>Yackulic, C.B.</origin>
         <pubdate>2018</pubdate>
         <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 5. Model configurations</title>
         <geoform>Tab-separated values, compressed from text to .zip format</geoform>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -509,7 +513,7 @@ The configuration file was generated on 2017-04-06 and includes all 433 combinat
         <cntemail>sciencebase@usgs.gov</cntemail>
       </cntinfo>
     </distrib>
-    <distliab>This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information.</distliab>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
     <stdorder>
       <digform>
         <digtinfo>
@@ -529,7 +533,7 @@ The configuration file was generated on 2017-04-06 and includes all 433 combinat
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180625</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>
