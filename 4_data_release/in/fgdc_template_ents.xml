@@ -9,7 +9,10 @@
         <pubdate>{{pubdate}}</pubdate>
         <title>{{title}}</title>
         <geoform>{{file-format}}</geoform>
-        <publish>{{data-publisher}}</publish>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>{{data-publisher}}</publish>
+        </pubinfo>
         <onlink>{{doi}}</onlink>
         {{#larger-cites}}<lworkcit>
     <citeinfo>

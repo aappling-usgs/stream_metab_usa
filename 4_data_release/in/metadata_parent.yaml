@@ -3,7 +3,7 @@ meddle-version: "0.0.4"
 # ----data release----
 authors: ["Appling, A.P.","Read, J.S.","Winslow, L.A.", "Arroita, M.", "Bernhardt, E.S.", "Griffiths, N.A.", "Hall, R.O. Jr.", "Harvey, J.W.", "Heffernan, J.B.", "Stanley, E.S.", "Stets, E.G.", "Yackulic, C.B."]
 pubdate: 2018
-data-publisher: U.S. Geological Survey data release
+data-publisher: U.S. Geological Survey
 update: Update planned for year 2023
 usage-rules: >-
   None, but see Distribution Liability below. 

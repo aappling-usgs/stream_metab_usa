@@ -18,7 +18,10 @@
         <pubdate>2018</pubdate>
         <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 3. Timeseries data</title>
         <geoform>Tab-separated values, one file per variable, up to 25 files per site, for 753 sites. Files for each site are packaged and compressed in .zip format.</geoform>
-        <publish>U.S. Geological Survey data release</publish>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -1222,7 +1225,7 @@ Additional variables were calculated from these raw sources using data-preparati
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20181005</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>

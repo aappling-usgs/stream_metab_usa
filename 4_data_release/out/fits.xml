@@ -18,7 +18,10 @@
         <pubdate>2018</pubdate>
         <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 6. Model outputs</title>
         <geoform>Tab-separated values and text files, 4 to 5 files per model. The files for each model are packaged and compressed in .zip format. The zip files are named with the pattern "nwis_SITENUM_RES_fit.zip" for the 433 combinations of SITENUM (USGS site IDs) and RES (temporal resolution of input data, minutes).</geoform>
-        <publish>U.S. Geological Survey data release</publish>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -1611,7 +1614,7 @@ R packages used: streamMetabolizer version 0.10.1; dplyr version 0.7.4; magrittr
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20181005</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>

@@ -18,7 +18,10 @@
         <pubdate>2018</pubdate>
         <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 5. Model configurations</title>
         <geoform>Tab-separated values, compressed from text to .zip format</geoform>
-        <publish>U.S. Geological Survey data release</publish>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -530,7 +533,7 @@ The configuration file was generated on 2017-04-06 and includes all 433 combinat
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20181005</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>

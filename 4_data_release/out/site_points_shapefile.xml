@@ -18,7 +18,10 @@
         <pubdate>2018</pubdate>
         <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 2a. Site coordinates</title>
         <geoform>Shapefile</geoform>
-        <publish>U.S. Geological Survey data release</publish>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -318,7 +321,7 @@ R packages used: maptools version 0.9-2; mda.streams version 0.9.24; meddle vers
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20181005</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>

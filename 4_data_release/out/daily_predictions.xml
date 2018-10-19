@@ -18,7 +18,10 @@
         <pubdate>2018</pubdate>
         <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 8. Metabolism estimates and predictors</title>
         <geoform>Tab-separated values, compressed from text to .zip format</geoform>
-        <publish>U.S. Geological Survey data release</publish>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
@@ -709,7 +712,7 @@ The remaining daily values were computed from the sub-daily input data. These in
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20181005</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>
