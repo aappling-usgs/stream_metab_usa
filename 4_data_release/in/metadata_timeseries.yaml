@@ -3,12 +3,16 @@ document-created: "20171110"
 document-creator: "Alison P Appling"
 
 # ----data release----
-title: Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism
+title: "Metabolism estimates for 356 U.S. rivers (2007-2017): 3. Timeseries data"
 abstract: >-
-  This dataset provides timeseries data collected or computed from outside sources.
+  This dataset provides timeseries data on water quality and quantity, as collected or computed from outside sources.
+  The format is many tables with one row per time series observation (1 tab-delimited file per site-variable combination, 1 zip file per site).
+  
+  
   This compilation of data is intended for use in estimating or interpreting metabolism.
   Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations
   and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
+  
   
   This dataset is part of a larger data release of metabolism model inputs and outputs
   for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).

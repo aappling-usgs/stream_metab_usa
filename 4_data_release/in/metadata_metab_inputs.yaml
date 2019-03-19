@@ -3,9 +3,11 @@ document-created: "20171110"
 document-creator: "Alison P Appling"
 
 # ----data release----
-title: Input data used for estimating metabolism
+title: "Metabolism estimates for 356 U.S. rivers (2007-2017): 4. Model inputs"
 abstract: >-
-  This dataset provides input data in the format used for estimating metabolism.
+  This dataset provides input data formatted for use in estimating metabolism.
+  The format is tables of prepared time series inputs (1 tab-delimited file per site, in 1 zip file per site).
+  
   
   This dataset is part of a larger data release of metabolism model inputs and outputs
   for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).

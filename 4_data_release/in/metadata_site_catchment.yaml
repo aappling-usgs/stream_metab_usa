@@ -3,10 +3,12 @@ document-created: "2017-12-12"
 document-creator: "Jordan S Read"
 
 # ----data release----
-title: Spatial catchments
+title: "Metabolism estimates for 356 U.S. rivers (2007-2017): 2b. Site catchment boundaries"
 abstract: >-
   This dataset provides shapefile outlines of the catchments contributing to sites
   where metabolism was or could have been estimated.
+  The format is a shapefile for all sites combined (.shp, .shx, .dbf, and .prj files).
+  
   
   This dataset is part of a larger data release of metabolism model inputs and outputs
   for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX).

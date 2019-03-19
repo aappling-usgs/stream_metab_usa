@@ -3,26 +3,33 @@
   <idinfo>
     <citation>
       <citeinfo>
-        <origin>Alison P. Appling</origin>
-        <origin>Jordan S. Read</origin>
-        <origin>Luke A. Winslow</origin>
-        <origin>Maite Arroita</origin>
-        <origin>Emily S. Bernhardt</origin>
-        <origin>Natalie A. Griffiths</origin>
-        <origin>Robert O. Hall, Jr.</origin>
-        <origin>Judson W. Harvey</origin>
-        <origin>James B. Heffernan</origin>
-        <origin>Emily H. Stanley</origin>
-        <origin>Edward G. Stets</origin>
-        <origin>Charles B. Yackulic</origin>
+        <origin>Appling, A.P.</origin>
+        <origin>Read, J.S.</origin>
+        <origin>Winslow, L.A.</origin>
+        <origin>Arroita, M.</origin>
+        <origin>Bernhardt, E.S.</origin>
+        <origin>Griffiths, N.A.</origin>
+        <origin>Hall, R.O. Jr.</origin>
+        <origin>Harvey, J.W.</origin>
+        <origin>Heffernan, J.B.</origin>
+        <origin>Stanley, E.S.</origin>
+        <origin>Stets, E.G.</origin>
+        <origin>Yackulic, C.B.</origin>
         <pubdate>2018</pubdate>
-        <title>Timeseries data collected or computed from outside sources, for estimating or interpreting metabolism</title>
+        <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 3. Timeseries data</title>
         <geoform>Tab-separated values, one file per variable, up to 25 files per site, for 753 sites. Files for each site are packaged and compressed in .zip format.</geoform>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This dataset provides timeseries data collected or computed from outside sources. This compilation of data is intended for use in estimating or interpreting metabolism. Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
+      <abstract>This dataset provides timeseries data on water quality and quantity, as collected or computed from outside sources. The format is many tables with one row per time series observation (1 tab-delimited file per site-variable combination, 1 zip file per site).
+
+This compilation of data is intended for use in estimating or interpreting metabolism. Sites were included if they met the initial criteria of having at least 100 dissolved oxygen observations and one of the accepted NWIS site types ('ST','ST-CA','ST-DCH','ST-TS', or 'SP').
+
 This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
@@ -1198,7 +1205,7 @@ Additional variables were calculated from these raw sources using data-preparati
         <cntemail>sciencebase@usgs.gov</cntemail>
       </cntinfo>
     </distrib>
-    <distliab>This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information.</distliab>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
     <stdorder>
       <digform>
         <digtinfo>
@@ -1218,7 +1225,7 @@ Additional variables were calculated from these raw sources using data-preparati
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180604</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>

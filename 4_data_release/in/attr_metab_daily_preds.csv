@@ -27,4 +27,4 @@ day.length,Time elapsed between first and last estimates of light > 0 for the da
 discharge,Mean discharge for the date (4am to 3:59pm).,This data release,0.0002832,37758,m^3 s^-1
 shortwave,"Mean downwards shortwave radiation flux, surface, for the date (4am to 3:59pm).",This data release,15.28,443,W m^-2
 velocity,Mean water velocity for the date (4am to 3:59pm).,This data release,0.0003694,7.428,m s^-1
-DO.tdist95,Mean 95% turnover distance for dissolved oxygen for the date (4am to 3:59pm),This data release,9.315,682474639,m
+DO.tdist80,Mean 80% turnover distance for dissolved oxygen for the date (4am to 3:59pm),This data release,5.005,366655114,m

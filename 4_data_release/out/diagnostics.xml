@@ -3,26 +3,31 @@
   <idinfo>
     <citation>
       <citeinfo>
-        <origin>Alison P. Appling</origin>
-        <origin>Jordan S. Read</origin>
-        <origin>Luke A. Winslow</origin>
-        <origin>Maite Arroita</origin>
-        <origin>Emily S. Bernhardt</origin>
-        <origin>Natalie A. Griffiths</origin>
-        <origin>Robert O. Hall, Jr.</origin>
-        <origin>Judson W. Harvey</origin>
-        <origin>James B. Heffernan</origin>
-        <origin>Emily H. Stanley</origin>
-        <origin>Edward G. Stets</origin>
-        <origin>Charles B. Yackulic</origin>
+        <origin>Appling, A.P.</origin>
+        <origin>Read, J.S.</origin>
+        <origin>Winslow, L.A.</origin>
+        <origin>Arroita, M.</origin>
+        <origin>Bernhardt, E.S.</origin>
+        <origin>Griffiths, N.A.</origin>
+        <origin>Hall, R.O. Jr.</origin>
+        <origin>Harvey, J.W.</origin>
+        <origin>Heffernan, J.B.</origin>
+        <origin>Stanley, E.S.</origin>
+        <origin>Stets, E.G.</origin>
+        <origin>Yackulic, C.B.</origin>
         <pubdate>2018</pubdate>
-        <title>Key diagnostics and overall assessments of metabolism model performance</title>
+        <title>Metabolism estimates for 356 U.S. rivers (2007-2017): 7. Model diagnostics</title>
         <geoform>Tab-separated values, compressed from text to .zip format</geoform>
+        <pubinfo>
+          <pubplace>Online (digital release)</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
         <onlink>https://doi.org/10.5066/F70864KX</onlink>
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This dataset provides key diagnostics and overall assessments of metabolism model performance. See the accompanying publication for rationale for these specific diagnostics.
+      <abstract>This dataset provides key diagnostics and overall assessments of metabolism model performance. The format is a table with 1 row per model (1 tab-delimited file, compressed into zip file). See the accompanying publication for rationale for the choices of specific diagnostics.
+
 This dataset is part of a larger data release of metabolism model inputs and outputs for 356 streams and rivers across the United States (https://doi.org/10.5066/F70864KX). The complete release includes: modeled estimates of gross primary productivity, ecosystem respiration, and the gas exchange coefficient; model input data and alternative input data; model fit and diagnostic information; site catchment boundaries and site point locations; and potential predictors of metabolism such as discharge and light availability.</abstract>
       <purpose>A continental-scale quantification of energy flow in streams and rivers can facilitate better understanding of links between aquatic energy cycling and ecosystem services, the seasonality and dynamism of stream energy flow, and the effects of human activities on aquatic activity. This data release provides multi-day time series estimates of energy flow as metabolism (gross primary productivity and ecosystem respiration) for 356 streams and rivers across the United States.</purpose>
     </descript>
@@ -43,9 +48,9 @@ This dataset is part of a larger data release of metabolism model inputs and out
       <descgeog>Stream and river monitoring sites in the U.S. Geological Survey's observation network</descgeog>
       <bounding>
         <westbc>-154.7044349</westbc>
-        <eastbc>-66.1160552</eastbc>
-        <northbc>60.3699586</northbc>
-        <southbc>18.4070314</southbc>
+        <eastbc>-71.2733903</eastbc>
+        <northbc>60.2036591</northbc>
+        <southbc>27.93779594</southbc>
       </bounding>
     </spdom>
     <keywords>
@@ -78,8 +83,6 @@ This dataset is part of a larger data release of metabolism model inputs and out
       </place>
       <place>
         <placekt>U.S. Department of Commerce, 1987, Codes for the identification of the States, the District of Columbia and the outlying areas of the United States, and associated areas (Federal Information Processing Standard 5-2): Washington, D. C., NIST</placekt>
-        <placekey>Alabama</placekey>
-        <placekey>AL</placekey>
         <placekey>Alaska</placekey>
         <placekey>AK</placekey>
         <placekey>Arkansas</placekey>
@@ -112,8 +115,6 @@ This dataset is part of a larger data release of metabolism model inputs and out
         <placekey>KY</placekey>
         <placekey>Louisiana</placekey>
         <placekey>LA</placekey>
-        <placekey>Maine</placekey>
-        <placekey>ME</placekey>
         <placekey>Maryland</placekey>
         <placekey>MD</placekey>
         <placekey>Massachusetts</placekey>
@@ -122,12 +123,8 @@ This dataset is part of a larger data release of metabolism model inputs and out
         <placekey>MI</placekey>
         <placekey>Minnesota</placekey>
         <placekey>MN</placekey>
-        <placekey>Mississippi</placekey>
-        <placekey>MS</placekey>
         <placekey>Missouri</placekey>
         <placekey>MO</placekey>
-        <placekey>Montana</placekey>
-        <placekey>MT</placekey>
         <placekey>Nebraska</placekey>
         <placekey>NE</placekey>
         <placekey>New Jersey</placekey>
@@ -148,8 +145,6 @@ This dataset is part of a larger data release of metabolism model inputs and out
         <placekey>OR</placekey>
         <placekey>Pennsylvania</placekey>
         <placekey>PA</placekey>
-        <placekey>Puerto Rico</placekey>
-        <placekey>PR</placekey>
         <placekey>South Carolina</placekey>
         <placekey>SC</placekey>
         <placekey>South Dakota</placekey>
@@ -278,7 +273,7 @@ This overall assessment is based only on readily computable information and is i
     <ptvctinf>
       <sdtsterm>
         <sdtstype>Point</sdtstype>
-        <ptvctcnt>602</ptvctcnt>
+        <ptvctcnt>356</ptvctcnt>
       </sdtsterm>
     </ptvctinf>
   </spdoinfo>
@@ -481,7 +476,7 @@ This overall assessment is based only on readily computable information and is i
         <cntemail>sciencebase@usgs.gov</cntemail>
       </cntinfo>
     </distrib>
-    <distliab>This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information.</distliab>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
     <stdorder>
       <digform>
         <digtinfo>
@@ -501,7 +496,7 @@ This overall assessment is based only on readily computable information and is i
     </stdorder>
   </distinfo>
   <metainfo>
-    <metd>20180604</metd>
+    <metd>20181019</metd>
     <metc>
       <cntinfo>
         <cntperp>

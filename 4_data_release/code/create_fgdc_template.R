@@ -16,8 +16,12 @@ create_fgdc_template <- function(file.out, multiple_entities=FALSE){
     xml_add_sibling('pubdate', "{{pubdate}}") %>%
     xml_add_sibling('title', "{{title}}") %>%
     xml_add_sibling('geoform', "{{file-format}}") %>%
+    xml_add_sibling('pubinfo') %>%
     xml_add_sibling('onlink', "{{doi}}") %>% 
     xml_add_sibling('lworkcit-template')
+  m %>% xml_child() %>% xml_child() %>% xml_child('pubinfo') %>%
+    xml_add_child('pubplace', 'Online (digital release)') %>%
+    xml_add_sibling('publish', '{{data-publisher}}')
   
   m %>%
     xml_add_child('descript') %>%

@@ -35,7 +35,7 @@ targets:
   # -- munge & write data for release --
       
   meta_all_df:
-    command: combine_site_data(sb_meta_basic, sb_meta_dvqcoefs, sb_meta_struct, sites=spatial.site.points)
+    command: combine_site_data(sb_meta_basic, sb_meta_dvqcoefs, sb_meta_struct, sites=spatial.sites.copy)
     
   ../4_data_release/cache/site_data.tsv:
     command: write_site_data(meta_all_df, outfile=target_name)

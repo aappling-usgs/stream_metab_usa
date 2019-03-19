@@ -493,7 +493,8 @@ combine_model_dailies <- function(out_file, model_info_plan, daily_preds_file) {
   
   # read in daily average discharge, and velocity
   daily_predictors <- readRDS(daily_preds_file) %>%
-    select(site_name=site, date=sitedate, shortwave=swdaily, velocity=velocdaily, DO.tdist95=mfootdaily)
+    mutate(DO.tdist80=mfootdaily*log(1-0.8)/log(1-0.95)) %>%
+    select(site_name=site, date=sitedate, shortwave=swdaily, velocity=velocdaily, DO.tdist80)
   
   # combine the daily predictions, daily mean inputs, and daily predictors into
   # a single df. I've done some checking: daylength predicts mean light,
